@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>房天下图片标注</title>
+    <link rel="stylesheet" type="text/css" href="//dev.brofen.cn/Fang/imgTag/static/css/all.min.css">
+</head>
+
+<body>
+        <header></header>
+    <header class="header-fixed">列表<a href="./upload.html" class="absolute-btn right-btn">导入</a>
+    </header>
+    <section class="list-content">
+        <!-- <div class="list-content--haeder">
+            <div class="list-content--search">
+                <input id="search" type="text" name="search" placeholder="输入搜索内容">
+            </div>
+        </div> -->
+        <div class="list-content--body">
+            <ul class="list-head flex-parent">
+                <li class="list-head--item view">预览</li>
+                <!-- <li class="list-head--item name">文件名</li> -->
+                <li class="list-head--item flex-item type">信息</li>
+                <!-- <li class="list-head--item size">备注</li> -->
+                <li class="list-head--item action">操作</li>
+            </ul>
+            <ul id="list"></ul>
+            <div class="pager" id="pager">
+            </div>
+        </div>
+    </section>
+    <script>
+    var vars = window.vars || {};
+    // vars.domainList = 'http://activity.test.fang.com/public/?c=imgLabel&a=getDataList';
+    vars.domainList = 'http://activities.m.test.fang.com/public/?c=imgLabel&a=getDataList';
+    // vars.domainUpdate = 'http://activity.test.fang.com/public/?c=imgLabel&a=updateLabel';
+    vars.domainUpdate = 'http://activities.m.test.fang.com/public/?c=imgLabel&a=updateLabel';
+    vars.labelConfig = [{
+        id: 1000,
+        name: '房天下'
+    }, {
+        id: 1001,
+        name: '链家'
+    }, {
+        id: 1002,
+        name: '安居客'
+    }, {
+        id: 1003,
+        name: '我爱我家'
+    }, {
+        id: 1004,
+        name: '自如'
+    }, {
+        id: 1005,
+        name: '室内图'
+    }, {
+        id: 1006,
+        name: '室外图'
+    }];
+    </script>
+    <script src="//static.test.soufunimg.com/common_m/pc_public/fangjs/build/??fang2.3.2.js,jquery/jquery-3.js"></script>
+    <script>
+    var isDebug = /@debug/.test(location.href) || /brofen/.test(location.href);
+    var dir = isDebug ? 'dev' : 'static';
+    // 配置Fang.js
+    fang.config({
+        base: '//dev.brofen.cn/Fang/imgTag/' + dir + '/js',
+        ver: '2017090501'
+    });
+    // 调用入口模块
+    fang(['entry/index'], function () {
+        console.log('entry_upload 执行完成');
+    });
+    </script>
+</body>
+
+</html>

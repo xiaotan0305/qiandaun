@@ -1,0 +1,215 @@
+@charset "utf-8";
+/* CSS Document */
+* {margin:0; padding:0;-webkit-tap-highlight-color: rgba(0,0,0,0); color:#fff; -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+/** {*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+/*}*/
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei"; background:#0c1339 url(../images/bg.jpg) repeat-y; background-size:100% auto;}
+form, img, table, td{ border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6,em,i{ font-size:100%; font-weight:normal; font-style:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+a{ text-decoration:none; border:0; color:#fff;}
+
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+/* flex */
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;} /*for FF*/
+.page{ position:relative;}
+
+.top{ position:relative; width:16rem; height:36.35rem;}
+.top .bg_t1{ width:16rem; height:12.1rem; background:url(../images/bg_top1.jpg) no-repeat; background-size:100% 100%;}
+.top .bg_t2{ width:16rem; height:12.1rem; background:url(../images/bg_top2.jpg) no-repeat; background-size:100% 100%;}
+.top .bg_t3{ width:16rem; height:12.1rem; background:url(../images/bg_top3.png) no-repeat; background-size:100% 100%;}
+
+.content{ position:absolute; top:0; left:0;}
+.selectbox{ position:relative; margin:0 auto; margin-top:0.9rem; width:10.8rem; z-index:2}
+.selectbox .tit1{ padding-left:0.7rem; width:10.8rem; height:1.55rem; font-size:0.7rem; color:#fff; line-height:1.55rem; background:url(../images/tit1.png) no-repeat; background-size:10.8rem auto;}
+/*下拉选项*/
+.selectbox .drop{overflow: hidden;position: absolute; top:1.55rem; left:50%; margin-top:-1px; margin-left:-4.99rem; padding:0.2rem 0; width:9.98rem; height:4.2rem; background:url(../images/drop_bg.jpg) no-repeat; background-size:100% 100%;}
+.selectbox .drop .shade{ position:absolute; top:0.025rem; left:0.05rem; width:9.88rem; height:1.1rem;background:-webkit-linear-gradient(top,rgba(19,72,131,.99),rgba(19,72,131,0) );background:linear-gradient(to bottom,  rgba(19,72,131,.99),rgba(19,72,131,0)); z-index:11;}
+.selectbox .drop .shade.shade2{ top:2.05rem; bottom:0; height:2.1rem;transform:rotate(180deg);-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);}
+.selectbox .drop ul{ margin:0 auto; width:9rem;}
+.selectbox .drop li{ font-size:0.65rem; height:0.95rem;line-height:0.95rem; text-align:center;}
+
+/*地图*/
+.map{ position:relative; margin-top:0.35rem; width:16rem; height:20.3rem; background:url(../images/map.png) no-repeat; background-size:100% 100%;}
+/*气泡和颜色*/
+.map .qp{ position:absolute; display:block; width:1.25rem; height:1.5rem; font-size:0.5rem; text-align:center; color:#feecca; line-height:1.3rem;}
+.map .qp.lv{ background:url(../images/qp_6.png) no-repeat center; background-size:auto 1.5rem;}
+.map .qp.lan{ background:url(../images/qp_2.png) no-repeat center; background-size:auto 1.5rem;}
+.map .qp.meiH{ background:url(../images/qp_1.png) no-repeat center; background-size:auto 1.5rem;}
+.map .qp.fenH{ background:url(../images/qp_5.png) no-repeat center; background-size:auto 1.5rem;}
+.map .qp.tLan{ background:url(../images/qp_4.png) no-repeat center; background-size:auto 1.5rem;}
+.map .qp.huang{ background:url(../images/qp_3.png) no-repeat center; background-size:auto 1.5rem;}
+
+.map span{ position:relative; white-space:nowrap;}
+.map span em{ position:absolute; height:0.8rem; font-weight:bold; font-size:0.6rem; line-height:0.8rem;}
+.map span em i{ font-size:0.35rem; font-weight:normal;}
+/*城市价格颜色边线颜色*/
+.map .qp.lv em{ color:#23c99b; border-bottom:1px dashed; border-color:#23c99b;}
+.map .qp.lv em:after{ border-left:1px dashed #23c99b;}
+.map .qp.lv em i{ color:#23c99b;}
+.map .qp.lan em{ color:#176bdd; border-bottom:1px dashed; border-color: #176bdd;}
+.map .qp.lan em:after{ border-left:1px dashed #176bdd;}
+.map .qp.lan em i{ color:#176bdd;}
+.map .qp.meiH em{ color:#ea4164; border-bottom:1px dashed; border-color: #ea4164;}
+.map .qp.meiH em:after{ border-left:1px dashed #ea4164;}
+.map .qp.meiH em i{ color:#ea4164;}
+.map .qp.fenH em{ color:#f88792; border-bottom:1px dashed; border-color: #f88792;}
+.map .qp.fenH em:after{ border-left:1px dashed #f88792;}
+.map .qp.fenH em i{ color:#f88792;}
+.map .qp.tLan em{ color:#5cb5e8; border-bottom:1px dashed; border-color: #5cb5e8;}
+.map .qp.tLan em:after{ border-left:1px dashed #5cb5e8;}
+.map .qp.tLan em i{ color:#5cb5e8;}
+.map .qp.huang em{ color:#ffc21f; border-bottom:1px dashed; border-color: #ffc21f;}
+.map .qp.huang em:after{ border-left:1px dashed #ffc21f;}
+.map .qp.huang em i{ color:#ffc21f;}
+
+/*城市和价格定位 start*/
+.map span.changchun em{ left:-2.3rem; top:0.2rem;}
+.map span.changchun em:after{ content:''; position:absolute; right:-0.25rem; top:0.55rem; display:block; width:2px; height:0.2rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.shenyang em{ right:-2.6rem; top:0.1rem;}
+.map span.shenyang em:after{ content:''; position:absolute; left:-0.25rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.dalian em{ right:-2.9rem; top:0.1rem;}
+.map span.dalian em:after{ content:''; position:absolute; left:-0.25rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.tianjin em{ left:-2.5rem; top:-2rem;}
+.map span.tianjin em:after{ content:''; position:absolute; right:-0.4rem; top:0.7rem; display:block; width:2px; height:1rem;transform:rotate(-30deg);-webkit-transform:rotate(-30deg);-moz-transform:rotate(-30deg);}
+
+.map span.beijing em{ left:-2.85rem; top:-0.2rem;}
+.map span.beijing em:after{ content:''; position:absolute; right:-0.25rem; top:0.6rem; display:block; width:2px; height:0.2rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map a.small{ font-size:0.35rem !important;}
+.map span.sjz em{ left:-2.85rem; top:-0.3rem;}
+.map span.sjz em:after{ content:''; position:absolute; right:-0.25rem; top:0.6rem; display:block; width:2px; height:0.2rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.qingdao em{ right:-2.9rem; top:0.1rem;}
+.map span.qingdao em:after{ content:''; position:absolute; left:-0.25rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.jinan em{ left:-2.7rem; top:-0.3rem; line-height:0.7rem; border-bottom:0 !important; border-top:1px dashed;}
+.map span.jinan em:after{ content:''; position:absolute; right:-0.25rem; top:-0.1rem; display:block; width:2px; height:0.2rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.taiyuan em{ left:-2.5rem; top:-0.2rem;}
+.map span.taiyuan em:after{ content:''; position:absolute; right:-0.25rem; top:0.6rem; display:block; width:2px; height:0.2rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.xian em{ left:-2.5rem; top:-0.2rem;}
+.map span.xian em:after{ content:''; position:absolute; right:-0.25rem; top:0.6rem; display:block; width:2px; height:0.2rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.zhengzhou em{ left:-3.15rem; top:0.6rem;}
+.map span.zhengzhou em:after{ content:''; position:absolute; right:-0.55rem; top:0rem; display:block; width:2px; height:1rem;transform:rotate(50deg);-webkit-transform:rotate(50deg);-moz-transform:rotate(50deg);}
+
+.map span.hefei em{ left:-3.1rem; top:0.9rem;}
+.map span.hefei em:after{ content:''; position:absolute; right:-0.5rem; top:-0.1rem; display:block; width:2px; height:1rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.nanjing em{ right:-2.5rem; top:-1.8rem;}
+.map span.nanjing em:after{ content:''; position:absolute; left:-0.3rem; top:0.8rem; display:block; width:2px; height:0.8rem;transform:rotate(30deg);-webkit-transform:rotate(30deg);-moz-transform:rotate(30deg);}
+
+.map span.wuxi em{ left:1.3rem; top:-0.3rem;}
+.map span.wuxi em:after{ content:''; position:absolute; left:-0.15rem; top:0.5rem; display:block; width:2px; height:0.2rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.suzhou em{ right:-3.1rem; top:0.8rem;}
+.map span.suzhou em:after{ content:''; position:absolute; left:-0.5rem; top:-0.15rem; display:block; width:2px; height:1rem; transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.shanghai em{ right:-2.8rem; top:0.2rem;}
+.map span.shanghai em:after{ content:''; position:absolute; left:-0.25rem; top:0.35rem; display:block; width:2px; height:0.4rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.hangzhou em{ right:-3.1rem; top:0.8rem;}
+.map span.hangzhou em:after{ content:''; position:absolute; left:-0.5rem; top:-0.15rem; display:block; width:2px; height:1rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.fuzhou em{ right:-2.9rem; top:0.3rem;}
+.map span.fuzhou em:after{ content:''; position:absolute; left:-0.3rem; top:0.2rem; display:block; width:2px; height:0.6rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.xiamen em{ right:-2.91rem; top:0.4rem;}
+.map span.xiamen em:after{ content:''; position:absolute; left:-0.3rem; top:0.2rem; display:block; width:2px; height:0.6rem;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);}
+
+.map span.wuhan em{ left:-2.6rem; top:0.4rem;}
+.map span.wuhan em:after{ content:''; position:absolute; right:-0.3rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.chongqing em{ left:-2.7rem; top:0.6rem;}
+.map span.chongqing em:after{ content:''; position:absolute; right:-0.4rem; top:0.1rem; display:block; width:2px; height:0.8rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.chengdu em{ left:-2.9rem; top:0.2rem;}
+.map span.chengdu em:after{ content:''; position:absolute; right:-0.3rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.changsha em{ left:-2.6rem; top:0.4rem;}
+.map span.changsha em:after{ content:''; position:absolute; right:-0.4rem; top:0.3rem; display:block; width:2px; height:0.6rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.nanchang em{ right:-3.3rem; top:3.1rem;}
+.map span.nanchang em:after{ content:''; position:absolute; left:-0.65rem; top:-2.2rem; display:block; width:2px; height:3rem; transform:rotate(-22deg);-webkit-transform:rotate(-22deg);-moz-transform:rotate(-22deg);}
+
+.map span.guangzhou em{ left:-2.9rem; top:0.1rem;}
+.map span.guangzhou em:after{ content:''; position:absolute; right:-0.3rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.dongguan em{ left:-2.75rem; top:3rem;}
+.map span.dongguan em:after{ content:''; position:absolute; right:-0.5rem; top:-2rem; display:block; width:2px; height:2.8rem;transform:rotate(14deg);-webkit-transform:rotate(14deg);-moz-transform:rotate(14deg);}
+
+.map span.shenzhen em{ right:-2.8rem; top:1.6rem;}
+.map span.shenzhen em:after{ content:''; position:absolute; left:-0.4rem; top:-0.7rem; display:block; width:2px; height:1.5rem;transform:rotate(-22deg);-webkit-transform:rotate(-22deg);-moz-transform:rotate(-22deg);}
+
+.map span.zhuhai em{ left:-2.8rem; top:1rem;}
+.map span.zhuhai em:after{ content:''; position:absolute; right:-0.4rem; top:-0.15rem; display:block; width:2px; height:1rem;transform:rotate(30deg);-webkit-transform:rotate(30deg);-moz-transform:rotate(30deg);}
+
+.map span.nanning em{ left:-2.6rem; top:0.1rem;}
+.map span.nanning em:after{ content:''; position:absolute; right:-0.3rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+
+.map span.kunming em{ left:-2.3rem; top:0.4rem;}
+.map span.kunming em:after{ content:''; position:absolute; right:-0.3rem; top:0.4rem; display:block; width:2px; height:0.4rem;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);}
+/*城市和价格定位 end*/
+
+
+.main{ position:relative; width:16rem;}
+.main .bg_m1{ width:16rem; height:12.15rem; background:url(../images/bg_middle1.png) no-repeat; background-size:100% 100%;}
+.main .bg_m2{ width:16rem; height:12.15rem; background:url(../images/bg_middle2.png) no-repeat; background-size:100% 100%;}
+.main .bg_m3{ width:16rem; height:12.15rem; background:url(../images/bg_middle3.png) no-repeat; background-size:100% 100%;}
+
+.main .content{ position:absolute; top:-6.7rem; left:0; width:100%;}
+.cityBox{ margin:0 auto; width:15.2rem;}
+.cityBox .tit2{ padding-left:0.7rem; width:15.2rem; height:1.55rem; font-size:0.65rem; color:#fff; line-height:1.55rem; background:url(../images/tit2.png) no-repeat; background-size:100% 100%;}
+.cityList{ margin:0 auto; margin-top:-1px; padding:0.15rem 0; width:14.4rem; background:rgba(21,91,157,.5); border:1px solid #25699f;}
+.cityList ul{ overflow:hidden;}
+.cityList li{ display:table; width:100%; line-height:1.35rem;}
+.cityList li span{ display:table-cell; width:28%; font-size:0.7rem; color:#fff; text-align:center;}
+.cityList li span i{ font-size:0.4rem;}
+.cityList li span:first-child{ width:16%; font-size:0.65rem;}
+.cityList li span:nth-child(2){ font-weight:bold;}
+.cityList li span.co_ea4{ color:#ea4164;}
+.cityList li span.co_ea4 i{ color:#ea4164;}
+.cityList li span.co_e27{ color:#e27e8f;}
+.cityList li span.co_e27 i{ color:#e27e8f;}
+.cityList li span.co_ffc{ color:#ffc21f;}
+.cityList li span.co_ffc i{ color:#ffc21f;}
+.cityList li span.co_176{ color:#1765d3;}
+.cityList li span.co_176 i{ color:#1765d3;}
+.cityList li span.co_5cb{ color:#5cb5e8;}
+.cityList li span.co_5cb i{ color:#5cb5e8;}
+.cityList li span.co_23c{ color:#23c99b;}
+.cityList li span.co_23c i{ color:#23c99b;}
+.more{ width:100%; text-align:center;}
+.more a{ display:block; margin:0 auto; padding-bottom:0.15rem;}
+.more span{ position:relative; padding-right:0.8rem; font-size:0.7rem; color:#74b5e7;}
+.more span:after{ content:''; position:absolute; top:50%; right:0; margin-top:-0.06rem; width:0.4rem; height:0.4rem; border-top:1px solid #74b5e7; border-right:1px solid #74b5e7; -webkit-transform:rotate(-45deg); transform:rotate(-45deg);}
+.more .zk span:after{ margin-top:-0.36rem;-webkit-transform:rotate(135deg); transform:rotate(135deg);}
+
+.canvasBox{ margin-top:1rem;}
+.canvasBox .tit3{ margin:0 auto; margin-bottom:1rem;width:10.05rem; height:1.55rem; font-size:0.7rem; color:#fff; text-align:center; line-height:1.55rem; background:url(../images/tit3.png) no-repeat; background-size:100% 100%;}
+.canvasBox .bz{ margin-top:0.75rem; font-size:0.6rem; text-align:center; color:#2eb1e0;}
+.canvasBox .bz span{ color:#8ad2ed;}
+.canvasBox .mz{ margin:0 auto; margin-top:1.25rem; width:14.25rem; font-size:0.6rem; color:#2eb1e0;}
+
+
+.bottom{ margin-top:0.95rem;padding-bottom:5rem; width:16rem; height:18rem; background:url(../images/bg_bottom.png) no-repeat bottom center; background-size:100%;}
+.codeBox{ margin:0 auto; width:11.15rem; font-size:0.7rem; text-align:center; line-height:0.95rem;}
+.arr-d{ position:relative; margin-bottom:0.8rem; padding-bottom:1rem;}
+.arr-d:after{ content:''; position:absolute; bottom:0; left:50%; margin-left:-0.25rem; width:0; height:0; border-left:0.25rem solid transparent;border-right:0.25rem solid transparent; border-top:0.4rem solid #2eb1e0;}
+.codeBox .code{ width:11.15rem; height:11.15rem;}

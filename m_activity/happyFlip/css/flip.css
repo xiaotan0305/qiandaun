@@ -1,0 +1,53 @@
+.conbox li .back {
+    opacity: 0;
+}
+
+.close {
+    z-index: 99;
+}
+
+.conbox li {
+    z-index: 22;
+}
+
+.conbox li.start {
+    z-index: 11;
+}
+
+.Popupbox {
+    display: none;
+}
+
+.animating {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.msg {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1999;
+    text-align: center;
+    width: 6rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem;
+    margin-left: -3rem;
+    border-radius: 0.4rem;
+    color: #fff;
+    font-size: 14px;
+    display: none;
+}
+.fromTop {
+    -webkit-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+}
+@-webkit-keyframes moveFromTop {
+    from { -webkit-transform: translateY(-40%);opacity: 1.0;     }
+}
+@keyframes moveFromTop {
+    from { -webkit-transform: translateY(-40%); transform: translateY(-40%); }
+}

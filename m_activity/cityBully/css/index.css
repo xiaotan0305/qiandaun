@@ -1,0 +1,116 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html{
+	font-size: 62.5%;
+}
+a{
+	text-decoration: none;
+}
+.container{
+	position: absolute;
+	
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url(../images/bbg.png) ;
+	background-size: 100% 100%;
+	min-height: 550px;
+}
+.bg{
+	width: 100%;
+}
+.con{
+	margin: 0 35px;
+	overflow: hidden;
+}
+.content{
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	color: #fff;
+}
+.intro{
+	display: inline-block;
+	float: right;
+	color: #fded05;
+	text-decoration: underline;
+}
+.btn{
+	display: block;
+	height: 3.5rem;
+	border-radius: 2rem;
+	line-height: 3.5rem;
+	text-align: center;
+	width: 80%;
+	box-shadow: 0px 5px  rgba(195, 77, 10, .6);
+	position:relative;
+	z-index: 2;
+	font-weight: bold;
+	left: 10%;
+	font-size: 1.4rem;
+	margin-top: 15px;
+}
+.b1{
+	background: #fff32c;
+	color:#807a16;	
+	top: 68%;	
+}
+.b2{
+	background: #7ecef4;
+	color:#336699;
+	top: 80%;
+	
+}
+.foot{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	/*margin-top: 20px;*/
+}
+.share{
+	width: 30px;
+	height: 27px;
+	position: absolute;
+	bottom: 30px;
+	right: 15px;
+}
+.mengceng{ width:100%; height:100%; position: fixed; top:0; left:0; background-color:#000; opacity:0.6;z-index: 100;}
+.shareline{ position:fixed; right:5%; animation: arrow 1s infinite; -moz-animation: arrow 1s infinite; -webkit-animation: arrow 1s infinite; -o-animation: arrow 1s infinite; -ms-animation: arrow 1s infinite;z-index: 100;}
+.hide{ display:none;}
+@-moz-keyframes arrow{
+	0%   {top:2.3rem;}
+	25%  {top:2.5rem;}
+	50%  {top:3rem;}
+	75%  {top:2.5rem;}
+	100% {top:2.3rem;}
+	}
+@-webkit-keyframes arrow{
+	0%   {top:2.3rem;}
+	25%  {top:2.5rem;}
+	50%  {top:3rem;}
+	75%  {top:2.5rem;}
+	100% {top:2.3rem;}
+	}
+@-o-keyframes arrow{
+	0%   {top:2.3rem;}
+	25%  {top:2.5rem;}
+	50%  {top:3rem;}
+	75%  {top:2.5rem;}
+	100% {top:2.3rem;}
+	}
+@-ms-keyframes arrow{
+	0%   {top:2.3rem;}
+	25%  {top:2.5rem;}
+	50%  {top:3rem;}
+	75%  {top:2.5rem;}
+	100% {top:2.3rem;}
+	}
+@keyframes arrow{
+	0%   {top:2.3rem;}
+	25%  {top:2.5rem;}
+	50%  {top:3rem;}
+	75%  {top:2.5rem;}
+	100% {top:2.3rem;}
+	}

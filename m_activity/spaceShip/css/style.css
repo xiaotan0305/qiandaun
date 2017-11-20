@@ -1,0 +1,734 @@
+.wrap,
+body {
+    height: 100%
+}
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-size: 14px;
+    -webkit-user-select: none;
+    color: #49494d;
+    background: #000
+}
+
+.wrap {
+    position: absolute;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 16rem
+}
+
+.pbb,
+.pbg {
+    width: 174px
+}
+
+.pbg {
+    height: 1420px;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/bg696.jpg) no-repeat
+}
+
+.pbb,
+.point {
+    display: block;
+    background-repeat: no-repeat
+}
+
+.bg-01 {
+    background-position: 0 0
+}
+
+.bg-02 {
+    background-position: -174px 0
+}
+
+.bg-03 {
+    background-position: -348px 0
+}
+
+.bg-04 {
+    background-position: -522px 0
+}
+
+.bg-05 {
+    background-position: 0 -1420px
+}
+
+.bg-06 {
+    background-position: -174px -1420px
+}
+
+.bg-07 {
+    background-position: -348px -1420px
+}
+
+.bg-08 {
+    background-position: -522px -1420px
+}
+
+.bg-09 {
+    background-position: 0 -2840px
+}
+
+.bg-10 {
+    background-position: -174px -2840px
+}
+
+.bg-11 {
+    background-position: -348px -2840px
+}
+
+.bg-12 {
+    background-position: -522px -2840px
+}
+
+.bg-13 {
+    background-position: 0 -4260px
+}
+
+.bg-14 {
+    background-position: -174px -4260px
+}
+
+.bg-15 {
+    background-position: -348px -4260px
+}
+
+.bg-16 {
+    background-position: -522px -4260px
+}
+
+.bg-17 {
+    background-position: 0 -5680px
+}
+
+.bg-18 {
+    background-position: -174px -5680px
+}
+
+.bg-19 {
+    background-position: -348px -5680px
+}
+
+.bg-20 {
+    background-position: -522px -5680px
+}
+
+.point {
+    width: 100px;
+    height: 100px;
+    background-image: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/point.png);
+    background-position: center center
+}
+
+.popup,
+.popup-item {
+    display: none
+}
+
+.point.f1 {
+    background-position: -26px -25px
+}
+
+.point.f2 {
+    background-position: -26px -176px
+}
+
+.point.f3 {
+    background-position: -26px -327px
+}
+
+.open-action {
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+
+.action,
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.action {
+    width: 100px;
+    height: 100px
+}
+
+.action-01 {
+    z-index: 10;
+    -webkit-animation: move2 3s linear infinite;
+    animation: move2 3s linear infinite;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-circle1.png) center no-repeat;
+    background-size: 100px auto
+}
+
+.action-02 {
+    z-index: 9;
+    -webkit-animation: move2 3.5s linear infinite 1s;
+    animation: move2 3s linear infinite 1s;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-circle2.png) center no-repeat;
+    background-size: 100px auto
+}
+
+.action-03 {
+    z-index: 8;
+    -webkit-animation: move3 3s linear infinite 2s;
+    animation: move3 3s linear infinite 2s;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-circle3.png) center no-repeat;
+    background-size: 100px auto
+}
+
+.action-04 {
+    z-index: 7;
+    -webkit-animation: move2 3s linear infinite 3s;
+    animation: move2 3s linear infinite 3s;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-circle4.png) center no-repeat;
+    background-size: 100px auto
+}
+
+.action-05 {
+    z-index: 6;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-circle5.png) center no-repeat;
+    background-size: 100px auto
+}
+
+@keyframes move2 {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes move2 {
+    0% {
+        -webkit-transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@keyframes move3 {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg)
+    }
+}
+
+@-webkit-keyframes move3 {
+    0% {
+        -webkit-transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(-360deg)
+    }
+}
+
+.popup {
+    z-index: 99;
+    width: 100%;
+    height: 100%
+}
+
+.popup-main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 14rem;
+    min-height: 9.75rem;
+    margin-left: -7rem;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pop-bg.png) no-repeat;
+    background-size: 14rem
+}
+
+.fl_bg,
+.floats,
+.pop-btn {
+    display: block
+}
+
+.popup-header {
+    line-height: 2.35rem;
+    position: relative;
+    height: 2.35rem
+}
+
+.popup-header h1 {
+    font-size: .9rem;
+    line-height: 2rem;
+    height: 2rem;
+    text-align: center;
+    color: #fff
+}
+
+.pop-btn,
+.popup-content {
+    font-size: .75rem;
+    font-weight: 700;
+    text-align: center
+}
+
+.close-pop {
+    position: absolute;
+    top: .25rem;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pop-close.png) center no-repeat;
+    background-size: .7rem auto
+}
+
+.popup-body {
+    width: 12.35rem;
+    margin: 0 auto;
+    background-color: #fff
+}
+
+.popup-content {
+    line-height: 1rem;
+    padding-top: 1.4rem;
+    color: #060606
+}
+
+.popup-footer {
+    position: absolute;
+    bottom: .7rem;
+    left: 50%;
+    margin-left: -3.95rem
+}
+
+.loading,
+.popup-slide {
+    left: 0;
+    position: absolute
+}
+
+.pop-btn {
+    line-height: 2rem;
+    width: 7.9rem;
+    height: 2rem;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #fff;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pop-btn.png) no-repeat;
+    background-size: 7.9rem auto
+}
+
+.popup-slide {
+    top: 4rem;
+    width: 100%
+}
+
+.popup-slide-btn {
+    display: block;
+    width: 1.2rem;
+    height: 2.15rem
+}
+
+.popup-slide-btn.right {
+    float: right;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pop-slider.png) -1.2rem 0 no-repeat;
+    background-size: 2.4rem auto
+}
+
+.popup-slide-btn.left {
+    float: left;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pop-slider.png) no-repeat;
+    background-size: 2.4rem auto
+}
+
+.loading {
+    z-index: 12;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center
+}
+
+.floats {
+    position: absolute;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(0, 0, 0) rotateX(0) rotateY(40deg) rotateZ(0) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(0, 0, 0) rotateX(0) rotateY(40deg) rotateZ(0) scale3d(1, 1, 1);
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    opacity: 1;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d
+}
+
+.float {
+    position: absolute;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-30px, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-30px, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale3d(1, 1, 1);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d
+}
+
+.fl_bg {
+    position: absolute;
+    width: 174px;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d
+}
+
+.bg01 {
+    height: 135px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(128px, 60px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(128px, 60px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-mini.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg02 {
+    height: 58px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-feichuan4.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg03 {
+    height: 148px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-280px, 360px, 360px) rotateX(-10deg) rotateY(124deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-280px, 360px, 360px) rotateX(-10deg) rotateY(124deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-feichuan3.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg04 {
+    height: 185px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-398px, -536px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-398px, -536px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-ufo.png) no-repeat;
+    background-size: 130px auto
+}
+
+.bg05 {
+    height: 99px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -370px, -360px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-200px, -370px, -360px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-feichuan2.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg06 {
+    height: 162px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(300px, -430px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(300px, -430px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-tkman.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg07 {
+    height: 185px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -340px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-200px, -340px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-feichuan.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg08,
+.bg09 {
+    height: 96px
+}
+
+.bg08 {
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-473px, -467px, -118px) rotateX(0) rotateY(53deg) rotateZ(0) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(-473px, -467px, -118px) rotateX(0) rotateY(53deg) rotateZ(0) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-star1.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg09 {
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(61px, -465px, -540px) rotateX(-37deg) rotateY(0) rotateZ(-14deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(61px, -465px, -540px) rotateX(-37deg) rotateY(0) rotateZ(-14deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-star1.png) no-repeat;
+    background-size: 174px auto
+}
+
+.bg10 {
+    width: 330px;
+    height: 220px;
+    -webkit-transform: translate3d(-50%, -50%, 0) translate3d(200px, -489px, -554px) rotateX(-7deg) rotateY(-26deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    transform: translate3d(-50%, -50%, 0) translate3d(200px, -489px, -554px) rotateX(-7deg) rotateY(-26deg) rotateZ(-14deg) scale3d(1, 1, 1);
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/pic-star3.png) no-repeat;
+    background-size: 330px auto
+}
+
+.loading-btn,
+.loading-cont {
+    width: 3.5rem;
+    height: 5.8rem
+}
+
+.fl_movie4 {
+    -webkit-animation: 2.4s ease-in-out infinite move4;
+    animation: 2.4s ease-in-out infinite move4
+}
+
+.fl_movie5 {
+    -webkit-animation: 3s ease-in infinite move5;
+    animation: 3s ease-in infinite move5
+}
+
+@keyframes move4 {
+    from {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -370px, -360px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(-200px, -370px, -360px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        opacity: 1
+    }
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(200px, -70px, -469px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(200px, -70px, -469px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes move4 {
+    from {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -370px, -360px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        opacity: 1
+    }
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(200px, -70px, -469px) rotateX(7deg) rotateY(24deg) rotateZ(0) scale3d(1, 1, 1);
+        opacity: 0
+    }
+}
+
+@keyframes move5 {
+    from {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        opacity: 1
+    }
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, 100px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes move5 {
+    from {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, -170px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        opacity: 1
+    }
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(280px, 300px, 100px) rotateX(10deg) rotateY(-80deg) rotateZ(10deg) scale3d(1, 1, 1);
+        opacity: 0
+    }
+}
+
+.fl_UD1 {
+    -webkit-animation: 3s ease-in-out infinite floatUD1;
+    animation: 3s ease-in-out infinite floatUD1
+}
+
+.fl_UD2 {
+    -webkit-animation: 3s ease-in-out infinite floatUD2;
+    animation: 3s ease-in-out infinite floatUD2
+}
+
+.fl_UD3 {
+    -webkit-animation: 3s ease-in-out infinite floatUD3;
+    animation: 3s ease-in-out infinite floatUD3
+}
+
+.fl_UD4 {
+    -webkit-animation: 3s ease-in-out infinite floatUD4;
+    animation: 3s ease-in-out infinite floatUD4
+}
+
+@keyframes floatUD1 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-398px, -536px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(-398px, -536px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-398px, -495px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(-398px, -495px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1)
+    }
+}
+
+@-webkit-keyframes floatUD1 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-398px, -536px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-398px, -495px, -293px) rotateX(0) rotateY(60deg) rotateZ(-8deg) scale3d(1, 1, 1)
+    }
+}
+
+@keyframes floatUD2 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(300px, -430px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(300px, -430px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(300px, -400px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(300px, -400px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+}
+
+@-webkit-keyframes floatUD2 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(300px, -430px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(300px, -400px, -330px) rotateX(-7deg) rotateY(-40deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+}
+
+@keyframes floatUD3 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -340px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(-200px, -340px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -310px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(-200px, -310px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+}
+
+@-webkit-keyframes floatUD3 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -340px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(-200px, -310px, 321px) rotateX(23deg) rotateY(142deg) rotateZ(-14deg) scale3d(1, 1, 1)
+    }
+}
+
+@keyframes floatUD4 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(0, 260px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(0, 260px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(0, 230px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) translate3d(0, 230px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1)
+    }
+}
+
+@-webkit-keyframes floatUD4 {
+    from,
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(0, 260px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: translate3d(-50%, -50%, 0) translate3d(0, 230px, -330px) rotateX(6deg) rotateY(-4deg) rotateZ(0) scale3d(1, 1, 1)
+    }
+}
+
+.loading-btn {
+    position: absolute;
+    z-index: 12;
+    bottom: 2rem;
+    left: 50%;
+    margin: 0 -1.75rem
+}
+
+.loading-cont {
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/finger.png) center top no-repeat;
+    background-size: 3.5rem auto
+}
+
+.loading-cont .loading-finger {
+    overflow: hidden;
+    width: 95%;
+    height: 4.2rem;
+    margin: 0 auto;
+    -webkit-animation: loadUD 2s linear infinite 1s;
+    animation: loadUD 2s linear infinite 1s;
+    border-radius: .5rem;
+    background: url(http://static.soufunimg.com/common_m/m_activity/spaceShip/images/finger-f.png) 0 -4.2rem no-repeat;
+    background-size: 100%
+}
+
+.loading-cont .loading-words {
+    font-size: .7rem;
+    line-height: 1rem;
+    margin-top: .6rem;
+    text-align: center;
+    color: #009200
+}
+
+@keyframes loadUD {
+    0% {
+        background-position: 0 -4.2rem
+    }
+    100% {
+        background-position: 0 4rem
+    }
+}
+
+@-webkit-keyframes loadUD {
+    0% {
+        background-position: 0 -4.2rem
+    }
+    100% {
+        background-position: 0 4rem
+    }
+}
+
+.rotate_lock {
+    position: fixed;
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    opacity: .9;
+    background: #000
+}
+
+.rotate_lock img,
+.rotate_lock p {
+    position: fixed;
+    top: 50%;
+    left: 50%
+}
+
+.rotate_lock img {
+    width: 75px;
+    height: 72px;
+    margin-top: -80px;
+    margin-left: -32.5px
+}
+
+.rotate_lock p {
+    font-size: 16px;
+    font-weight: bolder;
+    width: 300px;
+    margin-top: 30px;
+    margin-left: -150px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #fff
+}

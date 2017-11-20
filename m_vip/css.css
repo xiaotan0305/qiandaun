@@ -1,0 +1,39 @@
+@charset "utf-8";
+/*嵌入app的样式*/
+.tg-vip{ padding: 10px; overflow: hidden; line-height: 25px;}
+.tg-vip .flol{ width: 171px; height: 25px; overflow: hidden;}
+.tg-vip img{ margin-top: -55px; width: 180px;}
+.tg-vip .city{ float: right; padding-right: 18px; background: url(images/tg.png) right -80px no-repeat; background-size: 180px auto; color: #999; font-size: 18px;}
+
+/* 搜房特供 */
+.wap-tg{ line-height: normal;}
+.wap-tg .line{ border-bottom: 1px solid #d2d2d2; height: 0; font-size: 0; overflow: hidden;}
+.tg-top{ margin: 0 10px; border-bottom: 1px solid #d2d2d2;}
+.tg-top .tit{ line-height: 30px;}
+.tg-top .icons{ display: table; margin: 0 auto; padding: 5px 0; width: 100%; max-width: 480px; text-align: center;}
+.tg-top .icons li{ display: table-cell; font-size: 12px; text-align: center;}
+.tg-top .icons span{ display: block; margin: 0 auto; width: 45px; height: 45px; background: url(images/tg.png) no-repeat; background-size: 180px auto;}
+.tg-top .icons p{ margin-top: 5px;}
+.tg-top .i1{ color: #ee5572;}
+.tg-top .i1 span{ background-position: 0 0;}
+.tg-top .i2{ color: #5f87c9;}
+.tg-top .i2 span{ background-position: -45px 0;}
+.tg-top .i3{ color: #eb83dc;}
+.tg-top .i3 span{ background-position: -90px 0;}
+.tg-top .i4{ color: #a0bf6b;}
+.tg-top .i4 span{ background-position: -135px 0;}
+
+.tg-list{ margin: 0 10px;}
+.tg-list li{ padding: 8px 0; overflow: hidden; border-bottom: 1px solid #d2d2d2;}
+.tg-list li:last-child{ border: none;}
+.tg-list .pic{ float: left; margin-right: 10px; width: 100px; height: 75px;}
+.tg-list .pic img{ width: 100%; height: 100%;}
+.tg-list .info{ overflow: hidden; line-height: 1.5;}
+.tg-list .info h3{ font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #333;}
+.tg-list .info p{ font-size: 12px; color: #999; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.tg-list .info .new{ float: right; color: #f60; font-weight: bold;}
+.tg-list .info .old{ float: right; text-decoration: line-through;}
+.tg-list .info .tag em{ display:inline-block; line-height: 17px; margin: 2px 6px 0 0; padding: 0 3px; border: 1px solid #333; font-style: normal; color: #666;}
+.tg-list .info .tag em.e1{ border-color: #16ac0e;}
+.tg-list .info .tag em.e2{ border-color: #c00;}
+.tg-list .info .tag em.e3{ border-color: #df3031;}

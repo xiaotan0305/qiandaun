@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+/*
+ * @authors LongChan (longchan@soufun.com)
+ * @date    2014-11-03
+ * @version 1.1
+ */
+
+section{ background-color: #fff;}
+table{ border-collapse:collapse;}
+.main{ position: relative; margin: 0 auto; max-width: 640px; overflow: hidden;}
+
+/* Home */
+header.homeHeader{ background-color: #fff;}
+
+.topban{ position: relative;}
+.topban .off{ position: absolute; right: 5px; top: 5px; width: 24px; height: 24px; line-height: 24px; background: rgba(0,0,0,.6); border-radius: 50%; text-align: center; color: #fff; font-size: 14px;}
+.topban .off span{ display: block; width: 24px; height: 24px; line-height: 24px; background: rgba(0,0,0,.6); border-radius: 50%; text-align: center; color: #fff; font-size: 14px;}
+
+.homeSearch{ position: relative; margin: 0 10px; padding: 0 15px; border: 1px solid #e4e4e4; border-radius: 25px;}
+.homeSearch input{ padding: 0 12px; width: 100%; height: 30px; line-height: normal; border: none; font-size: 14px; outline: none;}
+.homeSearch:before{ position: absolute; left: 10px; top: 50%; margin-top: -6px; display: block; content: ''; width: 13px; height: 13px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) no-repeat; background-size: 200px;}
+
+.footmark{ margin: 0 15px; padding: 5px 0 3px 0; font-size: 12px; color: #999;}
+.footmark i{ float: left; margin-right: 5px; width: 15px; height: 15px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) -50px -2px no-repeat; background-size: 200px auto;}
+.footmark a{ margin: 0 4px; color: #999;}
+
+.bigNav{ text-align: center;}
+.bigNav .icons a{ position: relative; margin-top: 10px; text-align: center; font-size: 12px; color: #000;}
+.bigNav .icons i{ display: block; margin: 0 auto 6px auto; width: 50px; height: 50px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) 0 -17px no-repeat; background-size: 200px auto;}
+.bigNav .n2 i{ background-position: -50px -17px;}
+.bigNav .n3 i{ background-position: -100px -17px;}
+.bigNav .n4 i{ background-position: -150px -17px;}
+.bigNav .n5 i{ background-position: 0 -67px;}
+.bigNav .n6 i{ background-position: -50px -67px;}
+.bigNav .n7 i{ background-position: -100px -67px;}
+.bigNav .n8 i{ background-position: -150px -67px;}
+.bigNav .n8.active:after{ position: absolute; bottom: -12px; left: 50%; margin-left: -8px; display: block; content: ''; width: 0; height: 0; border-width: 8px; border-style: solid; border-color: transparent transparent #927484 transparent; z-index: 2;}
+
+.bigNav .more{ position: relative; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/bnavbg.jpg) no-repeat; background-size: cover;}
+.bigNav .more td{ width: 33.33%; border: 1px solid rgba(255,255,255,.2);}
+.bigNav .more a{ display: block; line-height: 38px; font-size: 14px; color: #fff;}
+
+/* 20141215 begin */
+.homeBan{ position: relative; margin: 0 -1px;}
+.homeBan td{ width: 50%; border: 1px solid #e4e4e4;}
+.homeBan td > a{ display: block; padding: 5px;}
+.homeBan td dl{ display: table; width: 100%; line-height: 1.5;}
+.homeBan td dt,.homeBan td dd{ display: table-cell; vertical-align: middle;}
+.homeBan td dd{ text-align:right;}
+.homeBan td dt{ min-width: 100px;}
+.homeBan td h3{ font-size: 0.875rem; color: #000;}
+.homeBan td p{ font-size: 0.75rem; color: #999;}
+.homeBan td img{ width: 45px; height: 45px;}
+/* 20141215 end */
+
+
+.homeList{ padding-bottom: 20px; border-top: 1px solid #e4e4e4;}
+.homeList h1{ padding: 0 10px; line-height: 44px; font-size: 16px; border-bottom: 1px solid #e4e4e4;}
+.homeList ul{ margin: 0 8px;}
+.homeList li{ border-bottom: 1px solid #e4e4e4;}
+.homeList li:last-child{ border-bottom: none;}
+.homeList li > a{ display: block; padding: 8px 0; color: #000; overflow: hidden; *zoom:1;}
+.homeList li .img{ position: relative; float: left; margin-right: 8px; width: 100px; height: 75px;}
+.homeList li .img img{ width: 100%; height: 100%;}
+.homeList li .online{ position: absolute; right: 1px; bottom: 0; width: 46px; height: 18px; background: url(http://js.soufunimg.com/common_m/m_zf/img/online.png) no-repeat; background-size: 46px auto;}
+.homeList li .video{ position: absolute; left: 3px; bottom: -2px; width: 24px; height: 24px; background: url(http://js.soufunimg.com/wireless_m/touch/img/video1.png) no-repeat; background-size: cover;}
+.homeList li .txt{ overflow: hidden; *zoom:1;}
+.homeList li h3{ font-size: 14px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.homeList li p{ margin-top: 2px; color: #999; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 16px;}
+.homeList li p.br{ white-space:inherit;max-height:48px; overflow: hidden;}
+.homeList li .fst{ margin-top: 3px; text-align: right; font-size: 12px;}
+.homeList li .new{ float: right; font-size: 16px; color: #c00;}
+.homeList li .stag{ margin-top: 3px;}
+
+.yzwt{ margin-top: 2px; display:inline-block; *display:inline; *zoom:1; font-size: 12px; border: 1px solid #f90;}
+.yzwt span{ float: left; padding: 1px 2px 0 2px;}
+.yzwt .s1{ background-color: #f90; color: #fff;}
+
+.stag{ font-size: 12px; overflow: hidden; *zoom:1;}
+.stag span{ float: left; margin-right: 3px; padding: 1px 2px; border-style: solid; border-width: 1px;}
+.stag span.t1{ border-color: #a9e053;}
+.stag span.t2{ border-color: #c00;}
+.stag span.t3{ border-color: #507fbd;}
+
+.cenBtn{ padding: 10px; border-top: 1px solid #e4e4e4; text-align: center;}
+.cenBtn a{ margin: 0 10px; display:inline-block; *display:inline; *zoom:1; border: 1px solid #e4e4e4; border-radius: 4px; width: 200px; line-height: 30px; font-size: 14px; color: #000 !important; background-color: #fff; text-align: center;}
+
+.floatApp{ position: fixed; left:0; bottom:0; background:rgba(0,0,0,.8); width:100%; overflow: hidden;z-index:100;}
+.floatApp .linkbox{ display: block; padding: 10px 12px; width:100%;}
+.floatApp img{ float: left; margin:0 10px 0 0; width:36px;}
+.floatApp .text{ color:#fff; height:36px; line-height:36px; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-flex:1;}
+.floatApp .text p{ white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.floatApp .btn{ float: right; margin-top:7px; border:1px solid #f90; width:75px; height:25px; line-height:25px; color:#f90; font-size: 14px; text-align:center; border-radius:2px;}
+.floatApp .off{ position: absolute; left: -20px; top: -20px; display: block; width: 40px; height: 40px; line-height: 40px; background: #000; border-radius: 50%; color:#fff !important; font-size: 14px; text-align: center; clip: rect(20px,40px,40px,20px);}
+.floatApp .off span{ position: relative; left: 8px; top: 7px;}
+
+/* city */
+.cityMain{ padding: 10px;}
+.cityMain h3{ padding: 15px 0 6px 0;}
+.cityMain .name{ padding: 6px; border-radius: 4px; border: 1px solid #e4e4e4;}
+.cityMain .tablebox{ border: 1px solid #e4e4e4; border-radius: 4px; overflow: hidden;}
+.cityMain .tablebox table{ position: relative; margin: -1px; width: 101%;}
+.cityMain .tablebox td{ border: 1px solid #e4e4e4; border-right: 0; width: 25%;}
+.cityMain .tablebox td a{ display: block; padding: 6px 0; color: #000 !important; text-align: center;}
+.cityMain .tablebox td span{ display: block; padding: 6px;}
+.cityMain .word{ padding: 6px 0; overflow: hidden; *zoom:1;}
+.cityMain .word a{ float: left; width: 33px; height: 30px; line-height: 30px; color: #000; text-align: center;}
+
+.lbItem li{ border-bottom: 1px solid #e4e4e4; line-height: 32px; font-size: 14px;}
+.lbItem li > a{ position: relative; display: block; padding: 0 10px; color: #000;}
+.lbItem li > a:after{ position: absolute; right: 6px; top: 50%; margin-top: -7px; content: ''; width: 15px; height: 15px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/arrs01.png) no-repeat; background-size: 15px auto;}
+.lbItem li:last-child{ border-bottom: none;}
+.lbItem li i{ margin-right: 5px; display:inline-block; *display:inline; *zoom:1; vertical-align: -4px; width: 18px; height: 18px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/lb01.png); background-size: 18px auto;}
+.lbItem li i.dz{ background-position: 0 0 !important;}
+.lbItem li i.kp{ background-position: 0 -18px !important;}
+
+.lbTab{ position: relative; margin-bottom: -1px; border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4;}
+.lbTab li{ padding: 8px 0; width: 50px;}
+.lbTab li.active{ color: #f90;}
+.lbTab li span{ display: block; border-right: 1px solid #e4e4e4; line-height: 24px; font-size: 14px; text-align: center;}
+.lbTab li:last-child span{ border-right: none;}
+.lbTab li span i{ position: relative; padding-right: 15px; font-style: normal;}
+.lbTab li span i:after{ position: absolute; top: 50%; right: 0; content: ''; margin-top: -3px; width: 0; height: 0; border-style: solid; border-width: 5px; border-color: #999 transparent transparent transparent;}
+.lbTab li.active span i:after{ margin-top: -8px; border-color: transparent transparent #f90 transparent;}
+
+.lbTab .cont{ position: absolute; width: 100%; height: 276px; top: 41px; border-bottom: 1px solid #e4e4e4; background-color: #fff; overflow: hidden; z-index: 10;}
+.lbTab .cont.flexbox section{ width: 80px; border-right: 1px solid #e4e4e4;}
+.lbTab .cont.flexbox section:last-child{ border-right: none;}
+.lbTab .cont dl{ height: 275px; overflow-y: auto;}
+.lbTab .cont dd{ padding: 0 8px; border-bottom: 1px solid #e4e4e4; height: 32px; line-height: 32px; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; background-color: #f4f4f4;}
+.lbTab .cont dd.active{ background-color: #fff;}
+.lbTab .cont dd a{ position: relative; display: block; margin: 0 -8px; padding: 0 20px 0 8px; color: #000; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.lbTab .cont dd a:after{ position: absolute; right: 6px; top: 50%; margin-top: -7px; content: ''; width: 15px; height: 15px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/arrs01.png) no-repeat; background-size: 15px auto;}
+.lbTab .cont dd .rt{ float: right; margin-right: 5px; font-size: 12px; color: #999;}
+.lbTab .cont dl.all{ height: 223px;}
+.lbTab .cont dl.all dd{ background-color: #fff;}
+.lbTab .cont .btn{ position: absolute; left: 0; bottom: 0; padding: 10px 0; width: 100%; border-top: 1px solid #e4e4e4; background-color: #f4f4f4; text-align: center;}
+.lbTab .cont .btn a.sx{ display:inline-block; *display:inline; *zoom:1; border: 1px solid #e4e4e4; border-radius: 4px; width: 200px; line-height: 30px; font-size: 14px; color: #000 !important; background-color: #fff; text-align: center;}
+.lbTab .cont .btn a.cz{ position: absolute; top: 50%; right: 10px; margin-top: -16px; width: 32px; height: 32px; line-height: 32px; font-size: 12px; color: #df3031;}
+.lbTab .cont dt{ padding: 0 8px; text-align: center; font-size: 14px; height: 32px; line-height: 32px; border-bottom: 1px solid #e4e4e4;}
+.lbTab .cont dt .back{ float: left; font-size: 12px; color: #f90;}
+.lbTab .cont .define .t{ margin: 0 3px; padding: 0 5px; display:inline-block; *display:inline; *zoom:1; vertical-align: 0; border: 1px solid #e4e4e4; border-radius: 2px; height: 23px; line-height: normal; max-width: 70px;}
+.lbTab .cont .define .b{ margin-left: 15px; padding: 0 10px; height: 23px; border: 1px solid #e4e4e4; border-radius: 2px; vertical-align: 0; background-color: #f4f4f4;}
+
+.lbResult{ padding: 8px 10px; border-bottom: 1px solid #e4e4e4; font-size: 12px; line-height: 1.8; background-color: #fff;}
+.lbResult p{ overflow: hidden;}
+.lbResult p span{ display:inline-block; *display:inline; *zoom:1; margin: 0 5px;}
+
+.seo{ padding: 10px; border-top: 1px solid #e4e4e4;}
+.seo ul{ margin-top: 5px;}
+.seo ul li{ position: relative; float: left; margin-top: 5px; padding-left: 10px; width: 50%; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;}
+.seo ul li:before{ position: absolute; left: 2px; top: 50%; margin-top: -1px; content: ''; width: 3px; height: 3px; border-radius: 50%; background-color: #507fbd;}
+.seo ul li a{ font-size: 14px;}
+
+.mTab{ text-align: center;}
+.mTab .flexbox{ margin: 0 auto; width: 100%; padding:1px; border:1px solid #df3031; border-radius:2px; max-width:768px;}
+.mTab a{ -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-flex:1; text-align:center; border-radius:2px; width: 50px; height: 28px; line-height:28px; color:#df3031; font-size: 14px;}
+.mTab a.active{ background-color:#df3031; color: #fff;}
+
+/*广告轮播加入 start*/
+.swipe {overflow: hidden;visibility: hidden;position: relative;}
+.swipe-wrap {overflow: hidden;position: relative;}
+.swipe-wrap > div {float:left;width:100%;position: relative;}
+/*图片下边小圆点*/
+#bullets {position: absolute;left: 0;right: 0;bottom: 2px;background: none;}
+nav {background: #507fbd;font-size: 18px;}
+#position {text-align: center;list-style: none;margin: 0;padding: 0;}
+#position li {display: inline-block;width: 8px;height: 8px;border-radius: 10px;background: #fff;margin: 0 1px;}
+#position li.current {background-color: #1293dc;}
+/*广告轮播加入 end*/
+/* newSearch */
+.search0620_new{ position: relative; left: 50%; padding: 10px; max-width: 640px; width: 100%; -webkit-transform: translate(-50%, 0%);-moz-transform: translate(-50%, 0%); -o-transform: translate(-50%, 0%);-ms-transform: translate(-50%, 0%);transform: translate(-50%, 0%); z-index: 10;}
+.searbox_new{ position: relative; border: 1px solid #df3031; border-radius: 2px; height: 34px; background-color: #fff; font-size: 14px;}
+.searbox_new .sel{ float: left; padding: 0 0 0 7px; line-height: 32px; text-align: center;}
+.searbox_new .sel span{ position: relative; display:inline-block; padding-right: 12px;}
+.searbox_new .sel span:after{ position: absolute; right: 0; top: 50%; margin-top: -2px; display: block; content: ''; width: 0; height: 0; border-width: 4px; border-style: solid; border-color: #999 #fff #fff #fff;}
+.searbox_new .ipt{ position: relative; overflow: hidden; margin-right: 42px;}
+.searbox_new .ipt input{ padding: 0 5px; border: none; width: 100%; height: 32px; line-height: normal; font-size: 14px; outline: none; -webkit-appearance: none; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.searbox_new .ipt .off{ position: absolute; top: 50%; margin-top: -12px; right: 3px; display: block; width: 24px; height: 24px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/hs-off.png) center no-repeat; background-size: 16px auto;}
+.searbox_new .btn{ position: absolute; right: 0; top: 0; width: 42px; height: 32px; line-height: 32px; background-color: #df3031; text-align: center;}
+.searbox_new .btn i{ margin-top: 5px; display: inline-block; width: 21px; height: 21px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/icon-head.png) -84px -21px no-repeat; background-size: 105px auto;}
+.search0620_new .mapbtn{ margin-left: 5px; display: block; background-color: #df3031; border-radius: 2px; width: 42px; min-width: 42px; max-width: 42px; height: 34px; line-height: 34px; text-align: center; font-size: 14px; color: #fff; cursor: pointer;}
+
+.searbox_new .drop{ display: none; position: absolute; top: -1px; left: -1px; background-color: #fff; border: 1px solid #df3031; z-index: 100; border-radius: 2px;}
+.searbox_new .drop li{ margin: 0 6px; white-space: nowrap; border-bottom: 1px solid #ccc; text-align: left;}
+.searbox_new .drop li:last-child{ border-bottom: none;}
+.searbox_new .drop li input{ margin-right: 5px; vertical-align: -2px; -webkit-appearance: radio;}
+
+.searList{ margin: 0 10px;}
+.searList li a{ display: block; padding: 10px 8px; border-bottom: 1px solid #e4e4e4; white-space: nowrap; overflow: hidden; text-overflow:ellipsis; color: #333; font-size: 14px;}
+/* 大搜索 begin */
+.whitebg{ background-color:#fff;}
+.searLast{ margin:0 10px;}
+.searLast h3{ font-size: 14px;}
+.searLast .cont a{ float: left; margin: 10px 10px 0 0; padding: 5px 8px; font-size: 12px; color:#333; border-radius:2px; border:1px solid #e4e4e4; background-color:#eee;}
+.searTips{ margin:0 18px; font-size: 12px; line-height:1.5; color:#999;}
+/* 大搜索 end */
+.clearBtn{ margin-top: 15px; text-align: center;}
+.clearBtn a{ display:inline-block; padding: 0 12px; height: 25px; line-height: 25px; border: 1px solid #adadad; border-radius: 2px; font-size: 14px; color: #333; background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), to(#dddddd));background: -webkit-linear-gradient(top, #f1f1f1, #dddddd);background: -moz-linear-gradient(top, #f1f1f1, #dddddd);background: -o-linear-gradient(top, #f1f1f1, #dddddd);background: -ms-linear-gradient(top, #f1f1f1, #dddddd);background: linear-gradient(top, #f1f1f1, #dddddd);background-color: #f1f1f1; box-shadow: inset 0 1px 0 #fff;}
+
+/*back*/
+header .back{ float: left; width: 44px; height: 44px; text-align: center;}
+header .back i{ display:inline-block; vertical-align: middle; width: 17px; height: 17px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) -75px 0 no-repeat; background-size: 200px auto;}
+
+/* B版首页 */
+html{ font-size: 16px;}
+.fpur{ color: #bc84d3;}
+.bb{ border-bottom: 1px solid #e4e4e4;}  /* 20141203 */
+/* 20141204 begin */
+.fdf3{ color: #df3031;} /*红色*/
+.f288{ color: #288be7;} /*浅蓝色*/
+.f8ec{ color: #8ec14b;} /*绿色*/
+/* 20141204 end */
+
+.homeH2{ padding: 15px 0 5px 0; text-align: center;}
+.bbox{ border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4;}
+.bbox .type{ padding: 5px;max-height:68px; overflow: hidden;}
+.bbox .type a{ margin: 4px 5px; padding: 0 8px; font-size: 12px; display:inline-block; height: 22px; line-height: 22px; background-color: #e4e4e4; border-radius: 2px; color: #333;}
+.bbox table{ position: relative; margin: 0 -1px -1px -1px; width: 101%; font-size: 12px;}
+.bbox table td{ border: 1px solid #e4e4e4; text-align: center;}
+.bbox table td > a{ display: block; padding: 10px; color: #333;}
+.bbox table .block{ display:inline-block; text-align: left; line-height: 1.5;}
+.bbox table .block .imgbox{ margin: 5px 0;}
+.bbox table .block .imgbox img{ width: 100%; height: 100%;}
+.bbox table dl{ font-size: 0;}
+.bbox table dl > *:nth-child(2){ padding-left: 8px;}
+.bbox table dt,.bbox table dd{ display:inline-block; vertical-align: middle;}
+
+.bbox table h2{ font-size: 1rem;}
+.bbox table h3{ font-size: 0.875rem;}
+.bbox table p{ font-size: 0.75rem;}
+
+.bbox .img01{ width: 8.44rem; height: 10rem;} /* 135x160 */
+.bbox .img02{ width: 3.75rem; height: 2.81rem;} /* 60x45 */
+.bbox .img03{ width: 9.375rem; height: 5.625rem;} /* 150x90 */
+.bbox .img04{ width: 2.81rem; height: 2.81rem;} /* 45x45 */
+.bbox .img05{ width: 5.625rem; height: 7.5rem;} /* 90x120 */
+.bbox .img06{ width: 8.125rem; height: 5.625rem; } /* 130x90 */  /* 20141203 */
+
+@media screen and (min-width: 321px) and (max-width: 479px) {
+	html{ font-size: 18px;}
+}
+@media screen and (min-width: 480px) and (max-width: 559px){
+	html{ font-size: 24px;}
+}
+@media screen and (min-width: 560px){
+	html{ font-size: 28px;}
+}
+
+.bbox table .kp{ overflow-y: auto; height: 6.875rem;display:block;padding:0 10px;}
+.bbox table .kp h3{ color: #8cbe4c;}
+.bbox table .kp ul{ margin-top: 5px;}
+.bbox table .kp li{ position: relative; padding: 0 0 10px 35px; min-height: 42px;}
+.bbox table .kp li p{ font-size: 12px;}
+.bbox table .kp .rd{ position: absolute; left: 0; top: 3px; display: block; margin-right: 10px; background-color: #df3031; border-radius: 50%; color: #fff; font-size: 12px; min-width: 2.2em; height: 2.2em; line-height: 2.2em; text-align: center; z-index: 2;}
+.bbox table .kp li:after{ position: absolute; display: block; content: ''; top: 50%; left: 14px; margin-left: -2px; width: 3px; height: 100%; background-color: #e4e4e4; z-index: 1;}
+.bbox table .kp li:last-child:after{ display: none;}
+.bbox table .kp .txt{ display:inline-block; vertical-align: middle;}
+
+.yzbbsList{ margin-bottom:-1px; border-top: 1px solid #e4e4e4;}
+.yzbbsList ul{ margin: 0 8px;}
+.yzbbsList li{ border-bottom: 1px solid #e4e4e4;}
+.yzbbsList li:last-child{ border-bottom: none;}
+.yzbbsList li > a{ display: block; padding: 8px 0; color: #000; overflow: hidden; *zoom:1;}
+.yzbbsList li .img{ position: relative; float: left; margin-right: 8px; width: 60px; height: 60px;}
+.yzbbsList li .img img{ width: 100%; height: 100%;}
+.yzbbsList li .txt{ font-size: 12px; line-height: 1.4; overflow: hidden;}
+.yzbbsList li h3{ font-size: 14px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.yzbbsList li p{ margin-top: 5px; color: #999; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.yzbbsList li .sum{ color: #ccc;}

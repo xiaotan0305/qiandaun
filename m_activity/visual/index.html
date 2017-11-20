@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html style="overflow-x: hidden; overflow-y: visible">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>大数据可视化</title>
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.0.min.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.0.min.js"></script>
+    <script type="text/javascript" src="js/echarts.js"></script>
+    <script type="text/javascript" src="js/china.js"></script>
+    <script type="text/javascript" src="js/cloudTag.js"></script>
+    <script type="text/javascript" src="js/geoCoordMap.js"></script>
+</head>
+<body>
+<script>
+    var w = $(window).width(), h = $(window).height();
+    var x = w / 1920;
+    $('body').css({
+        transformOrigin: '0 0',
+        WebkitTransformOrigin: '0 0',
+        WebkitTransform: 'scale(' + x + ')',
+        MozTransform: 'scale(' + x + ')',
+        MsTransform: 'scale(' + x + ')',
+        transform: 'scale(' + x + ')'
+    });
+</script>
+<div class="swiper-container" id="pageBox">
+    <div class="swiper-wrapper">
+        <!--访客-->
+        <div class="swiper-slide">
+            <div class="content">
+                <div class="contentc">
+                    <div class="ctitle"><img src="images/logo.png" alt="" width="434" height="35"/></div>
+                    <div class="numBox conternum" id="bisitorsNumBox">
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="cinfo">今日访客</div>
+                    <div class="cmap" id="bisitorsMap"></div>
+                </div>
+                <div class="contentl">
+                    <div class="contentlnr">
+                        <div class="ltitle"><img src="images/ltitle01.png" alt="" width="187" height="48"/></div>
+                        <ul class="ul01">
+                            <li><span class="num" style="font-size:0px;">序号</span><span class="city ce8">城市</span><span class="name ce8">小区名</span>
+                                <div class="hotbt ce8">热度</div>
+                            </li>
+
+                        </ul>
+                        <div class="swiper-container" id="bisitorsCommunity">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">1</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hot"><em></em></div>
+                                        </li>
+                                        <li><span class="num">2</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:90%"></em></div>
+                                        </li>
+                                        <li><span class="num">3</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hot"><em style="width:80%"></em></div>
+                                        </li>
+                                        <li><span class="num">4</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hot"><em style="width:70%"></em></div>
+                                        </li>
+                                        <li><span class="num">5</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:60%"></em></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">6</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hot"><em></em></div>
+                                        </li>
+                                        <li><span class="num">7</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:90%"></em></div>
+                                        </li>
+                                        <li><span class="num">8</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hot"><em style="width:80%"></em></div>
+                                        </li>
+                                        <li><span class="num">9</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hot"><em style="width:70%"></em></div>
+                                        </li>
+                                        <li><span class="num">10</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:60%"></em></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ltitle" style="margin-top:70px"><img src="images/ltitle02.png" alt="" width="195" height="48"/></div>
+                        <ul class="ul01">
+                            <li><span class="num" style="font-size:0px;">序号</span><span class="city ce8">城市</span><span class="name ce8">楼盘名</span>
+                                <div class="hotbt ce8">热度</div>
+                            </li>
+
+                        </ul>
+                        <div class="swiper-container" id="bisitorsBuilding">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">1</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">2</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">3</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">4</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">5</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/dn.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">6</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">7</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">8</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">9</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">10</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/dn.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contentr">
+                    <div class="contentrnr">
+                        <div class="rtitle"><img src="images/rtitle03.png" alt="" width="210" height="52"/></div>
+                        <div style="width:460px;">
+                            <div class="rdatatab"><a href="#"><img src="images/pc.png" alt="" width="42" height="22"/></a><a href="#"><img
+                                    src="images/mobile.png"
+                                    alt=""
+                                    width="66" height="22"/></a>
+                            </div>
+                            <div id="bisitorsPCmobile" style="width:457px; height:256px"></div>
+                        </div>
+                        <div class="rtitle" style="margin-top:70px"><img src="images/rtitle04.png" alt="" width="174" height="52"/></div>
+                        <div class="hotsearch"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--预约-->
+        <div class="swiper-slide">
+            <div class="content">
+                <div class="contentc">
+                    <div class="ctitle"><img src="images/logo.png" alt="" width="434" height="35"/></div>
+                    <div class="conternum" id="conventionNumBox">
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                        <div class="box"><span class="last">0</span>
+                            <div class="top"><span class="now">0</span></div>
+                            <div class="tran move">
+                                <div class="front"><span class="last">0</span></div>
+                                <div class="back"><span class="now">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cinfo">今日预约</div>
+                    <div class="cmap" id="conventionMap"></div>
+                </div>
+                <div class="contentl">
+                    <div class="contentlnr">
+                        <div class="ltitle"><img src="images/ltitle01.png" alt="" width="187" height="48"/></div>
+                        <ul class="ul01">
+                            <li><span class="num" style="font-size:0px;">序号</span><span class="city ce8">城市</span><span class="name ce8">小区名</span>
+                                <div class="hotbt ce8">热度</div>
+                            </li>
+                        </ul>
+                        <div class="swiper-container" id="conventionCommunity">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">1</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hot"><em></em></div>
+                                        </li>
+                                        <li><span class="num">2</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:90%"></em></div>
+                                        </li>
+                                        <li><span class="num">3</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hot"><em style="width:80%"></em></div>
+                                        </li>
+                                        <li><span class="num">4</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hot"><em style="width:70%"></em></div>
+                                        </li>
+                                        <li><span class="num">5</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:60%"></em></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">6</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hot"><em></em></div>
+                                        </li>
+                                        <li><span class="num">7</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:90%"></em></div>
+                                        </li>
+                                        <li><span class="num">8</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hot"><em style="width:80%"></em></div>
+                                        </li>
+                                        <li><span class="num">9</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hot"><em style="width:70%"></em></div>
+                                        </li>
+                                        <li><span class="num">10</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hot"><em style="width:60%"></em></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ltitle" style="margin-top:70px"><img src="images/ltitle02.png" alt="" width="195" height="48"/></div>
+                        <ul class="ul01">
+                            <li><span class="num" style="font-size:0px;">序号</span><span class="city ce8">城市</span><span class="name ce8">楼盘名</span>
+                                <div class="hotbt ce8">热度</div>
+                            </li>
+                        </ul>
+                        <div class="swiper-container" id="conventionBuilding">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">1</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">2</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">3</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">4</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">5</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/dn.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="swiper-slide">
+                                    <ul class="ul01">
+                                        <li><span class="num">6</span><span class="city">乌鲁木齐</span><span class="name">南湖国际社区二期</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">7</span><span class="city">北京</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">8</span><span class="city">重庆</span><span class="name">中南世纪花城</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">9</span><span class="city">成都</span><span class="name">太湖国际社区</span>
+                                            <div class="hotbt">302<i><img src="images/up.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                        <li><span class="num">10</span><span class="city">上海</span><span class="name">龙湖春森彼岸</span>
+                                            <div class="hotbt">302<i><img src="images/dn.png" alt="" width="18" height="16"/></i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contentr">
+                    <div class="contentrnr">
+                        <div class="rtitle"><img src="images/rtitle01.png" alt="" width="203" height="52"/></div>
+                        <div style="width:460px;position: relative;color: #fff;">
+                            <div id="conventionNewOld" style="width:401px;height:299px"></div>
+                            <div class="pieInfo">
+                                <div class="info">访客人数</div>
+                                <div class="info infoNum">123456</div>
+                            </div>
+                            <div class="pieMark">
+                                <div class="mark">
+                                    <i></i><span>新用户</span>
+                                </div>
+                                <div class="mark">
+                                    <i></i><span>老用户</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rtitle" style="margin-top:70px"><img src="images/rtitle02.png" alt="" width="204" height="52"/></div>
+                        <div class="upsdowns">
+                            <div class="bar-chart" id="barChartXf"></div>
+                            <div class="bar-chart" id="barChartEsf" style="display: none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swipe-handler"></div>
+</div>
+<script type="text/javascript" src="js/visualization.js"></script>
+</body>
+</html>

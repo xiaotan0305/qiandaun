@@ -1,0 +1,41 @@
+{
+    "name": "xplayer",
+    "version": "0.0.1",
+    "description": "Wow, such a lovely HTML5 video player",
+    "main": "dist/XPlayer.js",
+    "style": "dist/XPlayer.css",
+    "scripts": {
+        "test": "webpack",
+        "build": "webpack",
+        "dev": "WEBPACK_ENV=dev webpack-dev-server --hot --progress --inline --host 0.0.0.0"
+    },
+    "files": [
+        "dist"
+    ],
+    "author": "fenglinzeng",
+    "license": "SATA",
+    "bugs": {
+        "url": "fenglinzeng@fang.com"
+    },
+    "devDependencies": {
+        "autoprefixer": "^7.1.1",
+        "babel-core": "^6.24.1",
+        "babel-eslint": "^7.2.3",
+        "babel-loader": "^7.1.1",
+        "babel-preset-env": "*",
+        "css-loader": "^0.28.0",
+        "eslint": "^4.1.0",
+        "eslint-loader": "^1.9.0",
+        "exports-loader": "^0.6.4",
+        "extract-text-webpack-plugin": "^3.0.0",
+        "file-loader": "^0.11.1",
+        "node-sass": "^4.5.0",
+        "sass-loader": "^6.0.2",
+        "strip-loader": "^0.1.2",
+        "style-loader": "^0.18.1",
+        "template-string-optimize-loader": "^2.2.3",
+        "url-loader": "^0.5.7",
+        "webpack": "^3.1.0",
+        "webpack-dev-server": "^2.4.5"
+    }
+}

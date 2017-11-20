@@ -1,0 +1,68 @@
+body { padding: 0; margin: 0; font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, Arial,Verdana, sans-serif; }
+img { border: none; }
+#Header { background: #EEBF02; height: 61px; padding: 0; border-bottom: 1px solid #3c3c3c;  }
+#Header img { display: block; margin: 0 auto 0; }
+#MainContent { }
+#Footer { padding: 10px; border-top: none; } 
+#SocialLinks { padding: 10px 0 0 0; }
+#SocialLinks:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+#SocialLinks a { display: block; float: left; padding-right: 15px; }
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 33.33333333%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; }
+/* For inline examples only */
+#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666; } 
+#PhotoSwipeTarget img { width: 320px; height: 240px;}
+#Indicators { text-align: center; height: 10px; top: 210px; left: 0px; width: 100%; z-index: 5; position: absolute; }
+#Indicators span { display: inline-block; height: 5px; width: 5px; margin: 0 4px 0 0; padding: 0; -webkit-border-radius:5px; -moz-border-radius:5px; -o-border-radius:5px; border-radius:5px; background: #c5c5c5; overflow:hidden; }
+#Indicators span.current{ background: #0099FF; color: #0099FF; }
+#slideBox{width:100%;height:240px;}
+#slider{width:320px;height:240px;}
+.nxqalbum #slider { width: 320px; margin-right: auto; margin-left: auto; }
+.sw_loading {background: #fff url(//img2.soufun.com/wap/touch/img/loading.gif) no-repeat center}
+.focusCount .on {background: #0099ff;border-radius: 3px;box-shadow: inset 1px 1px 2px rgba(0,0,0,.4);overflow: hidden;}
+.focusCount{text-align: center;left: 0px;width: 100%;height: 10px;top: 210px;z-index: 5;position: absolute;}
+.focusCount li{display: inline-block;
+height: 5px;
+width: 5px;
+margin: 0 4px 0 0;
+padding: 0;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+background: #c5c5c5;
+line-height: 100px;
+overflow: hidden;}
+.mgR10{margin-right: 10px;}
+/*个性样式*/
+.myrecord ul li{position: relative;}
+.myrecord ul li h2{padding: 0 0 10px 10px;text-align: left;font-size: 14px;clear: both;}
+.myrecord ul li > a{  color: #333;}
+.myrecord ul li dl{padding: 0;}
+.trash{position: absolute;right: 0;top: 0;display: inline-block;width: 55px;height: 40px;background: transparent url("images/sf-trash1.png") center center no-repeat;background-size: 16px auto;}
+
+ .fw600{font-weight: 600;}
+ .pdT20{padding-top: 20px;}
+
+    /*提示框模块*/
+.sf-mask{position: fixed;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index: 999;top: 0;left: 0;padding-top: 45%;}
+.sf-cfj-alertInfo{position: absolute;width: 305px;height: 172px;background-color: #ffffff;border: 1px solid #d1d1d1;border-radius: 3px;top: 50%;left: 50%;margin: -86px auto 0 -152px;padding-bottom: 15px;}
+.sf-cfj-alertInfo .btn{position: absolute;bottom: 15px;width: 100%;}
+.sf-cfj-alertInfo .btn span{display: inline-block;width: 135px;border-radius: 3px;}
+.sf-cfj-alertInfo .ok{background-color: #df3031;color: #ffffff;}
+.sf-cfj-alertInfo .cancel{color: #df3031;border: 1px solid #df3031;}
+
+.relative{position: relative;}
+.mgT5{margin-top: 5px;}
+.mgY5{margin-bottom: 5px;margin-top: 5px;}
+.mgR10{margin-right: 10px;}
+.lh75{line-height: 75px;}
+/*单个样式*/
+.sf-cfj-cHistory ul a:link,.sf-cfj-cHistory ul  a:active,.sf-cfj-cHistory ul a:visited{color: #000000;}
+.pdX15{padding: 15px 0;}
+.pdY8{padding: 8px 0;}
+.cfj-btnBox1{position: fixed;bottom: 0;width: 100%;background-color: rgba(250,250,250,0.9);border-top: 1px solid #e4e4e4;z-index:3;}
+.cfjBtn03{ margin: 0 auto; display: block; width: 262px; height: 40px; line-height: 40px; border-radius: 3px; background-color: #df3031; color: #fff !important; text-align: center; font-size: 14px;}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>搜房活动</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="dns-prefetch" type="text/css" href="http://m.fang.com/huodongAC.d?class=ChaiHongBaoHc&m=rankingList">
+<script src="http://js.soufunimg.com/common_m/m_activity/public/jslib/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript" src="http://js.soufunimg.com/common_m/m_activity/chaihongbao/js/index.js?_20151202"></script>
+</head>
+<body>
+    <div class="wrap" >
+        <div class="main" id="main">
+            <div class="m-con" id="mainCentent">
+                <div id="firstP" >
+               <c:forEach items="${requestScope.questionList }" var="li" varStatus="l">
+            	<div id="${li.askId }" class="box">
+                    <h2>${l.index+1}. ${li.askTitle }</h2>
+                    <div class="btn-box">
+                    	<a href="javascript:;" class="nowAsk" data-askId="${li.askId }">立即回答</a>
+                    </div>
+                </div>
+              </c:forEach>
+                    <a href="#main" class="change">换一换</a>
+                </div>
+                <div id="secondP" style="display: none;">
+                   <a href="#main" class="change">换一换</a>
+                </div>
+            </div>
+        </div>
+        <div class="loaderBox" style="display:none">
+        <div class="loader1"><i></i></div>
+        <p>&nbsp;&nbsp;加载中...</p>
+    </div>
+    </div>
+    <div class="floatAlert closeAll" ></div>
+    <div class="outBox2" id="que">
+        <div class="q-box" id="askTitle">问：我想问一下,有些地方在企业注册的时候,需要根据注册签订的租房合同缴纳房产税吗?</div>
+        <div class="a-box">
+            <textarea id="askContent"  placeholder="请输入回答"></textarea>
+        </div>
+        <div class="btn-box flexbox">
+            <a href="javascript:;" class="closeAll">返  回</a>
+            <a id="submit" href="javascript:;">提  交</a>
+        </div>
+    </div>
+    <div class="outBox2" id="login">
+        <div class="i-box">
+            <input type="text" id="phone" placeholder="请输入手机号">
+        </div>
+        <div class="i-box flexbox">
+            <input type="text" id="inputCode" placeholder="请输入验证码">
+            <input type="button" id="getCode" value="获取验证码">
+        </div>
+        <div class="btn-box" id="loginBtn">
+            <a href="javascript:;">登  录</a>
+        </div>
+    </div>
+    
+    <div class="outBox" id="tancheng" style="display:none;top:50%;margin-top:-4rem;">
+        <div class="close closeAll"><a href="javascript:void(0);"><i></i></a></div>
+        <div class="outBox-in" style="height:8rem;line-height:7rem;text-align:center;">
+            <div class="list">活动已结束，感谢您对问答的关注~</div>
+        </div>
+    </div>
+    <div id="redPackage" class="hb-box">
+        <div class="hb-box-bg" id="hbBoxBg"></div>
+        <a id="hbClose" class="bounceIn hb"></a>
+        <a id="hbAnimate" class="hb-animate"><img data-src="http://js.soufunimg.com/common_m/m_activity/chaihongbao/images/animate4.gif" width="100%"></a>
+        <div id="hbOpen" class="hb-open" > <strong id="money">-元</strong>
+            <p><b>还有-个红包在等着您哦~</b></p>
+            <a id="goOn" href="javascript:;">继续答题</a>
+        </div>
+    </div>
+    <input type="hidden"  id="userId" value='${requestScope.userId }'/>
+    <input type="hidden"  id="city" value='${param.city }'/>
+   
+</body>
+</html>
+

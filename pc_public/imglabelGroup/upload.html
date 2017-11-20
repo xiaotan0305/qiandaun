@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>房天下图片标注</title>
+    <link rel="stylesheet" type="text/css" href="//dev.brofen.cn/Fang/imgTag/static/css/all.min.css">
+</head>
+
+<body>
+        <header></header>
+    <header>上传<a href="./index.html" class="absolute-btn left-btn">返回</a>
+    </header>
+    <section class="upload-content">
+        <form id="form" method="post" enctype="multipart/form-data">
+            <div class="upload-btn">
+                <i class="iconfont icon-txt"></i>
+                <i class="iconfont icon-upload"></i>
+                <i class="iconfont icon-check"></i>
+            </div>
+            <dic class="upload-tip animated fadeInRight" id="upload-tip"></dic>
+            <div class="btn-area">
+                <label for="selectFile" id="btn-select" class="btn btn-default">选择文件</label>
+                <p id="btn-upload" class="btn btn-default none">点我上传</p>
+                <p id="btn-done" class="btn btn-default none">上传成功</p>
+            </div>
+            <input id="selectFile" type="file" name="file" accept="text/plain" class="none">
+        </form>
+    </section>
+    <script>
+    var vars = window.vars || {};
+    vars.domainUp = 'http://activities.m.test.fang.com/public/?c=imgLabel&a=uploadFile';
+    </script>
+    <script src="//static.test.soufunimg.com/common_m/pc_public/fangjs/build/??fang2.3.2.js,jquery/jquery-3.js"></script>
+    <script>
+    var isDebug = /@debug/.test(location.href) || /brofen/.test(location.href);
+    var dir = isDebug ? 'dev' : 'static';
+    // 配置Fang.js
+    fang.config({
+        base: '//dev.brofen.cn/Fang/imgTag/' + dir + '/js',
+        ver: '2017090501'
+    });
+    // 调用入口模块
+    fang(['entry/upload'], function () {
+        console.log('entry_upload 执行完成');
+    });
+    </script>
+</body>
+
+</html>

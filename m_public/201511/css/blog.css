@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+font{ word-break:break-word;}
+.moreList{margin-top:-1px;background:#f4f4f4;}
+.main1{ position: relative; margin: 0 auto; max-width: 640px;z-index:9}
+.main{ min-height:0;}
+.block{ display:block;}
+/*列表页头像*/
+.user-list{ margin-top:20px;}
+.user-list dt{float:left;width:21px;height:21px;margin-right:10px;overflow:hidden;border-radius:50%;}
+.user-list dt img{width:100%;}
+.user-list dd{font-size:11px;line-height:25px;color:#565c67}
+.user-list dd h3{ position:relative;font-size:12px;margin-bottom:10px;color:#b3b6be;}
+.user-list dd h3 .time{ position:absolute; top:0; right:0; font-size:11px;}
+/*列表页文字*/
+.xqIntro{ margin-bottom:15px;overflow:hidden;}
+.xqIntro h3{margin-bottom:6px; font-size:17px; line-height:20px; color:#3c3f46;}
+.xqIntro p{font-size:12px;color:#83868f; line-height:1.5em;}
+/*详情页头像*/
+.user-list.row2{ padding:0 14px; margin-top:16px;}
+.user-list.row2 dt{float:left;width:31px;height:31px;margin-right:10px;overflow:hidden;border-radius:50%;}
+.user-list.row2 dt img{width:100%;}
+.user-list.row2 dd h3{font-size:12px;margin-bottom:4px;color:#565c67;}
+.user-list.row2 dd p{color:#b3b6be;font-size:11px;}
+.user-list.row2 dd.line2{line-height:12px;padding-top:3px;}
+/*详情*/
+.xqBox {padding:18px 0 20px; margin-bottom:8px;}
+.xqBox h1{font-size:21px;color:#3c3f46;line-height:28px;margin:0 14px;font-weight:bold;}
+.bk-con{margin-top:6px; padding:0 14px;}
+.bk-con p{font-size:17px;color:#3c3f46;line-height:28px;padding:8px 0; word-break:break-word;}
+.bk-con img{margin:6px 0;max-width:100%;}
+.bk-con .ct{color:#2d64b3;}
+.moreList.whitebg{ background:#fff;}
+.moreList a.redBk{ display:inline-block; margin:0 4%; width:92%; height:34px; line-height:34px; font-size:14px; color:#ff6666; background:#fff; border:1px solid #ff6666; border-radius:2px;}
+.moreList a.redBk i{ display:inline-block; position:relative;}
+.moreList a.redBk i:after{ position:absolute; right:-14px; top:13px; content:""; width:9px; height:9px; background:url(../images/arr-red.png) no-repeat; background-size:9px;}
+/*个人主页头部*/
+.headBox{ position: relative; background:url(../images/head-bg.jpg) no-repeat; background-size:100% 100%; color:#fff;}
+.headTop {width: 100%;height: 44px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.headBox .back{position:absolute;margin:6px 4px 0 9px;width:32px;height:32px;top:0;text-align: center;}
+.headBox .back i{display:block;width: 32px; height: 32px; background: url(../images/header_icons_w.png) 0 0 no-repeat; background-size:64px auto;}
+.headBox .logo{position:absolute;left:0;top:0;width:102px;height:44px;text-align: center;}
+.headBox .logo i{display:block;width:102px; height:44px; background: url(../images/logo.png) 9px 15px no-repeat; background-size:77px auto;}
+.headBox .icon-nav{position:absolute;margin:6px 4px;padding:0;width:32px;height:32px;text-align: center;}
+.headBox .icon-nav i{display:block;width: 32px; height: 32px; background: url(../images/header_icons_w.png) no-repeat;background-size: 64px auto;}
+.headBox .icon-nav{right:5px;top:0;}
+.headBox .icon-nav i{ background-position:-32px 0 !important;}
+.userImg{ margin:0 auto; text-align:center; padding-top:2px;}
+.userImg span{display: inline-block;border-radius: 55px;z-index: 1;border:2px solid #ffffff;background-color:#ffffff;}
+.userImg span img{width: 64px; height:64px; border-radius: 50%;}
+.data{ width:33%;}
+.data dt{ font-size:14px; font-weight:600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.data dd{ font-size:12px; margin-top:4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+/*个人主页列表*/
+.zhyList .xqIntro{ border-bottom:1px solid #f4f4f4; margin-bottom:0;}
+.zhyList .xqIntro h3{ font-size:15px; margin-top:10px; margin-bottom:7px;}
+.zhyList .xqIntro p{font-size:11px;color:#b3b6be; padding-bottom:9px;}
+
+.main .xqBox:last-of-type{ margin-bottom:0 !important;}
+
+/*详情页列表1*/
+.other-option{height:44px;line-height:44px;text-align:center;}
+.other-option > a{display:block;}
+.moreList.nobg a{background:none;color:#b3b6be;font-size:12px;}
+
+.otherlist{margin:0 14px;}
+.new_list{clear:both;}
+.new_list li{overflow:hidden;font-size:15px;height:45px;line-height:45px;border-bottom:1px solid #f4f4f4;overflow:hidden;}
+.new_list li > a{display:block;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;color:#0c0d0e;padding:0 14px;}
+.new_list li:last-child{ border-bottom:none;}
+/*详情页猜你喜欢列表*/
+.houseList ul{ margin:0;padding-bottom:10px;}
+.houseList li:last-child{ border-bottom: none;}
+.houseList li > a{position:relative; display: block; padding: 10px 14px; overflow: hidden; *zoom:1;}
+.houseList li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;}
+.houseList li .img img{ width: 100%; height: 100%;}
+.houseList li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(256,256,256,.4);text-shadow:0px 0px 2px rgba(41,41,41,.6);line-height:1}
+.houseList li .txt{ overflow: hidden; *zoom:1;}
+.houseList li h3{ font-size: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:18px;color:#0c0d0e;margin-top:-1px;margin-bottom:4px;}
+.houseList li p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.houseList li p .space{padding:0 2px;}
+.houseList li .new{ float: right; font-size: 14px; color: #df3031;}
+.houseList li:first-child > a{padding-top:0;}
+/*详情页猜你喜欢家居列表*/
+.jj-fav-box{padding-bottom:20px;}
+.jj-fav{position:relative;margin:0 14px;}
+.jj-fav .fav-list{overflow:hidden;}
+.jj-fav .fav-list li{position:relative;float:left;width:100%;}
+.jj-fav .fav-list li > a{display:block;}
+.jj-fav .fav-list img{width:100%;}
+.jj-fav .fav-list li .text{position:absolute;left:0;bottom:0;width:100%;height: 30px; line-height: 30px;padding:0 15px;color:#fff;font-size:14px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;background:rgba(0,0,0,.5);}
+.jj-fav .swipe-point{ position: absolute; bottom: 10px; right: 5px; }
+.jj-fav  .swipe-point li{ float: left; margin: 0 2px; width: 4px; height: 4px; border-radius: 50%;background:rgba(255,255,255,0.5); }
+.jj-fav  .swipe-point li.cur{width: 6px; height: 6px; margin:0 3px; margin-top:-1px; background-color: #fff; -webkit-transform: scale(1.2); transform: scale(1.2);}
+
+/**/
+.flex-nav{position:fixed;right:8px;bottom:115px;width:36px;height:36px;background:url(../images/flex_nav.png) no-repeat;background-size:100%;z-index:9;}

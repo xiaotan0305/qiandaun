@@ -1,0 +1,126 @@
+@charset "UTF-8";
+body, button, input, select, textarea {
+    -webkit-text-size-adjust: none;
+    font: 400 14px/1.5 helvetica, verdana, san-serif;
+    outline: 0;
+    color: #333;
+    border:0;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: #333;
+}
+em, i {
+    font-style: normal;
+}
+b, em, h1, h2, h3, h4, h5, h6, i {
+    font-size: 1em;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.body-text {
+    position: relative;
+    line-height: 1.5;
+    font-size: 14px;
+    background-color: #f2f2f2;
+}
+
+.body-text > section {
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.body-text .article-wrapper .share-wrapper {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.body-text .article-wrapper .share-wrapper .share-wrapper-inner {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    padding-bottom: 30px;
+    padding-top: 50px;
+    border-bottom: 1px solid #ecedef;
+}
+
+.body-text .article-wrapper .share-wrapper .share-wrapper-inner em {
+    margin-right: 10px;
+    line-height: 40px;
+    color: #a4a4a4;
+}
+
+.body-text .article-wrapper .share-wrapper .share-wrapper-inner .share-list {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 42px;
+    -moz-flex: 1 1 42px;
+    -ms-flex: 1 1 42px;
+    flex: 1 1 42px;
+}
+
+.body-text .article-wrapper .share-wrapper .share-wrapper-inner a {
+    display: block;
+}
+
+ .sprite-icons-movement,.sprite-icons-wechat,  .sprite-icons-sina, .sprite-icons-qzone, .sprite-icons-qq {
+    -webkit-background-size: 244px 233px;
+    -moz-background-size: 244px 233px;
+    background-size: 244px 233px;
+}
+
+.sprite-icons-movement,.sprite-icons-wechat,  .sprite-icons-sina, .sprite-icons-qzone, .sprite-icons-qq {
+    background-image:url(../images/icons@2x_7ee46383c7.png)
+}
+
+.sprite-icons-movement {
+    background-position: -94px -155px;
+    width: 42px;
+    height: 42px;
+}
+
+.sprite-icons-wechat {
+    background-position: -164px -2px;
+    width: 42px;
+    height: 42px;
+}
+
+.sprite-icons-sina {
+    background-position: -164px -94px;
+    width: 42px;
+    height: 42px;
+}
+
+.sprite-icons-qzone {
+    background-position: -2px -155px;
+    width: 42px;
+    height: 42px;
+}
+
+.sprite-icons-qq {
+    background-position: -48px -155px;
+    width: 42px;
+    height: 42px;
+}

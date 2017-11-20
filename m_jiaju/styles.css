@@ -1,0 +1,24 @@
+body { padding: 0; margin: 0; font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, Arial,Verdana, sans-serif; }
+h1 { font-size: 1.3em; padding: 15px 10px; margin: 0; }
+h2 { font-size: 1.1em; padding: 10px; margin: 0; }
+img { border: none; }
+#Header { background: #EEBF02; height: 61px; padding: 0; border-bottom: 1px solid #3c3c3c;  }
+#Header img { display: block; margin: 0 auto 0; }
+#MainContent { }
+#Footer { padding: 10px; border-top: none; } 
+#SocialLinks { padding: 10px 0 0 0; }
+#SocialLinks:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+#SocialLinks a { display: block; float: left; padding-right: 15px; }
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 33.33333333%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; }
+/* For inline examples only */
+#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666; } 
+#PhotoSwipeTarget img { max-width: 320px; max-height: 240px;}
+#PhotoSwipeTarget li a {display:table-cell;vertical-align:middle;text-align:center;overflow:hidden;width:320px;height:240px;}
+#Indicators { text-align: center; height: 10px; top: 255px; left: 18px; width: 283px; z-index: 5; position: absolute; }
+#Indicators span { display: inline-block; height: 5px; width: 5px; margin: 0 4px 0 0; padding: 0; -webkit-border-radius:5px; -moz-border-radius:5px; -o-border-radius:5px; border-radius:5px; background: #c5c5c5; overflow:hidden; }
+#Indicators span.current{ background: #df3031; color: #df3031; }
+.nxqalbum #slider { width: 320px; margin-right: auto; margin-left: auto; } 

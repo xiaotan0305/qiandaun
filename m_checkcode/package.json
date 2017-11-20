@@ -1,0 +1,17 @@
+{
+  "name": "babeltest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "*",
+    "gulp": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "vinyl-buffer": "*",
+    "del": "^1.2.1",
+    "vinyl-source-stream": "*"
+  }
+}

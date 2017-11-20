@@ -1,0 +1,153 @@
+@charset "gb2312";
+/* CSS Document */
+.ico-lp{ width: 34px; height: 51px; background:url(images/ico-lp.png) center no-repeat; background-size: 21px auto;}
+.ico-off{ width: 34px; height: 51px; background:url(images/ico-off.png) center no-repeat; background-size: 21px auto;}
+.ico-lb{ width: 34px; height: 51px; background:url(images/ico-lb.png) center no-repeat; background-size: 21px auto;}
+/* 地图 */
+.sfMap .mapBox{ position:relative;}
+.sfMap .mapBox div img{ width:100%; height: 100%;}
+.t-name{ position: absolute; padding: 3px 5px 2px 5px; border: 1px solid #df3031; border-radius: 3px; color: #fff;background-color: #df3031; text-align: center; line-height: 16px; box-shadow: inset 0 1px 0 #df3031; font-size: 12px; cursor: pointer; }
+.t-name p{ max-width: 135px; overflow: hidden; white-space: nowrap; text-overflow:ellipsis; }
+.t-name:after{ position: absolute; display: block; content:''; background:#df3031; left: 50%; bottom: -5px; margin-left: -3px; z-index: 5; width:8px; height:8px; -webkit-transform: rotate(45deg);-moz-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); border-right: 1px solid #df3031; border-bottom: 1px solid #df3031;}
+
+.t-name.active{ border-color: #4f6b34; background: -webkit-gradient(linear, left top, right top, from(#8abd1d), to(#598b0e));
+background: -webkit-linear-gradient(top, #8abd1d, #598b0e);background: -moz-linear-gradient(top, #8abd1d, #598b0e);background: -o-linear-gradient(top, #8abd1d, #598b0e);background: -ms-linear-gradient(top, #8abd1d, #598b0e);background: linear-gradient(top, #8abd1d, #598b0e); background-color: #8abd1d; box-shadow: inset 0 1px 0 #9cd553;}
+.t-name.active:after{ border-color: #4f6b34; background: #598b0e;}
+
+.t-name.visited{ border-color: #5d9df2; background: -webkit-gradient(linear, left top, right top, from(#7db3fb), to(#74affa));
+background: -webkit-linear-gradient(top, #7db3fb, #74affa);background: -moz-linear-gradient(top, #7db3fb, #74affa);background: -o-linear-gradient(top, #7db3fb, #74affa);background: -ms-linear-gradient(top, #7db3fb, #74affa);background: linear-gradient(top, #7db3fb, #74affa);background-color: #7db3fb; box-shadow: inset 0 1px 0 #dfecfc;}
+.t-name.visited:after{ border-color: #5d9df2; background: #74affa;}
+
+.t-pos{ position: absolute; bottom: 20px; width: 24px; min-height: 24px;}
+.bor{ position: absolute; width: 150px; bottom: 20px; margin-left: -82px; padding: 5px; border: 1px solid #666; border-radius: 1px; color: #333; background-color: #fff; line-height: 18px; font-size: 12px;}
+.bor h5{ font-weight: bold;}
+.bor:after{ position: absolute; display: block; content:''; background:#fff; left: 50%; bottom: -5px; margin-left: -4px; z-index: 5; width:8px; height:8px; -webkit-transform: rotate(45deg);-moz-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); border-right: 1px solid #666; border-bottom: 1px solid #666;}
+.t-pos i{ display: block; margin-top: 8px; height: 24px; background: url(images/1.png) center no-repeat; background-size: auto 24px;}
+
+
+.sfMap .mapBox .info{ position:absolute; top:0; left:0; padding:2px 0; width:100%; background:rgba(0,0,0,0.6); text-align:center; font-size: 12px; color:#fff;}
+.sfMap .mapBox .pos{ position: absolute; left:10px; bottom:20px; display: block; width: 36px; height: 36px; box-shadow: 0 0 5px #626160; border:1px solid #fff; border-radius:3px; background: url(images/map-pos.png) center no-repeat rgba(0,0,0,0.6); background-size: 24px auto; overflow: hidden; text-indent:-1000em; font-size: 0;}
+.sfMap .mapBox .pos:hover,.sfMap .mapBox .zoom a:hover{ background-color:rgba(71,132,212,0.6);}
+.sfMap .mapBox .zoom{ position: absolute; right:10px; bottom:20px;}
+.sfMap .mapBox .zoom a{ display: block; margin:5px 0 0 0; width: 36px; height: 36px; line-height:24px; box-shadow: 0 0 5px #626160; border:1px solid #fff; border-radius:3px; font-size: 0; background-color: rgba(0,0,0,0.6); }
+.sfMap .mapBox .zoom-in{ background:url(images/mpa-in.png) center no-repeat; background-size:16px auto;}
+.sfMap .mapBox .zoom-out{ background:url(images/mpa-out.png) center no-repeat; background-size:16px auto;}
+
+.mapDetail{ position: fixed; bottom: 0; left: 0; width: 100%; background: #fff;}
+
+.vici{ position: absolute; right:10px; top:40px; box-shadow: 0 0 5px #626160; border-radius:5px; background:rgba(255,255,255,0.7); height:38px; overflow: hidden;}
+.vici .more{ float: right; width: 36px; height: 36px; border-radius:5px; border:1px solid #fff; background: url(images/map-vici.png) center no-repeat rgba(0,0,0,0.6); background-size: auto 18px; }
+.vici .iconbox{ float: left; width:0; overflow: hidden; -webkit-transition:0.5s all ease;}
+.vici .iconbox a{ float: left; margin: 1px 0 0 1px; width:36px; height:36px; text-indent:-1000em; font-size: 0; }
+.vici .iconbox a span{ display: block; margin:6px; width: 24px; height: 24px; background:url(images/icon-vici.png) no-repeat; background-size: auto 48px;}
+
+.vici .iconbox .bus span{ background-position: 0 0;}
+.vici .iconbox .subway span{ background-position: -24px 0;}
+.vici .iconbox .school span{ background-position: -48px 0;}
+.vici .iconbox .hospital span{ background-position: -72px 0;}
+.vici .iconbox .bank span{ background-position: -96px 0;}
+.vici .iconbox .shop span{ background-position: -120px 0;}
+.vici .iconbox .house span{ background-position: -144px 0;}
+
+.vici .iconbox .bus.active span{ background-position: 0 -24px;}
+.vici .iconbox .subway.active span{ background-position: -24px -24px;}
+.vici .iconbox .school.active span{ background-position: -48px -24px;}
+.vici .iconbox .hospital.active span{ background-position: -72px -24px;}
+.vici .iconbox .bank.active span{ background-position: -96px -24px;}
+.vici .iconbox .shop.active span{ background-position: -120px -24px;}
+.vici .iconbox .house.active span{ background-position: -144px -24px;}
+
+.md-tit{ position: relative; height:35px; line-height:35px; border-top:1px solid #d6d6d6; border-bottom:1px solid #d6d6d6; background: -webkit-gradient(linear, left top, right top, from(#f7f7f7), to(#f5f5f5)); background: -webkit-linear-gradient(top, #f7f7f7, #f5f5f5); background: -moz-linear-gradient(top, #f7f7f7, #f5f5f5); background: -o-linear-gradient(top, #f7f7f7, #f5f5f5); background: -ms-linear-gradient(top, #f7f7f7, #f5f5f5); background: linear-gradient(top, #f7f7f7, #f5f5f5);background-color: #f7f7f7; text-align:center; font-size: 14px; }
+.md-tit .prev{ position: absolute; display: block; left:0; width:30px; height:35px; background:url(images/icon-prev.png) center no-repeat; background-size: 8px auto;}
+.md-tit .next{ position: absolute; display: block; right:0; width:30px; height:35px; background:url(images/icon-next.png) center no-repeat; background-size: 8px auto;}
+.md-tit .cen{ position: absolute; left:30px; right:30px; overflow: hidden; }
+.md-tit .cen ul{ position: relative; width:5000%; overflow: hidden; transition:0.8s all ease;}
+.md-tit .cen ul li{ float: left; font-size: 12px; text-align:center;}
+.md-tit .alink{ display: block; padding: 0 10px; color:#333;}
+.md-tit .alink p{ background: url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png) right center no-repeat; background-size: 13px 13px; }
+
+.md-house{ overflow: hidden;}
+.md-house ul{ position: relative; width: 5000%; overflow: hidden; transition:0.8s all ease;}
+.md-house1 ul li,.md-house2 ul li{ float: left; -webkit-box-sizing:border-box; box-sizing:border-box;}
+.md-house1 ul li{ padding: 10px;}
+
+.md-house1 li{ overflow: hidden;}
+.md-house1 .img{ float: left; margin-right:10px;}
+.md-house1 .info{ overflow: hidden; line-height:18px; font-size: 12px;}
+.md-house1 .info .tit{ font-size: 14px;}
+.md-house1 .info p{ margin-top:2px;}
+.md-house1 .tip{ padding:0 2px; border:1px solid #ff6600; color:#ff6600;}
+
+.md-house2 .imgbox{ position: relative; margin:0 auto; max-width:640px;}
+.md-house2 .imgbox img{ width:100%;height: 156px;}
+.md-house2 .imgbox .intro{ position: absolute; padding:3px 10px; -webkit-box-sizing:border-box; box-sizing:border-box; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.6); line-height:18px;}
+.md-house2 .imgbox .intro .tit{ color:#fff; font-size: 14px; }
+.md-house2 .imgbox .pos{ padding-left:12px; color:#979797; font-size: 12px; background:url(images/icon-pos.png) left center no-repeat; background-size: 10px auto;line-height:none}
+
+.md-else{ height: 30px; line-height: 30px; font-size: 12px; text-align:center; border-top:1px solid #d6d6d6; background: -webkit-gradient(linear, left top, right top, from(#f7f7f7), to(#f5f5f5)); background: -webkit-linear-gradient(top, #f7f7f7, #f5f5f5); background: -moz-linear-gradient(top, #f7f7f7, #f5f5f5); background: -o-linear-gradient(top, #f7f7f7, #f5f5f5); background: -ms-linear-gradient(top, #f7f7f7, #f5f5f5); background: linear-gradient(top, #f7f7f7, #f5f5f5);background-color: #f7f7f7; }
+.md-else a{ text-decoration:underline;}
+
+.zhao-lp{ padding:10px; font-size: 14px; padding:8px 20px 8px 0;}
+.zhao-lp li{ position: relative; padding: 8px 0; border-bottom:1px dashed #999; overflow: hidden;}
+.zhao-lp li:last-child{ border-bottom: none;}
+.zhao-lp li strong{ padding:2px 5px; background-color:#df3031; border-radius:3px; color:#fff; font-weight: normal;}
+.zhao-lp li a{ display: inline-block; color:#999; margin: 1px 0 10px 10px;}
+.zhao-lp li h3{ float:left; margin-right:10px;}
+.zhao-lp li i{ position: absolute; display: block; right: 0; top: 12px; width: 6px; height: 12px; padding-right: 10px;}
+.icon-next {background: url(images/icon-next.png) no-repeat; background-size:6px auto;}
+.icon-next-a {background: url(images/icon-next-1.png) no-repeat; background-size:12px auto;}
+
+.zhao-lp li.lr{ padding:12px 0; height:30px; line-height:30px;}
+.zhao-lp li.lr h3{ float: left;}
+.zhao-lp li.lr select{ float: right; padding-left: 5px; width: 240px; height: 30px; line-height:30px; text-align: left; -webkit-appearance:none; border: none; background: url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png) 97% center no-repeat #e4e4e4; background-size: 13px 13px; border-radius: 3px; outline: none; color: #333;}
+.zhao-lp .btns{ margin-top: 10px; text-align: center; font-size: 0;}
+.zhao-lp .btns a{ display:inline-block; *display:inline; *zoom:1; height: 28px; line-height: 28px; font-size: 14px; border-radius: 3px; }
+.zhao-lp .btns .b1{ margin-right: 5px; width: 193px; border: 1px solid #df3031; background: -webkit-gradient(linear, left top, right top, from(#df3031), to(#df3031));background: -webkit-linear-gradient(top, #df3031, #df3031);background: -moz-linear-gradient(top, #df3031, #df3031);background: -o-linear-gradient(top, #df3031, #df3031);background: -ms-linear-gradient(top, #df3031, #df3031);background: linear-gradient(top, #df3031, #df3031);background-color: #df3031; box-shadow: inset 0 1px 0 #df3031; color: #fff;}
+.zhao-lp .btns .b2{ width:98px; border: 1px solid #adadad; background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), to(#dddddd));background: -webkit-linear-gradient(top, #f1f1f1, #dddddd);background: -moz-linear-gradient(top, #f1f1f1, #dddddd);background: -o-linear-gradient(top, #f1f1f1, #dddddd);background: -ms-linear-gradient(top, #f1f1f1, #dddddd);background: linear-gradient(top, #f1f1f1, #dddddd);background-color: #f1f1f1; box-shadow: inset 0 1px 0 #fff; color: #666;}
+
+.zhao-lp .subway select{ width: 170px !important;}
+.radiobox{ position: relative; float: left; padding:1px; border: 1px solid #df3031; width: 118px; height: 26px; border-radius: 3px;}
+.radiobox input[type="radio"]{ visibility: hidden; position: absolute;}
+.radiobox label{ float: left; width: 57px; text-align: center; line-height: 26px; color: #4784d2; cursor: pointer;}
+.radiobox label span{ display: block;}
+.radiobox label:last-child{ float: right;}
+.radiobox label input[type="radio"]:checked + span{ border-radius: 3px; background-color: #df3031; color: #fff;}
+
+.top_wrap{position: absolute; z-index: 99; background-color: white;}
+
+/* 周边详情 */
+.main{ position: relative; margin: 0 auto; max-width: 640px; min-height: 100%; overflow: hidden;}
+.zbxq{ padding: 10px;}
+.zbxq dl{ margin-bottom: 10px;}
+.zbxq dt{ padding: 5px 0;}
+.zbxq dd{ padding: 5px; border: 1px solid #d2d2d2; border-radius: 4px; line-height: 1.4; background-color: #fff;}
+.zbxq dd a{ display:inline-block; margin: 0 4px; font-size: 14px; color: #999;}
+/*周边详情end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

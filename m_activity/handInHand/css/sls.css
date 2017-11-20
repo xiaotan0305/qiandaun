@@ -1,0 +1,106 @@
+/* CSS Document */
+body,div,p,ul,li,dl,dd,h3,img,span,i,strong,input,h1{margin:0;padding:0;}
+html{font-size:10px;}
+@media screen and (min-width:320px){html {font-size:12px}}
+@media screen and (min-width:359px){html {font-size:14px}}
+@media screen and (min-width:413px){html {font-size:16px}}
+@media screen and (min-width:639px){html {font-size:20px}}
+@media screen and (min-width:1241px){html {font-size:39px}}
+body {width: 100%;font-family:'Microsoft Yahei','Arial';color: #333;-webkit-touch-callout: inherit ;-webkit-user-select: auto ; }
+input[type="submit"],
+ input[type="reset"],
+ input[type="button"],
+ button {
+ -webkit-appearance: none;
+ }
+img{ vertical-align:middle;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.floatl{ float:left}
+.floatr{ float:right}
+a{ color:#333; text-decoration:none}
+a:hover{ color:#f03136}
+
+.wrap{ width:100%;}
+.wid1000{ width:100%; margin:0 auto}
+.top{ width:100%; background-color:#252525; color:#fff}
+.top .tel{ font:0.8rem/4rem "Microsoft Yahei"; float:right; padding-right:1%;}
+.top a{ color:#fff}
+.top h1{ font:1.3rem/4rem "Microsoft Yahei"; float:left; width:65%; height:4rem;}
+.top h1 span{ display:inline-block; width:32%; height:4rem; margin-right:0.2rem; background:#d20000 url(../images/logo.gif) no-repeat center 1.2rem; background-size:90%; float:left}
+
+/*banner*/
+.banner{width:100%; height:13.5rem; text-align:center;position: absolute;}
+.banner ul{	width:100%; height:100%; 
+	-webkit-transition:left 800ms ease-in 0;
+	-moz-transition:left 800ms ease-in 0;
+	-o-transition:left 800ms ease-in 0;
+	-ms-transition:left 800ms ease-in 0;
+	transition:left 800ms ease-in 0; }
+.banner ul img{ width:100%;  margin: 0 auto;}
+.banner #pagenavi{text-align:center;width:100%; margin:0 auto; position:absolute; bottom:5px}
+.banner #pagenavi a{display:inline-block;margin-right:4px;width:5px;height:5px;vertical-align:middle;background:#fff;-webkit-border-radius:5px; border: 1px solid #fd3434}
+.banner #pagenavi a.active{background:#fd3434; border: 1px solid #fd3434}
+
+
+.wid100{border-bottom:1px solid #ddd; width:100%;padding-bottom:1.5rem; }
+.login,.fuli,.house,.youshi{ width:90%;margin:1.5rem auto 0;}
+
+.login{ margin-top:1rem;}
+.login dd{ height:4.5rem; width:100%; margin:0 auto;clear:both}
+.login dd.tit{ color:#333;font:1.3rem/3rem "Microsoft Yahei"; height:3rem; font-weight:bold}
+.login .input{ background-color:#fff; font:1.2rem/3rem "Microsoft Yahei"; height:3.5rem; border:1px solid #c2c2c2; padding-left:1rem; float:left}
+.login .btn2{ background-color:#fd3434; width:100%; border:0; color:#fff; font:1.2rem/4rem "Microsoft Yahei"; cursor:pointer}
+.login dd a{ border:1px solid #ff312a; font:1.2rem/3.5rem "Microsoft Yahei"; width:41%;height:3.5rem; display:inline-block; color:#ff312a; text-align:center; text-decoration:none; margin-left:2%}
+.login .remind{ margin-bottom:1rem; color:#f03136}
+
+
+h2{ margin:0 0 2rem 0; font-size:1.3rem; text-align:left;}
+.fuli dl dd{ width:100%; font-size:1.1rem; color:#666; margin-bottom:1rem}
+.fuli dl dd strong{line-height:35px; color:#333;  }
+.fuli dl dd .icon img{ width:3rem;}
+
+.youshi{ text-align:center; margin-bottom:5rem}
+.youshi dl dd strong{ font-size:1.2rem; color:#333;  }
+.youshi{ border:0; padding-bottom:15px}
+.youshi dl dd { width:33%; float:left;}
+.youshi dl dd img{ width:80%}
+.youshi dl dd .icon{ height:7rem}
+
+
+.house h2{ position:relative}
+.house .refresh{ font-size:1rem; font-weight:normal; color:#333; background:url(../images/refresh.gif) no-repeat 0 0.3rem; background-size:10%; padding-left:1.5rem; position:absolute;right:0; top:0.2rem}
+.house dl{ margin-bottom:1.5rem} 
+.house dl dd {  text-align:left; font-size:1rem;}
+.house dl dd.floatl{ width:40%}
+.house dl dd.floatr{ width:58%}
+.house dl dd img{ width:100%; height:7.2rem;}
+.house dl dd .borderb{ border-bottom:1px solid #e3e3e3; padding-bottom:0.5rem; margin-bottom:0.7rem}
+.house .btn3 a{ background-color:#fd3434;display:inline-block; line-height:2.7rem;height:2.7rem; width:10rem; border:0; text-align:center; color:#fff; text-decoration:none; }
+.house .price{ color:#f03136; font-size:1.5rem}
+
+
+/*rule*/
+.detail{ width:100%;margin:1.5rem auto;}
+.detail h1{ margin:0 auto 1.5rem; font-size:1.3rem; text-align:left; width:90%}
+.detail .liucheng{ text-align:center; padding-bottom:3rem; border-bottom:1px solid #ddd}
+
+
+.beizhu{ color:#666; font-size:1rem;line-height:1.7rem; margin-top:1.5rem}
+.beizhu .indent24{ text-indent:38px;}
+.xize{ width:90%;margin:1.5rem auto;line-height:1.7rem;  }
+.xize dt{ font-weight:bold}
+.xize dd{ color:#666;}
+
+/*online*/
+.online{ background:url(../images/online.png) no-repeat;background-size:100%; width:5rem; height:5rem; position:fixed; right:2%; bottom:2%}
+/*带输入框及成功弹窗*/
+.tz-box{position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.6);z-index:1000;}
+.tz-con{position:absolute;top:50%;left:50%;margin-left:-140px;width:280px;background:#ffffff;border-radius:5px;z-index:11;transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%);padding-bottom:2rem;}
+.tz-btn{ text-align:center; margin-top:1.5rem}
+.tz-btn input.bt01{height:36px;line-height:36px;background:#df3031;color:#ffffff;font-size:14px;border:none;border-radius:2px;width:110px;outline:none;}
+
+.tz-ok-box{text-align:center;padding-top:2rem;line-height:1;}
+.tz-ok-box h2{font-size:16px;color:#83868f;margin:1rem auto; text-align:center; }
+.tz-ok-box p{font-size:12px;color:#83868f; line-height:1.5rem}
+.tz-con .closeBtn{position:absolute;right:12px;top:10px;width:20px;height:20px;background:url(images/tz_close_icon.png) center center no-repeat;background-size:14px 14px;}

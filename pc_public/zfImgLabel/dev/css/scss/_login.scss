@@ -1,0 +1,65 @@
+/*
+ * 登录
+ */
+
+ .form {
+    width: 360px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    .form-header {
+        background: $blue;
+        padding: 15px 20px;
+        font-size: 1em;
+        font-weight: normal;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1.5;
+        &:after {
+            content: '';
+            width: 0;
+            margin-right: auto;
+            margin-left: auto;
+            border: 12px solid transparent;
+            border-bottom-color: $blue;
+            position: absolute;
+            left: 50%;
+            top: -24px;
+            transform: translateX(-50%);
+        }
+    }
+    .form-container {
+        background: #fff;
+        padding: 20px;
+    }
+    .form-wrap {
+        margin-bottom: 20px;
+        position: relative;
+        background-color: #fff;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #bbb;
+    }
+    input {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        outline: 0;
+        font-family: inherit;
+        font-size: 0.95em;
+    }
+    input[type="password"] {
+        color: #555;
+    }
+    .input-icon {
+        display: inline-block;
+        padding: 0 8px;
+        width: 40px;
+        text-align: center;
+    }
+}

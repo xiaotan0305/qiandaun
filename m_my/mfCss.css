@@ -1,0 +1,8 @@
+@charset "gb2312";
+/* CSS Document */
+.wymfBtn{padding:15px 5px;}
+.wymfBtn a{display:block;margin:0 10px;text-align:center;font-size:12px;height:28px;line-height:28px;color:#ffffff;}
+.wymfBtn a:first-child{background:#f2a801;}
+.wymfBtn a:last-child{background:#df3031;}
+.wymfBtn a.disabled{background:#e0e0e0;}
+.wymfBox p{text-align:right;font-size:12px;padding:0 15px;}

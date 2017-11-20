@@ -1,0 +1,519 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    -webkit-text-size-adjust: none;
+}
+
+html {
+    font-size: 20px;
+}
+
+body {
+    font-family: Arial, "Microsoft Yahei";
+    color: #333;
+    background: url(../images/bg.jpg) repeat;
+    background-size: 1rem;
+}
+
+form,
+img,
+table,
+td {
+    border: 0;
+}
+
+ul,
+ol,
+li {
+    list-style-type: none;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+input,
+textarea,
+img {
+    vertical-align: middle;
+    font-family: Arial, "Microsoft Yahei";
+}
+
+a {
+    color: #fff;
+    text-decoration: none
+}
+
+em {
+    font-style: normal;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+input,
+textarea,
+button {
+    -webkit-appearance: none;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media screen and (max-device-width: 320px) {
+    body {
+        -webkit-text-size-adjust: none
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    body {
+        -webkit-text-size-adjust: none
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        -webkit-text-size-adjust: none
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    body {
+        -webkit-text-size-adjust: none
+    }
+}
+
+.flol {
+    float: left;
+}
+
+.flor {
+    float: right;
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+    font-size: 0px;
+    visibility: hidden;
+    line-height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "\200B";
+    display: block;
+    height: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.noneBox {
+    display: none;
+}
+
+.mat0 {
+    margin-top: 0 !important;
+}
+
+.mat40 {
+    margin-top: 1rem
+}
+
+.mat48 {
+    margin-top: 1.2rem
+}
+
+.mat10 {
+    margin-top: 10px;
+}
+
+.flexbox {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.flexbox>* {
+    display: block;
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body:not(:-moz-handler-blocked) .flexbox {
+    width: 100%;
+}
+
+.flexbox {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.flexbox>* {
+    display: block;
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.wrap {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+img {
+    width: 100%;
+}
+
+.mbox {
+    position: relative;
+}
+
+.toppic {
+    width: 16rem;
+}
+
+.content {
+    width: 16rem;
+    margin-top: 0.5rem
+}
+
+.content .more {
+    width: 14.95rem;
+    height: 2rem;
+    margin: 1rem 0.5rem
+}
+
+.citycon {
+    margin: 0px auto;
+    overflow: hidden;
+    margin: 0 0.5rem
+}
+
+.citycon li {
+    float: left;
+    width: 7.25rem;
+    border-radius: 3px;
+    margin: 8px 0.48rem 0 0;
+    padding: 0.25rem;
+    background: #fff;
+}
+
+.citycon li:nth-child(even) {
+    margin: 8px 0rem 0 0rem;
+}
+
+.citycon li .pic {
+    width: 6.75rem;
+    height: 5.05rem;
+    position: relative;
+    margin-bottom: 0.375rem
+}
+
+.citycon li .pic .text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.55rem;
+    color: #fff;
+    padding: 0 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.citycon li .pic .biao {
+    position: absolute;
+    top: 0px;
+    right: 0.375rem;
+    padding-top: 0.14rem;
+    width: 2.525rem;
+    height: 1.8rem;
+    text-align: center;
+    line-height: 0.6rem;
+    color: #fff;
+    background: url(../images/icon01.png) no-repeat;
+    background-size: 2.525rem;
+    overflow: hidden;
+}
+
+.citycon li .pic .biao p {
+    font-size: 0.45rem;
+}
+
+.citycon li .pic .biao p:first-child {
+    font-size: 0.5rem;
+}
+
+.citycon li .pic .biao p:only-child {
+    margin-top: 0.25rem;
+}
+
+.citycon li .text {
+    height: 0.9rem;
+    line-hieght: 0.9rem;
+    font-size: 0.5rem;
+    color: #83868f;
+    overflow: hidden
+}
+
+.citycon li .text span {
+    float: right;
+    font-size: 0.6rem;
+    color: #f33;
+}
+
+.citycon li .text span em {
+    font-size: 0.45rem;
+}
+
+.citycon li .text span.no2 {
+    color: #666;
+    font-size: 0.45rem;
+    text-decoration: line-through;
+}
+
+.citycon li .text span.nowpri {
+    font-size: 0.55rem;
+}
+
+.citycon li .headt .frtext h3 {
+    height: 18px;
+    line-height: 18px;
+    font-size: 10px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.citycon li .infot {
+    height: 2.4rem;
+    line-height: 0.6rem;
+    font-size: 0.45rem;
+    color: #fff;
+    overflow: hidden
+}
+
+.citycon li .bigtit {
+    color: #ebc43a;
+    font-size: 12px;
+    height: 26px;
+    line-height: 26px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.citycon li .bigtit a {
+    color: #ebc43a;
+}
+
+.btn01 {
+    width: 14.95rem;
+    height: 2.35rem;
+    margin: 1rem 0.5rem
+}
+
+.titlehz {
+    width: 15rem;
+    height: 0.75rem;
+    margin: 1.2rem 0.5rem 1rem 0.5rem
+}
+
+.hezuo {
+    width: 15rem;
+    margin: 1rem 0.5rem;
+    overflow: hidden;
+    height: 4.5rem;
+}
+
+.hezuo .td {
+    float: left;
+    width: 4.5rem;
+    height: 4.5rem;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.Tcity {
+    margin: 0.5rem 0.5rem;
+    padding: 0 12px 0 6px;
+    width: 15rem;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    font-size: 0.7rem;
+    color: #99d6b6;
+    background: url(../images/selectbg.png) no-repeat;
+    background-size: 15rem;
+}
+
+.Tcity a {
+    color: #fff
+}
+
+.Tcity a span {
+    color: #fff
+}
+
+.Tcity span {
+    float: right
+}
+
+.Tcitynr {
+    width: 15rem;
+    margin: 0.5rem 0.5rem 0;
+}
+
+.Tcitynr p {
+    overflow: hidden
+}
+
+.Tcitynr a {
+    margin: 0 0.64rem 14px 0;
+    width: 3.25rem;
+    height: 1.55rem;
+    line-height: 1.55rem;
+    background: url(../images/city.png) no-repeat;
+    background-size: 3.25rem;
+    color: #fff;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.Tcitynr a.cur {
+    background: url(../images/city_cur.png) no-repeat;
+    background-size: 3.25rem;
+}
+
+.Tcitynr a.last {
+    display: inline-block
+}
+
+.Tcitynr a:last-child {
+    margin: 0 0rem 14px 0;
+}
+
+.flexbox {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    -webkit-box-orient: horizontal;
+    box-orient: horizontal;
+}
+
+.flexbox>* {
+    display: block;
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+}
+
+body:not(:-moz-handler-blocked) .flexbox {
+    width: 100%;
+}
+
+
+/*for FF*/
+
+.floatTel {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -8rem;
+    display: table;
+    width: 16rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    font-size: 0.65rem;
+    background: url(../images/picb.jpg) no-repeat;
+    background-size: 16rem;
+    z-index: 888;
+    overflow: hidden;
+}
+
+.floatTel .nr {
+    width: 100%;
+    padding: 0 2px;
+}
+
+.floatTel .nr a {
+    color: #d9d9d9;
+    text-align: center;
+}
+
+.floatTel .nr a.cur {
+    color: #fff;
+    font-weight: bold;
+}
+
+.pic img {
+    height: 100%;
+}

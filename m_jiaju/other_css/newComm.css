@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+/*
+ * @authors LongChan (longchan@soufun.com)
+ * @date    2014-11-03
+ * @version 1.1
+ */
+
+* { margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body { font-family:Arial, "Microsoft Yahei"; font-size: 16px; background: #f4f4f4;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a { color:#039; text-decoration:none;}
+a:link { text-decoration:none;}
+a:visited { color:#999;}
+a:active { color:#507fbd;}
+a:hover { color:#507fbd;}
+
+/* font */
+.f12 { font-size:12px;}
+.f14 { font-size:14px;}
+.f16 { font-size:16px;}
+.f18 { font-size:18px;}
+.ti2 { text-indent:2em }
+
+/* box */
+.pd10{ padding: 10px;}
+.pdX10{ padding: 0 10px;}
+.pdY10{ padding: 10px 0;}
+.mgX10{ margin: 0 10px;}
+.mgY10{ margin: 10px 0;}
+.mt10{ margin-top: 10px !important;}
+.mt15{ margin-top: 15px !important;}
+.mt20{ margin-top: 20px !important;}
+.lh20{ line-height: 20px;}
+
+/* color */
+.fccc{ color: #ccc;}
+.f999{ color: #999;}
+.fgray { color:gray;}
+.f039,.fblue { color:#039;}
+.fgrn{ color: #16ac0e;}
+.ff60,.forge { color:#f60;}
+.ff90{ color: #f90;}
+.fc00{ color: #c00;}
+.f333{ color: #333;}
+
+/* fn */
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+.center { text-align: center;}
+.none { display: none;}
+.flol { float: left;}
+.flor { float: right;}
+.rbox4{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+.rbox6{ -webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+
+/* flex */
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;}
+
+/* header */
+header{ position: relative; height: 44px; line-height: 44px; background-color: #df3031;}
+header .left{ position: relative; z-index: 5; float: left;}
+header .city{ position: relative; display:inline-block; padding: 0 10px; font-size: 16px; color: #df3031;}
+header .city span{ padding-right: 15px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) right 3px no-repeat; background-size: 200px auto;}
+header .logo{ float: left; width: 100px; height: 44px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/logo02.png) center no-repeat; background-size: 83px auto;}
+header .cent{ position: absolute; width: 100%; height: 100%; text-align: center; font-size: 16px; color: #fff;}
+header .cent a{ position: relative; padding-right: 16px; color: #fff;}
+header .cent a:after{ position: absolute; top: 50%; right: 0; content: ''; margin-top: -3px; width: 0; height: 0; border-style: solid; border-width: 6px 5px; border-color: #fff transparent transparent transparent;}
+header .back{ float: left; width: 44px; height: 44px; text-align: center;}
+header .back i{ display:inline-block; vertical-align: middle; width: 17px; height: 17px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/home.png) -75px 0 no-repeat; background-size: 200px auto;}
+
+.head-icon{ position: relative; z-index: 5; float: right;}
+.head-icon a{ float: left; width: 36px; text-align: center;}
+.head-icon a span{ display: inline-block; vertical-align: middle; text-align: center;}
+.head-icon a span i{ display: block; margin: 0 auto; width: 21px; height: 21px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/icon-head.png) no-repeat; background-size: 105px auto;}
+.head-icon a p{ margin-top: 2px; white-space: nowrap; color: #fff !important; font-size: 10px; line-height: 1;}
+.icon-my i{ background-position: 0 0;}
+.icon-nav i{ background-position: -21px 0 !important;}
+.icon-fb i{ background-position: -42px 0 !important;}
+
+
+.searchBox .map{ margin-left: 10px; padding: 0 8px; border-radius: 2px; height: 35px; line-height: 35px; background-color: #df3031; color: #fff; font-size: 14px; overflow: hidden;}
+.searchBox .bord{ position: relative; padding-right: 36px; border: 1px solid #df3031; border-radius: 2px; overflow: hidden;}
+.searchBox input{ padding: 0 8px; border: none; width: 100%; height: 33px; line-height: normal; font-size: 14px; outline: none;}
+.searchBox .submit{ position: absolute; top: 0; right: 0; width: 36px; height: 33px; line-height: 33px; background-color: #df3031; text-align: center;}
+.searchBox .submit i{ display:inline-block; vertical-align: middle; *display:inline; *zoom:1; width: 21px; height: 21px; background: url(http://js.soufunimg.com/wireless_m/touch/img/index/icon-head.png) -84px -21px no-repeat; background-size: 105px auto;}
+
+/* footer */
+footer{ border-top: 1px solid #d2d2d2; background-color: #fff; min-height: 50px; text-align: center;}
+footer .ver{ border-bottom: 1px solid #d2d2d2;}
+footer .ver a{ padding: 10px 0; width: 50px; font-size: 16px; color: #000;}
+footer .ver a span{ display: block; border-right: 1px solid #d2d2d2;}
+footer .ver a:last-child span{ border-right: none;}
+
+/*appœ¬‘ÿ—˘ Ω*/
+.homePos{ padding-left: 30px; height: 36px; line-height: 36px; border-top: 1px solid #e4e4e4; background: url(http://js.soufunimg.com/wireless_m/touch/img/appdown/pos.png) #fff 10px center no-repeat; background-size: 14px auto; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 14px;}
+.homePos .refresh{ float: right; width: 36px; height: 36px; background: url(http://js.soufunimg.com/wireless_m/touch/img/appdown/refresh.png) center no-repeat; background-size: 16px auto;}
+.btmIcons{ border-top: 1px solid #e4e4e4;}
+.btmIcons li{ padding: 12px 0; text-align: center;}
+.btmIcons a{ display: block; margin: 0 auto; width: 45px; height: 45px; background: url(http://js.soufunimg.com/wireless_m/touch/img/appdown/app-logo.png) no-repeat; background-size: 225px auto;}
+.btmIcons .b-zf{ background-position-x: -45px;}
+.btmIcons .b-zx{ background-position-x: -90px;}
+.btmIcons .b-txd{ background-position-x: -135px;}
+.btmIcons .b-ytx{ background-position-x: -180px;}

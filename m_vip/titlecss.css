@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+* { margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body { font-family:Arial, "Microsoft Yahei"; font-size: 16px; background: #fff;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a { color:#507fbd; text-decoration:none;}
+a:link { text-decoration:none;}
+a:visited { color:#507fbd;}
+a:active { color:#f60;}
+a:hover { color:#507fbd;}
+
+/* font */
+.f12 { font-size:12px;}
+.f14 { font-size:14px;}
+.f16 { font-size:16px;}
+.f18 { font-size:18px;}
+.ti2 { text-indent:2em }
+
+/* box */
+.pd10{ padding: 10px;}
+.pdX10{ padding: 0 10px;}
+.pdY10{ padding: 10px 0;}
+.mgX10{ margin: 0 10px;}
+.mgY10{ margin: 10px 0;}
+.mt10{ margin-top: 10px !important;}
+.mt15{ margin-top: 15px !important;}
+.mt20{ margin-top: 20px !important;}
+
+.lh15{ line-height: 1.5;}
+.lh20{ line-height: 20px;}
+
+/* color */
+.fccc{ color: #ccc;}
+.f999{ color: #999;}
+.fgray { color:gray;}
+.f039,.fblue { color:#507fbd;}
+.fgrn{ color: #16ac0e;}
+.ff60,.forge { color:#f60;}
+.ff90{ color: #f90;}
+.fc00{ color: #c00;}
+.f333{ color: #333;}
+
+/* fn */
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+.center { text-align: center;}
+.none { display: none;}
+.flol { float: left;}
+.flor { float: right; }
+.rbox4{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+.rbox6{ -webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;}
+
+input,textarea,button{ -webkit-appearance:none; -moz-appearance:none; appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio; -moz-appearance:radio; appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox; -moz-appearance:checkbox; appearance:checkbox;}
+
+header img{ width: 100%;}
+h2{ position: relative; margin: 8px 0 15px 0; width: 100%; height: 4px; border-top: 2px solid #926246; border-bottom: 1px solid #926246;}
+h2 span{ position: absolute; top: -8px; left: 50%; padding: 0 20px; white-space: nowrap; background-color: #fff; -webkit-transform: translate(-50%, 0px);-moz-transform: translate(-50%, 0px);-o-transform: translate(-50%, 0px);-ms-transform: translate(-50%, 0px);transform: translate(-50%, 0px); font-size: 16px; font-weight: bold;}
+
+.hw-tg .bpic{ border: 1px solid #ccc;}
+.hw-tg .bpic img{ width: 100%;}
+.hw-tg ol{ padding: 10px 0;}
+.hw-tg ol li{ padding: 3px 0; font-size: 14px; line-height: 1.4;}
+.hw-tg ol li i{ display:inline-block; vertical-align: middle; margin-right: 3px; width: 24px; height: 24px; background: url(../images/hw-num.gif) no-repeat; background-size: auto 24px;}
+.hw-tg ol li p{ display: inline-block; vertical-align: middle;}
+.hw-tg ol .i2{ background-position: -24px 0;}
+.hw-tg ol .i3{ background-position: -48px 0;}
+.hw-tg ol .i4{ background-position: -72px 0;}
+
+.hw-tg .vip{ border-top: 1px solid #926246; border-bottom: 1px solid #926246; padding: 10px 0; text-align: center;}
+.hw-tg .vip dl{ position: relative; left: -12px; margin: 0 auto; display: table; line-height: 1.4; font-size: 14px;}
+.hw-tg .vip dl dt,.hw-vip dl dd{ display: table-cell; vertical-align: top;}
+.hw-tg .vip dl dt{ padding-right: 5px; font-weight: bold;}
+.hw-tg .vip dl dd{ color: #c00; font-weight: bold;}
+
+.hw-text{ font-size: 14px; line-height: 1.4;}
+.hw-text .new{ margin: 0 20px 0 5px; color: #c00;}
+.hw-text .new em{ margin-right: 2px; vertical-align: -3px; font-size: 30px; font-style: normal;}
+.hw-text .old{ font-style: normal; text-decoration: line-through; color: #999;}
+.hw-text dl{ padding: 0 0 4px 0;}
+.hw-text dt{ float: left; font-weight: bold;}
+.hw-text dd{ overflow: hidden;}
+
+.hw-pic ul{ text-align: center;}
+.hw-pic li{ display:inline-block; vertical-align: top; margin: 3px 3px 6px 3px; width: 140px; height: 100px;}
+.hw-pic li img{ width: 100%; height: 100%;}
+
+.hw-lp .cont{ text-indent: 2em; font-size: 14px; line-height: 1.4;}
+.hw-lp .cont p{ padding-bottom: 5px; text-indent: 2em;}

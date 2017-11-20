@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors guoxin
+ * @date    2015-09-22 10:51:58
+ */
+* {margin:0;padding:0;}
+html{font-size:100%;}
+body{font-family:'Microsoft Yahei','Arial';color:#000;font-size:12px;}
+ul, li {list-style-type:none;}
+h1, h2, h3, h4, h5{font-weight:normal;font-size:100%;}
+input{-webkit-appearance:none;border:none;outline: none}
+input,button,select,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);font-family:'Microsoft Yahei','Arial';}
+a{text-decoration: none;color:#333;-webkit-tap-highlight-color:rgba(0,0,0,0); }
+img{vertical-align:middle;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.clear{clear:both}
+.left{float: left;}
+
+.notice{padding:10px 8px;line-height:14px;height:14px;font-size:13px;}
+.notice img{height:14px;float: left;margin-right:5px;}
+.notice span{display: inline-block;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width:92%;float: left;}
+
+.listBox{background: #eaeaea;position: relative;overflow: hidden;padding:15px;height:120px;box-sizing:border-box;-webkit-box-sizing:border-box;margin-bottom:15px;}
+.listBox .left{width:124px;height:94px;position: absolute;}
+.listBox .left img{width:124px;height:94px;}
+.listBox .right{padding-left:135px;}
+.listBox dl{line-height:17px}
+.listBox dt{background: #d7d7d7;color:#f5122e;font-weight:bold;padding:2px 5px;border-radius:8px;margin-bottom:5px;font-size:14px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.listBox dd{padding-left:3px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width:100%;}
+.listBox dd:last-child{color:#f5122e;margin-top:2px;}
+.getBtn{position: absolute;bottom: 0;right: 0;width:55px;}
+.tag{position: absolute;left:-8px;top:5px;}
+.left .tag img{width:8px;display: block;height:auto;}
+.tag p{background:#f5122e;color:#fff;font-size:10px;text-align: center;padding:3px 4px;line-height:11px;font-weight: bold;}
+
+footer{text-align: center;}
+.more{background: #eaeaea;padding:10px 15px;}
+.more a{display: block;background: #fff;line-height:28px;border-radius: 5px;}
+.fMenu{text-align: center;padding:11px 0;line-height:14px;}
+.fMenu a{border-right: solid 1px #333;display: inline-block;padding: 0 15px;}
+.fMenu a:last-child{border: none;}
+.tips{padding:1rem 0;border-top: solid 1px #eaeaea;}
+.tips span:nth-child(1){color:#666;}
+.tips span:nth-child(2){color:#0046b0;}

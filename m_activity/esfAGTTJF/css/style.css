@@ -1,0 +1,59 @@
+@charset "utf-8";
+* {margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";background: #f4f4f4;}
+body.choose{height: 100%;overflow: hidden;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {color:#3c3f46;text-decoration:none;}
+html,body{ height: 100%;}
+em,i{font-style:normal;}
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+.none { display: none;}
+.flol { float: left;}
+.flor { float: right;}
+.main { position: relative; margin: 0 auto; width: 100%; min-height:100%; max-width: 640px; background: #efeff4;}
+.note {  padding: 6px 12px; font-size: 9px; color: #bc131b; line-height: 11px;}
+.fill_dl { padding:0 12px; font-size: 13px; color: #000; border-bottom:1px solid #d7d7d7; background: #ffffff; }
+.fill_dl dt { text-align: right; float: left; height: 40px; line-height: 40px; }
+.fill_dl dt i { margin-right: 5px; color: #d9240d; }
+.fill_dl dd { height: 40px; line-height: 40px; overflow: hidden; }
+.fill_dl dd input{ width: 100%; border: none; height: 39px; line-height: 39px; outline: none; }
+.note1.note { color: #555; padding-top: 15px; }
+.btn_72 { box-sizing: border-box; padding:0 12px; width: 100%;  margin-top:38px;}
+.btn_72 a { display: block; width: 100%; height: 36px; line-height: 36px; font-size: 13px; color: #893f03; text-align: center; background: url("../images/btn_72.png") no-repeat; background-size: 100% 36px;}
+.img_full { width:100%; height:auto;}
+.img3_p { width: 100%; position: relative;}
+.img3_p a { position: absolute; left: 50%; top: 0; margin-left:-111px; display: block; width: 223px; height: 44px; background: url("../images/btn1.png") no-repeat; background-size: 100% auto;  }
+.fixed_a {position: fixed; margin: 0 auto;  width: 100%; max-width: 640px; bottom: 0; display: block; height: auto; }
+.fixed_a img { width: 100%; height: auto; }
+.hidden_pic { position: absolute; z-index: 10; left: 0; top: 0; width: 100%; height: auto; display: none;}
+.shut { position: fixed; z-index: 20; top: 10px; right: 10px; width: 31px; height: auto; display: none;}
+/*.upload_p { position:relative; padding:5px 12px; height: 48px; background: #efeff4; border-bottom:1px solid #d7d7d7;}*/
+/*.upload_p a { display: block; width: 44px; height: 48px; background: url("../images/add_pic.png") no-repeat; background-size: 100% 100%; }*/
+/*.upload_p a.add_vedio { display: block; width: 44px; height: 48px; background: url("../images/add_vedio.png") no-repeat; background-size: 100% 100%; }*/
+/*.upload_p input{ width: 100%; height: 100%; padding-left: 0; position: relative; z-index: 9; opacity: 0; filter: alpha(opacity=0);outline: none;}*/
+/*.upload_p .del {width:16px; height: 16px;background:url("../images/close_wt.png") no-repeat;  background-size: 16px;  position: absolute;  top: 0;  right: 0;  z-index: 8;}*/
+a.upload_p { display: block; margin-top: 4px; width: 28px; height: 30px; background: url("../images/add_pic.png") center center no-repeat; background-size: 22px auto; }
+a.add_vedio { position: relative; float: left;background: url("../images/add_vedio.png") no-repeat center center; background-size: 22px auto; }
+.upload_p input{ width: 240px; height: 135px; padding-left: 0; position: relative; z-index: 9; opacity: 0; filter: alpha(opacity=0);outline: none;}
+
+.barWrap { float: left; margin-top: 15px; width:68%; height: 10px; background: #b7b7b7; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
+.barLenth { width:50%; height:10px; background: #38b7ea; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}
+.barNote { float: right; font-size: 12px; color: #38b7ea;}
+.barPercent { width: 100%; height: 20px; line-height: 20px; text-align: center; color: #38b7ea; font-size: 10px;}
+
+.dark_dl { background: #efeff4;}
+.dark_dl dd input{ background: #efeff4;}
+.fill_dl .telNote {height: 12px; line-height: 12px; font-size: 9px; padding-left: 5px; padding-bottom: 3px; color: #bc131b;}
+dl.font11 {font-size: 11px}
+.font9 {font-size: 9px!important;}
+.mr6 { margin-right: 6px;}

@@ -1,0 +1,38 @@
+ /* Form style */
+        .wapForm{ margin: 0 auto; max-width: 480px; line-height: normal; word-break:break-all;}
+        .wapForm dl{ margin-bottom: 10px; display: table; width: 100%; line-height: 20px; font-size: 14px;}
+        .wapForm dt{ display: table-cell; vertical-align: top; padding: 5px 0; width: 5.5em;}
+        .wapForm dd{ position: relative; display: table-cell; vertical-align: top; text-align: left; color: #999;}
+        .wapForm .ipt-text{ outline: none;padding: 0 5px; border: 1px solid #e4e4e4; background-color: #fff; border-radius: 3px; height: 32px; line-height: 30px; font-size: 14px; width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+        .wapForm .ipt-text:focus{ color: #000; background-color: #fff;}
+        ::-webkit-input-placeholder { color:#666666;}
+        .wapForm .tips{ margin-top: 5px; font-size: 12px; line-height: 18px;}
+        /* Form btns */
+        .formbtn02{ margin: 0 auto; display: block; width: 200px; height: 30px; line-height: 30px; font-size: 14px; border: none; border-radius: 3px; text-align: center; cursor: pointer; background-color: #df3031; color: #fff !important; }
+
+        /**/
+        html{font-size: 20px;color: #e4e4e4;}
+        .sf-os-mainbox .wapForm dl{line-height: 30px;font-size: 15px;}
+        .sf-os-mainbox .wapForm dt{padding: 0;font-size: 15px;}
+        .sf-os-mainbox .wapForm dt{width: 63px;}/*20150721修改尺寸*/
+		body{height: auto !important;background: #000000 url("../images/sf-os-bgzsdfdfa.jpg") center 0 no-repeat;background-size: 100% auto;}/*20150721增加*/
+        .sf-os-acre{margin: 20% auto 0 auto;width: 100%;/*padding-top: 55px;*/max-width: 640px;}/*20150721修改*/
+        .sf-os-acre .sf-os-mainbox{width: 243px;margin: 24px auto 0 auto;background: rgba(0,0,0,0.3);padding: 0 10px 20px 10px; border: 1px solid #333333}/*20150721修改*/
+        .fc-fff{color: #ffffff;}
+        .sf-os-mainbox .wapForm .ipt-text{background-color: transparent;color: #cccccc;padding-left: 7px;}
+        .sf-os-mainbox .formbtn02{width: 143px;height: 35px;line-height: 35px;font-size: 16px;background-color: #de231e;}
+        .sf-os-mainbox h3{font-size: 18px;}
+        .lh76{line-height: 76px;}
+        .sf-os-mainbox .wapForm .ipt-text{font-size: 14px;}/*20150721*/
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0;}
+        .mask{position: fixed;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0,0,0,0.2);}
+        .mask .infobox{position: absolute;border-radius: 4px;width: 250px;height: 100px;text-align: center;line-height: 100px;background: rgba(255,255,255,.9);top: 50%;margin-top: -50px;left:50%;margin-left: -125px;color: #333333;}
+        .mask .infobox span{position: relative;padding-left: 52px;font-size: 24px;}
+        .mask .infobox span:before{content: "";position: absolute;left: 0;background: url("../images/sf-os-sureofthat.png") 0 center no-repeat;background-size: 36px auto;vertical-align: middle;width: 52px;height: 100px;}
+
+        /*20150720责备规划*/
+        .sf-os-mainbox .formbtn01{ font-size: 12px;;margin: 2px 0 0 5px;min-width: 70px; height: 28px; line-height: 28px;  cursor: pointer; text-align: center; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; border: 1px solid #df3031; border-radius: 2px; color:#df3031;background-color: transparent;}
+        .sf-os-mainbox .formbtn01.disabled{  border: 1px solid white; color: white; box-shadow: none; cursor: default; outline: none;}

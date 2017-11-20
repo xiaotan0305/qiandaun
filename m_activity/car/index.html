@@ -1,0 +1,564 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<title>赛车</title>
+<style>
+* {margin:0; padding:0;}
+html, body, form, fieldset, div { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei"; background:#246e1c;}
+img{ border:0;}
+i{ font-style:normal;}
+input, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei"; outline:none;}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {text-decoration:none;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+html,body{ height: 100%;overflow-y: hidden;}
+.fon24{ font-size:1.2rem}
+.fon16{ font-size:0.8rem}
+.fon14{ font-size:0.7rem}
+.fon18{ font-size:0.9rem}
+.cFee{ color:#fee600}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+/*背景*/
+
+.bgBox{ width:100%; height:200%;transform: translateZ(0) translateY(-50%);}
+.bg{ background:url(images/bg.png) no-repeat; background-size:100% 100%; width:100%; height:100%;transform: translateZ(0) translateY(-100%);}
+.bg.mt-1{ margin-top:-0.025rem;}
+/*背景动画/*20151202*/
+.bg.bgdh{-webkit-animation:bgdh 6s linear both infinite;animation:bgdh 6s linear both infinite;-moz-animation:bgdh 6s linear both infinite;-o-animation:bgdh 6s linear both infinite;}/*动画*/
+@-webkit-keyframes bgdh {
+  0% {opacity: 1;-webkit-transform:translateY(-100%);}
+  100% {opacity: 1;-webkit-transform: translateY(0%);}
+}
+@keyframes bgdh {
+  0% {opacity: 1;transform: translateY(-100%);}
+  100% {opacity: 1;transform: translateY(0%);}
+}
+/*礼包数*/
+.lbNum{ width:3.55rem; height:1.5rem; font-size:0.75rem; color:#fff600; -webkit-border-radius:0.25rem; -moz-border-radius:0.25rem; border-radius:0.25rem; border:0.1rem solid #151416;background:rgba(75,167,48,.9) url(images/lbnum.png) no-repeat 0.4rem 0.4rem; background-size:1.3rem 0.75rem; position:absolute; top:0.5rem; left:0.75rem;z-index: 999;}
+.lbNum b{ display:block; width:1.5rem; height:1.5rem; line-height:1.6rem; padding:0 0.25rem; overflow:hidden; text-align:center; float:right;}
+/*长度*/
+.lenNum{ width:3.55rem; height:1.5rem; font-size:0.75rem; color:#fff; -webkit-border-radius:0.25rem; -moz-border-radius:0.25rem; border-radius:0.25rem; border:0.1rem solid #151416;background:rgba(75,167,48,.9); position:absolute; top:0.5rem; right:0.75rem; text-align:center; overflow:hidden; z-index: 999;}
+.lenNum b{line-height:1.6rem; padding:0 0.25rem;}
+/*左右按钮*/
+.leftbtn{ display:block; width:4.1rem; height:4.1rem; background:url(images/leftbtn.png) no-repeat; background-size:4.1rem; position:absolute; bottom:2.75rem; left:0;z-index: 999;}
+.rightbtn{ display:block;  width:4.1rem; height:4.1rem; background:url(images/rightbtn.png) no-repeat; background-size:4.1rem; position:absolute; bottom:2.75rem; right:0;z-index: 999;}
+/*左右按钮点击状态/*20151202*/
+.lActive{-webkit-animation:lActive .2s linear both;animation:lActive .2s linear both;}
+.rActive{-webkit-animation:rActive .2s linear both;animation:rActive .2s linear both;}
+@-webkit-keyframes lActive {
+   0% {background:url(images/leftbtn.png) no-repeat;background-size:4.1rem;}
+   50% {background:url(images/leftbtn1.png) no-repeat;background-size:4.1rem;}
+   100% {background:url(images/leftbtn.png) no-repeat;background-size:4.1rem;}
+ }
+@keyframes lActive {
+  0% {background:url(images/leftbtn.png) no-repeat;background-size:4.1rem;}
+  50% {background:url(images/leftbtn1.png) no-repeat;background-size:4.1rem;}
+  100% {background:url(images/leftbtn.png) no-repeat;background-size:4.1rem;}
+}
+@-webkit-keyframes rActive {
+  0% {background:url(images/rightbtn.png) no-repeat;background-size:4.1rem;}
+  50% {background:url(images/rightbtn1.png) no-repeat;background-size:4.1rem;}
+  100% {background:url(images/rightbtn.png) no-repeat;background-size:4.1rem;}
+}
+@keyframes rActive {
+  0% {background:url(images/rightbtn.png) no-repeat;background-size:4.1rem;}
+  50% {background:url(images/rightbtn1.png) no-repeat;background-size:4.1rem;}
+  100% {background:url(images/rightbtn.png) no-repeat;background-size:4.1rem;}
+}
+/*三条赛道*/
+.track1{ width:2.9rem; height:100%; position:fixed;left:3.325rem;top:0;}
+.track2{ width:2.9rem; height:100%; position:fixed;left:6.525rem;top:0;}
+.track3{ width:2.9rem; height:100%; position:fixed;left:9.725rem;top:0;}
+
+/*实物*/
+.carBox {position:absolute; top: 22rem;width:1.675rem; height:3.4rem;z-index:999;transition: .2s left ease;}
+.car{ background:url(images/car.png) no-repeat; background-size: 1.675rem auto; width:1.675rem; height:3.4rem; position:absolute; top:0;z-index:99;}/*车*/
+.car i{ color:#fc2e26; font-size:0.75rem; display:none; margin-top:-1rem; width:1.675rem; text-align:center;}
+.car i.donghua{-webkit-animation:up 1s linear both;animation:up 1s linear both;-moz-animation:up 1s linear both;-o-animation:up 1s linear both;}/*+1、-1动画*/
+.ping{width:100%;/*height:800%;*/position:absolute;top:0;left:0;height: 0;}
+.fd{ background:url(images/fdpic.png) no-repeat; background-size: 1.475rem auto; width:1.475rem; height:1.325rem; position:absolute; bottom:1rem;}/*福袋*/
+.fd i{ color:#fc2e26; font-size:0.75rem; display:none; margin-top:-1rem; width:1.475rem; text-align:center;}
+.fd i.donghua{-webkit-animation:up 1s linear both;animation:up 1s linear both;-moz-animation:up 1s linear both;-o-animation:up 1s linear both;}
+.lz{ background:url(images/lzpic.png) no-repeat; background-size: 2rem auto; width:2rem; height:0.9rem; position:absolute; }/*路障*/
+.lei{ background:url(images/dlpic.png) no-repeat; background-size: 1.5rem auto; width:1.5rem; height:2rem; position:absolute;}/*地雷*/
+.bz{ background:url(images/bzpic.png) no-repeat; background-size: 2.4rem auto; width:2.4rem; height:2.125rem; position:absolute;z-index:100;display:none;}/*爆炸*/
+.bz.donghua{-webkit-animation:bounceIn 2s linear both;animation:bounceIn 2s linear both;-moz-animation:bounceIn 2s linear both;-o-animation:bounceIn 2s linear both;}/*爆炸动画*/
+.sd1{left:4rem;}
+.sd2{left:6.95rem;}
+.sd3{left:10.5rem;}
+@-webkit-keyframes up {
+  0% {opacity: 1;-webkit-transform: translateZ(0) translateY(-40%);}
+  100% {opacity: 0;-webkit-transform: translateZ(0) translateY(-130%);}
+}
+@keyframes up {
+  0% {opacity: 1;transform: translateZ(0) translateY(-40%);}
+  100% {opacity: 0;transform: translateZ(0) translateY(-130%);}
+}
+/*爆炸动画*/
+@-webkit-keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+/*游戏开始界面*/
+.bg2{ position:fixed; width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,.8) url(images/sdx.png) no-repeat; background-size:100% 100%;z-index:999;}
+.logo{ position:absolute; top:1rem; left:1.425rem;}
+.logo img{ width:3.5rem; height:1.075rem;}
+.ylkb{ width:14.35rem; height:8.675rem; background:url(images/ylkb.png) no-repeat; background-size:14.35rem 8.675rem; margin:4rem 0 0 1.25rem; position:relative;}
+.donghua{-webkit-animation:zoomIn 0.6s linear both;animation:zoomIn 0.6s linear both;-moz-animation:zoomIn 0.6s linear both;-o-animation:zoomIn 0.6s linear both;}/*一路狂飙动画*/
+.donghua2{-webkit-animation:bounceIn2 0.6s linear both;animation:bounceIn2 0.6s linear both;-moz-animation:bounceIn2 0.6s linear both;-o-animation:bounceIn2 0.6s linear both;}/*一路狂飙动画*/
+@-webkit-keyframes bounceIn2 {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn2 {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+.bounceIn {
+  -webkit-animation-name: bounceIn;
+          animation-name: bounceIn;
+  -webkit-animation-duration: .75s;
+          animation-duration: .75s;
+}
+
+/* zoomIn */
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1);
+  }
+}
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1);
+  }
+}
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+}
+.ylkb .wq{ width:1.175rem; height:1.375rem; background:url(images/wq-pic.png) no-repeat; background-size:1.175rem 1.375rem; position:absolute; bottom:3.35rem; right:0.3rem;}
+.ylkb .wq.shan{-webkit-animation:flash 2s linear both infinite;animation:flash 2s linear both infinite;-moz-animation:flash 2s linear both infinite;-o-animation:flash 2s linear both infinite;}/*汽车尾气动画*/
+/* flash */
+@-webkit-keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+@keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+.flash {
+  -webkit-animation-name: flash;
+          animation-name: flash;
+}
+.play{ width:100%; position:absolute; bottom:1rem; left:0;text-align:center;}
+.playBtn{ width:7rem; height:2.95rem; background:url(images/play-btn.png) no-repeat; background-size:7rem 2.95rem; border:0;}
+.yxgz{ margin:0 auto; text-align:center;}
+.yxgz img{ width:3.65rem; height:0.85rem; margin-top:1.2rem;}
+.zk{ margin:0 auto; width:13.85rem; height:4.55rem; background:url(images/gz-box.png) no-repeat; background-size:13.85rem 6.4rem; z-index:20000; margin-top:0.7rem; padding-top:1.65rem;}
+.zk p{ font-size:0.6rem; color:#83868f; text-align:left; padding:0.05rem 0.1rem 0.1rem 0.55rem;}
+.zk p.pdl{ padding-left:2rem;}
+/*游戏结束界面*/
+.bg3{ position:fixed; width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,.8);z-index: 999;}
+.gameOver{ margin:0 auto; margin-top:3rem; width:10.35rem; height:4.3rem; background:url(images/over.png) no-repeat; background-size:10.35rem 4.3rem;}
+.cent{ margin:0 auto; text-align:center;}
+.cent img{ width:12.85rem; height:6.9rem; margin-top:0.75rem; margin-bottom:1.75rem;}
+.againBtn{ width:7rem; height:2.95rem; background:url(images/again-btn.png) no-repeat; background-size:7rem 2.95rem; border:0;}
+/*游戏领奖界面*/
+.money{ margin-left:6rem;margin-top:3.65rem; width:4rem; height:4rem; background:url(images/money.png) no-repeat; background-size:4rem 4rem;}
+.form{ width:12.775rem; margin:0 auto;}
+.form li{ margin:0.75rem 0; list-style:none;}
+.inpTel{ width:8.375rem; height:2.225rem; background:url(images/inp-tel.png) no-repeat; background-size:8.375rem 2.225rem; border:0; text-indent:0.75rem; color:#b3b6be; font-size:0.75rem;}
+.btn{ width:4.4rem; height:2.225rem; background:url(images/btn.png) no-repeat; background-size:4.4rem 2.225rem; border:0;}
+.inpYzm{ width:12.775rem; height:2.225rem; background:url(images/inp-yzm.png) no-repeat; background-size:12.775rem 2.225rem; border:0; text-indent:0.75rem; color:#b3b6be; font-size:0.75rem;}
+.cxhq{ font-size:0.7rem; font-weight:bold; color:#9a9a9a; text-align:right; padding-right:0.12rem;}
+.receive{ width:7rem; height:2.95rem; background:url(images/prize-btn.png) no-repeat; background-size:7rem 2.95rem; border:0; margin-top:0.6rem;}
+/*游戏得分成绩界面*/
+.score{ color:#fff; text-align:center; margin-top:3.5rem;}
+.score p{ margin-bottom:0.5rem;}
+.jpBox{ margin-left:2.25rem; margin-top:1rem; margin-bottom:1rem;}
+.jp{ float:left; margin:0 0.95rem;}
+.jp img{ width:3.7rem; height:3.7rem; margin-bottom:0.3rem;}
+.jp p{ margin-bottom:0.3rem;}
+
+/*游戏领取奖励成功界面/*20151202*/
+.lookBtn{ width:7rem; height:2.95rem; background:url(images/look-btn.png) no-repeat; background-size:7rem 2.95rem; border:0; margin-top:1.7rem;}
+.getInfor{ margin:0 auto; width:12.85rem; height:7.4rem; background:url(images/box.png) no-repeat; background-size:12.85rem 7.4rem; z-index:20000; margin-top:5.3rem; text-align:center;}
+.getInfor h3{ color:#0c0d0e; padding-top:1.5rem; padding-bottom:0.5rem;}
+.smail{ display:inline-block; width:1.25rem; height:1.25rem; background:url(images/smail.png) no-repeat; background-size:1.25rem 1.25rem; vertical-align:-0.25rem; margin-right:0.75rem;}
+.getInfor p{color:#83868f; padding:0.25rem 0;}
+/*倒计时/*20151202**/
+.yuanBg{ width:5rem; height:5rem; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%;background:rgba(0,0,0,.9); font-size:4.5rem; color:#fff; position:fixed; top:50%; left:50%; margin-top:-2.5rem; margin-left:-2.5rem;}
+/*加载页/*20151202*/
+.loading{ width:6.2rem; height:5rem; position:fixed; top:50%; left:50%; margin-top:-2.5rem; margin-left:-3.1rem; text-align:center;}
+.loading img{ width:3.25rem; height:3rem;}
+.loadNum{ color:#fff; border-top:0.075rem solid #fff; margin-top:0.4rem; padding-top:0.5rem;}
+
+</style>
+</head>
+
+<body>
+<div style="position: absolute;z-index: 99;">
+
+</div>
+<!--背景-->
+<!--<div class="bgBox bggif">
+    <div class="bg"></div>
+    <div class="bg"></div>
+</div>-->
+<!--背景-->
+<div class="bg mt-1"></div>
+<div class="bg"></div>
+<!--赛道-->
+<div class="lbNum" id="lbNum"><b>0</b></div>
+<div class="lenNum" id="lenNum"><b>0m</b></div>
+<div class="leftbtn" id="leftBtn"></div>
+<div class="rightbtn" id="rightBtn"></div>
+<!--赛道-->
+<div class="track1"></div>
+<div class="track2"></div>
+<div class="track3"></div>
+<!--实物盒子-->
+<div id="ping" class="ping">
+  <!--3s--10s-->
+  <div class="unit fd sd1" data-type="fd" data-sd="1" style="bottom: 0rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 5rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd3" data-type="fd" data-sd="3" style="bottom: 10rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 15rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd1" data-type="fd" data-sd="1" style="bottom: 20rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 25rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 30rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd3" data-type="fd" data-sd="3" style="bottom: 35rem;"><i class="donghua">+1</i></div>
+  <!--10s--20s-->
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 40rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 45rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 50rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 55rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 55rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 60rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 65rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 65rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd3" data-type="fd" data-sd="3" style="bottom: 70rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 75rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 75rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 80rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 80rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 85rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 85rem;"></div>
+  <!--20s--30s-->
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 90rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 95rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 100rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 105rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 105rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd3" data-type="fd" data-sd="3" style="bottom: 110rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 115rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 120rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 120rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 125rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 125rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 130rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 130rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 135rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 135rem;"><i class="donghua">+1</i></div>
+  <!--30s--60s-->
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 140rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 145rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 150rem;"></div>
+  <div class="unit lei sd1" data-type="lei" data-sd="1" style="bottom: 150rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="2" style="bottom: 155rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 160rem;"><i class="donghua">+1</i></div>
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 165rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 170rem;"><i class="donghua">+1</i></div>
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 170rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 175rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 180rem;"></div>
+  <div class="unit lz sd2" data-type="lz" data-sd="2" style="bottom: 180rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 185rem;"><i class="donghua">+1</i></div>
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 185rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 190rem;"></div>
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 190rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 195rem;"></div>
+  <div class="unit lei sd2" data-type="lei" data-sd="2" style="bottom:195rem;"></div>
+  <div class="unit fd sd1" data-type="fd" data-sd="1" style="bottom: 200rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 200rem;"></div>
+  <div class="unit lei sd2" data-type="lei" data-sd="2" style="bottom: 205rem;"></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 210rem;"></div>
+  <div class="unit lei sd3" data-type="lei" data-sd="3" style="bottom: 210rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 210rem;"><i class="donghua">+1</i></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 215rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 215rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 220rem;"></div>
+  <div class="unit lei sd2" data-type="lei" data-sd="2" style="bottom: 220rem;"></div>
+  <div class="unit fd sd2" data-type="fd" data-sd="2" style="bottom: 225rem;"><i class="donghua">+1</i></div>
+  <div class="unit lz sd1" data-type="lz" data-sd="1" style="bottom: 225rem;"></div>
+  <div class="unit lz sd3" data-type="lz" data-sd="3" style="bottom: 225rem;"></div>
+</div>
+<!--实物-->
+<div id="carBox" class="carBox sd2" data-sd="2">
+  <div id="car" class="car"><i class="donghua">-1</i></div>
+  <div id="bz" class="bz donghua" ></div>
+</div>
+
+<!--领取成功-->
+<div class="bg3" id="getSuccess" style="display: none;">
+  <div class="cent">
+    <div class="getInfor">
+      <h3 class="fon16"><i class="smail"></i>领取成功！</h3>
+      <p class="fon14">您的积分及优惠券已放入账户：</p>
+      <p class="fon16">13789562356</p>
+    </div>
+    <input class="lookBtn" name="play" id="playEnd" type="button">
+  </div>
+</div>
+
+<!--游戏登录界面-->
+<div class="bg3" id="signOn" style="display: none;">
+  <div class="money"></div>
+  <div class="form">
+    <ul>
+      <li><input class="inpTel" type="text" value="快输入手机号领奖吧"><input class="btn" type="button"></li>
+      <li><input class="inpYzm" type="text" value="输入验证码"></li>
+      <li class="cxhq" id="getCode"><a>重新获取60s</a></li>
+    </ul>
+  </div>
+  <div class="cent" id="submit"><input class="receive" type="button"></div>
+</div>
+
+<!--gameover-->
+<div class="bg3"  id="gameOver" style="display: none;">
+    <div class="gameOver donghua"></div>
+    <div class="cent"><img src="images/fail.png">
+        <input class="againBtn" name="play" id="playAgain" type="button"></div>
+</div>
+
+<!--游戏结果页面-->
+<div class="bg3" id="gameResult" style="display: none;">
+  <div class="score">
+    <p class="fon24"><b>恭喜您一共飙了</b></p>
+    <p class="fon16"><b><span class="fon24 cFee" id="lenResult">3000</span> 米</b></p>
+    <p class="fon14">你获得了：</p>
+    <div class="jpBox clearfix">
+      <div class="jp">
+        <img src="images/yhq.png">
+        <p class="fon14">优惠券</p>
+        <p class="fon18 cFee" id="privilege">10</p>
+      </div>
+      <div class="jp">
+        <img src="images/jf.png">
+        <p class="fon14">积分</p>
+        <p class="fon18 cFee" id="score">10</p>
+      </div>
+    </div>
+  </div>
+  <div class="cent"><input class="receive" type="button"></div>
+</div>
+
+<!--游戏开始倒计时-->
+<div class="bg3" id="countDown" style="display: none;">
+  <div class="yuanBg">
+    <div class="cent" id="cent">3</div>
+  </div>
+</div>
+
+<!--游戏开始界面-->
+<div class="bg2" id="beginPlay" style="display: none;">
+  <div class="logo"><img src="images/logo.png" alt="LOGO"></div>
+  <div class="ylkb donghua2"><div class="wq shan"></div></div>
+  <div class="play">
+    <input class="playBtn" id="playBtn" name="play" type="button">
+    <!--游戏规则--仅标题-->
+    <div class="yxgz"><a><img src="images/yxgz.png"></a></div>
+    <!--游戏规则--详细内容-->
+    <div class="zk" style="display:none;">
+      <p>礼包:礼包数+1,游戏结束后可领取礼包中奖品，</p>
+      <p class="pdl">奖品有积分，优惠券等若干，随机出现。</p>
+      <p>路障:礼包数-1，当礼包数为负时，游戏结束</p>
+      <p>炸弹:游戏结束，清算领取礼包</p>
+    </div>
+  </div>
+</div>
+
+<div class="bg3" id="loading" style="display: none;background-color: #246e1c;">
+<div class="loading">
+  <img src="images/loading.gif">
+  <div class="loadNum"><span id="loadedNum" class="f18">0</span>%</div>
+</div>
+    </div>
+<script>
+	(function (doc, win) {
+	  var docEl = doc.documentElement,
+		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		recalc = function () {
+		  var clientWidth = docEl.clientWidth;
+		  if (!clientWidth) return;
+		  docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+		};
+
+	  if (!doc.addEventListener) return;
+	  win.addEventListener(resizeEvt, recalc, false);
+	  doc.addEventListener('DOMContentLoaded', recalc, false);
+	})(document, window);
+</script>
+<script src="../public/jslib/jquery/2.1.4/jquery.js"></script>
+<!--<script src="js/index2.js"></script>-->
+</body>
+</html>

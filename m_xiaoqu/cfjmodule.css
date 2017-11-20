@@ -1,0 +1,135 @@
+.pdB14{padding-bottom: 14px;}
+.clearBoth{clear: both;}
+/*搜索框加高扩展*/
+.searbox.h34{height: 34px;}
+.searbox.h34 .inputbox .input{line-height: 32px;}
+/*--------*/
+.sf-statistics{float: right;font-size: 12px;color: #83868f;margin-top: 19px;}
+.mTitle .f11{font-size: 11px;}
+.listReco{text-align: center;line-height: 1em;font-size: 12px;color: #888888;}
+.listReco i{display: inline-block;width: 9px;height: 9px;margin-right: 5px;}
+.listReco i:last-child{margin-left: 38px;}
+.listReco i.f66{background-color: #ff6666;}
+.listReco i.f90{background-color: #ff9900;}
+.sf-slideP{padding: 20px 0;text-align: center;line-height: 0;}
+.sf-slideP span{background-color: #cccccc;display: inline-block;width: 6px;height: 6px;border-radius: 3px;}
+.sf-slideP span:first-child{margin-right: 22px;}
+.sf-slideP span.cru{background-color: #df3031;}
+
+.sf-secInfo{padding-bottom: 20px;}
+.sf-secInfo li{text-align: center;color: #666666;font-size: 13px;line-height: 1em;}
+.sf-secInfo li:not(:last-child){border-right: 1px solid #f4f4f4;}
+.sf-secInfo li .price{margin-top: 12px;font-size: 12px;}
+.sf-secInfo li .fc33{color: #df3031;}
+
+.hist-mark span{ margin-left: 5px; font-size: 12px; color: #999;line-height: 1em;}
+.hist-mark span:before{ display:inline-block; content: ''; margin: 0 5px 0 0; width: 8px; height: 8px;}
+.hist-mark span:last-child{margin-left: 20px;}
+.hist-mark .pale-org:before{ background-color: #ffc488;}
+.hist-mark .pale-blue:before{ background-color: #c4dbfa;}
+.hist-mark.pdR8{padding-right: 8px;}
+/**/
+.horizonBar > ul{ margin: 0 10px;}
+.horizonBar > ul li{ overflow: hidden; width: 100%; font-size: 12px;}
+.horizonBar > ul li:not(:first-child){ margin-top: 10px;}
+.horizonBar > ul li a{display: block;}
+.horizonBar .left{ position: relative; float: left; width: 50%; line-height: 16px; text-align: left; color: #999;}
+.horizonBar .left .bar{ position: absolute; top: 0; left: 4.2em; right: 4px; height: 15px;}
+.horizonBar .left .bar span{ height:14px;padding-right: 2px;float: right;background-color: #c4dbfa;text-align: right;color: #648bbf;}
+.horizonBar .left .bar em{font-style:normal;position:absolute;right:0;}
+.horizonBar .right{ position: relative; float: right; width: 50%; line-height: 16px; text-align: right; color: #df3031;}
+.horizonBar .right .bar{ position: absolute; top: 0; left: 4px; right: 40px; height: 15px;}
+.horizonBar .right .bar span{ padding-left: 2px; float: left; background-color: #ffc488; text-align: left; color: #c26039;}
+.horizonBar .bar span{ -webkit-transition: all .7s ease;}
+/*更多*/
+.more_std{display:block;width:100%;height:47px;line-height:47px;background:url(images/center_more.png) center center no-repeat;background-size:15px auto;}
+.more_std.up{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+
+.more_text{display:block;width:100%;height:40px;line-height:40px;text-align: center;}
+a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c67;font-size: 14px;}
+.more_text span{position: relative;padding-right: 18px;color: #565c67;font-size: 14px;}
+.more_text span:after{position: absolute;content: "";width: 15px;height: 15px;right: 0;top: 0;opacity: 0.8;background: url("images/ldmore.png") center center no-repeat;background-size: 10px auto;-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+.more_text.up span:after{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+/*小区列表*/
+.arealist li{ padding-bottom: 14px; overflow: hidden;margin: 0 8px;}
+.arealist li a{color: #83868f;}
+.arealist li:not(:last-child){  border-bottom: 1px solid #f4f4f4;}
+.arealist li:not(:first-child){ padding-top: 14px;}
+.arealist li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;overflow: hidden;}
+.arealist li .img img{ width: 100%;height: 100%;}
+.arealist .info{ overflow: hidden; font-size: 12px;}
+.arealist .info.pdB20{padding-bottom: 20px;}
+.arealist .info h3{font-size: 15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #0c0d0e;}
+.arealist .info .bar{display: inline-block;width:60px;height:8px;margin-top:5px;border:1px solid #e4e4e4;}
+.arealist .info .bar span{display: block;height:8px;background:#ffcc99;margin: -1px 0 0 -1px;}
+/*大按钮*/
+.cfj-btnBox3{position: fixed;bottom: 0;width: 100%;background-color: rgba(255,255,255,0.9);z-index:3;}
+.cfj-btnBox3 a{display: block; margin: 20px 14px; height: 36px; line-height: 36px; border-radius: 3px; border:1px solid #ff6666; color: #ff6666 !important; text-align: center; font-size: 13px;}
+/*gps导航*/
+.gpsdirection{position: relative;}
+.gpsdirection:before{float: left;content: "";width: 14px;height: 14px;margin: 2px 4px 0 0;background: transparent url("images/gpsdirection.png") center center no-repeat;background-size: 11px auto;}
+/*红包*/
+.sf-cfj-rbBar{color: #4d97f4; line-height: 40px;font-size: 14px; background-color: #fce4df;padding: 0 14px 0 14px;}
+.sf-cfj-rbBar .btn{color: #df3031; float: right;font-size: 12px;}
+.sf-cfj-rbBar img.rb{margin-right: 8px;margin-top: -5px;width: 14px;}
+/*两行*/
+.sf-tlList{font-size: 14px;}
+.sf-tlList li{padding: 8px 0 8px 0;line-height: 26px;}
+.sf-tlList li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.sf-tlList .pdB15{padding-bottom: 15px}
+.sf-tlList li a{display: block;}
+.sf-tlList li .tt{color: #83868f;}
+.sf-tlList li .flor{font-size: 13px;}
+
+.cfj-hmap .tt{line-height: 40px;font-size: 13px;}
+.cfj-chooseY{padding: 14px 14px 14px 0;}
+
+.sf-newPrice{margin-top: -12px;font-size: 14px;padding-bottom: 14px;line-height: 26px;}
+.sf-newPrice .tt{color: #83868f;}
+/*标准上升箭头颜色扩展*/
+.jt-up.red-df{color: #df3031 !important;}
+.xqCaption.toR12{padding: 0;}
+.xqCaption.toR12 li:first-child{padding-right: 12px;}
+/*楼栋信息*/
+.sf-bildInfo{font-size: 14px;line-height: 28px;padding-bottom: 14px;}
+.sf-bildInfo span{color: #83868f;}
+.mTitle .subtt{float: left;padding-top: 20px;font-size: 14px;line-height: 1em;color: #0c0d0e;}
+
+.sf-xqExponent {line-height: 26px;font-size: 14px;padding-top:5px;padding-bottom: 12px;}
+
+.sf-cfj-relItem li{padding: 10px 0;color: #0c0d0e;}
+.sf-cfj-relItem li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.sf-cfj-relItem li .lt{ float: left; padding: 4px 8px 0 0;}
+.sf-cfj-relItem li .rt{ overflow: hidden; font-size: 14px; line-height: 1.5;}
+.sf-cfj-relItem li .rt h3{ margin-top: 2px;font-size: 14px;}
+.sf-cfj-relItem li .rt p{ font-size: 13px; color: #83868f; overflow: hidden;text-overflow: ellipsis;white-space: nowrap; }
+.sf-cfj-relItem li i{ display: block; width: 42px; height: 42px; background: url(images/index_dd.png) no-repeat; background-size: 42px auto;}
+.sf-cfj-relItem li i.i2{ background-position-y: -42px;}
+.sf-cfj-relItem li i.i3{ background-position-y: -84px;}
+.sf-cfj-relItem li i.i4{ background-position-y: -126px;}
+.sf-cfj-relItem li i.i5{ background-position-y: -168px;}
+
+.conList.cfj-ex li h3{height: auto;margin-bottom: 5px;}
+.conList.cfj-ex .stag{margin-top: 8px;}
+
+.cfj-answer.mtd12{margin-top: -12px;}
+.cfj-answer li{line-height: 45px;font-size: 15px;}
+.cfj-answer li a{display: block;padding: 0 14px;overflow: hidden;}
+.cfj-answer li a,.cfj-answer li a:link,.cfj-answer li a:active,.cfj-answer li a:visited{color: #0c0d0e;}
+.cfj-answer li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.cfj-answer li .flor{font-size: 12px;color: #83868f;}
+
+.floatTel .btn{padding: 3px 0 0 0;color: #83868f;font-size: 11px;}
+.floatTel .btn span{display: block;float: left;width: 50%;text-align: center}
+.floatTel .btn i{display: block;height: 20px;background: url(images/cfj-footer-ico-house.png) 0 0 no-repeat;background-size: 22px auto;}
+.floatTel .btn p{margin-top: 4px;}
+.floatTel .btn i.h1{background-position: center 0;}
+.floatTel .btn i.h2{background-position: center -41px;}
+.floatTel .measure{line-height: 40px;font-size: 16px;}
+
+.houseList li .new.thin{font-weight: normal;}
+
+
+.tab-year{ height: 20px; line-height: 20px; border: 1px solid #e4e4e4; border-radius: 3px; font-size: 12px; overflow: hidden;}
+.tab-year span{ float: left; padding: 0 8px; border-left: 1px solid #e4e4e4; margin-left: -1px; cursor: pointer;}
+.tab-year span.active{ background-color: #e4e4e4; color: #999;}

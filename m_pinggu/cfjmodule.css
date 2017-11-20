@@ -1,0 +1,154 @@
+/*搜索框加高扩展*/
+.searbox.h34{height: 34px;}
+.searbox.h34 .inputbox .input{line-height: 32px;}
+
+.sf-statistics{float: right;font-size: 12px;color: #83868f;margin-top: 19px;}
+.mTitle .f11{font-size: 11px;}
+.listReco{text-align: center;line-height: 1em;font-size: 12px;color: #888888;}
+.listReco i{display: inline-block;width: 9px;height: 9px;margin-right: 5px;}
+.listReco i:last-child{margin-left: 38px;}
+.listReco i.f66{background-color: #ff6666;}
+.listReco i.f90{background-color: #ff9900;}
+.sf-slideP{padding: 20px 0;text-align: center;line-height: 0;}
+.sf-slideP span{background-color: #cccccc;display: inline-block;width: 6px;height: 6px;border-radius: 3px;}
+.sf-slideP span:first-child{margin-right: 22px;}
+.sf-slideP span.cru{background-color: #df3031;}
+
+.sf-secInfo{padding-bottom: 20px;}
+.sf-secInfo li{text-align: center;color: #666666;font-size: 13px;line-height: 1em;}
+.sf-secInfo li:not(:last-child){border-right: 1px solid #f4f4f4;}
+.sf-secInfo li .price{margin-top: 12px;font-size: 12px;}
+.sf-secInfo li .fc33{color: #df3031;}
+
+.hist-mark span{ margin-left: 5px; font-size: 12px; color: #999;line-height: 1em;}
+.hist-mark span:before{ display:inline-block; content: ''; margin: 0 5px 0 0; width: 8px; height: 8px;}
+.hist-mark span:last-child{margin-left: 20px;}
+.hist-mark .pale-org:before{ background-color: #ffc488;}
+.hist-mark .pale-blue:before{ background-color: #c4dbfa;}
+.hist-mark.pdR8{padding-right: 8px;}
+/**/
+.horizonBar > ul{ margin: 0 10px;}
+.horizonBar > ul li{ overflow: hidden; width: 100%; font-size: 12px;}
+.horizonBar > ul li:not(:first-child){ margin-top: 10px;}
+.horizonBar > ul li a{display: block;}
+.horizonBar .left{ position: relative; float: left; width: 50%; line-height: 16px; text-align: left; color: #999;}
+.horizonBar .left .bar{ position: absolute; top: 0; left: 4.2em; right: 4px; height: 15px;}
+.horizonBar .left .bar span{ height:14px;padding-right: 2px;float: right;background-color: #c4dbfa;text-align: right;color: #648bbf;}
+.horizonBar .left .bar em{font-style:normal;position:absolute;right:0;}
+.horizonBar .right{ position: relative; float: right; width: 50%; line-height: 16px; text-align: right; color: #df3031;}
+.horizonBar .right .bar{ position: absolute; top: 0; left: 4px; right: 4.2em; height: 15px;}/*20151124*/
+.horizonBar .right .bar span{ padding-left: 2px; float: left; background-color: #ffc488; text-align: left; color: #c26039;}
+.horizonBar .bar span{ -webkit-transition: all .7s ease;}
+/*更多*/
+.more_std{display:block;width:100%;height:47px;line-height:47px;background:url(./images/center_more.png) center center no-repeat;background-size:15px auto;}
+.more_std.up{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+/*大按钮*/
+.cfj-btnBox3{position: fixed;bottom: 0;width: 100%;background-color: rgba(255,255,255,0.9);z-index:3;}
+.cfj-btnBox3 a{display: block; margin: 16px 14px; height: 36px; line-height: 36px; border-radius: 3px; border:1px solid #ff6666; color: #ff6666 !important; text-align: center; font-size: 13px;}
+/*gps导航*/
+.gpsdirection{position: relative;}
+.gpsdirection:before{float: left;content: "";width: 14px;height: 14px;margin: 0 4px 0 0;background: transparent url("./images/gpsdirection.png") center center no-repeat;background-size: 11px auto;}
+/* 红绿上下箭头 定制*/
+.jtd-dn{ color: #669934 !important;}
+.jtd-dn:after{ content: '↓'; margin: 0 2px; vertical-align: 2px;}
+.jtd-up{ color: #df3031 !important;}
+.jtd-up:after{ content: '↑'; margin: 0 2px; vertical-align: 2px;}
+/*小区列表*/
+.arealist li{ padding-bottom: 14px; overflow: hidden;margin: 0 8px;}
+.arealist li a{color: #83868f;}
+.arealist li:not(:last-child){  border-bottom: 1px solid #f4f4f4;}
+.arealist li:not(:first-child){ padding-top: 14px;}
+.arealist li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;overflow: hidden;}
+.arealist li .img img{ width: 100%;height: 100%;}
+.arealist .info{ overflow: hidden; font-size: 12px;}
+.arealist .info.pdB20{padding-bottom: 20px;}
+.arealist .info h3{font-size: 15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #0c0d0e;}
+.arealist .info .bar{display: inline-block;width:60px;height:8px;margin-top:5px;border:1px solid #e4e4e4;}
+.arealist .info .bar span{display: block;height:8px;background:#ffcc99;margin: -1px 0 0 -1px;}
+.arealist .relSch{padding-top: 10px;position: relative;clear: both;}
+.arealist .relSch div{position: relative;padding: 7px 10px;background-color: #f4f4f4;clear: both;line-height: 1em;font-size: 11px;color: #0c0d0e;overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
+.arealist .relSch .title{ float: left;color: #83868f;padding-right: 7px;margin-right: 7px;border-right: 1px solid #bfc0c4;}
+.arealist .relSch:after{position: absolute; z-index: 999;top: 0; left: 26px; content: ''; margin-top: -2px; width: 0; height: 0; border-style: solid; border-width: 6px 5px; border-color: #f4f4f4 transparent transparent transparent;-webkit-transform: rotate(180deg);transform: rotate(180deg);}
+/*首页，房价账单扩展*/
+.mTitle .bill{font-size: 14px;line-height: 15px;padding:21px 28px 0 14px;position: relative;z-index: 2;}/*20151124*/
+.sfj-searchNo{padding:160px 8px;text-align: center;}
+/*摘出来的部分*/
+.cfj-tit{ padding: 0 10px; height: 40px; line-height: 40px; font-size: 16px;}
+.cfj-tit > a{ position: relative; display: block; padding: 0 10px; margin: 0 -10px; color: #333;}
+.histogram{ position: relative;}
+.histogram .unit{ position: absolute; top: 0; right: 0; font-size: 12px; color: #999;}
+.hist-sum{ line-height: 22px; font-size: 14px;padding:0 10px;}
+.hist-mark span{ margin-left: 5px; font-size: 12px; color: #999;}
+.hist-mark span:before{ display:inline-block; content: ''; margin: 0 5px 0 0; width: 8px; height: 8px;}
+.hist-mark .deep-org:before{ background-color: #f90;}
+.hist-mark .pale-org:before{ background-color: #ffc488;}
+.hist-mark .pale-grn:before{ background-color: #b5d27e;}
+.hist-mark .pale-blue:before{ background-color: #c4dbfa;}
+.histogramRun {
+	transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	animation-name:'scaleAn';
+	-ms-animation-name: 'scaleAn';
+	-webkit-animation-name: 'scaleAn';
+	-moz-animation-name: 'scaleAn';
+	-o-animation-name: 'scaleAn';
+	/*动画属性名，也就是我们前面keyframes定义的动画名*/
+	animation-duration:1s;
+	-webkit-animation-duration: 1s;/*动画持续时间*/
+	-ms-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	/*-webkit-animation-timing-function: ease-in-out; 动画频率，和transition-timing-function是一样的*/
+	/*-webkit-animation-delay: 2s;动画延迟时间*/
+	/*-webkit-animation-iteration-count: 10;定义循环资料，infinite为无限次*/
+	/*-webkit-animation-direction: alternate;定义动画方式*/
+}
+.histogramBg {
+    transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -o-transform: scaleY(0);
+}
+.histogramBg:after,.flopCon:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.histogramBg li a {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    text-indent: -999px;
+    overflow: hidden;
+}
+@-webkit-keyframes 'scaleAn' {
+    0% {
+        transform: scaleY(0);
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        -moz-transform: scaleY(0);
+        -o-transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+        -ms-transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+        -moz-transform: scaleY(1);
+        -o-transform: scaleY(1);
+    }
+}
+
+.histogramBg:after,.flopCon:after {  content: ".";  display: block;  height: 0;  clear: both;  visibility: hidden;  }
+.histogramBg li a { display: block; width: 50%; margin: 0 auto; text-indent: -999px; overflow: hidden;  }
+.histogramData li p,.histogramData li p span{color: #999;}

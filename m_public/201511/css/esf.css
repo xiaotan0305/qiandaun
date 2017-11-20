@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/*千人千面列表*/
+.houseList-img{background:#f8f8f8;}
+.houseList-img li{margin-bottom:8px;background:#fff;}
+.houseList-img li:last-child{margin-bottom:0;}
+.houseList-img li > a{position:relative;display:block;overflow:hidden;*zoom:1;}
+.houseList-img li .img{position:relative;width:100%;min-height:100px;}
+.houseList-img li .img img{width:100%;}
+.houseList-img li .txt{padding:15px 16px;}
+.houseList-img li h3{font-size:16px;font-weight:bold;white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:19px;color:#3c3f46;margin-top:-1px;margin-bottom:4px;}
+.houseList-img li p{color:#3c3f46;font-size:12px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;height:21px;line-height:21px;}
+.houseList-img li p .space{padding:0 3px;}
+.houseList-img li .new{float:right;font-size:11px;color:#df3031;font-weight:bold;}
+.houseList-img li .new i{font-size:16px;}
+.houseList-img li .new-2{float:right;font-size:11px;color:#83868f;}
+.houseList-img li .stag{font-size:10px;height:16px;margin-top:5px;}
+.houseList-img li .stag span{padding:0 5px;padding-top:1px;border-radius:1px;border:1px solid #ffe3e3;color:#ff7270;margin-right:5px;}

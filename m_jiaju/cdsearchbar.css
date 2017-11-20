@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* flex */
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; text-align: center; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+
+/* tabNav */
+.tabNav{ position: relative; border-top: 1px solid #df3031; background-color: #df3031;}
+.tabNav .flexbox{ padding: 3px 5px 0 5px; width: 100%; height: 35px;}
+.tabNav .flexbox a{ display:block; padding: 0 5px; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; height: 32px; line-height: 28px; font-size: 16px; text-align: center; color: #fff;}
+.tabNav .flexbox a.activef{ background-color: #fff; border-radius: 3px 3px 0 0; color: #df3031;}
+
+.tabNavDn{ display: none; position: absolute; right: 0; top: 48px; padding: 2px 5px; border-radius: 3px; text-align: center; background: rgba(0,0,0,.8); z-index: 1000;}
+.tabNavDn li{ padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 14px;}
+.tabNavDn li:last-child{ border-bottom: none;}
+.tabNavDn li a{ display:block; padding:0; min-width: 60px; color: #fff; height: auto; line-height: normal; font-size: 16px;}
+.tabNavDn ul:after{ position: absolute; top: -14px; right: 35%; display: block; content: ''; width: 0; height: 0; border-width: 7px; border-style: solid; border-color: transparent transparent rgba(0,0,0,0.8) transparent;}
+
+/* newSearch */
+.search0620{ margin: 0 auto; padding: 10px; max-width: 640px;}
+.searbox{ display: inherit; border: 1px solid #df3031; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; border-radius: 2px; background-color: #fff; font-size: 14px;}
+.searbox .sel{ position: relative; display: inline; line-height: 32px; text-align: center; }
+.searbox .sel span{ position: relative; display:inline-block; padding-right: 12px;}
+.searbox .sel span:after{ position: absolute; right: 0; top: 50%; margin-top: -2px; display: block; content: ''; width: 0; height: 0; border-width: 4px; border-style: solid; border-color: #999 #fff #fff #fff;}
+.searbox .ipt{ position: relative;}
+.searbox .ipt input{ padding: 0 5px; border: none; width: 100%; height: 32px; line-height: normal; font-size: 14px; outline: none; -webkit-appearance: none; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.searbox .ipt .off{ position: absolute; top: 50%; margin-top: -12px; right: 3px; display: block; width: 24px; height: 24px; background: url(../images/hs-off.png) center no-repeat; background-size: 16px auto;}
+.searbox .btn{ display: block; width: 42px; min-width: 42px; max-width: 42px; background: url(../images/ico-sea.png) center no-repeat #df3031; background-size: 18px auto;}
+.search0620 .mapbtn{ margin-left: 5px; display: block; background-color: #df3031; border-radius: 2px; width: 42px; min-width: 42px; max-width: 42px; height: 34px; line-height: 34px; text-align: center; font-size: 14px; color: #fff;}
+
+.searbox .drop{ display: none; position: absolute; top: -1px; left: -1px; background-color: #fff; border: 1px solid #df3031; z-index: 100; border-radius: 2px;}
+.searbox .drop li{ margin: 0 6px; white-space: nowrap; border-bottom: 1px solid #ccc; text-align: left;}
+.searbox .drop li:last-child{ border-bottom: none;}
+.searbox .drop li input{ margin-right: 5px; vertical-align: -2px;}
+
+/* 搜索页 */
+.clearBtn{ margin-top: 15px; text-align: center;}
+.clearBtn a{ display:inline-block; padding: 0 12px; height: 25px; line-height: 25px; border: 1px solid #adadad; border-radius: 2px; font-size: 14px; color: #333; background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), to(#dddddd));background: -webkit-linear-gradient(top, #f1f1f1, #dddddd);background: -moz-linear-gradient(top, #f1f1f1, #dddddd);background: -o-linear-gradient(top, #f1f1f1, #dddddd);background: -ms-linear-gradient(top, #f1f1f1, #dddddd);background: linear-gradient(top, #f1f1f1, #dddddd);background-color: #f1f1f1; box-shadow: inset 0 1px 0 #fff;}
+.searList{ margin: 0 10px;}
+.searList li a{ display: block; padding: 10px 8px; border-bottom: 1px solid #d2d2d2; white-space: nowrap; overflow: hidden; text-overflow:ellipsis; color: #333; font-size: 14px;}
+
+.sms-num { background: #F90; color:white; font-size: 12px; line-height: 14px; height: 14px; width: 14px; -webkit-border-radius:10px; position:absolute; text-align: center; margin-left:-8px; padding: 1px;}
+.hIcon .sms-num{ margin: 9px 0 0 20px;}

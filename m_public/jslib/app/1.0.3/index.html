@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="dns-prefetch" href="//static.soufunimg.com">
+    <link rel="dns-prefetch" href="//captcha.fang.com">
+    <link rel="dns-prefetch" href="//countpvn.3g.fang.com">
+    <title>密码登录</title>
+    <link href="https://static.soufunimg.com/passport/wapcss2/public.css?20170209" rel="stylesheet" />
+    <link href="https://static.soufunimg.com/passport/wapcss2/passport.css?20170209" rel="stylesheet" />
+    
+    <script type="text/javascript" src="https://static.soufunimg.com/passport/commonjs/jquery.js?v=2016011220"></script>
+    <script type="text/javascript" src="https://static.soufunimg.com/passport/commonjs/sea.js?v=2016011220"></script>
+    <script type="text/javascript" src="https://static.soufunimg.com/passport/commonjs/RSA.min.js"></script>
+    <script>
+        seajs.config({
+            base: "https://static.soufunimg.com/passport/wapjs",
+            //base: "../Scripts/wapjs/",
+            charset: 'utf-8'
+        });
+        var isWapToAppLogin = "False";
+        console.log(isWapToAppLogin);
+        if (isWapToAppLogin == "False") {
+        	seajs.use(['https://static.soufunimg.com/common_m/m_public/jslib/app/1.0.3/appopen.js'], function(openApp){
+	            openApp({
+	                // 点对点协议地址 
+	                appurl: 'waptoapp/{"destination":"applogin"}',
+	                // 应用宝地址 
+	                wxUrl: "http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1358430372554",
+	                // 安卓下载链接 
+	                url: "//download.3g.fang.com/soufun_android_30007.apk",
+	                // ios下载链接 
+	                appstoreUrl: 'https://itunes.apple.com/cn/app/soufun/id413993350?mt=8&ls=1'
+	            }).openApp();
+        	});
+        }
+        setMaxDigits(129);
+        var key_to_encode = new RSAKeyPair("010001", "", "978C0A92D2173439707498F0944AA476B1B62595877DD6FA87F6E2AC6DCB3D0BF0B82857439C99B5091192BC134889DFF60C562EC54EFBA4FF2F9D55ADBCCEA4A2FBA80CB398ED501280A007C83AF30C3D1A142D6133C63012B90AB26AC60C898FB66EDC3192C3EC4FF66925A64003B72496099F4F09A9FB72A2CF9E4D770C41");
+
+        seajs.use('loginByPassword3.js?201708221429');
+    </script>
+
+</head>
+<body class="whitebg">
+    <div class="page">
+        <header class="header">
+            <input type="hidden" id="Burl" value="http://m.fang.com/my/?c=mycenter&amp;a=index&amp;city=bj" />
+            <div class="left">
+                <a href="javascript:history.back(-1);" class="back" style="display: none"><i></i></a>
+                <a href="http://m.fang.com/bj.html" class="logo" style="display: none"></a>
+            </div>
+            <div class="cent">
+                <span>登录</span>
+            </div>
+            <div class="head-icon red-txt">
+                    <a href="/passport/register.aspx?Burl=http%3a%2f%2fm.fang.com%2fmy%2f%3fc%3dmycenter%26a%3dindex%26city%3dbj" class="red-f6">注册</a>
+
+            </div>
+            <div class="clear"></div>
+        </header>
+        <div class="main">
+            <div class="pdX20">
+                <form method="post" action="" enctype="multipart/form-data">
+                    <section class="mt35">
+                        <ul class="uc-login">
+                            <li>
+                                <div class="tit">账<i></i>号</div>
+                                <div class="input-box">
+                                    <a href="javascript:;" class="btn-del" id="clearusername" style="display: none;"></a>
+                                    <input type="text" placeholder="用户名/邮箱/手机号" name="usname" id="username">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="tit">密<i></i>码</div>
+                                <div class="input-box mr72">
+                                    <a href="javascript:;" class="btn-del" id="clearpassword" style="display: none;"></a>
+                                    <input type="password" maxlength="16" placeholder="请输入密码" onpaste="return false" id="password">
+                                    <div class="on-off"><span class="sf-turnChange hide" id="switchPwd"><i></i>abc</span></div>
+                                    <!--加hide，另一种状态-->
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <!--以下登录按钮不可点击状态为class="btn-login"可点击状态为class="btn-login click"-->
+                    <div class="mt25"><a href="javascript:void(0);" class="btn-login click" id="btnLogin">登 录</a></div>
+                </form>
+                <div class="f13 mt20">
+                        <a id="loginByCode" href="javascript:;" hrefdata="/passport/mobilelogin.aspx?Burl=http%3a%2f%2fm.fang.com%2fmy%2f%3fc%3dmycenter%26a%3dindex%26city%3dbj" class="flor gray-8">验证码登录</a>
+
+                    <a href="/passport/resetpassword.aspx?Burl=/passport/login.aspx&BurlType=2" class="gray-8">找回密码</a>
+                </div>
+            </div>
+            <div class="other-login">
+                    <div class="title">
+                        <span>第三方合作账号登录</span>
+                    </div>
+                    <div class="flexbox pdX20">
+                        <a id="qqlogin" href="/passport/qqlogin.aspx?Service=soufun-wap-wap&amp;backurl=http%3a%2f%2fm.fang.com%2fmy%2f%3fc%3dmycenter%26a%3dindex%26city%3dbj" ;><i class="qq"></i>
+                            <br />
+                            QQ</a>
+                        <a id="sinalogin" href="/passport/weibologin.aspx?Service=soufun-wap-wap&amp;backurl=http%3a%2f%2fm.fang.com%2fmy%2f%3fc%3dmycenter%26a%3dindex%26city%3dbj;"><i class="wb"></i>
+                            <br />
+                            微博</a>
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--登录失败提示框-->
+    <div id="sendFloat" class="tz-box" style="display: none;">
+        <div id="mathCode" class="tz-con" style="display: none;">
+            <ul class="ipt-list">
+                <li class="mt20">
+                    <div class="flexbox">
+                        <input type="tel" class="ipt-text vcode " placeholder="请输入右侧验证码" id="verifyCode">
+                        <img class="yzm" src="https://Captcha.fang.com/Display?type=wap&width=150&height=80&r=" id="verify">
+                    </div>
+                </li>
+            </ul>
+            <div class="tz-btn flexbox">
+                <input id="closeMathCode" type="button" value="取消">
+                <input id="qd" type="button" value="确定" style="background-color: #df3031">
+            </div>
+        </div>
+        <div id="sendText" class="yzm-sta" style="display: none;">登录失败</div>
+    </div>
+    <img src="https://uvwap.3g.fang.com/default/index?uvn=Y&uvb=1&uvr=http%3A%2F%2Fm.fang.com%2Fmy%2F%3Fc%3Dmycenter%26a%3Dindex%26city%3Dbj&uvl=https%3a%2f%2fm.fang.com%2fpassport%2flogin.aspx&uvz=690819803" style="display: none;" />
+    <script type="text/javascript">
+        var _dctc = _dctc || {};
+        _dctc._account = _dctc._account || [];
+        _dctc.isNorth = _dctc.isNorth || 'Y';
+        _dctc.bid = '909001';
+        (function () {
+            var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+            script.src = 'https://static.soufunimg.com/count/loadforwapandm.min.js?20160329';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+        })();
+    </script>
+
+    <script type="text/javascript">
+        var _dctc_onlyga = _dctc_onlyga || {};
+        _dctc_onlyga._account = _dctc_onlyga._account || ['UA-24140496-1', 'UA-24140496-20'];
+        (function () {
+            var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+            script.src = '//static.soufunimg.com/count/loadonlyga.min.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+        })();
+    </script>
+
+</body>
+</html>

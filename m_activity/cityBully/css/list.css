@@ -1,0 +1,108 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html{
+	font-size: 62.5%;
+}
+.container{
+	width: 100%;
+	position: relative;
+	background: url(../images/bg3.png) no-repeat;
+	background-size: 100% 100%;
+}
+.list-bg{
+	width: 100%;
+}
+.content{
+	margin: 0 15px;
+}
+.mark{
+	display: inline-block;
+	width: 115px;
+	height: 45px;
+	background: url(../images/qu.png) no-repeat;
+	line-height: 45px;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.7rem;
+}
+.con-text{
+	margin-top: 10px;
+	color: #fff;
+	font-size:1.2rem;
+}
+.con-text a{
+	color: #fff;
+}
+.con-btn{
+	margin: 30px 0;
+	overflow: hidden;
+}
+.btn{
+	display: inline-block;
+	width: 40%;
+}
+.b1{
+	margin-left: 10px;
+	float: left;
+}
+.b2{
+	float: right;
+	margin-right: 10px;
+}
+.btn img{
+	width: 100%;
+}
+.m3{
+	margin-top: 30px;
+}
+.bott{
+	padding-bottom: 100px;
+}
+.foot-btn{
+	height: 3.5rem;
+	position: fixed;
+	bottom: 0;
+	margin-bottom:1.5rem;
+	z-index: 2;
+	text-align:center;
+	
+}
+.button{
+	height: 3.5rem;
+	border-radius: 2rem;
+	line-height: 3.5rem;
+	text-align: center;
+	box-shadow: 0px 5px  rgba(195, 77, 10, .6);
+	font-weight: bold;
+	font-size: 0.5em;
+	width: 140px;
+}
+.left{
+	background: #fff32c;
+	color:#807a16;	
+	float: left;
+}
+.right{
+	background: #7ecef4;
+	color:#336699;
+	float: right;
+}
+.left1{
+	background: #fff32c;
+	color:#807a16; margin-right:5%;
+}
+.right1{
+	background: #7ecef4;
+	color:#336699;
+}
+.cover{
+	height: 6.5rem;
+	background: #d66403;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	opacity: 0.6;
+}

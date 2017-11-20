@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+* { margin:0; padding:0;-webkit-tap-highlight-color: rgba(0,0,0,0); }
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none; }
+html { font-size:20px; }
+body { font-family:Arial, "Microsoft Yahei"; color:#333; background:#ffffff; }
+body,html{height:100%;}
+form, img, table, td { border:0; }
+ul, ol, li { list-style-type:none; display: block; }
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal; }
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei"; }
+a { color:#fff; text-decoration:none }
+em ,i{ font-style:normal; }
+* { -webkit-box-sizing:border-box; box-sizing:border-box }
+a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.flol { float:left; }
+.flor { float:right; }
+.red{color:#ff6666;}
+.wrap { max-width:640px; overflow:hidden; margin:0 auto; position:relative; min-height: 100%;  background:#e3e3e3;padding-bottom:1.3rem; }
+.banner{background:url(../images/bannerTwo.jpg) no-repeat;background-size:100%;padding:7rem 1.3rem 0;height:13rem;}
+.banner p{font-size:.55rem;color:#000000;line-height:.9rem;font-weight:bold;}
+.box{width:15.25rem;margin:0 auto;margin-top:-1.8rem;}
+.box .tit{width:100%;height:2.25rem;line-height:1.8rem;padding-top:0.5rem;text-align:center;color:#fff;font-size:.75rem;font-weight:bold;background:url(../images/tit_bg.png) no-repeat;background-size:100%;}
+.box .content{border:.05rem solid #21212d;border-top:none;background:url(../images/box_bg.jpg) left bottom no-repeat;background-size:100%;}
+.box ul{overflow:hidden;padding:.1rem;}
+.box li{float:left;width:50%;color:#000000;padding:.15rem .1rem;}
+.box li > div{background:#fff;padding:.2rem;}
+.box li h2{height:1.5rem;line-height:1.5rem;font-size:.6rem;font-weight:bold;}
+.box li h2 i{float:left;width:1.45rem;height:.85rem;margin:.325rem .2rem .325rem 0;}
+.box li:nth-child(1) h2 i{background:url(../images/l_1.png) no-repeat;background-size:100%;}
+.box li:nth-child(2) h2 i{background:url(../images/l_2.png) no-repeat;background-size:100%;}
+.box li:nth-child(3) h2 i{background:url(../images/l_3.png) no-repeat;background-size:100%;}
+.box li .img{width:100%;min-height:5.55rem;margin-bottom:.2rem;}
+.box li .img img{width:100%;}
+.box li p{font-size:.55rem;line-height:1rem;}
+.word-bg{width:15.25rem;height:3.25rem;margin:0 auto;margin-top:.8rem;background:url(../images/word_bg.png) no-repeat;background-size:100%;}
+.btn-box{width:15.25rem;margin:0 auto;margin-top:.6rem;}
+.btn-box a{display:block;height:2.2rem;line-height:2.2rem;font-size:.9rem;font-weight:bold;color:#fff;text-align:center;background:#f08b18;border-bottom:.2rem solid #c16d0d;border-radius:.7rem;box-shadow:.1rem .1rem .1rem rgba(0,0,0,.15);}

@@ -1,0 +1,593 @@
+@charset "utf-8";
+
+* {margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";background: #f4f4f4;}
+body.choose{height: 100%;overflow: hidden;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {color:#3c3f46;text-decoration:none;}
+html,body{ height: 100%;}
+em,i{font-style:normal;}
+table{ border-collapse:collapse;}
+section,.whitebg{ background-color: #fff}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+
+/**{font-family:microsoft yahei;padding: 0;margin: 0;outline: none;list-style: none;text-decoration: none;font-style: normal;font-weight: normal;}
+html{font-size: 62.5%;width: 100%;height: 100%;}
+body{}*/
+#wrapper{max-width: 640px;width:100%;margin: 0 auto;position: relative;min-height: 100%;}
+.container{background: #000;top: 0;left: 0;width: 100%;}
+/*loading页面*/
+#loading{
+	padding-top: 5.6045rem;
+}
+.loadBox{
+	text-align: center;
+	padding: 0 2.25rem;
+}
+.loadBox .logo{
+	width: 4.5rem;
+}
+.loadText{
+	text-align: center;
+	margin-top:0.34375rem;
+}
+.loadText .text{
+	width: 2.71875rem;
+}
+/*start页面*/
+.start-wrapper,.house2-wrapper,.house3-wrapper,.house4-wrapper{display: inline;float: left;height: 100%;position: relative;}
+.result-wrapper{
+	background: url('../images/finalBgShadow.png') 0 0 no-repeat;
+	background-size: 100%;
+	background-position-y: 8.1rem;
+	background-color:#ebc38a;
+	overflow: hidden;
+}
+.begin-img{width: 100%;float: left;position: relative;z-index: 1;}
+.beginBtn{top: 83.5%;right: 16%;z-index: 2;position: absolute;width:59%;height: 10%;background: transparent;}
+.rule-img{top:56%;right:56%;z-index: 2;position: absolute;width:24.1%;}
+.rule{top:62%;right:48%;z-index: 2;position: absolute;width:42.7%;height: 16%;}
+.rule-content{color: #8a969c;font-size: 0.4rem}
+#start{
+	overflow: hidden;
+}
+/*选关页面*/
+.music{
+	width: 100%;
+	position: absolute;
+	top: 0.4rem;
+	z-index: 2;
+	display: none;
+}
+.music img{
+	width: 0.667rem;
+	height: 0.667rem;
+	float: right;
+	margin-right:0.6rem;
+}
+#level{
+	padding-top: 1.334rem;
+}
+.bg-head{
+	width: 100%;
+}
+.bg-head .img-box{
+	width: 8.0rem;
+	margin: 0 auto;
+}
+.house{
+	margin-top: -0.25rem;
+}
+
+.house .img-box{
+	width: 6.4375rem;
+	margin: 0 auto;
+}
+.scroll{
+	margin-top: 0.234375rem
+}
+.scroll .img-box{
+	text-align: center;
+}
+.scroll img{
+	width: 1.9rem;
+	margin-left: 0.15625rem;
+}
+
+.scroll .first{
+	margin-left: 0;
+}
+.bg-foot{
+	margin-top: 0.09375rem;
+	text-align: center;
+}
+.bg-foot img{
+	width: 3.0625rem;
+}
+.control{
+	position: absolute;
+	width: 100%;
+	height: 7.4rem;
+	bottom: 50%;
+	top: 5.625rem;
+	text-align: center;
+}
+.control .img-box{
+	margin: 0 auto;
+	/*background: url('../images/begin.png') no-repeat;*/
+	/*background-size: 100%;*/
+	height: 7.4rem;
+	text-align: center;
+}
+.control .img-box img{
+	width: 6.28125rem;
+}
+
+
+/*关卡1页面*/
+.lsm{
+	padding-left: 0.625rem;
+	padding-top: 0.4375rem;
+	overflow: hidden;
+}
+.ls{
+	padding-top: 0.125rem;
+}
+.house-level{
+	overflow: hidden;
+	float: left;
+}
+.house-level img{
+	float: left;
+	width: 1.46875rem
+}
+.house-level p{
+	width: 0.8125rem;
+	float: left;
+	margin-left: 0.34375rem;
+	font-size: 0.4rem;
+}
+.house-score{
+	overflow: hidden;
+	float: left;
+	margin-left: 0.5625rem;
+}
+.house-score img{
+	margin-top: .05rem;
+	float: left;
+	width: 1.6875rem;
+}
+.house-score p{
+	float: left;
+	margin-left: 0.375rem;
+	font-size: 0.4rem;
+}
+.house-music{
+	float: left;
+	margin-left: 2.09375rem;
+	margin-top: -0.125rem;
+}
+.house-music img{
+	width: 0.59375rem;
+	margin-top: -0.2rem;
+}
+.rhs{
+	padding-left: 0.5625rem;
+	padding-top: 0.3125rem;
+	overflow: hidden;
+}
+.return-icon{
+	float: left;
+	width: 0.5rem;
+	margin-top: 0.0625rem;
+}
+.return{
+	float: left;
+	margin-left: 0.15625rem;
+	width: 0.84375rem;
+	margin-top: 0.140625rem;
+}
+.light{
+	float: left;
+	margin-left: 0.75rem;
+	width: 0.4375rem;
+}
+.help{
+	float: left;
+	margin-left: 0.15625rem;
+	width: 1.8125rem;
+	margin-top: 0.09375rem;
+}
+
+.house-star{
+	float: left;
+	height: 0.71875rem;
+	margin-left: 2.28125rem;
+}
+.house-star .star{
+	width: 0.59375rem;
+	height: 0.71875rem;
+    float: left;
+	background: url(../images/star.png) no-repeat; 
+	background-size: 100%;
+}
+.star-margin{
+	margin-left: 0.0625rem;
+}
+.star.pass{
+	background: url(../images/black_star.png) no-repeat; 
+	background-size: 100%;
+}
+.time{
+	margin-top: 0.4375rem;
+	overflow: hidden;
+	padding-left: 0.53125rem;
+}
+.time p{
+	font-size: 0.4rem;
+}
+.secondBox{
+    width: 1rem;
+	float: left;
+	height: 0.359375rem;
+}
+.time .time-box{
+	overflow: hidden;
+	position: relative;
+	width: 8.0625rem;
+}
+.time img{
+	float: left;
+	width: 8.0625rem;
+}
+.timeBar{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.timeBar img{
+	width: 8.0625rem;
+}
+.score-5{
+	position: absolute;
+	top: 2.7rem;
+	left: 5.78125rem;
+	width: 2.59375rem;
+}
+.content{
+	overflow: hidden;
+	position: relative;
+	margin-top: 0.2rem;
+}
+.content img{
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	width: 9.875rem;
+}
+.differ1 .circle{
+	position: absolute;
+	top: 2.0rem;
+	left: 5.6rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ1 .down{
+	top: 8.36rem;
+	position: absolute;
+}
+.differ1 img{
+	position: absolute;
+	width: 100%;
+}
+.differ2 .circle{
+	position: absolute;
+	top: 2.5rem;
+	left: 6.6rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ2 .down{
+	top: 8.76rem;
+	position: absolute;
+}
+.differ2 img{
+	position: absolute;
+	width: 100%;
+}
+.differ3 .circle{
+	position: absolute;
+	top: 3.3rem;
+	left: 5.9rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ3 .down{
+	top: 9.66rem;
+	position: absolute;
+}
+.circle img{
+	display: block;
+	width: 100%;
+}
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .56);
+}
+.result-btn1,.result-btn2,.result-btn3{
+	position: fixed;
+	top:7.09375rem;
+	left: 0.53125rem;
+}
+.listBtn,.nextBtn,.retryBtn,.rectBtn{
+	width:4.34375rem;
+}
+.nextBtn,.rectBtn{
+	margin-left: 0.34375rem;
+}
+.circleBtn{
+	margin-left: 3.09375rem;
+	width: 2.84375rem;
+	margin-top: 0.96875rem;
+}
+/*关卡4页面*/
+.differ4 .circle{
+	position: absolute;
+	top: 0;
+    left: 0;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ4 .down{
+	top: 6.6rem;
+	position: absolute;
+}
+.differ4 img{
+	display: block;
+	width: 100%;
+}
+.differ5 .circle{
+	position: absolute;
+	top: 4.8rem;
+	left: 5rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ5 .down{
+	top: 11.6rem;
+	position: absolute;
+}
+.differ5 img{
+	display: block;
+	width: 100%;
+}
+.differ6 .circle{
+	position: absolute;
+	top: 5.2rem;
+	left: 8.8rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ6 .down{
+	top: 12.4rem;
+	position: absolute;
+}
+.differ6 img{
+	display: block;
+	width: 100%;
+}
+
+/*关卡3页面*/
+.differ7 .circle {
+	position: absolute;
+	top: 5.8rem;
+	left: 0;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ7 .down{
+	top: 13.9rem;
+	position: absolute;
+}
+.differ7 img{
+	display: block;
+	width: 100%;
+}
+.differ8 .circle{
+	position: absolute;
+	top: 7rem;
+	left: 2.1rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ8 .down{
+	top: 15rem;
+	position: absolute;
+}
+.differ8 img{
+	display: block;
+	width: 100%;
+}
+.differ9 .circle{
+	position: absolute;
+	top: 3.9rem;
+	left: 3.2rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ9 .down{
+	position: absolute;
+	top: 11.8rem;
+	left: 3rem;
+}
+.differ9 img{
+	display: block;
+	width: 100%;
+}
+/*关卡2页面*/
+.differ10 .circle{
+	position: absolute;
+	top: .6rem;
+	left: 2.8rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ10 .down{
+	position: absolute;
+	top: 8.2rem;
+}
+.differ10 img{
+	display: block;
+	width: 100%;
+}
+.differ11 .circle{
+	position: absolute;
+	top: 3.5rem;
+	left: 3.3rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ11 .down{
+	position: absolute;
+	top: 11rem;
+	left: 3.2rem;
+}
+.differ11 img{
+	display: block;
+	width: 100%;
+}
+.differ12 .circle{
+	position: absolute;
+	top: .2rem;
+	left: 9.2rem;
+	width: 1.03125rem;
+	height: 0.9375rem;
+}
+.differ12 .down{
+	position: absolute;
+	top: 9rem;
+	left: 8.7rem;
+}
+.differ12 img{
+	display: block;
+	width: 100%;
+}
+/*结果页*/
+#result{
+	padding-top: 1.042rem;
+}
+
+.scoreTitle{
+	margin-top: 0.375rem;
+	text-align: center;
+}
+.scoreTitle img{
+	width: 3.90625rem;
+}
+.score-content{
+	margin-top: 0.59375rem;
+	overflow: hidden;
+}
+.score-content .leftImg{
+	width: 2.96875rem;
+}
+.score-content .rightImg{
+	width: 2.9375rem;
+}
+.score-content .score{
+	color: #744511;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 100%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.28125rem;
+}
+.lBox{
+	float: left;
+}
+.rBox{
+	float: right;
+}
+.result-content {
+	margin:0.21875rem auto;
+	width: 6.1875rem;
+}
+.result-content p{
+	font-size: 0.5rem;
+	color:#744511;
+}
+.finalBg{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.finalBg img{
+	width: 100%;
+}
+.result-btn{
+	margin: 0 auto;
+	padding: 1.03125rem 0;
+	width: 3.84375rem
+}
+.result-btn img{
+	width: 100%;
+}
+.result-btn .btn-margin{
+	margin-top: 0.65625rem;
+}
+.callFriend{
+	position: absolute;
+	z-index: 3;
+	top:0.09375rem;
+	right: 0.65625rem;
+}
+.callFriend img{
+	width: 4.53125rem;
+}
+#floatBox{
+	z-index: 2;
+}
+#floatBox div{
+	z-index: 3;
+}
+@media screen and (min-width: 1024px) {
+	.music img {
+		margin-right: 4.6rem;
+	}
+}
+.friendMask{
+	z-index: 2;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .56);
+}

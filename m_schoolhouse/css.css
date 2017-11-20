@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+.fblue3{ color: #df3031;}
+
+/* 分类查找 */
+.sum { margin: 10px; padding-left: 6px; height: 32px; line-height: 32px; background: #d8e3f7; font-size: 16px;}
+.sum dt{ float: left;}
+.sum dd{ padding: 4px 0 0 10px; overflow: hidden; max-width: 320px;}
+.sum dd a{ margin: 0 3px; border-radius: 5px; width: 10px; height: 24px; line-height: 24px; text-align: center; color: #333;}
+.sum dd a.active{ background-color: #df3031; box-shadow: inset 2px 2px 2px #b61f1f; color: #fff;}
+.sortCon{ padding: 5px 10px;}
+.sortCon .sum{ margin: 0 0 5px 0;}
+
+.sort dl{ position: relative; padding:3px 20px 3px 0; border-bottom:1px dashed #ccc; overflow:hidden;font-size: 14px; display: -webkit-box; -webkit-box-orient:horizontal;display: -moz-box; -moz-box-orient:horizontal; display: -ms-box; -ms-box-orient:horizontal; display: box; box-orient:horizontal; }
+.sort dl dt{ margin-right: 8px; padding: 6px 0; float: left\9;}
+.sort dl dd{ -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-flex:1; max-height: 28px;}
+.sort dl dd.m2{ max-height: 50px;}
+.sort dl.active dd{ max-height: inherit !important;}
+.sort dl dd span a{ display: inline-block; vertical-align: middle; margin: 3px 2px 0 12px; height: 22px; line-height: 22px; color: #666; }/*20140311*/
+.sort dl dd i{ position: absolute; right: 0; top: 5px; display: block; width:24px; height:24px; cursor:pointer;}
+.sort dl dd.m2 i{ top:30px;}/*20140311*/
+.sort dl dd span a.cur{ padding: 0 3px; border-radius: 3px; color: #fff; background: #df3031;}
+.sort dl dd strong{ display: inline-block; vertical-align:middle; margin-top: 3px; font-weight: normal; background: #df3031; padding: 2px 5px; border-radius: 3px; color: #fff;}
+.sort dl dd strong a{ color: #fff;}
+.sort dl dd em{ display: inline-block; vertical-align:middle; padding: 5px 0 0 12px; margin-right: -5px; color: #f60; font-style: normal; font-size: 14px;}
+.sort .define{ margin-right: -20px; height: 36px; line-height: 36px; overflow: hidden; white-space: nowrap;}
+.sort .define .df-txt{ width: 24%; padding: 5px; height: 16px; line-height: 16px; border: none; border-radius: 5px; background: #fff; outline: none; box-shadow: inset 1px 3px 5px #ddd; font-size: 14px; -webkit-appearance:none;}
+.sort .define span{ margin: 0 5px;}
+.sort .define .df-btn{ margin-top: -1px; border: 1px solid #2e5fa0; padding: 3px 10px; background: #4581cd; color: #fff; cursor: pointer; border-radius: 3px; -webkit-appearance:none; font-size: 14px;}
+.sort dl dd .up{ background:url(//js.soufunimg.com/wireless_m/touch/img/arr-up1.png) center no-repeat; background-size:13px 13px; }
+.sort dl dd .dn{ background:url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png) center no-repeat; background-size:13px 13px; }
+.showSort{ text-align:center; font-size: 16px;}
+.showSort a{ display: inline-block; padding: 8px 18px 8px 0; background:url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png) right center no-repeat; background-size:13px 13px; color: #333; }
+.showSort a.up{ background-image:url(//js.soufunimg.com/wireless_m/touch/img/arr-up1.png);}
+.showSort a.dn{ background-image:url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png);}
+.showSort a.down{ background-image:url(//js.soufunimg.com/wireless_m/touch/img/arr-down1.png);}
+
+
+.findSchool{ padding: 0 10px;}
+.findSchool input{ padding: 0 5px; border: 1px solid #95B0CD; border-radius: 3px 0 0 3px; height: 34px; line-height: normal; outline: none; font: inherit; color: #999;}
+.findSchool .btn{ padding: 0 5px; border: 1px solid #95B0CD; border-left: none; height: 34px; line-height: 34px; text-align: center; -webkit-box-flex: 0; -moz-box-flex: 0; box-flex: 0; border-radius: 0 3px 3px 0; background: url(//img2.soufun.com/wap/touch/img/ico-head.png) repeat-x top; background-size: 70px 243px; color: #333;}
+.findSchool .btn span{ padding-left: 18px; background: url(//img2.soufun.com/wap/touch/img/ico-serc.png) no-repeat 0 center; background-size: 14px 14px;}
+
+.mList{ margin: 0 10px;}
+.mList li{ padding: 5px 0; overflow: hidden; border-bottom: 1px solid #d2d2d2;}
+.mList li:last-child{/* border: none;*/}
+.mList .pic{ position: relative; float: left; margin-right: 10px; width: 100px; height: 75px;}
+.mList .pic img{ width: 100%; height: 100%;}
+.mList .pic .online{ position: absolute; right: 2px; bottom: 3px; width: 46px; height: 18px; background: url(//img2.soufun.com/wap/touch/img/online.gif) no-repeat; background-size: 46px auto;}
+.mList .info{ overflow: hidden; line-height: 1.5;}
+.mList .info h3{ font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #333;}
+.mList .info p{ font-size: 12px; color: #999; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.mList .info .tit{ padding-bottom: 3px; font-size: 14px; line-height: 1.3; color: #333;}
+.tag em{ display:inline-block; line-height: 1.4; margin: 2px 2px 0 0; padding: 0 3px; border: 1px solid #333; font-style: normal; color: #666;}
+.tag em.e1{ border-color: #16ac0e;}
+.tag em.e2{ border-color: #c00;}
+.tag em.e3{ border-color: #df3031;}
+
+.flextable{ overflow: hidden;}
+.flextable p{ float: left; padding-right: 10px; min-width: 50%; font-size: 14px; line-height: 1.8; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-sizing: border-box; }
+@media screen and (min-width: 480px) and (max-width: 768px) {.flextable p{ min-width: 33%; }}
+@media screen and (min-width: 768px) and (max-width: 1024px) {.flextable p{ min-width: 25%; }}
+@media only screen and (min-width:1024px) {.flextable p{ min-width: 20%; }}
+
+.mDetail .xqbox{ padding: 0 8px;}
+.mDetail h1{ padding: 4px 0; line-height: 22px; border-bottom: 1px dashed #ccc;}
+.mDetail .info{ padding: 5px 0; border-bottom: 1px solid #ccc;}
+.mDetail .info .tag{ margin-top: 5px;}
+.mDetail .flextable{ margin-top: 5px;}
+.mDetail .flextable em{ font-style: normal; color: #df3031;}
+
+.dkxq h3{ padding: 5px 0;}
+.dkxq li{ height: 34px; line-height: 34px; border-bottom: 1px dashed #ccc;}
+.dkxq li:last-child{ border: none;}
+.dkxq li > a{ display: table; padding-right: 15px; width: 100%; background: url(images/arr-rt.png) right center no-repeat; background-size: 6px auto; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+.dkxq li span{ display: table-cell; font-size: 14px; color: #666;}
+.dkxq li span em{ font-style: normal;}
+.dkxq li span:nth-child(1){ width: 40%;}
+.dkxq li span:nth-child(2){ /*width: 30%;*/}
+.dkxq li span:nth-child(3){ /*width: 26%; */text-align: right;}
+
+.fullTit{ padding: 0 8px; border: 1px solid #d2d2d2; border-width: 1px 0; height: 40px; line-height: 40px; font-size: 16px; background: -webkit-gradient(linear, left top, right top, from(#f1f1f1), to(#e6e6e6)); background: -webkit-linear-gradient(top, #f1f1f1, #e6e6e6); background: -moz-linear-gradient(top, #f1f1f1, #e6e6e6); background: -o-linear-gradient(top, #f1f1f1, #e6e6e6); background: -ms-linear-gradient(top, #f1f1f1, #e6e6e6); background: linear-gradient(top, #f1f1f1, #e6e6e6); background-color: #f1f1f1; box-shadow: inset 0 1px 0 #fff; }
+
+.mapbox{ display:block; margin: 5px auto; width: 302px;}
+.mapbox img{ border: 1px solid #adadad; width: 300px; height: 130px;}
+.textbox{ margin-top: 10px; border-top: 1px dashed #ccc;}
+.textbox h3{ padding: 5px 0;}
+.textbox .con{ font-size: 14px; color: #808080; line-height: 1.5em; word-break:break-all;}
+.textbox .more{ text-align: right;}
+.textbox .more a{ display:inline-block; margin: 6px 6px 0 0; border: 1px solid #c3c3c3; border-radius: 3px; width: 130px; height: 26px; line-height: 26px; text-align: center; background: -webkit-gradient(linear, left top, right top, from(#ececec), to(#e1e1e1)); background: -webkit-linear-gradient(top, #ececec, #e1e1e1); background: -moz-linear-gradient(top, #ececec, #e1e1e1); background: -o-linear-gradient(top, #ececec, #e1e1e1);background: -ms-linear-gradient(top, #ececec, #e1e1e1);background: linear-gradient(top, #ececec, #e1e1e1);background-color: #ececec;}
+.textbox .more a span{ padding-right: 15px; background: url(//js.soufunimg.com/wireless_m/touch/img/esfmorearr1.png) right center no-repeat; color: #666;}
+.textbox .more a span.arr2{ background-image: url(//js.soufunimg.com/wireless_m/touch/img/esfmorearr2.png);}

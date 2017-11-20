@@ -1,0 +1,114 @@
+@charset "utf-8";
+body { width: 100%; overflow: hidden; }
+* { margin: 0; padding: 0; outline: none; }
+*:not(input, textarea) { -webkit-touch-callout: inherit; -webkit-user-select: auto; }
+body { width: 100%; margin: 0; padding: 0; font-family: 微软雅黑, sans-serif; font-size: 14px; color: #878787; -webkit-touch-callout: inherit; -webkit-user-select: auto; background-color: #fff; }
+a { color: #878787; text-decoration: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+a:hover { text-decoration: none; }
+button, input, select, textarea { font-size: 100%; margin: 0; padding: 0; outline: none; }
+dt, dd { display: inline-block; }
+textarea, input { resize: none; outline: none; }
+textarea { resize: none; -webkit-appearance: none; }
+ul, ol, li { list-style: none; }
+em { font-style: normal; }
+.hide { display: none; }
+.page { position: absolute; width: 100%; height:100%; top: 0; bottom: 0; font-size: 100px; text-align: center; }
+.page .wrap { height: 100%; }
+.page-4 { background-color: #F94848; background: url(../images/t4-bg.gif) left top no-repeat; background-size:100% 100%;min-height:480px;}
+.page-current { z-index: 1; }
+.page-4 .img_1 { height: auto; width: 320px; position: absolute; left: 50%; top: 50%; margin-left: -160px; margin-top: -225px; z-index: 2; }
+.page-4 .img_3 { height: auto; width: 26rem; position: absolute; left: 50%; top: 50%; margin-left: -12.5rem; margin-top: -12rem; }
+/*z增加字体*/
+.page-4 h2 {  color: #fff;  font-size: 1.3rem;  width: 98%;  position: absolute;  top: 25%;  padding: 1%;  }
+.page-4 h3 {color: #fff;font-size: 1rem;width: 98%;position: absolute;top: 30%;padding: 5% 1%;}
+
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color:#ccc}
+.reg{ position: absolute; left:50%; top: 50%; margin-left:-8rem; margin-top: -2rem; padding: 10px 15px; width: 14rem; background-color:#ccc; font-size: 14px; color:#fff; border: 5px solid #df3031; background-color: #fff; z-index: 10;}
+.reg dl dd{ display: block; padding: 5px 0;}
+.reg .ipt-text{ padding: 0 5px; width: 100%; height: 32px; line-height: normal; border: 1px solid #d2d2d2; border-radius: 4px; -webkit-appearance: none; appearance: none; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; font-family:微软雅黑;}
+.reg select{ padding: 0 5px; width: 100%; height: 32px; line-height: 32px; border: 1px solid #d2d2d2; border-radius: 4px; background-color:#fff; -webkit-appearance: none; appearance: none; font-family:微软雅黑; color:#ccc;}
+.reg .btn{ margin: 10px auto 0 auto; display: block; width: 200px; height: 30px; line-height: 30px; background-color: #df3031; color: #fff; text-align: center; border-radius: 4px;}
+
+.result{ padding: 45px 0; text-align:center; color:#df3031; font-size: 16px;}
+
+.cd{ position: absolute; width: 320px; left:50%; top: 50%; margin: -77px 0 0 -160px; font-size: 14px; color:#fff;}
+.cd em{ margin:0 1px; padding:1px 2px; font-style: normal; background-color:#fff; display: inline-block; color:#ab0d13;}
+.bigmap{ position: absolute; top: 0; bottom: 0; width: 100%; background:rgba(0,0,0,0.7); z-index:1000;}
+
+.page-result{ position: absolute; left:50%; top: 50%; margin-left: -130px; width: 260px; font-size: 12px; color:#fff; z-index: 10; text-align:left;  line-height: 2; -webkit-transform: translate(0, -50%); -moz-transform: translate(0px, -50%); -o-transform: translate(0px, -50%); transform: translate(0px, -50%);}
+.page-result .pos{ position: relative; width: 260px; height: 171px; margin-top: 20px; text-align:center;}
+.page-result .pos img{ width: 100%; height: 100%;}
+.page-result .pos .big{ position: absolute; top: 0; right: 0; width: 32px; height: 30px; background: url(../images/icon-sear.png) rgba(0,0,0,.4) 5px center no-repeat; background-size: 24px auto;}
+.page-result .pos .way{ position: absolute; bottom: -38px; right: 0; width: 92px; height: 26px; line-height:26px; border-radius:4px; border:1px solid #fff; background-color: #ec2c2d; font-size: 14px; color:#fff !important; text-align:center;}
+
+.homeCD{ position: absolute; width: 320px; left:50%; top: 50%; margin:30px 0 0 -160px; color:#bc131b;}
+.homeCD h3{ font-weight: normal; font-size: 16px;}
+.homeCD .data{ margin:8px 0; font-size: 21px;}
+.homeCD .data em{ margin:0 1px; padding:1px 3px; border-radius:3px; font-style: normal; background-color:#e4e4e4; display: inline-block; color:#ab0d13;}
+.homeCD .t{ font-size: 24px; font-weight: bold;}
+
+
+#textsuper { position: absolute; top: -1000; left: -1000; overflow-x: hidden; overflow-y: hidden; z-index: 4000 }
+#textsub { color: black; position: relative; font-size: 21pt; text-align: left; line-height: 40pt; top: 2000px }
+#share { background: rgba(0,0,0,0.8); position: absolute; top: 0px; width: 100%; height: 100%; display: none; z-index: 99998 }
+.shareImg { background: url(../images/share.png) right top no-repeat; position: absolute; top: 0px; right: 0px; width: 165px; height: 114px; background-size: cover; z-index: 99999 }
+
+/*签到*/
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;}
+
+header{ position: relative; height: 44px; line-height: 44px; background-color: #df3031;}
+header .left{ position: relative; z-index: 5; float: left;}
+header .cent{ position: absolute; width: 100%; height: 100%; text-align: center; font-size: 16px; color: #fff;}
+header .cent a{ position: relative; padding-right: 16px; color: #fff;}
+header .cent a:after{ position: absolute; top: 50%; right: 0; content: ''; margin-top: -3px; width: 0; height: 0; border-style: solid; border-width: 6px 5px; border-color: #fff transparent transparent transparent;}
+header .back{ float: left; width: 44px; height: 44px; text-align: center; background:url(../images/back.png) center no-repeat; background-size:10px auto;}
+
+.qd-home{ position: absolute; top: 0; bottom: 0; width: 100%; background:url(../images/t1-bg.gif) center no-repeat; background-size:cover;}
+.qd-home .img_1{ margin-top:-110px;}
+.qd-home .img_2{ height: auto; width: 292.5px; position: absolute; left: 50%; top: 50%; margin-left: -146.5px; margin-top: -120.5px}
+.qd-home .form{ position: absolute; width: 180px; height: 50px; top: 50%; left: 50%; margin: 32px 0 0 -90px; text-align:center;}
+.qd-home input{ padding:0 5px; border:1px solid #d2d2d2; border-radius:4px; width: 100%; height:32px; line-height: normal; -webkit-appearance: none; box-sizing: border-box; -webkit-box-sizing: border-box; font-family:inherit;}
+.qd-home a{ margin: 12px auto 0 auto; display: block; width: 110px; height: 30px; line-height:30px; border-radius:4px; text-align:center; color:#fff; font-size: 14px; background-color:#bc131b;}
+
+.qd-main{ margin: 0 auto; max-width:640px;}
+.qd-top{ padding-bottom: 10px; background-color:#df3031;}
+.qd-top .logo{ margin-left: 15px; width: 255px; height: 80px; background: url(../images/sec_logo.png) 0 center no-repeat; background-size: 95%;}
+.qd-top .tit{ margin-left: 15px; color:#fff; font-size:25px;}
+.qd-cont{ position: relative;}
+.qd-cont i{ position: absolute; content: ''; width: 14px; height: 14px; background-color: #fff; top: -7px; left: 50px; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg);transform: rotate(45deg);}
+.giftlist{ position: relative; padding: 2% 0; z-index: 10; background-color:#fff; overflow: hidden; font-size: 0; text-align:center;}
+.giftlist li{ position: relative; display: inline-block; vertical-align:top; margin: 2%; border:1px solid #d2d2d2; height:200px; width:45%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.giftlist li > a{ display: block; width: 100%; height: 100%;}
+.giftlist li img{ width:100%; height:100%;}
+.giftlist li .txt{ position: absolute; width: 100%; background:rgba(0,0,0,.6); color:#fff; bottom:0; line-height:32px; font-size: 14px;}
+
+.gifeshow{ padding:10px 0; text-align:center; color:#000; font-size: 16px; border-bottom:1px solid #d2d2d2;}
+.gifeshow .imgbox{ margin-bottom:5px;}
+.gifeshow .imgbox img{ width:120px; height:120px;}
+
+.wapForm{ padding:10px 0; text-align:center; background-color:#fff;}
+.wapForm ul{ display: inline-block; width: 250px;}
+.wapForm li{ padding:7px 0;}
+.wapForm .ipt-text{ padding:0 5px; border:1px solid #d2d2d2; border-radius:4px; width: 100%; height:32px; line-height: normal; -webkit-appearance: none; box-sizing: border-box; -webkit-box-sizing: border-box; font-family:inherit;}
+.wapForm select{ padding:0 5px; border:1px solid #d2d2d2; border-radius:4px; width: 100%; height:32px; line-height: normal; -webkit-appearance: select; box-sizing: border-box; -webkit-box-sizing: border-box; color:#ccc; font-family:inherit;}
+.wapForm .sex{ margin-left:5px; box-flex:0; -webkit-box-flex:0; -moz-box-flex:0; -ms-box-flex:0; max-width:80px; line-height:32px;}
+a.formbtn01{ margin:10px auto 0 auto; display: block; width:240px; border-radius:4px; background-color:#df3031; line-height:32px; text-align:center; color:#fff !important;}
+
+.qd-result{ position: absolute; top: 0; bottom: 0; padding: 20px 12px; width: 100%; color:#000; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; background: url(../images/contbg.png) bottom no-repeat #fff; background-size: 100%; font-size: 18px; line-height: 1.8;}
+.qd-result h3{ margin-bottom: 10px; font-size: 24px; font-weight: normal;}
+.qd-result p{ text-indent:2em;}
+.qd-result .sche{ margin: 50px auto 0 auto; display: block; width: 180px; height: 36px; line-height:36px; border-radius:4px; text-align:center; color:#fff; font-size: 16px; background-color:#bc131b; }
+
+.qd-sche{ position: absolute; top: 0; bottom: 0; width: 100%; background:url(../images/t4-bg.gif) center no-repeat; background-size:cover;}
+.qd-sche h1{ position: absolute; top: 17px; left: 20px;}
+.scht-list{ position: absolute; top: 50%; left:50%; width: 80%; height: 60%; margin: -50% 0 0 -40%;}
+.scht-list li{ margin-left: 30px; padding:20px 0 20px 20px; border:2px solid #fff;}
+
+/*弹层*/
+.tcwar{display: none;}
+.tcwar div{width: 15rem; padding: 5px;-webkit-border-radius: 20px;-moz-border-radius: 20px;text-align: center;color: #fff;font-size: .8rem;background: rgba(0,0,0,0.7);position: absolute;left: 50%;margin-left: -7.5rem;top: 70%;}
+/*改变居中方式*/
+#content {max-width: 640px;width: 100%;position: relative;  margin: 0px auto;}

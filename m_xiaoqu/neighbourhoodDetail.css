@@ -1,0 +1,207 @@
+.pdB14{padding-bottom: 14px;}
+.clearBoth{clear: both;}
+/* 详情页焦点图 */
+.xqfocus{ position: relative;}
+.xqfocus .back{position:absolute;margin:6px 4px 0 9px;width:32px;height:32px;text-align: center;background-color:rgba(0,0,0,.6);border-radius:50%;}
+.xqfocus .back i{display:block;width: 32px; height: 32px; background: url(images/xq_icons.png) -1px 0 no-repeat; background-size:128px auto;}
+.xqfocus .icon-nav,.xqfocus .icon-fav{position:absolute;margin:6px 4px;padding:0;width:32px;height:32px;text-align: center;background-color:rgba(0,0,0,.6);border-radius:50%;}
+.xqfocus .icon-nav i,.xqfocus .icon-fav i{display:block;width: 32px; height: 32px; background: url(images/xq_icons.png) no-repeat;background-size: 128px auto;}
+.xqfocus .icon-nav{right:5px;top:0;}
+.xqfocus .icon-fav{right:45px;top:0;}
+.xqfocus .icon-nav i{ background-position:-64px 0 !important;}
+.xqfocus .icon-fav i{ background-position:-32px  0 !important;}
+.xqfocus .icon-fav.cur i{ background-position:-96px  0 !important;}
+.xqfocus .num{ position: absolute; right: 9px; bottom: 14px; padding: 2px 8px; background: rgba(0,0,0,.7); border-radius: 9px; color: #fff; font-size: 12px;line-height:12px;z-index:2;}
+.xqfocus.maxh248{overflow: hidden;max-height: 248px;}/*20151118*/
+/*gps导航*/
+.gpsdirection{position: relative;}
+.gpsdirection:before{float: left;content: "";width: 14px;height: 14px;margin: 0 4px 0 0;background: transparent url("images/gpsdirection.png") center center no-repeat;background-size: 11px auto;}
+/*20151119*/
+.clearBottom.mBox{margin-bottom: 0;}
+.clearBottom.mBox .sf-bildInfo{padding-bottom: 0;}
+/*两行*/
+.sf-tlList{font-size: 14px;}
+.sf-tlList li{padding: 8px 0 8px 0;line-height: 26px;}
+.sf-tlList li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.sf-tlList li a{display: block;}
+.sf-tlList li .tt{color: #83868f;}
+.sf-tlList li .flor{font-size: 13px;}
+
+/* 红绿上下箭头 */
+.jtd-dn{ color: #669934 !important;}
+.jtd-dn:after{ content: '↓'; margin: 0 2px; vertical-align: 2px;}
+.jtd-up{ color: #df3031 !important;}
+.jtd-up:after{ content: '↑'; margin: 0 2px; vertical-align: 2px;}
+.xqCaption.toR12{padding: 13px 0 0 0;}
+.cfj-hmap .tt{line-height: 40px;font-size: 13px;}
+.cfj-chooseY{padding: 14px 14px 14px 0;}
+
+.tab-year{ height: 20px; line-height: 20px; border: 1px solid #e4e4e4; border-radius: 3px; font-size: 12px; overflow: hidden;}
+.tab-year span{ float: left; padding: 0 8px; border-left: 1px solid #e4e4e4; margin-left: -1px; cursor: pointer;}
+.tab-year span.active{ background-color: #e4e4e4; color: #999;}
+
+.zstName{text-align:center;margin-top:14px;}
+.zstName span{display:inline-block;line-height:1;font-size:12px;margin:0 11px;}
+.zstName span i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;}
+.zstName span:first-child{color:#ff6666;}
+.zstName span:first-child i{background-color:#ff6666;}
+.zstName span:nth-child(2){color:#ff9900;}
+.zstName span:nth-child(2) i{background-color:#ff9900;}
+.zstName span:last-child{color:#a6b5ee;}
+.zstName span:last-child i{background-color:#a6b5ee;}
+
+.sf-newPrice{margin-top: -12px;font-size: 14px;padding-bottom: 14px;line-height: 26px;clear: both;}
+.sf-newPrice .tt{color: #83868f;}
+/*更多*/
+a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c67;font-size: 14px;}
+.more_text span{position: relative;padding-right: 18px;color: #565c67;font-size: 14px;}
+.more_text span:after{position: absolute;content: "";width: 15px;height: 15px;right: 0;top: 0;opacity: 0.8;background: url("images/ldmore.png") center center no-repeat;background-size: 10px auto;-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+.more_text.up span:after{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+/*红包*/
+.sf-cfj-rbBar{color: #4d97f4; line-height: 40px;font-size: 13px; background-color: #fce4df;padding: 0 14px 0 14px;}
+.sf-cfj-rbBar .btn{color: #df3031; float: right;font-size: 12px;}
+.sf-cfj-rbBar img.rb{margin-right: 8px;margin-top: -5px;width: 14px;}
+
+.xqCaption.toR12{padding: 13px 0 0 0;}
+.xqCaption.toR12 li:first-child{padding-right: 12px;}
+.xqCaption .btn{display:block;width:100%;height:36px;line-height:35px;text-align:center;font-size:14px;color:#ff6666;border:1px solid #ff6666;border-radius:1px;overflow:hidden;}
+/*楼栋信息*/
+.sf-bildInfo{font-size: 14px;line-height: 28px;padding-bottom: 14px;}
+.sf-bildInfo span{color: #83868f;}
+.mTitle .subtt{display: block;padding-top: 20px;font-size: 14px;line-height: 1em;color: #0c0d0e;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+.sf-xqExponent {line-height: 26px;font-size: 14px;padding-top:5px;padding-bottom: 12px;}
+.sf-xqExponent .level{display: inline-block;vertical-align: middle;width: 90px;height: 30px;background: url("images/houselevel.png") center center no-repeat;background-size: 90px auto;}
+.sf-xqExponent .level.a1{background-position: 1px 0;}
+.sf-xqExponent .level.a2{background-position: 1px -45px;}
+.sf-xqExponent .level.a3{background-position: 1px -90px;}
+.sf-xqExponent .level.a4{background-position: 1px -135px;}
+.sf-xqExponent .level.a5{background-position: 1px -180px;}
+.sf-xqExponent .level.a6{background-position: 1px -225px;}
+.sf-xqExponent .level.a7{background-position: 1px -270px;}
+.sf-xqExponent .level.a8{background-position: 1px -315px;}
+.sf-xqExponent .level.a9{background-position: 1px -360px;}
+.sf-xqExponent .level.a10{background-position: 1px -405px;}
+
+.sf-cfj-relItem li{padding: 10px 0;color: #0c0d0e;}
+.sf-cfj-relItem li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.sf-cfj-relItem li .lt{ float: left; padding: 4px 8px 0 0;}
+.sf-cfj-relItem li .rt{ overflow: hidden; font-size: 14px; line-height: 1.5;}
+.sf-cfj-relItem li .rt h3{ margin-top: 2px;font-size: 14px;}
+.sf-cfj-relItem li .rt p{ font-size: 13px; color: #83868f; overflow: hidden;text-overflow: ellipsis;white-space: nowrap; }
+.sf-cfj-relItem li i{ display: block; width: 42px; height: 42px; background: url(images/index_dd.png) no-repeat; background-size: 42px auto;}
+.sf-cfj-relItem li i.i2{ background-position:0 -42px;}
+.sf-cfj-relItem li i.i3{ background-position:0 -84px;}
+.sf-cfj-relItem li i.i4{ background-position:0 -126px;}
+.sf-cfj-relItem li i.i5{ background-position:0 -168px;}
+
+.conListBox .houseList{overflow:hidden;padding:0 0 10px 0;}
+.conListBox .houseList li{border:none;background:none;}
+.conListBox .houseList li > a{ padding:10px 14px; }
+.conListBox .houseList li:first-child > a{padding-top:0;}
+
+/* 相关推荐列表 */
+.conList{overflow:hidden;padding:0 0 10px 0;}
+.conList li{overflow:hidden;}
+.conList li > a{position:relative; display: block; padding:10px 14px; overflow: hidden; *zoom:1;}
+.conList li:first-child > a{padding-top:0;}
+.conList li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;}
+.conList li .img img{ width: 100%; height: 100%;}
+.conList li .txt{ overflow: hidden; *zoom:1;}
+.conList li h3{ font-size: 15px;height:36px;line-height:18px;color:#0c0d0e;padding-top:1px;margin-bottom:4px;overflow: hidden;}
+.conList li p{white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.conList li p .space{padding:0 3px;}
+.conList li .new{ float: right; font-size: 14px; color: #df3031;}
+.conList.cfj-ex li h3{height: auto;margin-bottom: 5px;}
+.conList.cfj-ex .stag{margin-top: 8px;}
+
+/*小区列表*/
+.arealist li{ padding-bottom: 14px; overflow: hidden;margin: 0 8px;}
+.arealist li a{color: #83868f;}
+.arealist li:not(:last-child){  border-bottom: 1px solid #f4f4f4;}
+.arealist li:not(:first-child){ padding-top: 14px;}
+.arealist li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;overflow: hidden;}
+.arealist li .img img{ width: 100%;height: 100%;}
+.arealist .info{ overflow: hidden; font-size: 12px;}
+.arealist .info.pdB20{padding-bottom: 20px;}
+.arealist .info h3{font-size: 15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #0c0d0e;}
+.arealist .info .bar{display: inline-block;width:60px;height:8px;margin-top:5px;border:1px solid #e4e4e4;}
+.arealist .info .bar span{display: block;height:8px;background:#ffcc99;margin: -1px 0 0 -1px;}
+.arealist .relSch{padding-top: 10px;position: relative;clear: both;}
+.arealist .relSch div{position: relative;padding: 7px 10px;background-color: #f4f4f4;clear: both;line-height: 1em;font-size: 11px;color: #0c0d0e;overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
+.arealist .relSch .title{ float: left;color: #83868f;padding-right: 7px;margin-right: 7px;border-right: 1px solid #bfc0c4;}
+.arealist .relSch:after{position: absolute; z-index: 999;top: 0; left: 26px; content: ''; margin-top: -2px; width: 0; height: 0; border-style: solid; border-width: 6px 5px; border-color: #f4f4f4 transparent transparent transparent;-webkit-transform: rotate(180deg);transform: rotate(180deg);}
+
+.cfj-answer{clear: both;}
+.cfj-answer.mtd12{margin-top: -12px;}
+.cfj-answer li{line-height: 45px;font-size: 15px;}
+.cfj-answer li a{display: block;padding: 0 14px;overflow: hidden;}
+.cfj-answer li a,.cfj-answer li a:link,.cfj-answer li a:active,.cfj-answer li a:visited{color: #0c0d0e;}
+.cfj-answer li:not(:last-child){border-bottom: 1px solid #f4f4f4;}
+.cfj-answer li .flor{font-size: 12px;color: #83868f;}
+/*更多*/
+.more_std{display:block;width:100%;height:47px;line-height:47px;background:url(images/center_more.png) center center no-repeat;background-size:15px auto;}
+.more_std.up{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+.more_text{display:block;width:100%;height:40px;line-height:40px;text-align: center;}
+a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c67;font-size: 14px;}
+.more_text span{position: relative;padding-right: 18px;color: #565c67;font-size: 14px;}
+.more_text span:after{position: absolute;content: "";width: 15px;height: 15px;right: 0;top: 0;opacity: 0.8;background: url("images/ldmore.png") center center no-repeat;background-size: 10px auto;-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+.more_text.up span:after{-webkit-transform: rotateX(180deg);-moz-transform: rotateX(180deg);transform: rotateX(180deg);}
+
+/* 浮层-置业顾问 */
+.floatTel{height:49px; width: 100%;}
+.floatTel dl{position: fixed; bottom: 0; left: 0; width: 100%; background: #f4f4f4; display: table; z-index: 2;}
+.floatTel dt,.floatTel dd{display: table-cell; vertical-align: middle;}
+.floatTel dt{padding-left:8px;font-size: 12px;}
+.floatTel dd{overflow: hidden;width:64px;background:#fff;}
+.floatTel dd a{ display:block;height:49px;background:#df3031;color:#ffffff;text-align: center; font-size: 11px;margin-right:1px;padding-top:6px;line-height:1;}
+.floatTel dd:last-child a{margin-right:0;}
+.floatTel dd:only-of-type{width:128px;}
+.floatTel .btn{padding: 3px 0 0 0;color: #83868f;font-size: 11px;}
+.floatTel .btn span{display: block;float: left;width: 50%;text-align: center}
+.floatTel .btn i{display: block;height: 20px;background: url("images/cfj-footer-ico-house.png") 0 0 no-repeat;background-size: 22px auto;}
+.floatTel .btn p{margin-top: 4px;}
+.floatTel .btn i.h1{background-position: center 0;}
+.floatTel .btn i.h2{background-position: center -41px;}
+.floatTel .measure{line-height: 40px;font-size: 16px;}
+/* 各房源列表 */
+.houseList ul{ margin:0;}
+.houseList li{ border-bottom: 1px solid #f4f4f4;margin:0 8px;}
+.houseList li:last-child{ border-bottom: none;}
+.houseList li > a{position:relative; display: block; padding: 14px 8px; overflow: hidden; *zoom:1;margin:0 -8px;}
+.houseList li .img{ position: relative; float: left; margin-right: 8px; width: 106px; height:80px;}
+.houseList li .img img{ width: 100%; height: 100%;}
+.houseList li .img p{position:absolute;display:block;height:10px;width:100%;bottom:4px;left:0;overflow:hidden;}
+.houseList li .online{float:left;width: 11px; height: 10px; margin-left:5px; background: url(images/list_icons.png) -14px 0 no-repeat; background-size: 25px auto;}
+.houseList li .video{float:left;width: 13px; height: 10px; margin-left:5px; background: url(images/list_icons.png) no-repeat; background-size: 25px auto;}
+.houseList li .tj{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(images/list_icons.png) 0 -25px no-repeat; background-size: 25px auto;}
+.houseList li .txt{ overflow: hidden; *zoom:1;}
+.houseList li h3{ font-size: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:18px;color:#0c0d0e;margin-top:-1px;margin-bottom:4px;}
+.houseList li h3 .hb-icon{float:right;width:14px;height:14px;margin:1px 0 0 2px;background: url(images/list_icons.png) 0 -11px no-repeat; background-size: 25px auto;}
+.houseList li p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.houseList li p .space{padding:0 2px;}
+.houseList li .new{ float: right; font-size: 14px; color: #df3031;font-weight:bold;}
+.houseList li .new.thin{font-weight: normal;}
+
+.declareRes {font-size: 9px;color: #83868f;line-height: 13px;padding: 4px 14px 14px 14px;}
+/*走势图与一年两年按钮分离20151124*/
+.chart{padding-top: 14px;}
+/*收藏浮层20151123*/
+.xqfocus .favorite{height:40px; width:100px; background-color: #666666; opacity:0.9; filter: alpha(opacity=90);border-radius:6px;font-size: 16px; line-height: 40px; position: fixed; _position: absolute; color:#FFFFFF; text-align:center;z-index:9999}
+.head-icon a i{float:left;width: 32px; height: 32px; background: url(images/header_iconssc.png) no-repeat; background-size: 128px auto;}
+/*收藏浮层*/
+.ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.maptxt {position: absolute;top: 50%;left: 50%;padding:3px 7px;margin-top:-40px;border-radius: 5px;background: rgba(0,0,0,.6);color: #fff;font-size: 14px;transform: translateX(-50%);-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);}
+/*兼容firefox的浮动层二期内容*/
+/*.floatTel1{ position: fixed; bottom: 0; left: 0; width: 100%; background: #f4f4f4;height:49px; display: -moz-box; display: -ms-box;display: box; -webkit-box-orient:horizontal; -moz-box-orient:horizontal; box-orient:horizontal;}
+.floatTel1 .btn{padding: 5px 0 0 0;color: #83868f;font-size: 11px;text-align: center}
+.floatTel1 .btn i{display: block;height: 20px;background: url("images/cfj-footer-ico-house.png") 0 0 no-repeat;background-size: 22px auto;}
+.floatTel1 .btn p{margin-top: 4px;text-align: center;}
+.floatTel1 .btn i.h1{background-position: center 0;}
+.floatTel1 .btn i.h2{background-position: center -41px;}
+.floatTel1 .measure{ line-height: 40px;font-size: 16px;/!*float: right;*!/}
+.floatTel1 .btn{ /!*float: left;*!/ -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1;box-flex:1;}
+.floatTel1 .measure{ width: 40%; height:49px;background:#df3031;text-align: center; font-size: 11px;line-height:1;}
+.floatTel1 .measure a{display: block;font-size: 16px;line-height: 49px;color:#ffffff;}
+.floatTel1 .measure a{color:#ffffff;}
+*/

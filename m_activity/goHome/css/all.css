@@ -1,0 +1,562 @@
+@charset 'utf-8';
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    -webkit-text-size-adjust: none;
+}
+
+body
+{
+    font-family: Arial, 'Microsoft Yahei';
+
+    background: #fff;
+    background-size: 100%;
+}
+
+body.choose
+{
+    overflow: hidden;
+
+    height: 100%;
+}
+
+form,
+img,
+table,
+td
+{
+    border: 0;
+}
+
+ul,
+ol,
+li
+{
+    display: block;
+
+    list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    font-size: 100%;
+    font-weight: normal;
+}
+
+input,
+textarea,
+img
+{
+    font-family: Arial, 'Microsoft Yahei';
+
+    vertical-align: middle;
+}
+
+@media screen and (max-device-width: 320px)
+{
+    body
+    {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+@media screen and (max-device-width: 480px)
+{
+    body
+    {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2)
+{
+    body
+    {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)
+{
+    body
+    {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+a
+{
+    text-decoration: none;
+
+    color: #3c3f46;
+}
+
+/*html,
+body,
+img {
+    height: 100%;
+}*/
+
+img
+{
+    max-width: 100%;
+}
+
+body
+{
+    /*    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/homebg.jpg) top center no-repeat;
+    background-size: cover;*/
+}
+
+em,
+i
+{
+    font-style: normal;
+}
+
+.clear
+{
+    font-size: 0;
+    line-height: 0;
+
+    visibility: hidden;
+    clear: both;
+
+    height: 0;
+}
+
+.clearfix:after
+{
+    display: block;
+    clear: both;
+
+    height: 0;
+
+    content: '\200B';
+}
+
+.clearfix
+{
+    *zoom: 1;
+}
+
+.center
+{
+    text-align: center;
+}
+
+.none
+{
+    display: none;
+}
+
+.flol
+{
+    float: left;
+}
+
+.flor
+{
+    float: right;
+}
+
+.mrt1
+{
+    margin-top: .8rem;
+}
+
+.mgb2
+{
+    margin-bottom: 1.5rem;
+}
+
+.main
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    max-width: 640px;
+    min-height: 100%;
+    margin: 0 auto;
+}
+
+.main.bj01
+{
+    z-index: 999;
+}
+
+.main.bj02
+{
+    z-index: 999;
+
+    padding-top: 1.25rem;
+}
+
+.p1info
+{
+    position: relative;
+
+    width: 13.5rem;
+    margin: 0 auto;
+    padding-top: 13.175rem;
+}
+
+.p1info .tit
+{
+    width: 8.575rem;
+    height: .85rem;
+    margin: 0 auto .875rem;
+}
+
+.p1info dl
+{
+    display: table;
+
+    margin-bottom: .3rem;
+}
+
+.p1info dt
+{
+    display: table-cell;
+
+    width: 3.75rem;
+    height: 2.125rem;
+}
+
+.p1info dt img.n01
+{
+    width: 1.6rem;
+    height: .85rem;
+}
+
+.p1info dt img.n02
+{
+    width: 2.475rem;
+    height: .85rem;
+}
+
+.p1info dd
+{
+    position: relative;
+
+    display: table-cell;
+
+    width: 9.75rem;
+    height: 1.8rem;
+}
+
+.p1info .ipt-text
+{
+    font-size: .7rem;
+    line-height: .7rem;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 9.75rem;
+    height: 1.8rem;
+    padding: .55rem 0  .55rem .55rem;
+
+    color: #3d2a1d;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background: #fff;
+}
+
+.p1info .ipt-text:focus
+{
+    color: #3d2a1d;
+}
+
+.p1info .ipt-text::-webkit-input-placeholder
+{
+    color: #ccc;
+}
+
+.p1info dd ul
+{
+    font-size: 14px;
+
+    position: absolute;
+    z-index: 5;
+    top: 1.9rem;
+
+    display: none;
+    overflow: auto;
+
+    width: 100%;
+    height: 75px;
+
+    background: #fff;
+}
+
+.p1info dd ul li
+{
+    line-height: 25px;
+
+    margin-left: 20px;
+    /*padding-left: 10px;*/
+}
+
+.map
+{
+    /*    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/map.png) no-repeat;
+    background-size: 100%;*/
+    position: relative;
+
+    width: 14rem;
+    height: 10.35rem;
+    margin: 0 auto .5rem;
+}
+
+.map i
+{
+    position: absolute;
+    top: 3rem;
+    left: 4rem;
+
+    display: block;
+
+    width: .375rem;
+    height: .6rem;
+    margin-right: -.3rem;
+    margin-left: -.1875rem;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/icon_b.png) no-repeat;
+    background-size: 100%;
+}
+
+.map .r01
+{
+    position: absolute;
+    right: .6rem;
+    bottom: -.3rem;
+
+    display: block;
+
+    width: 1.3rem;
+    height: 1.725rem;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/icon_r1.png) no-repeat;
+    background-size: 100%;
+}
+
+.map .r02
+{
+    position: absolute;
+    bottom: .2rem;
+    left: .4rem;
+
+    display: block;
+
+    width: 1.3rem;
+    height: 1.65rem;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/icon_r2.png) no-repeat;
+    background-size: 100%;
+}
+
+.info01
+{
+    position: relative;
+
+    width: 12.35rem;
+    height: .8rem;
+    margin: 0 auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz04.png) no-repeat;
+    background-size: 100%;
+}
+
+.info01 .num
+{
+    font-size: .9rem;
+
+    position: absolute;
+    top: 0rem;
+    left: 6.675rem;
+
+    width: 4.25rem;
+    height: .8rem;
+
+    text-align: center;
+
+    color: #fff;
+}
+
+.info02
+{
+    width: 8.475rem;
+    height: .8rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz05.png) no-repeat;
+    background-size: 100%;
+}
+
+.info02a
+{
+    width: 8.675rem;
+    height: .8rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz07.png) no-repeat;
+    background-size: 100%;
+}
+
+.info03
+{
+    width: 11.225rem;
+    height: 2rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz06.png) no-repeat;
+    background-size: 100%;
+}
+
+.info04
+{
+    width: 9.375rem;
+    height: .8rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz08.png) no-repeat;
+    background-size: 100%;
+}
+
+.info05
+{
+    width: 9.725rem;
+    height: 1.825rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz09.png) no-repeat;
+    background-size: 100%;
+}
+
+.info06
+{
+    width: 10.45rem;
+    height: .875rem;
+    margin: .8rem auto;
+
+    background: url(//static.soufunimg.com/common_m/m_activity/goHome/images/wz10.png) no-repeat;
+    background-size: 100%;
+}
+
+.btn01
+{
+    display: block;
+    overflow: hidden;
+
+    width: 9.4rem;
+    height: 1.85rem;
+    margin: .5rem auto 0;
+
+    border: 0;
+}
+
+.btn02
+{
+    display: block;
+    overflow: hidden;
+
+    width: 8.225rem;
+    height: 1.6rem;
+    margin: 0 auto 0;
+
+    border: 0;
+}
+
+.plane
+{
+    position: absolute;
+    z-index: 9993;
+    top: 9.75rem;
+    right: 0rem;
+
+    width: 7.1rem;
+    height: 3.375rem;
+
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+
+.slideInLeft
+{
+    -webkit-animation-name: slideInLeft;
+            animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInLeft
+{
+    0%
+    {
+        visibility: visible;
+
+        -webkit-transform: translateX(-200%);
+                transform: translateX(-200%);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft
+{
+    0%
+    {
+        visibility: visible;
+
+        -webkit-transform: translateX(-200%);
+                transform: translateX(-200%);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+    }
+}
+
+#mask
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,.05);
+}

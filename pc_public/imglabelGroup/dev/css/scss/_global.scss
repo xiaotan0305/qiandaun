@@ -1,0 +1,55 @@
+.disblock {
+    display: block;
+}
+
+.fr {
+    float: right;
+}
+
+
+
+.cblue {
+    color: $blue;
+}
+
+
+/*
+ * 按钮
+ */
+
+.btn-area {
+    margin: 15px 0 0;
+}
+
+.btn {
+    background: #b3b3b3;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+    border-radius: 4px;
+}
+
+.btn-default {
+    background: $blue;
+    color: #fff;
+    &:hover,
+    &:active {
+        background: $blueD;
+    }
+}
+
+.btn-primary {
+    background-color: $pulple;
+    color: #fff;
+    &:hover,
+    &:active {
+        background-color: $pulpleD;
+    }
+}
+
+.none{
+    display: none;
+}

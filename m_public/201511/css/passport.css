@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*尾部定位*/
+.page{position:relative; min-height:100%; padding-bottom:160px;}/*20160106*/
+.page.pd80{padding-bottom:80px;}
+.main{ min-height:0; position:static;}/*20160106*/
+.footer.bottom {position:absolute;bottom:0;width:100%; max-width:640px;}/*20160106*/
+/*头部右侧红色字体*/
+.head-icon.red-txt a{font-size:16px;color:#ff6666;}
+
+input.noutline{outline: none;}
+.mr14{margin-right:14px;}
+.mr70{ margin-right:70px;}
+.mr20{ margin-right:20px;}
+.main *,.tz-box *{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+/*登录*/
+.uc-login li{ position:relative; overflow:hidden;}
+.tit{ float:left; font-size:16px; color:#83868f; padding-top:12px;}
+.tit i{ padding-left:1em;}
+.input-box{ margin-left:63px; font-size:15px; color:#b3b6be;border-bottom:1px solid #f4f4f4; line-height:0;}
+.uc-login li:last-child .input-box{border-bottom:0;}
+.input-box.ml68{ margin-left:68px;}
+.input-box input{font-size: 15px; height:44px;border: none; color:#0c0d0e;}
+.input-box input::-webkit-input-placeholder{color:#b3b6be; background-color:#fff;}
+.input-box .tel{display:block; height:44px;font-size: 15px; padding-top:24px; color:#0c0d0e; overflow:hidden;}/*20160107原手机号不可输入*/
+.input-box.eidt{ margin-left:0;}
+.input-box.eidt input{ width:100%;}
+/*密码明文开关*/
+.on-off{ position:absolute; top:5px; right:10px;}
+.sf-turnChange{position:relative;display:inline-block;float:right;width:60px;padding:0 5px;font-size:10px;line-height:32px;color:#fff;background:#f36363;border-radius:32px;border: 1px solid #f36363;}
+.sf-turnChange i{position: absolute;top: 1px;right:1px;display: inline-block;width:30px;height:30px;background-color: #ffffff;border-radius:50%;box-shadow:1px 1px 5px #f36363;}
+.sf-turnChange.hide{background-color: #ffffff;border: 1px solid #e3e3e3;}
+.sf-turnChange.hide i{box-shadow: 1px 0 3px #cccccc;left:1px;}
+
+/*登录按钮*/
+.btn-login{display:block;margin:0 8px;font-size:16px;line-height:40px;text-align:center;color:#cccfd8;background-color:#e3e7ed;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;}
+.btn-login.click{color:#fff;background-color:#e83b3c;}/*登录可点击状态*/
+
+/*第三方登录方式*/
+.other-login{position:absolute;bottom:100px;width:100%; max-width:640px;padding:0 14px;}/*20160106*/
+.other-login a{display:block;width:50%;height:33px;margin-right:14px;font-size:14px;line-height:33px;color:#0c0d0e;text-align:center;background:#fff;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.other-login a:last-child{margin-right:0;}
+.other-login a i{ display:inline-block; width:18px; height:18px; margin-right:8px; background:url(../images/login_icons.png) no-repeat; background-size:18px auto; background-position:0 0; vertical-align:-4px;}
+.other-login a i.qq{ background-position:0 0;}
+.other-login a i.wb{ background-position:0 -18px;}
+
+/*发送验证码按钮*/
+.btn-code{ position:absolute; top:0px; right:10px; height:44px;}
+.btn-code a{display:block;margin-top:10px;width:72px;font-size:12px;line-height:24px;color:#ff6666;text-align:center;background:#fff;border:1px solid #ff6666;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.btn-code a.noClick{color:#cccfd8;background:#fff;border:1px solid #e3e7ed;}
+.btn-code a.del{ margin-top:14px; width:16px; height:16px; background:url(../images/clear.png) no-repeat; background-size:16px 16px; border:0;}
+
+/*绑定手机号--提示语*/
+.marked{ padding:0 14px; font-size:13px; line-height:20px; color:#83868f;}
+/*修改昵称--提示语*/
+.marked2{ padding:0 14px; font-size:12px; line-height:20px; color:#b3b6be;}
+.marked2 p{ padding-bottom:8px;}
+
+/*我同意搜房协议*/
+.agreement{ padding:0 14px; font-size:13px; color:#83868f;}
+.agreement i{ display:inline-block; width:16px; height:16px; margin-right:8px; background:url(../images/ptss1.png) no-repeat; background-size:16px; vertical-align:-3px;}
+.agreement i.on{ background:url(../images/ptss_on.png) no-repeat; background-size:16px;}
+/*搜房协议内容*/
+.agreementTxt{ padding:18px 14px; font-size:14px; color:#83868f; line-height:1.5em;}
+.agreementTxt h3{ padding:14px 0 9px; color:#0c0d0e; font-size:15px;}
+.agreementTxt p{ padding:9px 0;}
+/*语音播报验证码弹窗*/
+.tz-con{ padding-bottom:13px;}
+.tz-con .ipt-list li.h65{ height:65px; color:#0c0d0e; margin-top:25px !important;}
+.tz-btn{ margin-top:12px;}

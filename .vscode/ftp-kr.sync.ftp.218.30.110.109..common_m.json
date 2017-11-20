@@ -1,0 +1,284 @@
+{
+    "type": "d",
+    "name": "",
+    "size": 4096,
+    "files": [
+        {
+            "type": "-",
+            "name": ".DS_Store",
+            "size": 12292
+        },
+        {
+            "type": "d",
+            "name": "build",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_8",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_activity",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_agent",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_ask",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_bbs",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_checkcode",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_data",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_dmp",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_esf",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_esfsubwaylist",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_fdc",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_h5market",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_im",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_index",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_ipwelcome",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_jiaju",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_job",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_kanfangtuan",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_map",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_my",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_news",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_pinggu",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_public",
+            "size": 4096,
+            "files": [
+                {
+                    "type": "d",
+                    "name": "jslib",
+                    "size": 0,
+                    "files": [
+                        {
+                            "type": "d",
+                            "name": "modules",
+                            "size": 0,
+                            "files": [
+                                {
+                                    "type": "d",
+                                    "name": "chengjiao",
+                                    "size": 0,
+                                    "files": [
+                                        {
+                                            "type": "-",
+                                            "name": "dealList.js",
+                                            "size": 3181
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "d",
+            "name": "m_recaptcha",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_schoolhouse",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_tongji",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_tools",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_tuangou",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_tudi",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_vip",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_wechat",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_welcome",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_world",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_xf",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_xiaoqu",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_zf",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "m_zhishi",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "-",
+            "name": "package-lock.json",
+            "size": 80393
+        },
+        {
+            "type": "d",
+            "name": "pc_public",
+            "size": 4096,
+            "files": []
+        },
+        {
+            "type": "d",
+            "name": "touch",
+            "size": 4096,
+            "files": []
+        }
+    ]
+}

@@ -1,0 +1,151 @@
+*{padding: 0;margin: 0;list-style: none;text-decoration: none;outline: none;}
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.hm-bg{background: url(../images/h-bg.jpg) center no-repeat;background-size: cover;}
+.background{position: relative;width: 100%;height: 100%;height: 28.39rem;left: 0;top: 0;}
+.rule-page-bg{background: url(../images/bg3.jpg) center no-repeat;background-size: cover;}
+.cj-bg{background: url(../images/bg1.jpg) center no-repeat;background-size: cover;}
+.cm-btn{position: absolute;}
+.fdcj{left: 1.42rem;top: 89%;margin-top: -1.005rem;background: url(../images/fdcj.png) no-repeat;background-size: cover;position: absolute;width: 5.93rem;height: 2.11rem;}
+.zkcj{right: 1.42rem;top: 89%;margin-top: -1.005rem;background: url(../images/zkcj.png) no-repeat;background-size: cover;position: absolute;width: 5.93rem;height: 2.11rem;}
+.zcsc{left: 1.42rem;top: 86.1%;margin-top: -1.005rem;background: url(../images/zcsc.png) no-repeat;background-size: cover;position: absolute;width: 5.93rem;height: 2.11rem;}
+.wyff{right: 1.42rem;top: 86.1%;margin-top: -1.005rem;background: url(../images/wyff.png) no-repeat;background-size: cover;position: absolute;width: 5.93rem;height: 2.11rem;}
+.syyh{right: 1.42rem;top: 86.1%;margin-top: -1.005rem;background: url(../images/syyh.png) no-repeat;background-size: cover;position: absolute;width: 5.93rem;height: 2.11rem;}
+.zz{z-index: 2;margin-top: -2.2rem;position: absolute;width: 2.95rem;height: 3.7rem;top: 59%;left: 50%;margin-left: -1.475rem;background: url(../images/kscj.png) no-repeat;background-size: cover;}
+.zp1{position: absolute;left: 50%;margin-left: -6rem;top: 59%;width: 12rem;height: 12rem;margin-top: -6rem;background: url(../images/zp1.png) no-repeat;background-size: cover;}
+.zp2{position: absolute;left: 50%;margin-left: -6rem;top: 59%;width: 12rem;height: 12rem;margin-top: -6rem;background: url(../images/zp2.png) no-repeat;background-size: cover;}
+.hj-list{overflow: hidden;left: 2.3rem;height: 3.7rem;margin-top:-1.85rem;position: absolute;top: 22.3%;width: 12.4rem;color: #f1f41f;font-size: 0.6rem;line-height: 1.037rem;}
+.hj-list ul{top: 0;position: absolute;width: 100%;left: 0;}
+.cover{z-index: 3;position: fixed;width: 100%;top: 0;left: 0;height: 100%;background: #000;opacity: 0.8;}
+.pop{font-size: 0.963rem;line-height: 1.67rem;color: #e169c9;width: 13.27rem;left: 50%;top: 50%;margin-left: -6.635rem;margin-top: -7.265rem;height: 14.53rem;z-index: 4;position: fixed;background: url(../images/pop-bg.png) no-repeat;background-size: cover;}
+.pop h1{font-size: 0.963rem;text-align: center;}
+.mt4{margin-top: 4.67rem;}
+.main-am{
+    animation: Down 1s;
+    -webkit-animation: Down 1s;
+    animation-delay:0.5s;
+    -webkit-animation-delay:0.5s;
+    animation-fill-mode:forwards!important;
+    -webkit-animation-fill-mode:forwards!important;
+    height: 18.87rem;
+    top: 0;
+    background: url(../images/ba.png) no-repeat;
+    background-size: 90%;position: absolute;width: 16rem;left: 50%;margin-left: -8rem;
+}
+#pt2Box{
+    position: relative;
+}
+.m3{
+    animation: scale 0.5s;
+    -webkit-animation: scale 0.5s;
+    animation-delay:0.2s;
+    -webkit-animation-delay:0.2s;
+    animation-fill-mode:forwards!important;
+    -webkit-animation-fill-mode:forwards!important;
+    margin-top: -0.7rem;left: 5.75rem;top: 15%;position: absolute;width: 4.83rem;height: 1.4rem;
+    background: url(../images/3y.png) no-repeat;background-size: cover;}
+@keyframes Down {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-2000px);
+        -ms-transform: translateY(-2000px);
+        transform: translateY(-2000px)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(30px);
+        -ms-transform: translateY(30px);
+        transform: translateY(30px)
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+}
+@-webkit-keyframes Down {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-2000px);
+        -ms-transform: translateY(-2000px);
+        transform: translateY(-2000px)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(30px);
+        -ms-transform: translateY(30px);
+        transform: translateY(30px)
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+}
+@-webkit-keyframes scale{
+    0%{
+        transform:scale(1);
+        -ms-transform:scale(1);
+        -moz-transform:scale(1);
+        -webkittransform:scale(1);
+        -o-transform:scale(1);
+    }
+    /*60%{transform:scale(1.2);}*/
+    40%{
+        transform:scale(1.2);
+        -ms-transform:scale(1.2);
+        -moz-transform:scale(1.2);
+        -webkittransform:scale(1.2);
+        -o-transform:scale(1.2);
+    }
+    100%{
+        transform:scale(1);
+        -ms-transform:scale(1);
+        -moz-transform:scale(1);
+        -webkittransform:scale(1);
+        -o-transform:scale(1);
+    }
+}
+@keyframes scale{
+	0%{
+        transform:scale(1);
+        -ms-transform:scale(1);
+        -moz-transform:scale(1);
+        -webkittransform:scale(1);
+        -o-transform:scale(1);
+    }
+	/*60%{transform:scale(1.2);}*/
+	40%{
+        transform:scale(1.2);
+        -ms-transform:scale(1.2);
+        -moz-transform:scale(1.2);
+        -webkittransform:scale(1.2);
+        -o-transform:scale(1.2);
+    }
+	100%{
+        transform:scale(1);
+        -ms-transform:scale(1);
+        -moz-transform:scale(1);
+        -webkittransform:scale(1);
+        -o-transform:scale(1);
+    }
+}
+/*.hideScale {*/
+   /*opacity: 1;*/
+/*}*/
+.animated {
+    -webkit-animation-fill-mode: forwards!important;
+    animation-fill-mode: forwards!important;
+}

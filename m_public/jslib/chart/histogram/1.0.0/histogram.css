@@ -1,0 +1,69 @@
+/*纵向柱状图需引入的css样式*/
+.histogramBg {
+    transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -o-transform: scaleY(0);
+}
+.histogramBg:after,.flopCon:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.histogramBg li a {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    text-indent: -999px;
+    overflow: hidden;
+}
+@-webkit-keyframes 'scaleAn' {
+    0% {
+        transform: scaleY(0);
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        -moz-transform: scaleY(0);
+        -o-transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+        -ms-transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+        -moz-transform: scaleY(1);
+        -o-transform: scaleY(1);
+    }
+}
+
+.histogramBg:after,.flopCon:after {  content: ".";  display: block;  height: 0;  clear: both;  visibility: hidden;  }
+.histogramBg li a { display: block; width: 50%; margin: 0 auto; text-indent: -999px; overflow: hidden;  }
+.histogramData li p,.histogramData li p span{color: #999;}
+.histogramRun {
+    transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    animation-name:'scaleAn';
+    -ms-animation-name: 'scaleAn';
+    -webkit-animation-name: 'scaleAn';
+    -moz-animation-name: 'scaleAn';
+    -o-animation-name: 'scaleAn';
+    /*动画属性名，也就是我们前面keyframes定义的动画名*/
+    animation-duration:1s;
+    -webkit-animation-duration: 1s;/*动画持续时间*/
+    -ms-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    /*-webkit-animation-timing-function: ease-in-out; 动画频率，和transition-timing-function是一样的*/
+    /*-webkit-animation-delay: 2s;动画延迟时间*/
+    /*-webkit-animation-iteration-count: 10;定义循环资料，infinite为无限次*/
+    /*-webkit-animation-direction: alternate;定义动画方式*/
+}

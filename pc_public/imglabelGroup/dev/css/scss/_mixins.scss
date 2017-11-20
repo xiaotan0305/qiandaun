@@ -1,0 +1,12 @@
+$blue: #28d;
+$blueD: #17c;
+$pulple: #576b95;
+$pulpleD: #465a84;
+$gray: #aaa;
+
+
+@mixin word-wrap {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}

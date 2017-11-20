@@ -1,0 +1,187 @@
+@charset "utf-8";
+/*北京页*/
+.banner-wrap {
+    width: 100%;
+    height:552px;
+    background: url(../images/banner_bj.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.fang_logo{background: url(../images/fang_logo.png?_1) no-repeat;width: 193px;height: 38px;position: absolute;
+top: 28px;left: 32px;}
+.fang_logo_list{background: url(../images/fang_logored.png?_1) no-repeat;width: 193px;height: 38px;position: absolute;
+top: 28px;left: 32px;}
+.logoyu{background: url(../images/bj_logan.png?_1) no-repeat;width: 572px;height: 148px;position: absolute;
+top: 90px;left: 318px;}
+.zs01{height: 324px;padding: 55px 0 115px;}
+.zs01 .ds_des{line-height: 28px;}
+.map_bj{height: 601px;width: 100%;background: url(../images/map_bj.jpg?_1) no-repeat center;padding-top: 60px;}
+.map_title{display: block;margin: 0px auto 40px;width: 242px;height: 30px;}
+.map_con{background: url(../images/map_con.png?_1) no-repeat;width: 1101px;height: 466px;margin: 0 auto;}
+.zs02 {text-align: center;padding-top: 60px;padding-bottom: 60px;}
+.title{display: inline-block;text-align: center;margin-bottom: 40px;}
+.cxzx_des{text-align: left;line-height: 28px;}
+.cxzx_tu{margin: 70px auto 40px;overflow: hidden;}
+.cxzx_tu img{width: 1203px;float: left;display: inline;height: 284px;}
+.sheshi{
+    width: 100%;
+    height:621px;
+    background: url(../images/sjbj_bj.jpg?_1) no-repeat center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.sheshi .title{margin-bottom: 90px;}
+.ss_con{width: 906px;height: 391px;margin: 0 auto;overflow: hidden;}
+.ss_con .fl{width: 622px;height: 391px;position: relative;}
+.ss_con .fl .des_tou{background: url(../images/bg_60.png?_1) repeat; height: 95px;width: 100%;
+font-size: 16px;color: #FFFFFF;position: absolute;bottom: 0;left: 0;padding-top: 15px;}
+.ss_con .fl .des_tou p{text-indent: 36px;line-height: 28px;text-align: left;}
+.ss_con .fr img{width: 263px;height: 191px;display: block;margin-bottom: 9px;}
+.pei_tao{width: 100%;
+    height:593px;
+    background: url(../images/bg_peitao.jpg?_1) no-repeat center;
+    margin: 0 auto;}
+.hw{width: 100%;
+    height:459px;
+    background: url(../images/bj_huwang.jpg?_1) no-repeat center;
+    margin: 0 auto;}
+.address{width: 100%;
+    height:131px;
+    background: url(../images/address_bg.jpg?_1) no-repeat center;
+    margin: 0 auto;padding-top: 50px;}
+.address p{font-size: 16px;color: #FFFFFF;line-height: 28px;}
+/*轮播*/
+.desStragImg{  position: relative; }
+.desStragImg .kuang{background: url(../images/youjiao.png?_1) no-repeat;width: 114px;height: 113px;position: absolute;
+top: 0px;right: 0px;}
+.desStragUl{ position: relative;    right: 5px;top: 5px}
+/*.desBg{ width: 368px; height: 320px; background: url(../images/desBg.png?_1) repeat-y right 0px; position: absolute; right: 0; top: 0; z-index: 1;}*/
+.desStragUl li{ position: relative; display: none;}
+.desStragUl li img{ width: 368px; height: 320px;}
+.desSmallImg{        position: absolute;
+    top: 237px;
+    left: 50%;
+    margin-left: -526px;
+    z-index: 3;}
+.desSmallImg li{ float: left; width: 87px; height: 87px; margin-left: 20px; position: relative;}
+.desSmallImg .border{ position: absolute; left: 0px; top: 0px; width: 87px; height: 87px; display: none;}
+.desSmallImg .border i{ position: absolute; width: 14px; height: 8px; background: url(../images/indexIconBig.png?_1) no-repeat ; left: 38px; top: -16px;}
+.desSmallImg .mask{ position:absolute; left: 0; top: 0; width:87px; height: 87px; z-index: 4;  opacity: 0.2; filter: alpha(opacity=20);}
+/*上海页*/
+.banner-wrap-sh {
+    width: 100%;
+    height:552px;
+    background: url(../images/banner_sh.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.sh_logan{background: url(../images/sh_logan.png?_1) no-repeat;width: 667px;height: 165px;position: absolute;
+top:90px;left:235px;}
+.map_sh{height: 443px;width: 100%;background: url(../images/map_sh.jpg?_1) no-repeat center;padding-top: 60px;}
+.map_sh .map_con{background: url(../images/map_con_sh.png?_1) no-repeat;width: 812px;height: 263px;margin: 0 auto;}
+.cxzx_sh{ width: 100%;
+    height:655px;
+    background: url(../images/sh_cxzx.jpg?_1) no-repeat center;
+    margin: 0 auto;margin-bottom: 110px;}
+.ss_con_sh{width: 1200px;height: 272px;margin: 0 auto;overflow: hidden;}
+.ss_con_sh li{width: 374px;height: 272px;margin-right: 38px;}
+.sheshi_sh{
+    width: 100%;
+    height:527px;
+    background: url(../images/sjbj_sh.jpg?_1) no-repeat center;
+    margin: 0 auto;
+    padding-top: 0;
+}
+.sheshi_sh .title{margin: 74px 0;}
+.hw_sh{width: 100%;
+    height:459px;
+    background: url(../images/sh_huwang.jpg?_1) no-repeat center;
+    margin: 0 auto;}
+/*武汉页*/
+.banner-wrap-wh {
+    width: 100%;
+    height:548px;
+    background: url(../images/banner_wh.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.wh_logan{background: url(../images/wh_logan.png?_1) no-repeat;width:582px;height: 163px;position: absolute;
+top: 90px;left: 310px;}
+.map_wh{height: 661px;width: 100%;background: url(../images/map_wh.jpg?_1) no-repeat center;padding-top: 0px;}
+.map_wh .map_con{background: url(../images/map_con_wh.png?_1) no-repeat;width: 1104px;height: 447px;margin: 0 auto;}
+.map_wh .map_title{    margin: 0px auto 50px;    padding-top: 60px;}
+ img.wh_tu {
+    width:1203px;
+    display: block;
+    height: 284px;
+}
+.cxzx_tu_wh{margin: 30px auto 40px;}
+.sheshi_wh{
+    width: 100%;
+    height:620px;
+    background: url(../images/sjbj_wh.jpg?_1) no-repeat center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+/*成都页*/
+.banner-wrap-cd {
+    width: 100%;
+    height:548px;
+    background: url(../images/banner_cd.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.cd_logan{background: url(../images/cd_logan.png?_1) no-repeat;width:578px;height: 158px;position: absolute;
+top: 90px;left: 315px;}
+.map_cd{height: 661px;width: 100%;background: url(../images/map_cd.jpg?_1) no-repeat center;padding-top: 0px;}
+.map_cd .map_con{background: url(../images/map_con_cd.png?_1) no-repeat;width: 1054px;height: 481px;margin: 0 auto;}
+.map_cd .map_title{    margin: 0px auto 50px;    padding-top: 60px;}
+.sheshi_cd{
+    width: 100%;
+    height:620px;
+    background: url(../images/sjbj_cd.jpg?_1) no-repeat center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+/*硅谷页*/
+.banner-wrap-gg {
+    width: 100%;
+    height:548px;
+    background: url(../images/banner_gg.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.gg_logan{background: url(../images/gg_logan.png?_1) no-repeat;width:920px;height: 219px;position: absolute;
+top:80px;left: 176px;}
+.map_gg{height: 520px;width: 100%;background: url(../images/map_gg.jpg?_1) no-repeat center;padding-top: 0px;}
+.map_gg .map_con{background: url(../images/map_con_gg.png?_1) no-repeat;width: 1004px;height: 291px;margin: 0 auto;}
+.map_gg .map_title{    margin: 0px auto 50px;    padding-top: 60px;}
+.sheshi_gg{
+    width: 100%;
+    height:644px;
+    background: url(../images/sjbj_gg.jpg?_1) no-repeat center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.sheshi_gg .title{margin-bottom: 45px;}
+.sheshi_gg .gg_des{margin-bottom: 60px;}
+.pei_tao_gg{width: 100%;
+    height:460px;
+    background: url(../images/gg_pt1.jpg?_1) no-repeat center;
+    margin: 0 auto;}
+
+/*列表页*/
+.gray7{color: #a7a7a7;}
+.gray9{color: #9a9a9a;}
+.banner_list{
+    width: 100%;
+    height:550px;
+    background: url(../images/bg_list.jpg?_1) no-repeat center;
+    margin: 0 auto;
+}
+.w1190{width: 1190px;margin: 0 auto;}
+.zslist h2{font-size: 28px;margin: 40px auto 20px;padding-bottom:6px;background: url(../images/bg_list_title.png?_1) no-repeat center bottom;width: 261px;text-align: center;}
+.zslist p{font-size: 16px;color: #9a9a9a;line-height: 24px;text-align: center;margin-bottom: 50px;}
+.zslist ul{    overflow: hidden;margin-bottom: 100px;}
+.zslist ul li{width: 378px;margin-right: 28px;margin-bottom: 40px;float: left;display: inline;}
+.zslist ul li a{display: block;width: 100%;height: 100%;}
+.zslist ul li .top{width: 378px;height: 286px;overflow: hidden;position: relative;}
+// .zslist ul li i{background:url(../images/jiao_sx.png?_1) no-repeat;position: absolute;top: 0;right: 0;
+// width: 110px;height: 94px;}
+.zslist ul li .bot h4{color: #000000;    margin-top: 12px;}
+.zslist ul li .bot p{color: #a7a7a7;text-align: left;    margin-bottom: 0;}

@@ -1,0 +1,34 @@
+/*basic*/
+body,div,p,ul,li,dl,dd,h3,img,span,i,strong,input{margin:0;padding:0;}
+ul,dl{ list-style:none;}
+a{ text-decoration:none;color:#333}
+a , img{border:none;}
+img{display:block; width:100%;}
+.clearfix:after{content:" ";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*zoom:1}
+.claer{clear:both;}
+.fl{float:left;}
+.fr{float:right;}
+html{font-size:20px;}
+body{color:#121212;font-family:Microsoft Yahei; background:url(m_zf/../images/bg-body.jpg) repeat 0 0;}
+
+@media screen and (min-width:359px){html {font-size:22.5px}}
+@media screen and (min-width:384px){html {font-size:24px}}
+@media screen and (min-width:412px){html {font-size:25.875px}}
+@media screen and (min-width:600px){html {font-size:37.5px}}
+@media screen and (min-width:768px){html {font-size:48px}}
+
+.wrap{max-width:768px; margin:0 auto;}
+.house-info{width:14.5rem; margin:0.25rem auto; padding:0.1rem 0.1rem 0.22rem; position:relative; background:#fff;}
+.house-info img{height:6.5rem;}
+.house-info h3{font-size:0.75rem; padding-top:0.1rem;}
+.house-info p{font-size:0.6rem; color:#727272;}
+.price{width:3.5rem;height:3.5rem; background:#60c1c6; border-radius:50%; color:#fff; text-align:center;
+position:absolute; bottom:0.15rem; right:0.5rem; border:3px solid #fff;
+font-size:0.7rem;}
+.price strong{border-bottom:1px dashed #fff; display:block;height:1.8rem; line-height:2.4rem;}
+.price del{color:#a0dfe2;display:block;}
+.btn-wrap{width:14.5rem; margin:0.5rem auto 0.25rem;}
+.btn-blue,.btn-red{display:block; color:#fff;margin:0 auto; border-radius:4px; text-align:center;}
+.btn-blue{font-size:0.8rem;  background:#60c1c6; margin-bottom:0.25rem;   line-height:2rem; height:2rem;}
+.btn-red{height:1.65rem; line-height:1.65rem; font-size:0.75rem; background:#f2729b;width:7rem;}

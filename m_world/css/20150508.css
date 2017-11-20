@@ -1,0 +1,107 @@
+.lbTab{ position: relative; margin-bottom: -1px; border-top: 1px solid #e4e4e4;  border-bottom: 1px solid #e4e4e4; }
+/*20141209 begin*/
+.lbTab li{ padding: 8px 0; width: 50px;overflow:hidden;}
+.lbTab li a{ display: block; border-right: 1px solid #e4e4e4;height:24px; line-height: 24px; font-size: 14px; text-align: center; color: #000;overflow:hidden;padding:0 6px;}
+.lbTab li:last-child a{ border-right: none;}
+.lbTab li.active a{ color: #f90;}
+.lbTab li a i{ position: relative;display:inline-block;font-style: normal;height:24px;overflow:hidden;}
+.lbTab li a i span{display:inline-block;height:24px;line-height:24px;padding-right:15px;overflow:hidden;}
+.lbTab li a i:after{ position: absolute; content: '';  top:50%;margin-top:-3px; right: 0;width: 0; height: 0; border-style: solid; border-width: 5px; border-color: #999 transparent transparent transparent;}
+.lbTab li.active a i:after{margin-top:-8px;border-color: transparent transparent #f90 transparent;}
+/*20141209 end*/
+
+/*拷贝*/
+.hist-mark span{ margin-left: 5px; font-size: 12px; color: #999;}
+.hist-mark span:before{ display:inline-block; content: ''; margin: 0 5px 0 0; width: 8px; height: 8px;}
+.hist-mark .deep-org:before{ background-color: #f90;}
+.hist-mark .pale-org:before{ background-color: #ffc488;}
+.hist-mark .pale-grn:before{ background-color: #b5d27e;}
+.hist-mark .pale-blue:before{ background-color: #c4dbfa;}
+
+.head-btn a{ margin-right: 10px; padding: 4px 6px; color: #fff; font-size: 14px;}
+.jjForm select {
+    border: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 44px;
+    font: inherit;
+    -webkit-appearance: none;
+    color: #999;
+    background-color: transparent;}
+
+.arr-rt {
+    position: relative;
+    padding-right: 15px;
+}
+
+.arr-rt:after {
+    position: absolute;
+    content: '';
+    right: -4px;
+    top: 50%;
+    margin-top: -7px;
+    width: 15px;
+    height: 15px;
+    background: url(../images/arrs01.png) no-repeat;
+    background-size: 15px auto;
+}
+
+.jj-ctbtn2 a {
+    display: inline-block;
+    width: 250px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #df3031;
+    border-radius: 2px;
+}
+.jj-ctbtn2 {
+    padding: 25px 0;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;}
+/*以上已有*/
+/*以下修改和添加*/
+
+.jj-ctbtn2 a:visited,.jj-ctbtn2 a:active{
+    color: #FFFFFF;
+}
+.tt-sum a.os-sear{padding:0 15px 0 23px;color: #507fbd;background: url('../images/outsea-search.png') 0 center no-repeat;background-size: 22px;}
+.tt-sum a:link,.tt-sum a:visited,.tt-sum a:active{color: #507fbd;}
+
+.mgt8{margin-top: 8px}
+.mgt10{margin-top: 10px}
+.pdb15{padding-bottom: 15px;}
+.pdr20{padding-right: 20px;}
+.pdl10{padding-left: 10px;}
+.lh40{line-height: 40px;}
+.os-sear .arr-rt:after {
+    right: 10px;
+}
+.bbe4{border-bottom: 1px solid #e4e4e4;}
+.bte4{border-top: 1px solid #e4e4e4;}
+.bdXe4{border-bottom: 1px solid #e4e4e4;border-top: 1px solid #e4e4e4;}
+
+.os-sear.jj-ctbtn2{padding: 10px 0;background-color: #f4f4f4;}
+.os-sear.jj-ctbtn2 a{line-height: 32px;height: 32px;}
+.os-sear h1{line-height: 40px;border-bottom: 1px solid #e4e4e4;}
+
+.os-sear .jjForm select{width: 5.8rem;line-height: 40px;margin-left: -12px;height: 40px;}
+.os-sear .jjForm li label input{float: right;width: 5.5rem;}
+
+
+.f10{font-size: 10px;}
+.os-sear li{clear: both;padding: 0 0 0 10px;line-height: 40px;border-bottom: 1px solid #e4e4e4;}
+.os-sear li:last-child{border: none;}
+.os-sear li:last-child:first-child{border-bottom: 1px solid #e4e4e4;}
+.os-sear li label{display: inline-block;box-sizing: border-box;width: 50%;float: left; }
+
+.cfj-tit{line-height: 30px;padding-top: 6px;}
+.os-sear li label.arr-rt{padding-right: 0px;}

@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+/* reset */
+div, p, dl, dd, h1, h2, h3, h4, h5, h6, a, b, u, em, input, textarea, button, select, form, section, label, span, td, li, nav, footer, body, ul, i { -webkit-box-sizing: border-box; -webkit-tap-highlight-color: rgba(0,0,0,0); padding: 0; margin: 0; }
+ul, li, ol { list-style: none; }
+a, img, button{-webkit-touch-callout:none; -webkit-user-select:none;}
+a:focus, a:active, a:hover, input, button, textarea { outline: none; }
+table { border-collapse: collapse; }
+body, td, input, textarea, option, select, button { font-family:helvetica,arial,"Microsoft YaHei","Heiti SC"; -webkit-text-size-adjust: none; }
+body{ font-size:0.875em} /*14px*/
+em, i{font-style:normal;}
+p{-webkit-text-size-adjust: none !important;}
+body{background:#f2f2f2; color:#444;}
+a{color:#444; text-decoration:none;}
+img{display:block}
+
+/* layout */
+
+.l{float:left;}
+.r{float:right;}
+.tc{text-align:center;}
+.clearfix:after{content: ''; display: block; overflow: hidden; visibility: hidden; clear: both;}
+.none{display:none;}
+.arial{font-family:arial;}
+.bold{font-weight:700;}
+
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt30{margin-top:30px;}
+
+.header{height:48px; background:#e6e6e6; border-bottom:1px solid #C9C9C9;}
+.header .logo{margin:0 auto; position:relative; top:9px;/*left:16px;*/ display:block; width:106px; height:30px; background:url('../images/liebaorsslogo.png'); -webkit-background-size: 106px 30px !important; -moz-background-size: 106px 30px !important; background-size: 106px 30px !important}
+
+.content{padding:30px 16px 0 16px; font-size:1.14rem;}
+.content .i-title h1{font-size:1.7rem; font-weight:400;}
+.content .i-title p{padding-top:10px; font-size: 0.857rem; color:#a9a9a9;}
+.content .i-time{margin-right:12px;}
+.content .i-content{padding-top:25px; line-height:1.57rem; word-break:break-all; text-align:justify;}
+.content .i-content p{margin-bottom:14px;}
+.content .i-content img{display:block; max-width:100%; margin-bottom:14px; margin-left:auto; margin-right:auto; height:auto !important;}
+.content .i-content embed{width:100% !important; height:auto !important;}
+body>a, body>span {display:none;}

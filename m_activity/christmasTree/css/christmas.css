@@ -1,0 +1,319 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {margin:0; padding:0;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei"; background:#7d2727;}
+form, img, table, td{ border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6,i{ font-size:100%; font-weight:normal; font-style:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+a{ text-decoration:none; border:0; color:#fff;}
+
+*{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+/* flex */
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;} /*for FF*/
+
+.mainbody{ position:relative; width:100%;}
+/*画面背景*/
+.bg{ position:absolute; top:0; left:0;}
+.bg1{ width:16rem; height:9.95rem; background:url(images/bg_1.jpg) no-repeat; background-size:16rem 9.95rem;}
+.bg2{ width:16rem; height:9.95rem; background:url(images/bg_2.jpg) no-repeat; background-size:16rem 9.95rem;}
+.bg3{ width:16rem; height:9.95rem; background:url(images/bg_3.jpg) no-repeat; background-size:16rem 9.95rem;}
+.bg4{ width:16rem; height:9.95rem; background:url(images/bg_4.jpg) no-repeat; background-size:16rem 9.95rem;}
+.bg5{ width:16rem; height:5rem; background:url(images/tit.png) no-repeat; background-size:16rem 5rem;}
+
+/*主体部分*/
+.content{position:absolute; top:0; left:0;}
+.header{ position:relative; width:16rem; height:12.5rem;}
+.header .older{ position:absolute; top:1.15rem; left:1.35rem; width:4.25rem; height:4.75rem; background:url(images/older.png) no-repeat; background-size:100%;}
+.header .con{position:absolute; top:1.5rem; left:0;width:16rem; height:10.7rem; background:url(images/head.png) no-repeat; background-size:100%;}
+.header .music{position:absolute; top:2.5rem; right:0.4rem; display:block; width:1.3rem; height:1.3rem; background:url(images/music.png) no-repeat; background-size:100%;}
+/*活动规则*/
+.rule{ position:absolute; bottom:0.3rem; right:0.35rem; width:4.75rem; height:1.75rem; background:url(images/btn_rule.png) no-repeat; background-size:100%; text-indent:-9999px;}
+
+/*装饰圣诞树*/
+.treeBox{ position:relative; width:16rem; height:18.5rem;}
+.decoration{ position:absolute; top:-3.6rem; left:0;width:9rem; height:24rem;}
+.decoration > div{position:absolute; top:0; left:0; width:9rem; height:24rem;}
+.decoration .bigstar{ position:absolute; top:0; left:0; width:9rem; height:9rem; background:url(images/big_x.png) no-repeat; background-size:100%;}
+.decoration .bigguang{ position:absolute; top:0; left:0; width:9rem; height:9rem; background:url(images/big_g.png) no-repeat; background-size:100%;}
+.decoration .xx{ position:absolute; top:0; left:0; width:9rem; height:24rem; background:url(images/xx.png) no-repeat; background-size:100%;}
+.decoration .xx_shan{ position:absolute; top:0; left:0; width:9rem; height:24rem; background:url(images/xx_shan.png) no-repeat; background-size:100%;}
+.decoration .ball{ background:url(images/ball.png) no-repeat; background-size:100%;}
+.decoration .bell{ background:url(images/bell.png) no-repeat; background-size:100%;}
+.decoration .gun{ background:url(images/gun.png) no-repeat; background-size:100%;}
+/*装饰点击盒子*/
+.box{ position:relative; float:right; margin-top:2.25rem; margin-right:1.3rem;}
+.infor{ display:block; position:absolute; top:0; left:-7.1rem; width:7.1rem; height:2.65rem; background:url(images/infor.png) no-repeat; background-size:100%;-webkit-animation:dropRight 1s ease infinite both;animation:dropRight 1s ease infinite both}
+/*五个装饰品区域*/
+.decorate{ position:relative; margin-bottom:0.4rem; width:2.85rem; height:2.85rem; border-radius:50%;}
+.decorate a{ position:absolute; top:-0.225rem; left:-0.225rem; display:block; width:2.85rem; height:2.85rem; background:url(images/day_1.png) no-repeat center; background-size:100%;}
+.decorate > div{ position:absolute; top:0.225rem; left:0.225rem; width:2.4rem; height:2.4rem; background:#fff; border-radius:50%; box-shadow:0 0 0 .225rem  rgba(255,255,255,.2);}
+.first a{ background:url(images/day_1.png) no-repeat center; background-size:100%;}
+.second a{ background:url(images/day_2.png) no-repeat center; background-size:100%;}
+.third a{ background:url(images/day_3.png) no-repeat center; background-size:2.85rem;}
+.fourth a{ background:url(images/day_4.png) no-repeat center; background-size:100%;}
+.fifth a{ background:url(images/day_5.png) no-repeat center; background-size:100%;}
+/*装饰轨迹*/
+/*.decorate a span{ position:absolute; top:0; left:0; display:block; width:2.85rem; height:2.85rem;}
+.decorate .first a span{background:url(images/day_1.png) no-repeat center; background-size:100%;}
+.decorate .second a span{ background:url(images/day_2.png) no-repeat center; background-size:100%;}
+.decorate .third a span{ height:3.1rem; background:url(images/day_3.png) no-repeat center; background-size:2.85rem;}
+.decorate .fourth a span{ background:url(images/day_4.png) no-repeat center; background-size:100%;}
+.decorate .fifth a span{ background:url(images/day_5.png) no-repeat center; background-size:100%;}*/
+
+/*飞行fly*/
+.fly{ opacity: 1;position:absolute; top:-0.225rem; left:-0.225rem; display:block; width:2.85rem; height:2.85rem; background:url(images/day_1.png) no-repeat center; background-size:100%;}
+
+
+/*进度条*/
+.progBar{ margin-top:4.2rem; padding-top:1px; width:16rem; height:3.75rem;}
+.progBar .jd_x{ margin:0 auto; margin-top:1.45rem; width:12.2rem; height:0.125rem; background:#5d2203;}
+.progBar ul{ margin:0 auto; margin-top:-0.6rem; width:14.25rem; height:2.5rem;}
+.progBar ul li{ position:relative; float:left; margin-right:0.25rem; width:2.65rem; height:2.5rem; text-align:center; background:url(images/jd_shadow.png) no-repeat center bottom; background-size:1.9rem 0.4rem;}
+.progBar ul li:nth-child(5){ margin-right:0;}
+.progBar ul li .star{ margin:0 auto; width:1rem; height:1rem; background:url(images/jd_star2.png) no-repeat; background-size:100%;}
+.progBar ul li.light .star{ background:url(images/jd_star.png) no-repeat; background-size:100%;}
+.progBar ul li .p_txt{ margin:0 auto; margin-top:0.25rem; height:0.65rem; background:url(images/jd2_txt1.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li:nth-child(2) .p_txt{ background:url(images/jd2_txt2.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li:nth-child(3) .p_txt{ background:url(images/jd2_txt3.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li:nth-child(4) .p_txt{ background:url(images/jd2_txt4.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li:nth-child(5) .p_txt{ background:url(images/jd2_txt5.png) no-repeat center; background-size:auto 0.65rem;}
+
+.progBar ul li.light .p_txt{ background:url(images/jd_txt1.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li.light:nth-child(2) .p_txt{ background:url(images/jd_txt2.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li.light:nth-child(3) .p_txt{ background:url(images/jd_txt3.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li.light:nth-child(4) .p_txt{ background:url(images/jd_txt4.png) no-repeat center; background-size:auto 0.65rem;}
+.progBar ul li.light:nth-child(5) .p_txt{ background:url(images/jd_txt5.png) no-repeat center; background-size:auto 0.65rem;}
+
+.progBar ul li .xian{ display:none; position:absolute; top:0.48rem; left:-1.65rem; width:3.05rem; height:0.125rem; background:#faf43b;}
+.progBar ul li.light .xian{ display:block;}
+.progBar ul li.light .hat{display:none; position:absolute; top:-1.25rem; left:0.15rem; width:2.35rem; height:1.25rem; background:url(images/jd_cur.png) no-repeat; background-size:100%;}
+.progBar ul li.cur .hat{ display:block;}
+
+/*兑换礼物*/
+.pris{ margin-top:6.7rem; width:16rem; height:10.35rem;}
+.pris li{ float:left; width:33%; text-align:center;}
+.pris img{ margin:0 auto; width:4.25rem; height:4.5rem;}
+.pris img img{ width:100%; height:100%;}
+.pris li .btn{ display:block; margin:0 auto; margin-top:0.4rem; width:2.6rem; height:0.95rem; font-size:0.56rem; text-align:center; line-height:0.95rem; background:#912929;}
+/*更多好礼*/
+.moreBtn{ display:block; margin:0 auto; margin-top:1.6rem; width:9.9rem; height:2rem; background:url(images/btn-more.png) no-repeat; background-size:100%;}
+
+/*弹出框*/
+.float{position:fixed;top:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:50;overflow:hidden;}
+.closeBox{ position:relative;}
+.closeBox a{ display:block; position:absolute; right:-0.75rem; top:-0.55rem; width:1.9rem; height:1.9rem; background:url(images/close.png) no-repeat; background-size:100%;}
+/*登录*/
+.loginBox{ position:absolute; top:50%; margin-top:-5.7rem; left:50%; margin-left:-5.325rem; width:10.65rem; height:11.3rem; background:url(images/login_bg.png) no-repeat; background-size:100%;}
+.loginBox ul{ padding:3.45rem 1.5rem 0;}
+.loginBox li{ width:100%; height:2.1rem; border-bottom:1px solid #f5f5f5;}
+.loginBox li:last-child{ border-bottom:0;}
+.loginBox .btnLogin{ display:block; margin:0 auto; margin-top:0.5rem; width:6.45rem; height:2.1rem; background:url(images/btn_login.png) no-repeat; background-size:100%;}
+.iptBox{ width:100%; height:2.1rem;}
+.iptBox input{ width:100%; margin-top:0.67rem; height:0.75rem; font-size:0.7rem; color:#0c0d0e; border:none; outline:none; background:none;}
+.iptBox input::-webkit-input-placeholder { font-size:0.7rem; line-height:0.75rem; color:#d1d1d1;}
+.iptBox .btnYzm{ display:block; margin-top:0.52rem; max-width:3.25rem; min-width:3.25rem; height:1.05rem; font-size:0.56rem; line-height:1.05rem; color:#fff; text-align:center; background:#f7da37; border-radius:4px;}
+/*活动规则*/
+.ruleBox{ position:absolute; top:50%; margin-top:-7.37rem; left:50%; margin-left:-5.325rem; width:10.65rem; height:14.75rem; background:url(images/rule.png) no-repeat; background-size:100%;}
+.ruleBox .con{ padding:1.6rem; font-size:0.56rem; line-height:1.4; color:#824009;}
+.ruleBox .con p{ padding-bottom:0.3rem;}
+.btnKnow{display:block; margin:0 auto; margin-top:0.5rem; width:6.5rem; height:2.1rem; background:url(images/btn_know.png) no-repeat; background-size:100%;}
+/*提示弹框*/
+.floatBox{ position:absolute; top:50%; margin-top:-4.82rem; left:50%; margin-left:-5.325rem; width:10.65rem; height:9.65rem; background:url(images/floatdiv.png) no-repeat; background-size:100%;}
+.floatBox .con{ padding:2.65rem 1.6rem 0; font-size:0.56rem; line-height:1; color:#824009; text-align:center;}
+.floatBox .con h2{ margin-bottom:0.2rem; font-size:1.28rem;}
+.btnJf{display:block; margin:0 auto; margin-top:1rem; width:6.5rem; height:2.1rem; background:url(images/btn_jf.png) no-repeat; background-size:100%;}
+/*装扮成功*/
+.success{ position:absolute; top:50%; margin-top:-5.4rem; left:50%; margin-left:-5.325rem; width:10.65rem; height:10.8rem; background:url(images/success.png) no-repeat; background-size:100%;}
+.success .closeBox a{ top:0.45rem;}
+.success .con{ padding:4.8rem 1.5rem 0; font-size:0.68rem; line-height:1.3; color:#824009; text-align:center;}
+.btnZ{display:block; margin:0 auto; margin-top:0.7rem; width:6.5rem; height:2.1rem; background:url(images/btn_z.png) no-repeat; background-size:100%;}/*赚积分*/
+.btnC{display:block; margin:0 auto; margin-top:0.7rem; width:6.5rem; height:2.1rem; background:url(images/btn_c.png) no-repeat; background-size:100%;}/*抽大奖*/
+.btnH{display:block; margin:0 auto; margin-top:0.7rem; width:6.5rem; height:2.1rem; background:url(images/btn_h.png) no-repeat; background-size:100%;}/*换礼物*/
+.btnQ{display:block; margin:0 auto; margin-top:0.7rem; width:6.5rem; height:2.1rem; background:url(images/btn_q.png) no-repeat; background-size:100%;}/*去查看*/
+.btnHua{display:block; margin:0 auto; margin-top:0.7rem; width:6.5rem; height:2.1rem; background:url(images/btn_hua.png) no-repeat; background-size:100%;}/*花掉它*/
+
+/*音乐转圈动画*/
+.circle{-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;-webkit-animation: circle 3s linear both infinite;animation: circle 3s linear both infinite;}
+@-webkit-keyframes circle{
+	0%{-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+	100%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+ }
+@keyframes circle{
+	0%{-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-o-transform: rotate(360deg);transform: rotate(360deg);}
+	100%{-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);}
+ }
+/*圣诞树闪星星*/
+.shan{-webkit-animation: flash 3s linear both infinite 1s;animation: flash 3s linear both infinite 1s;}
+@-webkit-keyframes flash {
+	0%, 100%, 50% {opacity:0}
+	25%, 75% {opacity:1}
+}
+@keyframes flash {
+	0%, 100%, 50% {opacity:0}
+	25%, 75% {opacity:1}
+}
+/*圣诞树闪星星*/
+.shan2{-webkit-animation: flash2 3s linear both infinite .5s;animation: flash2 3s linear both infinite .5s;}
+@-webkit-keyframes flash2 {
+	0%, 100%, 50% {opacity:.3}
+	25%, 75% {opacity:1}
+}
+@keyframes flash2 {
+	0%, 100%, 50% {opacity:.3}
+	25%, 75% {opacity:1}
+}
+/* 提示牌晃动效果 */
+@-webkit-keyframes dropRight{0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+    50%{-webkit-transform:translate3d(-8px,0,0);transform:translate3d(-8px,0,0)}
+    100%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+}
+@keyframes dropRight{0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+    50%{-webkit-transform:translate3d(-8px,0,0);transform:translate3d(-8px,0,0)}
+    100%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+}
+/*提示牌消失*/
+@-webkit-keyframes into {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@keyframes into{
+  0%{opacity: 1;}
+  100%{ opacity: 0;}
+}
+.into{animation:into 1.5s ease both;-webkit-animation:into 1.5s ease both;}
+
+/*圣诞老人摇晃效果*/
+.swinging{-webkit-animation:swinging 4s ease-in-out 0s infinite;-moz-animation:swinging 4s ease-in-out 0s infinite;animation:swinging 4s ease-in-out 0s infinite;-webkit-transform-origin:50% 80%;-moz-transform-origin:50% 80%;transform-origin:50% 80%;}
+@-webkit-keyframes swinging{
+    0% { -webkit-transform: rotate(0);}
+    8% { -webkit-transform: rotate(10deg);}
+    16% { -webkit-transform: rotate(-9deg);}
+    24% { -webkit-transform: rotate(8deg);}
+    32% { -webkit-transform: rotate(-7deg);}
+    40% { -webkit-transform: rotate(6deg);}
+    48% { -webkit-transform: rotate(-5deg);}
+    56% { -webkit-transform: rotate(4deg);}
+    64% { -webkit-transform: rotate(-3deg);}
+    72% { -webkit-transform: rotate(2deg);}
+    80% { -webkit-transform: rotate(0);} 
+    100% { -webkit-transform: rotate(0);}
+}
+@keyframes swinging{
+    0% { -webkit-transform: rotate(0);}
+    8% { -webkit-transform: rotate(10deg);}
+    16% { -webkit-transform: rotate(-9deg);}
+    24% { -webkit-transform: rotate(8deg);}
+    32% { -webkit-transform: rotate(-7deg);}
+    40% { -webkit-transform: rotate(6deg);}
+    48% { -webkit-transform: rotate(-5deg);}
+    56% { -webkit-transform: rotate(4deg);}
+    64% { -webkit-transform: rotate(-3deg);}
+    72% { -webkit-transform: rotate(2deg);}
+    80% { -webkit-transform: rotate(0);} 
+    100% { -webkit-transform: rotate(0);}
+}
+/* 点击装饰物效果 */
+.rubberBandstar{-webkit-animation: rubberBand 1.5s linear both infinite 0s;animation: rubberBand 1.5s linear both infinite 0s;}
+.rubberBandball{-webkit-animation: rubberBand 1.5s linear both infinite .4s;animation: rubberBand 1.5s linear both infinite .4s;}
+.rubberBandshan{-webkit-animation: rubberBand 1.5s linear both infinite 1.2s;animation: rubberBand 1.5s linear both infinite 1.2s;}
+.rubberBandgun{-webkit-animation: rubberBand 1.5s linear both infinite .8s;animation: rubberBand 1.5s linear both infinite .8s;}
+.rubberBandbell{-webkit-animation: rubberBand 1.5s linear both infinite .4s;animation: rubberBand 1.5s linear both infinite .4s;}
+@-webkit-keyframes rubberBand {
+  0% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+  10% {-webkit-transform: scale3d(1.1, 0.9, 1);transform: scale3d(1.1, 0.9, 1);}
+  20% {-webkit-transform: scale3d(0.9, 1.1, 1);transform: scale3d(0.9, 1.1, 1);}
+  30% {-webkit-transform: scale3d(1.05, 0.94, 1);transform: scale3d(1.05, 0.94, 1);}
+  45% {-webkit-transform: scale3d(.98, 1.02, 1);transform: scale3d(.98, 1.02, 1);}
+  55% {-webkit-transform: scale3d(1.02, .98, 1);transform: scale3d(1.02, .98, 1);}
+  60% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+  100% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+}
+@keyframes rubberBand {
+  0% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+  10% {-webkit-transform: scale3d(1.1, 0.9, 1);transform: scale3d(1.1, 0.9, 1);}
+  20% {-webkit-transform: scale3d(0.9, 1.1, 1);transform: scale3d(0.9, 1.1, 1);}
+  30% {-webkit-transform: scale3d(1.05, 0.94, 1);transform: scale3d(1.05, 0.94, 1);}
+  45% {-webkit-transform: scale3d(.98, 1.02, 1);transform: scale3d(.98, 1.02, 1);}
+  55% {-webkit-transform: scale3d(1.02, .98, 1);transform: scale3d(1.02, .98, 1);}
+  60% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+  100% {-webkit-transform: scale3d(1, 1, 1);transform: scale3d(1, 1, 1);}
+}
+
+/* 装饰物出现 */
+@-webkit-keyframes out1 {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes out1{
+  0%{opacity: 0;}
+  100%{ opacity: 1;}
+}
+.out1 {animation:out1 1.5s ease both;-webkit-animation:out1 1.5s ease both;}
+
+/*装饰物--星星--轨迹*/
+/*@-webkit-keyframes star1 {
+  0%{}
+  99% {-webkit-transform: translate3d(-12rem, 13rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+@keyframes star1 {
+  0%{}
+  99% {transform: translate3d(-12rem, 13rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+
+@-webkit-keyframes star2 {
+  0%{}
+  99% {-webkit-transform: translate3d(-13rem, 10rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+@keyframes star2 {
+  0%{}
+  99% {transform: translate3d(-13rem, 10rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+
+@-webkit-keyframes star3 {
+  0%{}
+  99% {-webkit-transform: translate3d(-14rem, -14rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+@keyframes star3 {
+  0%{}
+  99% {transform: translate3d(-14rem, -14rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+
+@-webkit-keyframes star4 {
+  0%{}
+  99% {-webkit-transform: translate3d(-12rem, 0, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+@keyframes star4 {
+  0%{}
+  99% {transform: translate3d(-12rem, 0, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+
+@-webkit-keyframes star5 {
+  0%{}
+  99% {-webkit-transform: translate3d(-10.5rem, -4rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+@keyframes star5 {
+  0%{}
+  99% {transform: translate3d(-10.5rem, -4rem, 0) scale(.5);}
+  100% {opacity: 0;}
+}
+.gj1{-webkit-animation:star1 1s ease .5s both;animation:star1 1s ease .5s both;}
+.gj2{-webkit-animation:star2 1s ease .5s both;animation:star2 1s ease .5s both;}
+.gj3{-webkit-animation:star3 1s ease .5s both;animation:star3 1s ease .5s both;}
+.gj4{-webkit-animation:star4 1s ease .5s both;animation:star4 1s ease .5s both;}
+.gj5{-webkit-animation:star5 1s ease .5s both;animation:star5 1s ease .5s both;}*/

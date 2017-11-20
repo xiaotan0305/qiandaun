@@ -1,0 +1,37 @@
+/*basic*/
+body,div,p,ul,li,dl,dd,h3,img,span,i,strong,input{margin:0;padding:0;}
+ul,dl{ list-style:none;}
+a{ text-decoration:none;color:#333}
+a , img{border:none;}
+img{display:block; width:100%;}
+.clearfix:after{content:" ";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*zoom:1}
+.claer{clear:both;}
+.fl{float:left;}
+.fr{float:right;}
+html{font-size:20px;}
+body{font-family:Microsoft Yahei; color:#333; background: url(../images/bg.gif) repeat 0 0 ; background-size:100%; }
+.red{color:#e03c14;}
+.text-center{text-align:center;}
+.rel{position: relative;}
+.wrap{ margin:0 auto; }
+.con{width: 91.2%; margin:20px auto;}
+
+.box{padding: 20px; background: #fffde5; margin-bottom: 20px;}
+.txtstyle{font-size:15px; line-height: 28px}
+.txtstyle p{padding-left:1.6em; text-indent: -1.6em;}
+.ml24{margin-left: 1.6em; padding-left: 0!important; text-indent: 0!important;}
+
+.footer{background: url(../images/p3.jpg) no-repeat; overflow: hidden; background-size: 100%; padding: 30px 0 66px;}
+.p31{width: 67.2%; margin: 0 auto;}
+.btn1{display: block; margin:25px auto 0; width: 41.6%;}
+.hand{width: 6.4%; margin:15px auto 10px;}
+
+.fixbtn{background: rgba(0,0,0,.6); width: 100%; padding:12px 0; position: fixed;  bottom: 0;}
+.btn2{display: block; width: 41.6%; margin: 0 auto; }
+
+.tagt{font-size: 15px; text-align:center; width: 50%; position: absolute; display: block;}
+.tt1{left:3%;top:45%;}
+.tt2{left:47%; top:45%;}
+.tt3{left:3%; top:82% ;}
+.tt4{left:47%; top:82%;}

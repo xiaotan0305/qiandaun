@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>搜房活动</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="http://js.mm.test.soufunimg.com/m_activity/plantTree/css/css.css">
+</head>
+
+<body>
+<div class="wrap" id="wrap">
+    <div class="banner">
+        <div class="treeBox">
+            <div class="tree" id="tree">
+                <div class="tree1" style="display:block;"></div>
+                <div class="tree2" style="display:none;"></div>
+                <div class="tree3" style="display:none;"></div>
+                <div class="tree4" style="display:none;">
+                    <p class="appleBox" id="appleBox">
+                        <span class="apple1"></span>
+                        <span class="apple2"></span>
+                        <span class="apple3"></span>
+                        <span class="apple4"></span>
+                        <span class="apple5"></span>
+                        <span class="apple6"></span>
+                    </p>
+
+                    <p class="starBox" id="starBox">
+                        <span class="star1"></span>
+                        <span class="star2"></span>
+                        <span class="star3"></span>
+                        <span class="star4"></span>
+                        <span class="star5"></span>
+                        <span class="star6"></span>
+                    </p>
+                </div>
+                <div class="tree5" style="display:none;"></div>
+            </div>
+
+            <div class="tools">
+                <i class="" id="cur">+5积分</i>
+                <div id="tool">
+                    <span class="js-icon tool"  style="display:block;"></span>
+                    <span class="sf-icon tool"  style="display:none;"></span>
+                    <span class="xj-icon tool"  style="display:none;"></span>
+                    <span class="zg-icon" id="pick"  style="display:none;"></span>
+                    <span class="lj-icon" id="basket"  style="display:none;"></span>
+                </div>
+            </div>
+
+            <div class="btn">
+                <a href="javascript:;" class="flol" id="prizeBtn">我的奖品</a>
+                <a href="javascript:;" class="flor" id="ruleBtn">活动规则</a>
+            </div>
+        </div>
+    </div>
+    <div id="askBox">
+        <div class="ask" id="0">
+            <div class="title">
+                <a href="javascript:;" class="change" data-id="0">换一换</a>
+            </div>
+            <div class="que">
+                <p>北京市最近公布北京人均住房面积31平米,大家都怎么看？说出你的观点和理由，说的好给奖励哦！公布北京人均住房面积,大家都怎么看？</p>
+                <a href="javascript:;" class="submit" data-askid="123"></a>
+            </div>
+        </div>
+        <div class="ask" id="1" style="display: none;">
+            <div class="title">
+                <a href="javascript:;" class="change" data-id="1">换一换</a>
+            </div>
+            <div class="que">
+                <p>中国好声音？</p>
+                <a href="javascript:;" class="submit" data-askid="456"></a>
+            </div>
+        </div>
+    </div>
+    <div class="prod">
+        <div class="title"></div>
+        <ul>
+            <li>
+                <div><img src="images/p1.jpg"></div>
+                <p>耳机</p>
+            </li>
+            <li>
+                <div><img src="images/p2.jpg"></div>
+                <p>耳机</p>
+            </li>
+            <li>
+                <div><img src="images/p3.jpg"></div>
+                <p>耳机</p>
+            </li>
+            <li>
+                <div><img src="images/p4.jpg"></div>
+                <p>耳机</p>
+            </li>
+            <li>
+                <div><img src="images/p5.jpg"></div>
+                <p>耳机</p>
+            </li>
+            <li>
+                <div><img src="images/p6.jpg"></div>
+                <p>耳机</p>
+            </li>
+        </ul>
+        <a href="javascript:;">去商城逛逛>></a>
+    </div>
+
+    <div class="tsBox fromTop">
+        <div class="title"></div>
+        <ul>
+            <li><span>1</span>
+                <p>活动截止到2016年2月3日；</p></li>
+            <li><span>2</span>
+                <p>每日限量点亮9个灯笼，全部点亮灯笼将获得额外大礼；</p></li>
+            <li><span>3</span>
+                <p>需登录参与活动，获得的积分可在我的积分记录中查询；</p></li>
+        </ul>
+    </div>
+
+    <div class="b-box">
+        <div class="logo"></div>
+        <a href="javascript:;" class="link" id="link">问题反馈</a>
+    </div>
+
+    <div id="floatBox">
+        <!--弹出 begin-->
+        <div class="floatAlert" id="floatAlert" style="display:none"></div>
+        <!--回答-->
+        <div class="outBox fromTop" id="issue" style="display:none;top:5rem;">
+            <div class="q-box" id="issueTitle">北京市最近公布"北京人均住房面积31平米"，大家都怎么看？说出你的观点和理由说的好给奖励哦！</div>
+            <div class="a-box">
+                <textarea id="issueText"></textarea>
+            </div>
+            <div class="btn-box flexbox">
+                <a href="javascript:;" id="issueClose" >返 回</a>
+                <a href="javascript:;" id="issueSubmit">提 交</a>
+            </div>
+        </div>
+        <!--反馈-->
+        <div class="outBox fromTop" style="display:none;top:5rem" id="feedback">
+            <div class="a-box">
+                <textarea class="ts" id="feedbackContent">请输入您的反馈(必填)~</textarea>
+            </div>
+            <div class="i-box">
+                <input type="text" id="feedbackPhone"  placeholder="请输入手机号(选填)">
+            </div>
+            <div class="btn-box flexbox">
+                <a href="javascript:;" id="feedbackBack">返 回</a>
+                <a href="javascript:;" id="feedbackSubmit">提 交</a>
+            </div>
+        </div>
+        <!--登录-->
+        <div class="outBox fromTop" id="login" style="display:none;top:5rem">
+            <div class="i-box">
+                <input type="text" id="phone" placeholder="请输入手机号">
+            </div>
+            <div class="i-box flexbox">
+                <input type="text" id="code" placeholder="请输入验证码">
+                <input type="button" id="getCode" value="获取验证码">
+                <input type="button" id="codeTime" value="重新发送(60S)" class="disabled" style="display: none;">
+                <input type="button" id="againCode"  value="重新获取" style="display:none;">
+            </div>
+            <div class="btn-box">
+                <a id="qd" href="javascript:;">登 录</a>
+            </div>
+            <a href="javascript:;" class="close"></a>
+        </div>
+        <!--活动规则-->
+        <div class="outBox2 fromTop" id="rule" style="display:none;top:5rem">
+            <h3>活动规则</h3>
+            <ul class="gz">
+                <li>1.活动时间：即日起到3月22日</li>
+                <li>2.登录参与，回答一个问题可获得一次成长机会</li>
+                <li>3.收获果实后将会随机获得一种奖励，答题过程中也会出现惊喜哦~</li>
+                <li>4.一天只能种植完成一颗树苗，收获了果实别忘了明天再来哦~</li>
+            </ul>
+            <a href="javascript:;" class="close"></a>
+        </div>
+
+        <!--提示-->
+        <div class="outBox2 s-ts fromTop" id="getSuccess" style="display:none;top:5rem">
+            <h4>恭喜您获得</h4>
+            <div class="jf"><span id="scoreSH">50</span> 积分</div>
+            <p>今天的任务完成了哦，明天再来吧！</p>
+            <a href="javascript:;" class="close"></a>
+        </div>
+
+        <!--我的奖品-->
+        <div class="outBox2 j-ts fromTop" id="prize" style="display:none;top:5rem">
+            <h4>我的奖品</h4>
+            <ul class="my-jp">
+                <li>积分：<span>200</span></li>
+                <li>其他：<span>免费验房</span></li>
+            </ul>
+            <a href="javascript:;" class="close"></a>
+        </div>
+        <!--信息弹层-->
+        <div id="msg" class="msg fromTop" style="display: none;">
+            <p>请先登录!</p>
+        </div>
+    </div>
+</div>
+<!--登录检测-->
+<input id="logined" type="hidden" value="1">
+<!--来源-->
+<input id="from" type="hidden" value="konggu">
+<!--当天已经答题的状态-->
+<input id="askStatus" type="hidden" value="1">
+<!--主域名-->
+<input id="mainSite" type="hidden" value="http://huodong.com">
+
+<script src="http://js.soufunimg.com/common_m/m_activity/public/jslib/jquery/2.1.4/jquery.js"></script>
+<script src="http://js.soufunimg.com/common_m/m_activity/public/jslib/phoneCheckout/phoneCheckout.js"></script>
+<script>
+    var oS = document.createElement('script');
+    var oD = new Date().getTime();
+    oS.src = '//js.mm.test.soufunimg.com/m_activity/plantTree/js/index.js?_' + oD;
+    oS.charset = 'utf-8';
+    var oB = document.getElementsByTagName('body')[0];
+    oB.appendChild(oS);
+</script>
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement;
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        var recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            if (clientWidth >= 640) {
+                docEl.style.fontSize = 40 + 'px';
+            }
+        };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</body>
+</html>

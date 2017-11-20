@@ -1,0 +1,52 @@
+
+lottery为大转盘插件，只用于转盘转动停止功能，具体使用方式如下所示，参数含义等如有不懂请务必问我。
+
+
+require.async(['lottery'], function (lotteryData) {
+            lottery = lotteryData({
+
+                // lotteryId 为奖品ID
+                lotteryId: '',
+
+                // lotteryArray 为指针dom
+                lotteryArray: $('#lotteryBtn'),
+
+                // url 为发送ajax请求的地址
+                url: '/huodongAC.d?m=newWheelLuckDraw&class=NewWheelLotteryHc',
+
+                // angle 为错误信息的位置。默认位置
+                angle: 5;
+
+                /**
+                 * 是否中奖且是否停止转动
+                 * @author MyOwns
+                 */
+                prizeListOrPhoneUpdate: function () {
+                    vars.prizeListOrPhoneUpdate = false;
+                },
+
+                /**
+                 * 转动指针停止并已经获奖
+                 * @author MyOwns
+                 */
+                lotteryStopSucc: function (data) {
+                    // data为ajax返回的值
+                },
+
+                /**
+                 * 转动指针停止并没有获奖
+                 * @author MyOwns
+                 */
+                lotteryStopFail: function (data) {
+                    // data为ajax返回的值
+                }
+
+                /**
+                 * Ajax转动中进行的操作
+                 * @author MyOwns
+                 */
+                lotteryAjaxFun: function (data) {
+                    // data为ajax返回的值
+                }
+            });
+        });

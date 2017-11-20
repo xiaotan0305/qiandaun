@@ -1,0 +1,49 @@
+@charset "utf-8";
+/*
+ * @authors longchan (longchan@soufun.com)
+ * @date    2014-07-22 11:29:29
+ * @version v1.0
+ */
+* { margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body { font-family:Arial, "Microsoft Yahei"; font-size: 16px; background: #3b3441;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;}
+.wbBox{position: absolute;width: 100%; height: 100%;overflow: hidden;background:url(images/bj01.jpg) no-repeat top center; background-size:100%;height:100%}
+.wbBoxbt01{position: absolute;width:161px; height:46px;overflow: hidden; left:50%;margin-left:-80px;bottom:16px;}
+.wbBoxbt02{position: absolute;width:92px; height:38px;overflow: hidden; right:0.6rem;top:7.575rem;}
+.qd-box{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:99;left:0;top:0;}
+.qdb-box{position:absolute;width:15.25rem;height:18.325px;top:50%;margin-top:-9.1625rem;left:50%;margin-left:-7.625rem;}
+.qdb-box .close{position: absolute;width:1.625rem;height:1.625rem;right:5px;top:5px;background:url(images/but03.png) no-repeat;background-size:100%;}
+.login{width:14.3rem; margin:0 auto;position: absolute;overflow: hidden; left:50%;margin-left:-7.15rem;bottom:1rem;}
+.login li{width:14.3rem;height:2.325rem;line-height:2.325rem;margin-top:12px;font-size:0.7rem;color:#666;}
+.login li .divbj{height:2.325rem;background: url(images/inpt01.png) no-repeat; background-size:100%;}
+.login li .divbja{width:6.55rem;height:2.325rem;background: url(images/inpt02.png) no-repeat; background-size:100%;text-indent:6px;}
+.login li input{height:2.325rem;width:13rem;background: none;color:#47363c;border:0rem;font-size:0.875rem;box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; outline:none;border:0;text-indent:20px;}
+.login li input[type='button']{max-width:7.3rem;min-width:7.3rem;width:7.3rem;height:2.325rem;font-size:0.85rem;background: url(images/inpt03.png) no-repeat; background-size:100%;border:none;border-radius:6px;color:#f4e3ce; text-align:center;margin-left:5px; cursor: pointer;text-indent: 0px;}
+.login  a{display: block;width:8.025rem;height:2.3rem;margin:15px auto 0;}
+
+
+
+.sf-os-maskFixed{position: fixed;width: 100%;height: 100%;left: 0;top:0;background: rgba(0,0,0,0.3);z-index: 998;}
+.sf-uc-checkWord{padding: 20px 15px;width: 250px;background-color: #ffffff;margin: -67px auto 0;top: 50%; position:relative;border-radius: 4px;}
+.sf-uc-checkWord .tr01{padding: 10px 0;border-radius: 4px;border: 1px solid #dedede;}
+.sf-uc-checkWord .tr01 input{height: 26px;width:110px;background:transparent;color:#666;border:0rem;font-size:15px; text-indent:15px;box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;outline:none;border:0}
+.sf-uc-checkWord .tr01 input[type='button']{max-width:3.5rem;min-width:3.5rem;width:3.5rem;height:1.5rem;background:#f4f4f4;border:none;border-radius:6px;color:#663300; text-align:center;margin-left:5px;}
+.sf-uc-checkWord .tr01 .bd-l-de {border-left: 1px solid #dedede;float:right}
+.mt15 {margin-top: 15px !important;}
+.sf-base-btn3 {width: 220px;margin: 0 auto;background-color: #999;color: #ffffff;line-height: 40px;border-radius: 4px;border: 1px solid #dedede; display:block; text-align:center; text-decoration:none}
+.sf-uc-checkWord .close {position: absolute; right: -10px;top: -10px;}
+
+.sf-uc-alertInfo{position: fixed;top: 45%;margin: 0 auto;width: 100%;line-height: 3rem;color: #ffffff;background: transparent;text-align: center;}
+.sf-uc-alertInfo span{margin: 0 auto;display: inline-block;max-width: 160px;line-height: 1rem;padding: 1rem 15px;border-radius: 5px;background: rgba(0,0,0,0.6);}
+.sf-os-maskFixed{position: fixed;width: 100%;height: 100%;left: 0;top:0;background: rgba(0,0,0,0.3);z-index: 998;}

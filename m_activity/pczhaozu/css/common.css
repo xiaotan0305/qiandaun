@@ -1,0 +1,59 @@
+@charset "utf-8";
+body,div,h1,h2,h3,h4,h5,h6,p,ul,li,ol,table,tr,td,input,button,em,img,dl,dt,dd,form,theader,tbody,tfoot,a,span,select,label,strong,caption,hr{ margin:0px; padding:0px;}
+body { font-family:"Microsoft Yahei"; background-color: #ffffff;}
+ul, ol, li {list-style: none}
+a {text-decoration: none;outline: 0;cursor: pointer;}
+input,textarea {outline: 0;border: none;}
+img {outline: 0;border: none;}
+.rel {position: relative;}
+.hide {display: none;}
+.ten_cen{text-align: center;}
+.f12{font-size: 12px!important;}
+.f13{font-size: 13px!important;}
+.f14{font-size: 14px!important;}
+.f16{font-size: 16px!important;}
+.f18{font-size: 18px!important;}
+.f20{font-size: 20px!important;}
+.f24{font-size: 24px!important;}
+.f30{font-size: 30px!important;}
+.f36{font-size: 36px!important;}
+.f40{font-size: 40px!important;}
+.gray0{color: #000000!important;}
+.gray3{color: #333333!important;}
+.gray6{color: #666666!important;}
+.gray9{color: #999999!important;}
+.mt20{ margin-top:20px!important;}
+.mt25{ margin-top:25px!important;}
+.mt30{ margin-top:30px!important;}
+.mt0{ margin-top:0px!important;}
+.mt05{ margin-top:5px!important;}
+.mt10{ margin-top:10px!important;}
+.mt15{ margin-top:15px!important;}
+.mt12{ margin-top:12px!important;}
+.fl {
+    float: left;
+    display: inline;
+}
+
+.fr {
+    float: right;
+    display: inline;
+}
+
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+/* 颜色 */
+.w1200{width: 1200px;margin: 0 auto;clear: both;}
+.w1002{width: 1002px;margin: 0 auto;clear: both;}
+.orange{color: #c96657;}

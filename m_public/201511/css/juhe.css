@@ -1,0 +1,96 @@
+@charset "UTF-8";
+.main1{ position: relative; margin: 0 auto; max-width: 640px; overflow: hidden;}
+.main{min-height:0;}
+.search.con{padding:9px 14px;}
+.jh-con{padding:6px 14px 20px;}
+.jh-con h3{color:#0c0d0e;font-size:17px;line-height:40px;}
+.jh-con .jhCon{font-size:14px;color:#565c67;line-height:20px;overflow:hidden;max-height:60px;}
+.jh-con .jhCon.all{max-height:none;}
+.more_xq{display:block;width:100%;height:40px;line-height:47px;background:url(../images/center_more.png) center center no-repeat;background-size:15px auto;margin-bottom:-16px;}
+.more_xq.up{-webkit-transform:rotate(180deg);transform:rotate(180deg);-moz-transform:rotate(180deg);-o-transform:rotate(180deg);}
+
+/*列表*/
+.about-list {padding:0 14px;}
+.about-list li{position:relative;border-bottom:1px solid #f4f4f4;}
+.about-list li > a{display:block;padding:14px 0;overflow:hidden;}
+.about-list li .img{float:right;width:88px;height:66px;margin-left:10px;overflow:hidden;}
+.about-list li .img img{width:100%;height:100%;}
+.about-list li h2{font-size:16px;color:#0c0d0e;height:40px;max-height:40px;line-height:20px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow:hidden;}
+.about-list li p{font-size:11px;color:#b3b6be;height:14px;line-height:14px;margin-top:12px;overflow:hidden;}
+.about-list li p span{display:inline-block;}
+.about-list li p .time{margin-right:6px;}
+.about-list li > a > div:only-child h2{height:auto;}
+.about-list .reply,.about-list .see{position:relative;color:#b3b6be!important;font-size:11px;padding-left:16px;margin:0 6px;}
+.about-list .reply:before{content: "";position: absolute;width:12px;height:12px;top:1px;left:0;background:url(../images/sf-jj-replyer.png) center center no-repeat;background-size: 12px auto;}
+.about-list .see:before{content: "";position: absolute;width:12px;height:12px;top:1px;left:0;background:url(../images/sf-jj-watcher.png) center center no-repeat;background-size: 12px auto;}
+
+/**/
+.homeOption{border-top:1px solid #f4f4f4;margin-top: -1px;width:100%;}
+.homeOption a{text-align:center;line-height:40px;font-size:14px;color:#565c67;position:relative;width:50%;}
+.homeOption a:after{position:absolute;content:'';width:0;height:20px;border-right:1px solid #f4f4f4;right:0;top:50%;margin-top:-10px;}
+.homeOption a:last-child:after{display:none;}
+
+/*阅读延伸*/
+.jh-read{margin:0 14px;padding-bottom:10px;}
+.jh-read dt{font-size:12px;color:#4a4a4a;line-height:50px;}
+.jh-read dd{margin:0 -5px;}
+.jh-read dd a{display:inline-block;font-size:15px;color:#0c0d0e;line-height:31px;padding:0 16px;margin:0 5px 10px;background:#eef0f4;border-radius:2px;}
+
+/*房产头条*/
+.jh-tt{margin:0 14px;padding:14px 0;overflow:hidden;}
+.jh-tt dt{float:left;height:52px;width:44px;background:url(../images/jh_tt.png) left 8px no-repeat;background-size:43px auto;margin-right:12px;}
+.jh-tt dd{height:52px;overflow:hidden;}
+.jh-tt ul{height:52px;overflow:hidden;}
+.jh-tt li{position:relative;padding-left:10px;}
+.jh-tt li:before{content:'';position:absolute;left:0;top:50%;margin-top:-2px;width:4px;height:4px;border-radius:50%;background:#d1d3d8;}
+.jh-tt li > a{display:block;height:26px;line-height:26px;font-size:13px;color:#0c0d0e;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+
+/*排行榜*/
+.jh-charts{}
+.jh-charts li{height:50px;line-height:50px;border-bottom:1px solid #f4f4f4;padding:0 14px;font-size:15px;}
+.jh-charts li > a{display:block;color:#0c0d0e;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.jh-charts .num{float:right;font-size:13px;color:#b3b6be;margin-left:12px;}
+.jh-charts .NO{float:left;width:16px;height:16px;line-height:12px;padding:2px;font-size:12px;color:#fff;text-align:center;background:#b3b6be;border-radius:50%;overflow:hidden;margin:17px 11px 0 0;overflow:hidden;}
+.jh-charts li:nth-child(1) .NO,.jh-charts li:nth-child(2) .NO,.jh-charts li:nth-child(3) .NO{background:#df3031;}
+
+/*猜你喜欢*/
+.xqFav{position:relative; overflow: hidden;padding-bottom:20px;padding-left:14px;}
+.xqFav ul{*zoom:1;position: relative;}
+.xqFav ul .swiper-slide{width:100%;display:flex;justify-content:space-around;}
+.xqFav ul .swiper-slide:last-child{}
+.xqFav li{width:31%;float:left;margin-right:8px;text-align:center;overflow: hidden;}
+.xqFav li > a{display:block;}
+.xqFav .housePic{position:relative;overflow:hidden;}
+.xqFav .housePic img{width:100%;height:90px;}
+.xqFav .housePic .text{position:absolute;bottom:0;left:0;width:100%;height:20px;line-height:20px;font-size:11px;color:#fff;text-align:left;padding:0 5px;background-color:rgba(51,51,51,0.7);white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.xqFav li h3{width:100%;font-size:14px;line-height:1;padding-top:1px;padding-bottom:1px;margin-top:8px;color:#0c0d0e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.xqFav li h3 span{color:#df3031;}
+.xqFav li p{line-height:1;padding-top:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.xqFav li .gf-tag{width:26px;min-height:92px; background:#ffad5c;font-size:12px;color:#fff; text-align:center;line-height:16px;overflow:hidden;}
+.xqFav li .gf-tag a{color:#fff;display:block;height:100%;padding:16px 5px;}
+
+/*猜你喜欢家居列表*/
+.jj-fav-box{padding-bottom:20px;}
+.jj-fav{position:relative;margin:0 14px;}
+.jj-fav .fav-list{overflow:hidden;position:relative;margin-left: -2px;}
+.jj-fav .fav-list li{width:100%;margin-right: 10px}
+.jj-fav .fav-list img{width:94%;height:28%;}
+
+/*焦点*/
+.swipe-btn{ position: absolute; bottom: 0; left: 0; width: 90%; height: 30px; font-size: 14px; color: #fff;overflow: hidden;}
+.swipe-txt{ height: 30px; line-height: 30px;}
+.swipe-txt li{color:#fff;padding:0 15px;font-size:14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background:rgba(0,0,0,.5);}
+.swipe-txt li i{ padding:0 3px; margin:0 5px; font-size:10px; line-height:12px; border:1px solid #fff; border-radius:5px; -webkit-border-radius:5px; overflow:hidden; vertical-align:2px;}
+.swipe-txt li.cur{ display: block;}
+.swipe-point{ position: absolute; bottom: 2px; left:75vw;}
+.swipe-point li{ float: left; margin: 0 2px; width: 6px; height: 6px; border-radius: 50%;background:rgba(255,255,255,0.5); }
+.swipe-point li.cur{width: 6px; height: 6px; margin:0 3px; margin-top:-1px; background-color: #fff; -webkit-transform: scale(1.2); transform: scale(1.2);}
+
+.jh-s-num{padding:2px 14px 6px;font-size:12px;color:#b3b6be;}
+
+/*列表*/
+.jh-list{margin:0 14px;}
+.jh-list li{border-bottom:1px solid #f4f4f4;}
+.jh-list li > a{display:block;padding:18px 0 16px;overflow:hidden;}
+.jh-list li h2{font-size:16px;color:#0c0d0e;height:20px;line-height:20px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.jh-list li p{font-size:13px;color:#83868f;max-height:40px;line-height:20px;margin-top:10px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow:hidden;}

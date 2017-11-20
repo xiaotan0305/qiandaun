@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>搜房十六周年庆典暨扩大管理会议</title>
+    <link rel="stylesheet" href="http://js.test.soufunimg.com/common_m/m_public/active/20150703/css/tercentenary.css">
+</head>
+
+<body>
+<div id="box">
+    <div id="header">
+        <a href="http://m.fang.com">
+            <div class="logo animate"></div>
+        </a>
+    </div>
+    <div id="left_top">
+        <img src="http://js.test.soufunimg.com/common_m/m_public/active/20150703/img/bg03.png"/>
+    </div>
+    <div id="znq">
+        <img src="http://js.test.soufunimg.com/common_m/m_public/active/20150703/img/01.jpg" width="100%"/>
+    </div>
+
+    <div id="login">
+        <div id="tot_email">
+            <input type="text" name="email" id="ipt_email" placeholder="请输入您的邮箱">
+            <span>@soufun.com</span>
+
+            <p></p>
+            <div id="ipt_sub">报名</div>
+        </div>
+    </div>
+    <div id="floor"><img src="http://js.test.soufunimg.com/common_m/m_public/active/20150703/img/floor.png" width="100%"></div>
+</div>
+    <script>
+function createStandardXHR() {
+	try {
+		return new window.XMLHttpRequest();
+	} catch( e ) {}
+}
+function createActiveXHR() {
+	try {
+		return new window.ActiveXObject( "Microsoft.XMLHTTP" );
+	} catch( e ) {}
+}
+function getXhr() {
+    var xhr = window.ActiveXObject !== undefined ?
+	// Support: IE6+
+	function() {
+		return createStandardXHR() || createActiveXHR();
+	} :
+	// For all other browsers, use the standard XMLHttpRequest object
+	createStandardXHR;
+	return xhr;
+}
+function get(url, callback){  
+    var req = getXhr()();
+    if(req){  
+        req.open("GET", url, true);  
+        req.onreadystatechange = function(){  
+            if(req.readyState == 4){  
+                if(req.status == 200){  
+                    callback(req.responseText);
+                }else{  
+                    alert("error");  
+                }  
+            }  
+        }  
+        req.send(null);  
+    }  
+} 
+	!(function(win, document){
+		var ipt_email = document.getElementById('ipt_email');
+		ipt_email.onfocus = function(){
+			this.value = '';
+		};
+		var ipt_sub = document.getElementById('ipt_sub');
+		var tot_email = document.getElementById('tot_email');
+		ipt_sub.onclick = function(){
+			var val = ipt_email.value;
+			if(/\w/.test(val)){
+				var url = 'index.php?email_prefix=' + val;
+				get(url,function(data){
+					if ('1' === data) {
+						alert('签到成功！欢迎出席搜房十六周年庆典暨扩大管理会议！');
+					} else if ('2' === data) {
+						alert('对不起，您已经签到过！');
+					} else if ('3' === data) {
+						alert("对不起，还未到签到时间，请耐心等待！");
+					} else {
+						alert('对不起，未能匹配到您的信息，请核对邮箱！');
+					}
+				});
+			}else{
+				tot_email.getElementsByTagName('p')[0].innerHTML = '请正确输入邮箱地址！';
+			}
+		};
+	})(window, document)
+    </script>
+</body>
+</html>

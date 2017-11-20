@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发红包</title>
+<link rel="stylesheet" type="text/css" href="http://js.mm.test.soufunimg.com/m_activity/sfb/css/index.css" />
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0" name="viewport" />
+<meta name="format-detection" content="telephone=no, email=no" />
+</head>
+<body>
+<div class="payredbillwrap">
+  <div class="custominforwrap">
+    <div class="custominfor">
+      <p class="paybill-name">刘先生</p>
+      <dl class="clearfix selfnum">
+        <dt class="fl">房天下账户</dt>
+        <dd class="fl" id="phone">
+          <p class="clearfix">
+            <input type="radio" id="phone1" name="phone" value="15210586317" checked />
+            <label for="phone1">15210586317</label>
+          </p>
+          <p class="clearfix">
+            <input type="radio" id="phone2" name="phone" value="15210586318" />
+            <label for="phone2">15210586318</label>
+          </p>
+          <p class="clearfix">
+            <input type="radio" id="phone3" name="phone" value="15210586319" />
+            <label for="phone3">15210586319</label>
+          </p>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="money">
+    <p class="clearfix mtb3"><span id="balance" class="orange fl">红包余额：元</span><a class="blueword fr checkpayment" href="moneypay.html">查看账单</a></p>
+    <div class="inputmoneywrap clearfix"> <span class="fl">金额</span>
+      <p class="fr inputbill">
+        <input type="text" id="money" placeholder="填写金额" onfocus="this.placeholder=''" onblur="this.placeholder='填写金额'" />
+        <span>元</span></p>
+    </div>
+    <p class="illustrate"><a href="#">红包使用说明</a></p>
+    <p class="sum" id="moneyText">¥ 0.00</p>
+    <p class="alert">房天下网销李春光给您发送了一个红包，请登录房天下账户查看。</p>
+    <textarea id="message" class="textarea" cols="3" rows="3" placeholder="请在此继续输入" onfocus="this.placeholder=''" onblur="this.placeholder='请在此继续输入'"></textarea>
+  </div>
+  <div class="massagealert clearfix"> <span class="fl ml10 msalertword">短信提醒</span> <span id="msalert" class="fr massagealertimg massagealertimgopen"></span> </div>
+</div>
+<a class="enterredbill">
+<input id="send" type="button"  class="btupub off" value="塞钱进红包">
+</a>
+<!--信息弹层-->
+<div id="msg" class="msg fromTop">
+    <p>请先登录!</p>
+</div>
+<script src="http://js.soufunimg.com/common_m/m_activity/public/jslib/jquery/2.1.4/jquery.js"></script>
+<script src="http://js.mm.test.soufunimg.com/m_activity/sfb/js/redPacket.js"></script>
+</body>
+</html>

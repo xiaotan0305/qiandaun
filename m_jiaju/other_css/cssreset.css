@@ -1,0 +1,96 @@
+html{
+	color:#000;
+	background:#FFF;
+}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,footer,article,aside,header,section,nav,figure,figcaption,hgroup{
+	margin:0;
+	padding:0;
+}table{
+	border-collapse:collapse;
+	border-spacing:0;
+}fieldset,img{
+	border:0;
+}address,caption,cite,code,dfn,em,strong,th,var{
+	font-style:normal;
+	font-weight:normal;
+}ol,ul{
+	list-style:none;
+}caption,th{
+	text-align:left;
+}h1,h2,h3,h4,h5,h6{
+	font-size:100%;
+	font-weight:normal;
+}q:before,q:after{
+	content:'';
+}abbr,acronym{
+	border:0;
+	font-variant:normal;
+}sup{
+	vertical-align:text-top;
+}sub{
+	vertical-align:text-bottom;
+}input,textarea,select{
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+	*font-size:100%;
+}legend{
+	color:#000;
+}#yui3-css-stamp.cssreset{ display:none}
+a{ text-decoration:none;}
+img,input{ border:none;}
+.left{ float:left;}
+.right{ float:right;}
+.clear{ clear:both;}
+.clearfix:after{ content:"."; display:block; clear:both; height:0; overflow:hidden;}
+.clearfix{ zoom:1;}
+@charset "gb2312";
+#content{width: 610px;height: auto;margin: auto;}
+.maincontent2{width: 610px;height: auto;margin:auto;background: url(../other_images/wap2bannerbg.jpg) top center no-repeat;background-color: #3c0076;}
+.footbg{width: 610px;height: 225px;margin:auto;background: url(../other_images/wap2footbg.jpg) top center no-repeat;}
+.maincontent2 ul{width: 450px;height: auto;margin: auto;padding-top: 60px;padding-bottom: 10px;}
+.maincontent2 ul li{width: 450px;height: 410px;background: #7818d0;margin-bottom: 30px;}
+.maincontent2 ul li img{width: 450px;height: auto;}
+.maincontent2 ul li p span{font-size: 40px;color: #fff;float:left;margin:6px 30px;display: block;}
+.maincontent2 ul li p input{
+	width: 121px;height: 48px;float:right;margin:10px 20px;background: url(../other_images/wap2button.jpg) center center no-repeat;
+	font-size: 30px;font-weight: 600;font-family: "Î¢ÈíÑÅºÚ";cursor: pointer;
+}
+.maincontent2 ul li p input:hover{opacity: 0.8;-webkit-opacity: 0.8;;}
+/*loadingcss*/
+#loading{
+	width:60px; height:60px; position:absolute; top:50%; left:50%; margin-top:-30px; margin-left:-30px;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #67CF22;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
