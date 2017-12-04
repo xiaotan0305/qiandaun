@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 大首页入口类
  * by blue
  * 20150906 blue 整理整个js代码及增加注释、去除一些垃圾代码、优化多处冗长代码
@@ -10,61 +10,35 @@
  * 20160112 blue 大首页滑动楼盘操作增加滑动时再加载视窗中的图片功能，部分代码优化，对猜你喜欢、房产资讯等有换一换功能的列表实行惰性加载，并且在换一换后按需加载
  * 20160513 tkp 大数据改版 猜你喜欢\地图入口\导航知识图标入口 大数据分析 重新做了
  */
-define('modules/index/showSearch', ['jquery', 'util/util',  'search/mainSearch', 'search/home/homeSearch'
-    ],
-    function (require) {
-        'use strict';
-        // jquery库
-        var $ = require('jquery');
-        // 大首页搜索类
-        var Search = require('search/home/homeSearch');
-        // 通用工具集
-        var Util = require('util/util');
-        var vars = seajs.data.vars;
-    
-        // 大首页大搜索执行初始化
-        var search = new Search();
-        search.init();
-        var $window = $(window);
-        require.async('jsub/_ubm.js', function () {
-            _ub.city = vars.zhcity;
-            _ub.request('vmg.business', true);
-            // 用户分析函数
+define('modules/index/showSearch', ['jquery', 'util/util', 'search/mainSearch', 'search/home/homeSearch'], function(require) {
+    'use strict';
+    // jquery库
+    var $ = require('jquery');
+    // 大首页搜索类
+    var Search = require('search/home/homeSearch');
+    // 通用工具集
+    var Util = require('util/util');
+    var vars = seajs.data.vars;
 
-            /**
-             * 大数据分析
-             * 猜你喜欢
-             * 导航-知识入口
-             * 地图入口
-             * vmn.position : 新房区域商圈
-             * vmn.subway : 新房地铁
-             * vmn.genre : 新房物业类型
-             * vme.position: 二手房区域商圈
-             * vme.subway: 二手房地铁
-             * vme.housetype : 二手房户型
-             * vmz.position : 租房区域商圈
-             * vmz.subway: 租房地铁
-             * vmz.housetype: 租房户型
-             * vmg.business: 用户行为 返回值代表的业务线：
-             返回值     业务线
-             G     通用
-             N     新房
-             E     二手房
-             Z     租房
-             H     家居
-             X     小区网
-             V     评估网
-             W     国际网
-             F     产业网
-             L     土地网
-             B     论坛
-             A     问答
-             K     知识
-             I     资讯
-             0     OA
-             */
-            _ub.onload = function () {
+    // 大首页大搜索执行初始化
+    var search = new Search();
+    search.init();
 
-                seajs.emit('cacheData');};
-            });
+    $('[name="q"]').on('click', function() {
+        $('[name="q"]').focus();
     });
+    setTimeout(function() {
+        $('[name="q"]').click();
+    }, 400);
+
+    var $window = $(window);
+    require.async('jsub/_vb.js?c=mhomepage');
+    require.async('jsub/_ubm.js', function() {
+        _ub.city = vars.zhcity;
+        _ub.request('vmg.business', true);
+        // 用户分析函数
+        _ub.onload = function() {
+            seajs.emit('cacheData');
+        };
+    });
+});
