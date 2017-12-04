@@ -475,6 +475,16 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
             success: function (data) {
                 if (data) {
                     $('.xqComment').after(data);
+
+                    // 百度特殊锚点定位功能
+                    var xqdp = $('.xqdp');
+                    if (xqdp.length > 0 && (window.location.href.indexOf('p=comment') > -1) && (window.location.href.indexOf('sf_source=bdjzs_esf') > -1)) {
+                        var mTop = xqdp.offset().top;
+                        setTimeout(function () {
+                            window.scrollTo(0, mTop);
+                        }, 100);
+                    }
+
                     getComment();
                 }
             }

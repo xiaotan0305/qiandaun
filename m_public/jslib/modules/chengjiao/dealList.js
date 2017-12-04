@@ -33,7 +33,10 @@ define('modules/chengjiao/dealList', ['jquery', 'loadMore/1.0.0/loadMore', 'iscr
                     window.location.href = vars.typeUrl + 'type=' + $this.attr('data_type');
                 });
             }
-
+            //点击跳转
+            $('.detailed_list').on('click', 'li', function () {
+               window.location.href = $(this).attr('data-url');
+            });
             // 滑动效果
             // 页面滚动效果
             // 页面加载完之后设置成交明细表的高度
@@ -64,7 +67,8 @@ define('modules/chengjiao/dealList', ['jquery', 'loadMore/1.0.0/loadMore', 'iscr
                 scrollY: true,
                 scrollX: false,
                 probeType: 2,
-                mouseWheel: true
+                mouseWheel: true,
+                click:true
             });
 
             scrollObj.on('scroll', function () {

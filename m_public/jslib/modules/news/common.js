@@ -55,7 +55,9 @@
             $('#nav2 a').each(function () {
                 lanmu_str += this.id + ',';
             });
-            localStorage.lanmu = lanmu_str;
+            if (vars.localStorage) {
+                localStorage.lanmu = lanmu_str;
+            }
         }
     }
 

@@ -85,17 +85,19 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
                     moreBtn.show();
                 }
             });
-            // 页面展示更多效果
-            $moreBtn.on('click', function () {
-                var el = $(this);
-                el.toggleClass('up');
-                var xqIntro = el.siblings('.xqIntro');
-                if (el.hasClass('up')) {
-                    xqIntro.addClass('all');
-                } else {
-                    xqIntro.removeClass('all');
-                }
-            });
+            // 页面展示更多效果（JHAGT和JHWAGT走下面的功能）
+            if (vars.housetype !== 'JHWAGT' && vars.housetype !== 'JHAGT') {
+                $moreBtn.on('click', function () {
+                    var el = $(this);
+                    el.toggleClass('up');
+                    var xqIntro = el.siblings('.xqIntro');
+                    if (el.hasClass('up')) {
+                        xqIntro.addClass('all');
+                    } else {
+                        xqIntro.removeClass('all');
+                    }
+                });
+            }
         }
 
         if ($moreBtn.length && $moreXq.length) {
@@ -897,5 +899,50 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
         }
         //优选详情记cookie，如果最后进的是优选详情下次进入直接进优选列表
         cookiefile.setCookie('listAllToJh', '1', 365);
+	
+	// 房源描述修改（JHWAGT和JHAGT用新样式）
+        if (vars.housetype === 'JHWAGT' || vars.housetype === 'JHAGT') {
+            // 房源描述模块的唯一标识
+            var fymsList = $('.fymsList'),
+                // 房源描述中每个小标题中段落之和
+                sumfyms = 0,
+                // 默认展示的最大行数之和的总高度
+                defaultULHeight = parseInt(fymsList.find('p').css('line-height')) * 10,
+                // 默认需要展示的小标题的个数
+                pnum = 0,
+                // h3小标题的高度
+                h3Height = parseInt(fymsList.find('h3').css('height')) + parseInt(fymsList.find('h3').css('margin-bottom')),
+                // li的padding高度
+                LiPaddingTop = parseInt(fymsList.find('li').css('padding-bottom'));
+
+            // 获取每个p的实际高度
+            fymsList.find('p').each(function () {
+                var that = $(this);
+                // 看看最多展示几个
+                if (sumfyms < defaultULHeight) {
+                    pnum += 1;
+                }
+                // 所有p的高度之和
+                sumfyms += parseInt(that.css('height'));
+            });
+
+            // 所有p之和与默认高度对比，如果大于，则要先合上
+            if (sumfyms > defaultULHeight) {
+                fymsList.find('a').css('display', 'block');
+                fymsList.find('ul').css({'max-height': (h3Height + LiPaddingTop) * pnum + defaultULHeight, 'overflow': 'hidden'});
+            }
+
+            // 如果有展开合上的按钮，则要实现展开合上的功能
+            fymsList.children('a').on('click', function () {
+                var that = $(this);
+                if (that.hasClass('up')) {
+                    that.removeClass('up');
+                    fymsList.find('ul').css({'max-height': (h3Height + LiPaddingTop) * pnum + defaultULHeight, 'overflow': 'hidden'});
+                } else {
+                    that.addClass('up');
+                    fymsList.find('ul').css({'max-height': '', 'overflow': ''});
+                }
+            });
+        }
     };
 });

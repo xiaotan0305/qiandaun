@@ -278,7 +278,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .cfj-linjuH li div{padding: 0 14px;}
 /*精准评估 form与选择列表*/
 .cfj-formList{ line-height: 44px;font-size: 14px;color: #b3b6be;}
-.cfj-formList li{padding-left: 14px;padding-right: 14px;clear: both;height: 45px;}
+.cfj-formList li{padding-left: 14px;padding-right: 14px;clear: both;}/*20171117  厌恶因素点选串行去掉高度height: 45px;*/
 .cfj-formList .content input{-webkit-appearance: none;border: none;outline: none;background-color: #ffffff;font-size: 14px;color: #0c0d0e;line-height: normal;}
 .cfj-formList .content input[type="tel"],.cfj-formList .content input[type="text"],.cfj-formList .content input[type="number"]{width: 100%;height: 44px;}
 .cfj-formList .content .htype div{margin-right: 1.2em;}
@@ -291,7 +291,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .cfj-formList .content input::-webkit-input-placeholder{color: #b3b6be;line-height: 1em;font-size: 14px;}
 .cfj-formList .content ul li:not(:first-child){border-top: 1px solid #f4f4f4;}
 .cfj-formList .tt{float: left;color: #83868f;}
-.cfj-formList .con{margin-left: 84px;height: 44px;line-height: 44px;}
+.cfj-formList .con{margin-left: 84px;line-height: 44px;} /*20171117  厌恶因素点选串行去掉高度height: 44px;*/
 .cfj-formList .con.inp,.cfj-formList .con .inp{line-height: 0;}
 .cfj-formList .sele .con,.cfj-formList .sele .finish,.cfj-formList .con input:focus,.cfj-formList .sele .con input{color: #0c0d0e;}/*已选中效果*/
 .cfj-formList .con .grant label{float: left;}
@@ -344,6 +344,8 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .jj-rdpm:after{ position: absolute; content: '平米'; right: 0; top: 0;color: #b3b6be;font-size: 14px;}
 .jj-rdp{ position: relative; }
 .jj-rdp:after{ position: absolute; content: '平'; right: 0; top: 0;color: #b3b6be;font-size: 14px;}
+.jz-year:after{ position: absolute; content: '年'; right: 0; top: 0;color: #b3b6be;font-size: 14px;}/*20171117*/
+
 /*首页增加评估房源*/
 .cfj-formList .cfj-pgFang li{ padding:0; margin-left:8px; margin-right:8px;}
 .cfj-formList .cfj-pgFang li:last-child{ height:46px; border-bottom:1px solid #f4f4f4;}
@@ -759,3 +761,40 @@ a.cfj-yjmf,a.cfj-yjmf:link,a.cfj-yjmf:active,a.cfj-yjmf:visited{color: #ff6666;}
 .reTlist li:last-child{border-bottom:none;}
 .reTlist a{display:block;color:#3c3f46!important;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .reTlist li span{color:#ce453f;padding:0 6px;}
+
+/*小区房价页添加20171101*/
+a.guanzhu_fj{display: block;background: url(../images/bg_gz.png) no-repeat;width: 53px;height: 24px;
+background-size: 100%;margin: 0 auto;}
+a.yiguanzhu_fj{display: block;background: url(../images/bg_ygz.png) no-repeat;width: 53px;height: 24px;
+background-size: 100%;margin: 0 auto;}
+p.guanzhu_fjyu{margin-top: 8px;}
+.fypj_title{border-top: 1px solid #f5f5f5;}
+.fypj_title h2{text-align: center;font-size: 16px;color: #3c3f46;font-weight: bold;padding: 20px 0;}
+.fypj_detail h3.fypj_name b{color: #3c3f46;}
+.fypj_title  i{width:20px;height:20px; background:url(../images/star_dp.png) no-repeat;vertical-align: -3px; background-size:20px; display:inline-block;margin:0 4px;}
+.fypj_title i.no2_fj{ background-position:0px -20px}
+.fypj_title i.half_fj{background: url(../images/star_dp2.png) 0 0 no-repeat;background-size:20px auto;}
+.fypj_detail{padding-top: 0;}
+.fypj_detail .hide_con{overflow : hidden;height: 72px;}
+.fypj_detail h3{font-size: 14px;font-weight: bold;}
+.fypj_detail h3 span.bq_fjpj{font-size: 9px;background: #ff6666;font-weight: normal;padding:1px 5px;color: #FFFFFF;margin-left: 5px;}
+.fypj_detail h3 span.bq_fjpj01{font-size: 9px;background: #77c77c;font-weight: normal;padding:1px 5px;color: #FFFFFF;margin-left: 5px;}
+.fypj_detail p.fypj_ms1{    font-size: 12px;color: #b3b6be;line-height: 20px;margin-bottom: 15px;}
+.fypj_detail h3.fypj_name{margin-bottom: 10px;}
+div.fypj_show{color: #4080d1;font-size: 12px;text-align: center;}
+div.fypj_show a{color: #4080d1;font-size: 12px;padding-right: 15px;width: 40px;
+display: block;position: relative;margin: 0 auto;}
+div.fypj_show a.fypj_show::after{background: url(../images/zhan_fypj.png) no-repeat right center;background-size: 100%;width: 10px; height: 100%;
+position: absolute;
+    content: '';
+    right: 0;
+    top: 0;}
+div.fypj_show a.fypj_hide::after{position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+background: url(../images/sq_fypj.png) no-repeat right center;background-size: 100%;width: 10px; height: 100%;}
+.reTlist li  a p.xq_detail11{line-height: 20px;height: 20px;    margin-bottom: 6px;}
+.reTlist li  a p.xq_detail11 span {font-size: 14px;color: #b3b6bf;padding: 0}
+.reTlist li  a p.xq_detail11 span.jznd_con {width: 70px;color: #3c3f46;display: inline-block;overflow: hidden;height: 20px;}
+.reTlist li  a p.xq_detail11 span.lhv_con {width: 96px;color: #3c3f46;display: inline-block;overflow: hidden;height: 20px;}

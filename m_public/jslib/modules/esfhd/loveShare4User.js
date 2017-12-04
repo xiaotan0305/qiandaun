@@ -1,19 +1,28 @@
 /**
  * 爱分享活动
  */
-define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superSlide', 'weixin/2.0.0/weixinshare', 'superShare/2.0.0/superShare', 'floatAlert/1.0.0/floatAlert', 'swipe/3.10/swiper','app/1.0.0/appdownload'], function (require, exports, module) {
+define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superSlide', 'weixin/2.0.0/weixinshare', 'superShare/2.0.0/superShare', 'swipe/3.10/swiper','app/1.0.0/appdownload'], function (require, exports, module) {
     'use strict';
     module.exports = function (option) {
         // jquery库
         var $ = require('jquery');
         // 页面传入的参数
         var vars = seajs.data.vars;
-        //****弹框蒙层对象插件****
-        var floatAlert = require('floatAlert/1.0.0/floatAlert');
+
+        // 浮层提示控制
+        function displayLose(time, keywords, url) {
+            $('#sendText').text(keywords).show();
+            $('#sendFloat').show();
+            setTimeout(function () {
+                $('#sendFloat').hide();
+                if (url) {
+                    window.location.href = url;
+                }
+            }, time);
+        }
 
         var UA = navigator.userAgent.toLowerCase();
-        var option = {type: '1'};//弹框插件样式选项
-        var floatObj = new floatAlert(option);
+
         var $ = require('app/1.0.0/appdownload');
         $('.openapp').openApp();
         if (vars.from === 'wapsharehd') {
@@ -27,7 +36,7 @@ define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superS
         } else {
             $('.list-con').css('display', 'none');
             $('.ewms').css('display', 'block');
-            $('.list-bot').find('p').text('扫描二维码下载房APP');
+            $('.list-bot').find('p').text('扫描二维码下载房APP参与');
         }
 
         //滚动效果
@@ -46,7 +55,7 @@ define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superS
         var haddown = $('.haddown');
         var hadjoin = $('.hadjoin');
         var uncommonIMEI = $('.uncommonIMEI');
-        var close = $('.x-share-close');
+        var close = $('.x-share-closenew');
         var innew = $('.innew');
 
         close.on('click', function () {
@@ -72,11 +81,11 @@ define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superS
         var Weixin = require('weixin/2.0.0/weixinshare');
         var wx = new Weixin({
             debug: false,
-            shareTitle: shareA.attr('newsline'),
+            shareTitle: vars.title,
             // 副标题
-            descContent: '',
-            lineLink: shareA.attr('jumpath'),
-            imgUrl: shareA.attr('imgpath'),
+            descContent: vars.description,
+            lineLink: vars.jumpath,
+            imgUrl: vars.imgpath,
             swapTitle: false
         });
         // 普通分享
@@ -99,21 +108,32 @@ define('modules/esfhd/loveShare4User', ['jquery', 'jquerySuperSlide/1.0.0/superS
             superShare.share();
         });
 
+        //防止连续点击
+        var subflag = true;
         //提现操作
         $('.tixian').on('click', function () {
             if ($(this).hasClass('disabled')) {
                 return false;
             }
-            $.ajax({
-                url: vars.esfSite + '?c=esfhd&a=ajaxAddAwardExtOrder&city=' + vars.city,
-                dataType: 'json',
-                success: function (data) {
-                    floatObj.showMsg(data.errmsg, 2000);
-                },
-                error:  function () {
-                    floatObj.showMsg('请求失败', 2000);
-                },
-            });
+            if (subflag) {
+                subflag = false;
+                $.ajax({
+                    url: vars.esfSite + '?c=esfhd&a=ajaxAddAwardExtOrder&city=' + vars.city,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.errcode === '100') {
+                            displayLose(2000, data.errmsg, window.location.href);
+                        } else {
+                            displayLose(2000, data.errmsg);
+                        }
+                        subflag = true;
+                    },
+                    error:  function () {
+                        displayLose(2000, '请求失败');
+                        subflag = true;
+                    },
+                });
+            }
         });
 
 

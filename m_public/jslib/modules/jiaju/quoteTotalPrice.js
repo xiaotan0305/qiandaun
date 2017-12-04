@@ -16,6 +16,9 @@ define('modules/jiaju/quoteTotalPrice', [
     var slideFilterBox = require('slideFilterBox/1.0.0/slideFilterBox');
     var $document = $(document);
     var $window = $(window);
+    // 城市区域点击标识
+    var clickFlag = true;
+
     // 用户行为统计
     var yhxw = require('modules/jiaju/yhxw');
     yhxw({
@@ -278,10 +281,13 @@ define('modules/jiaju/quoteTotalPrice', [
 
             /*装修状态弹层-点击确定*/
             that.state_confirm.on('click', function () {
-                that.state.html(that.stateOption.find('li.cur').html()).css({
-                    color: '#3c3f46'
-                });
-                that.stateFlag = true;
+                that.state.html(that.stateOption.find('li.cur').html());
+                if (that.state.text() !== '请选择装修状态') {
+                    that.state.css({
+                        color: '#3c3f46'
+                    });
+                    that.stateFlag = true;
+                }
                 that.stateOption.hide();
             });
 
@@ -335,7 +341,7 @@ define('modules/jiaju/quoteTotalPrice', [
 
             /* 免费申请*/
             that.freeApply.on('click', function () {
-                if (that.submitFlag) {
+                if (that.submitFlag && clickFlag) {
                     that.freeApplyClickFn();
                 }
             });
@@ -441,6 +447,10 @@ define('modules/jiaju/quoteTotalPrice', [
         // 点击城市控件中li所触发的事件
         arealiClickFn: function ($this) {
             var that = this;
+            if (!clickFlag) {
+                return false;
+            }
+            clickFlag = false;
             $this.addClass('active');
             var divDom = $this.parent().parent();
             // 如果当前点击的选择器是省份，则
@@ -465,7 +475,8 @@ define('modules/jiaju/quoteTotalPrice', [
                     $('#cityCon_' + thisVal).show();
                     that.IScrollEvent('#cityCon_' + thisVal);
                     that.areaBack.attr('conName', 'city');
-                }, 350);
+                    clickFlag = true;
+                }, 400);
             } else if (divDom.attr('conName') === 'city') {
                 //城市选择器
                 that.areaOption.attr('data-cityID', $this.val());
@@ -498,7 +509,8 @@ define('modules/jiaju/quoteTotalPrice', [
                         $('#cityCon_' + that.areaOption.attr('data-proID')).hide();
                         that.areali.removeClass('active').css('opacity', '1');
                     }
-                }, 350);
+                    clickFlag = true;
+                }, 400);
             } else {
                 // 区域选择器
                 that.areaOption.attr('data-distID', $this.val());
@@ -519,7 +531,8 @@ define('modules/jiaju/quoteTotalPrice', [
                     }
                     that.areali.removeClass('active').css('opacity', '1');
                     that.areaBack.attr('conName', 'city');
-                }, 350);
+                    clickFlag = true;
+                }, 400);
                 that.enable();
             }
         },
@@ -749,7 +762,9 @@ define('modules/jiaju/quoteTotalPrice', [
                     estate: that.estate.text().trim(),
                     estateid: that.estate.attr('data-estateid'),
                     sourcepageid: vars.sourcepageid,
-                    source: vars.source
+                    source: vars.source,
+                    platformType: vars.platformType,
+                    sourceID: vars.sourceID
                 };
                 that.submitFlag = false;
                 // 用户行为

@@ -1,4 +1,11 @@
-define('modules/jiaju/xgtDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'photoswipe/4.0.8/photoswipe-ui-default.min', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'], function (require, exports, module) {
+define('modules/jiaju/xgtDetail', [
+    'jquery',
+    'photoswipe/4.0.8/photoswipe',
+    'photoswipe/4.0.8/photoswipe-ui-default.min',
+    'superShare/1.0.1/superShare',
+    'weixin/2.0.0/weixinshare',
+    'modules/jiaju/yhxw'
+], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -12,6 +19,12 @@ define('modules/jiaju/xgtDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'pho
         // 数据请求失败时, 点击刷新
         $('#notfound').on('click', function () {
             window.location.reload();
+        });
+        var yhxw = require('modules/jiaju/yhxw');
+        var page = 'mjjpicturepage';
+        yhxw({
+            page: page,
+            id: vars.picid
         });
 
         var leftEnd = false;
@@ -51,6 +64,11 @@ define('modules/jiaju/xgtDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'pho
                     });
                     // 此处分享按钮不在main里，分享插件不支持，故重新绑定事件
                     $('.icon-share').on('click', function () {
+                        yhxw({
+                            page: page,
+                            type: 22,
+                            id: vars.picid
+                        });
                         var ua = share.ua;
                         // 判断浏览器类型;
                         if (ua.name === '微信客户端' || ua.name === '微博客户端' || ua.name === 'QQ客户端' || ua.name === 'QQZone客户端') {
@@ -161,6 +179,11 @@ define('modules/jiaju/xgtDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'pho
             var canAjax = true;
             return function () {
                 if (canAjax && comData) {
+                    yhxw({
+                        page: page,
+                        type: 21,
+                        id: vars.picid
+                    });
                     // 判断是否登录，无登录跳登录页
                     if (vars.isLogin) {
                         var $this = $(this);
@@ -350,28 +373,6 @@ define('modules/jiaju/xgtDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'pho
             window.Clickstat.eventAdd(window, 'load', function () {
                 window.Clickstat.batchEvent('wapzxxgtxq_', '');
             });
-        });
-        <!-- 对用户的相关信息进行收集 -->
-        var page = 'mjjpicturepage';
-        require.async('jsub/_vb.js?c=' + page);
-        require.async('jsub/_ubm.js', function () {
-            _ub.city = vars.cityname;
-            _ub.biz = 'h';
-            _ub.location = vars.ns;
-            var b = 0;
-            var pTemp = {
-                'vmg.page': page,
-                'vmh.pictureid': vars.picid
-            };
-            var p = {};
-
-            /* 若pTemp中属性为空或者无效，则不传入p中 */
-            for (var temp in pTemp) {
-                if (pTemp[temp] && pTemp.hasOwnProperty(temp)) {
-                    p[temp] = pTemp[temp];
-                }
-            }
-            _ub.collect(b, p);
         });
     };
 });

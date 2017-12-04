@@ -57,6 +57,16 @@ define('modules/zhishi/zhishibuma', function (require, exports, module) {
                     // 汉字
                     'vmk.zscategory': zscategory
                 };
+            } else if (vars.action === 'commonList') {
+                pTemp = {
+                    'vmg.page': pageType,
+                    'vmh.key': key
+                };
+            } else if (vars.action === 'hotTopic') {
+                pTemp = {
+                    'vmg.page': pageType,
+                    'vmh.key': key
+                };
             }
             var p = {};
             // 若pTemp中属性为空或者无效，则不传入p中

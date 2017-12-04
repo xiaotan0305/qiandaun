@@ -75,22 +75,22 @@ define('modules/map/API/esfMapApi', ['jquery', 'modules/map/API/BMap'], function
             SFMap.params.strKeyword = '';
             SFMap.hideEcShopList();
         });
-        // 缩放开始
+        /*// 缩放开始
         map.addEventListener('zoomstart', function () {
             that.zoomEnd = !0;
-        });
+        });*/
         // 缩放结束
         map.addEventListener('zoomend', function () {
             try {
                 // zoomEnd为!1 false不搜索
-                if (!that.zoomEnd) {
+                /*if (!that.zoomEnd) {
                     return;
-                }
+                }*/
                 var SFMap = require('modules/map/esfSFMap');
                 // 搜索
                 SFMap.params.zoom = that._map.getZoom();
                 SFMap.clearOtherOption('zoom');
-                that.zoomEnd = !1;
+                //that.zoomEnd = !1;
             } catch (e) {
             }
         });

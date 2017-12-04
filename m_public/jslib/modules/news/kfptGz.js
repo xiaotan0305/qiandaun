@@ -22,6 +22,25 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
             $tiShiBox.hide();
         }, 1000);
     };
+    // 判断用户介绍是否大于两行，大于则隐藏多余内容，不大于则隐藏展开按钮
+    var showMoreInfo = $('.showMoreInfo');
+    var pInfo = $('.userDescriptionShow');
+
+    if (pInfo.height() > 36) {
+        pInfo.addClass('limit_2_line');
+        showMoreInfo.show();
+        // 展开和收起用户介绍信息
+        showMoreInfo.on('click', function () {
+            var $this = $(this);
+            if (pInfo.hasClass('limit_2_line')) {
+                pInfo.removeClass('limit_2_line');
+                $this.addClass('up_arr');
+            } else {
+                pInfo.addClass('limit_2_line');
+                $this.removeClass('up_arr');
+            }
+        });
+    }
     // 关注状态判断,optType操作类型 1为查询操作，2为更新操作
     var gzUpdate = function (optType) {
         inAjax = true;
@@ -96,22 +115,4 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
     // 判断登录状态
     loginCheck();
 
-    // 判断用户介绍是否大于两行，大于则隐藏多余内容，不大于则隐藏展开按钮
-    var showMoreInfo = $('.showMoreInfo');
-    var pInfoHeight = $('.userDescription').height();
-    var pInfo = $('.userDescriptionShow');
-    if (pInfoHeight > 36) {
-        showMoreInfo.show();
-        // 展开和收起用户介绍信息
-        showMoreInfo.on('click', function () {
-            var $this = $(this);
-            if (pInfo.hasClass('limit_2_line')) {
-                pInfo.removeClass('limit_2_line');
-                $this.addClass('up_arr');
-            } else {
-                pInfo.addClass('limit_2_line');
-                $this.removeClass('up_arr');
-            }
-        });
-    }
 });

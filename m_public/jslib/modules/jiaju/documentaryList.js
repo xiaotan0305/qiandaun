@@ -4,12 +4,15 @@
  * @modifed by  袁辉辉(yuanhuihui@fang.com) 2016年09月30日09:41:03
  * 装修日记列表页
  */
-define('modules/jiaju/documentaryList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.1/loadMore'],
+define('modules/jiaju/documentaryList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.1/loadMore', 'modules/jiaju/yhxw'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
             var $ = require('jquery');
             var $timeout = $('#timeout');
+            // 用户行为
+            var yhxw = require('modules/jiaju/yhxw');
+            yhxw({page: /tabType=1/.test(location.href) ? 'jj_zxriji^zuixinlb_wap' : 'jj_zxriji^jingxuanlb_wap'});
             if ($timeout.length) {
                 $timeout.on('click', function () {
                     window.location.reload();
@@ -40,6 +43,8 @@ define('modules/jiaju/documentaryList', ['jquery', 'lazyload/1.9.1/lazyload', 'l
                             canAjax = false;
                             var $this = $(this);
                             var index = $this.index();
+                            // 用户行为
+                            yhxw({page: index === 1 ? 'jj_zxriji^zuixinlb_wap' : 'jj_zxriji^jingxuanlb_wap'});
                             $this.addClass('active').siblings().removeClass('active');
                             // 用户点击才加入,代码触发不加入history
                             if (e && /\d/.test(e.button)) {

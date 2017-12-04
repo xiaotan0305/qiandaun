@@ -256,8 +256,11 @@ html{ font-size: 31x;}
 .trend-white li p{font-size:11px;line-height:12px;color:#83868f;margin-top:-16px;}
 .trend-white li h3{font-size:12px;line-height:20px;margin-top:14px; color:#3c3f46;}
 .trend-white li h3 span.num{font-size:28px;vertical-align:-4px;margin-right:8px;}
+.trend-white li:first-child .num{color:#d7494a;}
+.trend-white li:last-child .num{color:#ff8e1d;}
 .trend-white .trend-txt{font-size:12px;color:#b3b6be;padding-top:10px;}
-.trend-white .trend-txt .jt-dn,.trend-white .trend-txt .jt-up{color:#b3b6be!important;font-size:12px;}
+.trend-white .trend-txt .jt-dn{color:#459540!important;font-size:12px;}
+.trend-white .trend-txt .jt-up{color:#d64242!important;font-size:12px;}
 .trend-white > div:last-child{border-bottom:none;}
 
 /*猜你喜欢滑动列表*/

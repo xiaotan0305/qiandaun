@@ -21,6 +21,33 @@ define('modules/bask/index', ['jquery', 'loadMore/1.0.1/loadMore', 'lazyload/1.9
         // 惰性加载
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
+
+        // 文档jquery对象索引
+        var $doc = $(document);
+        /**
+         * 为了方便解绑事件，声明一个阻止页面默认事件的函数
+         * @param e
+         */
+        function pdEvent(e) {
+            e.preventDefault();
+        }
+
+        /**
+         * 禁止页面滑动
+         */
+        function unable() {
+            $doc.on('touchmove', pdEvent);
+        }
+
+        /**
+         * 允许页面滑动
+         */
+        function enable() {
+            $doc.off('touchmove', pdEvent);
+        }
+        if (vars.float !== 'hide') {
+            unable();
+        }
         // 常见问题按钮
         var $question = $('.question').find('li');
         var $a = $question.find('a');
@@ -156,5 +183,11 @@ define('modules/bask/index', ['jquery', 'loadMore/1.0.1/loadMore', 'lazyload/1.9
             firstDragFlag: false
         });
         loadMore.init();
+
+        $('.close').on('click', function(){
+            $('.w-outbg').hide();
+            $('.w-outbox').hide();
+            enable();
+        });
     };
 });

@@ -287,7 +287,7 @@
 
 /*新聚合列表Tab菜单*/
 .list-Tab{border-bottom:1px solid #f8f8f8;padding:2px 0 13px;}
-.list-Tab ul{width:208px;height:31px;border:1px solid #83868f;border-radius:4px;font-size:15px;text-align:center;overflow:hidden;margin:0 auto;}
+.list-Tab ul{width:258px;height:31px;border:1px solid #83868f;border-radius:4px;font-size:15px;text-align:center;overflow:hidden;margin:0 auto;}
 .list-Tab li{height:29px;line-height:30px;background:#fff;width:50px;color:#83868f;}
 .list-Tab li.cur{background:#83868f;color:#fff}
 
@@ -2723,12 +2723,16 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .jhjjrList li .img-tag{display:table-cell;width:50px;text-align:center;vertical-align:middle;}
 .jhjjrList li .img-tag .tag{display:inline-block;height:13px;line-height:13px;font-size:12px;color:#fff;background:#ff9c00;border-radius:2px;}
 .jhjjrList li .img-tag .tag i{display:block;-webkit-transform:scale(.77);transform:scale(.77);margin:0 -1px;}
-
-.fymsList ul{ margin:0;}
-.fymsList li{ border-bottom: 1px solid #f4f4f4;padding:20px 0;position:relative;overflow:hidden}
+.fymsList ul{ margin-top:10px;}
+.fymsList li{ border-bottom:0;padding:12px 0;position:relative;overflow:hidden}
 .fymsList li:last-child{ border-bottom: none;}
-.fymsList li h3{font-size:15px;color:#3c3f46;margin-bottom:15px;}
-.fymsList li p{line-height:25px;font-size:15px;color:#3c3f46;}
+.fymsList li h3{font-size:16px;color:#3c3f46;margin-bottom:15px; font-weight:bold}
+.fymsList li h3 i{width:18px;height:18px; background:url(../images/icon_ms.png) no-repeat; background-size:90px; display:inline-block;margin-right:6px;margin-top:1px; vertical-align:top}
+.fymsList li h3 i.no2{ background-position:-18px 0}
+.fymsList li h3 i.no3{ background-position:-36px 0}
+.fymsList li h3 i.no4{ background-position:-54px 0}
+.fymsList li h3 i.no5{ background-position:-72px 0}
+.fymsList li p{line-height:25px;font-size:16px;color:#3c3f46;}
 .more-arr{color:#819bbb;position: relative;padding-right:12px;}
 .more-arr:after{ position: absolute; content: '';right:0;top: 50%; margin-top: -5px; width:5px; height:9px; background: url(../images/arr_blue2.png) 0 0 no-repeat;background-size:100%;}
 .fymsList li p.info{color:#b3b6be;font-size:13px;}

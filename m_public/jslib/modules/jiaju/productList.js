@@ -42,19 +42,57 @@ define('modules/jiaju/productList', [
                 getDistance();
             }
             loadMoreFn();
-            var f = $('#s_type dd').hasClass('active') ? $('#s_type dd.active').text() : '';
-            var f2 = $('#xifen dd').hasClass('active') && $('#xifen dd.active').text().replace(/全部/g, '') ? '^' + $('#xifen dd.active').text().replace(/全部/g, '') : '';
-            var f3 = $('#searchBrand dd').hasClass('active') && $('#searchBrand dd.active').text().replace(/全部/g, '') ? '^' + $('#searchBrand dd.active').text().replace(/全部/g, '') : '';
             // 用户行为
             yhxw({
                 page: 'mjjmaterial_list',
                 type: 1,
-                material: $('#type').text() === '所有品类' ? '所有品类' : f + f2 + f3,
+                material: vars.cid + '^' + vars.scid + '^' + vars.bid,
                 key: $('#searchtext').text(),
                 order: $('#orderby').text()
             });
             // 绑定页面dom元素事件
             eventInit();
+            // 产品置顶
+            $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetProductListStick&city=' + vars.city + '&categoryid1=' + vars.cid + '&categoryid2=' + vars.scid  + '&rnd=' + Math.random(), function (dataList) {
+                if (dataList && dataList.length && typeof dataList[0] === 'object'){
+                    var $that, zhidingLen = dataList.length, ids = [];
+                    $content.find('li').each(function () {
+                        $that = $(this);
+                        ids.push($that.attr('data-id'));
+                    });
+                    for (var j = 0;j < zhidingLen;j++) {
+                        var str = '', pos;
+                        pos = $.inArray(dataList[j].productId, ids);
+                        if (pos === -1) {
+                            str += '<li><a href="' + vars.jiajuSite + '?c=jiaju&a=jcProductDetail&city=' + vars.city + '&cid=' + dataList[j].categoryid + '&sid=' + dataList[j].dealerid + '&id=' + dataList[j].productId + '">';
+                            str += '<div class="img"><img class="lazyload" data-original="' + dataList[j].picurl + '">';
+                            str += '<div class="but-stage"><span>' + dataList[j].brandname + '</span></div></div>';
+                            str += '<div class="txt">';
+                            str += '<h3>' + dataList[j].productname + dataList[j].model + '</h3>';
+                            str += '<p>';
+                            if (parseInt(dataList[j].distance) > 0) {
+                                str += '<span class="flor">' + dataList[j].location + '</span>';
+                            }
+                            if (dataList[j].companyname != 'null') {
+                                str += dataList[j].companyname;
+                            }
+                            str += '</p>';
+                            str += '<p><span class="f16 red-df"><b>' + dataList[j].price + '</b><i class="f11">/' + dataList[j].unitname + '</i></span></p>';
+                            str += '</div></a></li>';
+                            // 先插入元素，再更新数组
+                            $(str).insertBefore($content.find('li:eq(' + j + ')'));
+                            ids.splice(j, 0, dataList[j].productId);
+                        } else {
+                            // 如果是和列表第一页相同的数据，则优先插入到列表最前面
+                            $content.find('li').eq(pos).insertBefore($content.find('li:eq(' + j + ')'));
+                            // 先删除原来的重复元素，再更新数组
+                            ids.splice(pos, 1);
+                            ids.splice(j, 0, dataList[j].productId);
+                        }
+                    }
+                    $('.lazyload').lazyload();
+                }
+            });
         }
         /*
          *计算两点距离，并动态插入到页面中

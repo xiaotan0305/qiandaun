@@ -1,0 +1,51 @@
+* {margin:0; padding:0;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei"; background: #fff;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {color:#3c3f46;text-decoration:none;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+html,body{ height: 100%;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+.flol{ float:left;}
+.flor{ float:right;}
+
+.main{max-width: 640px; margin: 0 auto; overflow: hidden; min-height: 0; background: #fff;}
+/*banner图*/
+.bannerShow{position: relative;}
+.adFocus {position: relative;}
+.adFocus-cont{width: 130px; height: 96px; position: absolute; left: 50%; margin-left: -65px; top: 50%; margin-top: -48px;}
+.logowrap{width: 68px; height: 68px; background-color: rgba(255,225,255,.5); border-radius: 50%; margin: 0 auto 5px auto; text-align: center;
+overflow: hidden;}
+.logo{width: 60px; height: 60px; background: url(../images/logo.jpg) no-repeat; background-size: 60px; border-radius: 50%; overflow: hidden;
+	margin: 4px auto;}
+.adFocus-cont h3{width: 100%; height: 24px; line-height: 24px; text-align:center; font-size: 16px; color: #191919; border-radius: 2px;
+background: url(../images/logo_bg.png) no-repeat; background-size: 100% auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+/*列表*/
+.houseList ul {margin: 0;}
+.houseList li { border-bottom: 1px solid #edeff1; margin: 0 12px;}
+.houseList li > a {position: relative; display: block; padding: 14px 0; overflow: hidden;}
+.houseList li .img {position: relative; float: left; margin-right: 12px; width: 106px; height: 80px;}
+.houseList li .img img { width: 100%; height: 100%;}
+.houseList li .img p {position: absolute; display: block; height: 18px; line-height: 18px; text-align: center; width: 100%; bottom: 0 ;left: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 10px; color: #fff;}
+.houseList li .img .bgred{background: #f66;}
+.houseList li .img .bgyellow{background: #f90;}
+.houseList li .txt {overflow: hidden;}
+.houseList li h3 {font-size: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 18px; color: #3c3f46;
+    margin-top: 2px;margin-bottom: 8px; font-weight: bold;}
+.houseList li p { color: #83868f;  font-size: 12px;  white-space: nowrap; text-overflow: ellipsis; overflow: hidden; height: 30px; 
+	line-height: 30px;}
+.houseList li .new {float: right; font-size: 14px; color: #df3031;}
+.houseList li p .space {margin: 0 3px;}
+/*回到顶部*/
+.goTop{position: fixed; right: 15px; bottom: 55px; width: 36px; height: 36px; background: url(../images/gotop.png) no-repeat; 
+	background-size: 100% auto; z-index: 9;}

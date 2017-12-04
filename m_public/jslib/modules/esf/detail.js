@@ -1360,7 +1360,7 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             } else {
                 $('.btn-lq').css('display', 'none');
                 $('.erweima').css('display', 'block');
-                $('#contentshow').text('扫描二维码下载房APP');
+                $('#contentshow').text('扫描二维码下载房APP参与');
             }
 
             var shareSwiper = new Swiper('#sharehdswp', {

@@ -9,7 +9,7 @@
  * 20151207 blue 修改swipe插件改为3.10版本，修改柱状图和走势图循环复制出来的节点初始化函数,删除无用的js
  */
 define('modules/pinggu/xiaoquFj',
-    ['jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'chart/line/1.0.2/line'],
+    ['jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'chart/line/1.0.4/line'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -68,16 +68,13 @@ define('modules/pinggu/xiaoquFj',
                 var liStr = '';
                 switch (type) {
                     case 'orientation':
-                        liStr += '<li id="wappinggusy_D03_03">东</li><li id="wappinggusy_D03_03">南</li><li id="wappinggusy_D03_03">西</li><li id="wappinggusy_D03_03">北</li><li id="wappinggusy_D03_03">东南</li><li id="wappinggusy_D03_03">西南</li><li id="wappinggusy_D03_03">西北</li>';
+                        liStr += '<li id="wappinggusy_D03_03">东</li><li id="wappinggusy_D03_03">南</li><li id="wappinggusy_D03_03">西</li><li id="wappinggusy_D03_03">北</li><li id="wappinggusy_D03_03">东南</li><li id="wappinggusy_D03_03">西南</li><li id="wappinggusy_D03_03">东北</li><li id="wappinggusy_D03_03">西北</li><li id="wappinggusy_D03_03">南北</li><li id="wappinggusy_D03_03">东西</li>';
                         break;
                     case 'fTime':
-                        for (i = 1; i <= 11; i++) {
-                            if (i === 11) {
-                                liStr += '<li id="wappinggusy_D03_07">10年以上</li>';
-                            } else {
-                                liStr += '<li id="wappinggusy_D03_07">' + i + '年以内</li>';
-                            }
-                        }
+                        liStr += '<li id="wappinggusy_D03_07">一年以内</li><li id="wappinggusy_D03_07">二年以内</li><li id="wappinggusy_D03_07">三～五年</li><li id="wappinggusy_D03_07">五～十年</li><li id="wappinggusy_D03_07">十年以上</li>';
+                        break;
+                    case 'fitment':
+                        liStr += '<li id="wappinggusy_D03_08">毛坯</li><li id="wappinggusy_D03_08">普装</li><li id="wappinggusy_D03_08">中装</li><li id="wappinggusy_D03_08">精装</li><li id="wappinggusy_D03_08">豪装</li>';
                         break;
                 }
                 selectDivUl.append(liStr);
@@ -163,17 +160,10 @@ define('modules/pinggu/xiaoquFj',
                         case 'area':
                             reg = /[^\d\.]/g;
                             $that.val(val.replace(reg, ''));
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                            if (flag) {
-                                $that.val(flag);
+                            if (val && (val > 9999 || val <= 0)) {
+                                showMsg('建筑面积范围10-9999平米');
                             }
-                            break;
-                        case 'fmoney':
-                            // 只能输入数字
-                            reg = /[^\d\.]/g;
-                            $that.val(val.replace(reg, ''));
-                            // 控制位数,始终小于999999.99
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,6}/) : val.match(/\d{0,6}\.\d{0,2}/);
+                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
                             if (flag) {
                                 $that.val(flag);
                             }
@@ -195,14 +185,14 @@ define('modules/pinggu/xiaoquFj',
                 var floor = louceng.val();
                 var forward = orientation.text();
                 var fTime = $('#fTime').text(); //完成时间
-                var fmoney = $('#fmoney').val(); //装修金钱
+                var fitment = $('#fitment').text(); //装修档次
                 var area = $('#area').val();
                 if (!projname || projname === '请选择小区') {
                     alert('请选择小区');
                     return;
                 }
-                if (!area || area > 2000 || area <= 0) {
-                    alert('面积范围1-2000平米');
+                if (!area || area > 9999 || area < 10) {
+                    alert('建筑面积范围10-9999平米');
                     return;
                 }
                 if (!floor) {
@@ -220,17 +210,16 @@ define('modules/pinggu/xiaoquFj',
                 // 评估数据
                 var data = {
                     newcode: vars.newcode,
-                    Projname: projname,
-                    Area: area,
+                    buildingarea: area,
                     forward: forward,
                     zfloor: zfloor,
                     floor: floor,
-                    fTime: fTime,
-                    fmoney: fmoney
+                    fittime: fTime,
+                    fitment: fitment
                 };
-                if (fTime || fmoney) {
+                if (fTime || fitment) {
                     data.fTime = fTime;
-                    data.fmoney = fmoney;
+                    data.fitment = fitment;
                     data.moreFlag = 1;
                 }
                 var url = vars.pingguSite + '?c=pinggu&a=saveAccurateForm';
@@ -249,8 +238,8 @@ define('modules/pinggu/xiaoquFj',
                     success: function (data) {
                         if (data !== 'error') {
                             if (data.errcode === '100') {
-                                if (data.houseinfo) {
-                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.houseinfo.logid;
+                                if (data.LogId) {
+                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.LogId + '&city=' + vars.city;
                                 }
                             } else {
                                 alert(data.errmsg);
@@ -266,7 +255,7 @@ define('modules/pinggu/xiaoquFj',
             // 二手房详情页
             var dataZ = JSON.parse(vars.referPrice);
             if (dataZ) {
-                require.async(['chart/line/1.0.2/line'], function (Line) {
+                require.async(['chart/line/1.0.4/line'], function (Line) {
                     if (dataZ && dataZ.projdata && dataZ.disdata && dataZ.citydata) {
                         var xqcodeChart, disChart, cityChart, cdataArr = [];
                         // 针对某些城市数据不全的情况做兼容如果某类数据不存在，则不显示
@@ -296,6 +285,7 @@ define('modules/pinggu/xiaoquFj',
                             id: '#chartCon',
                             height: 200,
                             border: 50,
+                            alertDom: $('#trend'),
                             width: $(document).width() - 50,
                             lineColor: ['#ff7070', '#ffae71', '#68c9bf'],
                             xAxis: dataZ.monthnum,
@@ -307,6 +297,73 @@ define('modules/pinggu/xiaoquFj',
             } else {
                 $('.xq-fj-canvas').hide();
                 $('.xq-fj-int').hide();
+            }
+            // 提示信息
+            function show(keywords) {
+                var $msg = $('#sendText');
+                $msg.text(keywords);
+                $msg.fadeIn();
+                setTimeout(function () {
+                    $msg.fadeOut();
+                }, 2000);
+            }
+            // 是否已经收藏过该小区
+            var url = vars.mySite + '?c=mycenter&a=isAlreadySelect&city=' + vars.city + '&projcode=' + vars.newcode
+                + '&purpose=' + vars.purpose + '&channel=esf';
+            var oFavIcon = $('#attention');
+            // 收藏icon
+            $.get(url, function (data) {
+                if (data.result_code === '100') {
+                    oFavIcon.removeClass('guanzhu_fj');
+                    oFavIcon.addClass('yiguanzhu_fj');
+                }
+            });
+            // 添加收藏功能
+            oFavIcon.on('click', addFavFun);
+            // 收藏弹框实例
+            var scSuc = $('#scSuc');
+            function addFavFun() {
+                var that = this;
+                var url = vars.mySite + '?c=mycenter&a=ajaxMySelect&city=' + vars.city + '&xqid=' + vars.newcode;
+                $.get(url, function (data) {
+                    if (data.userid) {
+                        if (data.myselectid) {
+                            scSuc.show();
+                            oFavIcon.removeClass('guanzhu_fj');
+                            oFavIcon.addClass('yiguanzhu_fj');
+                        } else {
+                            show('已取消关注');
+                            oFavIcon.removeClass('yiguanzhu_fj');
+                            oFavIcon.addClass('guanzhu_fj');
+                        }
+                    } else {
+                        window.location.href = 'https://m.fang.com/passport/login.aspx?burl=' + encodeURIComponent(window.location.href);
+                    }
+                });
+            }
+
+            // 点击继续看房
+            $('#xuanfang_suc1').click(function () {
+                scSuc.hide();
+            });
+            /*提示弹框*
+             * modified by bjwanghongwei@fang.com
+             * 20161226
+             * 取消alert弹窗，（app会出现BUG）
+             */
+            var msg = $('#sendFloat'),
+                msgP = $('#sendhtml'),
+                timer = null;
+
+            function showMsg(text, callback) {
+                text = text || '信息有误！';
+                msgP.html(text);
+                msg.fadeIn();
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    msg.fadeOut();
+                    callback && callback();
+                }, 2000);
             }
         };
     });

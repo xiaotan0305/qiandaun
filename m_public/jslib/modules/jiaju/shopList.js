@@ -50,10 +50,63 @@ define('modules/jiaju/shopList', [
                 companyservice: $('#type').text(),
                 key: $('#searchtext').text(),
                 order: $('#sort').text(),
-                material: $('#category').text()
+                material: vars.categoryid
             });
             // 绑定页面dom元素事件
             eventInit();
+            // 公司置顶
+            $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetShopListStick&city=' + vars.city + '&categoryid=' + vars.categoryid + '&rnd=' + Math.random(), function (data) {
+                if (data && data.length && typeof dataList[0] === 'object') {
+                    var $that, zhidingLen = data.length, ids = [], hotlistLen, couponlistLen, couponlistClass;
+                    $content.find('li').each (function () {
+                        $that = $(this);
+                        ids.push($that.attr('data-id'));
+                    });
+                    
+                    for (var j = 0;j < zhidingLen;j++) {
+                        var str = '', pos;
+                        pos= $.inArray(data[j].companyid, ids);
+                        // 此处是过滤和列表第一页相同的数据
+                        if (pos === -1) {
+                            str += '<li><a href="' + vars.jiajuSite + '?c=jiaju&a=jcCompanyDetail&city=' + vars.city + '&companyid=' + data[j].companyid + '">';
+                            str += '<div class="jj-img"><div><img class="lazyload" data-original="' + data[j].companylogo + '"></div></div>';
+                            str += '<div class="txt">';
+                            str += '<h3>' + data[j].companyname + '</h3>';
+                            str += '<p>';
+                            if (parseInt(data[j].distance) > 0) {
+                                str += '<span class="flor">' + data[j].location + '</span>';
+                            }
+                            str += '<span class="f12 max_wid">' + data[j].companyaddress + '</span>';
+                            str += '</p>';
+                            str += '<p class="b-stage">';
+                            hotlistLen = data[j].hotlist.length;
+                            for (var i = 0;i < hotlistLen;i++) {
+                                str += '<i class="i2">' + data[j].hotlist[i].name + '</i>';
+                            }
+                            str += '</p>';
+                            couponlistLen = data[j].couponlist.length;
+                            for (var k = 0;k < couponlistLen; k++) {
+                                couponlistClass = data[j].couponlist[i].coupontypename == 'ȯ' ? 'activity' : 'activity cu';
+                                str += '<div class="' + couponlistClass + '">' + data[j].couponlist[i].coupontypename + '</div>';
+                            }
+                            str += '</div>';
+                            str += '</a></li>';
+                            // 先插入元素，再更新数组
+                            $(str).insertBefore($content.find('li:eq(' + j + ')'));
+                            ids.splice(j, 0, data[j].companyid);
+                        } else{
+                            // 如果是和列表第一页相同的数据，则优先插入到列表最前面
+                            $content.find('li').eq(pos).insertBefore($content.find('li:eq(' + j + ')'));
+                            // 先删除原来的重复元素，再更新数组
+                            ids.splice(pos, 1);
+                            ids.splice(j, 0, data[j].companyid);
+                        }
+                        
+                    }
+                    
+                    $('.lazyload').lazyload();
+                }
+            });
         }
 
         var EARTH_RADIUS = 6378137.0; //单位M  

@@ -249,6 +249,8 @@ define('modules/jiaju/bmFreeSignUp', [
 
             /* 免费申请*/
             that.freeApply.on('click', function () {
+                // 先验证面积，是为了解决部分浏览器返回之后仍然有面积，但是并未触发面积验证函数
+                that.houseAreaValidFn();
                 if (that.submitFlag && that.freeApplyEnable() && clickFlag) {
                     that.freeApplyClickFn();
                 }

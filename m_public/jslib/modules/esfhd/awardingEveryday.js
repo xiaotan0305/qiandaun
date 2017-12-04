@@ -2,24 +2,33 @@
  * 共建共享活动
  * modify by loupeiye@fang.com 20170913
  */
-define('modules/esfhd/awardingEveryday', ['jquery', 'jquerySuperSlide/1.0.0/superSlide', 'weixin/2.0.0/weixinshare'], function (require, exports, module) {
+define('modules/esfhd/awardingEveryday', ['jquery', 'flexible/flexible.debug.js', 'flexible/flexible_css.debug.js', 'weixin/2.0.0/weixinshare', 'floatAlert/1.0.0/floatAlert'], function (require, exports, module) {
     'use strict';
     module.exports = function (option) {
         // jquery库
         var $ = require('jquery');
         // 页面传入的参数
         var vars = seajs.data.vars;
-        // 滚动效果库
-        require('jquerySuperSlide/1.0.0/superSlide');
-        document.documentElement.style.fontSize = 20 * document.documentElement.clientWidth / 320 + 'px';
-        $(".picMarquee-left").slide({
-            mainCell: ".bd ul",
-            autoPlay: true,
-            effect: "leftMarquee",
-            vis: 3,
-            interTime: 30,
-            mouseOverStop: false
+        var floatAlert = require('floatAlert/1.0.0/floatAlert');
+        var floatObj = new floatAlert(option);
+        //提现操作
+        $('.btn').on('click', function () {
+            if ($(this).hasClass('disabled') || $(this).hasClass('btn-ed') ) {
+                return false;
+            }
+            $.ajax({
+                url: vars.esfSite + '?c=esfhd&a=ajaxAddAwardExtOrder&city=' + vars.city + '&isAgent=1',
+                success: function (data) {
+                    floatObj.showMsg(data.errmsg, 2000);
+                },
+                error: function () {
+                    floatObj.showMsg('提交失败，请稍后重试', 2000);
+                }
+            });
         });
+
+        require('flexible/flexible.debug.js');
+        require('flexible/flexible_css.debug.js');
 
         //微信分享显示自定义标题+描述+图
         var Weixin = require('weixin/2.0.0/weixinshare');
@@ -32,30 +41,5 @@ define('modules/esfhd/awardingEveryday', ['jquery', 'jquerySuperSlide/1.0.0/supe
             imgUrl: window.location.protocol + vars.shareImage,
             //swapTitle: true,
         });
-
-        /*170915 add 顶部文字左滚动*/
-        function ScrollImgLeft(){
-            var speed=40;
-            var MyMar = null;
-            var scroll_begin = document.getElementById("scroll_begin");
-            var scroll_end = document.getElementById("scroll_end");
-            var scroll_div = document.getElementById("scroll_div");
-            scroll_end.innerHTML=scroll_begin.innerHTML;
-            function Marquee(){
-                if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0)
-                    scroll_div.scrollLeft-=scroll_begin.offsetWidth;
-                else
-                    scroll_div.scrollLeft++;
-            }
-            MyMar=setInterval(Marquee,speed);
-            scroll_div.onmouseover = function(){
-                clearInterval(MyMar);
-            }
-            scroll_div.onmouseout = function(){
-                MyMar = setInterval(Marquee,speed);
-            }
-        }
-        ScrollImgLeft();
-        /*170915 end*/
     };
 });

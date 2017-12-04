@@ -28,7 +28,16 @@ define('modules/tools/mvc/sfView/getEsfSfTools', ['modules/tools/mvc/sfView/view
                 + '<a href="javascript:void(0);" v-bind:class="{ active: firstCla }" @click="firstClick"><span>首套</span></a>'
                 + '<a href="javascript:void(0);" v-bind:class="{ active: secondCla }" @click="secondClick"><span>二套</span></a>'
                 + '</div></section>'
-                + '<section class="ys-list fixed" id="ysList"  style="z-index:1000">'
+                + '<section id="topHeader" class="ys-list fixed"  style="height:80px;z-index:1000;top:-80px">'
+                + '<div>'
+                + '<dl class="flexbox" style="height:80px;">'
+                + '<dt class="topHeader" style="height:80px;padding-top:20px"><h3>首付预算</h3><div><span>{{planMoney}}</span>万</div></dt>'
+                + '<dd style="padding-top:20px"><ul><li><div><h3>净首付<i @click="floatShow1"></i></h3><span>{{clearMoney}}万</span></div></li>'
+                + '<li><div><h3>税费</h3><span>{{taxPay}}万</span></div></li>'
+                + '<li v-if="otherTop"><div><h3>其他<i @click="floatShow2"></i></h3><span>{{otherPay}}万</span></div></li></ul></dd></dl>'
+                + '</div>'
+                + '</section>'
+                + '<section class="ys-list" id="ysList"  style="z-index:1000;">'
                 + '<div>'
                 + '<dl class="flexbox">'
                 + '<dt><h3>首付预算</h3><div><span>{{planMoney}}</span>万</div></dt>'
@@ -489,18 +498,13 @@ define('modules/tools/mvc/sfView/getEsfSfTools', ['modules/tools/mvc/sfView/view
                     that.taxPay = parseFloat((Number(taxlist.total) / 10000).toFixed(1));
                     that.calTop(that.firstPoint);
                     var $ysList = $('#ysList');
-                    $(window).on('touchmove',function(){
+                    var $topHeader = $('#topHeader');
+                    $(window).on('scroll',function(){
                         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-                        $('.main').css('top','0px');
-                        if (scrollTop > 88) {
-                            if(!$ysList.hasClass('fixed')){
-                                $ysList.addClass('fixed');
-                            }
-                        } else if(scrollTop <= 88){
-                            if($ysList.hasClass('fixed')){
-                                $ysList.removeClass('fixed');
-                            }
-
+                        if(scrollTop > 198){
+                            $topHeader.addClass('fadeDownMore').removeClass('fadeUpMore');
+                        }else{
+                            $topHeader.addClass('fadeUpMore').removeClass('fadeDownMore');
                         }
                     });
                     var that = this;

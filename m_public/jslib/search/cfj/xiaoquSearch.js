@@ -31,8 +31,8 @@ define('search/cfj/xiaoquSearch', ['jquery', 'search/search'], function (require
             + '<div style="margin-bottom: 50px;"><div class="searList" id="wappinggusy_D03_02_05"><ul></ul></div><div class="clearBtn" id="wappinggusy_D03_02_06">'
             + '<a href="javascript:void(0);">清除历史记录</a></div></div></div>'
             + '<div id="autoPromptList">'
-            + '<div style="margin-bottom: 50px;"><div class="searList" id="wappinggusy_D03_02_03"><ul></ul></div><div class="clearBtn" id="wappinggusy_D01_09">'
-            + '<a href="javascript:void(0);">关闭</a></div></div></div>'
+            + '<div style="margin-bottom: 50px;"><div class="searList" id="wappinggusy_D03_02_03"><ul></ul></div>'
+            + '</div></div>'
             + '</div>';
         // 历史标识，用来存储在localstorge的标识
         this.historyMark = vars.city + 'cfjXiaoquHistory';
@@ -81,7 +81,43 @@ define('search/cfj/xiaoquSearch', ['jquery', 'search/search'], function (require
             q: inputValue,
             flag: 1
         };
-        search.createAutoPromptList.call(this, inputValue, url, obj);
+        var that = this;
+        // 如果再次调用时前一个ajax在执行，kill掉
+        if (that.ajaxFlag) {
+            that.ajaxFlag.abort();
+            that.ajaxFlag = 0;
+        }
+        that.ajaxFlag = $.get(url, obj, function (data) {
+            that.ajaxFlag = 0;
+            var list = that.autoPromptList.find('ul');
+            if (data && $.trim(that.searchInput.val()) !== '') {
+                var dataArr = typeof data === 'string' ? JSON.parse(data) : data;
+                var html, valArr;
+                list.empty();
+                if ($.isArray(dataArr) && dataArr.length > 0) {
+                    html = that.getAutoPromptListContent(dataArr);
+                    if (html) {
+                        html = '<li><a style="color:red;" href="javascript:void(0);" >' + '<span class="searchListName">请选择您想评估的房源所在的小区：</span></a></li>' + html;
+                        list.html(html);
+                        if (that.autoPromptList.is(':hidden')) {
+                            that.autoPromptList.show();
+                        }
+                    } else {
+                        var html = '<li style="text-align: center"><a href="javascript:void(0);"><span class="searchListName" >暂未搜索到该小区，请核对小区名</span></a></li>';
+                        list.html(html);
+                        that.autoPromptList.show();
+                    }
+                } else {
+                    var html = '<li style="text-align: center"><a href="javascript:void(0);"><span class="searchListName" >暂未搜索到该小区，请核对小区名</span></a></li>';
+                    list.html(html);
+                    that.autoPromptList.show();
+                }
+            } else {
+                var html = '<li style="text-align: center"><a href="javascript:void(0);"><span class="searchListName" >暂未搜索到该小区，请核对小区名</span></a></li>';
+                list.html(html);
+                that.autoPromptList.show();
+            }
+        });
     };
 
     /**
@@ -194,6 +230,24 @@ define('search/cfj/xiaoquSearch', ['jquery', 'search/search'], function (require
         that.showPopBtn.html(obj.key);
         vars.newcode = obj.id;
         vars.projname = obj.key;
+        //切换小区时同时切换楼栋数据
+        if (vars.action === 'accurate') {
+            var url = vars.pingguSite + '?a=ajaxGetLoudong&city=' + vars.city + '&newcode=' + obj.id;
+            $.ajax({
+                url: url,
+                success: function (data) {
+                    if (data != '') {
+                        var louhaoStr = '<li class="louhao"><div class="arr-rt"><span class="tt">楼<i class="pdL30"></i>栋</span><div class="con select" id="louhao">请选择楼栋</div></div></li>';
+                        $('.main').find('.louhao').replaceWith(louhaoStr);
+                        vars.xqLoudong = data;
+                    } else {
+                        var louhaoStr = '<li class="louhao"><div><span class="tt">楼<i class="pdL30"></i>栋</span><div class="con inp"><input class="noinput" type="text" id="louhao" placeholder="请输入楼栋号" maxlength="8"></div></div></li>';
+                        $('.main').find('.louhao').replaceWith(louhaoStr);
+                        vars.xqLoudong = '';
+                    }
+                }
+            });
+        }
         if (vars.localStorage) {
             // 转换当前点击搜索后的关键字为格式化后的条件对象，用来判断是否历史记录中重复
             // 获取消除重复后的历史记录对象字符串

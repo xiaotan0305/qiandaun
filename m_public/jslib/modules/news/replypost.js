@@ -168,7 +168,7 @@ define('modules/news/replypost',['util','photoswipe/4.0.7/photoswipe','photoswip
             }
         });
         // 判断content中是否有值
-        if (localStorage.getItem('inputCon') !== '') {
+        if (vars.localStorage && localStorage.getItem('inputCon') !== '') {
             $('#replyContent').text(localStorage.getItem('inputCon'));
             localStorage.removeItem('inputCon');
         }
@@ -252,18 +252,25 @@ define('modules/news/replypost',['util','photoswipe/4.0.7/photoswipe','photoswip
                             + pagesize + '&bottomFlag=1';
                     }*/
                     // 存储用户的输入内容到localStorage
-                    localStorage.setItem('inputCon',inputCon);
+                    if (vars.localStorage) {
+                        localStorage.setItem('inputCon', inputCon);
+                    }
+
                     window.location.href = vars.loginUrl;
-                }else if (vars.isLogin === 1) {
+                } else if (vars.isLogin === 1) {
                     // 判断登录但没认证手机用户
                     // 存储用户的输入内容到localStorage
-                    localStorage.setItem('inputCon',inputCon);
+                    if (vars.localStorage) {
+                        localStorage.setItem('inputCon', inputCon);
+                    }
                     // 跳转到验证手机页
                     window.location.href = vars.authUrl;
                 } else {
                     // 未登录用户
                     // 存储用户的输入内容到localStorage
-                    localStorage.setItem('inputCon',inputCon);
+                    if (vars.localStorage) {
+                        localStorage.setItem('inputCon', inputCon);
+                    }
                     // 跳转到登录页
                     window.location.href = vars.loginUrl;
                 }

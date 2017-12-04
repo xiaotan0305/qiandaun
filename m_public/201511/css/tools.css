@@ -133,6 +133,7 @@
 .ys-list dl{height:110px;}
 .ys-list dt{position:relative;height:100%;width:110x;min-width:110px;max-width:110px;background:#40444b;padding:34px 0 0 20px;z-index:1;}
 .ys-list dt:after{content:'';position:absolute;right:-85px;top:0;width:0;height:0;border-width:0 55px 110px 30px;border-color:transparent transparent transparent #40444b;border-style:solid;}
+.ys-list .topHeader:after{border-width:0 55px 80px 30px}
 .ys-list dt h3{font-size:12px;font-weight:600;line-height:1;margin-bottom:10px;}
 .ys-list dt > div{font-size:13px;white-space:nowrap;}
 .ys-list dt > div span{font-size:22px;}
@@ -193,3 +194,95 @@
 .tools-wydk p:before{content:'';position:absolute;width:16px;height:14px;left:0;top:5px;background:url(../images/tools_mes.png) no-repeat;background-size:100%;}
 .tools-wydk .btn{margin-top:14px;}
 .tools-wydk .btn a{display:block;width:100%;height:38px;line-height:37px;border:1px solid #df3031;background:#fff;font-size:14px;color:#df3031!important;text-align:center;border-radius:2px;}
+.fadeDownMore {
+    -webkit-animation: ani-fadeDownMore .5s ease forwards;
+    -moz-animation: ani-fadeDownMore .5s ease forwards;
+    -o-animation: ani-fadeDownMore .5s ease forwards;
+    animation: ani-fadeDownMore .5s ease forwards
+}
+
+@-webkit-keyframes ani-fadeDownMore {
+    0% {
+        top: -80px
+    }
+
+    100% {
+        top: 0
+    }
+}
+
+@-moz-keyframes ani-fadeDownMore {
+    0% {
+        top: -80px
+    }
+
+    100% {
+        top: 0
+    }
+}
+
+@-o-keyframes ani-fadeDownMore {
+    0% {
+        top: -80px
+    }
+
+    100% {
+        top: 0
+    }
+}
+
+@keyframes ani-fadeDownMore {
+    0% {
+        top: -80px
+    }
+
+    100% {
+        top: 0
+    }
+}
+.fadeUpMore {
+    -webkit-animation: ani-fadeUpMore .5s ease forwards;
+    -moz-animation: ani-fadeUpMore .5s ease forwards;
+    -o-animation: ani-fadeUpMore .5s ease forwards;
+    animation: ani-fadeUpMore .5s ease forwards
+}
+
+@-webkit-keyframes ani-fadeUpMore {
+    0% {
+        top: 0
+    }
+
+    100% {
+        top: -80px
+    }
+}
+
+@-moz-keyframes ani-fadeUpMore {
+    0% {
+        top: 0
+    }
+
+    100% {
+        top: -80px
+    }
+}
+
+@-o-keyframes ani-fadeUpMore {
+    0% {
+        top: 0
+    }
+
+    100% {
+        top: -80px
+    }
+}
+
+@keyframes ani-fadeUpMore {
+    0% {
+        top: 0
+    }
+
+    100% {
+        top: -80px
+    }
+}

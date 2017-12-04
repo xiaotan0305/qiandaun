@@ -24,8 +24,7 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
         var $xiangguanMoreBtn = $('#show_more_xiangguan');
         // 等我回答下加载更多按钮
         var $waitMeBtn = $('#show_more_waiteme');
-        // 是否采纳弹窗实例
-        var $cainadisplay = $('#cainadisplay');
+
         // 页面传入的参数
         var vars = seajs.data.vars;
         //  ！！！这种方式我认为非常不好，所有的合并都是在main中做的判断，增加了很多冗长代码，以后使用冷combo的话会收到很大的影响
@@ -343,20 +342,11 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
         /**
          * 事件委托方式，点击赞或者点击踩或者点击采纳或者点击他的回答（这就是用户名边上的跳转，产看这个回答用户的回答）
          */
-        $main.on('click', '.askzan,.cai,.cainabtn,.his_ask', function () {
+        $main.on('click', '.askzan, .cai, .his_ask', function () {
             var $this = $(this);
             var dataId = $this.attr('data-id');
-            // 如果点击的时采纳
-            if ($this.hasClass('cainabtn')) {
-                // 这个回答的id，非用户id
-                if (!userId) {
-                    util.login();
-                    return;
-                }
-                $cainadisplay.show();
-                cainaAnswerId = dataId;
-                cainaAnswerUserId = $this.attr('answer_user_id');
-            } else if ($this.hasClass('his_ask')) {
+
+            if ($this.hasClass('his_ask')) {
                 // 如果点击的是用户自己的回答，则跳转到我的回答页面，否则跳转到他人的回答页面
                 if (dataId === userId) {
                     window.location.href = vars.askSite + '?c=ask&a=myAsk';
@@ -427,34 +417,7 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
                 });
             }
         }
-        /**
-         * 绑定点击事件，点击是否采纳选择弹窗中的确认按钮时操作
-         */
-        $cainadisplay.find('#caina_yes').on('click', function () {
-            // 实现采纳
-            if (!userId) {
-                util.login();
-                return;
-            }
-            $.get(vars.askSite + '?c=ask&a=ajaxCaiNa&answerid=' + cainaAnswerId + '&askid=' + askId + '&answeruserid='
-                + cainaAnswerUserId, function (dataCopy) {
-                if (dataCopy) {
-                    if (dataCopy.code === '100') {
-                        // 需要进行页面刷新,！！！这里采纳以后刷新页面我觉得不太好，既然使用了ajax，那么应该是能够直接操作元素实现，也可能我理解的不对
-                        window.location.reload();
-                    } else {
-                        askAlert(dataCopy.message);
-                    }
-                }
-            });
-        });
 
-        /**
-         * 绑定点击事件，点击是否采纳选择弹窗中的取消按钮时操作
-         */
-        $cainadisplay.find('#caina_no').on('click', function () {
-            $cainadisplay.hide();
-        });
         // 加载更多的下一页索引
         var pagelist = 2;
         // 获取加载更多按钮jquery实例

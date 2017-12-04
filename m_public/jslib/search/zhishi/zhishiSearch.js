@@ -3,7 +3,7 @@
  * by blue
  * 20160214 blue 整理代码，修改样式为最新搜索样式需求，修改代码删除冗长代码。
  */
-define('search/zhishi/zhishiSearch', ['jquery', 'search/search'], function (require, exports, module) {
+define('search/zhishi/zhishiSearch', ['jquery', 'search/search', 'modules/zhishi/zhishibuma'], function (require, exports, module) {
     'use strict';
     // jquery索引
     var $ = require('jquery');
@@ -11,6 +11,7 @@ define('search/zhishi/zhishiSearch', ['jquery', 'search/search'], function (requ
     var search = require('search/search');
     // 页面传入的参数
     var vars = seajs.data.vars;
+    var zhishibuma = require('modules/zhishi/zhishibuma');
 
     /**
      * 主类
@@ -293,6 +294,20 @@ define('search/zhishi/zhishiSearch', ['jquery', 'search/search'], function (requ
             // 存入localstorage
             vars.localStorage.setItem(that.historyMark, that.setJumpCondition(historyList));
         }
+        if ((vars.action == 'commonList' && (vars.type == 'zxsm' || vars.type == 'xcdg' || vars.type == 'zxfs')) || (vars.action == 'hotTopic' && vars.jtname == 'jiaju')) {
+            if (vars.action == 'commonList') {
+                if (vars.type == 'zxsm') {
+                    zhishibuma({pageType: 'zs_jjzxsaomang^lb_wap',key: encodeURIComponent(b), b: 1});
+                } else if (vars.type == 'xcdg') {
+                    zhishibuma({pageType: 'zs_jjxuancaidg^lb_wap',key: encodeURIComponent(b), b: 1});
+                } else if (vars.type == 'zxfs') {
+                    zhishibuma({pageType: 'zs_jjzxfengshui^lb_wap',key: encodeURIComponent(b), b: 1});
+                }
+            }
+            if (vars.action == 'hotTopic' && vars.jtname == 'jiaju') {
+                zhishibuma({pageType: 'zs_jjremenzt^lb_wap',key: encodeURIComponent(b), b: 1});
+            }
+        }
         window.location = vars.zhishiSite + 'search/?kw=' + encodeURIComponent(b)+ '&r=' + Math.random();
     };
 
@@ -346,6 +361,20 @@ define('search/zhishi/zhishiSearch', ['jquery', 'search/search'], function (requ
         if (obj.jumpUrl) {
             window.location = obj.jumpUrl;
             return;
+        }
+        if ((vars.action == 'commonList' && (vars.type == 'zxsm' || vars.type == 'xcdg' || vars.type == 'zxfs')) || (vars.action == 'hotTopic' && vars.jtname == 'jiaju')) {
+            if (vars.action == 'commonList') {
+                if (vars.type == 'zxsm') {
+                    zhishibuma({pageType: 'zs_jjzxsaomang^lb_wap',key: encodeURIComponent(obj.key), b: 1});
+                } else if (vars.type == 'xcdg') {
+                    zhishibuma({pageType: 'zs_jjxuancaidg^lb_wap',key: encodeURIComponent(obj.key), b: 1});
+                } else if (vars.type == 'zxfs') {
+                    zhishibuma({pageType: 'zs_jjzxfengshui^lb_wap',key: encodeURIComponent(obj.key), b: 1});
+                }
+            }
+            if (vars.action == 'hotTopic' && vars.jtname == 'jiaju') {
+                zhishibuma({pageType: 'zs_jjremenzt^lb_wap',key: encodeURIComponent(obj.key), b: 1});
+            }
         }
         window.location = vars.zhishiSite + 'search/?kw=' + encodeURIComponent(obj.key) + '&r=' + Math.random();
     };

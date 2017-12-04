@@ -330,7 +330,7 @@
 .sf-bdmenu li .stag{display:inline;margin-left:8px;line-height:0;vertical-align:top;}
 .sf-bdmenu li .stag span{float:none;display:inline-block;margin-top:14px;}
 
-.option-box{position:fixed;left:16px;bottom:60px;z-index:9;width:36px;}
+.option-box{position:fixed;left:16px;bottom:74px;z-index:9;width:36px;}
 .option-box a{display:block;width:36px;height:36px;line-height:36px;color:#ffffff!important;text-align:center;font-size:12px;border-radius:50%;background:rgba(237,98,99,.9);}
 .option-cont a{position:relative;}
 .option-cont a:before{content:'';position:absolute;width:36px;height:36px;left:0;top:0;background:url(../images/icon-close2.png) center center no-repeat;background-size:19px auto;}

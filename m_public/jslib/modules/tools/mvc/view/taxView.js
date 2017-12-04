@@ -101,7 +101,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
     // 二手房
     Vue.component('esf', {
         template: '<div class="jsqBox">'
-        + '<ul class="jsq-list ll">'
+        + '<ul class="jsq-list wl30">'
 
 
         + '<select-li label="物业类型：" :data-value="housing3" :msg="housing3Msg" :id="esfHouseProp" v-on:click="housing3Click"></select-li>'

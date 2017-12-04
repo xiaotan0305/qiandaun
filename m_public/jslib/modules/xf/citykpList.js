@@ -59,4 +59,12 @@ define('modules/xf/citykpList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
          firstDragFlag: false
      });
      loadMore.init();
+     
+
+    // 全国楼盘推app下载
+	require.async('app/1.0.0/appdownload', function($) {
+		$('#topDownload').openApp();
+	});
+	
+	
 });

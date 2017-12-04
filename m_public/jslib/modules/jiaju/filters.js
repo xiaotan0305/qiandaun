@@ -265,7 +265,7 @@ define('modules/jiaju/filters', ['jquery', 'slideFilterBox/1.0.0/slideFilterBox'
             }
         });
         // 由click改为touchend 解决ios上房天下APP click事件点透的问题 tankunpeng
-        that.$filterBox.on('touchend dbclick','dd',function (e) {
+        that.$filterBox.on('touchend dblclick click','dd',function (e) {
             that.activeFilter(this, e);
         });
         $('.sf-jj-llist').find('a').on('click',function(e){
@@ -274,8 +274,8 @@ define('modules/jiaju/filters', ['jquery', 'slideFilterBox/1.0.0/slideFilterBox'
             var thisHref = $(this).attr('href');
             if(!that.clickFlag){
                 $(this).attr('href','');
-               window.location.href = jumpUrl;
-               return false;
+                window.location.href = jumpUrl;
+                return false;
             }else{
                 window.location.href = thisHref;
             }

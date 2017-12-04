@@ -3,7 +3,7 @@
  * @author 徐颖(bjxuying@soufun.com)
  * @modified by 袁辉辉(yuanhuihui@soufun.com)
  */
-define('modules/jiaju/xgtChannel', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore', 'footprint/1.0.0/footprint'], function (require, exports, module) {
+ define('modules/jiaju/xgtChannel', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore', 'footprint/1.0.0/footprint'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');

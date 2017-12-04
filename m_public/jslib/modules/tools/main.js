@@ -256,6 +256,8 @@ define('modules/tools/main', ['jquery', 'navflayer/navflayer_new2', 'view/busine
         // 下载App
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
+            // 底部浮层打开app
+            $('.linkbox').openApp({appUrl: 'waptoapp/{"destination":"calculator"}'});
         });
         // 修正除主题内容以外的页面不隐藏问题
         // (zhangcongfeng@fang.com)2016-04-06

@@ -73,16 +73,16 @@ define('modules/map/API/xfMapApi', ['jquery', 'modules/map/API/BMap'], function 
             SFMap.hideHouseList();
         });
         // 缩放开始
-        map.addEventListener('zoomstart', function () {
+        /*map.addEventListener('zoomstart', function () {
             that.zoomEnd = false;
-        });
+        });*/
         // 缩放结束
         map.addEventListener('zoomend', function () {
             try {
-                if (that.zoomEnd) {
+                /*if (that.zoomEnd) {
                     return;
                 }
-                that.zoomEnd = !0;
+                that.zoomEnd = !0;*/
                 // 搜索
                 var SFMap = require('modules/map/xfSFMap');
                 SFMap.params.zoom = that._map.getZoom();

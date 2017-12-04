@@ -1118,7 +1118,8 @@ define('modules/esf/newindex', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.
                     iscrollCtrl.refresh('#orderNew');
                 }
             });
-            $('#orderNew').on('click','li',function(){
+            $('#orderNew').on('click','li',function(e){
+                e.stopPropagation();
                 $('.houseList').find('a').addClass('noClick');
                 clickFlag = false;
                 jumpHref = $(this).find('a').attr('href');

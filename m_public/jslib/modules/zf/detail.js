@@ -1143,5 +1143,39 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                     },200);
             }
         }
+
+
+
+        //经纪人分享活动（20171107-20171117）
+        if ((vars.housetype == 'AGT' || vars.housetype == 'WAGT') && vars.isshare === 'share') {
+            //new iscrollNew('.sharewarp', {scrollY: true});
+            $('#sharehd').on('click', function () {
+                $('.x-share-bg').show();
+                $('.x-share-out').show();
+            });
+            $('.x-share-close').on('click', function () {
+                $('.x-share-bg').hide();
+                $('.x-share-out').hide();
+            });
+
+            if (UA.indexOf('iphone') > -1 || UA.indexOf('ios') > -1) {
+                $('.btn-lq').css('display', 'block');
+                $('.erweima').css('display', 'none');
+                $('#contentshow').text('');
+            } else {
+                $('.btn-lq').css('display', 'none');
+                $('.erweima').css('display', 'block');
+                $('#contentshow').text('扫描二维码下载房APP参与');
+            }
+
+            var shareSwiper = new Swiper('#sharehdswp', {
+                autoplay: 2000,//可选选项，自动滑动
+                loop: true,
+                direction: 'vertical',
+                autoplayDisableOnInteraction: false,
+                observer: true,
+                observeParents: true,
+            });
+        }
     };
 });

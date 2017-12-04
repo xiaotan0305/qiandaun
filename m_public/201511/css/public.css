@@ -304,6 +304,18 @@ em.ts-mhead{ top:5px; right:3px;}
 .floatApp .btn{ float: right; width:80px; height:44px; line-height:44px; background:#ff9b05; color:#ffffff; font-size: 13px; text-align:center;}
 .floatApp .off{ position: absolute; left: -20px; top: -20px; display: block; width: 40px; height: 40px; line-height: 40px; background: #424242; border-radius: 50%; color:#c7c7c7 !important; font-size: 14px; text-align: center; clip: rect(20px,40px,40px,20px);}
 .floatApp .off span{ position: relative; left: 8px; top: 7px;}
+/* 新浮层 - 立即下载 */
+.floatApp2{height:60px;}
+.floatApp2 > div{position: fixed; left:0; bottom:0;width:100%; height:60px;background:rgba(255,255,255,.95);box-shadow:0 0 18px rgba(0,0,0,.1);overflow: hidden;z-index:5;}
+.floatApp2 .linkbox{position:relative;display:table;width:100%;padding:10px 14px;}
+.floatApp2 .img{display:table-cell;width:40px;height:40px;}
+.floatApp2 .img img{width:100%;height:100%;}
+.floatApp2 .text{display:table-cell;vertical-align:middle;padding:0 62px 0 10px;}
+.floatApp2 .text p{font-size:14px;color:#0c0d0e;line-height:17px;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.floatApp2 .text p:first-of-type{font-weight:600;}
+.floatApp2 .text p:last-of-type{font-weight:normal;}
+.floatApp2 .text p:nth-of-type(2){font-size:11px;color:#83868f;}
+.floatApp2 .btn{position:absolute;right:14px;width:55px;height:25px;line-height:26px;font-size:13px;color:#ffffff;background:#fe9903;border-radius:13px;text-align:center;margin-top:8px;}
 
 /* 跳转箭头 */
 .arr-rt{ position: relative; padding-right: 14px;}
@@ -337,7 +349,6 @@ em.ts-mhead{ top:5px; right:3px;}
 .mTitle.con h2{margin-left:14px;}
 .mTitle.con span{margin-right:14px;}
 .mTitle.con > a.arr-rt:after{right:14px;}
-
 .mTitle.con16 span{margin-right:10px;font-size:14px;}
 .mTitle.newt{border-bottom:1px solid #f8f8f8;}
 .mTitle.newt h2{margin-left:20px;font-size:17px;color:#3c3f46;font-weight:600;}
@@ -976,3 +987,20 @@ a.back404{border: 1px solid #cccfd8;display: inline-block;margin-top: 14px;backg
 .top-tg-box .pointBox{position:absolute;text-align:center;width:100%;bottom:2px;}
 .top-tg-box .pointBox span{display:inline-block;width:3px;height:2px;background:#606064;border-radius:2px;overflow:hidden;margin:0;margin:0 1px;}
 .top-tg-box .pointBox span.cur{background:#f75757;width:5px;}
+/*详情底部*/
+.bottom-tg-box{height:60px;}
+.bottom-tg{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);box-shadow:0 0 18px rgba(0,0,0,.1);z-index:99;}
+.bottom-tg > div{width:100%;overflow:hidden;}
+.bottom-tg li{float:left;overflow:hidden;}
+.bottom-tg li > a{position:relative;display:block;width:100%;padding:9px 10px;overflow:hidden;}
+.bottom-tg li .img{float:left;width:56px;height:42px;}
+.bottom-tg li .img img{width:100%;height:100%;}
+.bottom-tg li .img.fang{width:44px;height:42px;padding:1px 0 1px 4px;}
+.bottom-tg li .txt{font-size:13px;color:#0c0d0e;line-height:17px;padding:0 22% 0 11px;overflow:hidden;}
+.bottom-tg li .txt p{max-height:34px;overflow:hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+.bottom-tg li .txt h4{font-size:14px;line-height:24px;font-weight:600;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.bottom-tg li .txt h5{font-size:11px;color:#83868f;line-height:12px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.bottom-tg li .btn{position:absolute;right:10px;width:55px;height:25px;line-height:26px;font-size:13px;color:#ffffff;background:#fe9903;border-radius:13px;text-align:center;margin-top:8px;}
+.bottom-tg .pointBox{position:absolute;text-align:center;width:100%;bottom:5px;}
+.bottom-tg .pointBox span{display:inline-block;width:3px;height:2px;background:#cccfd8;border-radius:2px;overflow:hidden;margin:0;margin:0 1px;}
+.bottom-tg .pointBox span.cur{background:#fe9903;width:5px;}

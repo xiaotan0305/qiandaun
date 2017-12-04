@@ -2,7 +2,14 @@
  * Created by libaowei on 15-3-16.
  * modified by LXM on 15-9-15.
  */
-define('modules/jiaju/lginfo', ['jquery', 'photoswipe/4.0.8/photoswipe-ui-default.min', 'photoswipe/4.0.8/photoswipe', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'], function (require, exports, module) {
+define('modules/jiaju/lginfo', [
+    'jquery',
+    'photoswipe/4.0.8/photoswipe-ui-default.min',
+    'photoswipe/4.0.8/photoswipe',
+    'superShare/1.0.1/superShare',
+    'weixin/2.0.0/weixinshare',
+    'modules/jiaju/yhxw'
+], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -23,39 +30,10 @@ define('modules/jiaju/lginfo', ['jquery', 'photoswipe/4.0.8/photoswipe-ui-defaul
 
         // 搜索用户行为收集20160114
         var page = 'mjjatlaspage';
-
-        function doYhxw(yhxwId) {
-            _ub.city = vars.cityname;
-            _ub.biz = 'h';
-            _ub.location = vars.ns;
-            var b = yhxwId;
-            var pTemp = {
-                'vmg.page': page,
-                'vmh.atlasid': vars.sid
-            };
-            var p = {};
-            // 若pTemp中属性为空或者无效，则不传入p中
-            for (var temp in pTemp) {
-                if (pTemp[temp]) {
-                    p[temp] = pTemp[temp];
-                }
-            }
-            _ub.collect(b, p);
-        }
-
-        function yhxw(yhxwId) {
-            if (_ub) {
-                doYhxw(yhxwId);
-            } else {
-                require.async('jsub/_ubm.js', function () {
-                    doYhxw(yhxwId);
-                });
-            }
-        }
-
-        require.async('jsub/_vb.js?c=' + page);
-        require.async('jsub/_ubm.js', function () {
-            yhxw(0);
+        var yhxw = require('modules/jiaju/yhxw');
+        yhxw({
+            page: page,
+            id: vars.sid
         });
 
         /* 收藏部分 begin*/
@@ -67,7 +45,11 @@ define('modules/jiaju/lginfo', ['jquery', 'photoswipe/4.0.8/photoswipe-ui-defaul
 
             function starClick() {
                 lock = false;
-                yhxw(21);
+                yhxw({
+                    page: page,
+                    type: 21,
+                    id: vars.sid
+                });
                 if (parseInt(vars.userid)) {
                     var i;
                     if (parseInt(vars.issc)) {
@@ -123,7 +105,11 @@ define('modules/jiaju/lginfo', ['jquery', 'photoswipe/4.0.8/photoswipe-ui-defaul
 
             function upClick() {
                 lock = false;
-                yhxw(55);
+                yhxw({
+                    page: page,
+                    type: 55,
+                    id: vars.sid
+                });
                 if (parseInt(vars.userid)) {
                     var i = {
                         objid: vars.sid,

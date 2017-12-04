@@ -180,10 +180,13 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
             that.searchPop.hide();
             $(document.body).prepend(that.searchPop);
             that.cacheData && that.cacheData();
-            if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh)) {
+            if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh) || /cps=xmzhida/.test(lh)) {
            	 that.hideBody();
                 that.showPop();
            }
+	        if(/cps=xmzhida/.test(lh)){
+	        	$('.back').hide();
+	        }
         },
 
         /**
@@ -309,7 +312,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          */
         back: function () {
         	var lh = location.href;
-        	 if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh)) {
+        	 if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh) || /cps=xmzhida/.test(lh)) {
         		 history.back(-1);
         	 }else{
         	$.fx.off = false;
@@ -362,7 +365,8 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
                     bindToWrapper: true,
                     scrollY: true,
                     scrollX: false,
-                    snap: true
+                    snap: true,
+                    click: true
                 });
             }
             if (that.scroll.pages[0].length <= 1) {

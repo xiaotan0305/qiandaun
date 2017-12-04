@@ -1,0 +1,133 @@
+
+/*public*/
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-size: 12px;}
+html,body{font-family: Microsoft Yahei;background-color:#08074d; color:#323232;}
+html{width: 100%;height:100%;margin:0 auto;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,span,input,textarea,p,th,td,hr,button,article,aside,footer,header,menu,nav,section{margin:0;padding:0}
+input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;}
+ol,ul{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}
+a:hover{text-decoration:none}
+ins,a{text-decoration:none}
+input,button,select,textarea{-webkit-appearance:none;border:none;outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    font-size:0;
+    visibility:hidden;
+    clear:both;
+}
+.clearfix{
+    *zoom:1;
+}
+.fl {float: left;}
+.fr {float: right;}
+/*index*/	
+.mode{width:100%;}
+.mode-head{width:100%;height:auto;position:relative;}
+.banner,.bg{width:100%;display:block;}
+
+/*mode-first*/
+.mode-first{width:100%;height:auto;}
+/*mode-second*/
+.mode-second{width:100%;height:5.12rem;padding-top: 2rem;background: url(../images/bg2.jpg) 0 0 no-repeat; background-size: cover;}
+.rule{width:72%;line-height:0.49rem;margin-left:16.5%;color:#fff;font-size: 0.33rem;}
+/*mode-third*/
+.mode-third{width:100%;height:13.64rem;background: url(../images/bg3.jpg) 0 0 no-repeat; background-size: cover;position:relative;overflow: hidden;}
+.rolling{width:82.67%;height:8.267rem;position:absolute;left:8.75%;top:3.21rem;animation: myroll 1000s infinite;-webkit-animation: myroll 1000s infinite;-moz-animation: myroll 1000s infinite;-ms-animation: myroll 1000s infinite;z-index: 1;}
+.rolling img{display:block;width:8.267rem;height:8.267rem;}
+.circle{width:94.5%;height:auto;position:absolute;left:2.75%;top:2.64rem;z-index: 2;}
+.pointer{width:38.53%;height:auto;position:absolute;left:30.5%;top:4.96rem;z-index: 3;}
+/*mode-fourth*/
+.mode-fourth{width:100%;height:3.653rem;padding-top:2.48rem;background: url(../images/bg4.jpg) 0 0 no-repeat; background-size: cover;position:relative;overflow: hidden;}
+.mode-fourth h3{width:100%;height:1.04rem;line-height:1.04rem;font-size: 0.32rem;color:#08074d;text-align: center;}
+@keyframes myroll{
+	from{
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+	to{
+		transform:rotate(36000deg);
+		-ms-transform:rotate(36000deg); 	/* IE 9 */
+		-moz-transform:rotate(36000deg); 	/* Firefox */
+		-webkit-transform:rotate(36000deg); /* Safari 和 Chrome */
+		-o-transform:rotate(36000deg); 	/* Opera */
+	}
+}
+@-moz-keyframes myroll
+	from{
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+	to{
+		transform:rotate(36000deg);
+		-ms-transform:rotate(36000deg); 	/* IE 9 */
+		-moz-transform:rotate(36000deg); 	/* Firefox */
+		-webkit-transform:rotate(36000deg); /* Safari 和 Chrome */
+		-o-transform:rotate(36000deg); 	/* Opera */
+	}
+}
+@k-webkit-keyframes myroll{
+	from{
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+	to{
+		transform:rotate(36000deg);
+		-ms-transform:rotate(36000deg); 	/* IE 9 */
+		-moz-transform:rotate(36000deg); 	/* Firefox */
+		-webkit-transform:rotate(36000deg); /* Safari 和 Chrome */
+		-o-transform:rotate(36000deg); 	/* Opera */
+	}
+}
+@-o-keyframes myroll{
+	from{
+		transform:rotate(0deg);
+		-ms-transform:rotate(0deg); 	/* IE 9 */
+		-moz-transform:rotate(0deg); 	/* Firefox */
+		-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+		-o-transform:rotate(0deg); 	/* Opera */
+	}
+	to{
+		transform:rotate(36000deg);
+		-ms-transform:rotate(36000deg); 	/* IE 9 */
+		-moz-transform:rotate(36000deg); 	/* Firefox */
+		-webkit-transform:rotate(36000deg); /* Safari 和 Chrome */
+		-o-transform:rotate(36000deg); 	/* Opera */
+	}
+}
+/*mode-fifth*/
+.mode-fifth{width:100%;height:10.75rem;background: url(../images/bg5.jpg) 0 0 no-repeat; background-size: cover;position:relative;overflow: hidden;}
+.rank{width:65%;height:2.2rem;margin:0 auto;overflow:hidden;} 
+.rank li{width:50%;height:1.47rem;float: left;text-align: center;padding-top: 0.73rem;} 
+.rank li span{height:0.53rem;line-height:0.53rem;font-size:0.453rem;font-weight: bold;} 
+.rank li p{height:0.453rem;line-height:0.453rem;font-size:0.32rem;} 
+
+.city-name{height:0.933rem;line-height:0.933rem;font-size:0.4267rem;color:#fff;font-weight:bold;text-align: center;}
+.total{width: 65%;margin: 0 auto;overflow: hidden;}
+.total .tit{height:0.933rem;line-height:0.933rem;width:100%;margin: 0 auto;color:#fff;}
+.total .tit li{width:33.33%;text-align: center; float: left;}
+.total .tit li:first-child{width:25.33%;padding:0 4%;}
+/*mode-sixth*/
+.mode-sixth{width:72%;height:6.26rem;padding:2.41rem 13% 0 15%;background: url(../images/bg6.jpg) 0 0 no-repeat; background-size: cover;}
+.mode-sixth p{color:#e1e9ff;line-height:0.5rem;}
+
+.uv-rank{width: 100%;overflow: hidden;}
+.uv-rank li{color:#333;}
+.uv-rank li span{display: block;width:33.33%;float: left;}
+.uv-rank li.red span{color:#ff1944;}
+.uv-rank li span{width:33.33%;height:0.8rem;line-height:0.8rem;text-align: center;color:#333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.uv-rank li span:first-child{width:25.33%;padding:0 4%;}

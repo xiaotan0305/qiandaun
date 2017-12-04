@@ -231,13 +231,20 @@ define('search/chengjiao/cjSearch', ['jquery', 'search/mainSearch'], function (r
         // 地址拼接
         var url;
         url = vars.mainSite + 'chengjiao/' + vars.city + '/';
+        if (window.location.href.indexOf('tabindex=1') != -1) {
+            url += '?tabindex=1'
+        }
         // 如果关键字为空，直接点击搜索按钮时返回到列表页首页
         if (!b) {
             window.location = url;
             that.writeSearchLeaveTimeLog(that.columnType);
             return;
         }
-        url += '?keyword=' + encodeURIComponent(b);
+        if (url.indexOf('?') == -1) {
+            url += '?keyword=' + encodeURIComponent(b);
+        } else {
+            url += '&keyword=' + encodeURIComponent(b);
+        }
         that.setOtherHistory({key: b, showWord: b, suffix: ''}, url + '&city=' + vars.city);
         window.location = url;
         that.writeSearchLeaveTimeLog(that.columnType);

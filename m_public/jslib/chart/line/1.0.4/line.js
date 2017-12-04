@@ -195,6 +195,15 @@
             var that = this;
             // 设置浮层
             var alertDom = that.options.alertDom;
+            if (_vars.action === 'xiaoquFj') {
+                // 设置浮层
+                var x = point.x;
+                var y = point.y;
+                alertDom.css({
+                    left: x/2 + alertDom.outerWidth() > that.chartCvs.width() ? that.chartCvs.width() - alertDom.outerWidth() : x/2,
+                    top: y / 2 + alertDom.outerHeight() > that.chartCvs.height() ? that.chartCvs.height() - alertDom.outerHeight() : y / 2
+                }).scrollTop(0);
+            }
             $(alertDom.find('span')[times]).html(data);
             alertDom.show();
         },

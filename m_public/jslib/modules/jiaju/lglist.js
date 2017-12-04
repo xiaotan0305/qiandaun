@@ -2,7 +2,7 @@
  * Created by zxw on 15-8-18.
  * modified by LXM on 15-9-15.
  */
-define('modules/jiaju/lglist', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore'], function (require, exports, module) {
+define('modules/jiaju/lglist', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore', 'modules/jiaju/yhxw'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -15,40 +15,16 @@ define('modules/jiaju/lglist', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1
         $('#notfound').on('click', function () {
             window.location.reload();
         });
-
-        // 搜索用户行为收集20160114
-        var ubpage = 'mjjatlaslist';
-        require.async('jsub/_vb.js?c=' + ubpage);
-        require.async('jsub/_ubm.js', function () {
-            var b = 1;
-            _ub.city = vars.cityname;
-            _ub.biz = 'h';
-            _ub.location = vars.ns;
-            var key = encodeURIComponent($('#S_searchtext').val());
-            var style, roomtype;
-            if (parseInt(vars.tagNumber) > 0 && parseInt(vars.tagNumber) <= 10) {
-                // 风格
-                style = encodeURIComponent(vars.tag);
-            }
-            if (parseInt(vars.tagNumber) > 10 && parseInt(vars.tagNumber) <= 20) {
-                roomtype = encodeURIComponent(vars.tag);
-            }
-            var pTemp = {
-                'vmg.page': ubpage,
-                'vmh.key': key,
-                'vmh.style': style,
-                'vmh.roomtype': roomtype
-            };
-            var p = {};
-            // 若pTemp中属性为空或者无效，则不传入p中
-            for (var temp in pTemp) {
-                if (pTemp[temp]) {
-                    p[temp] = pTemp[temp];
-                }
-            }
-            _ub.collect(b, p);
+        // 用户行为
+        var yhxw = require('modules/jiaju/yhxw');
+        yhxw({
+            page: 'mjjatlaslist',
+            type: 1,
+            key: $('#searchBtn').text().trim(),
+            style: $('#style').text().trim(),
+            housetype: $('#room').text().trim(),
+            roomtype: $('#word').text().trim()
         });
-        <!-- 对用户的相关信息进行收集 end -->
 
         var spanBtn = $('.btn span');
         var zxCategory = $('.zx-category');

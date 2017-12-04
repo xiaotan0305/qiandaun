@@ -1,4 +1,4 @@
-define('modules/zhishi/commonList', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/zhishi/commonList', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload', 'modules/zhishi/zhishibuma'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -8,6 +8,7 @@ define('modules/zhishi/commonList', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyl
         $('.lazyload').lazyload();
         // 加载更多
         var loadMore = require('loadMore/1.0.0/loadMore');
+        var zhishibuma = require('modules/zhishi/zhishibuma');
         loadMore({
             url: vars.zhishiSite + '?c=zhishi&a=ajaxCommonList&city=' + vars.city + '&jtname=' + vars.jtname + '&type=' + vars.type,
             total: vars.count,
@@ -20,5 +21,17 @@ define('modules/zhishi/commonList', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyl
             loadingTxt: '正在加载...'
             // firstDragFlag: false
         });
+
+        /**
+         * 浏览埋码
+         * @param page 埋码方式
+         */
+        if (vars.type == 'zxsm') {
+            zhishibuma({pageType: 'zs_jjzxsaomang^lb_wap', b: '0'});
+        } else if (vars.type == 'xcdg') {
+            zhishibuma({pageType: 'zs_jjxuancaidg^lb_wap', b: '0'});
+        } else if (vars.type == 'zxfs') {
+            zhishibuma({pageType: 'zs_jjzxfengshui^lb_wap', b: '0'});
+        }
     };
 });

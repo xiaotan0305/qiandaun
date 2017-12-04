@@ -37,7 +37,8 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
         var poper = $('.sf-bdmenu .con section');
         // 显示 弹出div
         var selectDivUl = selectDiv.find('ul');
-
+        //main
+        var main = $('.main');
         // 选择小区search
         require.async('search/cfj/xiaoquSearch', function (xiaoquSearch) {
             var XiaoquSearch = new xiaoquSearch();
@@ -99,28 +100,34 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                     }
                     break;
                 case 'orientation':
-                    liStr += '<li>东</li><li>南</li><li>西</li><li>北</li><li>东南</li><li>西南</li><li>西北</li>';
+                    liStr += '<li>东</li><li>南</li><li>西</li><li>北</li><li>东南</li><li>西南</li><li>东北</li><li>西北</li><li>南北</li><li>东西</li>';
                     break;
                 case 'fTime':
-                    for (i = 1; i <= 11; i++) {
-                        if (i === 11) {
-                            liStr += '<li>10年以上</li>';
-                        } else {
-                        liStr += '<li>' + i + '年以内</li>';
-                        }
-                    }
+                    liStr += '<li id="wappinggusy_D03_07">一年以内</li><li id="wappinggusy_D03_07">二年以内</li><li id="wappinggusy_D03_07">三～五年</li><li id="wappinggusy_D03_07">五～十年</li><li id="wappinggusy_D03_07">十年以上</li>';
+                    break;
+                case 'fitment':
+                    liStr += '<li id="wappinggusy_D03_08">毛坯</li><li id="wappinggusy_D03_08">普装</li><li id="wappinggusy_D03_08">中装</li><li id="wappinggusy_D03_08">精装</li><li id="wappinggusy_D03_08">豪装</li>';
+                    break;
+                case 'duty':
+                    liStr += '<li>唯一满五</li><li>唯一不满五</li>';
+                    break;
+                case 'buildingstruct':
+                    liStr += '<li>砖混（混合）</li><li>钢混</li>';
+                    break;
+                case 'buildingstyle':
+                    liStr += '<li>塔楼</li><li>板塔结合</li><li>板楼</li>';
                     break;
                 case 'landscape':
-                    liStr += '<li>景观房</li><li>侧景观房</li><li>一般</li><li>有遮挡</li>';
+                    liStr += '<li>临小区绿地</li><li>临小区主景观</li><li>有建筑物遮挡</li><li>临马路</li><li>垃圾站</li>';
                     break;
                 case 'daylighting':
-                    liStr += '<li>无暗房/南北通风</li><li>南北通风</li><li>一般</li><li>差</li>';
+                    liStr += '<li>空气流通好，光线充足无暗角</li><li>空气流通一般，光线充足</li><li>局部有暗光</li><li>空气流通差，有暗室</li>';
                     break;
                 case 'zyyx':
                     liStr += '<li>无噪音</li><li>噪音较小</li><li>噪音较大</li>';
                     break;
                 case 'facilities':
-                    liStr += '<li>很近</li><li>较近</li><li>无</li>';
+                    liStr += '<li>较近</li><li>较远</li>';
                     break;
                 case 'louhao':
                     if (vars.xqLoudong && vars.xqLoudong.indexOf(',') === -1) {
@@ -143,7 +150,7 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
 
         // 点击标签弹出选择框事件
         var scroll;
-        $('.select').on('click', function () {
+        main.on('click', '.select', function () {
             if (flagchose === false) {
                 return false;
             }
@@ -151,7 +158,7 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
             var num;
             if (id) {
                 type = id;
-                if (obj[type]) {
+                if (obj[type] && type !== 'louhao') {
                     selectDivUl.html(obj[type]);
                     selectDiv.show();
                     num = selectDiv.find('li.activeS').index();
@@ -184,13 +191,17 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
             }
         });
         // 厌恶因素根据厌恶设施选项show或hide
-        var openSelection = function () {
-            if (facilitiesId.text() === '很近' || facilitiesId.text() === '较近') {
-                evaluate.find('li:last').show();
+        $('.cfj-ipt-cb').on('click', function () {
+            var ywssarr = [];
+            $('input[name="ywss"]:checked').each(function () {
+                ywssarr.push($(this).val());
+            });
+            if (ywssarr.length) {
+                $('.facilities').show();
             } else {
-                evaluate.find('li:last').hide();
+                $('.facilities').hide();
             }
-        };
+        });
         // 点击弹框选项事件,选择内容填充到对应的标签
         selectDivUl.on('click', 'li', function () {
             flagchose = false;
@@ -206,9 +217,6 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                 flagchose = true;
                 $('.noinput').attr('disabled', false);
             }, 100);
-            if (type === 'facilities') {
-                openSelection();
-            }
         });
         // 点击弹框取消事件
         selectDiv.find('.cancel').on('click', function () {
@@ -234,21 +242,25 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                         reg = /\D/g;
                         $that.val(val.replace(reg, ''));
                         break;
-                    case 'fmoney':
-                        // 只能输入数字
+                    case 'area':
                         reg = /[^\d\.]/g;
                         $that.val(val.replace(reg, ''));
-                        // 控制位数,始终小于999999.99
-                        flag = val.indexOf('.') === -1 ? val.match(/\d{0,6}/) : val.match(/\d{0,6}\.\d{0,2}/);
+                        if (val && (val > 9999 || val <= 0)) {
+                            showMsg('建筑面积范围10-9999平米');
+                        }
+                        flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
                         if (flag) {
                             $that.val(flag);
                         }
                         break;
-                    case 'area':
-                    case 'area0':
-                    case 'area1':
+                    case 'gardenarea':
+                    case 'lvtaiarea':
+                    case 'basementarea':
                         reg = /[^\d\.]/g;
                         $that.val(val.replace(reg, ''));
+                        if (val && (val > 9999 || val <= 0)) {
+                            showMsg('赠送面积范围1-9999平米');
+                        }
                         flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
                         if (flag) {
                             $that.val(flag);
@@ -266,6 +278,18 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                         reg = /[^\w\u4e00-\u9fa5\-]/g;
                         $that.val(val.replace(reg, ''));
                         break;
+                    case 'createtime':
+                        reg = /[^\d\.]/g;
+                        var myDate = new Date();
+                        $that.val(val.replace(reg, ''));
+                        if (val && (val > myDate.getFullYear() || val <= 0)) {
+                            showMsg('不可超过当前年份');
+                        }
+                        flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
+                        if (flag) {
+                            $that.val(flag);
+                        }
+                        break;
                 }
                 evaluate.find('.' + id).addClass('sele');
             }
@@ -275,6 +299,9 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
         // 点击展开更多填写项
         var moreInfo = $('#moreinfo');
         moreText.on('click', function () {
+            if (flagchose === false) {
+                return false;
+            }
             var $that = $(this);
             if (moreInfo.css('display') === 'none') {
                 moreInfo.show();
@@ -304,37 +331,45 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
 
             var starTime = [];
             assessId.on('click', function assess() {
+                if (flagchose === false) {
+                    return false;
+                }
                 var date = new Date();
                 starTime.push(date.getTime());
                 var projname = vars.projname ? vars.projname : $('#CFJ_searchtext').text();
                 if (vars.xqLoudong) {
-                    var louhao = louDong.text();
+                    var louhao = $('.main').find('#louhao').text();
                 } else {
-                    var louhao = louDong.val();
+                    var louhao = $('.main').find('#louhao').val();
                 }
                 var danyuan1 = cell.text();
                 var zfloor = zonglouceng.val();
                 var floor = louceng.val();
                 var forward = orientation.text();
                 var area = $('#area').val();
-                var ywys = '';
+                var ywss = '';
                 var array = [];
-                var room, hall, fTime, fmoney, landscape, daylighting, zyyx, area0, area1, facilities;
+                var room, hall, fTime, fitment, duty, createtime, buildingstyle, buildingstruct, landscape, daylighting, zyyx, gardenarea, lvtaiarea, basementarea, facilities;
                 if (moreInfo.css('display') !== 'none') {
                     room = $('#room').val();
                     hall = $('#hall').val();
                     fTime = fTimeId.text();
-                    fmoney = $('#fmoney').val();
+                    fitment = $('#fitment').text();
+                    duty = $('#duty').text();
+                    createtime = $('#createtime').val();
+                    buildingstyle = $('#buildingstyle').text();
+                    buildingstruct = $('#buildingstruct').text();
                     landscape = $('#landscape').text();
                     daylighting = $('#daylighting').text();
                     zyyx = $('#zyyx').text();
-                    area0 = $('#area0').val();
-                    area1 = $('#area1').val();
+                    gardenarea = $('#gardenarea').val();
+                    lvtaiarea = $('#lvtaiarea').val();
+                    basementarea = $('#basementarea').val();
                     facilities = facilitiesId.text();
-                    $('input[name="ywys"]:checked').each(function () {
+                    $('input[name="ywss"]:checked').each(function () {
                         array.push($(this).val());
                     });
-                    ywys = array.join(',');
+                    ywss = array.join(',');
                 }
                 if (!projname || projname === '请选择小区') {
                     showMsg('请选择小区');
@@ -356,34 +391,42 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                     showMsg('楼层不得大于总楼层');
                     return;
                 }
-                if (!area || area > 2000 || area <= 0) {
-                    showMsg('面积范围1-2000平米');
+                if (!area || area > 9999 || area < 10) {
+                    showMsg('建筑面积范围10-9999平米');
                     return;
+                }
+                var myDate = new Date();
+                if (createtime && (createtime > myDate.getFullYear() || createtime <= 0)) {
+                    showMsg('不可超过当前年份');
                 }
                 // 收集评估埋码数据
                 var data = {
                     newcode: vars.newcode,
-                    Projname: projname,
-                    Area: area,
+                    buildingarea: area,
                     forward: forward,
                     zfloor: zfloor,
                     floor: floor,
-                    louhao: louhao,
-                    danyuan1: danyuan1
+                    buildingnumber: louhao,
+                    danyuan: danyuan1
                 };
                 if (moreInfo.css('display') !== 'none') {
                     data.moreFlag = 1;
-                    data.Room = room;
+                    data.room = room;
                     data.hall = hall;
-                    data.fTime = fTime;
-                    data.fmoney = fmoney;
-                    data.landscape = landscape;
-                    data.daylighting = daylighting;
+                    data.fittime = fTime;
+                    data.fitment = fitment;
+                    data.duty = duty;
+                    data.createtime = createtime;
+                    data.buildingstyle = buildingstyle;
+                    data.buildingstruct = buildingstruct;
+                    data.jgys = landscape;
+                    data.cgtf = daylighting;
                     data.zyyx = zyyx;
-                    data.area0 = area0;
-                    data.area1 = area1;
-                    data.facilities = facilities;
-                    data.ywys = ywys;
+                    data.gardenarea = gardenarea;
+                    data.lvtaiarea = lvtaiarea;
+                    data.basementarea = basementarea;
+                    data.ywsstype = facilities;
+                    data.ywss = ywss;
                 }
                 var url = vars.pingguSite + '?c=pinggu&a=saveAccurateForm';
                 var pTemp = {
@@ -405,15 +448,15 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                     // 户型(室)
                     'vmv.halltype': hall,
                     // 厅
-                    'vmv.decorationcost': fmoney,
+                    'vmv.decorationcost': '',
                     // 装修金额
                     'vmv.decorationage': encodeURIComponent(fTime),
                     // 装修年限
                     'vmv.scenery': encodeURIComponent(landscape),
                     // 景观情况
-                    'vmv.gardenarea': area0,
+                    'vmv.gardenarea': gardenarea,
                     // 花园面积
-                    'vmv.basementarea': area1
+                    'vmv.basementarea': basementarea
                     // 地下室面积
                 };
                 var p = {};
@@ -442,8 +485,8 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                     success: function (data) {
                         if (data !== 'error') {
                             if (data.errcode === '100') {
-                                if (data.houseinfo) {
-                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.houseinfo.logid;
+                                if (data.LogId) {
+                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.LogId + '&city=' + vars.city;
                                 }
                             } else {
                                 showMsg(data.errmsg);
@@ -455,5 +498,47 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                 });
             });
         });
+        if (vars.localStorage) {
+            //精准评估上一页面带来信息
+            var jzpgInfo = vars.localStorage.getItem('jzpgInfo');
+            if (jzpgInfo) {
+                var jzpgInfoData = JSON.parse(jzpgInfo);
+                if (jzpgInfoData.Forward && jzpgInfoData.Forward !== '南') {
+                    orientation.text(jzpgInfoData.Forward);
+                }
+                if (jzpgInfoData.Area) {
+                    $('#area').val(jzpgInfoData.Area);
+                }
+                if (jzpgInfoData.Floor) {
+                    louceng.val(jzpgInfoData.Floor);
+                }
+                if (jzpgInfoData.zfloor) {
+                    zonglouceng.val(jzpgInfoData.zfloor);
+                }
+                if (jzpgInfoData.FTime) {
+                    fTimeId.text(jzpgInfoData.FTime);
+                }
+                if (jzpgInfoData.Fitment) {
+                    $('#fitment').text(jzpgInfoData.Fitment);
+                }
+                if (jzpgInfoData.Danyuan) {
+                    $('#cell').text(jzpgInfoData.Danyuan);
+                }
+                if (jzpgInfoData.Room && jzpgInfoData.Room !== '0') {
+                    $('#room').val(jzpgInfoData.Room);
+                }
+                if (jzpgInfoData.Hall && jzpgInfoData.Hall !== '0') {
+                    $('#hall').val(jzpgInfoData.Hall);
+                }
+                if (jzpgInfoData.Louhao) {
+                    if ($('.main').find('#louhao').hasClass('select')) {
+                        $('.main').find('#louhao').text(jzpgInfoData.Louhao);
+                    } else {
+                        $('.main').find('#louhao').val(jzpgInfoData.Louhao);
+                    }
+                }
+                vars.localStorage.removeItem('jzpgInfo');
+            }
+        }
     };
 });

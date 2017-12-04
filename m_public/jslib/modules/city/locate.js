@@ -33,7 +33,7 @@
             tail = '/';
         }
 
-        if (cityBurl.indexOf('/jiaju/company') > -1 || cityBurl.indexOf('c=mycenter') > -1) {
+        if (cityBurl.indexOf('/jiaju/company') > -1 || cityBurl.indexOf('c=mycenter') > -1 || cityBurl.indexOf('payAskExtra') > -1) {
             burl = cityBurl;
             tail = vars.tail;
         }
@@ -74,7 +74,7 @@
         var iscroll,
             // 自动提示防止网络问题导致的列表错乱，设置ajax索引
             ajax,
-            jumpOk = '';
+            jumpOk = '',jumpOkcn = '';
 
         /**
          * 设置城市列表
@@ -97,7 +97,7 @@
             for (; i < l; i++) {
                 var data = arr[i];
                 // en为城市缩写
-                html += '<li data-en=\'' + data[1] + '\'>' + data[0] + '</li>';
+                html += '<li data-en=\'' + data[1] + '\' data-cn=\'' + data[0] + '\'>' + data[0] + '</li>';
             }
             // 闭合节点
             html += '</ul></div>';
@@ -139,6 +139,7 @@
                         if (data.length > 0) {
                             if (data.length === 1) {
                                 jumpOk = data[0][1];
+                                jumpOkcn = data[0][0];
                             }
                             setList(data);
                         } else {
@@ -161,6 +162,7 @@
             var parent = $target.closest('.searbox');
             if (parent.length < 1) {
                 jumpOk = '';
+                jumpOkcn = '';
                 list.empty();
                 if (iscroll) {
                     iscroll.destroy();
@@ -173,6 +175,7 @@
         list.on('click', 'li', function () {
             var $this = $(this);
             var en = $this.attr('data-en');
+            var cn = $this.attr('data-cn');
             if (en) {
                 searchInput.val($this.html());
                 list.empty();
@@ -185,7 +188,9 @@
                     window.location.href = cityBurl;
                 } else if (cityBurl.indexOf('companyNewList') > -1 || cityBurl.indexOf('/vip') > -1 || cityBurl.indexOf('c=mycenter') > -1) {
                     window.location.href = cityBurl + tail + en;
-                } else {
+                } else if(cityBurl.indexOf('payAskExtra') > -1){
+                    window.location.href = cityBurl + '&paeCity='+encodeURI(cn);
+                }else {
                     window.location.href = cityBurl + '/' + en + tail + zfSf;
                 }
             }
@@ -204,7 +209,9 @@
                     window.location.href = cityBurl;
                 } else if (cityBurl.indexOf('companyNewList') > -1 || cityBurl.indexOf('/vip') > -1 || cityBurl.indexOf('c=mycenter') > -1) {
                     window.location.href = cityBurl + tail + jumpOk;
-                } else {
+                } else if(cityBurl.indexOf('payAskExtra') > -1){
+                    window.location.href = cityBurl + '&paeCity='+encodeURI(jumpOkcn);
+                }else {
                     window.location.href = cityBurl + '/' + jumpOk + tail + zfSf;
                 }
             }
@@ -216,6 +223,8 @@
                 window.location.href = cityBurl;
             } else if (cityBurl.indexOf('companyNewList') > -1 || cityBurl.indexOf('/vip') > -1 || cityBurl.indexOf('c=mycenter') > -1) {
                 window.location.href = cityBurl + tail + jumpOk;
+            }else if(cityBurl.indexOf('payAskExtra') > -1){
+                window.location.href = cityBurl + '&paeCity='+encodeURI(jumpOkcn);
             } else {
                 window.location.href = cityBurl + '/' + jumpOk + tail + zfSf;
             }
@@ -311,11 +320,13 @@
                             dingweiCity.attr('class', 'cityName');
                             loading.attr('class', '');
                         }
+                        if(cityBurl.indexOf('payAskExtra') < 0){    
                         Util.setCookie('zhcity', city, 30);
                         Util.setCookie('encity', encity, 30);
                         Util.setCookie('addr', addr1, 30);
                         Util.setCookie('geolocation_x', longitude, 30);
                         Util.setCookie('geolocation_y', latitude, 30);
+                        }
                     } else {
                         errtype = 1;
                         getCityByIp();
@@ -324,10 +335,10 @@
                 }
             });
         }
-
+        if(cityBurl.indexOf('payAskExtra') < 0){
         Util.setCookie('mencity', curcity, 30);
         Util.setCookie('firstlocation', '0', 0);
-
+        }
         function geoSuccess(position) {
             ispos = 1;
             var latitude = position.coords.latitude;
@@ -343,11 +354,13 @@
                     var addr = data.root.addr;
                     if (addr) {
                         $addr.html(addr);
+                        if(cityBurl.indexOf('payAskExtra') < 0){
                         Util.setCookie('zhcity', city, 30);
                         Util.setCookie('encity', encity, 30);
                         Util.setCookie('addr', addr, 30);
                         Util.setCookie('geolocation_x', longitude, 30);
                         Util.setCookie('geolocation_y', latitude, 30);
+                        }
                         if (cityBurl.indexOf('companyNewList') > -1 || cityBurl.indexOf('/vip') > -1 || cityBurl.indexOf('c=mycenter') > -1) {
                             dingweiCity.html('<a href="' + cityBurl + tail + encity + zfSf + '">' + city + '</a>');
                         } else {
@@ -422,7 +435,7 @@
             return returnValue;
         }
 
-        if (navigator.cookieEnabled && !firstlocation) {
+        if (navigator.cookieEnabled && !firstlocation && cityBurl.indexOf('payAskExtra') < 0) {
             if (request('src') !== 'client' && Util.getCookie('from') !== 'client') {
                 loading.attr('class', 'loading-city');
                 dingweiCity.attr('class', 'on');
@@ -490,13 +503,15 @@
                 }
                 cityHistory = ss.substring(0, ss.length - 1);
             }
+            if(cityBurl.indexOf('payAskExtra') < 0){
             Util.setCookie('cityHistory', cityHistory, 30);
+            }
             if (burl.indexOf('zhishi') > -1)
                 Util.setCookie('mencity', cityName.split(',')[1], 30);
         });
 
         var cityHistory = Util.getCookie('cityHistory');
-        if (cityHistory) {
+        if (cityHistory && cityBurl.indexOf('payAskExtra') < 0) {
             var cityArr = cityHistory.split(';');
             if (cityArr.length > 0) {
                 for (var i = 0; i < cityArr.length; i++) {
@@ -517,9 +532,10 @@
         } else {
             $('#historyCity').hide();
         }
+        
         var zhcity = Util.getCookie('zhcity');
         var encity = Util.getCookie('encity');
-        if (zhcity && encity) {
+        if (zhcity && encity && cityBurl.indexOf('payAskExtra') < 0) {
             if (cityBurl.indexOf('zhishi') > -1) {
                 dingweiCity.attr('class', 'cityName').html('<a href="' + cityBurl + '" cncity="' + zhcity + ',' + encity + '" class="cityclickdom">' + zhcity + '</a>');
             } else if (cityBurl.indexOf('companyNewList') > -1 || cityBurl.indexOf('/vip') > -1 || cityBurl.indexOf('c=mycenter') > -1) {

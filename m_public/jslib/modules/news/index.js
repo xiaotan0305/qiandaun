@@ -8,14 +8,18 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
         var lazyLoad = require('lazyload/1.9.1/lazyload');
         var loadMore = require('loadMore/1.0.0/loadMore');
         var vars = seajs.data.vars;
-        var localStorage = vars.localStorage;
         var zhcity = vars.hicityname;
         var showZf = vars.show_zf;
-
-        // 读取localstorage，如果没有该值，则读取猜你喜欢
-        var most = localStorage.mostvalue;
-        var less = localStorage.lessvalue;
-        var lest = localStorage.lestvalue;
+        var most;
+        var less;
+        var lest;
+        if (vars.localStorage) {
+            var localStorage = vars.localStorage;
+            // 读取localstorage，如果没有该值，则读取猜你喜欢
+            most = localStorage.mostvalue;
+            less = localStorage.lessvalue;
+            lest = localStorage.lestvalue;
+        }
 
         var lanmuStr;
         // 搜索用户行为收集20160114
@@ -119,7 +123,7 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
                         }
                     }
                     // 写入localstorage
-                    if (mostvalue && lestvalue && lanmuStr) {
+                    if (vars.localStorage && mostvalue && lestvalue && lanmuStr) {
                         localStorage.mostvalue = mostvalue;
                         localStorage.lestvalue = lestvalue;
                         if (showZf == 1) {
@@ -146,7 +150,7 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
             }
         });
         // 对拖拽的localstorage进行处理
-        if (localStorage.lanmu) {
+        if (vars.localStorage && localStorage.lanmu) {
             lanmuStr = localStorage.lanmu;
             var arr = lanmuStr.split(',');
             var arrLanmu = [];

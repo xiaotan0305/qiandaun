@@ -1,13 +1,15 @@
 /**
  * Created by zhangjinyu on 2017/8/29.
  */
-define('modules/jiaju/bmOption', ['jquery', 'dateAndTimeSelect/1.1.0/dateAndTimeSelect'], function (require, exports, module) {
+define('modules/jiaju/bmOption', ['jquery', 'dateAndTimeSelect/1.1.0/dateAndTimeSelect', 'modules/jiaju/yhxw'], function (require, exports, module) {
     'use strict';
     var $ = require('jquery');
     var vars = seajs.data.vars;
     var jiajuUtils = vars.jiajuUtils;
     var dateAndTimeSelect = require('dateAndTimeSelect/1.1.0/dateAndTimeSelect');
-
+    // 用户行为
+    var yhxw = require('modules/jiaju/yhxw');
+   
     function GetBMOption() {}
     GetBMOption.prototype = {
         init: function () {
@@ -62,6 +64,8 @@ define('modules/jiaju/bmOption', ['jquery', 'dateAndTimeSelect/1.1.0/dateAndTime
 
             /* 事件初始化*/
             that.bindEvent();
+            // 用户行为
+            that.getYhxw(0);
         },
         bindEvent: function () {
             var that = this;
@@ -139,15 +143,19 @@ define('modules/jiaju/bmOption', ['jquery', 'dateAndTimeSelect/1.1.0/dateAndTime
         /* 提交*/
         submitOptions: function () {
             var that = this;
+            // 用户行为
+            that.getYhxw(555);
+
             var content = that.inputFormat(that.remarkContent.val());
             if (content.length > 500) {
                 that.toastMsg('备注、说明最多输入500个字哦');
             } else if (!that.buttonFlag) {
-                that.toastMsg('前四项内容必须填写哦');
+                that.toastMsg('请至少填写一项再提交');
             } else {
                 that.submitFlag = false;
                 var url = vars.jiajuSite + '?c=jiaju&a=ajaxTyBaomingOption&r=' + Math.random();
                 var param = that.getParams();
+
                 $.get(url, param, function (data) {
                     that.submitFlag = true;
                     if (data) {
@@ -192,6 +200,38 @@ define('modules/jiaju/bmOption', ['jquery', 'dateAndTimeSelect/1.1.0/dateAndTime
             var weekList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
             var week = new Date(selectedDate).getDay();
             return weekList[week];
+        },
+
+        /* 用户行为*/
+        getYhxw: function (type) {
+            var that = this, page, reservetime = '',decstate = '',fixstatustype = '',decorationtime = '';
+            if (vars.template === 'bmFreeDesign') {
+                page = 'jj_wanshanyy^mfsjxq_wap';//免费设计
+            } else if (vars.template === 'bmFreeMeasure') {
+                page = 'jj_wanshanyy^mflfxq_wap';//免费量房
+            } else if (vars.template === 'bmFreeCheck') {
+                page = 'jj_wanshanyy^mfyfxq_wap';//免费验房
+            } else if (vars.template === 'bmFreeDecorate') {
+                page = 'jj_wanshanyy^zhaozsxq_wap';//找装饰公司
+            } else {
+                page = 'jj_wanshanyy^zxbjxq_wap';//报价补充信息页面
+            }
+
+            if (type === 555) {
+                reservetime = that.calenderBtn.val().trim().replace(/(\d{4}).(\d{1,2}).(\d{1,2}).+/mg, '$1-$2-$3');
+                decstate = $(':radio[name=zxStatus]:checked').length ? $(':radio[name=zxStatus]:checked').parent('p').text().trim() : '';
+                fixstatustype = $(':radio[name=houseCategory]:checked').length ? $(':radio[name=houseCategory]:checked').parent('p').text().trim() : '';
+                decorationtime = $(':radio[name=zxDate]:checked').length ? $(':radio[name=zxDate]:checked').parent('li').text().trim() : '';
+            }
+            
+            yhxw({
+                page: page,
+                type: type,
+                reservetime: reservetime,// 预约时间
+                decstate: decstate,// 装修状态
+                fixstatustype: fixstatustype,// 装修类型
+                decorationtime: decorationtime// 装修时间
+            });
         }
     };
     module.exports = function () {

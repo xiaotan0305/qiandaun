@@ -82,7 +82,7 @@
 .pm-list-first .txt{position:absolute;width:100%;left:0;bottom:0;background:rgba(0,0,0,.6);color:#fff;padding:0 16px 8px;}
 .pm-list-first .txt h2{font-size:14px;line-height:20px;padding:5px 0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .pm-list-first .txt h2 span.mj{float:right;font-size:10px;}
-.pm-list-first .txt p{line-height:19px;font-size:11px;color:#e3e7ed;}
+.pm-list-first .txt p{margin:0 -16px;padding:0 16px;line-height:19px;font-size:11px;color:#e3e7ed;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .pm-list-first .txt p span{margin-right:1em;}
 .pm-list-first .txt p span:last-child{margin-right:0;}
 .pm-list-first .txt p span.del{text-decoration:line-through}
@@ -123,7 +123,7 @@
 .pm-list li .txt > p{color:#83868f;font-size:11px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;height:18px;line-height:18px;margin-top:3px;}
 .pm-list li .txt > p span{margin-right:8px;}
 .pm-list li .txt > p span:last-child{margin-right:0;}
-.pm-list li .txt > p .del{text-decoration:line-through;}
+.pm-list li .txt > p .del{text-decoration:line-through;color:#83868f!important;font-weight:normal!important;}
 .pm-list li .txt > p.qpj{margin-bottom:7px;}
 .pm-list li .txt > p.qpj span {color: #e15455;font-weight:bold;font-size:11px;}
 .pm-list li .txt > p.qpj i{font-size:16px;font-style:italic;padding:0 3px;}

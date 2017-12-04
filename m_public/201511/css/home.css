@@ -335,8 +335,11 @@ nav {background: #507fbd;font-size: 18px;}
 .trend-white li p{font-size:12px;line-height:16px;margin-top:-8px;}
 .trend-white li h3{font-size:12px;line-height:20px;margin-top:13px; color:#3c3f46;}
 .trend-white li h3 span.num{font-size:28px;vertical-align:-4px;margin-right:8px;}
+.trend-white li:first-child .num{color:#d7494a;}
+.trend-white li:last-child .num{color:#ff8e1d;}
 .trend-white .trend-txt{font-size:11px;color:#b3b6be;padding-top:10px;}
-.trend-white .trend-txt .jt-dn,.trend-white .trend-txt .jt-up{ color: #b3b6be !important;font-size:11px;}
+.trend-white .trend-txt .jt-dn{color:#459540!important;font-size:12px;}
+.trend-white .trend-txt .jt-up{color:#d64242!important;font-size:12px;}
 
 /*房天下直播*/
 .live-list ul{overflow:hidden;margin:0 9px;padding-bottom:16px;}

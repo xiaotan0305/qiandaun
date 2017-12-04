@@ -250,6 +250,12 @@
                                 company: 1334,
                                 appUrl: '//download.3g.fang.com/fang_android_31334.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1379433661734'
+                            },
+			    // 租房新点对点打开app
+                            zfnewdetail: {
+                                company: 1325,
+                                appUrl: '//download.3g.fang.com/fang_android_31325.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1375122840341'
                             }
                         };
                         apkUrl = tjConfig[position].appUrl;

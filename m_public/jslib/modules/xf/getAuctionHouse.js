@@ -60,34 +60,21 @@ define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0
 
 	// 倒计时方法
 	function daojishi () {
-		$('.pm-time, .time').each(function () {
-			var $this = $(this);
+			var $this = $('.djs');
 			if (!$this.attr('yidaoshi')) {
 				var daojishiTxt = '',
 					showDom = '',
 					startTime = showTime($this.attr('starttime-data')),
-					endTime = showTime($this.attr('endtime-data')),
 					time,
-					$button;
-				// 列表中的
-				if  ($this.hasClass('time')) {
-					$button = $this.next().find('span');
-				} else {
-					// 表头的
-					//$button = $this.next();
 					$button = $this.siblings('a');
-				}
 				// 未开始
-				if (startTime.timestamp > 0) {
-					time = startTime;
-					daojishiTxt = '<em>距开始：</em>';
-					$button.html('我要报名');
-				} else {
-					// 进行中或者已经结束
-					time = endTime;
+				time = startTime;
+				if($this.attr('type') == 'end'){
 					daojishiTxt = '<em>距结束：</em>';
-					$button.html('我要报名');
+				}else{
+					daojishiTxt = '<em>距开始：</em>';
 				}
+				$button.html('我要报名');
 				if (time) {
 					if (time.timestamp > 0) {
 						showDom = daojishiTxt + '<em>' + time.days + '</em><i>天</i><em>' + time.hours + '</em><i>时</i><em>' + time.minutes + '</em><i>分</i><em>' + time.seconds + '</em><i>秒</i>';
@@ -100,8 +87,6 @@ define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0
 					$this.html(showDom);
 				}
 			}
-
-		})
 	}
 	// 每秒循环一次
 	var sjbInterval = setInterval(function () {
@@ -203,8 +188,7 @@ define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0
 		enable()
 	});
 
-	// 拍卖流程滑动
-	new IScrolllist('.pm-lc-pic', {scrollX: true, scrollY: false, bindToWrapper: true, eventPassthrough: true});
+	
 
 	// 其他特价房滑动
 	if ($('.tjf-list-other').length) {

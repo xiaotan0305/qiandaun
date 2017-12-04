@@ -1,7 +1,7 @@
 /**
  * Created by loupeiye on 2016/8/17.
  */
-define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox','hslider/1.0.0/hslider'], function (require, exports, module) {
+define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox','hslider/1.0.0/hslider','dateAndTimeSelect/1.1.0/dateAndTimeSelect_chengjiao'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -121,7 +121,7 @@ define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox
             // loadmore所请求的地址
             var loadMoreUrl = vars.mainSite + 'chengjiao/?c=chengjiao&a=ajaxGetCJList' + '&city=' + vars.city;
             // 需要传的ajax参数
-            var screenParam = ['district', 'comarea', 'price', 'room', 'area', 'keyword'];
+            var screenParam = ['district', 'comarea', 'price', 'room', 'area', 'keyword', 'date'];
             for (var i = 0; i < screenParam.length; i++) {
                 if (vars[screenParam[i]]) {
                     loadMoreUrl += '&' + screenParam[i] + '=' + vars[screenParam[i]];
@@ -220,6 +220,35 @@ define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox
                     xfCcjAppDown.show();
                     hotmore.removeClass('up');
                 }
+            });
+        }
+
+        //成交数据
+        if (vars.fangDeal) {
+            // 增加日期选择功能，lina 20161109
+            var DateAndTimeSelect = require('dateAndTimeSelect/1.1.0/dateAndTimeSelect_chengjiao');
+            var year = 2015;
+            var lastYear = new Date().getFullYear();
+            var options = {
+                // 特殊类型
+                type: 'jiaju',
+                // 年份限制
+                yearRange: year + '-' + lastYear,
+                // 默认显示的日期
+                defaultYear: vars.date ? parseInt(vars.date.substr(0, 4)) : new Date().getFullYear(),
+                defaultMonth: vars.date ? parseInt(vars.date.substr(4, 2)) : new Date().getMonth() + 1,
+                dateConfirmFunc: function (date) {
+                    window.location.href = vars.monthUrl + 'date=' +date;
+                }
+            };
+            var dtSelect = new DateAndTimeSelect(options);
+            $('.time_cj').on('click', function () {
+                dtSelect.show(dtSelect.setting.SELET_TYPE_DATE);
+            });
+
+            //成交数据地址
+            $('.cent_tab_left').on('click', function () {
+                window.location.href = vars.dealUrl;
             });
         }
     };

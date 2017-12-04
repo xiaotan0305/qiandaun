@@ -2,17 +2,17 @@
  * @file 爆款详情页
  * Modified by xuying 2016-8-17
  */
-define('modules/jiaju/hotCouponInfo', [
+ define('modules/jiaju/hotCouponInfo', [
     'jquery',
     'photoswipe/4.0.7/photoswipe',
     'photoswipe/4.0.7/photoswipe-ui-default.min',
     'iscroll/2.0.0/iscroll-lite',
     'modules/jiaju/yhxw'
-], function (require, exports, module) {
-    'use strict';
-    module.exports = function () {
-        var $ = require('jquery');
-        var vars = seajs.data.vars;
+    ], function (require, exports, module) {
+        'use strict';
+        module.exports = function () {
+            var $ = require('jquery');
+            var vars = seajs.data.vars;
         // 用户行为
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
@@ -114,18 +114,7 @@ define('modules/jiaju/hotCouponInfo', [
             buyNow.on('click', function () {
                 if (lock) {
                     lock = false;
-                    if (/micromessenger/i.test(bua)) {
-                        wxTip.show();
-                        jiajuUtils.toggleTouchmove(1);
-                        if (wxTip.show()) {
-                            wxTip.on('click', function () {
-                                jiajuUtils.toggleTouchmove();
-                                wxTip.hide();
-                            });
-                        }
-                        lock = true;
-                    } else {
-                        var checkNumUrl = vars.jiajuSite + '?c=jiaju&a=ajaxHotCouponInfo';
+                    var checkNumUrl = vars.jiajuSite + '?c=jiaju&a=ajaxHotCouponInfo';
                         // 如果是建材代金券详情需要带定位参数
                         var orderUrl = vars.jiajuSite + '?c=jiaju&a=generateOrder&city=' + vars.city + '&type=' + vars.coupontype + '&id=' + vars.couponId + vars.actParam;
                         // 1. 判断库存
@@ -162,8 +151,7 @@ define('modules/jiaju/hotCouponInfo', [
                             }
                         });
                     }
-                }
-            });
+                });
         }
     };
 });

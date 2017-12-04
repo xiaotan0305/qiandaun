@@ -48,6 +48,25 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare'], function 
             run();
         });
     }
+
+    var shareBox = $('.shareBox a');
+    var shareOne = $('#shareOne');
+    var shareTwo = $('#shareTwo');
+    shareBox.on('click', function(){
+        var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            //在微信中打开
+            shareOne.show();
+        } else {
+            shareTwo.show();
+        }
+    });
+    var shareClose = $('.share-btn');
+    shareClose.on('click', function(){
+        shareOne.hide();
+        shareTwo.hide();
+    });
+
     //微信分享
     var Weixin = require('weixin/2.0.0/weixinshare');
     new Weixin({

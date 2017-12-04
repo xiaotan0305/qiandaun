@@ -190,8 +190,6 @@ define('modules/index/maina', ['jquery', 'util/util', 'modules/index/locate', 's
             urlArr = [
                 // 搜房app下载地址
                 '/clientindex.jsp?city=' + vars.city + '&flag=download&f=1114',
-                // 租房app下载地址
-                comurl + '&produce=soufunrent',
                 // 装修app的下载地址
                 comurl + '&produce=ftxzx',
                 // 天下贷app的下载地址

@@ -903,7 +903,7 @@ define('modules/xf/xfinfotjwh', [
             noneFangyuan($(this));
         });
 
-        $('a[name=ckeckLogin], .x-dp-btn').click(function () {
+        $('a[name=ckeckLogin]').click(function () {
             ckeckLogin();
         });
         // 在线咨询
@@ -2269,6 +2269,32 @@ define('modules/xf/xfinfotjwh', [
         }
     });
 	
+    // 头部图片滑动
+    $('#slider').css({overflow: 'hidden'});
+    var Swiper1 = require('swipe/3.10/swiper');
+    var allimage = $('#slider img');
+
+    function setTab(t) {
+        //var img = allimage[t + 1];
+        //var originalUrl = img.attr('data-original');
+        //if (originalUrl) {
+        //    img.attr('src', originalUrl).attr('data-original', '');
+        //}
+        // 显示第几张图片
+        //$('#piccount').find('span').eq(0).html(t + 1);
+		$('.ttpb span').removeClass('cur');
+		$('.ttpb span').eq(t).addClass('cur');
+    }
+
+    new Swiper1('#slider', {
+        speed: 500,
+        loop: false,
+        onSlideChangeStart: function (swiper) {
+            setTab(swiper.activeIndex);
+        }
+    });
+    setTab(0);
+    
 	
 	//打电话特殊处理
 	if($('.tscl').length > 0){
@@ -2428,6 +2454,7 @@ define('modules/xf/xfinfotjwh', [
 
 	// --------------wap新房楼盘详情页3.1&3.2期,2017年6月23日------------------------------
 	var startX, startY, moveEndX, moveEndY, X, Y;
+	if(vars.vrT!='1'){
 	$('.topFocus').on('touchstart', function(e) {
 		//e.preventDefault();
 		startX = e.originalEvent.changedTouches[0].pageX;
@@ -2443,6 +2470,7 @@ define('modules/xf/xfinfotjwh', [
 			location.href = $('.topFocus>a').attr('href');
 		}
 	});
+	}
 
 
 	$('.lpdh>div').addClass('lpdhdiv');

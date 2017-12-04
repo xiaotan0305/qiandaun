@@ -1,0 +1,187 @@
+@charset "UTF-8";
+.main{min-height:0;}
+.pre {position: relative;}
+.fwb {font-weight:bold}
+.div44{height:44px;}
+.red-f5{color:#ff5350}
+.mt28{ margin-top: 28px !important;}
+.bg-ec{background:#ececec;}
+.pdb6{ padding-bottom:6px !important;}
+.pdYt15{ padding-top:15px;}
+
+/*标题小高度*/
+.mTitle.min-h{border-bottom:1px solid #f4f4f4;padding-top:3px;}
+.mTitle.min-h h2{padding:13px 0;}
+.mTitle.min-h a{height:41px;}
+
+
+/********* 列表页 *********/
+.mt12{margin-top:12px !important;}
+
+
+/*二手房成交行情*/
+
+.trend-white{padding:20px 0 20px 0; overflow:hidden;}
+.trend-white li{float:left;text-align:left;color:#83868f;position:relative;}
+.trend-white li:first-child{width:50%;padding-left:8px;}
+.trend-white li.no2:first-child{width:50%;padding-left:14px;}
+.trend-white li:last-child{ float:left;width:50%;padding-left:20px; border-left:1px solid #f8f8f8;}
+.trend-white li.no2:last-child{;padding-left:0px; border-left:0;}
+
+.trend-white li p{font-size:11px;height:16px;color:#83868f}
+.trend-white li h3{font-size:12px;line-height:20px;margin-top:16px; color:#3c3f46;}
+.trend-white li h3.mt12{margin-top:12px;}
+.trend-white li h3 span.num,.trend-white li h3 span.numa{font-size:19px;vertical-align:0px;margin-right:2px;}
+.trend-white li h3 span.numa{color:#3abdbb}
+.trend-white li h3 span.numb{font-size:19px;margin-right:8px;}
+.trend-white li .mingp{width:13px;height:13px; position:absolute;top:-20px;right:10px;}
+.trend-white li .mingp img{width:13px;height:13px; }
+.trend-white li .jt-dn,.trend-white li .jt-up{vertical-align:-1px; font-size:11px;margin-left:8px;}
+.trend-white li .jt-dn{ color: #669934 !important;}
+.trend-white li .jt-up{ color: #ff6666 !important;}
+.trend-txt{ clear:both;font-size:11px;color:#b3b6be;padding:12px 8px 0;}
+.trend-white .trend-txt .jt-dn{ color: #b3b6be !important;}
+.trend-white .trend-txt .jt-up{ color: #b3b6be !important;}
+
+.housecjList ul{ margin:0;}
+.trend-white ul a{ display:block;width:100%;height:52px}
+.housecjList li{ border-bottom: 1px solid #f4f4f4;margin:0 10px;}
+.housecjList li:last-child{ border-bottom: none;}
+.housecjList li > a{position:relative; display: block; padding: 14px 10px; overflow: hidden; *zoom:1;margin:0 -8px;}
+.housecjList li .img{ position: relative; float: left; margin-right: 10px; width: 112px; height:84px;}
+.housecjList li .img img{ width: 100%; height: 100%;}
+.housecjList li .img p{position:absolute;display:block;height:10px;width:100%;bottom:4px;left:0;overflow:hidden;}
+.housecjList li .online{float:left;width: 11px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) -14px 0 no-repeat; background-size: 25px auto;}
+.housecjList li .video{float:left;width: 13px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) no-repeat; background-size: 25px auto;}
+.housecjList li .tj{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_icons.png) 0 -25px no-repeat; background-size: 25px auto;}
+.housecjList li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}   
+.housecjList li .img .tag-icon{position:absolute;left:6px;top:4px;font-size:10px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 3px rgba(120,120,120,.6);}
+.housecjList li .txt{ overflow: hidden; *zoom:1;}
+.housecjList li h3{ font-size: 16px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:18px;color:#0c0d0e;margin-top:-1px;margin-bottom:4px;}
+.housecjList li h3 .hb-icon{float:right;width:14px;height:14px;margin:1px 0 0 2px;background: url(../images/list_icons.png) 0 -11px no-repeat; background-size: 25px auto;}
+.housecjList li h3 .hb-icon.ts{background: url(../images/bag_ts.png) no-repeat; background-size: 14px auto;}
+.housecjList li h3 .bag-ts{display:inline-block;width:70px;height:18px;background:url(../images/hb_gn.png) no-repeat;background-size:100%;margin-left:10px;vertical-align:-4px;}
+.housecjList li h3 .v-icon{display:inline-block;width:11px;height:11px;background:url(../images/v_icon.png) no-repeat;background-size:100%;margin-left:5px;}
+.housecjList li p{color: #83868f; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 22px;}
+.housecjList li p em{}
+.housecjList li p .space{padding:0 3px;}
+.housecjList li .new{ float: right; font-size: 14px; color: #df3031;font-weight: bold;}
+.housecjList li .new em{font-weight: normal;}
+.housecjList li p.x-intro{margin:-1px 0 1px;}
+
+
+
+/*查成交-房源成交*/
+
+.cent_tab{width:154px;color:#83868f;margin: 7px auto 0;height:30px;line-height:26px;font-size:14px;overflow: hidden;}
+.cent_tab li{float:left;width:75px;text-align: center;cursor: pointer;border:2px solid #83868f;}
+.cent_tab li.on{background:#83868f;color:#fff;}
+.cent_tab_left{border-radius:14px 0 0 14px;border-right:none;}
+.cent_tab_right{border-radius:0 14px 14px 0;border-left:none;}
+/*搜索居中*/
+.inputbox{text-align:center;}
+/*title成交记录*/
+.mTitle{background:#f8f8f8;height:40px;line-height:40px;}
+.mTitle h2{padding:12px 0;margin-left:10px;}
+.time_cj{width:20px;float:right;margin-right:10px;}
+.time_cj img{width:100%;}
+
+/*底部悬浮窗*/
+.fixd_bottom{position:fixed;bottom:0;left:0;z-index:10;width:100%;font-size:16px;color:#fff;height:50px;}
+.fixd_bottom li{float:left;width:50%;height:50px;line-height:53px;text-align: center;}
+.fixd_bottom li.position_cen{position:absolute;top:0;left:50%;width:2px;background:#fff;margin-left:-1px;}
+.fixd_bottom li span{position:relative;padding-left:20px;}
+.fixd_bottom li i{position:absolute;}
+.fixd_bottom li.maifang_wy{background:#fd9940;}
+.fixd_bottom li.maifang_wy i{background:url(../images/icon_mf.png) no-repeat center center;width:20px;height:20px;background-size:100% 100%;float:left;top:-3px;left:-6px;}
+.fixd_bottom li.fangyuan_wy{background:#df3031;}
+.fixd_bottom li.fangyuan_wy i{background:url(../images/icon_fy.png) no-repeat center center;width:16px;height:18px;background-size:100% 100%;float:left;top:-1px;left:-2px;}
+
+/*成交明细*/
+/*日周月*/
+.time_cjmx{background:#fff;height:28px;line-height:28px;color:#3c3f46;font-size:12px;border-radius:14px;float:right;margin:6px 20px 0 0;text-indent: 0;}
+.time_cjmx li{float:left;width:35px;height:28px;text-align:center;}
+.time_cjmx li.on{color:#fff;background:#d64242;border-radius:14px;}
+.detailed_cj{background:#fff;}
+.year_cj{background:#f8f8f8;height:40px;line-height:40px;text-indent:20px;font-size:14px;color:#83868f;}
+.detailed_list li{height:60px;line-height:60px;border-bottom:1px solid #f8f8f8;}
+.detailed_list li span{float:left;white-space: nowrap;}
+.month_cj{color:#b3b6be;font-size:14px;margin:0 10px 0 20px;}
+.suite_cj{color:#fd9940;font-size:12px;background:#fff4ec;height:20px;line-height:20px;margin-top:20px;padding-left:6px;max-width:34%;}
+.detailed_list li span.percent_cj{float:right;margin-right:20px;color:#83868f;font-size:11px;height:60px;}
+.percent_cj b{font-weight: normal;float:left;width:90px;}
+.percent_cj em i{margin:0 2px;font-size: 14px;}
+.percent_down em{color:#459540;}
+.percent_up em{color:#d64242;}
+.percent_cj i.jiantou{background:url(../images/icon_cjright.png) no-repeat right center;background-size:100% 100%;float:right;width:5px;height:11px;margin:24px 0 0 5px;}
+.width_cj1{width:46%;}
+.width_cj2{width:38%;}
+
+/*成交记录——无*/
+.data_no{text-align: center;color:#b3b6be;font-size:15px;}
+.img_datano{width:72px;display:block;margin:20% auto 15px;}
+.data_no p{line-height:23px;}
+
+/*首页*/
+.transaction_data{position: relative;margin: 0 auto;max-width: 640px;}
+.data_card{width:100%;position:relative;}
+.card_bg{width:100%;display:block;}
+.screen{width:100%;position:absolute;top:21%;left:0;}
+.screen_city{float:left;font-size:12px;color:#3c3f46;text-indent: 12px;line-height:28px;background:#fff;height:28px;width:80px;border-radius:14px;margin:6px 0 0 20px;position:relative;}
+.screen_city i{background:url(../images/icon_screen.png) no-repeat;background-size:100% 100%;width:6px;height:4px;display:block;position:absolute;top:12px;right:7px;}
+/*数据卡*/
+.cardbox{padding:0 20px;position:absolute;top:56.4%;left:0;width:100%;}
+.card_data{background:#fff;color:#b3b6be;font-size:13px;width:100%;padding:17px 0;box-shadow: 0px 4px 15px rgba(131,134,143,0.2);border-radius:5px;}
+.card_data ul{float:left;width:50%;text-align:center;}
+.card_data li{line-height:27px;}
+.card_first{margin-bottom: 4px;}
+.card_first span{background:url(../images/icon_card2.png) no-repeat right center;background-size:13px 13px;padding-right:18px;}
+.card_left{color:#d7494a;font-size:26px;}
+.card_right{color:#ff8e1d;font-size:26px;}
+.card_left em,.card_right em{font-size:14px;}
+.huanbi_up,.huanbi_down{color:#83868f;font-size:11px;}
+.huanbi_up em{color:#d64242;}
+.huanbi_down em{color:#459540;}
+.huanbi_up em i,.huanbi_down em i{margin:0 2px;font-size:14px;}
+
+/*成交走势*/
+.mainbox{position: relative;margin: 0 auto;max-width: 640px;padding-bottom:80px;}
+.turnover{margin-top:60px;padding:0 20px;width:100%;border-bottom:8px solid #f8f8f8;padding-bottom:20px;}
+.turnover h3{background:url(../images/icon_turnover.png) no-repeat left center;background-size:16px 14px;color:#3c3f46;font-size:16px;padding:20px 0 20px 22px;border-bottom:1px solid #f8f8f8;font-weight:bold;}
+.qushi_img{display: block;width:100%;margin:20px auto 0;}
+/*成交榜单*/
+.closingList{padding:0 20px;width:100%;}
+.closingList h3{background:url(../images/icon_closing.png) no-repeat left center;background-size:16px 16px;color:#3c3f46;font-size:16px;padding:20px 0 20px 22px;border-bottom:1px solid #f8f8f8;font-weight:bold;}
+.closingList table{width:100%;text-align:center;color:#394043;font-size:14px;margin-top:4px;}
+.closingList thead tr{height:30px;color:#b3b6be;} 
+.closingList tbody tr{height:63px;}
+.closingList table p{line-height:25px;}
+.table_icon{display:block;width:5px;height:11px;}
+.first_td span{color:#fff;background:#df3031;width:20px;height:20px;border-radius:10px;display:block;margin:auto;line-height:20px;}
+.second_td span{color:#fff;background:#fd9940;width:20px;height:20px;border-radius:10px;display:block;margin:auto;line-height:20px;}
+.third_td span{color:#fff;background:#b3b6be;width:20px;height:20px;border-radius:10px;display:block;margin:auto;line-height:20px;}
+/*城市下拉*/
+.lbTab_top{height:0;}
+.lbTab_top .cont{top:0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

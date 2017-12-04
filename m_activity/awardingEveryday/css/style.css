@@ -1,0 +1,117 @@
+
+/*public*/
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-size: 12px;}
+html,body{font-family: Microsoft Yahei;background-color:#08074d;}
+html{width: 100%;height:100%;margin:0 auto;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,span,input,textarea,p,th,td,hr,button,article,aside,footer,header,menu,nav,section{margin:0;padding:0}
+input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;}
+ol,ul{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}
+a:hover{text-decoration:none}
+ins,a{text-decoration:none}
+input,button,select,textarea{-webkit-appearance:none;border:none;outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    font-size:0;
+    visibility:hidden;
+    clear:both;
+}
+.clearfix{
+    *zoom:1;
+}
+.fl {float: left;}
+.fr {float: right;}
+/*index*/	
+.mode{width:100%;}
+.mode-head{width:100%;height:auto;position:relative;}
+.banner,.bg{width:100%;display:block;}
+
+/*mode-first*/
+.mode-first{width:100%;height:auto;}
+/*mode-second*/
+.mode-second{width:100%;height:4rem;padding-top: 2rem;background: url(../images/bg2.jpg) 0 0 no-repeat; background-size: cover;}
+.rule{width:67.2%;line-height:0.48rem;margin-left:18.4%;color:#fff;}
+/*mode-third*/
+.mode-third{width:100%;height:auto;}
+
+/*mode-fourth*/
+.mode-fourth{width:100%;height:13.88rem;background: url(../images/bg4.jpg) 0 0 no-repeat; background-size: cover;position:relative;overflow: hidden;}
+.rolling{width:82.67%;height:auto;position:absolute;left:8.75%;top:2.64rem;animation: a 1000s;-webkit-animation: a 1000s;-moz-animation: a 1000s;z-index: 1;}
+.circle{width:94.5%;height:auto;position:absolute;left:2.75%;top:2.053rem;z-index: 2;}
+.pointer{width:38.53%;height:auto;position:absolute;left:30.5%;top:4.573rem;z-index: 3;}
+@keyframes a{
+	form{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(36000deg);
+		-webkit-transform: rotate(36000deg);
+		-moz-transform: rotate(36000deg);
+	}
+}
+/*mode-fifth*/
+.mode-fifth{width:100%;height:11.92rem;background: url(../images/bg5.jpg) 0 0 no-repeat; background-size: cover;}
+.rank{padding-top:1.93rem; width:65%;margin:0 auto;overflow:hidden;} 
+.rank .tit{height:1.04rem;line-height:1.04rem;text-align: center;color:#08074d;}
+.info{overflow:hidden;}
+.info li{color:#151cb2;float:left;width:33.33%;height:1.28rem;line-height:1.28rem;font-size:0.293rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.info li span{color:#323232;}
+.uv,.runoff{height:1.093rem;overflow:hidden;} 
+.uv li,.runoff li{float: left;width:50%;text-align: center;}
+.uv li p,.runoff li p{font-size:0.293rem;height:0.4667rem;line-height:0.4667rem}
+.uv li span,.runoff li span{font-size:0.373rem;font-weight: bold;}
+.runoff{padding: 0.18rem 0 0.7rem;}
+.flow{width:100%;margin:0 auto;height:0.9rem;}
+.yellow{width:75%;height:2px;background:#fee7ad;margin:0 auto;}
+.yellow-on{height:2px;background:#ffb70c;position:relative;}	
+.yellow-on span{ position:absolute;right:-0.5rem;top:-0.6rem;padding:0 7px;display:inline-block; background-color:#fdab25;color:#fff;height:0.4rem;line-height:0.4rem;}
+.yellow-on span::after{content: "";width:10px;height: 5px;position:absolute;left:50%;top:0.426rem;margin-left: -5px;background: url("../images/arr.png") 0 0 no-repeat;}
+.dot-wrap{width: 75%;margin:0 auto;}
+.dot-wrap li{width:97.4%;height:0.853rem;float: left;position: relative;}
+.dot-wrap .dot,.dot-wrap .dot-on{display:inline-block;width:20px;height:20px;background:url(../images/dot.png) 0 0 no-repeat;position: absolute;right:-22px;top:-10px;}
+.dot-wrap .dot-on{background-image:url(../images/dot-on.png);}
+.dot-wrap .num{font-size: 0.32rem;color:#4c1b1b;height:0.72rem;line-height: 0.72rem;position: absolute;right:-30px;top:5px;}
+.dot-wrap .first{width:2.6%;}
+.dot-wrap .first .num{left:auto;right:0;}
+.dot-wrap .first .dot,.dot-wrap .first .dot-on{left: auto;left: -10px;}
+.btn{width:100%;height:0.88rem;display: block;background:url("../images/btn.png") 0 0  no-repeat;}
+.btn-ed{background:url("../images/btn-ed.png") 0 0  no-repeat;}
+.red{color:#f20d06;}
+.rank .txt{height:0.56rem;line-height:0.56rem;text-align:center;}
+.rank .pt{padding-top:0.35rem;}
+/*mode-sixth*/
+.mode-sixth{width:100%;height:10.44rem;background: url(../images/bg6.jpg) 0 0 no-repeat; background-size: cover;}
+.city-name{height:0.933rem;line-height:0.933rem;font-size:0.4267rem;color:#fff;font-weight:bold;text-align: center;}
+.total{width: 65%;margin: 0 auto;overflow: hidden;}
+.total .tit{height:0.933rem;line-height:0.933rem;width:100%;margin: 0 auto;color:#fff;}
+.total .tit li{width:33.33%;text-align: center; float: left;}
+.total table {width:100%;}
+.total tr {color:#333;}
+.total tr.red {color:#f20d06;}
+.total tr td{width:33.33%;height:0.8rem;line-height:0.8rem;text-align: center;}
+/*mode-seventh*/
+.mode-seventh{width:100%;height:auto;}
+/*mode-eighth*/
+.mode-eighth{width:100%;height:auto;}
+
+
+.mask{width:100%;height:100%;background: rgba(0,0,0,.4);position:fixed;left:0;top:0;z-index: 9;}
+.city-list-wrap{width:90%;height:11.86rem;position:fixed;left: 5%;top:16%;z-index:10;background-color: #fff;border-radius:3px;}
+.city-list{position: relative;left:0;top:0;height:10.65rem;overflow-y: scroll;}
+.city-list-tit{width:96%;padding-left:4%;font-size: .426rem;line-height: 1.21rem;height:1.21rem;}
+.city-list-tit span{border-right:1px solid #dfdfdf;margin-right:2%;width:.426rem;height:.426rem;overflow:hidden;}
+.city-list-tit img{display:inline-block;width:.426rem;height:.426rem;margin-right: 2%;}
+.city-list-con{font-size: .5rem;line-height: 1.32rem;}
+.city-list-con h3{width:95%;padding-left:5%;text-align: left;font-size: .426rem;line-height: 0.8rem;color:#333;background-color: #f2f2f2;}
+.city-list-con ul{overflow:hidden;}
+.city-list-con li{width:100%;height:1.053rem;line-height:1.053rem;clear: both;}
+.city-list-con a{display:block;width:25%;font-size: .373rem;line-height: 1.053rem;float: left;color:#666;text-align:center;}
+.city-list-con li.bor-top{ border:1px solid #f2f2f2;}
+.noscroll{height: 100%;overflow:hidden;}

@@ -41,6 +41,8 @@ define('modules/pinggu/index',
             var hotmore = $('#hotmore');
             // 定位坐标
             var locationpoint = null;
+            //flagchose解决选择浮层下也会被点击的bug
+            var flagchose = true;
             //如果链接地址含有&s=bdfj 则将区县排行展开，并滚动到顶部
             var qxcjList = $('.qxcj');
             if ((window.location.href.indexOf('s=bdfj') > -1) && qxcjList.length > 0) {
@@ -58,16 +60,15 @@ define('modules/pinggu/index',
             $.ajax({
                 url: vars.pingguSite + '?c=pinggu&a=ajaxGetAd',
                 success: function (data) {
-                    if (data.message) {
-                        if (data.code === "1") {
-                            var ad = $('#ad2');
-                            ad.show();
-                            ad.append(data.message);
-                        } else {
-                            var ad = $('#ad1');
-                            ad.show();
-                            ad.append(data.message);
-                        }
+                    if (data.ad2) {
+                        var ad = $('#ad2');
+                        ad.show();
+                        ad.append(data.ad2);
+                    }
+                    if (data.ad1) {
+                        var ad1 = $('#ad1');
+                        ad1.show();
+                        ad1.append(data.ad1);
                         adScroll();
                     }
                 }
@@ -276,16 +277,13 @@ define('modules/pinggu/index',
                 var liStr = '';
                 switch (type) {
                     case 'orientation':
-                        liStr += '<li id="wappinggusy_D03_03">东</li><li id="wappinggusy_D03_03">南</li><li id="wappinggusy_D03_03">西</li><li id="wappinggusy_D03_03">北</li><li id="wappinggusy_D03_03">东南</li><li id="wappinggusy_D03_03">西南</li><li id="wappinggusy_D03_03">西北</li>';
+                        liStr += '<li id="wappinggusy_D03_03">东</li><li id="wappinggusy_D03_03">南</li><li id="wappinggusy_D03_03">西</li><li id="wappinggusy_D03_03">北</li><li id="wappinggusy_D03_03">东南</li><li id="wappinggusy_D03_03">西南</li><li id="wappinggusy_D03_03">东北</li><li id="wappinggusy_D03_03">西北</li><li id="wappinggusy_D03_03">南北</li><li id="wappinggusy_D03_03">东西</li>';
                         break;
                     case 'fTime':
-                        for (i = 1; i <= 11; i++) {
-                            if (i === 11) {
-                                liStr += '<li id="wappinggusy_D03_07">10年以上</li>';
-                            } else {
-                                liStr += '<li id="wappinggusy_D03_07">' + i + '年以内</li>';
-                            }
-                        }
+                        liStr += '<li id="wappinggusy_D03_07">一年以内</li><li id="wappinggusy_D03_07">二年以内</li><li id="wappinggusy_D03_07">三～五年</li><li id="wappinggusy_D03_07">五～十年</li><li id="wappinggusy_D03_07">十年以上</li>';
+                        break;
+                    case 'fitment':
+                        liStr += '<li id="wappinggusy_D03_08">毛坯</li><li id="wappinggusy_D03_08">普装</li><li id="wappinggusy_D03_08">中装</li><li id="wappinggusy_D03_08">精装</li><li id="wappinggusy_D03_08">豪装</li>';
                         break;
                 }
                 selectDivUl.append(liStr);
@@ -295,6 +293,9 @@ define('modules/pinggu/index',
             // 点击标签弹出选择框事件
             var scroll;
             $('.select').on('click', function () {
+                if (flagchose === false) {
+                    return false;
+                }
                 var id = $(this).attr('id');
                 var num;
                 if (id) {
@@ -342,6 +343,7 @@ define('modules/pinggu/index',
             });
             // 点击弹框选项事件,选择内容填充到对应的标签
             selectDivUl.on('click', 'li', function () {
+                flagchose = false;
                 var $that = $(this);
                 clickFlag = false;
                 $('#' + type).html($that.text() + (type === 'louceng' ? '层' : ''));
@@ -353,11 +355,17 @@ define('modules/pinggu/index',
                 setTimeout(function(){
                     clickFlag = true;
                 },500);
+                setTimeout(function () {
+                    flagchose = true;
+                }, 100);
             });
             // 点击弹框取消事件
             selectDiv.find('.cancel').on('click', function () {
+                flagchose = false;
                 selectDiv.hide();
                 closeDiv();
+                setTimeout("", 100);
+                flagchose = true;
             });
             // 输入项的字符和位数限制
             evaluate.on('keyup blur', 'input', function () {
@@ -384,17 +392,10 @@ define('modules/pinggu/index',
                         case 'area':
                             reg = /[^\d\.]/g;
                             $that.val(val.replace(reg, ''));
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                            if (flag) {
-                                $that.val(flag);
+                            if (val && (val > 9999 || val <= 0)) {
+                                showMsg('建筑面积范围10-9999平米');
                             }
-                            break;
-                        case 'fmoney':
-                            // 只能输入数字
-                            reg = /[^\d\.]/g;
-                            $that.val(val.replace(reg, ''));
-                            // 控制位数,始终小于999999.99
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,6}/) : val.match(/\d{0,6}\.\d{0,2}/);
+                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
                             if (flag) {
                                 $that.val(flag);
                             }
@@ -409,6 +410,9 @@ define('modules/pinggu/index',
 
             var starTime = [];
             assessId.on('click', function assess() {
+                if (flagchose === false) {
+                    return false;
+                }
                 var date = new Date();
                 starTime.push(date.getTime());
                 var projname = vars.projname ? vars.projname : $('#CFJ_searchtext').text();
@@ -416,14 +420,14 @@ define('modules/pinggu/index',
                 var floor = louceng.val();
                 var forward = orientation.text();
                 var fTime = $('#fTime').text(); //完成时间
-                var fmoney = $('#fmoney').val(); //装修金钱
+                var fitment = $('#fitment').text(); //装修档次
                 var area = $('#area').val();
                 if (!projname || projname === '请选择小区') {
                     alert('请选择小区');
                     return;
                 }
-                if (!area || area > 2000 || area <= 0) {
-                    alert('面积范围1-2000平米');
+                if (!area || area > 9999 || area < 10) {
+                    alert('建筑面积范围10-9999平米');
                     return;
                 }
                 if (!floor) {
@@ -441,17 +445,16 @@ define('modules/pinggu/index',
                 // 评估数据
                 var data = {
                     newcode: vars.newcode,
-                    Projname: projname,
-                    Area: area,
+                    buildingarea: area,
                     forward: forward,
                     zfloor: zfloor,
                     floor: floor,
-                    fTime: fTime,
-                    fmoney: fmoney
+                    fittime: fTime,
+                    fitment: fitment
                 };
-                if (fTime || fmoney) {
+                if (fTime || fitment) {
                     data.fTime = fTime;
-                    data.fmoney = fmoney;
+                    data.fitment = fitment;
                     data.moreFlag = 1;
                 }
                 var url = vars.pingguSite + '?c=pinggu&a=saveAccurateForm';
@@ -470,8 +473,8 @@ define('modules/pinggu/index',
                     success: function (data) {
                         if (data !== 'error') {
                             if (data.errcode === '100') {
-                                if (data.houseinfo) {
-                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.houseinfo.logid;
+                                if (data.LogId) {
+                                    window.location = vars.pingguSite + '?c=pinggu&a=result&pgLogId=' + data.LogId + '&city=' + vars.city;
                                 }
                             } else {
                                 alert(data.errmsg);
@@ -594,5 +597,51 @@ define('modules/pinggu/index',
                 addSwiper($('#' + firstId));
             }
             // 最下面的导航-------------------------------------------------end
+            //点击精准评估
+            $('.jzpg').on('click', function () {
+                if (vars.localStorage) {
+                    //如果填了信息，记下localstorage，带到精准评估页
+                    var forward = $('#orientation').text();
+                    var area = $('#area').val();
+                    var floor = $('#louceng').val();
+                    var zfloor = $('#zonglouceng').val();
+                    var fTime = $('#fTime').text(); //完成时间
+                    var fitment = $('#fitment').text(); //装修金钱
+                    if ((forward && forward !== '南') || area || floor || zfloor || (fTime && fTime !== '请选择（选填）') || (fitment && fitment !== '请选择（选填）')) {
+                        // 评估数据
+                        var data = {
+                            Forward: forward,
+                            Area: area,
+                            zfloor: zfloor,
+                            Floor: floor,
+                            FTime: fTime,
+                            Fitment: fitment
+                        };
+                        var jsonStr = JSON.stringify(data);
+                        vars.localStorage.setItem('jzpgInfo', jsonStr);
+                    }
+                }
+                if (vars.newcode) {
+                    window.location = vars.pingguSite + vars.city + '/' + vars.newcode + '/accurate.html';
+                } else {
+                    window.location = vars.pingguSite + vars.city + '/accurate.html';
+                }
+                return false;
+            });
+            //提示框
+            var msg = $('#sendFloat'),
+                msgP = $('#sendText'),
+                timer = null;
+
+            function showMsg(text, callback) {
+                text = text || '信息有误！';
+                msgP.html(text);
+                msg.fadeIn();
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    msg.fadeOut();
+                    callback && callback();
+                }, 2000);
+            }
         };
     });

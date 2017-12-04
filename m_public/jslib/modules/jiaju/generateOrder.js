@@ -45,12 +45,12 @@ define('modules/jiaju/generateOrder', ['jquery', 'verifycode/1.0.0/verifycode'],
                 addressEmpty: '请填写收货地址'
             };
             // 微信提示
-            that.isWeChat = /micromessenger/i.test(navigator.userAgent);
-            that.$weChatTip = $('#wxTip');
-            if (that.isWeChat) {
-                that.$weChatTip.show();
-                jiajuUtils.toggleTouchmove(1);
-            }
+            // that.isWeChat = /micromessenger/i.test(navigator.userAgent);
+            // that.$weChatTip = $('#wxTip');
+            // if (that.isWeChat) {
+            //     that.$weChatTip.show();
+            //     jiajuUtils.toggleTouchmove(1);
+            // }
 
             // 初始化状态
             that.initStatus();

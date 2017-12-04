@@ -2,7 +2,7 @@
  * 专题列表页
  * @author fcwang(wangfengchao@fang.com) 20151226
  */
-define('modules/zhishi/hotTopic', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/zhishi/hotTopic', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload', 'modules/zhishi/zhishibuma'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -39,5 +39,14 @@ define('modules/zhishi/hotTopic', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyloa
         $tags.click(function () {
             window.location.href = vars.zhishiSite + 'search/?kw=' + $(this).text() + '&city=' + vars.city + '&newsnet=xf';
         });
+
+        /**
+         * 浏览埋码
+         * @param page 埋码方式
+         */
+        if (vars.jtname == 'jiaju') {
+            var zhishibuma = require('modules/zhishi/zhishibuma');
+            zhishibuma({pageType: 'zs_jjremenzt^lb_wap', b: '0'});
+        }
     };
 });

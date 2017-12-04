@@ -3,7 +3,7 @@
  * by blue
  * 20150916 blue 整理代码，去除冗长代码，提高代码效率，删除单独为本页面写入的点击搜索按钮搜索操作
  */
-define('modules/ask/payDetail', ['jquery', 'util', 'lazyload/1.9.1/lazyload', 'weixin/2.0.1/weixinshare', 'iscroll/2.0.0/iscroll-lite', 'modules/xf/IcoStar'], function (require, exports, module) {
+define('modules/ask/payDetail', ['jquery', 'util', 'photoswipe/4.0.7/photoswipe','photoswipe/4.0.7/photoswipe-ui-default.min', 'lazyload/1.9.1/lazyload', 'weixin/2.0.1/weixinshare', 'iscroll/2.0.0/iscroll-lite', 'modules/xf/IcoStar'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -137,5 +137,71 @@ define('modules/ask/payDetail', ['jquery', 'util', 'lazyload/1.9.1/lazyload', 'w
         // 控制星星亮
         var icoStarObj = new IcoStar('.ico-star');
 
+        // 点击帖子内容图片，图片放大功能
+        var conImg = $('.main');
+        conImg.on('click', '.payinfo img', function () {
+            var url = $(this).attr('original');
+            var slides = [];
+            var index = 0;
+            var allImg = conImg.find('.payinfo img');
+            // 点击缩放大图浏览
+            if (allImg.length > 0) {
+                var pswpElement = $('.pswp')[0];
+                for (var i = 0, len = allImg.length; i < len; i++) {
+                    var ele = allImg[i],
+                        src = $(ele).attr('original');
+                    if (src === url) {
+                        index = i;
+                    }
+                    slides.push({src: src, w: ele.naturalWidth, h: ele.naturalHeight});
+                }
+                var options = {
+                    history: false,
+                    focus: false,
+                    index: index,
+                    escKey: true
+                };
+                var gallery = new window.PhotoSwipe(pswpElement, window.PhotoSwipeUI_Default, slides, options);
+                gallery.init();
+            }
+        });
+        var thisIndex = 0;
+        function getUrl(obj,index,arr,url){
+            var ele = obj[index];
+            var src = $(ele).attr('original');
+            var img = new Image();
+            img.src = src;
+            if(url === src){
+                thisIndex = index;
+            }
+            img.addEventListener('load',function(){
+                index += 1;
+                arr.push({src: src, w: img.naturalWidth, h: img.naturalHeight});
+                if (index < obj.length) {
+                    getUrl(obj,index,arr,url);
+                } else {
+                    var pswpElement = $('.pswp')[0];
+                    var options = {
+                        history: false,
+                        focus: false,
+                        index: thisIndex,
+                        escKey: true
+                    };
+                    var gallery = new window.PhotoSwipe(pswpElement, window.PhotoSwipeUI_Default, arr, options);
+                    gallery.init();
+                }
+            },false);
+        }
+        var askImg = $('.askUl');
+        askImg.on('click', 'img', function () {
+            $(document).scrollTop(44);
+            var url = $(this).attr('original');
+            var imgStrs = askImg.find('img');
+            var slides = [];
+            // 点击缩放大图浏览
+            if (imgStrs.length > 0) {
+                getUrl(imgStrs,0,slides,url);
+            }
+        });
     };
 });

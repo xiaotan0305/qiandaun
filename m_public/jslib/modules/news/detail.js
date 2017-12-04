@@ -66,8 +66,6 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
             };
             // 顶部app下载浮层滑动
             swipeFunc('#topApp', 'span');
-            $('.topAppDown').openApp({position: 'newsDetailTopBtn'});
-            $('.newsDetailBtn').openApp({position: 'newsDetailTopBtn'});
             $('.wapToAppInfo').each(function () {
                 var $this = $(this);
                 var newsnet = $this.attr('data-newsnet');

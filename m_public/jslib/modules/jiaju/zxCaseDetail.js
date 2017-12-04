@@ -54,7 +54,11 @@ define('modules/jiaju/zxCaseDetail', [
         yhxw({
             page: 'mjjzxcasepage',
             companyid: vars.companyid,
-            caseid: vars.caseId
+            caseid: vars.caseId,
+            area: vars.area,
+            style: vars.casestylename,
+            housetype: vars.caseRoomName,
+            totalprice: vars.Wprice + '万'
         });
 
         pageInit();
@@ -178,7 +182,11 @@ define('modules/jiaju/zxCaseDetail', [
                     page: 'mjjzxcasepage',
                     type: 24,
                     companyid: vars.companyid,
-                    caseid: vars.caseId
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
                 });
                 // ajax获取IM信息
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZxIm&city=' + vars.city + '&companyid=' + vars.companyid, function (data) {
@@ -199,7 +207,11 @@ define('modules/jiaju/zxCaseDetail', [
                     page: 'mjjzxcasepage',
                     type: 31,
                     companyid: vars.companyid,
-                    caseid: vars.caseId
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
                 });
             });
         }
@@ -284,7 +296,11 @@ define('modules/jiaju/zxCaseDetail', [
                 type: 554,
                 companyid: vars.companyid,
                 caseid: vars.caseId,
-                phone: phoneCode.val().trim()
+                phone: phoneCode.val().trim(),
+                area: vars.area,
+                style: vars.casestylename,
+                housetype: vars.caseRoomName,
+                totalprice: vars.Wprice + '万'
             });
             $.ajax({
                 type: 'post',

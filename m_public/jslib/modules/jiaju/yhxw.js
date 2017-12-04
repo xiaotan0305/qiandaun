@@ -84,8 +84,18 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
             var companyservice = options.companyservice;
             // 品类
             var material = options.material;
-            // 城市中文
-            var city = options.city;
+            // 功能间
+            var roomtype = options.roomtype;
+            // id
+            var id = options.id;
+            // 量房时间
+            var reservetime = options.reservetime;
+            // 装修状态
+            var decstate = options.decstate;
+            // 装修类型
+            var fixstatustype = options.fixstatustype;
+            // 装修时间
+            var decorationtime = options.decorationtime;
 
             var pTemp;
             
@@ -156,7 +166,11 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmg.page': page,
                     'vmh.companyid': companyid,
                     'vmh.caseid': caseid,
-                    'vmh.phone': phone
+                    'vmh.phone': phone,
+                    'vmh.area': !area ? '' : encodeURIComponent(area),
+                    'vmh.style': !style ? '' : encodeURIComponent(style),
+                    'vmh.housetype': !housetype ? '' : encodeURIComponent(housetype),
+                    'vmh.totalprice': !totalprice ? '' : encodeURIComponent(totalprice)
                 };
             } else if (vars.action === 'tuanDetail' || vars.action === 'zxCompanyQuality' || vars.action === 'specialServiceDetail') {
                 pTemp = {
@@ -182,7 +196,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmg.refpage': encodeURIComponent(refpage),
                     'vmh.area': encodeURIComponent(area),
                     'vmh.housetypelong': encodeURIComponent(housetype),
-                    'vme.district': encodeURIComponent(district),
+                    'vmh.district': encodeURIComponent(district),
                     'vmg.projectname': encodeURIComponent(projectname),
                     'vmh.phone': phone,
                     'vmh.decstate': encodeURIComponent(decstate)
@@ -201,14 +215,60 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.companyservice': companyservice === '所有商家' ? '' : encodeURIComponent(companyservice),
                     'vmh.key': key === '输入关键词搜索店铺名称/地址' ? '' : encodeURIComponent(key),
                     'vmh.order': encodeURIComponent(order),
-                    'vmh.material': material === '所有品类' ? '' : encodeURIComponent(material)
+                    'vmh.materialtype': material === '0' ? '' : material
                 };
-            } else if (vars.action === 'productList' || vars.action === 'hotCouponInfo') {
+            } else if (vars.action === 'productList') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.key': key === '输入关键词搜索品牌/型号/产品名称' ? '' : encodeURIComponent(key),
+                    'vmh.order': order === '所有产品' ? '' : encodeURIComponent(order),
+                    'vmh.materialtype': material === '0^0^0' ? '' : material
+                };
+            } else if (vars.action === 'hotCouponInfo') {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.key': key === '输入关键词搜索品牌/型号/产品名称' ? '' : encodeURIComponent(key),
                     'vmh.order': order === '所有产品' ? '' : encodeURIComponent(order),
                     'vmh.materialtype': material === '所有品类' ? '' : encodeURIComponent(material)
+                };
+            } else if (vars.action === 'documentaryList') {
+                pTemp = {
+                    'vmg.page': page
+                };
+            } else if (vars.action === 'lglist') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.key': key === '风格/户型/功能间等' ? '' : encodeURIComponent(key),
+                    'vmh.housetype':housetype === '户型' ? '' : encodeURIComponent(housetype),
+                    'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
+                    'vmh.roomtype': roomtype === '功能间' ? '' : encodeURIComponent(roomtype)
+                };
+            } else if (vars.action === 'lginfo') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.atlasid': id
+                };
+            } else if (vars.action === 'documentaryDetail') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.diaryid': id,
+                    'vmh.style': !style ? '' : encodeURIComponent(style),
+                    'vmh.housetype': !housetype ? '' : encodeURIComponent(housetype),
+                    'vmh.totalprice': !totalprice ? '' : encodeURIComponent(totalprice),
+                    'vmh.area': !area ? '' : encodeURIComponent(area)
+                };
+            } else if (vars.action === 'xgtDetail') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.pictureid': id
+                };
+            } else if (vars.action === 'bmOption' || vars.action === 'zxBaoJiaOption') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.reservetime': encodeURIComponent(reservetime),
+                    'vmh.decstate': encodeURIComponent(decstate),
+                    'vmh.fixstatustype': encodeURIComponent(fixstatustype),
+                    'vmh.decorationtime': encodeURIComponent(decorationtime)
                 };
             }
 

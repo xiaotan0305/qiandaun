@@ -84,9 +84,15 @@ define('modules/zf/main', ['jquery'], function (require) {
     require.async(preLoad);
 
     // 下载app临时处理
-    if (downBtn.length > 0) {
+    if (downBtn.length > 0 || $('.app-down-detail').length >0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
+            $('.app-down-detail').openApp({position: $('.app-down-detail').find('a').attr('data-position')});
+        });
+    }
+    if ($('.loveshare').length > 0) {
+        require.async('app/1.0.0/appdownload', function ($) {
+            $('.loveshare').openApp({appUrl: $('.loveshare').attr('data-androidurl'), universalappurl: $('.loveshare').attr('data-iosurl'), position:'loveShare'});
         });
     }
     // 执行搜索初始化

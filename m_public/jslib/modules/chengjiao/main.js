@@ -74,13 +74,13 @@ define('modules/chengjiao/main', ['jquery'], function (require) {
     });
 
     // app下载
-    if ($('#down-btn-c').length > 0 || $('.xfCcjIndex').length > 0 || $('.ccjIndex').length > 0) {
+    if ($('#down-btn-c').length > 0 || $('.xfCcjIndex').length > 0 || $('.app-down-list').length > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
             // 新房查成交app下载
             $('.xfCcjIndex').openApp({position: 'xfCcjIndex'});
             // 二手房查成交app下载
-            $('.ccjIndex').openApp({position: 'ccjIndex'});
+            $('.app-down-list').openApp({position: 'ccjIndex'});
         });
     }
     require.async(['count/loadforwapandm.min.js']);
