@@ -75,7 +75,7 @@
 .houseList li .img p.icon-new span.hp{background-position:0 0;}
 .houseList li .img p.icon-new span.qj360{background-position:-14px 0;}
 .houseList li .tj{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_icons.png) 0 -25px no-repeat; background-size: 25px auto;}
-.houseList li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}   
+.houseList li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}
 .houseList li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
 .houseList li .img > div .tag-icon:nth-of-type(2){left:30px;}
 .houseList li .txt{ overflow: hidden; *zoom:1;}
@@ -789,7 +789,7 @@ header.fixed{position:fixed;width:100%;max-width:640px;top:0;left:50%;-webkit-tr
 /*看房团入口、弹窗*/
 .yh-kft{padding:0 14px;height:40px;}
 .yh-kft a.kft{display:inline-block;line-height:40px;font-size:14px;color:#0c0d0e;padding-left:24px;background:url(../images/kft_icon.png) left center no-repeat;background-size:18px 16px;}
-.yh-kft .more{float:right;line-height:40px;} 
+.yh-kft .more{float:right;line-height:40px;}
 .yh-kft .more .btn-more{color:#565c67!important;}
 .stag span.redbg{background:#ff6f6f;border:1px solid #ff6f6f;color:#fff;}
 .tz-box .stag.centerStag{width:auto;text-align:center;margin-top:-5px;}
@@ -1041,7 +1041,7 @@ header.fixed{position:fixed;width:100%;max-width:640px;top:0;left:50%;-webkit-tr
 .xf-live .close{position:absolute;width:18px;height:18px;top:5px;right:4px;background:#000 url(../images/close_ts.png) center center no-repeat;background-size:8px auto;opacity:.5;border-radius:50%;}
 /*新房焦点图及视频*/
 .sw_loading{background: #fff url(../images/loading.gif) center no-repeat;}
-#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666;position:relative;} 
+#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666;position:relative;}
 #PhotoSwipeTarget img {/* max-width: 320px; */ height: 240px;}
 .nxqalbum #fullViewslider, .nxqalbum #videoSlider {width: 320px;margin: 0 auto;overflow:hidden;}
 #fullViewslider img,#videoSlider img{width:100%;height:240px;}
@@ -1227,7 +1227,7 @@ header.fixed{position:fixed;width:100%;max-width:640px;top:0;left:50%;-webkit-tr
 .hx-pic-di.orange{background: rgba(255,153,51,0.8);}
 
 /*新房户型列表导航样式*/
-.secTab.hx .overbox a{line-height:36px;font-size:13px;color:#565c67!important;}
+.secTab.hx .overbox a{line-height:36px;font-size:13px;color:#565c67!important;display: inline-block;width: auto;}
 .secTab.hx .overbox a.active{color:#df3031!important;}
 .relative{ position:relative;}
 .relative.bt{border-top:1px solid #f8f8f8;}
@@ -1430,7 +1430,7 @@ dl.dp .num span{margin-right:12px;}
 .dpBox .dp-tag{ padding-top:15px;}
 .dp-ycz{position:relative;}
 .dp-ycz:after{content:'';position:absolute;width:48px;height:48px;right:10px;top:38px;background:url(../images/dp-ycz.png) no-repeat;background-size:48px;}
-.btnBox{ padding:0 14px; margin-bottom:25px;} 
+.btnBox{ padding:0 14px; margin-bottom:25px;}
 .btnBox .btn-tj{display:block;height:36px;line-height:36px;font-size:14px;border:none;border-radius:2px;text-align:center;cursor:pointer;background-color:#df3031;color:#fff !important;}
 .btnBox .mt29{ margin-top:29px;}
 /*评价--置业顾问*/
@@ -1721,7 +1721,7 @@ dl.dp .num span{margin-right:12px;}
 .photoBox.fixBox .photolist ul{height:100%;}
 .photoBox.fixBox .photolist li{float:left;height:100%;}
 
-#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666;position:relative;} 
+#PhotoSwipeTarget { width: 100%; height: 240px; z-index: 1; background: #666666;position:relative;}
 #PhotoSwipeTarget img {/* max-width: 320px; */ height: 240px;}
 .nxqalbum #fullViewslider, .nxqalbum #videoSlider {width: 320px;margin: 0 auto;overflow:hidden;}
 #fullViewslider img,#videoSlider img{width:100%;height:240px;}
@@ -1996,7 +1996,7 @@ dl.dp .num span{margin-right:12px;}
 .housecjList li .online{float:left;width: 11px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) -14px 0 no-repeat; background-size: 25px auto;}
 .housecjList li .video{float:left;width: 13px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) no-repeat; background-size: 25px auto;}
 .housecjList li .tj{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_icons.png) 0 -25px no-repeat; background-size: 25px auto;}
-.housecjList li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}   
+.housecjList li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}
 .housecjList li .img .tag-icon{position:absolute;left:6px;top:4px;font-size:10px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 3px rgba(120,120,120,.6);}
 .housecjList li .txt{ overflow: hidden; *zoom:1;}
 .housecjList li h3{ font-size: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:18px;color:#0c0d0e;margin-top:-1px;margin-bottom:4px;}
@@ -2459,7 +2459,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .houseList2 li .img p.icon-new span.qj360{background-position:-14px 0;}
 .houseList2 li .online{float:left;width: 11px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) -14px 0 no-repeat; background-size: 25px auto;}
 .houseList2 li .tj{position:absolute;left:0;top:0;width:26px; height: 23px; background: url(../images/list_jian_icon.png) 0 0 no-repeat; background-size:26px auto;}
-.houseList2 li .hot-icon{position:absolute;left:0;top:0; width: 26px; height: 23px; background: url(../images/list_hot_icon.png) 0 0 no-repeat; background-size:26px auto;}   
+.houseList2 li .hot-icon{position:absolute;left:0;top:0; width: 26px; height: 23px; background: url(../images/list_hot_icon.png) 0 0 no-repeat; background-size:26px auto;}
 .houseList2 li .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
 .houseList2 li .img .xf-icon{position:absolute;bottom:0;right:-4px;height:12px;background:rgba(0,0,0,.5);-webkit-transform:skew(-10deg);transform:skew(-10deg);padding-right:4px;}
 .houseList2 li .img > div .tag-icon:nth-of-type(2){left:30px;}
@@ -2657,7 +2657,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 
 /*预约信息*/
 .rainbow{ padding:15px; background: url(../images/rainbow.jpg) center no-repeat;background-size:100% auto;}
-.raincont{ position:relative; border-radius:4px;} 
+.raincont{ position:relative; border-radius:4px;}
 .hTitle{ font-size:16px; line-height:16px; color:#3c3f46; padding:13px 15px; font-weight:bold; border-bottom:1px solid #f8f8f8; overflow:hidden;}
 .hTitle.style2{ padding:20px 15px;}
 .hTitle .flol{ width:70%; line-height:26px;}
@@ -2770,7 +2770,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .houseListN li .img p.icon-new span.hp{background-position:0 0;}
 .houseListN li .img p.icon-new span.qj360{background-position:-14px 0;}
 .houseListN li .tj{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_icons.png) 0 -25px no-repeat; background-size: 25px auto;}
-.houseListN li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}   
+.houseListN li .hot-icon{ position: absolute; left:0; top:0; width: 25px; height: 22px; background: url(../images/list_hot.png) 0 0 no-repeat; background-size: 25px auto;}
 .houseListN li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
 .houseListN li .img > div .tag-icon:nth-of-type(2){left:30px;}
 .houseListN li .txt{ overflow: hidden; *zoom:1;}

@@ -5,6 +5,7 @@ define('modules/map/API/esfMapApi', ['jquery', 'modules/map/API/BMap'], function
     'use strict';
     var $ = require('jquery');
     var vars = seajs.data.vars;
+    var zoomFlag = 0;
     var MapApi = function () {
         var arg = arguments;
         var that = this;
@@ -83,14 +84,14 @@ define('modules/map/API/esfMapApi', ['jquery', 'modules/map/API/BMap'], function
         map.addEventListener('zoomend', function () {
             try {
                 // zoomEnd为!1 false不搜索
-                /*if (!that.zoomEnd) {
+                if (zoomFlag) {
+                    zoomFlag = 0;
                     return;
-                }*/
+                }
                 var SFMap = require('modules/map/esfSFMap');
                 // 搜索
                 SFMap.params.zoom = that._map.getZoom();
                 SFMap.clearOtherOption('zoom');
-                //that.zoomEnd = !1;
             } catch (e) {
             }
         });
@@ -138,6 +139,7 @@ define('modules/map/API/esfMapApi', ['jquery', 'modules/map/API/BMap'], function
                 return;
             }
             var mapZoom = zoom || this._map.getZoom();
+            zoomFlag = 1;
             this._map.centerAndZoom(new BMap.Point(x, y), parseInt(mapZoom));
         },
         // 清除地图上数据

@@ -1,0 +1,315 @@
+@charset "utf-8";
+html,
+body,
+div,
+span,
+iframe,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+abbr,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+select {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font: 12px/22px Arial, "微软雅黑";
+    color: #333
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    color: #df3031;
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+* {
+    outline: none
+}
+
+.fl {
+    float: left;
+    display: inline
+}
+
+.fr {
+    float: right;
+    display: inline
+}
+
+.f12 {
+    font-size: 12px
+}
+
+.f14 {
+    font-size: 14px
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.clearfix {
+    zoom: 1
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+    font-size: 0px;
+    visibility: hidden;
+    line-height: 0px
+}
+
+
+/*邮箱分享页*/
+
+.top_ding {
+    width: auto;
+    margin: 0 auto;
+    height: 50px;
+    background: url(../images/navbj.gif?v=30) repeat-x;
+    z-index: 10000;
+    font-family: "Microsoft Yahei";
+    font-size: 12px;
+    min-width: 600px;
+}
+
+.w1200_share {
+    width: 600px;
+    margin: 0 auto
+}
+
+.tijiao a {
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    ;
+    font-size: 16px;
+    background: #D40711;
+    color: #FFFFFF;
+    display: block;
+    border-radius: 4px;
+    font-family: "微软雅黑";
+    margin-top: 30px;
+}
+
+.tijiao a:hover {
+    color: #ffffff
+}
+
+ul.mail_share {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+ul.mail_share li {
+    margin-bottom: 20px;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #333333;
+    position: relative;
+    width: 600px
+}
+
+ul.mail_share li p.error {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    color: #df3031
+}
+
+ul.mail_share li span.red {
+    color: #df3031
+}
+
+ul.mail_share li label {
+    display: block;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 10px
+}
+
+ul.mail_share .bq_con {
+    height: 36px;
+    line-height: 36px;
+    display: block;
+    width: 600px;
+    font-size: 14px;
+    color: #333333;
+    border: 1px solid #dddddd;
+    padding-left: 10px
+}
+
+ul.mail_share textarea.bq_con1 {
+    border: 1px solid #dddddd;
+    height: 90px;
+    line-height: 18px;
+    display: block;
+    width: 600px;
+    padding: 10px;
+    font-family: "微软雅黑";
+}
+
+.mod-receiver-input.user-container {
+    cursor: text;
+    font-size: 14px;
+    padding: 0 8px;
+    line-height: 36px;
+    border: 1px solid #ddd;
+    height: auto;
+    padding-bottom: 5px;
+}
+
+.mod-receiver-input .user-receiver-info {
+    position: relative;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    background: #f4f4f4;
+    margin: 5px 6px 0 0;
+    padding-left: 6px;
+    cursor: default;
+    border: 1px solid #f4f4f4;
+    white-space: nowrap;
+    border-radius: 12px;
+    color: #333333;
+}
+
+.mod-receiver-input .error-info {
+    background-color: #ffe2e2;
+    border: 1px solid #ff9b9c;
+}
+
+.mod-receiver-input .user-receiver-info-name {
+    float: left;
+    padding-right: 22px;
+}
+
+.mod-receiver-input .user-receiver-info-close {
+    position: absolute;
+    right: 5px;
+    height: 8px;
+    width: 8px;
+    margin-top: 9px;
+    margin-left: -16px;
+    background: url(../images/receiver_input_user_close.png) no-repeat;
+}
+
+.mod-receiver-input .error-info .user-receiver-info-close {
+    position: absolute;
+    right: 5px;
+    height: 8px;
+    width: 8px;
+    margin-top: 9px;
+    margin-left: -16px;
+    background: url(../images/receiver_input_user_close1.png) no-repeat;
+}
+
+ul.lx_mail {
+    width: 295px;
+    border: 1px solid #dddddd;
+    position: absolute;
+    z-index: 2;
+    background: #fff;
+    overflow: hidden;
+    top: 100%;
+}
+
+ul.lx_mail li {
+    line-height: 32px;
+    height: 32px;
+    font-size: 14px;
+    color: #333333;
+    padding-left: 10px;
+    margin-bottom: 0;
+    width: 287px;
+    cursor: pointer;
+}
+
+ul.lx_mail li:hover {
+    background-color: #f4f4f4
+}
+
+ul.lx_mail li.active {
+    background-color: #f4f4f4
+}
+
+ul.lx_mail li a {
+    font-size: 14px;
+    color: #333333;
+}
+
+ul.lx_mail li a:hover {
+    color: #333333
+}
+
+.tishi_add {
+    opacity: 0.6;
+    width: 200px;
+    height: 60px;
+    border-radius: 6px;
+    filter: Alpha(Opacity=60);
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 60px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -30px
+}
+
+.mod-receiver-input .user-input-input {
+    height: 36px;
+    border: 0;
+    float: left;
+}

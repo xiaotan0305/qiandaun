@@ -13,6 +13,7 @@ define('modules/mycenter/main', ['jquery'], function (require) {
     // 下载App
     require.async('app/1.0.0/appdownload', function ($) {
         $('#down-btn-c').openApp('');
+        $('.topMyCenterBtn').openApp({appUrl: 'waptoapp/{"destination":"mysoufun"}'});
     });
 
     (function (win, vars) {
@@ -72,6 +73,15 @@ define('modules/mycenter/main', ['jquery'], function (require) {
     require.async(preload);
     require.async('count/loadforwapandm.min.js');
     require.async('count/loadonlyga.min.js');
+
+    // 新房帮你找房增加楼盘意向
+    if (vars.action === 'findFangRelease' && vars.hidType === 'xf') {
+        require.async('search/mycenter/findFangSearch', function (Search) {
+            var findFangSearch = new Search();
+            findFangSearch.init();
+        });
+    }
+
     //加载统计功能代码(短信通知委托业主详情页面统计用)
     if (vars.action === 'getWTDetailByID') {
         require.async(location.protocol + '//clickm.fang.com/click/new/clickm.js', function () {

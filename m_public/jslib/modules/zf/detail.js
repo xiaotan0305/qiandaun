@@ -941,6 +941,11 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
             return this.init();
         }
 
+        //详情页无图时，顶部浮层处理
+        if($(window).scrollTop() === 0 && $('#newheader').is(':visible') && vars.havePic === '0'){
+            $('#newheader').css('position','relative');
+        }
+
         /*------------公寓详情js---------------------------start---------*/
         if (vars.isFlatHouse) {
             //图案内容展开收起

@@ -239,6 +239,19 @@ body{background:#fff;}
 .houseList li.app-down p{margin-top:17px;line-height:14px;height:14px;}
 .houseList li.app-down .btn-down{float:right;display:block;height:22px;line-height:12px;font-size:11px;color:#ff6666;padding:5px 5px 3px;text-align:center;border:1px solid #ff6666;border-radius:2px;margin-top:29px;}
 
+/*列表-新特价房等*/
+.houseList  li.li-xf{padding:16px 0;margin:0;overflow:hidden;}
+.houseList  li.li-xf dl{padding:0 14px;overflow:hidden;}
+.houseList  li.li-xf dd{float:left;width:122px;height:91px;margin-right:7px;overflow:hidden;}
+.houseList  li.li-xf dd:last-child{margin-right:0;}
+.houseList  li.li-xf dd > a{display:block;position:relative;}
+.houseList  li.li-xf img{width:100%;height:100%;}
+.houseList  li.li-xf .pic{position:absolute;width:100%;left:0;top:0;bottom:0;background:rgba(0,0,0,.5);text-align:center;padding-top:30px;}
+.houseList  li.li-xf h3{font-size:14px;color:#f8f8f8;line-height:14px;}
+.houseList  li.li-xf p{font-size:10px;color:#f8f8f8;line-height:12px;margin-top:4px;}
+.houseList  li.li-xf span{position:absolute;hegiht:14px;line-height:14px;font-size:12px;left:3px;top:3px;background:#ff5350;color:#f8f8f8;}
+.houseList  li.li-xf span i{display:block;-webkit-transform:scale(.82);transform:scale(.82);}
+
 /*cfjList*/
 .cfjBox{position:relative;}
 .cfjList{height:61px;color:#565c67;padding:14px 0;overflow:hidden;}

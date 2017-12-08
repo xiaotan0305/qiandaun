@@ -75,22 +75,7 @@ define('modules/xf/huXingListBj', ['jquery', 'iscroll/2.0.0/iscroll-lite'], func
         $this.find('h3').html($this.find('h3').html() + ' ' + num);
     });
 
-    // 点击顶部导航
-    $('.overboxIn a').on('click', function () {
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-            var className = $this[0].className;
-
-        } else {
-            var className = $this[0].className.replace('active', '').replace(/\s+/g, '');
-        }
-        $('.overboxIn a').removeClass('active');
-        $this.addClass('active');
-        $('.hx-LList ul, .ixent').hide();
-        $('.' + className).show();
-
-        setDivHei();
-    });
+   
 
     // 内容可滑动
 	if(vars.src != 'client'){
@@ -99,13 +84,7 @@ define('modules/xf/huXingListBj', ['jquery', 'iscroll/2.0.0/iscroll-lite'], func
 		$('.ixent').height($(window).height() - 32 - 36 ).css('overflow', 'scroll');
 	}
 
-    // 苹果uc专用
-    var u = navigator.userAgent;
-    if (u.indexOf('iPhone') > -1) {
-        setInterval(function () {
-            $('.overboxIn .active').click();
-        },800);
-    }
+   
 
     // 点击左侧类型
     $('.hx-LList li').on('click', function () {
@@ -133,7 +112,7 @@ define('modules/xf/huXingListBj', ['jquery', 'iscroll/2.0.0/iscroll-lite'], func
             if ($this.find('.hx-RList').length < 2 ) {
                 return;
             }
-            var height = $('.hx-LList').height() - $this.find('.hx-RList').eq(-1).height() - 66;
+            var height = $('.hxnr').height() - $this.find('.hx-RList').eq(-1).height() - 66;
             $this.find('.div').height(height);
         })
     };

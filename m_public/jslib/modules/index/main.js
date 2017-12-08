@@ -552,7 +552,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                                     behaviorBtn.attr('href', vars.mainSite + 'xf/' + vars.mrCity + '.html');
                                 }
                             }
-                            var listAArr = $caiNiXiHuanList.find('a');
+                            var listAArr = $caiNiXiHuanList.find('a[class!="hqtjf"]');
                             var listAArrL = listAArr.length;
 
                             /**
@@ -590,6 +590,29 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                                 }
 
                             });
+                            
+                         // 特价房
+							var $lixf = $('.li-xf');
+							if ($lixf.length) {
+								var dlwidth = 0;
+								$lixf.find('dd').each(function () {
+									var $this = $(this);
+									dlwidth += ($this.width() + 7);
+								});
+								$lixf.find('dl').width(dlwidth);
+								var tjfScroll = new IScrollLite('.li-xf', {
+									// 开启横向滑动
+									scrollX: true,
+									// 禁止纵向滑动
+									scrollY: false,
+									// 滑动为其本身，这里的作用是防止禁用掉整个文档流的默认事件导致的bug
+									bindToWrapper: true,
+									// 可以纵向滑动，默认能够穿过
+									eventPassthrough: true
+								});
+								tjfScroll.refresh();
+							}
+                            
                         } else {
                             $caiNiXiHuanList.html('');
                             // 不存在猜你喜欢时，隐藏管理首页中的猜你喜欢设置显隐按钮

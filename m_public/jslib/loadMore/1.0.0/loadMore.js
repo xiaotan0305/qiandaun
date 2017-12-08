@@ -145,6 +145,8 @@
                     $moreBtn.hide();
                     loadFlag = false;
                 }
+                //当前页数
+                $data.pageMarloadFlag = pageMarloadFlag - 1;
                 // 增加回调
                 options.callback && options.callback($data);
             });

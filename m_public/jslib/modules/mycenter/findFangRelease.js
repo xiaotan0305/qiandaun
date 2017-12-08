@@ -15,6 +15,9 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
     var comarea;
     var price;
     var room;
+    // 新房意向楼盘名称和楼盘id
+    var projName = '';
+    var newcode = '';
     var style = '';
     var rentType;
     var phonestr;
@@ -407,6 +410,7 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
         var wait = 60;
         // 增加标志位,待计时器计时结束时才会发送下一次ajax(zhangcongfeng@fang.com)
         var countdownFlag = true;
+
         function time(o) {
             if (wait === 0) {
                 countdownFlag = true;
@@ -430,8 +434,8 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
                 // 请求获取验证码
                 phonestr = $('#myphone').val();
                 countdownFlag && verifycode.getPhoneVerifyCode(phonestr, function () {
-                        time(that);
-                    },function () {
+                    time(that);
+                }, function () {
                     // console.log('发送失败');
                 });
             }
@@ -442,11 +446,18 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
             // 新房
             if (vars.hidType === 'xf') {
                 if (checkDistrict() && checkPrice() && checkRoom()) {
+                    var $chooseloupan = $('#chooseloupan');
+                    if ($chooseloupan.text() !== '非必选') {
+                        projName = $chooseloupan.text();
+                        newcode = $chooseloupan.attr('data-newcode');
+                    }
                     var jsondata = {
                         district: district,
                         comarea: comarea,
                         price: price,
                         room: room,
+                        projName: projName,
+                        newcode: newcode,
                         PageURL: encodeURIComponent(window.location.href)
                     };
                     // 埋码-区域变量
@@ -650,13 +661,13 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
                 $('#submit').off('click');
                 setTimeout(function () {
                     submit();
-                },1000);
+                }, 1000);
             });
         };
         submit();
 
 
-        var aArr =  $('.overboxIn').find('a'), l = aArr.length, leng = 0;
+        var aArr = $('.overboxIn').find('a'), l = aArr.length, leng = 0;
         for (var i = 0; i < l; i++) {
             var el = aArr.eq(i);
             leng += el.outerWidth(true);
@@ -664,7 +675,7 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
 
         $('.overboxIn').width(leng + 1);
         // 顶部导航滑动
-        new IScroll('.noscroll',{
+        new IScroll('.noscroll', {
             scrollX: true,
             scrollY: false
         });
@@ -719,7 +730,7 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
                         $('.btnZkSq').hide();
                     }
                     // 删除埋码，走单独的pageId
-                    yhxw({ type: 79, pageId: 'muchelpbuy', params: maiMaParams });
+                    yhxw({type: 79, pageId: 'muchelpbuy', params: maiMaParams});
                     alert('删除成功！');
                     // 未登录
                 } else if (data.result === '2') {

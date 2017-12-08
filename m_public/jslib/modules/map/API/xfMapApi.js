@@ -5,6 +5,7 @@
 define('modules/map/API/xfMapApi', ['jquery', 'modules/map/API/BMap'], function (require) {
     'use strict';
     var $ = require('jquery');
+    var zoomFlag = 0;
     var MapApi = function () {
         var arg = arguments;
         var that = this;
@@ -79,10 +80,10 @@ define('modules/map/API/xfMapApi', ['jquery', 'modules/map/API/BMap'], function 
         // 缩放结束
         map.addEventListener('zoomend', function () {
             try {
-                /*if (that.zoomEnd) {
+                if (zoomFlag) {
+                    zoomFlag = 0;
                     return;
                 }
-                that.zoomEnd = !0;*/
                 // 搜索
                 var SFMap = require('modules/map/xfSFMap');
                 SFMap.params.zoom = that._map.getZoom();
@@ -134,6 +135,7 @@ define('modules/map/API/xfMapApi', ['jquery', 'modules/map/API/BMap'], function 
                 return;
             }
             var mapZoom = zoom || this._map.getZoom();
+            zoomFlag = 1;
             this._map.centerAndZoom(new BMap.Point(x, y), parseInt(mapZoom));
         },
         clearOverlays: function () {

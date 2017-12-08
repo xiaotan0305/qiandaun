@@ -695,7 +695,26 @@ define('modules/esf/newindex', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.
                         pageNumber: '10',
                         contentID: '#content',
                         moreBtnID: '#drag',
-                        loadPromptID: '#loading'
+                        loadPromptID: '#loading',
+                        callback: function (data) {
+                            // 前30条房源曝光率统计
+                            if ($('.top30' + data.pageMarloadFlag).val()) {
+                                $.ajax({
+                                    type: 'post',
+                                    url: window.location.protocol + '//esfbg.3g.fang.com/top30.htm',
+                                    data: $('.top30' + data.pageMarloadFlag).val(),
+                                });
+                            }
+
+                            // 前100条房源曝光率统计
+                            if ($('.top100' + data.pageMarloadFlag).val()) {
+                                $.ajax({
+                                    type: 'post',
+                                    url: window.location.protocol + '//esfbg.3g.fang.com/top100.htm',
+                                    data: $('.top100' + data.pageMarloadFlag).val(),
+                                });
+                            }
+                        }
                     });
                 });
             }
@@ -1492,5 +1511,23 @@ define('modules/esf/newindex', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.
                 window.location = that.attr('href') + combine + 'listtype=' + listtype + '&listsub=' + listsub;
                 return false;
             });
+
+            // 前30条房源曝光率统计
+            if (vars.top30) {
+                $.ajax({
+                    type: 'post',
+                    url: window.location.protocol + '//esfbg.3g.fang.com/top30.htm',
+                    data: vars.top30
+                });
+            }
+
+            // 前100条房源曝光率统计
+            if (vars.top100) {
+                $.ajax({
+                    type: 'post',
+                    url: window.location.protocol + '//esfbg.3g.fang.com/top100.htm',
+                    data: vars.top100
+                });
+            }
         };
     });

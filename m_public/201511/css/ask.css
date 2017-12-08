@@ -839,6 +839,7 @@ dl.gradePay dd h1 em i{display:block;font-size:12px;line-height:16px;-webkit-tra
 .answerlist li .spic .litd:last-child{margin-right:0;}
 .answerlist li .spic .litd a{display:block}
 
+
 .askline2{text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; overflow:hidden }
 .askline3{text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:3; overflow:hidden }
 .askline4{text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:4; overflow:hidden }
@@ -1452,3 +1453,21 @@ dl.tiwenlist dd span{float:right;font-size:14px;margin-top:10px;}
 .ask-top-num{background:#f8f8f8;line-height:40px;padding:0 20px;font-size:15px;}
 .ask-top-num span{padding:0 6px;}
 .ask-top-num em{color:#fc6769;}
+
+.taglist{padding-bottom:20px}
+.taglist .taglisttit{display:block;line-height:20px;padding:15px 0;color:#3c3f46;font-size:12px;font-weight:bold}
+.taglist .taglisttit > a{display:block;}
+.taglist .chosetd{width:100%;}
+.taglist .chosetd a{display:block;width:25%;line-height:15px;color:#3c3f46;padding:5px 1px 5px;border-radius:2px;border:1px solid #eceff3;margin-right:6px;text-align:center;font-size:11px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.taglist .chosetd a:last-child{margin-right:0;}
+.taglist .chosetd a.active{color:#ff5350;border:1px solid #ff6666;}
+.taglist .chosetd > div{margin-top:8px;width:100%;}
+.taglist .chosetd > div:first-child{margin-top:0;}
+
+
+
+
+
+
+
+
