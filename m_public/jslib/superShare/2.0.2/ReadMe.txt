@@ -19,7 +19,13 @@ by tankunpeng
              // 分享的内容来源
              form: '房天下',
              // 详细设置
-             wechattimeline: {},
+             wechattimeline: {
+                title: '分享测试',
+                image: 'http://js.soufunimg.com/common_m/m_index/img/soufun.png',
+                desc: '分享测试的详细描述',
+                url: 'http://m.test.fang.com/news/?c=bbs&a=wx',
+                form: '房天下'
+             },
              wechatfriends:{},
              qq:{},
              qzone:{},

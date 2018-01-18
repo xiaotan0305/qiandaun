@@ -2,14 +2,14 @@
  * @Author: tankunpeng@fang.com
  * @Date: 2018-01-18 16:16:48
  * @Last Modified by: tankunpeng@fang.com
- * @Last Modified time: 2018-01-18 16:53:50
+ * @Last Modified time: 2018-01-18 17:19:32
  * @Description: 网页分享调用app插件
  * 增加qq 微信 等自定义分享地址
  */
 (function(w, f) {
     if (typeof define === 'function') {
         // CMD
-        define('superShare/2.0.0/superShare', ['jquery', 'UA/1.0.0/UA'], function(require) {
+        define('superShare/2.0.2/superShare', ['jquery', 'UA/1.0.0/UA'], function(require) {
             var $ = require('jquery');
             w.UA = require('UA/1.0.0/UA');
             return f(w, $);
