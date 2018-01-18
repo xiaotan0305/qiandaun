@@ -1,25 +1,26 @@
-/**
- * 网页分享调用app插件
- * 格式整理，去除默认绑定share，外部调用
- * @description tankunpeng 2016/12/02
+/*
+ * @Author: tankunpeng@fang.com
+ * @Date: 2018-01-18 16:16:48
+ * @Last Modified by: tankunpeng@fang.com
+ * @Last Modified time: 2018-01-18 16:53:50
+ * @Description: 网页分享调用app插件
+ * 增加qq 微信 等自定义分享地址
  */
-(function (w, f) {
-    'use strict';
+(function(w, f) {
     if (typeof define === 'function') {
         // CMD
-        define('superShare/2.0.1/superShare', ['jquery', 'UA/1.0.0/UA'], function (require) {
+        define('superShare/2.0.0/superShare', ['jquery', 'UA/1.0.0/UA'], function(require) {
             var $ = require('jquery');
             w.UA = require('UA/1.0.0/UA');
             return f(w, $);
         });
-    } else if (typeof exports === 'object') {
+    } else if (typeof module.exports === 'object') {
         // CommonJS
         module.exports = f(w);
     } else {
         window.SuperShare = f(w);
     }
-})(window, function (win, $) {
-    'use strict';
+})(window, function(win, $) {
     var vars = null,
         seajs = window.seajs;
     if (seajs && seajs.data && seajs.data.vars) {
@@ -27,7 +28,7 @@
     }
     win.Base64Obj = {
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
-        encode: function (a) {
+        encode: function(a) {
             a = this.utf8Encode(a);
             var b, c, d, e, f, g, h, i = '', j = 0;
             for (a; j < a.length;) {
@@ -43,8 +44,8 @@
             }
             return i;
         },
-        decode: function (a) {
-            a = a.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+        decode: function(a) {
+            a = a.replace(/[^A-Za-z0-9+/=]/g, '');
             var b, c, d, e, f, g, h, i = '', j = 0;
             for (a; j < a.length;) {
                 e = this.keyStr.indexOf(a.charAt(j++));
@@ -61,7 +62,7 @@
             i = this.utf8Decode(i);
             return i;
         },
-        utf8Encode: function (a) {
+        utf8Encode: function(a) {
             a = a.replace(/\r\n/g, '\n');
             var b = '';
             for (var c = 0; c < a.length; c++) {
@@ -79,7 +80,7 @@
             }
             return b;
         },
-        utf8Decode: function (a) {
+        utf8Decode: function(a) {
             var b = '';
             for (var c = 0, d = 0, c1 = 0, c2 = 0; c < a.length;) {
                 d = a.charCodeAt(c);
@@ -171,7 +172,7 @@
         var script = document.createElement('script');
         var body = document.getElementsByTagName('body')[0];
         script.setAttribute('src', shareJsApi);
-        script.onload = script.onreadystatechange = function () {
+        script.onload = script.onreadystatechange = function() {
             if (this.readyState && this.readyState !== 'loaded' && this.readyState !== 'complete') {
                 fun && fun();
                 script.onload = script.onreadystatechange = null;
@@ -190,7 +191,7 @@
         div.style.visibility = 'hidden';
         div.innerHTML = '<iframe src= "' + url + '" scrolling="no" width="1" height="1"></iframe>';
         document.body.appendChild(div);
-        setTimeout(function () {
+        setTimeout(function() {
             div && div.parentNode && div.parentNode.removeChild(div);
         }, 5000);
     }
@@ -198,10 +199,10 @@
     /**
      * 分享功能实现基础类
      */
-    function SuperShareClass(config, detailConfig) {
+    function SuperShareClass(config) {
         // 配置信息初始化
         config = config || {};
-        this.detailConfig = detailConfig || {};
+        this.config = config;
         this.url = config.url || document.location.href || '';
         this.title = config.title || $('title').text() || '';
         this.desc = config.desc || $('meta[name=description]').attr('content') || this.title;
@@ -298,7 +299,7 @@
         /**
          * 设备信息初始化
          */
-        init: function () {
+        init: function() {
             var that = this;
             var ua = this.ua;
 
@@ -322,25 +323,25 @@
 
             // 获取浏览器参数
             if (ua.name === 'QQ浏览器') {
-                that.loadqqApi(function () {
+                that.loadqqApi(function() {
                     that.shareWechatByQQBrowser();
                 });
             } else {
                 ua.name === 'UC浏览器' && (ua.version = this.getVersion(that.agent.split('ucbrowser/')[1]));
             }
             // 添加浮层事件
-            that.shareFloat.find('.btn').on('click', function () {
+            that.shareFloat.find('.btn').on('click', function() {
                 that.hideFloat();
             });
-            that.safariFloat.add(that.weixinFloat).add(that.otherFloat).find('.share-btn').on('click', function () {
+            that.safariFloat.add(that.weixinFloat).add(that.otherFloat).find('.share-btn').on('click', function() {
                 $('.share-s2').hide();
             });
-            that.floatMask.on('click', function () {
+            that.floatMask.on('click', function() {
                 that.hideFloat();
             });
 
             // 分享按钮点击监听事件处理
-            $('.sns').on('click', function (ev) {
+            $('.sns').on('click', function(ev) {
                 var shareType = $(this).attr('data-app');
                 that.hideFloat();
                 if (that.ua.name === 'PinganWifi') {
@@ -354,7 +355,7 @@
         /**
          * 隐藏浮层
          */
-        hideFloat: function () {
+        hideFloat: function() {
             var that = this;
             that.shareFloat.hide();
             that.floatMask.removeClass('mask-visible');
@@ -366,14 +367,14 @@
          * @param time 显示时间
          * @param callback 回调函数
          */
-        showMsg: function (text, time, callback) {
+        showMsg: function(text, time, callback) {
             text = text || '信息有误！';
             time = time || 1500;
             var that = this;
             that.msgObj.find('p').html(text);
             that.msgObj.fadeIn();
             clearTimeout(that.timer);
-            that.timer = setTimeout(function () {
+            that.timer = setTimeout(function() {
                 that.msgObj.fadeOut();
                 callback && callback();
             }, time);
@@ -385,13 +386,13 @@
          * @param time 显示时间
          * @param callback 回调函数
          */
-        showObj: function (obj, time, callback) {
+        showObj: function(obj, time, callback) {
             time = time || '';
             var that = this;
             obj.fadeIn();
             if (time) {
                 clearTimeout(that.timer2);
-                that.timer2 = setTimeout(function () {
+                that.timer2 = setTimeout(function() {
                     obj.fadeOut();
                     callback && callback();
                 }, time);
@@ -401,7 +402,7 @@
         /**
          * 获取浏览器的版本
          */
-        getVersion: function (device) {
+        getVersion: function(device) {
             var arr = device.split('.');
             return parseFloat(arr[0] + '.' + arr[1]);
         },
@@ -409,7 +410,7 @@
         /**
          * 分享到网页版qq空间
          */
-        shareWebQzone: function () {
+        shareWebQzone: function() {
             var a = 'http://openmobile.qq.com/api/check2?page=qzshare.html&loginpage=loginindex.html&logintype=qzone',
                 b = this.desc.substring(0, 200),
                 c = ['title=' + encodeURIComponent(this.title), 'imageUrl=' + encodeURIComponent(this.image), 'desc='
@@ -427,22 +428,27 @@
          *           wechatfriends 微信好友
          *           sinaweibo 新浪微博平台
          */
-        shareto: function (shareType) {
+        shareto: function(shareType) {
+            var that = this;
+            // 判断是否含详细设置
+            var shareTypeConfig = that.config[shareType];
+            if (!shareTypeConfig || !typeof shareTypeConfig === 'object') {
+                shareTypeConfig = {};
+            }
             // 分享的网址
-            var shareUrl = this.url,
-                that = this,
+            var shareUrl = shareTypeConfig.url || that.url,
                 // 设备信息
-                ua = this.ua,
+                ua = that.ua,
                 // 分享的内容title
-                title = this.title,
+                title = shareTypeConfig.title || that.title,
                 // 分享的内容的详细描述
-                desc = this.desc,
+                desc = shareTypeConfig.desc || that.desc,
                 // 分享时的图片logo
-                sharePic = this.image,
+                sharePic = shareTypeConfig.image || that.image,
                 // 分享信息来源
-                from = this.from,
+                from = shareTypeConfig.from || that.from,
                 // 分享失败的错误回调方法
-                failCallback = this.failCallback,
+                failCallback = shareTypeConfig.failCallback || that.failCallback,
                 n = 0, timer;
             if (shareType === 'qzone') {
                 shareUrl = Base64Obj.encode(concatUrl(shareUrl, {
@@ -485,7 +491,7 @@
                 } else {
                     that.showObj(that.safariFloat);
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     failCallback && failCallback();
                     if (ua.name === 'Chrome' || ua.os === 'android' && ua.name === '火狐浏览器') {
                         that.showObj(that.weixinFloat);
@@ -507,7 +513,7 @@
                 } else {
                     that.showObj(that.safariFloat);
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     failCallback && failCallback();
                     if (ua.name === 'Chrome' || ua.os === 'android' && ua.name === '火狐浏览器') {
                         that.showObj(that.weixinFloat);
@@ -532,15 +538,6 @@
                         console.log('QQBrowser native share bypass.');
                     }
                 } else {
-                    // 分享到朋友和朋友圈不同的设置
-                    if (shareType === 'wechatfriends') {
-                        title = this.detailConfig.onMenuShareAppMessage.shareTitle;
-                        desc = this.detailConfig.onMenuShareAppMessage.descContent;
-                    } else if (shareType === 'wechattimeline') {
-                        title = this.detailConfig.onMenuShareTimeline.shareTitle;
-                        desc = this.detailConfig.onMenuShareTimeline.descContent;
-                    }
-
                     shareUrl = concatUrl(shareUrl, {
                         shareApp: shareType,
                         source: shareType === 'wechatfriends' ? 'weixinhaoyou_fx' : 'weixinpengyouquan_fx'
@@ -548,10 +545,8 @@
                     if (ua.name !== 'Safari') {
                         if (ua.os === 'ios' && ua.osVer > 8) {
                             win.location.href = 'mttbrowser://url=' + shareUrl;
-                        } else {
-                            if (!/huawei/.test(ua.agent)) {
-                                g('mttbrowser://url=' + shareUrl);
-                            }
+                        } else if (!/huawei/.test(ua.agent)) {
+                            g('mttbrowser://url=' + shareUrl);
                         }
                     } else {
                         that.showObj(that.safariFloat);
@@ -592,7 +587,7 @@
         /**
          * [shareByUC 调用 UC浏览器 原生分享]
          */
-        shareByUC: function () {
+        shareByUC: function() {
             var that = this;
             var ucweb = win.ucweb,
                 ucbrowser = win.ucbrowser;
@@ -610,7 +605,7 @@
         /**
          * shareByQQ 调用 QQ浏览器 原生分享
          */
-        shareByQQ: function (shareType) {
+        shareByQQ: function(shareType) {
             var that = this;
             var browser = win.browser;
             // 调用原生分享菜单无法判断分享渠道，暂时统一到微信
@@ -638,12 +633,12 @@
         /**
          * shareBytdApp 调用 房天下土地app原生分享弹层
          */
-        shareBytdApp: function () {
+        shareBytdApp: function() {
             var that = this;
             if (/SFLand_iOS/i.test(this.agent)) {
-                shareiOS(that.url,that.title,that.image);
+                shareiOS(that.url, that.title, that.image);
             }else if (/SFLand_Android/i.test(this.agent)) {
-                jsObj.shareAndroid(that.url,that.title,that.image);
+                jsObj.shareAndroid(that.url, that.title, that.image);
             }
         },
 
@@ -656,10 +651,23 @@
          *           wechatfriends 微信好友
          *           sinaweibo 新浪微博平台
          */
-        pinganWifiShareTo: function (shareType) {
+        pinganWifiShareTo: function(shareType) {
             var that = this;
+            // 判断是否含详细设置
+            var shareTypeConfig = that.config[shareType];
+            if (!shareTypeConfig || !typeof shareTypeConfig === 'object') {
+                shareTypeConfig = {};
+            }
+            // 分享的网址
+            var shareUrl = shareTypeConfig.url || that.url,
+                // 分享的内容title
+                title = shareTypeConfig.title || that.title,
+                // 分享的内容的详细描述
+                desc = shareTypeConfig.desc || that.desc,
+                // 分享时的图片logo
+                sharePic = shareTypeConfig.image || that.image;
             // 分享地址
-            var shareUrl = concatUrl(this.url, {
+            shareUrl = concatUrl(shareUrl, {
                 _once_: shareType + '_pinganwifi'
             });
             if (shareType === 'sohuwd') {
@@ -673,18 +681,18 @@
                     url: shareUrl,
                     id: that.newsid,
                     type: type,
-                    title: that.title,
-                    pic: that.image,
+                    title: title,
+                    pic: sharePic,
                     passport: that.sohupassport
                 });
             } else {
                 win.location.href = concatUrl('pawifishare://', {
                     method: 'sohuShare',
                     shareType: shareType,
-                    title: Base64Obj.encode(that.title || ''),
+                    title: Base64Obj.encode(title || ''),
                     url: Base64Obj.encode(shareUrl),
-                    subtitle: Base64Obj.encode(that.desc || ''),
-                    imgurl: Base64Obj.encode(that.image || '')
+                    subtitle: Base64Obj.encode(desc || ''),
+                    imgurl: Base64Obj.encode(sharePic || '')
                 });
             }
         },
@@ -692,7 +700,7 @@
         /**
          * 通过QQ浏览器进行微信分享的操作
          */
-        shareWechatByQQBrowser: function () {
+        shareWechatByQQBrowser: function() {
             var that = this;
             var str = win.location.href.match(/shareApp=(\w+)/i);
             if (str) {
@@ -708,7 +716,7 @@
         /**
          * 加载QQ浏览器分享API
          */
-        loadqqApi: function (fn) {
+        loadqqApi: function(fn) {
             var that = this;
             // 如果版本低于5.4，用旧版本api，否则用新api
             var b = that.version.qq < 5.4 ? that.qApiSrc.lower : that.qApiSrc.higher;
@@ -716,7 +724,7 @@
             var a = document.getElementsByTagName('body')[0];
             d.src = b;
             a.appendChild(d);
-            d.onload = function () {
+            d.onload = function() {
                 fn && fn();
             };
         },
@@ -724,7 +732,7 @@
         /**
          * 分享
          */
-        share: function () {
+        share: function() {
             var that = this;
             var ua = that.ua;
             // 判断浏览器类型;
@@ -750,7 +758,7 @@
          * 更新新配置信息
          * @param config
          */
-        updateConfig: function (config) {
+        updateConfig: function(config) {
             var that = this;
             that.url = config.url || document.location.href || '';
             that.title = config.title || $('title').text() || '';
@@ -766,10 +774,9 @@
     // 设置私有变量，该基础类不暴漏出去
     var superShareClass;
 
-    function SuperShare(config, detailConfig) {
+    function SuperShare(config) {
         this.options = config;
-        this.detailConfig = detailConfig ;
-        superShareClass = new SuperShareClass(this.options, this.detailConfig);
+        superShareClass = new SuperShareClass(this.options);
     }
 
     SuperShare.prototype = {
@@ -778,7 +785,7 @@
         /**
          * 分享
          */
-        share: function () {
+        share: function() {
             superShareClass.share();
         },
 
@@ -786,7 +793,7 @@
          * 更新新配置信息
          * @param config
          */
-        updateConfig: function (ops) {
+        updateConfig: function(ops) {
             superShareClass.updateConfig(ops);
         }
     };
