@@ -42,7 +42,13 @@ by tankunpeng
                      // 分享的链接地址
                      url: 'http://m.test.fang.com/news/?c=bbs&a=wx',
                      // 分享的内容来源
-                     form: '房天下'
+                     form: '房天下',
+                     // 详细设置
+                    wechattimeline: {},
+                    wechatfriends:{},
+                    qq:{},
+                    qzone:{},
+                    sinaweibo:{}
                  };
                  superShare.updateConfig(config);
             }
@@ -68,12 +74,12 @@ API;
                          url: 'http://m.test.fang.com/news/?c=bbs&a=wx',
                          // 分享的内容来源
                          form: '房天下',
-                          // 详细设置
-                        wechattimeline: {},
-                        wechatfriends:{},
-                        qq:{},
-                        qzone:{},
-                        sinaweibo:{}
+                        // 详细设置
+                         wechattimeline: {},
+                         wechatfriends:{},
+                         qq:{},
+                         qzone:{},
+                         sinaweibo:{}
                      };
             var superShare = new SuperShare(config);
             // 2.0版本不再在插件中绑定.share类了，需要外部自行调用
@@ -92,7 +98,13 @@ API;
                          // 分享的链接地址
                          url: 'http://m.test.fang.com/news/?c=bbs&a=wx',
                          // 分享的内容来源
-                         form: '房天下'
+                         form: '房天下',
+                        // 详细设置
+                        wechattimeline: {},
+                        wechatfriends:{},
+                        qq:{},
+                        qzone:{},
+                        sinaweibo:{}
                      };
                      superShare.updateConfig(config);
                 }
