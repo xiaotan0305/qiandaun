@@ -1,18 +1,27 @@
 /**
  * Created by loupeiye on 2016/8/17.
  */
-define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox','hslider/1.0.0/hslider','dateAndTimeSelect/1.1.0/dateAndTimeSelect_chengjiao'], function (require, exports, module) {
+define('modules/chengjiao/index', ['modules/world/yhxw', 'jquery', 'chart/line/1.0.8/line', 'slideFilterBox/1.0.0/slideFilterBox'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
         var $ = require('jquery');
+        // 选择插件
+        var Line = require('chart/line/1.0.8/line');
+        var iscrollCtrl = require('slideFilterBox/1.0.0/slideFilterBox');
         // 页面传入的参数
         var vars = seajs.data.vars;
-        // 选择插件
-        var hslider = require('hslider/1.0.0/hslider');
-        var $filterBox = $('#filterBox');
         var $doc = $(document);
-
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var pageId = 'cj_cj^lb_wap';
+        var maimaParams = {
+            'vmg.page': pageId
+        };
+        yhxw({
+            pageId: pageId,
+            params: maimaParams
+        });
         /**
          * 为了方便解绑事件，声明一个阻止页面默认事件的函数
          * @param e
@@ -35,177 +44,149 @@ define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox
             $doc.off('touchmove', pdEvent);
         }
 
-        // 条件数组
-        var results = {
-            // 区县
-            districtId: vars.district || '',
-            // 商圈
-            comareaId: vars.comarea || '',
-            // 价格
-            priceId: vars.price || '',
-            // 户型
-            roomId: vars.room || '',
-            // 建筑面积
-            areaId: vars.area || ''
-        };
-
-
         // 图片增加惰性加载功能
         require.async('lazyload/1.9.1/lazyload', function () {
             $('.lazyload').lazyload();
         });
 
-        var $jjropen = $('.jjropen');
+        var $trend = $('.trend-time li');
+        var typeNow = 'month'; //当前类型
+        var $disList = $('#disList');
+        var $screenCity = $('.screen-city');
+        var $hasCont = $('.hasCont');
+        var $dataNo = $('.data_no');
+        var $line = $('#line'), $trendZs = $('.trend-zs');
+
+        //日周月切换和初始显示
+        function initChange() {
+            //区域是否显示箭头
+            if ($disList.find('dl[data_type=' + typeNow + ']').length) {
+                $screenCity.removeClass('off');
+            } else {
+                $screenCity.addClass('off');
+            }
+
+            //是否有内容
+            var $contType = $('.hasCont' + typeNow);
+            if (!($hasCont.length || $contType.length)) {
+                $dataNo.show();
+            } else {
+                $dataNo.hide();
+                if ($contType.length) {
+                    //成交名片
+                    $contType.show().siblings().hide();
+                    //成交曲线。没有名片一定没有曲线
+                    if (options[typeNow]) {
+                        $line.html('');
+                        $trendZs.show();
+                        var line = new Line(options[typeNow]);
+                        line.run();
+                        $line.append('<p style="font-size:12px; color:rgb(119,176,249); text-align:center">套数</p>');
+                    } else {
+                        $trendZs.hide();
+                    }
+                }
+            }
+        }
+
+        // 曲线图
+        var options = {};
+        if (vars.jsDealData) {
+            var jsDealData = $.parseJSON(vars.jsDealData);
+            for (var type in jsDealData) {
+                if (jsDealData.hasOwnProperty(type)) {
+                    options[type] = {
+                        type: type,
+                        lineStyle: '',
+                        // 走势图容器id
+                        id: '#line',
+                        // 点击跳转
+                        tipUrl: '',
+                        // 能够滑动的最小数据量
+                        scrollNumber: 5,
+                        xfMode: true,
+                        // 走势图左右区域的间隔
+                        border: 80,
+                        startIndex: 12,
+                        width: $(window).width() - 20,
+                        xAxis: jsDealData[type]['xAxis'],
+                        series: [{
+                            key: '成交',
+                            color: 'rgb(119,176,249)',
+                            yAxis: jsDealData[type]['yAxis']
+                        }]
+                    };
+                }
+            }
+        }
+
+        //日月周的切换
+        if ($trend.length) {
+            typeNow = $trend.filter('.on').attr('data_type');
+            $trend.on('click', function () {
+                var $that=$(this);
+                if ($that.hasClass('on')) {
+                    return;
+                }
+                $that.addClass('on').siblings().removeClass('on');
+                typeNow = $that.attr('data_type');
+                initChange();
+            });
+        }
+
+        //初始化
+        initChange();
+
+        //区域下拉点击
+        var $tabSX = $('#tabSX');
+        var $float = $('.float');
+        $screenCity.on('click', function () {
+            if ($(this).hasClass('off')) {
+                return;
+            }
+            $tabSX.find('dl[data_type=' + typeNow + ']').show().siblings().hide();
+            //弹出区域选择框
+            $tabSX.addClass('tabSX');
+            iscrollCtrl.refresh('#disList');
+            $float.show();
+            unable();
+        });
+        $float.on('click', function () {
+            $float.hide();
+            $tabSX.removeClass('tabSX');
+        });
+
+        // 点击区域名称、成交名片
+        $('.url-skip').on('click', function () {
+            window.location.href = $(this).attr('data-url');
+        });
 
         // 点击页面的警示图片
-        $('.mingp').on('click',function (e) {
-            var thisIndex = $(this).parents('li').index();
-            $jjropen.eq(thisIndex).show();
+        var $jjropen = $('.jjropen');
+        $('.cardbox span').on('click', function (e) {
+            var type = $(this).parents('div').first().attr('data_type');
+            var $p = $jjropen.find('p[data_type=' + type + ']');
+            if ($p.length) {
+                $p.show();
+            }
+            $jjropen.show();
             unable();
             e.preventDefault();
+            e.stopPropagation();
         });
         // 点击关闭按钮
         $('.close').on('click',function () {
+            $jjropen.find('p.mt5').hide();
             $jjropen.hide();
         });
-        $('.jjropen, .btn').on('click',function () {
+        $('.jjropen, .btns').on('click',function () {
+            $jjropen.find('p.mt5').hide();
             $jjropen.hide();
             enable();
         });
 
-        $('.trendopen').on('click', function (e) {
-            e.stopPropagation();
-        });
-
-        // 价格下的横向滑动条
-        $('#price').on('click',function () {
-            var sliderObj = null;
-            var hsliderBox = $('#priceHslider');
-            // 判断是否需要使用自定义选择插件
-            if (!sliderObj && hsliderBox.length > 0) {
-                sliderObj = new hslider({
-                    max: hsliderBox.attr('max'),
-                    min: hsliderBox.attr('min'),
-                    step: 20,
-                    oParent: hsliderBox,
-                    leftSign: hsliderBox.find('div.active').eq(0),
-                    rightSign: hsliderBox.find('div.active').eq(1),
-                    range: hsliderBox.find('span')
-                });
-                // 有自定义价格或者面积时滑动筛选滚动条相关显示效果
-                var customBox = $('.in-qj');
-                if (customBox.length > 0) {
-                    customBox.find('div').on('touchstart', function () {
-                        $(this).addClass('hover');
-                        $(this).siblings().not('span').removeClass('hover');
-                    }).on('touchend', function () {
-                        $(this).removeClass('hover');
-                    });
-                }
-            }
-            if (sliderObj && hsliderBox.length > 0) {
-                var hsliderId = hsliderBox.attr('id');
-                var rangArr = [];
-                if (vars.price && vars.price.length && hsliderId.indexOf('price') > -1) {
-                    rangArr = vars.price.split(',');
-                }
-                // 如果携带建筑面积参数/价格参数初始化时展示选中参数
-                if (rangArr.length > 1) {
-                    sliderObj._initPos(parseInt(rangArr[0]), parseInt(rangArr[1]));
-                }
-            }
-        });
-
-        // 加载更多
-        if ($('#drag').length > 0) {
-            // loadmore所请求的地址
-            var loadMoreUrl = vars.mainSite + 'chengjiao/?c=chengjiao&a=ajaxGetCJList' + '&city=' + vars.city;
-            // 需要传的ajax参数
-            var screenParam = ['district', 'comarea', 'price', 'room', 'area', 'keyword', 'date'];
-            for (var i = 0; i < screenParam.length; i++) {
-                if (vars[screenParam[i]]) {
-                    loadMoreUrl += '&' + screenParam[i] + '=' + vars[screenParam[i]];
-                }
-            }
-            require.async('loadMore/1.0.0/loadMore', function (loadMore) {
-                loadMore({
-                    url: loadMoreUrl,
-                    total: vars.allCount,
-                    pagesize: vars.firstPgNum,
-                    pageNumber: vars.stepByNum,
-                    contentID: '.housecjList',
-                    moreBtnID: '#drag',
-                    loadPromptID: '#loading',
-                    lazyCon: '.lazyload',
-                    firstDragFlag: false
-                });
-            });
-        }
-
-        /**
-         * 自定义价格与面积
-         * @param aId 类型id
-         * @returns {boolean}
-         */
-        function assemblyUrl(aId) {
-            var minData = $('#' + aId + 'min').find('i').text();
-            var maxData = $('#' + aId + 'max').find('i').text();
-            var urlvalue;
-            minData = minData === '不限' ? '0' : minData;
-            maxData = maxData === '不限' ? '0' : maxData;
-            // 匹配大于0的正整数
-            var pattern = /^\d+$/;
-            if (pattern.test(minData) === false || pattern.test(maxData) === false) {
-                alert('请填写有效的整数！');
-                return false;
-            }
-            urlvalue = vars.mainSite + 'chengjiao/' + vars.city;
-            results['priceId'] = minData + ',' + maxData;
-            console.log(results);
-            // 需要拼接的参数
-            var keyArr = {
-                district: 'di',
-                comarea: 'b',
-                price: 'm',
-                room: 'h',
-                area: 'a'
-            };
-            for (var key in keyArr) {
-                // result对象中值不为空的拼接到地址中
-                if (results[key + 'Id']) {
-                    urlvalue += '_' + keyArr[key] + results[key + 'Id'];
-                }
-            }
-            urlvalue += '/';
-            if (vars.keyword) {
-                urlvalue += '?keyword=' + vars.keyword;
-            }
-            window.location = urlvalue;
-        }
-
-        // 点击价格筛选确认按钮
-        $('#priceFormatUrl').on('click', function (e) {
-            var thiz = $(this);
-            assemblyUrl(thiz.attr('id').replace('FormatUrl', ''));
-            e.stopPropagation();
-        });
-
-        // 页面向上滚动筛选栏固顶向下滚动加筛选栏隐藏
-        var initTop = 114;
-        $(window).on('scroll', function () {
-            if ($('#nav').css('display') === 'none' && $filterBox.hasClass('tabSx') === false) {
-                var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-                if (scrollTop > initTop || scrollTop < 114) {
-                    $filterBox.removeClass('tabFixed');
-                } else {
-                    $filterBox.addClass('tabFixed');
-                }
-                initTop = scrollTop;
-            }
-        });
-
         // 点击查看更多区县排行榜
-        var moreLi = $('.trend-table a.showDistrict');
+        var moreLi = $('.trend-table2 li.showDistrict');
         var hotmore = $('.trend-more');
         // 新房查成交app下载
         var xfCcjAppDown = $('.trend-btn');
@@ -220,35 +201,6 @@ define('modules/chengjiao/index', ['jquery','slideFilterBox/1.0.0/slideFilterBox
                     xfCcjAppDown.show();
                     hotmore.removeClass('up');
                 }
-            });
-        }
-
-        //成交数据
-        if (vars.fangDeal) {
-            // 增加日期选择功能，lina 20161109
-            var DateAndTimeSelect = require('dateAndTimeSelect/1.1.0/dateAndTimeSelect_chengjiao');
-            var year = 2015;
-            var lastYear = new Date().getFullYear();
-            var options = {
-                // 特殊类型
-                type: 'jiaju',
-                // 年份限制
-                yearRange: year + '-' + lastYear,
-                // 默认显示的日期
-                defaultYear: vars.date ? parseInt(vars.date.substr(0, 4)) : new Date().getFullYear(),
-                defaultMonth: vars.date ? parseInt(vars.date.substr(4, 2)) : new Date().getMonth() + 1,
-                dateConfirmFunc: function (date) {
-                    window.location.href = vars.monthUrl + 'date=' +date;
-                }
-            };
-            var dtSelect = new DateAndTimeSelect(options);
-            $('.time_cj').on('click', function () {
-                dtSelect.show(dtSelect.setting.SELET_TYPE_DATE);
-            });
-
-            //成交数据地址
-            $('.cent_tab_left').on('click', function () {
-                window.location.href = vars.dealUrl;
             });
         }
     };

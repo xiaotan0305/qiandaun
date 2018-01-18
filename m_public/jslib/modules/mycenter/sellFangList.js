@@ -16,7 +16,7 @@ define('modules/mycenter/sellFangList', ['jquery', 'modules/mycenter/yhxw', 'laz
     // 引入用户行为分析对象-埋码
     var yhxw = require('modules/mycenter/yhxw');
     // 判断详情页种类，传入用户行为统计对象
-    var pageId = 'muchelpsellmanager';
+    var pageId = 'esf_fy^fblb_wap';
     // 埋码变量数组
     var maiMaParams = {
         'vmg.page': pageId,

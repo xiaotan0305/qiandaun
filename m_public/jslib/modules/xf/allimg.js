@@ -92,14 +92,14 @@ define('modules/xf/allimg', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/xf/he
         // 浏览收集方法
         _ub.collect(0, {
             // 所属页面
-            'vmg.page': 'mnhpagephoto',
+            'vmg.page': 'xf_lp^xcsy_wap',
             // 楼盘id
             'vmn.projectid': vars.newcode,
             'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
         });
     }
 
-    require.async('//jsub.fang.com/_vb.js?c=mnhpagephoto');
+    require.async('//jsub.fang.com/_vb.js?c=xf_lp^xcsy_wap');
     require.async('//jsub.fang.com/_ubm.js?_2017102307fdsfsdfdsd', function () {
         yhxw();
     });

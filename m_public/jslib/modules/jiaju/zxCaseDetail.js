@@ -2,57 +2,57 @@
  * Created by LXM on 15-3-17.
  * 单量修改于2015-9-9
  */
-define('modules/jiaju/zxCaseDetail', [
+ define('modules/jiaju/zxCaseDetail', [
     'jquery',
     'lazyload/1.9.1/lazyload',
     'verifycode/1.0.0/verifycode',
     'superShare/2.0.0/superShare',
     'weixin/2.0.1/weixinshare',
     'modules/jiaju/yhxw'
-], function (require, exports, module) {
-    'use strict';
-    module.exports = function () {
-        var $ = require('jquery');
-        var vars = seajs.data.vars;
-        require('lazyload/1.9.1/lazyload');
-        var verifycode = require('verifycode/1.0.0/verifycode');
-        $('.lazyload').lazyload();
-        var stage = $('.swiperIndex');
-        var jiajuUtils = vars.jiajuUtils;
-        var freeOrder = $('.yuyueBtn');
-        var maskFixed = $('.sf-maskFixed');
-        var maskFloat = $('.sf-maskFixed .zx-yuyue-but');
-        var phoneCode = $('#phoneCode');
-        var vcodeBtn = $('#sendPhoneCode');
-        var vCode = $('#phoneTxt');
-        var orderSubmit = $('.yuyueSub');
-        var codeInput = $('.codeInput')
-        var sendText = $('#sendText');
-        var sendFloat = $('#sendFloat');
-        var phoneNumber, codeNumber;
-        var contact = $('#contact');
-        var flag = {
-            phoneEmpty: false,
-            phoneIlleagal: false,
-            vCodeSend: false,
-            vCodeEmpty: false,
-            vCodeIlleagal: false
-        };
-        var toastMes = {
-            phoneEmpty: '请输入手机号',
-            phoneIlleagal: '输入手机号格式错误',
-            vCodeSend: '请先发送验证码',
-            vCodeEmpty: '请输入验证码',
-            vCodeIlleagal: '输入验证码错误'
-        };
-        var ajaxflag = {
-            getVerifyCode: true,
-            checkVerifyCode: true
-        };
+    ], function (require, exports, module) {
+        'use strict';
+        module.exports = function () {
+            var $ = require('jquery');
+            var vars = seajs.data.vars;
+            require('lazyload/1.9.1/lazyload');
+            var verifycode = require('verifycode/1.0.0/verifycode');
+            $('.lazyload').lazyload();
+            var stage = $('.swiperIndex');
+            var jiajuUtils = vars.jiajuUtils;
+            var freeOrder = $('.yuyueBtn');
+            var maskFixed = $('.sf-maskFixed');
+            var maskFloat = $('.sf-maskFixed .zx-yuyue-but');
+            var phoneCode = $('#phoneCode');
+            var vcodeBtn = $('#sendPhoneCode');
+            var vCode = $('#phoneTxt');
+            var orderSubmit = $('.yuyueSub');
+            var codeInput = $('.codeInput')
+            var sendText = $('#sendText');
+            var sendFloat = $('#sendFloat');
+            var phoneNumber, codeNumber;
+            var contact = $('#contact');
+            var flag = {
+                phoneEmpty: false,
+                phoneIlleagal: false,
+                vCodeSend: false,
+                vCodeEmpty: false,
+                vCodeIlleagal: false
+            };
+            var toastMes = {
+                phoneEmpty: '请输入手机号',
+                phoneIlleagal: '输入手机号格式错误',
+                vCodeSend: '请先发送验证码',
+                vCodeEmpty: '请输入验证码',
+                vCodeIlleagal: '输入验证码错误'
+            };
+            var ajaxflag = {
+                getVerifyCode: true,
+                checkVerifyCode: true
+            };
         // 用户行为统计
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
-            page: 'mjjzxcasepage',
+            page: 'jj_mt^alxq_wap',
             companyid: vars.companyid,
             caseid: vars.caseId,
             area: vars.area,
@@ -94,10 +94,48 @@ define('modules/jiaju/zxCaseDetail', [
             /**
              * 日志统计
              */
-            $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZXLog&city=' + vars.city + '&typeid=5&objid=' + vars.caseId + '&refer=' + encodeURIComponent(document.referrer) + '&sorce=' + encodeURIComponent(location.href));
-        }
+             $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZXLog&city=' + vars.city + '&typeid=5&objid=' + vars.caseId + '&refer=' + encodeURIComponent(document.referrer) + '&sorce=' + encodeURIComponent(location.href));
+         }
 
-        function eventInit() {
+         function eventInit() {
+
+            /** 点赞*/
+            var zan = $('#zan');
+            zan.on('click', function () {
+                if (!vars.phone) {
+                    window.location.href = vars.loginUrl + '?burl=' + encodeURIComponent(location.href);
+                    return;
+                }
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
+                    if (data && data.Message) {
+                        toastFn(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
+                        zan.addClass(data.Message.Code === '0' ? '' : 'cur');
+                        // 点赞数+1
+                        var num = parseInt(zan.html() ? zan.html() : 0);
+                        zan.html(data.Message.Code === '0' ? num : (num + 1) + '<i class="on">+1</i>');
+                    }
+                });
+            });
+
+            /** 点击更多，查看更多案例说明*/
+            var more = $('.more'), intro = $('.intro');
+            var moreHeight = intro.find('div').height();
+            if (moreHeight <= 63) {
+                more.hide();
+                intro.css('overflow', 'visible');
+                intro.css('max-height', 'none');
+            }
+            more.on('click', function () {
+                if (intro.css('overflow') === 'hidden') {
+                    intro.css('max-height','none');
+                    intro.css('overflow', 'visible');
+                    more.addClass('s2');
+                } else {
+                    intro.css('max-height','63px');
+                    intro.css('overflow', 'hidden');
+                    more.removeClass('s2');
+                }
+            });
             freeOrder.on('click', function () {
                 maskFloat.css({bottom: -1 * maskFixed.height()});
                 maskFixed.css({'z-index': 1000}).show();
@@ -179,7 +217,7 @@ define('modules/jiaju/zxCaseDetail', [
             contact.on('click', function () {
                 // 在线沟通用户行为统计
                 yhxw({
-                    page: 'mjjzxcasepage',
+                    page: 'jj_mt^alxq_wap',
                     type: 24,
                     companyid: vars.companyid,
                     caseid: vars.caseId,
@@ -188,6 +226,18 @@ define('modules/jiaju/zxCaseDetail', [
                     housetype: vars.caseRoomName,
                     totalprice: vars.Wprice + '万'
                 });
+                //获取服务器时间戳
+                var content = '';
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetServerDate', function(info){
+                    if (vars.localStorage) {
+                        var lastTime = vars.localStorage.getItem('caseinfo_'+vars.caseId);
+                        if (info - lastTime > 1800) {
+                            //需要更新状态
+                            vars.localStorage.setItem('caseinfo_'+vars.caseId, info);
+                            content = encodeURIComponent($('title').text()+window.location.href);
+                        }
+                    }
+                });
                 // ajax获取IM信息
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZxIm&city=' + vars.city + '&companyid=' + vars.companyid, function (data) {
                     if (data.issuccess == '1') {
@@ -195,7 +245,7 @@ define('modules/jiaju/zxCaseDetail', [
                             vars.localStorage.setItem(String('h:' + data.soufunname), encodeURIComponent(vars.imName ? vars.imName : data.soufunname) + ';' + data.img
                                 + ';;');
                         }
-                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome';
+                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }
@@ -204,7 +254,7 @@ define('modules/jiaju/zxCaseDetail', [
             $('.icon4').on('click', function () {
                 // 打电话用户行为统计
                 yhxw({
-                    page: 'mjjzxcasepage',
+                    page: 'jj_mt^alxq_wap',
                     type: 31,
                     companyid: vars.companyid,
                     caseid: vars.caseId,
@@ -221,7 +271,7 @@ define('modules/jiaju/zxCaseDetail', [
          * @param  {[type]} msg [description]
          * @return {[type]}     [description]
          */
-        function toastFn(msg) {
+         function toastFn(msg) {
             sendText.text(msg);
             sendFloat.show();
             jiajuUtils.toggleTouchmove(true);
@@ -235,7 +285,7 @@ define('modules/jiaju/zxCaseDetail', [
          * [getVerifyCode description] 获取验证码
          * @return {[type]} [description]
          */
-        function getVerifyCode() {
+         function getVerifyCode() {
             ajaxflag.getVerifyCode = false;
             codeInput.show();
             verifycode.getPhoneVerifyCode(phoneNumber, function () {
@@ -255,7 +305,7 @@ define('modules/jiaju/zxCaseDetail', [
          * @param  {[type]} timePara [description] 设置倒计时的时长
          * @return {[type]}          [description]
          */
-        function timeRecorder(timePara) {
+         function timeRecorder(timePara) {
             var handle = setInterval(function () {
                 vcodeBtn.text('发送中(' + timePara + ')');
                 if (timePara === 0) {
@@ -270,7 +320,7 @@ define('modules/jiaju/zxCaseDetail', [
          * [checkVerifyCode description] 登录信息验证
          * @return {[type]} [description]
          */
-        function checkVerifyCode() {
+         function checkVerifyCode() {
             ajaxflag.checkVerifyCode = false;
             verifycode.sendVerifyCodeAnswer(phoneNumber, codeNumber, orderAjaxFn, function () {
                 toastFn(codeNumber ? '验证码错误' : '请输入验证码');
@@ -282,7 +332,7 @@ define('modules/jiaju/zxCaseDetail', [
          * [buyAjaxFn description] 提交验证
          * @return {[type]} [description]
          */
-        function orderAjaxFn() {
+         function orderAjaxFn() {
             var paramObj = {
                 phone: vars.phone ? vars.phone : phoneNumber,
                 companyId: vars.companyid,
@@ -292,7 +342,7 @@ define('modules/jiaju/zxCaseDetail', [
             ajaxflag.checkVerifyCode = false;
             // 用户行为统计
             yhxw({
-                page: 'mjjzxcasepage',
+                page: 'jj_mt^alxq_wap',
                 type: 554,
                 companyid: vars.companyid,
                 caseid: vars.caseId,
@@ -373,6 +423,17 @@ define('modules/jiaju/zxCaseDetail', [
         var superShare = new SuperShare(config);
         // 点击分享按钮
         $('.icon-share').on('click', function () {
+            // 分享用户行为
+            yhxw({
+                page: 'jj_mt^alxq_wap',
+                type: 22,
+                companyid: vars.companyid,
+                caseid: vars.caseId,
+                area: vars.area,
+                style: vars.casestylename,
+                housetype: vars.caseRoomName,
+                totalprice: vars.Wprice + '万'
+            });
             superShare.share();
         });
     };

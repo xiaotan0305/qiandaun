@@ -3,7 +3,7 @@
  * @file 查房价购房能力评估
  * @author zcf(zhangcongfeng@fang.com)
  */
-define('modules/pinggu/buyerAssess', ['jquery'], function (require, exports, module) {
+define('modules/pinggu/buyerAssess', ['modules/world/yhxw', 'jquery'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -20,6 +20,15 @@ define('modules/pinggu/buyerAssess', ['jquery'], function (require, exports, mod
         var intentionZone = $('#intentionZone');
         // 意向区域可能没有
         var required = intentionZone.length > 0 ? 6 : 5;
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cfj_cfj^gfnlpg_wap'
+        };
+        yhxw({
+            pageId: 'cfj_cfj^gfnlpg_wap',
+            params: maimaParams
+        });
         // 所有项不为空,评估按钮可点击
         function checkObj(obj) {
             obj.funding = funding.val();

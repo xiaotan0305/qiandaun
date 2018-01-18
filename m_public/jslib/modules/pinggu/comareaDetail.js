@@ -2,7 +2,7 @@
  * @file js合并，ESLint
  * @author fcwang(wangfengchao@soufun.com)
  */
-define('modules/pinggu/comareaDetail', ['jquery', 'chart/line/1.0.3/line', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/pinggu/comareaDetail', ['modules/world/yhxw', 'jquery', 'chart/line/1.0.3/line', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -14,7 +14,16 @@ define('modules/pinggu/comareaDetail', ['jquery', 'chart/line/1.0.3/line', 'swip
         $('#wrapper').width(curveW);
         line.width(curveW);
         var district = vars.district;
-
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cfj_cfj^esfcjlb_wap'
+        };
+        yhxw({
+            pageId: 'cfj_cfj^esfcjlb_wap',
+            params: maimaParams,
+            type: 1
+        });
         // select选项跳转链接
         $('.cfj-sele').on('change', function () {
             location.href = this.value;
@@ -87,32 +96,6 @@ define('modules/pinggu/comareaDetail', ['jquery', 'chart/line/1.0.3/line', 'swip
         // 图片加载用lazyload
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
-        // 用户行为布码
-        require.async('jsub/_vb.js?c=mcfjcomarea ');
-        require.async('jsub/_ubm.js?v=201407181100', function () {
-            // 所在城市（中文）
-            _ub.city = vars.cityname;
-            // 新房的页面值为 'n'、二手房为 'e'、租房为 'z'、注意房贷计算器页此处值为g
-            _ub.biz = 'v';
-            // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
-            var ns = vars.ns === 'n' ? 0 : 1;
-            _ub.location = ns;
-            // b值 0：浏览
-            var b = 0;
-
-            var pTemp = {
-                'vmg.page': 'mcfjcomarea',
-                'vmv.comarea': encodeURIComponent(vars.comarea)
-            };
-
-            var p = {};
-            for (var temp in pTemp) {
-                if (pTemp[temp] && pTemp[temp] !== 'undefined') {
-                    p[temp] = pTemp[temp];
-                }
-            }
-            _ub.collect(b, p);
-        });
         // 最下面的导航-------------------------------------------------satrt
         // 添加底部SEO
         var seoTab = $('.tabNav');

@@ -1,7 +1,7 @@
 /**
  * Created by loupeiye on 2016/8/17.
  */
-define('modules/chengjiao/esfIndex', ['jquery','chart/line/1.0.8/line', 'slideFilterBox/1.0.0/slideFilterBox'], function (require, exports, module) {
+define('modules/chengjiao/esfIndex', ['modules/world/yhxw', 'jquery','chart/line/1.0.8/line', 'slideFilterBox/1.0.0/slideFilterBox'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -12,7 +12,16 @@ define('modules/chengjiao/esfIndex', ['jquery','chart/line/1.0.8/line', 'slideFi
         var Line = require('chart/line/1.0.8/line');
         var iscrollCtrl = require('slideFilterBox/1.0.0/slideFilterBox');
         var $doc = $(document);
-
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var pageId = 'cj_cj^sy_wap';
+        var maimaParams = {
+            'vmg.page': pageId
+        };
+        yhxw({
+            pageId: pageId,
+            params: maimaParams
+        });
         /**
          * 为了方便解绑事件，声明一个阻止页面默认事件的函数
          * @param e

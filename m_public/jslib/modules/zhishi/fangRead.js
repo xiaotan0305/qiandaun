@@ -14,7 +14,7 @@ define('modules/zhishi/fangRead', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyloa
         $('.lazyload').lazyload();
         // 加载更多方法对象
         var loadMore = require('loadMore/1.0.0/loadMore');
-        var url = vars.zhishiSite + '?c=zhishi&a=ajaxFangRead';
+        var url = vars.zhishiSite + '?c=zhishi&a=ajaxFangRead&jtname=' + vars.jtname;
         url = vars.isXfds === 'xfds' ? url + '&type=xfds&agentid=' + vars.agentid : url;
         loadMore({
             url: url,

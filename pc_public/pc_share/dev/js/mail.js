@@ -229,12 +229,15 @@ $(function () {
         if (!$address.length) {
             showMsg('请填写收件人邮箱!');
             $addAddress.focus();
-
             return false;
         } else if ($('.error-info').length) {
             showMsg('收件人邮箱有误!');
             return false;
-        } else if (!$sendAddress.val() && $errSend.is(':visible')) {
+        } else if (!$sendAddress.val()) {
+            showMsg('请填写发件人邮箱!');
+            $sendAddress.focus();
+            return false;
+        } else if ($errSend.is(':visible')) {
             showMsg('发件人邮箱格式不正确!');
             $sendAddress.focus();
             return false;
@@ -249,11 +252,11 @@ $(function () {
 
         var params = {
             // 收件地址
-            to: addArr.join(','),
+            mailto: addArr.join(','),
             // 发件人名字
-            sendName: $sendName.val(),
+            fromname: $sendName.val(),
             // 发件地址
-            sendAddress: $sendAddress.val(),
+            mailfrom: $sendAddress.val(),
             // 邮件内容
             text: $preMsg.val(),
             // 链接地址

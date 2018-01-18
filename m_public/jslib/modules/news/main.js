@@ -67,7 +67,8 @@ define('modules/news/main', ['jquery', 'search/news/newsSearch'], function (requ
         });
     }
     var modules;
-    if (vars.action !== '' && vars.action !== 'esfShare') {
+    //noJsAct命名为不需要加载js的action
+    if (vars.action !== '' && vars.action !== 'esfShare' && vars.action !== 'noJsAct') {
         modules = vars.action === 'dsIndex' ? 'modules/news/index' : 'modules/news/' + vars.action;
         preload.push(modules);
     }
@@ -100,8 +101,8 @@ define('modules/news/main', ['jquery', 'search/news/newsSearch'], function (requ
         }
     });
 
-    // 首页
-    if (vars.action !== '' && vars.action !== 'esfShare') {
+    // 首页,noJsAct命名为不需要加载js的action
+    if (vars.action !== '' && vars.action !== 'esfShare' && vars.action !== 'noJsAct') {
         require.async([modules], function (run) {
             run();
         });

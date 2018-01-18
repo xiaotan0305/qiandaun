@@ -2,7 +2,7 @@
  * @author (guocheng@fang.com)
  * @file chafangjia
  */
-define('modules/pinggu/xfDealList', ['footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'chart/hisline/1.0.0/hisline', 'chart/raf/1.0.0/raf'], function (require, exports, module) {
+define('modules/pinggu/xfDealList', ['modules/world/yhxw', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'chart/hisline/1.0.0/hisline', 'chart/raf/1.0.0/raf'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -12,6 +12,16 @@ define('modules/pinggu/xfDealList', ['footprint/1.0.0/footprint', 'swipe/3.10/sw
         var moreLi = $('#horizontalBar li.hotDisMore');
         var hotmore = $('#hotmore');
         var qxcjList = $('.qxcj');
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cfj_cfj^xfcjlb_wap'
+        };
+        yhxw({
+            pageId: 'cfj_cfj^xfcjlb_wap',
+            params: maimaParams,
+            type: 1
+        });
         //swipecha插件
         var Swiper = require('swipe/3.10/swiper');
         // 用于热combo的
@@ -126,32 +136,6 @@ define('modules/pinggu/xfDealList', ['footprint/1.0.0/footprint', 'swipe/3.10/sw
             }
         });
 
-        // 图片加载用lazyload
-        // require('lazyload/1.9.1/lazyload');
-        // $('.lazyload').lazyload();
-        // var arealist = $('#arealist');
-
-        // 布码
-        require.async(['jsub/_ubm.js'], function () {
-            // 页面标志默认为二手房列表页
-            var pageId = 'mcfjhomepagexf';
-            // 引入另一个js文件
-            require.async('jsub/_vb.js?c=' + pageId);
-            // 所在城市（中文）
-            _ub.city = vars.cityname;
-            // 新房的页面值为 'n'、二手房为 'e'、租房为 'z'、注意房贷计算器页此处值为g
-            // 新房“n”，二手房e，租房n，查房价v,家居h，资讯i,知识k
-            _ub.biz = 'v';
-            // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
-            _ub.location = vars.cityns === 'n' ? 0 : 1;
-            // b值 1：搜索
-            var b = 1;
-            var pTemp = {
-                'vmg.page': pageId
-                // 所属页面
-            };
-            _ub.collect(b, pTemp);
-        });
         // 最下面的导航-------------------------------------------------satrt
         // 添加底部SEO
         var seoTab = $('.tabNav');

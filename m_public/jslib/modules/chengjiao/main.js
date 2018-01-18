@@ -29,7 +29,7 @@ define('modules/chengjiao/main', ['jquery'], function (require) {
         preload.push('modules/chengjiao/' + vars.action);
     }
     var needFilters = 0;
-    if ($.inArray(vars.action, ['index']) !== -1) {
+    if ($.inArray(vars.action, ['fangDeal']) !== -1) {
         needFilters = 1;
         preload.push('iscroll/1.0.0/iscroll', 'modules/chengjiao/filters','search/chengjiao/cjSearch');
     }
@@ -41,7 +41,7 @@ define('modules/chengjiao/main', ['jquery'], function (require) {
     });
 
     // 执行搜索初始化
-    if (vars.action === 'index') {
+    if (vars.action === 'fangDeal') {
         require.async('search/chengjiao/cjSearch', function (cjSearch) {
             var ChengJiaoSearch = new cjSearch();
             ChengJiaoSearch.init();

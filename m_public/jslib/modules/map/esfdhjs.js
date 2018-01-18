@@ -541,13 +541,7 @@ define('modules/map/esfdhjs', ['jquery', 'modules/map/esfSFMap', 'modules/map/ma
             var $that = $(this);
             $that.toggleClass('active');
             if ($that.hasClass('active')) {
-                // 选中门店
-                var stop = stationSec.find('.active a').text();
                 esfSFMap.clearOtherOption('ecshop');
-                // 如果点击门店之前选了地铁站的某一个站点  则在快筛'位置'处显示站点名
-                if (stop) {
-                    $('#position').find('span').text(stop);
-                }
             } else {
                 // 取消门店
                 esfSFMap.clearOtherOption('noecshop');

@@ -9,7 +9,9 @@ define('modules/jiaju/shopList', [
     'util/util',
     'slideFilterBox/1.0.0/slideFilterBox',
     'modules/map/API/BMap',
-    'modules/jiaju/yhxw'
+    'modules/jiaju/yhxw',
+    'weixin/2.0.2/weixinshare',
+    'superShare/2.0.1/superShare'
 ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
@@ -45,7 +47,7 @@ define('modules/jiaju/shopList', [
             loadMoreFn();
             // 用户行为
             yhxw({
-                page: 'mjjshoplist',
+                page: 'jj_jc^dplb_wap',
                 type: 1,
                 companyservice: $('#type').text(),
                 key: $('#searchtext').text(),
@@ -56,7 +58,7 @@ define('modules/jiaju/shopList', [
             eventInit();
             // 公司置顶
             $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetShopListStick&city=' + vars.city + '&categoryid=' + vars.categoryid + '&rnd=' + Math.random(), function (data) {
-                if (data && data.length && typeof dataList[0] === 'object') {
+                if (data && data.length && typeof data[0] === 'object') {
                     var $that, zhidingLen = data.length, ids = [], hotlistLen, couponlistLen, couponlistClass;
                     $content.find('li').each (function () {
                         $that = $(this);
@@ -86,7 +88,7 @@ define('modules/jiaju/shopList', [
                             str += '</p>';
                             couponlistLen = data[j].couponlist.length;
                             for (var k = 0;k < couponlistLen; k++) {
-                                couponlistClass = data[j].couponlist[i].coupontypename == 'ȯ' ? 'activity' : 'activity cu';
+                                couponlistClass = data[j].couponlist[i].coupontypename === '券' ? 'activity' : 'activity cu';
                                 str += '<div class="' + couponlistClass + '">' + data[j].couponlist[i].coupontypename + '</div>';
                             }
                             str += '</div>';
@@ -204,5 +206,37 @@ define('modules/jiaju/shopList', [
                 loadAgoTxt: '点击加载更多...'
             });
         }
+
+        /* 分享*/
+        var detailOptions = {
+            // 分享给朋友
+            onMenuShareAppMessage: {
+                shareTitle: '家具建材店铺大全',
+                descContent: '一大波好店来袭，赶快去看看！'
+            },
+            // 分享到朋友圈
+            onMenuShareTimeline: {
+                shareTitle: '家具建材店铺大全',
+                descContent: ''
+            }
+        };
+        var Weixin = require('weixin/2.0.2/weixinshare');
+        new Weixin({
+            debug: false,
+            detailOptions: detailOptions,
+            lineLink: location.href,
+            imgUrl: 'https://static.soufunimg.com/common_m/m_public/201511/images/fang.png',
+            // 对调标题 和 描述(微信下分享到朋友圈默认只显示标题,有时需要显示描述则开启此开关,默认关闭)
+            swapTitle: false
+        });
+        var SuperShare = require('superShare/2.0.1/superShare');
+        var superShare = new SuperShare({
+            image: 'https://static.soufunimg.com/common_m/m_public/201511/images/fang.png',
+            url: location.href,
+            from: '房天下家居'
+        }, detailOptions);
+        $('.icon-share').on('click', function () {
+            superShare.share();
+        });
     };
 });

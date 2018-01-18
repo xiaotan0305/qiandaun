@@ -15,7 +15,7 @@ define('modules/ask/askDailyList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMo
 
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 1, pageId: 'madaily'});
+        yhxw({type: 1, pageId: 'wd_wd^rblb_wap'});
 
         /**
          * 隐藏浮层提示函数

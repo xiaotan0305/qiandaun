@@ -51,7 +51,7 @@
 .lp-nav {border-bottom:1px solid #eeeeee;}
 .lp-nav li{width:50px;text-align:center;}
 .lp-nav li > a{display:block;padding:30px 0;}
-.lp-nav li i{display:block;width:25px;height:25px;margin:0 auto 9px;background:url(../images/xq_nav_icons.png?123) no-repeat;background-size:auto 25px;}
+.lp-nav li i{display:block;width:25px;height:25px;margin:0 auto 9px;background:url(../images/xq_nav_icons.png) no-repeat;background-size:auto 25px;}
 .lp-nav li i.icon1{background-position:0 0;}
 .lp-nav li i.icon2{background-position:-25px 0;}
 .lp-nav li i.icon3{background-position:-50px 0;}
@@ -290,7 +290,8 @@
 .dt-new li .rtxt{font-size:15px;color:#3c3f46;margin-top:6px;}
 .dt-new li .rtxt h4{font-size:15px;color:#3c3f46;line-height:27px;}
 .dt-new li .rtxt p{font-size:14px;color:#999d9e;line-height:22px;margin-top:2px;max-height:44px;overflow:hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
-
-
-
-
+/*详情页家居模块*/
+.x-jj-b1{padding:20px;}
+.x-jj-b2{padding:20px;}
+.xqxq .yanfang{font-size:18px;color:#3c3f46;line-height:58px;padding:0 20px;}
+.xqxq .yanfang a{display:block;color:#3c3f46!important;}

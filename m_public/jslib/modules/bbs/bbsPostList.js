@@ -11,9 +11,9 @@ define('modules/bbs/bbsPostList', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyloa
         var win = window;
         var actionName = vars.actionName;
         if (actionName === 'postlist') {
-            var pageId = 'mbbspostlist';
+            var pageId = 'lt_lt^lb_wap';
         } else if (actionName === 'postlistgood') {
-            var pageId = 'mbbsessencepostlist';
+            var pageId = 'lt_lt^jhlb_wap';
         }
         // 用户行为对象
         var bbsbuma = require('modules/bbs/bbsbuma');

@@ -37,7 +37,7 @@ define('modules/jiaju/newsJczt', ['jquery', 'loadMore/1.0.0/loadMore','lazyload/
             }
         }
         // 搜索用户行为收集20170302
-        var page = 'mzxjjdailyzt';
+        var page = 'xw_jj^mrztlb_wap';
         require.async('jsub/_vb.js?c=' + page);
         require.async('jsub/_ubm.js', function () {
             // 所在城市（中文）
@@ -46,7 +46,7 @@ define('modules/jiaju/newsJczt', ['jquery', 'loadMore/1.0.0/loadMore','lazyload/
             _ub.biz = 'i';
             // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
             _ub.location = 0;
-            var b = 1;
+            var b = 0;
             var p = {
                 'vmg.page': page,
             };

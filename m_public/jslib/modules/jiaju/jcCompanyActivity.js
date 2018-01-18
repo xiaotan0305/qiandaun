@@ -1,7 +1,8 @@
 /**
  * Created on 2017/7/31.
  */
-define('modules/jiaju/jcCompanyActivity', ['jquery', 'verifycode/1.0.0/verifycode'], function (require, exports, module) {
+define('modules/jiaju/jcCompanyActivity', ['jquery', 'verifycode/1.0.0/verifycode','weixin/2.0.2/weixinshare',
+    'superShare/2.0.1/superShare'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -233,6 +234,37 @@ define('modules/jiaju/jcCompanyActivity', ['jquery', 'verifycode/1.0.0/verifycod
                 activCon.css('max-height', '93px');
                 that.css('-webkit-transform', 'none');
             }
+        });
+        /* 分享*/
+        var detailOptions = {
+            // 分享给朋友
+            onMenuShareAppMessage: {
+                shareTitle: vars.typename + vars.title,
+                descContent: vars.companyName + '正在促销中，赶快进店看看！'
+            },
+            // 分享到朋友圈
+            onMenuShareTimeline: {
+                shareTitle: vars.companyName + vars.title,
+                descContent: ''
+            }
+        };
+        var Weixin = require('weixin/2.0.2/weixinshare');
+        new Weixin({
+            debug: false,
+            detailOptions: detailOptions,
+            lineLink: location.href,
+            imgUrl: vars.shareImage,
+            // 对调标题 和 描述(微信下分享到朋友圈默认只显示标题,有时需要显示描述则开启此开关,默认关闭)
+            swapTitle: false
+        });
+        var SuperShare = require('superShare/2.0.1/superShare');
+        var superShare = new SuperShare({
+            image: vars.shareImage,
+            url: location.href,
+            from: '房天下家居'
+        }, detailOptions);
+        $('.icon-share').on('click', function () {
+            superShare.share();
         });
     };
 });

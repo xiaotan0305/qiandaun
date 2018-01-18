@@ -29,7 +29,7 @@ define('modules/jiaju/lginfo', [
         scaleImgFn();
 
         // 搜索用户行为收集20160114
-        var page = 'mjjatlaspage';
+        var page = 'jj_mt^jxxq_wap';
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
             page: page,
@@ -200,6 +200,12 @@ define('modules/jiaju/lginfo', [
                     });
                     // 此处分享按钮不在main里，分享插件不支持，故重新绑定事件
                     $('.icon-share').on('click', function () {
+                        // 用户行为
+                        yhxw({
+                            page: page,
+                            id: vars.sid,
+                            type: 22
+                        });
                         var ua = share.ua;
                         // 判断浏览器类型;
                         if (ua.name === '微信客户端' || ua.name === '微博客户端' || ua.name === 'QQ客户端' || ua.name === 'QQZone客户端') {

@@ -13,6 +13,14 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
         var Swiper = require('swipe/3.10/swiper');
         var iscrollNew = require('iscroll/2.0.0/iscroll-lite');
         var Line = require('chart/line/1.0.6/line');
+        // 收藏按钮实例
+        var $collectBtn = $('.btn-fav, .icon2'),
+            //收藏提示
+            $collectMsg,
+            //继续看房
+            $continueSelectBtn = $('#xuanfang_suc'),
+            // 预约看房弹窗
+            $scSuc = $('#scSuc');
 
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
@@ -62,12 +70,16 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
         var yhxw = require('modules/esf/yhxw');
         //进页面判断用户行为来源。其他的用户行为运营在考虑，暂时用之前的不变
         var pageId = 'mesfpage';
-        if (vars.housetype === 'JHAGT') {
-            pageId = pageId + '^jhagt';
-        } else if (vars.housetype === 'JHWAGT') {
-            pageId = pageId + '^jhwagt';
+        if (vars.housetype === 'JHAGT' || vars.housetype === 'JHWAGT') {
+            if (vars.purpose === '住宅') {
+                pageId = 'esf_fy^yxxq_wap';
+            } else if (vars.purpose === '别墅') {
+                pageId = 'esf_fy^yxbsxq_wap';
+            }
         } else if (vars.housetype === 'JHJP') {
-            pageId = pageId + '^jhjp';
+            pageId = 'esf_fy^wbyxxq_wap';
+        } else if (vars.housetype == 'JHDS') {
+            pageId = 'esf_fy^dsyxxq_wap';
         }
         yhxw({pageId: pageId});
         // 附近信息更多按钮实例
@@ -717,8 +729,50 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
          */
          // 电话联系及打电话按钮实例
         var $telBtn = $('.call');
-        $telBtn.on('click', function () {
-            var data = $(this).attr('data-teltj');
+        $telBtn.on('click', callPhone);
+
+        // 自动拨打标识
+        var autoCall;
+        // 匹配地址中自动拨打的参数值
+        if (window.location.href.indexOf('autoCall=') > -1) {
+            autoCall = window.location.href.match(/autoCall=([0-9,]+)/)[1];
+            console.log(autoCall);
+        }
+
+        // 威海，用户登录返回后，自动调起打电话功能
+        if (vars.city == 'weihai' && cookiefile.getCookie('sfut') && autoCall) {
+            window.location.href = 'tel:' + autoCall;
+            callPhone();
+        }
+
+        // 记录打电话功能
+        function callPhone(e) {
+            //威海打电话强制登录
+            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
+                e.preventDefault();
+                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
+                if ($(this).attr('data-teltj')) {
+                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
+                }
+                console.log(autoCall);
+
+                // 当前页面地址处理，将地址中含有的autoCall参数去掉
+                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
+                // 将需要拼接的autoCall参数加入url中
+                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
+
+                // 跳转登录
+                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
+                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
+                return false;
+            }
+
+            // 没有点击事件的话，则通过匹配a标签href属性值获取data-teltj属性值
+            if (vars.city == 'weihai' && !$(this).attr('data-teltj')) {
+                var data = $("a[href$='" + autoCall + "']").attr('data-teltj');
+            } else {// 否则直接获取当前点击标签的属性值
+                var data = $(this).attr('data-teltj');
+            }
             var dataArr = data.split(',');
 
             teltj(dataArr[0], dataArr[1], dataArr[2], dataArr[3], dataArr[4], dataArr[5], dataArr[6], dataArr[7], dataArr[8], dataArr[9]);
@@ -752,7 +806,8 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             }
             $.ajax(vars.mainSite + 'data.d?m=tel&city=' + vars.city + '&housetype='
                 + housetype + '&id=' + houseid + '&phone=' + dataArr[5] + '&isShopPhone=' + isShopPhone);
-        });
+        }
+
         /**
          * 在字符串中截取需要的属性数据
          * @param str 字符串数据
@@ -788,8 +843,8 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
         var ajaxurl = '';
         if (vars.housetype == 'JHDS') {
             ajaxurl =  vars.esfSite + '?c=esf&a=ajaxGetJhDsJjr&city=' + vars.city  + '&houseid=' + vars.houseid;
-        } else if (vars.housetype == 'JHATG' || vars.housetype == 'JHWAGT') {
-            ajaxurl = vars.esfSite + '?c=esf&a=ajaxGetMoreAgentList&city=' + vars.city + '&groupid=' + vars.groupid + '&newcode=' + vars.newcode + '&houseid=' + vars.houseid + '&agentid=' + vars.agentid;
+        } else if (vars.housetype == 'JHAGT' || vars.housetype == 'JHWAGT') {
+            ajaxurl = vars.esfSite + '?c=esf&a=ajaxGetMoreAgentList&city=' + vars.city + '&groupid=' + vars.groupid + '&newcode=' + vars.newcode + '&houseid=' + vars.houseid + '&agentid=' + vars.agentid + '&housetype=' + vars.housetype;
         }
         if (dragBox.length > 0) {
             require.async('loadMore/1.0.0/loadMore', function (loadMore) {
@@ -944,5 +999,98 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
                 }
             });
         }
+
+        // 判断用户是否对该房源进行了收藏，相应修改收藏样式
+        require.async('util/util',function(util) {
+            if (util.getCookie('sfut')) {
+                $.ajax({
+                    url: vars.mySite + '?c=mycenter&a=isAlreadySelect',
+                    data:{
+                        city:vars.city,
+                        houseid: vars.houseid,
+                        groupid: vars.groupid,
+                        esfsubtype: vars.housetype.indexOf('JH') > -1 ? 'yx' : '',
+                        projcode: vars.plotid,
+                        purpose: vars.purpose,
+                        channel: 'esf',
+                        url:document.location.href
+                    },
+                    success: function(data) {
+                        if (data.result_code === '100' || data.resultcode === '100') {
+                            $collectBtn.addClass('btn-faved cur');
+                        }
+                    }
+                });
+            }
+        });
+
+        /**
+         * 点击收藏
+         */
+        var canSave = true;
+        $collectBtn.on('click', function () {
+            // 调用收藏接口
+            if (canSave) {
+                canSave = false;
+                $.ajax({
+                    timeout: 3000,
+                    url: vars.mySite + '?c=mycenter&a=ajaxAddMySelectOfFangYuan&city=' + vars.city
+                    + '&houseid=' + vars.houseid + '&housetype=' + vars.housetype + '&channel=esf&groupid='
+                    + vars.groupid + '&agentid=' + vars.agentid,
+                    success: function (data) {
+                        if (data.userid) {
+                            if (data.myselectid) {
+                                // 显示收藏提示
+                                showNewCollectTips();
+                                $collectBtn.addClass('btn-faved cur');
+                            } else {
+                                showCollectTips('已取消收藏');
+                                $collectBtn.removeClass('btn-faved cur');
+                            }
+                        } else {
+                            // 未登录要求先登录 ,跳转地址修改lina 20100905
+                            window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
+                                + encodeURIComponent(window.location.href) + '&r=' + Math.random();
+                        }
+                        canSave = true;
+                    },
+                    error: function () {
+                        showCollectTips('出错了');
+                        canSave = true;
+                    }
+                });
+            }
+        });
+
+        /**
+         * 显示收藏提示
+         * @param str
+         */
+        // 将弹框放入main中，避免父元素透明度变化影响子元素 lina 20161121
+        function showCollectTips(str) {
+            if (!$collectMsg) {
+                $collectMsg = $('<div class="favorite" style="display: none;opacity:1;position:fixed">收藏成功</div>');
+                $('.main').append($collectMsg);
+            }
+            $collectMsg.show().css({left: $(window).width() / 2 + 'px', top: $(window).height() / 2 + 'px'}).html(str);
+            setTimeout(function () {
+                $collectMsg.hide(500);
+            }, 3000);
+        }
+
+        /*
+         *显示新版弹窗提示
+         *
+         */
+        function showNewCollectTips() {
+            $('#scSuc').show();
+        }
+
+        // 点击继续看房
+        $('#xuanfang_suc1').click(function () {
+            $scSuc.hide();
+            // 手指滑动，恢复浏览器默认事件
+            enable();
+        });
     };
 });

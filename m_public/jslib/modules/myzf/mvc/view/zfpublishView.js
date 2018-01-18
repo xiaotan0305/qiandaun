@@ -26,6 +26,32 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
             var login = parseInt(vars.authenticated);
             var mysfut;
             var zfhc;
+            // 发布的租房类型  分为整租合租
+            // 当前页面标识(用户用户行为统计)
+            var pageId;
+            var rentType = vars.renttype;
+            if (vars.edit === '1') {
+                pageId = 'muchelprentrevise';
+            } else {
+                pageId = rentType === '整租' ? 'mzfreleasezz' : 'mzfreleasehz';
+            }
+            // 统计用户浏览动作
+            yhxw({type: 0, pageId: pageId, curChannel: 'myzf'});
+            //获取房源描述
+            if (vars.localStorage && vars.edit === '0') {
+                if (rentType === '整租') {
+                    var descriptionTemp = decodeURIComponent(window.localStorage.getItem('descriptionZz'));
+                    var descriptionTime = window.localStorage.getItem('descriptionTimeZz');
+                } else {
+                    var descriptionTemp = decodeURIComponent(window.localStorage.getItem('descriptionHz'));
+                    var descriptionTime = window.localStorage.getItem('descriptionTimeHz');
+                }
+                var currentTime = Date.parse(new Date());
+                var limitTime = 0.5 * 60 * 60 * 1000;
+                if (descriptionTemp !== 'null' && currentTime - descriptionTime < limitTime) {
+                    vars.description = descriptionTemp;
+                }
+            }
             // 增加日期选择功能，lina 20161109
             var DateAndTimeSelect = require('dateAndTimeSelect/1.1.0/dateAndTimeSelect');
             var year = new Date().getFullYear();
@@ -64,6 +90,33 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                 $doc.off('touchmove', pdEvent);
             }
 
+            //写cookies
+            function setCookie(name, value) {
+                //var Days = 1;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + 0.5 * 60 * 60 * 1000);
+                document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + exp.toGMTString() + "; path=/";
+            }
+
+            function getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg)) {
+                    return decodeURIComponent(arr[2]);
+                } else {
+                    return null;
+                }
+            }
+
+            function transCookie(value) {
+                if (vars.edit === '0') {
+                    value = JSON.stringify(value); //可以将json对象转换成json对符串 
+                    if (rentType === '整租') {
+                        setCookie('inputCookieZz', value);
+                    } else if (rentType === '合租') {
+                        setCookie('inputCookieHz', value);
+                    }
+                } 
+            }
             // 上传图片处理 start
             var $showpicId = $('#show_pic');
             // 图片上传
@@ -80,6 +133,21 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         if (count === 0) {
                             $showpicId.css('display', 'block').find('dl').addClass('wi80');
                         }
+                        if (vars.edit === '0') {
+                            var cookieTemp
+                            if (rentType === '整租') {
+                                cookieTemp = getCookie('inputCookieZz');
+                            } else if (rentType === '合租') {
+                                cookieTemp = getCookie('inputCookieHz');
+                            }
+                            if (cookieTemp) {
+                                cookieTemp = JSON.parse(cookieTemp);
+                            } else {
+                                cookieTemp = {};
+                            }
+                            cookieTemp.shineiimg = getImgUrlFileName()[1];
+                            transCookie(cookieTemp); 
+                        }  
                     }
                 });
                 if ($showpicId.find('dd').length < 2) {
@@ -105,9 +173,11 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                 if (imgsArray) {
                     for (var i = 0; i < imgsArray.length; i++) {
                         arr.push(imgsArray[i].imgurl + ',' + imgsArray[i].fileName);
-                        imgsArray[i].generTime = imgsArray[i].generTime.replace(/(\d{4}):(\d\d):(\d\d)/g, "$1-$2-$3");
-                        if (imgsArray[i].generTime || (imgsArray[i].gpsX && imgsArray[i].gpsY)) {
-                            arr2.push(imgsArray[i].imgurl + '|' + imgsArray[i].generTime + '|' + imgsArray[i].gpsX + '|' + imgsArray[i].gpsY);
+                        if (imgsArray[i].generTime === 'undefined') {
+                            imgsArray[i].generTime = imgsArray[i].generTime.replace(/(\d{4}):(\d\d):(\d\d)/g, "$1-$2-$3");
+                            if (imgsArray[i].generTime || (imgsArray[i].gpsX && imgsArray[i].gpsY)) {
+                                arr2.push(imgsArray[i].imgurl + '|' + imgsArray[i].generTime + '|' + imgsArray[i].gpsX + '|' + imgsArray[i].gpsY);
+                            }
                         }
                     }
                     if (imgsArray[0]) {
@@ -137,73 +207,86 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
             });
 
 
-            // 发布的租房类型  分为整租合租
-            // 当前页面标识(用户用户行为统计)
-            var pageId;
-            var rentType = vars.renttype;
-            if (vars.edit === '1') {
-                pageId = 'muchelprentrevise';
-            } else {
-                pageId = rentType === '整租' ? 'mzfreleasezz' : 'mzfreleasehz';
+            //获取cookie
+            var getCoo
+            if (vars.edit === '0') {
+                if (rentType === '整租') {
+                    getCoo = getCookie('inputCookieZz');
+                } else if (rentType === '合租') {
+                    getCoo = getCookie('inputCookieHz');
+                }
             }
-            // 统计用户浏览动作
-            yhxw({type: 0, pageId: pageId, curChannel: 'myzf'});
+            if (getCoo) {
+                getCoo = JSON.parse(getCoo);
+            } else {
+                getCoo = {};
+            }
+
+            // 送红包提示关闭按钮3
+            $('.zu-tips-hb').children('a').on('click', function() {
+                $('.zu-tips-hb').css('display', 'none');
+            });
 
             Vue.component('content', {
                 replace: true,
-                template: '<section class="ddList mt8">'
-                + '<dl class="not"><dt>小区名称</dt><dd class="font01">'
-                + '<input v-model="varsProjname" v-on:input = "inputLimit" id="projnameManual" maxlength="25" type="text" class="ipt-text"  disabled  placeholder="请选择下拉提示">'
+                template: '<section class="ddList">'
+                + '<div v-if="showNav" class="zf_new_fb urlNav"><a href="'+vars.mySite+'?c=myzf&a=delegateAndRent&city='+vars.city+'&Mobile='+vars.mobile+'&edit=0&renttype=zz'+vars.channelurl+vars.h5hdurl+'" v-bind:class="clickRed===\'整租\' ? \'btn_zfnew_fb active\' :\'btn_zfnew_fb\'">整租</a>'
+                + '<a href="'+vars.mySite+'?c=myzf&a=delegateAndRent&city='+vars.city+'&Mobile='+vars.mobile+'&edit=0&renttype=hz'+vars.channelurl+vars.h5hdurl+'" v-bind:class="clickRed===\'合租\' ? \'btn_zfnew_fb active\' :\'btn_zfnew_fb\'" >合租</a>'
+                + '<a href="'+vars.mySite+'?c=myzf&a=officeLeaseTwo&city='+vars.city+'&Mobile='+vars.mobile+'&edit=0'+vars.channelurl+vars.h5hdurl+'" class="btn_zfnew_fb mr0">写字楼</a></div>'
+                + '<dl><dt>小区名称</dt><dd class="gray-b">'
+                + '<input v-model="varsProjname" v-on:input = "inputLimit" id="projnameManual" maxlength="25" type="text" class="ipt-text"  disabled  placeholder="请输入小区名称">'
                 + '<div v-show="liangxiangList" id="search_completev1"><ul>'
                 + '<li class="pad10" v-on:click ="setVal($index)" v-for="todo in ajaxData" data_fun={{todo.newcode}}!!{{todo.projname}}!!{{todo.address}}!!{{todo.purpose}}!!{{todo.district}}!!{{todo.comarea}}>{{todo.projname}}</li>'
                 + '</ul></div></dd></dl>'
                 + '<div v-show="showLopPan">'
-                + '<dl><dt>区<em></em>域</dt><dd class="arr-rt font01">'
-                + '<span v-if="districtInfoLen || varsEdit" id="districtManual" class="xuan2" v-on:click="districtSelect">{{varsDistrict}}</span>'
+                + '<dl><dt>区&emsp;&emsp;域</dt><dd class="arr-rt gray-b">'
+                + '<span v-if="districtInfoLen || varsEdit" id="districtManual" class="xuan" v-on:click="districtSelect">{{varsDistrict}}</span>'
                 + '<input v-else type="text" class="ipt-text noinput" v-model="varsDistrict" maxlength="10" placeholder="请输入区域名称" ></dd></dl>'
-                + '<dl-Dd dt-Text="商<em></em>圈" :span-Text="varsComare" v-on:click="comareaSelect"></dl-Dd>'
-                + '<dl><dt>地<em></em>址</dt> <dd class="font01">'
+                + '<dl><dt>商&emsp;&emsp;圈</dt><dd class="arr-rt gray-b">'
+                + '<span class="xuan" v-on:click="comareaSelect">{{varsComare}}</span></dd></dl>'
+                + '<dl><dt>地&emsp;&emsp;址</dt> <dd class="gray-b">'
                 + '<input v-model="varsAddress" maxlength="50" type="text" class="ipt-text noinput" placeholder="请输入地址" id="addressManual" disabled>'
                 + '</dd></dl>'
                 + '</div>'
-                + '<dl-Dd dt-Text="户<em></em>型" :span-Text="varsHuxing" v-on:click="huXinSelect"></dl-Dd>'
-                + '<dl><dt>楼<em></em>层</dt><dd class="font01">'
-                + '<div class="flexbox pdL4">'
-                + '第<input name="floorManual" v-on:keyup="filterInput" v-model="varFloor" type="tel" maxlength="3" class="ipt-texta referprice" placeholder="" style="width:40px">层'
-                + '<em></em>'
-                + '共<input name="totlefloorManual" v-on:keyup="filterInput" v-model="vartotalFloor" type="tel" maxlength="3" class="ipt-texta referprice noinput" style="width:40px">层'
+                + '<dl><dt>户&emsp;&emsp;型</dt><dd class="arr-rt gray-b">'
+                + '<span class="xuan" v-on:click="huXinSelect">{{varsHuxing}}</span></dd></dl>'
+                + '<dl v-if="varRenttype"><dt>合租类型</dt> <dd class="arr-rt gray-b"><span class="xuan" v-on:click="renttypeSelect">{{varsRentway}}</span></dd></dl>'
+                + '<dl><dt>楼&emsp;&emsp;层</dt><dd class="gray-b">'
+                + '<div class="flexbox marR8">'
+                + '<i class="">第</i><input name="floorManual" v-on:keyup="filterInput" v-model="varFloor" type="tel" maxlength="3" class="ipt-text noinput ipt-text-zf bb_e3e7ed" placeholder=""><i>层</i>'
+                + '</div></dd>'
+                + '<dd class="gray-b"><div class="flexbox marL8"><i>共</i><input name="totlefloorManual" v-on:keyup="filterInput" v-model="vartotalFloor" type="tel" maxlength="3" class="ipt-text noinput ipt-text-zf bb_e3e7ed"><i>层</i>'
                 + '</div></dd></dl>'
-                + '<dl><dt>建筑面积</dt><dd class="font01"> <div class="flexbox">'
-                + '<input type="tel" class="ipt-text noinput" v-on:keyup="jianzhuM2" v-model="Varsbuildingarea" maxlength="7" placeholder="请输入建筑面积" ><i>平米</i>'
+                + '<dl><dt>建筑面积</dt><dd class="gray-b"> <div class="flexbox">'
+                + '<input type="tel" class="ipt-text noinput clearArea" v-on:keyup="jianzhuM2" v-model="Varsbuildingarea" maxlength="7" placeholder="请输入建筑面积" ><i>平米</i>'
                 + '</div></dd></dl>'
-                + '<dl v-if="varRenttype"><dt>合租类型</dt> <dd class="arr-rt font01"><span class="xuan2" v-on:click="renttypeSelect">{{varsRentway}}</span></dd></dl>'
-                + '<dl><dt>租<em></em>金</dt>'
-                + '<dd class="font01"><div class="flexbox"><input v-model="varsPrice" v-on:keyup="filterInput" type="tel" class="ipt-text noinput" maxlength="6" placeholder="请输入租金" ><i>元/月</i></div></dd></dl>'
+                + '<dl><dt>租&emsp;&emsp;金</dt>'
+                + '<dd class="gray-b"><div class="flexbox"><input v-model="varsPrice" v-on:keyup="filterInput" type="tel" class="ipt-text noinput clearPrice" maxlength="6" placeholder="请输入租金" ><i>元/月</i></div></dd></dl>'
                 + '<equitment-List :value="varsEquitment" v-on:update-Eqval="updateEqval"></equitment-List>'
-                + '<dl><dt>标<em></em>题</dt><dd class="font01"><div class="flexbox">'
-                + '<input v-model="varsTitle" maxlength="30" type="text" class="ipt-text noinput" placeholder="请输入标题" >'
+                + '<dl><dt>标&emsp;&emsp;题</dt><dd class="gray-b"><div class="flexbox">'
+                + '<input v-on:input="writeCookie" v-model="varsTitle" maxlength="30" type="text" class="ipt-text noinput" id="titleWrite" placeholder="请输入标题" >'
                 + '</div></dd></dl>'
-                + '<dl><dt>描<em></em>述</dt>'
-                + '<textarea v-model="VarsDescription" v-on:input="limitKeywords" cols="" rows="" class="ipt-text textarea nobd noinput" placeholder="详细的房源介绍，500个字以内" maxlength="500" style="height:80px; width:100%; box-sizing:border-box;">'
+                + '<dl><dt>描&emsp;&emsp;述</dt>'
+                + '<textarea v-model="VarsDescription" v-on:input="limitKeywords" cols="" rows="" class="ipt-text noinput textarea nobd" placeholder="详细的房源介绍，500个字以内" maxlength="500">'
                 + '</textarea><div class="delBox">'
                 + '<a class="del" style="display: none;" v-on:click="delDescription"><i>清空全部</i></a>'
                 + '<span class="textRight" style="text-align: right;">{{varsDescriptionLength}}/500</span>'
                 + '</div><a v-on:click="generateDescription" v-bind:class="isGenerate ? \'btn-dt\' :\'btn-dt dis\'">生成描述</a></dl>'
-                + '<dl><dt>房屋详情</dt><dd class="arr-rt font01"><span class="xuan" v-on:click="toggle">选填</span></dd></dl>'
+                + '<dl><dt>房屋详情</dt><dd class="arr-rt font02"><span class="xuan2" v-on:click="toggle">选填</span></dd></dl>'
                 + '<div v-show="Optional">'
-                + '<dl-Dd dt-Text="朝<em></em>向" :span-Text="varsForward" v-on:click="forwardSelect"></dl-Dd>'
+                + '<dl-Dd dt-Text="朝&emsp;&emsp;向" :span-Text="varsForward" v-on:click="forwardSelect"></dl-Dd>'
                 + '<dl-Dd dt-Text="支付方式" :span-Text="varsPayinfo" v-on:click="payinfoSelect"></dl-Dd>'
-                + '<dl-Dd dt-Text="装<em></em>修" :span-Text="varsDecoration" v-on:click="decorationSelect"></dl-Dd>'
+                + '<dl-Dd dt-Text="装&emsp;&emsp;修" :span-Text="varsDecoration" v-on:click="decorationSelect"></dl-Dd>'
                 + '<dl-Dd dt-Text="入住时间" :span-Text="varsBegintime" id="begintime" v-on:click="timeSelect"></dl-Dd>'
-                + '<dl><dt>楼<i></i>栋<i></i>号</dt><dd class="font01"><div class="flexbox">'
-                + '<input v-model="varsUnitblock" type="text" maxlength="5" class="ipt-text noinput" placeholder="请输入楼栋">'
+                + '<dl><dt>楼&ensp;栋&ensp;号</dt><dd class="gray-b"><div class="flexbox">'
+                + '<input v-on:input="writeCookie" v-model="varsUnitblock" type="text" maxlength="5" id="unitblock" class="ipt-text noinput" placeholder="请输入楼栋">'
                 + '<i>栋</i></div></dd></dl>'
-                + '<dl><dt>房<em></em>号</dt><dd class="font01"><div class="flexbox">'
-                + '<input v-model="varsNewhall" type="text" maxlength="5" class="ipt-text noinput" placeholder="请输入房号">'
+                + '<dl><dt>房&emsp;&emsp;号</dt><dd class="gray-b"><div class="flexbox">'
+                + '<input v-on:input="writeCookie" v-model="varsNewhall" type="text" maxlength="5" id="newhall" class="ipt-text noinput" placeholder="请输入房号">'
                 + '<i>号</i></div></dd></dl>'
                 + '</div>'
-                + '<dl><dt>姓<em></em>名</dt><dd><div class="flexbox">'
-                + '<input v-model="varsContactperson" type="text" class="ipt-text noinput" maxlength="10" placeholder="请输入姓名" >'
+                + '<dl><dt>姓&emsp;&emsp;名</dt><dd><div class="flexbox">'
+                + '<input v-on:input="writeCookie" v-model="varsContactperson" type="text" class="ipt-text noinput" id="contactperson" maxlength="10" placeholder="请输入姓名" >'
                 + '<sex-select></sex-select>'
                 + '</div></dd></dl>'
                 + '<dl><dt>手<i></i>机<i></i>号</dt><dd><div class="flexbox">'
@@ -212,13 +295,14 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                 + '</div></dd></dl>'
                 + '<dl v-show="varAuthenticated"><dt>验<i></i>证<i></i>码</dt><dd>'
                 + '<input v-model="verifyCode" type="tel" class="ipt-text noinput"  value="" maxlength="4" placeholder="请输入验证码" /></dd></dl>'
-                + '<dl><div class="slideverify"></div></dl>'
                 + '</section>'
                 //+ '<div class="mt20 f13 gray-8 pdX10" v-show="showVoiceDiv">收不到验证码？试试<a v-bind:class=redgrayObj v-on:click="sendVoiceCode"> {{voiceCodeText}} </a>吧</div>'
-                + '<div class="submitbox pdX14">'
-                + '<ul v-show="varIsuse400tel"><li class="f13 gray-8"><input type="radio" id="isuse400tel" class="ipt-rd" @click="selectTel" value={{varsIsuse400}}>推荐！</li>'
-                + '<li class="f10 font01">开启免费400电话转机，保护您的手机号码不被公开！</li>'
-                + '</ul><a href="javascript:void(0)" class="btn-pay" v-on:click="submit">{{btnText}}</a></div>'
+                + '<div class="submitbox pdX20">'
+                + '<div class="slideverify yz_hua" style="margin-bottom:20px;"></div>'
+                + '<ul v-show="varIsuse400tel"><li class="f13 gray-0 mt10"><input type="radio" id="isuse400tel" class="ipt-rd" @click="selectTel" value={{varsIsuse400}}>推荐！</li>'
+                + '<li class="f10 font01 pdl24">开启免费400电话转机，保护您的手机号码不被公开！</li>'
+                + '</ul></div>'
+                + '<div class="pdX20 mab20" style="padding-bottom:14px"><a href="javascript:void(0)" class="btn-pay" style="margin-top:0" v-on:click="submit">{{btnText}}</a></div>'
                 + '<div v-if="!varsEdit" v-show="comareShow" id="areaDrap" class="sf-maskFixed">'
                 + '<div class="sf-bdmenu"><div class="tt"><div class="cancel" v-on:click="cancleComare">取消</div><div class="info">选择商圈</div></div>'
                 + '<div id="comareDrapCon" class="con"><ul>'
@@ -244,6 +328,8 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         showLopPan: vars.edit === '1',
                         // 是否是编辑页   用于模板里面的逻辑控制  编辑页和发布页显示的内容略有区别
                         varsEdit: vars.edit === '1',
+                        //是否展示导航
+                        showNav : vars.edit === '0',
                         // 是否存在区域信息
                         districtInfoLen: parseInt(vars.districtInfoLen),
                         // 区域span标签的值
@@ -315,7 +401,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         // 联系人姓名input框默认值
                         varsContactperson: vars.contactperson,
                         // 默认的性别选择
-                        gender: '男',
+                        gender: vars.gender,
                         // 手机号input框默认值
                         varsMobile: vars.mobile,
                         // 是否显示发送验证码按钮
@@ -357,7 +443,11 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         // 描述已填写的字数
                         varsDescriptionLength: 0,
                         // 生成描述按钮是否可用
-                        isGenerate : false
+                        isGenerate : false,
+                        //用于切换导航选择颜色
+                        clickRed : vars.renttype,
+                        //cookie值
+                        cookieValue : getCoo,
                     };
                 },
                 watch: {
@@ -380,6 +470,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         setTimeout(function () {
                             that.canClick = true;
                             $('.noinput').attr('disabled',false);
+                            if (that.varsEdit) {
+                                $('#addressManual').attr('disabled',true);
+                            }
                         },300);
                     },
 
@@ -394,6 +487,11 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                             ev.target.value = '';
                         }
                         ev.target.value = ev.target.value.replace(/[\D]/g, '');
+                        //设置cookie，保存输入记录
+                        this.cookieValue.floor = this.varFloor; 
+                        this.cookieValue.totlefloor = this.vartotalFloor;
+                        this.cookieValue.price = this.varsPrice;
+                        transCookie(this.cookieValue);
                     },
                     
                     /**
@@ -403,12 +501,18 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
 
                     jianzhuM2: function (ev) {
                         var value = ev.target.value;
+                        if (value.indexOf(0) === 0) {
+                            value = '';
+                        }
                         value = value.match(/\d{0,4}(\.\d{0,2})?/g);
                         ev.target.value = value[0];
                         // 防止输入不符合正则的数字时，多出最后一位
                         this.Varsbuildingarea = value[0];
                         // 生成标题(规则：区县+商圈+楼盘名称+面积+厅室 同时存在且为标准楼盘时才生成)
                         this.generateTitle();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.buildingarea = this.Varsbuildingarea;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -542,6 +646,14 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         } else {
                             this.isGenerate = false;
                         }
+                        this.cookieValue.projname = this.varsProjname;
+                        this.cookieValue.district = this.varsDistrict;
+                        this.cookieValue.comarea = this.varsComare;
+                        this.cookieValue.address = this.varsAddress;
+                        this.cookieValue.purpose = this.purposeManual;
+                        this.cookieValue.projcode = this.projcode;
+                        //设置cookie，保存输入记录
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -583,6 +695,14 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         // 如果手动改了名称，则将生成描述功能置灰
                         me.projcode = '';
                         this.isGenerate = false;
+                        this.cookieValue.projname = this.varsProjname;
+                        this.cookieValue.district = this.varsDistrict;
+                        this.cookieValue.comarea = this.varsComare;
+                        this.cookieValue.address = this.varsAddress;
+                        this.cookieValue.purpose = this.purposeManual;
+                        this.cookieValue.projcode = this.projcode;
+                        //设置cookie，保存输入记录
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -591,6 +711,8 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                      */
 
                     modifydistrictvalVal: function (index) {
+                        $('.noinput').attr('disabled',true);
+                        this.canClick = false;
                         var param = {c: 'myzf', a: 'ajaxGetComarea', dis_id: index.id};
                         // 更新商圈span标签中的数据
                         this.varsComare = '请选择商圈';
@@ -603,6 +725,10 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         $.get(vars.mySite, param, function (data) {
                             me.ajaxcomareData = data;
                         });
+                        this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.district = this.varsDistrict;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -655,8 +781,14 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                      */
 
                     comeraSetval: function (index) {
+                        $('.noinput').attr('disabled',true);
+                        this.canClick = false;
                         this.varsComare = this.ajaxcomareData[index].name;
                         this.comareShow = false;
+                        this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.comare = this.varsComare;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -664,6 +796,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                      */
 
                     huXinSelect: function () {
+                        if (!this.canClick) {
+                            return false;
+                        }
                         // 显示选择室数户型浮层
                         this.huxingStep1 = true;
                         // dom执行完更新后
@@ -695,6 +830,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.generateTitle();
                         // 解决穿透事件
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.room = this.varsHuxing.substr(0, 1);
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -716,6 +854,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.generateTitle();
                         // 解决穿透事件
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.hall = this.varsHuxing.substr(2, 1);
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -732,6 +873,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.generateTitle();
                         // 解决穿透事件
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.toilet = this.varsHuxing.substr(4, 1);
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -739,8 +883,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                      */
 
                     renttypeSelect: function () {
-                        $('.noinput').attr('disabled',true);
-                        this.canClick = false;
+                        if (!this.canClick) {
+                            return false;
+                        }
                         // 显示合租类型下拉浮层列表
                         this.rentwayShow = true;
                         // 合租类型下拉列表添加滑动效果 只有合租才存在改浮层
@@ -750,7 +895,6 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                 slideFilterBox.to('#shareTypeDrapCon', 0);
                             });
                         }
-                        this.enClick();
                     },
 
                     /**
@@ -766,6 +910,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         // 隐藏合租类型下拉浮层列表
                         this.rentwayShow = false;
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.rentway = this.varsRentway;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -782,6 +929,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                      */
 
                     forwardSelect: function () {
+                        if (!this.canClick) {
+                            return false;
+                        }
                         // 显示朝向对应的下拉浮层
                         this.showForward = true;
                         this.$nextTick(function () {
@@ -802,6 +952,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.varsForward = text;
                         this.showForward = false;
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.forward = this.varsForward;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -830,6 +983,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.varsPayinfo = text;
                         this.showPayinfo = false;
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.payinfo = this.varsPayinfo;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -870,6 +1026,23 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         this.varsDecoration = text;
                         this.showDecoration = false;
                         this.enClick();
+                        //设置cookie，保存输入记录
+                        this.cookieValue.fitment = this.varsDecoration;
+                        transCookie(this.cookieValue);
+                    },
+
+                    /*
+                     *记录cookie，保存记录
+                     *
+                     */
+                    writeCookie: function () {
+                        //var value = ev.target.value;
+                        //设置cookie，保存输入记录
+                        this.cookieValue.title = $('#titleWrite').val();
+                        this.cookieValue.unitblock = $('#unitblock').val();
+                        this.cookieValue.newhall = $('#newhall').val();
+                        this.cookieValue.contactperson = $('#contactperson').val();
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -883,6 +1056,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         // 如果电话号码input输入框中输入的值和后台传入的登录电话号码相同
                         this.varAuthenticated = !(this.varsMobile === vars.mobile) || vars.houseCount === '0';
                         this.varIsuse400tel = !badTelExp.test(this.varsMobile);
+                        //设置cookie，保存输入记录
+                        this.cookieValue.mobilecode = this.varsMobile;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -896,6 +1072,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                             this.varsIsuse400 = '1';
                             $('#isuse400tel').attr('checked', true);
                         }
+                        //设置cookie，保存输入记录
+                        this.cookieValue.isuse400tel = this.varsIsuse400;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -1167,8 +1346,28 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                         var managerUrl = vars.mySite + '?c=myzf&city=' + vars.city;
                                         that.displayLose('修改失败', 2000, managerUrl);
                                     } else if (vars.edit === '0' && data.ckData === '0') {
+                                        //cookie历史记录置空
+                                        that.cookieValue = '';
+                                        transCookie(that.cookieValue);
+                                        if (rentType === '整租') {
+                                            window.localStorage.setItem('descriptionZz', encodeURIComponent(''));
+                                            window.localStorage.setItem('descriptionTimeZz', '');
+                                        } else {
+                                            window.localStorage.setItem('descriptionHz', encodeURIComponent(''));
+                                            window.localStorage.setItem('descriptionTimeHz', '');
+                                        }
                                         window.location.href = vars.mySite + '?c=myzf&a=houseIdentify&type=auth&city=' + vars.city + '&houseid=' + data.houseid;
                                     } else {
+                                        //成功cookie历史记录置空
+                                        that.cookieValue = '';
+                                        transCookie(that.cookieValue);
+                                        if (rentType === '整租') {
+                                            window.localStorage.setItem('descriptionZz', encodeURIComponent(''));
+                                            window.localStorage.setItem('descriptionTimeZz', '');
+                                        } else {
+                                            window.localStorage.setItem('descriptionHz', encodeURIComponent(''));
+                                            window.localStorage.setItem('descriptionTimeHz', '');
+                                        }
                                         sucurl += '&houseid=' + data.houseid  + '&chongfu=' + data.chongFuHouse + vars.channelurl + vars.h5hdurl;
                                         //返回红包获得状况
                                         sucurl +=  data.message == 'SendBonusSuc' ? '&SendBonus=yes' : '&SendBonus=ishave';
@@ -1234,6 +1433,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         } else {
                             this.varsTitle = '';
                         }
+                        //设置cookie，保存输入记录
+                        this.cookieValue.title = this.varsTitle;
+                        transCookie(this.cookieValue);
                     },
 
                     /**
@@ -1244,7 +1446,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         if (this.projcode && this.isGenerate === true) {
                             this.VarsDescription = '房子在' + this.varsProjname + '小区，环境优美，绿化充足，';
                             if (this.varsAddress) {
-                                this.VarsDescription += '位于' + this.varsAddress + '，入住即与精英为邻;';
+                                this.VarsDescription += '位于' + this.varsAddress + ',' + '，入住即与精英为邻；';
                             }
                             if (this.varsHuxing && this.varsHuxing !== '请选择') {
                                 this.VarsDescription += '该房' + this.varsHuxing + '，';
@@ -1256,13 +1458,23 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                 this.VarsDescription += '交通便利,附近的' + this.varsXQTraffic + '，';
                             }
                             if (this.varsXQPeiTao) {
-                                this.VarsDescription += '小区周边配套设施齐全,' + this.varsXQPeiTao + ';';
+                                this.VarsDescription += '小区周边配套设施齐全，' + this.varsXQPeiTao;
                             }
                             $('.textRight').css('text-align', 'left');
                             $('.del').css('display', 'block');
                             this.varsDescriptionLength = this.VarsDescription.length;
                             if (this.varsDescriptionLength) {
                                 this.isGenerate = false;
+                            }
+                            //设置cookie，保存输入记录
+                            if (vars.localStorage) {
+                                if (rentType === '整租') {
+                                    window.localStorage.setItem('descriptionZz', encodeURIComponent(this.VarsDescription));
+                                    window.localStorage.setItem('descriptionTimeZz', Date.parse(new Date()));
+                                } else {
+                                    window.localStorage.setItem('descriptionHz', encodeURIComponent(this.VarsDescription));
+                                    window.localStorage.setItem('descriptionTimeHz', Date.parse(new Date()));
+                                }
                             }
                         }
                     },
@@ -1278,12 +1490,25 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         if (this.projcode && !this.varsDescriptionLength) {
                             this.isGenerate = true;
                         }
+                        //设置cookie，保存输入记录
+                        if (vars.localStorage) {
+                            if (rentType === '整租') {
+                                window.localStorage.setItem('descriptionZz', encodeURIComponent(this.VarsDescription));
+                                window.localStorage.setItem('descriptionTimeZz', Date.parse(new Date()));
+                            } else {
+                                window.localStorage.setItem('descriptionHz', encodeURIComponent(this.VarsDescription));
+                                window.localStorage.setItem('descriptionTimeHz', Date.parse(new Date()));
+                            }
+                        }
+                        // this.cookieValue.description = this.VarsDescription;
+                        // transCookie(this.cookieValue);
                     },
 
                     /**
                      * 限制描述输入的字数
                      */
-                    limitKeywords: function () {
+                    limitKeywords: function (ev) {
+                        this.VarsDescription = ev.target.value;
                         this.varsDescriptionLength = this.VarsDescription.length;
                         if (this.varsDescriptionLength) {
                             this.isGenerate = false;
@@ -1294,6 +1519,18 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                             $('.textRight').css('text-align', 'right');
                             $('.del').css('display', 'none');
                         }
+                        //设置cookie，保存输入记录
+                        if (vars.localStorage) {
+                            if (rentType === '整租') {
+                                window.localStorage.setItem('descriptionZz', encodeURIComponent(this.VarsDescription));
+                                window.localStorage.setItem('descriptionTimeZz', Date.parse(new Date()));
+                            } else {
+                                window.localStorage.setItem('descriptionHz', encodeURIComponent(this.VarsDescription));
+                                window.localStorage.setItem('descriptionTimeHz', Date.parse(new Date()));
+                            }
+                        }
+                        // this.cookieValue.description = this.VarsDescription;
+                        // transCookie(this.cookieValue);
                     },
 
                     /**
@@ -1326,8 +1563,8 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                     } else {
                         this.varsHuxing = '请选择';
                     }
-                    // 如果来自编辑页，下面需要同时初始化
-                    if (vars.edit === '1') {
+                    // 如果来自编辑页，下面需要同时初始化， 发布页切换信息保存，按钮
+                    if (vars.edit === '1' || vars.edit === '0') {
                         if (this.VarsDescription.length) {
                             this.varsDescriptionLength = this.VarsDescription.length;
                             this.isGenerate = false;
@@ -1337,6 +1574,9 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         if (this.projcode) {
                             // 小区交通和配套取小区接口（ajax为异步，所以不能放到一键生成按钮中调用）
                             this.ajaxGetXQInfo();
+                            if (!this.VarsDescription.length) {
+                                this.isGenerate = true;
+                            }
                         }
                     }
                 }

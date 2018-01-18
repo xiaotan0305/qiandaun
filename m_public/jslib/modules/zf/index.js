@@ -70,8 +70,16 @@ define('modules/zf/index', ['jquery', 'modules/zf/yhxw', 'slideFilterBox/1.0.0/s
                 $('img[data-original]').lazyload();
             });
             // 添加用户行为分析
-            yhxw({type: 1, pageId: 'mzflist'});
-
+            if (vars.purpose === '住宅') {
+                var pageId = 'zf_fy^lb_wap';
+            } else if (vars.purpose === '别墅') {
+                var pageId = 'zf_fy^bslb_wap';
+            } else if (vars.purpose === '写字楼') {
+                var pageId = 'zf_fy^xzllb_wap';
+            } else if (vars.purpose === '商铺') {
+                var pageId = 'zf_fy^splb_wap';
+            }
+            yhxw({pageId: pageId});
             /**
              *阻止浏览器默认事件
              * @param e 浏览器默认事件
@@ -236,7 +244,13 @@ define('modules/zf/index', ['jquery', 'modules/zf/yhxw', 'slideFilterBox/1.0.0/s
             var dragBox = $('#drag');
             if (dragBox.length > 0) {
                 require.async('loadMore/1.0.0/loadMore', function (loadMore) {
-                    var ajaxActionName = vars.sf_source && vars.sf_source === '360zsclient' ? 'ajaxGetQhList' : 'ajaxGetList';
+                    var ajaxActionName;
+                    if (vars.ltlist) {
+                        ajaxActionName = 'ajaxGetLongTailHouseList';
+                    } else {
+                        ajaxActionName = vars.sf_source && vars.sf_source === '360zsclient' ? 'ajaxGetQhList' : 'ajaxGetList'; 
+                    }
+
                     loadMore({
                         url: vars.zfSite + vars.nowUrl + 'c=zf&a=' + ajaxActionName + '&city=' + vars.city,
                         total: vars.total,
@@ -306,6 +320,9 @@ define('modules/zf/index', ['jquery', 'modules/zf/yhxw', 'slideFilterBox/1.0.0/s
             tabBox.find('.lbTab > ul > li').not('#district').on('click', function () {
                 var thisEl = $(this);
                 var idVal = thisEl.attr('id');
+                if (vars.ltlist && idVal === 'ltk') {
+                    return false;
+                }
                 if (((vars.isspecialprice && idVal !== 'housetype') || !vars.isspecialprice) && !(vars.jhtype && idVal === 'housetype')) {
                     var contBox = $('#' + idVal + '_div');
                     thisEl.toggleClass('active').siblings().removeClass('active');

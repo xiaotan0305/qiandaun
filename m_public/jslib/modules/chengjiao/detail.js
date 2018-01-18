@@ -1,7 +1,7 @@
 /**
  * 二手房成交详情页
  */
-define('modules/chengjiao/detail', ['jquery', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/chengjiao/detail', ['modules/world/yhxw', 'jquery', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -14,7 +14,15 @@ define('modules/chengjiao/detail', ['jquery', 'lazyload/1.9.1/lazyload'], functi
             $telBtn = $('.tj-tel'),
         // 给我留言按钮实例
             $leaveMsgBtn = $('.tj-chat, .tj-mes');
-
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cj_cj^xq_wap'
+        };
+        yhxw({
+            pageId: 'cj_cj^xq_wap',
+            params: maimaParams
+        });
         // 插入动轮播插件,插入app下载浮层js
         preLoad.push('swipe/3.10/swiper', 'app/1.0.0/appdownload');
         // 如果可以使用localStorage，则插入查看历史和收藏功能js

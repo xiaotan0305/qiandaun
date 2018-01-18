@@ -52,6 +52,8 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             patternCode = /^\d{4}$/,
         // 收藏提示实例
             $collectMsg,
+        // 自动拨打标识
+            autoCall,
         // 轮播js
             Swiper = require('swipe/3.10/swiper');
         // 插入分享js,动轮播插件,插入走势图1.0.2插件,插入app下载浮层js
@@ -243,14 +245,38 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         var yhxw = require('modules/esf/yhxw');
         //进页面判断用户行为来源。其他的用户行为运营在考虑，暂时用之前的不变
         var pageId = 'mesfpage';
-        if (vars.housetype === 'AGT') {
-            pageId = pageId + '^agt';
-        } else if (vars.housetype === 'WAGT') {
-            pageId = pageId + '^wagt';
+        if (vars.housetype === 'AGT' || vars.housetype === 'WAGT') {
+            if (vars.purpose === '住宅') {
+                pageId = 'esf_fy^xq_wap';
+            } else if (vars.purpose === '别墅') {
+                pageId = 'esf_fy^bsxq_wap';
+            } else if (vars.purpose === '商铺') {
+                pageId = 'esf_fy^spxq_wap';
+            } else if (vars.purpose === '写字楼') {
+                pageId = 'esf_fy^xzlxq_wap';
+            }
         } else if (vars.housetype === 'A') {
-            pageId = pageId + '^ds';
+            if (vars.purpose === '住宅') {
+                pageId = 'esf_fy^dsxq_wap';
+            } else if (vars.purpose === '别墅') {
+                pageId = 'esf_fy^dsbsxq_wap';
+            } else if (vars.purpose === '商铺') {
+                pageId = 'esf_fy^dsspxq_wap';
+            } else if (vars.purpose === '写字楼') {
+                pageId = 'esf_fy^dsxzlxq_wap';
+            }
         } else if (vars.housetype === 'D') {
-            pageId = pageId + '^yds';
+            if (vars.purpose === '住宅') {
+                pageId = 'esf_fy^wtxq_wap';
+            } else if (vars.purpose === '别墅') {
+                pageId = 'esf_fy^wtbsxq_wap';
+            }
+        } else if (vars.housetype === 'JX') {
+            if (vars.purpose === '商铺') {
+                pageId = 'esf_fy^grspxq_wap';
+            } else if (vars.purpose === '写字楼') {
+                pageId = 'esf_fy^grxzlxq_wap';
+            }
         }
         
         // 用户行为收集(浏览)
@@ -436,9 +462,17 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                 paramPurpose = 'sp';
             }
             setTimeout(function () {
-                window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city
+                var imHref = '/chat.d?m=chat&username=' + uname + '&city=' + city
                     + '&type=wapesf&houseid=' + houseid + '&purpose=' + paramPurpose + '&housetype='
                     + vars.housetype;
+                // 无线2.0增加agentid参数
+                if (agentid) {
+                    imHref += '&agentid=' + agentid;
+                }
+                if (vars.listtype === '1') {
+                    imHref += '&ShopType=wxsfb2.0';
+                }
+                window.location = imHref;
             }, 500);
             yhxw({type: 24, pageId: 'mesfpage'});
         }
@@ -475,8 +509,48 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         /**
          * 点击经纪人电话操作
          */
-        $telBtn.on('click', function () {
-            var data = $(this).attr('data-teltj');
+        $telBtn.on('click', callPhone);
+
+        // 匹配地址中自动拨打的参数值
+        if (window.location.href.indexOf('autoCall=') > -1) {
+            autoCall = window.location.href.match(/autoCall=([0-9,]+)/)[1];
+            console.log(autoCall);
+        }
+
+        // 威海，用户登录返回后，自动调起打电话功能
+        if (vars.city == 'weihai' && cookiefile.getCookie('sfut') && autoCall) {
+            window.location.href = 'tel:' + autoCall;
+            callPhone();
+        }
+
+        // 记录打电话功能
+        function callPhone(e) {
+            //威海打电话强制登录
+            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
+                e.preventDefault();
+                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
+                if ($(this).attr('data-teltj')) {
+                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
+                }
+                console.log(autoCall);
+
+                // 当前页面地址处理，将地址中含有的autoCall参数去掉
+                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
+                // 将需要拼接的autoCall参数加入url中
+                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
+
+                // 跳转登录
+                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
+                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
+                return false;
+            }
+
+            // 没有点击事件的话，则通过匹配a标签href属性值获取data-teltj属性值
+            if (vars.city == 'weihai' && !$(this).attr('data-teltj')) {
+                var data = $("a[href$='" + autoCall + "']").attr('data-teltj');
+            } else {// 否则直接获取当前点击标签的属性值
+                var data = $(this).attr('data-teltj');
+            }
             var dataArr = data.split(',');
             // 如果vars.sfAgent数组存在则需要替换电话400电话号码
             if (vars.sfAgent) {
@@ -513,7 +587,7 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             }
             $.ajax(vars.mainSite + 'data.d?m=tel&city=' + vars.city + '&housetype='
                 + housetype + '&id=' + houseid + '&phone=' + dataArr[5] + '&isShopPhone=' + isShopPhone);
-        });
+        }
 
         // 判断在线咨询是否在线
         // if (!vars.zxzxIsOL || vars.zxzxIsOL === '0') {
@@ -955,7 +1029,7 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             };
             return this.init();
         }
-        if($(window).scrollTop() === 0 && $('#newheader').is(':visible') && vars.havePic === '0'){
+        if($(window).scrollTop() === 0 && $('#newheader').is(':visible') && !vars.havePic){
             $('#newheader').css('position','relative');
         }
 
@@ -1248,10 +1322,10 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         //ajax加载家居需求
         if($('#zxexample').length){
             $.ajax({
-                url:vars.esfSite + '?c=esf&a=ajaxIncJiajuModule&city=' + vars.city + '&plotid=' + vars.plotid,
+                url:vars.esfSite + '?c=esf&a=ajaxIncJiajuModule&city=' + vars.city + '&plotid=' + vars.plotid + '&housetype=' + vars.housetype,
                 success: function(data){
                     if (data) {
-                        $('#zxexample').append(data);
+                        $('#zxexample').after(data);
                     }
                 }
             })

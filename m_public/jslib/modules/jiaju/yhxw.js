@@ -235,7 +235,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                 pTemp = {
                     'vmg.page': page
                 };
-            } else if (vars.action === 'lglist') {
+            } else if (vars.action === 'lglist' || vars.action === 'qjList') {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.key': key === '风格/户型/功能间等' ? '' : encodeURIComponent(key),
@@ -257,7 +257,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.totalprice': !totalprice ? '' : encodeURIComponent(totalprice),
                     'vmh.area': !area ? '' : encodeURIComponent(area)
                 };
-            } else if (vars.action === 'xgtDetail') {
+            } else if (vars.action === 'xgtDetail' || vars.action === 'qjInfo') {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.pictureid': id
@@ -269,6 +269,12 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.decstate': encodeURIComponent(decstate),
                     'vmh.fixstatustype': encodeURIComponent(fixstatustype),
                     'vmh.decorationtime': encodeURIComponent(decorationtime)
+                };
+            } else if (vars.action === 'jcCompanyDetail' || vars.action === 'jcProductDetail' || vars.action === 'jcIndex') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.companyid': companyid,
+                    'vmh.materialid': id
                 };
             }
 

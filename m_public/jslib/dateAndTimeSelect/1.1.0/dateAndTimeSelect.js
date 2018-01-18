@@ -131,6 +131,46 @@
                         if(beginTime.length){
                             beginTime.html(selectObj);
                         }
+                        //写cookies
+                        function setCookie(name, value) {
+                            //var Days = 1;
+                            var exp = new Date();
+                            exp.setTime(exp.getTime() + 0.5 * 60 * 60 * 1000);
+                            document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + exp.toGMTString() + "; path=/";
+                        }
+                        function getCookie(name) {
+                            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                            if (arr = document.cookie.match(reg)) {
+                                return decodeURIComponent(arr[2]);
+                            } else {
+                                return null;
+                            }
+                        }
+                        if (vars.edit === '0') {
+                            var inputCookie
+                            if (vars.renttype === '整租') {
+                                inputCookie = getCookie('inputCookieZz');
+                            } else if (vars.renttype === '合租') {
+                                inputCookie = getCookie('inputCookieHz');
+                            } else {
+                                inputCookie = getCookie('inputCookieXzl');
+                            }
+                            if (inputCookie) {
+                                inputCookie = JSON.parse(inputCookie);
+                            } else {
+                                inputCookie = {};
+                            }
+
+                            inputCookie.begintime = selectObj;
+                            inputCookie = JSON.stringify(inputCookie); //可以将json对象转换成json对符串 
+                            if (vars.renttype === '整租') {
+                                setCookie('inputCookieZz', inputCookie);
+                            } else if (vars.renttype === '合租') {
+                                setCookie('inputCookieHz', inputCookie);
+                            } else {
+                                setCookie('inputCookieXzl', inputCookie);
+                            }
+                        }
                     }
                     that.hide();
                     // 隐藏选择器

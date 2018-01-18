@@ -24,15 +24,16 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
         var lanmuStr;
         // 搜索用户行为收集20160114
         var pages = {
-            top: 'mzxlistfirst',
-            daogou: 'mzxlistdg',
+            top: 'xw_xw^sy_wap',
+            daogou: 'xw_xw^dglb_wap',
             esf: 'mzxlistesf',
             zf: 'mzxlistzf',
-            jiaju: 'mzxlistjj',
-            local: 'mzxlisthot',
-            lppc: 'mzxlistlppc',
-            mfbk: 'mzxlistmfbk',
-            xfpk: 'mzxlistxfpk'
+            jiaju: 'xw_xw^jjlb_wap',
+            local: 'xw_xw^bdlb_wap',
+            lppc: 'xw_xw^lppclb_wap',
+            mfbk: 'xw_xw^mfbklb_wap',
+            xfpk: 'xw_xw^xfpklb_wap',
+            scsj: 'xw_xw^scsjlb_wap'
         };
         var page = pages[vars.channel];
         require.async('jsub/_vb.js?c=' + page);
@@ -43,7 +44,7 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
             var ns = vars.ns === 'n' ? 0 : 1;
             _ub.location = ns;
             // 方位（南北方) ，北方为0，南方为1
-            var b = 1;
+            var b = 0;
 
             var pTemp = vars.channel ? {
                     'vmg.page': page,
@@ -313,6 +314,11 @@ define('modules/news/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0
                 };
                 new k();
             })(window);
+        }
+        // 有关注按钮
+        if ($('.gzBtn').length > 0) {
+            // 调用关注js
+            require.async('modules/news/kfptGz');
         }
     };
 });

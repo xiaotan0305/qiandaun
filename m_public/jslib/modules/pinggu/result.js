@@ -19,15 +19,15 @@ define('modules/pinggu/result', ['jquery', 'chart/1.0.0/pie','chart/line/2.0.0/l
             _ub.city = vars.cityname;
             // 新房的页面值为 'n'、二手房为 'e'、租房为 'z'、注意房贷计算器页此处值为g
             // 新房“n”，二手房e，租房n，查房价v,家居h，资讯i,知识k
-            _ub.biz = 'v';
+            _ub.biz = 'w';
             // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
             var ns = vars.ns === 'n' ? 0 : 1;
             _ub.location = ns;
             // b值 0：浏览
             var b = 0;
-            _ub.collect(b, {'vmg.page': 'mcfjevaluate'});
+            _ub.collect(b, {'vmg.page': 'cfj_cfj^pgjg_wap'});
         }
-        require.async('jsub/_vb.js?c=mcfjevaluate');
+        require.async('jsub/_vb.js?c=cfj_cfj^pgjg_wap');
         require.async('jsub/_ubm.js?v=201407181100', function () {
             buMa();
         });
@@ -208,7 +208,7 @@ define('modules/pinggu/result', ['jquery', 'chart/1.0.0/pie','chart/line/2.0.0/l
             var shareDesc = '房天下为您提供' + vars.projName + '小区二手房评估价格与房源分析';
         }
         var shareImg = '';
-        var shareLink = location.href + '&city=' + vars.city;
+        var shareLink = location.href + '&city=' + vars.city + '&isshare=share';
         var Weixin = require('weixin/2.0.1/weixinshare');
         new Weixin({
             // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

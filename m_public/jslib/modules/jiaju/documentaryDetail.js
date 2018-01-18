@@ -19,7 +19,7 @@ define('modules/jiaju/documentaryDetail', [
         var yhxw = require('modules/jiaju/yhxw');
         var tagBox = $('.tagBox');
         yhxw({
-            page: 'jj_zxriji^xq_wap',
+            page: 'jj_rj^xq_wap',
             id: vars.documentaryId,
             style: tagBox.find('span:eq(0)').text(),
             housetype: tagBox.find('span:eq(1)').text(),

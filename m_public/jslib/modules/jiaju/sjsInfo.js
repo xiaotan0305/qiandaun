@@ -2,19 +2,19 @@
  * Created by LXM on 15-3-16.
  * 单量更改于2015-9-9
  */
-define('modules/jiaju/sjsInfo', [
+ define('modules/jiaju/sjsInfo', [
     'jquery',
     'lazyload/1.9.1/lazyload',
     'verifycode/1.0.0/verifycode',
     'superShare/2.0.0/superShare',
     'weixin/2.0.1/weixinshare',
     'modules/jiaju/yhxw'
-], function(require, exports, module) {
-    'use strict';
-    module.exports = function() {
-        var $ = require('jquery');
-        var vars = seajs.data.vars;
-        var jiajuUtils = vars.jiajuUtils;
+    ], function(require, exports, module) {
+        'use strict';
+        module.exports = function() {
+            var $ = require('jquery');
+            var vars = seajs.data.vars;
+            var jiajuUtils = vars.jiajuUtils;
         // 惰性加载
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
@@ -56,7 +56,7 @@ define('modules/jiaju/sjsInfo', [
         // 用户行为统计
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
-            page: 'mjjsjsinfo',
+            page: 'jj_sjs^xq_wap',
             designerid: vars.id
         });
 
@@ -196,7 +196,7 @@ define('modules/jiaju/sjsInfo', [
             // 打电话用户行为统计
             $('.icon4').on('click', function() {
                 yhxw({
-                    page: 'mjjsjsinfo',
+                    page: 'jj_sjs^xq_wap',
                     type: 31,
                     designerid: vars.id,
                     companyid: vars.companyid
@@ -205,10 +205,22 @@ define('modules/jiaju/sjsInfo', [
             $('#contact').on('click', function() {
                 // 在线咨询用户行为统计
                 yhxw({
-                    page: 'mjjdesignerpage',
+                    page: 'jj_sjs^xq_wap',
                     type: 24,
                     designerid: vars.id,
                     companyid: vars.companyid
+                });
+                //获取服务器时间戳
+                var content = '';
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetServerDate', function(info){
+                    if (vars.localStorage) {
+                        var lastTime = vars.localStorage.getItem('sjsinfo_'+vars.id);
+                        if (info - lastTime > 1800) {
+                            //需要更新状态
+                            vars.localStorage.setItem('sjsinfo_'+vars.id, info);
+                            content = encodeURIComponent($('title').text()+window.location.href);
+                        }
+                    }
                 });
                 // ajax获取IM信息
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZxIm&city=' + vars.city + '&designerid=' + vars.id, function (data) {
@@ -217,7 +229,7 @@ define('modules/jiaju/sjsInfo', [
                             vars.localStorage.setItem(String('h:' + data.soufunname), encodeURIComponent(vars.truename) + ';' + vars.sjsLogo
                                 + ';;');
                         }
-                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome';
+                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }
@@ -236,7 +248,7 @@ define('modules/jiaju/sjsInfo', [
          * @param  {[type]} msg [description]
          * @return {[type]}     [description]
          */
-        function toastFn(msg) {
+         function toastFn(msg) {
             sendText.text(msg);
             sendFloat.show();
             jiajuUtils.toggleTouchmove(true);
@@ -250,7 +262,7 @@ define('modules/jiaju/sjsInfo', [
          * [getVerifyCode description] 获取验证码
          * @return {[type]} [description]
          */
-        function getVerifyCode() {
+         function getVerifyCode() {
             ajaxflag.getVerifyCode = false;
             codeInput.show();
             verifycode.getPhoneVerifyCode(phoneNumber, function() {
@@ -270,7 +282,7 @@ define('modules/jiaju/sjsInfo', [
          * @param  {[type]} timePara [description] 设置倒计时的时长
          * @return {[type]}          [description]
          */
-        function timeRecorder(timePara) {
+         function timeRecorder(timePara) {
             var handle = setInterval(function() {
                 vcodeBtn.text('发送中(' + timePara + ')');
                 if (timePara === 0) {
@@ -285,7 +297,7 @@ define('modules/jiaju/sjsInfo', [
          * [checkVerifyCode description] 登录信息验证
          * @return {[type]} [description]
          */
-        function checkVerifyCode() {
+         function checkVerifyCode() {
             ajaxflag.checkVerifyCode = false;
             verifycode.sendVerifyCodeAnswer(phoneNumber, codeNumber, orderAjaxFn, function() {
                 toastFn(codeNumber ? '验证码错误' : '请输入验证码');
@@ -297,11 +309,11 @@ define('modules/jiaju/sjsInfo', [
          * [buyAjaxFn description] 提交验证
          * @return {[type]} [description]
          */
-        function orderAjaxFn() {
+         function orderAjaxFn() {
             ajaxflag.checkVerifyCode = false;
             // 用户行为统计
             yhxw({
-                page: 'mjjdesignerpage',
+                page: 'jj_sjs^xq_wap',
                 type: 554,
                 designerid: vars.id,
                 companyid: vars.companyid,

@@ -21,7 +21,7 @@ define('modules/jiaju/zxCaseList', [
         // 用户行为统计
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
-            page: 'mjjzxcaselist',
+            page: 'jj_mt^allb_wap',
             type: 1,
             key: $('#searchtext').text().trim(),
             style: $('#style').text().trim(),

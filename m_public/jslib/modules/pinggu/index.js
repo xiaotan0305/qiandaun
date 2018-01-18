@@ -9,7 +9,7 @@
  * 20151207 blue 修改swipe插件改为3.10版本，修改柱状图和走势图循环复制出来的节点初始化函数,删除无用的js
  */
 define('modules/pinggu/index',
-    ['jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'chart/raf/1.0.0/raf', 'chart/histogram/1.0.1/histogram',
+    ['modules/world/yhxw', 'jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'chart/raf/1.0.0/raf', 'chart/histogram/1.0.1/histogram',
         'chart/line/1.0.3/line', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'modules/map/API/BMap'],
     function (require, exports, module) {
         'use strict';
@@ -55,7 +55,15 @@ define('modules/pinggu/index',
                 moreLi.show();
                 hotmore.addClass('up');
             }
-
+            // 引入用户行为分析对象-埋码
+            var yhxw = require('modules/world/yhxw');
+            var maimaParams = {
+                'vmg.page': 'cfj_cfj^sy_wap'
+            };
+            yhxw({
+                pageId: 'cfj_cfj^sy_wap',
+                params: maimaParams
+            });
             // ajax获取广告
             $.ajax({
                 url: vars.pingguSite + '?c=pinggu&a=ajaxGetAd',
@@ -368,7 +376,7 @@ define('modules/pinggu/index',
                 flagchose = true;
             });
             // 输入项的字符和位数限制
-            evaluate.on('keyup blur', 'input', function () {
+            evaluate.on('input blur', 'input', function () {
                 var $that = $(this);
                 var val = $that.val();
                 var id = $that.attr('id');
@@ -390,14 +398,14 @@ define('modules/pinggu/index',
                             }
                             break;
                         case 'area':
-                            reg = /[^\d\.]/g;
-                            $that.val(val.replace(reg, ''));
-                            if (val && (val > 9999 || val <= 0)) {
-                                showMsg('建筑面积范围10-9999平米');
-                            }
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                            if (flag) {
-                                $that.val(flag);
+                            reg = /^[1-9]\d{0,3}(\.\d{0,2})?$/;
+                            if (!reg.test(val)) {
+                                if (val.indexOf('.') === -1) {
+                                    showMsg('建筑面积范围10-9999平米');
+                                    $that.val(val.substring(0, val.length - 1));
+                                } else {
+                                    $that.val(val.substring(0, val.length - 1));
+                                }
                             }
                             break;
                     }
@@ -544,24 +552,6 @@ define('modules/pinggu/index',
                     });
                 }
             }, {enableHighAccuracy: true});
-            // 布码
-            require.async('jsub/_vb.js?c=mcfjhomepage');
-            require.async('jsub/_ubm.js?v=201407181100', function () {
-                // 所在城市（中文）
-                _ub.city = vars.cityname;
-                // 新房的页面值为 'n'、二手房为 'e'、租房为 'z'、注意房贷计算器页此处值为g
-                // 新房“n”，二手房e，租房n，查房价v,家居h，资讯i,知识k
-                _ub.biz = 'v';
-                // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
-                _ub.location = vars.cityns === 'n' ? 0 : 1;
-                // b值 1：搜索
-                var b = 1;
-                var pTemp = {
-                    'vmg.page': 'mcfjhomepage'
-                    // 所属页面
-                };
-                _ub.collect(b, pTemp);
-            });
             // 最下面的导航-------------------------------------------------satrt
             // 添加底部SEO
             var seoTab = $('.tabNav');

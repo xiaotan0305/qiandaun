@@ -691,6 +691,8 @@ define('search/home/homeSearch', ['jquery', 'search/mainSearch'], function (requ
     HomeSearch.prototype.clickListSearch = function (obj) {
         if (!obj) return;
         var that = this;
+        // 将别名过滤掉，不传给keyword
+        obj.key = obj.key.replace(/（.*）/, '');
         that.searchInput.val(obj.key);
         that.searchInput.parent().find('.tag-icon').hide();
         if (obj.historyUrl) {

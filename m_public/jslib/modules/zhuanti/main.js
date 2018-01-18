@@ -3,7 +3,7 @@
  * by chenhongyan
  * 2017.9.12
  */
-define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare'], function (require) {
+define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare', 'superShare/1.0.1/superShare'], function (require) {
     'use strict';
     // jquery库
     var $ = require('jquery');
@@ -54,7 +54,7 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare'], function 
     var shareTwo = $('#shareTwo');
     shareBox.on('click', function(){
         var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
-        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        if (ua.match(/micromessenger/i) == "micromessenger" || ua.indexOf('qq/') !== -1 || ua.indexOf('weibo') !== -1 || ua.indexOf('qzone/') !== -1 || vars.isoa) {
             //在微信中打开
             shareOne.show();
         } else {
@@ -67,17 +67,39 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare'], function 
         shareTwo.hide();
     });
 
-    //微信分享
-    var Weixin = require('weixin/2.0.0/weixinshare');
-    new Weixin({
-        // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        debug: false,
-        shareTitle: vars.title,
-        descContent: vars.description,
-        lineLink: location.href,
-        imgUrl: 'https:' + vars.imgUrl,
-    });
+    if (vars.superShare) {
+        $(function () {
+            /* 分享代码*/
+            var SuperShare = require('superShare/1.0.1/superShare');
+            //分享按钮
+            var config = {
+                // 分享的内容title
+                title: vars.title + '...',
+                // 分享时的图标
+                image: window.location.protocol + vars.imgUrl,
+                // 分享内容的详细描述
+                desc: vars.description + '...',
+                // 分享的链接地址
+                url: location.href,
+                // 分享的内容来源
+                from: vars.cityname + ' —房天下'
+            };
+            var superShare = new SuperShare(config);
+        });
+    }
 
+    if (vars.action !== 'xfLastDataReport') {
+        //微信分享
+        var Weixin = require('weixin/2.0.0/weixinshare');
+        new Weixin({
+            // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false,
+            shareTitle: vars.title,
+            descContent: vars.description,
+            lineLink: location.href,
+            imgUrl: window.location.protocol + vars.imgUrl,
+        });
+    }
     // 稍作页面滚动，隐藏地址栏
     $window.scrollTop(1);
     // 判断是否加载显示回顶按钮，.back的用处是给scroll加一个命名空间，防止将backtop中绑定的scroll事件一起解绑

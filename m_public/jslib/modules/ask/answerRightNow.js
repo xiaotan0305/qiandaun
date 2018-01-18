@@ -119,7 +119,7 @@ define('modules/ask/answerRightNow', ['jquery', 'modules/ask/yhxw'], function (r
                             // 用户行为对象
                             yhxw({type: 93, pageId: 'maanswer'});
                             // 跳转到该问题详情页，并且定位
-                            window.location.href = vars.askSite + 'ask_' + askId + '.html';
+                            window.location.href = vars.askSite + 'ask_' + askId + '.html&r=' + Math.random();
                             // 回答成功，用户行为。
                             localStorage.removeItem(locVariable);
                         } else {

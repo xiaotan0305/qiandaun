@@ -118,7 +118,7 @@ define('modules/xf/searchSchoolinfolist',
             $seoUl.eq($(this).index()).show();
         });
         // 引入统计代码
-        require.async('jsub/_vb.js?c=mnhschoollist');
+        require.async('jsub/_vb.js?c=xf_lp^xxlb_wap');
         require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
             _ub.city = vars.ubcity;
             // 业务---WAP端
@@ -142,7 +142,7 @@ define('modules/xf/searchSchoolinfolist',
                 // 类别
                 'vmn.schooltype': schoolType,
                 // 所属页面
-                'vmg.page': 'mnhschoollist',
+                'vmg.page': 'xf_lp^xxlb_wap',
                 'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
 
             };

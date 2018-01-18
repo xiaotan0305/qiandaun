@@ -223,6 +223,8 @@ define('search/cfj/cfjSearch', ['jquery', 'search/search'], function (require, e
      */
     CfjSearch.prototype.clickListSearch = function (obj) {
         var that = this;
+        // 将别名过滤掉，不传给keyword
+        obj.key = obj.key.replace(/（.*）/, '');
         that.searchInput.val(obj.key);
         that.search();
     };

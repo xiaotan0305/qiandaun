@@ -425,7 +425,7 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
 
         // 布码
         // var avePrice = vars.avePrice + '^' + encodeURI('元/平方米');
-        require.async('jsub/_vb.js?c=mcfjpage');
+        require.async('jsub/_vb.js?c=esf_xq^sy_wap');
         require.async('jsub/_ubm.js?v=201407181100', function () {
             // 所在城市（中文）
             _ub.city = vars.cityname;
@@ -439,7 +439,7 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
             var pTemp = {
                 'vmv.projectid': vars.newcode,
                 // 楼盘id
-                'vmg.page': 'mcfjpage'
+                'vmg.page': 'esf_xq^sy_wap'
                 // 所属页面
             };
             var p = {};
@@ -710,5 +710,21 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
             nearXQUl.find('ul').width($nearLis.eq(0).width() * nearXQLiLen + nearXQLiLen * 15 + 15);
             new iscrollNew('#nearXQ', {scrollX: true});
         }
+        //热门房源横切
+        $.ajax({
+            url: vars.xiaoquSite + '?c=xiaoqu&a=ajaxGetHotHouses&city=' + vars.city + '&plotid=' + vars.newcode,
+            success: function (data) {
+                if (data) {
+                    $('#hotHouses').append(data).show();
+                    var hotlistUl = $('.xq-hotlist');
+                    if (hotlistUl.length) {
+                        var $hotlistLis = hotlistUl.find('li'),
+                            hotlistLiLen = $hotlistLis.length;
+                        hotlistUl.find('ul').width($hotlistLis.eq(0).width() * hotlistLiLen + hotlistLiLen * 12);
+                        new iscrollNew('.xq-hotlist', {scrollX: true});
+                    }
+                }
+            }
+        });
     };
 });

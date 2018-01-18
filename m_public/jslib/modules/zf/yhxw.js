@@ -81,7 +81,7 @@ define('modules/zf/yhxw', [], function (require, exports, module) {
                 }
                 pTemp = {
                     // 城市中文名称
-                    'vmz.city': vars.cityname,
+                    'vmz.city': encodeURIComponent(vars.cityname),
                     // 页面标识
                     'vmg.page': pageId,
                     // 关键字
@@ -107,7 +107,9 @@ define('modules/zf/yhxw', [], function (require, exports, module) {
                     // 类型
                     'vmz.genre': encodeURIComponent(vars.purpose),
                     // 装修
-                    'vmz.fixstatus': encodeURIComponent(vars.equipmentTempparamName)
+                    'vmz.fixstatus': encodeURIComponent(vars.equipmentTempparamName),
+                    // 楼盘ID
+                    'vme.projectid': vars.projectId,
                 };
             } else if (vars.action === 'zfMap' && curChannel === 'zfmap') {
                 // 租房地图用户行为统计

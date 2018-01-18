@@ -22,6 +22,8 @@ define('modules/bask/enrollAskUser', ['jquery'], function (require, exports, mod
                                 $('#sub').text('');
                                 $('#sub').text('已报名');
                                 $('#sub').addClass('yes');
+                            } else if (data === 'already') {
+                                showMsg('您已经报过名了');
                             } else {
                                 showMsg('网络错误，请稍后再试');
                             }

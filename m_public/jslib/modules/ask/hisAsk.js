@@ -128,6 +128,6 @@ define('modules/ask/hisAsk', ['jquery', 'loadMore/1.0.0/loadMore', 'modules/ask/
 
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 0, pageId: 'mausercenter'});
+        yhxw({type: 0, pageId: 'wd_wd^grzx_wap'});
     };
 });

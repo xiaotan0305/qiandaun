@@ -300,10 +300,10 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                     'vme.fixstatus': mapFixstatus
                 };
                 // 当前页面为二手房列表页
-            } else if (vars.action === 'newindex' && curChannel === 'esf') {
+            } else if (vars.action === 'index' && curChannel === 'esf') {
                 pTemp = {
                     // 城市中文名
-                    'vme.city': vars.cityname,
+                    'vme.city': encodeURIComponent(vars.cityname),
                     // 地铁线^地铁站
                     'vme.subway': subway,
                     // 区县^商圈
@@ -327,7 +327,9 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                     // 房源类型
                     'vme.genre': encodeURIComponent(vars.purpose),
                     // 排序
-                    'vme.order': encodeURIComponent(vars.orderby_name)
+                    'vme.order': encodeURIComponent(vars.orderby_name),
+                    // 楼盘ID
+                    'vme.projectid': vars.projectId,
                 };
                 // 当前页面为详情页
             } else if ((vars.action === 'detail' || vars.action === 'jhdetail') && curChannel === 'esf') {
@@ -462,7 +464,7 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                     };
                 }
                 // 我的二手房委托发布成功页面
-            } else if (vars.action === 'successfabu' && curChannel === 'myesf') {
+            } else if ((vars.action === 'successfabu' || vars.action === 'saleStaup') && curChannel === 'myesf') {
                 if (type === 0) {
                     pTemp = {
                         // 所属页面（每个页面都有唯一标识)
@@ -470,7 +472,7 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                     };
                 }
                 // 经纪人店铺页面
-            } else if (vars.action === 'agentShop' && curChannel === 'agent') {
+            } else if ((vars.action === 'agentShop' || vars.action === 'searchAgent') && curChannel === 'agent') {
                 pTemp = {
                     // 所属页面
                     'vmg.page': pageId,

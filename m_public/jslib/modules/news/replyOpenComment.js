@@ -2,18 +2,22 @@
  * 房产圈（开放平台）文章详情页图片轮播回复评论
  * Created by fenglinzeng on 17-03-23.
  */
-define('modules/news/replyOpenComment', ['jquery'], function (require, exports, module) {
+define('modules/news/replyOpenComment', ['jquery', 'slideFilterBox/1.0.0/slideFilterBox'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // 引入jQuery
         var $ = require('jquery');
-        var textNum = $('#txtnum');
+        var vars = seajs.data.vars;
+
         var commInput = $('#commInput');
         var inputMin = 2;
-        var inputMax = 100;
-
+        var inputMax = 500;
+        // 表情包
+        var $emoBox = $('.expressionBag');
         var float = $('.float');
         var tishiBox = $('.tiShiBox');
+        // 滑动插件
+        var iscrollCtrl = require('slideFilterBox/1.0.0/slideFilterBox');
 
         function tipBox(txt) {
             float.show();
@@ -29,20 +33,35 @@ define('modules/news/replyOpenComment', ['jquery'], function (require, exports, 
         commInput.on('input', function () {
             var inputText = $(this).val();
             var inputLen = inputText.length;
-            textNum.text(inputLen + '/' + inputMax);
+
             if (inputLen > inputMax) {
                 commInput.val(inputText.substr(0, inputMax));
-                textNum.text(inputMax + '/' + inputMax);
                 return tipBox('回复内容不得多于' + inputMax + '个字。');
             }
         });
+        // 显示或隐藏表情
+        $('.add-face').click(function () {
+            $emoBox.toggle();
+            if ($emoBox.is(':visible')) {
+                iscrollCtrl.refresh('.expressionBag');
+            }
+        });
+
+        // 点击添加表情
+        $emoBox.on('click', 'li', function () {
+            var content = commInput.val();
+            commInput.val(content + '(#' + this.title + ')');
+            $emoBox.hide();
+        });
+
 
         // 点击提交按钮
         var postComment = $('.postComment');
-        postComment.on('click', function () {
-            var newsId = _vars.newsId || '';
-            var parentId = _vars.parentId || '';
-            var quotePassPortId = _vars.quotePassPortId || '';
+        postComment.on('click', function (e) {
+            e.stopPropagation();
+            var newsId = vars.newsId || '';
+            var parentId = vars.parentId || '';
+            var quotePassPortId = vars.quotePassPortId || '';
             var commentContent = commInput.val().trim();
 
             if (newsId === '') {
@@ -56,7 +75,7 @@ define('modules/news/replyOpenComment', ['jquery'], function (require, exports, 
                 return tipBox('回复内容不得少于' + inputMin + '个字。');
             }
             $.ajax({
-                url: _vars.newsSite + '?c=news&a=ajaxPostOpenArticleComment',
+                url: vars.newsSite + '?c=news&a=ajaxPostOpenArticleComment',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -64,29 +83,28 @@ define('modules/news/replyOpenComment', ['jquery'], function (require, exports, 
                     commentContent: commentContent,
                     parentId: parentId,
                     quotePassPortId: quotePassPortId,
-                    city: _vars.city
+                    city: vars.city
                 }
-            })
-                .done(function (data) {
-                    if (data === '1') {
-                        if (parentId !== '') {
-                            tipBox('回复成功！');
-                        } else {
-                            tipBox('回复成功，请等待审核通过。');
-                        }
-                        setTimeout(function () {
-                            if (!parentId) {
-                                location.href = _vars.newsSite + _vars.city + '/03_' + newsId + '.html';
-                            } else {
-                                location.href = _vars.newsSite + '?c=news&a=getOpenCommentDetail&id=' + newsId + '&parentId=' + parentId;
-                            }
-                        }, 2000);
-                    } else if (data !== '') {
-                        tipBox(data);
+            }).done(function (data) {
+                if (data === '1') {
+                    if (parentId !== '') {
+                        tipBox('回复成功！');
                     } else {
-                        tipBox('接口超时，请稍后再试！');
+                        tipBox('回复成功，请等待审核通过。');
                     }
-                });
+                    setTimeout(function () {
+                        if (!parentId) {
+                            location.href = vars.newsSite + vars.city + '/03_' + newsId + '.html';
+                        } else {
+                            location.href = vars.newsSite + '?c=news&a=getOpenCommentDetail&id=' + newsId + '&parentId=' + parentId;
+                        }
+                    }, 2000);
+                } else if (data !== '') {
+                    tipBox(data);
+                } else {
+                    tipBox('接口超时，请稍后再试！');
+                }
+            });
         });
     };
 });

@@ -191,7 +191,7 @@ define('modules/index/maina', ['jquery', 'util/util', 'modules/index/locate', 's
                 // 搜房app下载地址
                 '/clientindex.jsp?city=' + vars.city + '&flag=download&f=1114',
                 // 装修app的下载地址
-                comurl + '&produce=ftxzx',
+                comurl + '&produce=ftxzx&company=1',
                 // 天下贷app的下载地址
                 comurl + '&produce=txdai',
                 // 游天下app的下载地址

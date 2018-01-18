@@ -49,7 +49,7 @@ define('modules/jiaju/xgtList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/
         });
 
         // 搜索用户行为收集20160114
-        var page = 'mjjpicturelist';
+        var page = 'jj_mt^xgtlb_wap';
         require.async('jsub/_vb.js?c=' + page);
         require.async('jsub/_ubm.js', function () {
             _ub.city = vars.cityname;

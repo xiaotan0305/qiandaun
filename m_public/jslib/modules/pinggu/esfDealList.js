@@ -2,7 +2,7 @@
  * @file chafangjia
  *  lina.bj 20170228
  */
-define('modules/pinggu/esfDealList', ['lazyload/1.9.1/lazyload', 'footprint/1.0.0/footprint', 'chart/raf/1.0.0/raf',
+define('modules/pinggu/esfDealList', ['modules/world/yhxw', 'lazyload/1.9.1/lazyload', 'footprint/1.0.0/footprint', 'chart/raf/1.0.0/raf',
         'chart/hisline/1.0.0/hisline', 'swipe/3.10/swiper'],
     function (require, exports, module) {
         'use strict';
@@ -15,7 +15,16 @@ define('modules/pinggu/esfDealList', ['lazyload/1.9.1/lazyload', 'footprint/1.0.
             $('.lazyload').lazyload();
             var $dwBox = $('.dwBox');
             var moreLi = $('#hotDistrict li.hotDisMore');
-
+            // 引入用户行为分析对象-埋码
+            var yhxw = require('modules/world/yhxw');
+            var maimaParams = {
+                'vmg.page': 'cfj_cfj^esfcjlb_wap'
+            };
+            yhxw({
+                pageId: 'cfj_cfj^esfcjlb_wap',
+                params: maimaParams,
+                type: 1
+            });
             var getmore = $('#getmore');
             // 如果链接地址含有&s=bdfj 则将区县排行展开，并滚动到顶部
             var qxcjList = $('.qxcj');
@@ -157,32 +166,6 @@ define('modules/pinggu/esfDealList', ['lazyload/1.9.1/lazyload', 'footprint/1.0.
                     hCountText.attr('href', vars.esfSite + vars.city + '/?jhtype=esf');
                     hCountText.text('查看更多（共' + vars.esfNum + '套）');
                 }
-            });
-            // 图片加载用lazyload
-            // require('lazyload/1.9.1/lazyload');
-            // $('.lazyload').lazyload();
-            // var arealist = $('#arealist');
-
-            // 布码
-            require.async(['jsub/_ubm.js'], function () {
-                // 页面标志默认为二手房列表页
-                var pageId = 'mcfjhomepageesf';
-                // 引入另一个js文件
-                require.async('jsub/_vb.js?c=' + pageId);
-                // 所在城市（中文）
-                _ub.city = vars.cityname;
-                // 新房的页面值为 'n'、二手房为 'e'、租房为 'z'、注意房贷计算器页此处值为g
-                // 新房“n”，二手房e，租房n，查房价v,家居h，资讯i,知识k
-                _ub.biz = 'v';
-                // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
-                _ub.location = vars.cityns === 'n' ? 0 : 1;
-                // b值 1：搜索
-                var b = 1;
-                var pTemp = {
-                    'vmg.page': pageId
-                    // 所属页面
-                };
-                _ub.collect(b, pTemp);
             });
             // 最下面的导航-------------------------------------------------satrt
             // 添加底部SEO

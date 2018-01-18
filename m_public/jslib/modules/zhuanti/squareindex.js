@@ -24,7 +24,7 @@ define('modules/zhuanti/squareindex', ['jquery'], function(require, exports, mod
             }, 3000);
         }
 
-        require.async('http://static.soufunimg.com/common_m/m_recaptcha/js/app2.0.js');
+        require.async('https://static.soufunimg.com/common_m/m_recaptcha/js/app2.0.js');
         //投票
         var voteBtn = $('.voteBtn');
         voteBtn.on('click', function(){
@@ -71,8 +71,9 @@ define('modules/zhuanti/squareindex', ['jquery'], function(require, exports, mod
                             codeshade.hide();
                             dragcontent.hide();
                         } else if (data.code && data.code === '106') {
-                            codeshade.show();
-                            dragcontent.show();
+                            codeshade.hide();
+                            dragcontent.hide();
+                            alert(data.msg);
                             that.addClass('yt');
                             that.text('已投票');
                             that.unbind();

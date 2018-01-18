@@ -11,7 +11,7 @@
  * 20160513 tkp 大数据改版 猜你喜欢\地图入口\导航知识图标入口 大数据分析 重新做了
  */
 define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'swipe/3.3.1/swiper',
-        'chart/raf/1.0.0/raf', 'chart/line/1.0.1/line', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'search/mainSearch', 'search/home/homeSearch'
+        'chart/raf/1.0.0/raf', 'chart/line/1.0.1/line', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'modules/index/locations', 'search/mainSearch', 'search/home/homeSearch'
     ],
     function (require) {
         'use strict';
@@ -23,6 +23,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
         var Util = require('util/util');
         // 实现定位用的js实例，！！！这个js现在返回的是一个对象，也就是说Locate是一个对象而不是一个类
         var Locate = require('modules/index/locate');
+		var locations = require('modules/index/locations');
         // swiper滚动插件类，！！！这里为实例，不需要new创建
         var Swiper = require('swipe/3.3.1/swiper');
         // 获取画走势图类
@@ -101,7 +102,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                     // 搜房app下载地址
                     '/clientindex.jsp?city=' + vars.city + '&flag=download&f=1114',
                     // 装修app的下载地址
-                    comurl + '&produce=ftxzx',
+                    comurl + '&produce=ftxzx&company=1',
                     // 天下贷app的下载地址
                     comurl + '&produce=txdai',
                     // 游天下app的下载地址
@@ -258,44 +259,103 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
         if ($window.scrollTop()) {
             headerTop.css('top', 0);
         }
-        if(document.referrer.indexOf('baidu.com')>-1){
+        if(document.referrer.indexOf('baidu.com')>-1 || navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')>-1 || navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')>-1 ){
         	 topDownload.hide();
              // 兼容电脑上滚轮滚动会回弹问题
              window.scroll(0, 1);
              headerTop.css('top', 0);
-        	
-        }
-        // 切换头部浮层样式
-        var downTopTimer = null;
-        $window.on('scroll touchmove', function (ev) {
-            var winScrollTop = $window.scrollTop();
-            var dH = winScrollTop >= adH;
-            dH ? flexbox.removeClass('op_bg') : flexbox.addClass('op_bg');
 
-            if (vars.topAdCity === 'true' && document.referrer.indexOf('baidu.com') < 0) {
-                // 首页下载app弹层ui更改
-                // 处理浮层显示位置
-                if (winScrollTop <= 0 && topDownload.is(':hidden')) {
-                    ev.preventDefault();
-                    clearTimeout(downTopTimer);
-                    downTopTimer = setTimeout(function () {
-                        if (vars.appFloatBox && vars.appFloatBox.smartDom) {
-                            $(vars.appFloatBox.smartDom).hide();
-                        }
-                        topDownload.show();
-                        headerTop.css('top', topDownH - winScrollTop);
-                    }, 100);
-                } else if (winScrollTop > 0 && topDownload.is(':visible')) {
-                    if (vars.appFloatBox && vars.appFloatBox.smartDom) {
-                        $(vars.appFloatBox.smartDom).show();
-                    }
-                    topDownload.hide();
-                    // 兼容电脑上滚轮滚动会回弹问题
-                    window.scroll(0, 1);
-                    headerTop.css('top', 0);
-                }
-            }
-        });
+        }
+
+		// 大城市
+		if (vars.sOrB == 'b') {
+			// 处理样式
+			$('.main').css('position', 'relative');
+			if(lhl.indexOf('sf_source=')<0){
+				$('.apptopdown').css({
+					position: 'absolute',
+					top: '4px'
+				});
+			}
+
+			// 切换头部浮层样式
+			var downTopTimer = null;
+			var flag = false;
+			$window.on('scroll touchmove', function (ev) {
+				var winScrollTop = $window.scrollTop();
+				var dH = winScrollTop >= adH;
+				dH ? flexbox.removeClass('op_bg') : flexbox.addClass('op_bg');
+
+				if (vars.topAdCity === 'true' && document.referrer.indexOf('baidu.com') < 0) {
+					// 首页下载app弹层ui更改
+					// 处理浮层显示位置
+					if (winScrollTop <= 0 && flag === true && lhl.indexOf('sf_source=') < 0) {
+						flag = false;
+						if (vars.appFloatBox && vars.appFloatBox.smartDom) {
+							$(vars.appFloatBox.smartDom).hide();
+						}
+						topDownload.show();
+						//headerTop.css('top', topDownH - winScrollTop);
+						headerTop.css({
+							position: 'absolute',
+							top: '4px'
+						});
+						//ev.preventDefault();
+						//clearTimeout(downTopTimer);
+						//downTopTimer = setTimeout(function () {
+						//
+						//}, 100);
+					} else if (winScrollTop > 0 && flag === false && lhl.indexOf('sf_source=') <0) {
+						flag = true;
+						if (vars.appFloatBox && vars.appFloatBox.smartDom) {
+							$(vars.appFloatBox.smartDom).show();
+						}
+						topDownload.hide();
+						// 兼容电脑上滚轮滚动会回弹问题
+						//window.scroll(0, 1);
+						//headerTop.css('top', 0);
+						headerTop.css({
+							position: 'fixed',
+							top: '0'
+						});
+					}
+				}
+			});
+		} else {
+			// 小城市
+			// 切换头部浮层样式
+			var downTopTimer = null;
+			$window.on('scroll touchmove', function (ev) {
+				var winScrollTop = $window.scrollTop();
+				var dH = winScrollTop >= adH;
+				dH ? flexbox.removeClass('op_bg') : flexbox.addClass('op_bg');
+
+				if (vars.topAdCity === 'true' && document.referrer.indexOf('baidu.com') < 0) {
+					// 首页下载app弹层ui更改
+					// 处理浮层显示位置
+					if (winScrollTop <= 0 && topDownload.is(':hidden')) {
+						ev.preventDefault();
+						clearTimeout(downTopTimer);
+						downTopTimer = setTimeout(function () {
+							if (vars.appFloatBox && vars.appFloatBox.smartDom) {
+								$(vars.appFloatBox.smartDom).hide();
+							}
+							topDownload.show();
+							headerTop.css('top', topDownH - winScrollTop);
+						}, 100);
+					} else if (winScrollTop > 0 && topDownload.is(':visible')) {
+						if (vars.appFloatBox && vars.appFloatBox.smartDom) {
+							$(vars.appFloatBox.smartDom).show();
+						}
+						topDownload.hide();
+						// 兼容电脑上滚轮滚动会回弹问题
+						window.scroll(0, 1);
+						headerTop.css('top', 0);
+					}
+				}
+			});
+		}
+
 
         /**
          * 找小区入口
@@ -480,7 +540,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                 _ub.collect(1, {
                     'vmg.usertype': xfScores + '^' + esfScores + '^' + zfScores,
                     'vmg.page': 'mhomepage',
-                    'vmg.sourceapp':vars.is_sfApp_visit + '^home'	
+                    'vmg.sourceapp':vars.is_sfApp_visit + '^home'
                 });
 
 
@@ -590,7 +650,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                                 }
 
                             });
-                            
+
                          // 特价房
 							var $lixf = $('.li-xf');
 							if ($lixf.length) {
@@ -612,7 +672,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 								});
 								tjfScroll.refresh();
 							}
-                            
+
                         } else {
                             $caiNiXiHuanList.html('');
                             // 不存在猜你喜欢时，隐藏管理首页中的猜你喜欢设置显隐按钮
@@ -1018,5 +1078,82 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                         }
                     });
 
-                }
-    });
+		}
+
+
+		function getNearHouseList (obj) {
+			// 维度
+			var latitude = obj.y;
+			// 经度
+			var longitude = obj.x;
+
+			if (latitude == 39.91488908 && longitude == 116.40387397) {
+				$('.js_nearhouse').hide();
+				return;
+			}
+
+			// 获取城市拼音缩写
+			var curcity = $('#curcity').html();
+			$.get('/main.d?m=getNearHouseList&geox='+latitude+'&geoy='+longitude, function (data) {
+				if(curcity === data.mapInFo.encity){
+					if (!$.isEmptyObject(data.nearhouse)){
+						$('.js_nearhouse').show();
+						$('.js_nearroad').html(data.mapInFo.street);
+						$('.js_nearhouse .mapbox').on('click', function () {
+							location.href = '/map/?c=map&a=esfMap&city=bj&x1=' + data.mapInFo.geoy + '&y1=' + data.mapInFo.geox;
+						});
+						var jsonhouse = data.nearhouse;
+						var length = jsonhouse.length;
+						var index = 0;
+						clearInterval(interval);
+						interval = setInterval(function () {
+							$('.js_nearhouse .flexbox h3').html(jsonhouse[index].projname);
+							$('.js_nearhouse .flexbox dt>p:first span:first').html(jsonhouse[index].price + jsonhouse[index].price_unit);
+							if (jsonhouse[index].esfnum) {
+								$('.js_nearhouse .flexbox dt>p:first span:eq(1)').html('在售' + jsonhouse[index].esfnum + '套');
+							} else {
+								$('.js_nearhouse .flexbox dt>p:first span:eq(1)').html('');
+							}
+							$('.js_nearhouse .flexbox dt>p:eq(1)').html('距你' + jsonhouse[index].distance + '米');
+							index++;
+							index = index >= length? 0 : index;
+						}, 3000);
+					}
+				}
+				isLoading = false;
+			});
+		}
+
+		// 定位api索引
+		var interval,
+			isLoading = false;
+		function getNearByhouse(){
+			var nearhousePosition = Util.getCookie('nearhousePosition') || '';
+			if (nearhousePosition.length) {
+				// 无cookie
+				var obj = {
+					y: nearhousePosition.split('|')[0],
+					x: nearhousePosition.split('|')[1]
+				};
+				getNearHouseList (obj);
+			} else {
+				// 有cookie
+				locations.get_location(function (obj) {
+					getNearHouseList (obj);
+					nearhousePosition = obj.y + '|';
+					nearhousePosition += obj.x;
+					Util.setCookie('nearhousePosition', nearhousePosition, 1/24/2);
+				});
+			}
+		}
+		getNearByhouse();
+
+		$('.js_nearroad').on('click', function () {
+			if (!isLoading) {
+				isLoading = true;
+				Util.setCookie('nearhousePosition', '', 1/24/2);
+				getNearByhouse();
+			}
+		})
+
+	});

@@ -51,22 +51,14 @@ define('modules/zf/picDetail', ['jquery','klass/1.0/klass', 'photoswipe/photoswi
             load1();
             // 页面初始化 底部导航上侧左边栏里的内容
             var flol = $('#scroller').find('a:eq(0)');
-            // 底部导航栏里第一个导航的所有的数字
-            var ingNum = flol.attr('num').split('_');
-            // 如果导航栏底部第一个有图片
-            if (flol.attr('num')) {
-                ingNum = flol.attr('num').split('_');
+            if (flol.length) {
+                // 底部导航栏里第一个导航的所有的数字
+                var ingNum = flol.attr('num').split('_');
+                // 如果导航栏底部第一个有图片
+                if (ingNum) {
+                    myPhotoSwipe.show(parseInt(curnumber));
+                }
             } else {
-                myPhotoSwipe.show(parseInt(curnumber));
-            }
-            // 存在图片
-            if (ingNum) {
-                // if (flol.html() !== '户型图') {
-                //     // 如果是从全部图片页进来的，对图片的number不做处理，如果是从详情页进来的，图片的number减1
-                //     if (!document.referrer.match('picDetailShow')) {
-                //         curnumber -= 1;
-                //     }
-                // }
                 myPhotoSwipe.show(parseInt(curnumber));
             }
             // 点击底部菜单

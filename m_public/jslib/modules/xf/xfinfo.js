@@ -72,9 +72,7 @@ define('modules/xf/xfinfo', [
         _ub.location = vars.ublocation;
         var xfch = vars.ubxfch,
             xfchStr = '';
-        for (var i = 0; i < xfch.length; i++) {
-            xfchStr += encodeURIComponent(xfch[i]) + (i === xfch.length - 1 ? '' : ',');
-        }
+       
         // 用户动作（浏览0、搜索1、打电话31、即时通讯24、预约25、收藏21、分享22）
         var b = 0;
         var prices = '';
@@ -155,7 +153,7 @@ define('modules/xf/xfinfo', [
 				return "";
 			}
 
-            $.post('/xf.d?m=xiHuanLouPanList&math=' + Math.random(), ajaxData, function (result) {
+            $.post('/xf.d?m=xiHuanLouPanList&f=seo&math=' + Math.random(), ajaxData, function (result) {
                 if ($.trim(result)) {
                     $('#ganxingqulp').html(result);
                     $('#gxqlp').show();
@@ -642,13 +640,12 @@ define('modules/xf/xfinfo', [
 
     new Swiper1('#slider', {
         speed: 500,
-        loop: false,
+        loop: true,
         onSlideChangeStart: function (swiper) {
-            setTab(swiper.activeIndex);
+            //setTab(swiper.activeIndex);
         }
     });
-    setTab(0);
-    // 位置及周边
+    //setTab(0);    // 位置及周边
     var pointx = '';
     var pointy = '';
     var locatecity = '';
@@ -723,8 +720,7 @@ define('modules/xf/xfinfo', [
             hideWifivideoMsg();
         }, 1000);
     });
-    // 控制playbutton的位置在中间
-    fcenter();
+    
 
     function fcenter() {
         var container = $('#videoPhoto');
@@ -736,9 +732,7 @@ define('modules/xf/xfinfo', [
         }
     }
 
-    $(window).resize(function () {
-        fcenter();
-    });
+   
 
     var $wifivideo = $('#wifivideo-msg');
 
@@ -805,11 +799,7 @@ define('modules/xf/xfinfo', [
         }, 1000);
     }
 
-    fcenterFullView();
-
-    $(window).resize(function () {
-        fcenterFullView();
-    });
+   
     // 全景看房----------------------------------------end
 
     // 加载置业顾问-----------------------------------start
@@ -1289,14 +1279,7 @@ define('modules/xf/xfinfo', [
     ) {
         require.async('//clickm.fang.com/click/new/clickm.js', function () {
             Clickstat.eventAdd(window, 'load', function (e) {
-                // 普通详情页
-                if (vars.wtInfoList == '[]') {
-                    Clickstat.batchEvent('wapxfxqy_', vars.paramcity);
-                } else {
-                    // 电商详情页
-                    Clickstat.batchEvent('wapxfdsxqy_', vars.paramcity);
-                }
-
+                    Clickstat.batchEvent('wapseoxfxq_', '');
             })
         });
     }
@@ -2464,7 +2447,10 @@ define('modules/xf/xfinfo', [
 		}
 	});
 
-    module.exports = {
+	// 价格滑动
+	new IScrolllist('.table-item', {scrollX: true, bindToWrapper: true, eventPassthrough: true});
+
+	module.exports = {
         init: function () {
             scajax();
             click();

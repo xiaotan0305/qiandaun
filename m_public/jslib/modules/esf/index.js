@@ -2,7 +2,7 @@
  * 二手房列表页主类
  * 20151223 liuxinlu 删除部分废旧无用代码，优化筛选所有操作，添加删选新样式。
  */
-define('modules/esf/newindex', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider'],
+define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -42,7 +42,16 @@ define('modules/esf/newindex', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.
             //用户选择商圈，地铁位置信息
             var positionInfo;
             // 记录用户浏览动作
-            yhxw({type: 1, pageId: 'mesflist'});
+            if (vars.purpose === '住宅') {
+                var pageId = 'esf_fy^lb_wap';
+            } else if (vars.purpose === '别墅') {
+                var pageId = 'esf_fy^bslb_wap';
+            } else if (vars.purpose === '写字楼') {
+                var pageId = 'esf_fy^xzllb_wap';
+            } else if (vars.purpose === '商铺') {
+                var pageId = 'esf_fy^splb_wap';
+            }
+            yhxw({pageId: pageId});
             // swipe插件
             var Swiper = require('swipe/3.10/swiper');
             // 解决遮挡问题

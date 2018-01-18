@@ -33,7 +33,7 @@ define('modules/zhishi/search', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/
     });
     // 布码
     var keyword = $('#new_searchtext').find('input').attr('placeholder');
-    zhishibuma({key: encodeURIComponent(keyword), pageType: 'mzssearch'});
+    zhishibuma({key: encodeURIComponent(keyword), pageType: 'zs_zs^ss_wap'});
     module.exports = function fn() {
     };
 });

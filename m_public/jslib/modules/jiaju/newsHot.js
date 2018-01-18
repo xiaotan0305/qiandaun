@@ -14,7 +14,7 @@ define('modules/jiaju/newsHot', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/
 
         loadMore({
             // 接口地址
-            url: vars.jiajuSite + '?c=jiaju&a=ajaxGetList&channelid=' + vars.channelid + '&type=' + vars.type1 + '&pic=' + vars.pic + '&size=20',
+            url: vars.jiajuSite + '?c=jiaju&a=ajaxGetList&city=' + vars.city + '&id=' + vars.id + '&type=' + vars.type,
             // 数据总条数
             total: vars.total,
             // 首屏显示数据条数
@@ -29,22 +29,19 @@ define('modules/jiaju/newsHot', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/
             contentID: '#content'
         });
 
-        if ($(document).height() <= $(window).height()) {
-            // 没数据
-            var section = $('#section');
-            if (Number(vars.total) > 0) {
-                section.css({'margin-bottom': ($(window).height() - section.offset().top - section.height() - 127).toString() + 'px'});
-            }
-        }
+        //没有请求到数据，点击重新加载
+        $('#datatimeout').on('click', function() {
+            window.location.reload();
+        });
 
         // 搜索用户行为收集20170302
         var page;
-        if (vars.type1 === 'pinggu') {
-            page = 'mzxjjpingce';
-        } else if(vars.type1 === 'hangye') {
-            page = 'mzxjjjujiao';
+        if (vars.type === 'pinggu') {
+            page = 'xw_jj^ycpclb_wap';
+        } else if(vars.type === 'hangye') {
+            page = 'xw_jj^hyjjlb_wap';
         } else {
-            page = 'mzxjjhot';
+            page = 'xw_jj^rmlb_wap';
         }
         require.async('jsub/_vb.js?c=' + page);
         require.async('jsub/_ubm.js', function () {
@@ -54,7 +51,7 @@ define('modules/jiaju/newsHot', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/
             _ub.biz = 'i';
             // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
             _ub.location = 0;
-            var b = 1;
+            var b = 0;
             var p = {
                 'vmg.page': page,
             };

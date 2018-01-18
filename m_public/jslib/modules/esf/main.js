@@ -20,7 +20,7 @@ define('modules/esf/main', ['jquery'], function (require) {
     var preload = [];
     // 插入导航操作js
     // 哥伦布页面不调用头部导航插件 lina 20161130
-    var new2Arr = ['yyhdDetail', 'yyhdOrderInfo', 'yyhdSubmitOrder', 'yykfWT', 'esfzyindex', 'newindex', 'jhdetail'];
+    var new2Arr = ['yyhdDetail', 'yyhdOrderInfo', 'yyhdSubmitOrder', 'yykfWT', 'esfzyindex', 'index', 'jhdetail'];
     if ((vars.action === 'detail' && !vars.isBdclo) || new2Arr.indexOf(vars.action) > -1) {
         preload.push('navflayer/navflayer_new2', 'lazyload/1.9.1/lazyload');
     } else {
@@ -31,11 +31,11 @@ define('modules/esf/main', ['jquery'], function (require) {
         vars[$(this).attr('data-id')] = element.value;
     });
     // 判断插入搜索js,加载提示下载APP
-    if (vars.action === 'newindex' || vars.action === 'esfzyindex') {
+    if (vars.action === 'index' || vars.action === 'esfzyindex') {
             preload.push('search/esf/esfSearch');
     }
     //二手房添加
-    if (vars.action === 'newindex' || vars.action === 'esfzyindex' || vars.action === 'detail' || vars.action === 'jhdetail') {
+    if (vars.action === 'index' || vars.action === 'esfzyindex' || vars.action === 'detail' || vars.action === 'jhdetail') {
         preload.push('swipe/3.10/swiper');
     }
     // 判断localStorage是否可用，同时判断是否为隐私模式
@@ -96,7 +96,7 @@ define('modules/esf/main', ['jquery'], function (require) {
             }
             zySearch.init();
         });
-    } else if (vars.action === 'newindex' || vars.action === 'esfzyindex') {
+    } else if (vars.action === 'index' || vars.action === 'esfzyindex') {
         require.async('search/esf/esfSearch', function (EsfSearch) {
             var esfSearch = new EsfSearch();
             if (vars.action === 'detail') {
@@ -136,7 +136,7 @@ define('modules/esf/main', ['jquery'], function (require) {
 
     // 执行栏目主类
     if (vars.action === 'esfzyindex') {
-        require.async(['modules/esf/' + 'newindex'], function (run) {
+        require.async(['modules/esf/' + 'index'], function (run) {
             run();
         });
     } else if (vars.action) {
@@ -153,7 +153,7 @@ define('modules/esf/main', ['jquery'], function (require) {
             $window.off('scroll.back');
         }
     });
-    if (vars.action === 'newindex' || vars.action === 'detail' || vars.action === 'esfzyindex') {
+    if (vars.action === 'index' || vars.action === 'detail' || vars.action === 'esfzyindex') {
         // 判断登陆状态
         $.get(vars.esfSite + '?c=esf&a=checkLoginMode', function (data) {
             // 登录注册按钮
@@ -168,7 +168,7 @@ define('modules/esf/main', ['jquery'], function (require) {
     // 当为列表页时
     var cityArr = ['bj', 'cd', 'tj', 'wuhan', 'suzhou', 'gz', 'sz', 'sjz', 'sh', 'changchun', 'jn', 'qd', 'zz', 'cq', 'sy', 'hz', 'nanjing', 'cs', 'cz',
         'dg', 'hn', 'hf', 'nc', 'nn', 'nb', 'wuxi', 'xian', 'dl', 'sanya', 'km'];
-    if (vars.action === 'newindex') {
+    if (vars.action === 'index') {
         // 加载统计功能代码
         if (vars.jhList) {
             require.async(location.protocol + '//clickm.fang.com/click/new/clickm.js', function () {

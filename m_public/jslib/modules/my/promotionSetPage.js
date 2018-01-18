@@ -281,6 +281,9 @@ define('modules/my/promotionSetPage', [ 'slideFilterBox/1.0.0/slideFilterBox','f
             if(param.comarea){
                 params.Comerea = $keyword.find('.xuan').eq(1).text();
             }
+            if (vars.channel) {
+                params.channel = vars.channel;
+            }
             $.ajax({
                 type: 'post',
                 url: vars.mySite + '?c=my&a=ajaxCreateOrder&city=' + vars.city,
@@ -292,6 +295,9 @@ define('modules/my/promotionSetPage', [ 'slideFilterBox/1.0.0/slideFilterBox','f
                         // 如果是通过置顶短信过来的增加sf_source字段
                         if (vars.sf_source === 'messagesend') {
                             sucUrl += '&sf_source=' + vars.sf_source;
+                        }
+                        if (vars.channel) {
+                            sucUrl += '&channel=' + vars.channel;
                         }
                         window.location.href = sucUrl;
                     } else if (data.errcode == '200' && data.CashierParam) {

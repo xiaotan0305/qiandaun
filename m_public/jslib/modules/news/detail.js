@@ -3,9 +3,9 @@
  * Created by LXM on 14-12-9.
  * modify by limengyang.bj@fang.com<2016-6-23>
  */
-define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifycode/1.0.0/verifycode', 
-                               'swipe/3.3.1/swiper', 'weixin/2.0.0/weixinshare', 'superShare/1.0.1/superShare',
-                               'search/mainSearch', 'search/home/homeSearch'],
+define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifycode/1.0.0/verifycode',
+        'swipe/3.3.1/swiper', 'weixin/2.0.0/weixinshare', 'superShare/2.0.0/superShare',
+        'search/mainSearch', 'search/home/homeSearch'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -36,6 +36,8 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
             var thisTime = 0;
             // 产业网相关文章点击次数
             var fdcClickNum = 0;
+            // 房产圈用户信息浮层
+            var $kpfix = $('.k-p-fix');
 
             $('#banner').css('position', 'relative');
             require.async('lazyload/1.9.1/lazyload', function () {
@@ -72,13 +74,17 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                 var newsType = newsnet === '新房网' ? 11 : '';
                 // 判断是否是房产圈
                 if (newsType !== 11 && $this.attr('data-creator') === '自媒体联盟') {
-                    $this.find('.topAppOpen').openApp({appUrl: 'waptoapp/{"destination":"housecircle","url":"' + $this.attr('data-newsurl') + '"}',position: 'newsDetailTopBtn'});
+                    $this.find('.topAppOpen').openApp({
+                        appUrl: 'waptoapp/{"destination":"housecircle","url":"' + $this.attr('data-newsurl') + '"}',
+                        position: 'newsDetailTopBtn'
+                    });
                 } else {
                     $this.find('.topAppOpen').openApp({
                         appUrl: 'waptoapp/{"destination":"daogouandzixun", "specialname":"", "news_type":"' + newsType
                         + '", "news_class":"' + $this.attr('data-newsclass') + '", "news_category":"' + $this.attr('data-newscategory') + '", "groupPicId":"'
                         + $this.attr('data-grouppicid') + '", "news_url":"' + $this.attr('data-newsurl') + '", "news_id":"' + $this.attr('data-newsid')
-                        + '", "news_title":"' + '导购' + '", "newsscope":"' + $this.attr('data-newsscope') + '", "isSubject":"true"}',position: 'newsDetailTopBtn'
+                        + '", "news_title":"' + '导购' + '", "newsscope":"' + $this.attr('data-newsscope') + '", "isSubject":"true"}',
+                        position: 'newsDetailTopBtn'
                     });
                 }
             });
@@ -199,7 +205,13 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
             })());
 
             // 用户行为统计-埋码
-            var page = 'mzxpage';
+            var page;
+            if (vars.channelid === '03') {
+                page = 'xw_fcq^xq_wap';
+            } else {
+                page = 'xw_xw^xq_wap';
+            }
+
             require.async('jsub/_vb.js?c=' + page);
             require.async('jsub/_ubm.js', function () {
                 yhxw(0);
@@ -210,7 +222,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                     }
                     _ub.city = vars.cityname;
                     _ub.request('vwg.business,vmn.position,vmn.avgprice,vmn.genre,vmn.opentime,vme.position,vme.totalprice,vme.housetype,vme.area,vme.genre,vmg.business', function () {
-                    	_ub.load(2);
+                        _ub.load(2);
                         // 判断当前新闻是否为全国新闻
                         var paramStr = '&newsid=' + vars.newsid + '&city=' + (window.location.href.indexOf('qg') > 0 ? 'qg' : vars.city);
                         // _ub['vwg.business'] = 'N';
@@ -1205,7 +1217,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
             var linkUrl;
             // 分享
             (function () {
-                var superShare = require('superShare/1.0.1/superShare');
+                var SuperShare = require('superShare/2.0.0/superShare');
                 var wxShare = require('weixin/2.0.0/weixinshare');
                 var toggleTouchmove = (function () {
                     function preventDefault(e) {
@@ -1216,12 +1228,28 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                         document[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault);
                     };
                 })();
-                new superShare({
-                    url: linkUrl,
+                var config = {
+                    // 分享内容的title
                     title: vars.title,
+                    // 分享时的图标
+                    image: imgUrl,
+                    // 分享内容的详细描述
                     desc: description,
-                    image: imgUrl
-                });
+                    // 分享的链接地址
+                    url: linkUrl,
+                    // 分享的内容来源
+                    form: '房天下'
+                };
+                var SuperShare = require('superShare/2.0.0/superShare');
+                var superShare = new SuperShare(config);
+                var $share = $('.share');
+                if ($share.length) {
+                    // 2.0版本不再在插件中绑定.share类了，需要外部自行调用
+                    // 2.0版本只提供share方法，供外部调用
+                    $share.on('click',function () {
+                        superShare.share();
+                    });
+                }
                 new wxShare({
                     debug: false,
                     shareTitle: vars.title,
@@ -1555,6 +1583,27 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                 } else {
                     $('.bbsInfoBox').show();
                     $('.dianPingBox').hide();
+                }
+            });
+            //用户浮层显示隐藏
+            if ($kpfix.length > 0) {
+                $(window).on('scroll', function () {
+                    // 109用户信息的高度
+                    if ($(window).scrollTop() <= $('.k-p-box').offset().top + 109) {
+                        $kpfix.hide();
+                    } else {
+                        $kpfix.show();
+                    }
+                });
+            }
+            // 多盘点评截字
+            $('.dianping_new span').each(function () {
+                var $that = $(this);
+                var oldText = $that.text();
+                var num = oldText.length;
+                if (num > 40) {
+                    var newText = oldText.substring(0, 37) + "...";
+                    $that.text(newText);
                 }
             });
         };

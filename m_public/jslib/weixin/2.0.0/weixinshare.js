@@ -121,25 +121,31 @@
             qzUrl = mainSite + 'common_m/m_public/jslib/weixin/qzapi.js';
         var urlArr = [];
         if (this.isWX && !window.wx) {
-            urlArr.push(wxUrl);
             if (require) {
                 require(['weixin/jweixin-1.0.0'], function (wx) {
                     that.wx = window.wx = wx;
+                    that.init();
                 });
+            }else {
+                urlArr.push(wxUrl);
             }
         } else if (this.isQQ && !window.mqq) {
-            urlArr.push(qqUrl);
             if (require) {
                 require(['weixin/qqapi'], function (qq) {
                     that.qq = window.mqq = qq;
+                    that.init();
                 });
+            }else {
+                urlArr.push(qqUrl);
             }
         } else if (this.isQZ && !window.QZAppExternal) {
-            urlArr.push(qzUrl);
             if (require) {
                 require(['weixin/qzapi'], function (qz) {
                     that.qz = window.QZAppExternal = qz;
+                    that.init();
                 });
+            }else {
+                urlArr.push(qzUrl);
             }
         }
         if (!$) {
@@ -148,10 +154,12 @@
 
         this.createScript(urlArr, function () {
             $ = $ || window.$;
-            that.wx = that.wx || window.wx;
-            that.qq = that.qq || window.mqq;
-            that.qz = that.qz || window.QZAppExternal;
-            that.init();
+            if (!require) {
+                that.wx = that.wx || window.wx;
+                that.qq = that.qq || window.mqq;
+                that.qz = that.qz || window.QZAppExternal;
+                that.init();
+            }
         });
         this.succfn = succfn;
         this.errfn = errfn;

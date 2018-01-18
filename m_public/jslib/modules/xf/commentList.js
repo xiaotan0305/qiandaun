@@ -503,7 +503,7 @@ define('modules/xf/commentList',
         });
 
         // 引入统计代码
-        require.async('jsub/_vb.js?c=mnhpagecomment');
+        require.async('jsub/_vb.js?c=xf_lp^dplb_wap');
         require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
             _ub.city = vars.ubcity;
             // 业务---WAP端
@@ -516,7 +516,7 @@ define('modules/xf/commentList',
                 // 楼盘id
                 'vmn.projectid': vars.paramId,
                 // 所属页面
-                'vmg.page': 'mnhpagecomment',
+                'vmg.page': 'xf_lp^dplb_wap',
                 'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
             };
             // 用户行为(格式：'字段编号':'值')

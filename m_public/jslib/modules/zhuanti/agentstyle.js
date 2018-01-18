@@ -24,7 +24,7 @@ define('modules/zhuanti/agentstyle', ['jquery', 'superShare/1.0.1/superShare'], 
             }, 3000);
         }
 
-        require.async('http://static.soufunimg.com/common_m/m_recaptcha/js/app2.0.js');
+        require.async('https://static.soufunimg.com/common_m/m_recaptcha/js/app2.0.js');
         //投票
         $('#votebtn').click(function(){
         	var that = $(this);
@@ -68,8 +68,9 @@ define('modules/zhuanti/agentstyle', ['jquery', 'superShare/1.0.1/superShare'], 
                             codeshade.hide();
                             dragcontent.hide();
                         } else if (data.code && data.code === '106') {
-                            codeshade.show();
-                            dragcontent.show();
+                            codeshade.hide();
+                            dragcontent.hide();
+                            alert(data.msg);
                             that.addClass('yt');
                             that.text('已投票');
                             that.unbind();

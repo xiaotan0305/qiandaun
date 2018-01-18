@@ -38,6 +38,8 @@ define('modules/zhuanti/personalstyle', ['jquery', 'iscroll/2.0.0/iscroll-lite',
                 } else if (data.code === '106') {
                     that.addClass('gray');
                     that.text('已投票');
+                } else {
+                    alert(data.msg);
                 }
         	})
         })

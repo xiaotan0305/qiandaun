@@ -65,7 +65,7 @@ define('modules/jiaju/main', ['jquery'], function (require) {
     if (vars.action && vars.action !== 'brandQjdInfo') {
         preload.push('modules/jiaju/' + vars.action);
         if ($.inArray(vars.action, ['cashCouponList', 'storeList', 'lglist', 'buildList', 'gzList', 'jjList', 'designerList', 'visitGd', 'zxbj',
-                'xgtList', 'designerList', 'brandQjd', 'companyNewList', 'zxCaseList','firmList','sjsList','loupanCaseList', 'sjsCaseList', 'shopList','productList','companyCaseList'
+                'xgtList', 'designerList', 'brandQjd', 'companyNewList', 'zxCaseList','firmList','sjsList','loupanCaseList', 'sjsCaseList', 'shopList','productList','companyCaseList','qjList'
             ]) !== -1) {
             needFilters = 1;
             preload.push('iscroll/1.0.0/iscroll', 'modules/jiaju/filters');

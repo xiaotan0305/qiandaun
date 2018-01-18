@@ -21,7 +21,7 @@ define('modules/jiaju/xgtDetail', [
             window.location.reload();
         });
         var yhxw = require('modules/jiaju/yhxw');
-        var page = 'mjjpicturepage';
+        var page = 'jj_mt^xgtxq_wap';
         yhxw({
             page: page,
             id: vars.picid
@@ -337,7 +337,7 @@ define('modules/jiaju/xgtDetail', [
                     return function () {
                         if (loaded && $.inArray(+loadImg[index].picid, hasLoadPicIds) < 0) {
                             var item = {
-                                src: loadImg[index].picurl,
+                                src: loadImg[index].cdnpicurl,
                                 w: this.naturalWidth || 600,
                                 h: this.naturalHeight || 400,
                                 comment: loadImg[index]

@@ -13,13 +13,13 @@ define('modules/news/estateCircleList', ['jquery', 'lazyload/1.9.1/lazyload', 'l
         // 引入用户行为分析对象-埋码
         var yhxw = require('modules/news/yhxw');
         // 判断详情页种类，传入用户行为统计对象
-        var pageId = 'mzxlistmedia';
+        var pageId = 'xw_fcq^lb_wap';
         // 埋码变量数组
         var ubParams = {
             'vmg.page': pageId
         };
         // 添加用户行为分析-埋码
-        yhxw({type: 1, pageId: pageId, params: ubParams});
+        yhxw({type: 0, pageId: pageId, params: ubParams});
         // ajax加载更多
         if (vars.totalCount > 20) {
             var loadMore = require('loadMore/1.0.0/loadMore');

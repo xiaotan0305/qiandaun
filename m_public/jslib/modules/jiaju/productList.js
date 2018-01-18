@@ -8,7 +8,9 @@ define('modules/jiaju/productList', [
     'lazyload/1.9.1/lazyload',
     'util/util',
     'modules/map/API/BMap',
-    'modules/jiaju/yhxw'
+    'modules/jiaju/yhxw',
+    'weixin/2.0.2/weixinshare',
+    'superShare/2.0.1/superShare'
 ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
@@ -44,7 +46,7 @@ define('modules/jiaju/productList', [
             loadMoreFn();
             // 用户行为
             yhxw({
-                page: 'mjjmaterial_list',
+                page: 'jj_jc^lb_wap',
                 type: 1,
                 material: vars.cid + '^' + vars.scid + '^' + vars.bid,
                 key: $('#searchtext').text(),
@@ -185,5 +187,37 @@ define('modules/jiaju/productList', [
                 loadAgoTxt: '点击加载更多...'
             });
         }
+
+         /* 分享*/
+        var detailOptions = {
+            // 分享给朋友
+            onMenuShareAppMessage: {
+                shareTitle: '家具建材大全',
+                descContent: '海量家具建材，满足您的多种装修需求，赶快进去看看！'
+            },
+            // 分享到朋友圈
+            onMenuShareTimeline: {
+                shareTitle: '家具建材大全',
+                descContent: ''
+            }
+        };
+        var Weixin = require('weixin/2.0.2/weixinshare');
+        new Weixin({
+            debug: false,
+            detailOptions: detailOptions,
+            lineLink: location.href,
+            imgUrl: 'https://static.soufunimg.com/common_m/m_public/201511/images/fang.png',
+            // 对调标题 和 描述(微信下分享到朋友圈默认只显示标题,有时需要显示描述则开启此开关,默认关闭)
+            swapTitle: false
+        });
+        var SuperShare = require('superShare/2.0.1/superShare');
+        var superShare = new SuperShare({
+            image: 'https://static.soufunimg.com/common_m/m_public/201511/images/fang.png',
+            url: location.href,
+            from: '房天下家居'
+        }, detailOptions);
+        $('.icon-share').on('click', function () {
+            superShare.share();
+        });
     };
 });

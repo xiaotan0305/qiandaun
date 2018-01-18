@@ -86,3 +86,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 build
+*.png
+*.jpg
+*.jpeg
+*.gif

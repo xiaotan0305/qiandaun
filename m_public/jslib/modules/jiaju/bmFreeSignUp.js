@@ -559,7 +559,7 @@ define('modules/jiaju/bmFreeSignUp', [
         // 点击提交按钮提示错误(如果房屋面积、手机号、验证码、城市区域、楼盘名称)
         freeApplyEnable: function () {
             var that = this;
-            if (!that.houseAreaFlag) {
+            if (that.houseArea.val() === '') {
                 that.toast('请输入您的房屋面积');
             } else if (!that.cityFlag) {
                 that.toast('请选择您的地区');

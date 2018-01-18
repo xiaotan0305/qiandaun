@@ -20,7 +20,7 @@ define('modules/bbs/index', ['jquery', 'loadMore/1.0.0/loadMore','lazyload/1.9.1
         // 用户行为对象
         var bbsbuma = require('modules/bbs/bbsbuma');
         //首页搜索动作布码
-        bbsbuma({type: 1,pageId: 'mbbshomepage',location: location});
+        bbsbuma({type: 1,pageId: 'lt_lt^sy_wap',location: location});
 
         loadMore({
             url: vars.bbsSite + '?c=bbs&a=ajaxBbsIndex' + '&city=' + vars.city,

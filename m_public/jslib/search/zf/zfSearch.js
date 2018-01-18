@@ -394,6 +394,8 @@ define('search/zf/zfSearch', ['jquery', 'search/mainSearch'],
         ZfSearch.prototype.clickListSearch = function (obj) {
             if (!obj)return;
             var that = this;
+            // 将别名过滤掉，不传给keyword
+            obj.key = obj.key.replace(/（.*）/, '');
             // 将搜索关键字写入搜索input中
             that.searchInput.val(obj.key);
             if (obj.adUrl) {

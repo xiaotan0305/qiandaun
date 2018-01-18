@@ -284,7 +284,7 @@ define('modules/xf/privilege',
             });
         });
         // 引入统计代码
-        require.async('jsub/_vb.js?c=mnhtypepage');
+        require.async('jsub/_vb.js?c=xf_lp^fyxq_wap');
         require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
             _ub.city = decodeURIComponent(vars.utf8city);
             // 业务---WAP端
@@ -299,7 +299,7 @@ define('modules/xf/privilege',
                 // 户型
                 'vmn.housetype': encodeURIComponent(vars.houseType),
                 // 所属页面
-                'vmg.page': 'mnhtypepage'
+                'vmg.page': 'xf_lp^fyxq_wap'
 
             };
             // 用户行为(格式：'字段编号':'值')

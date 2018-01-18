@@ -447,7 +447,7 @@ define('modules/xf/searchHuXingList',['jquery','util/util','iscroll/2.0.0/iscrol
         loadMore(options);
     
         // 统计行为 ------------------------------------------------------start
-        require.async('jsub/_vb.js?c=mnhlisttype');
+        require.async('jsub/_vb.js?c=xf_hx^lb_wap');
         require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
             yhxw();
         });
@@ -491,7 +491,7 @@ define('modules/xf/searchHuXingList',['jquery','util/util','iscroll/2.0.0/iscrol
             var huxing = encodeURIComponent(vars.paramroom || '');
             var pTemp = {
                 // 关注的业务
-                'vmg.page': 'mnhlisttype',
+                'vmg.page': 'xf_hx^lb_wap',
                 // 关键字
                 'vmn.key': encodeURIComponent(vars.paramkeyword),
                 // 区域

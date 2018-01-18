@@ -24,8 +24,14 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
         */
         $(".ic-zan").on('click', function () {
             if (!get_cooike('zan')) {
-                $(this).addClass('cur');
-                document.cookie="zan=zantrue";
+                if (vars.channel == 'hd') {
+                    var praise = parseInt($(this).text())+1;
+                    $(this).html('<i></i>'+praise);
+                    document.cookie="zan=zantrue";
+                } else {
+                    $(this).addClass('cur');
+                    document.cookie="zan=zantrue";
+                }
             }
         })
 
@@ -74,7 +80,7 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
                 // 分享的内容title
                 title: vars.shareTitle + '...',
                 // 分享时的图标
-                image: window.location.protocol + vars.public + '201511/images/videoshare.jpg',
+                image: window.location.protocol + vars.shareImg,
                 // 分享内容的详细描述
                 desc: vars.shareSummary + '...',
                 // 分享的链接地址
@@ -112,7 +118,7 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
                     shareTitle: vars.shareTitle,
                     descContent: vars.shareSummary,
                     lineLink: location.href,
-                    imgUrl: window.location.protocol + vars.public + '201511/images/videoshare.jpg'
+                    imgUrl: window.location.protocol + vars.shareImg
                 }, callback);
             });
         }

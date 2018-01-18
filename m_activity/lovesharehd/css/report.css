@@ -1,0 +1,66 @@
+.bg-f3{ background-color:#f3a8a8;}
+.head-info {width:100%;height:5.258rem;background: url(../images/report1.jpg) no-repeat 0 0;background-size:cover;color: #3c3f46;}
+.user-wrap {padding:1.973rem 1.06rem 0;}
+.user-img {width: 1.226rem;height: 1.226rem;border:4px solid #e94c44;border-radius: 50%;float: left;overflow: hidden;-webkit-user-select: none;user-select: none;}
+.user-img img{width:100%;height:100%;}
+.user-info {padding-left:0.24rem;float: left;}
+.user-info h3 {font-size: 0.4rem;line-height: 0.693rem;color:#400909;}
+.user-info p {font-size: 0.32rem;line-height: 0.46rem;color: #8d1d22;}
+.tel-red {display:inline-block;width:0.933rem;height:0.8rem;float: right;margin-top: 0.2rem;background: url(../images/tel-red.png) no-repeat 0 0;background-size:cover;}
+
+h3.mt{margin-top:0.2rem;height:1.467rem;line-height:1.467rem;padding:0 0.533rem;font-size:0.426rem;}
+
+.share-num{width:100%;height:6.97rem;background: url(../images/report2.jpg) no-repeat 0 0;background-size:cover;}
+.no-num{width:100%;height:2rem;background: url(../images/no-num.jpg) no-repeat 0 0;background-size:cover;}
+.no-num p{text-align: center;color:#8d1d22;line-height: 1.6rem;font-size: 0.4rem;}
+.award-tit{width:100%;height:3.01rem;background: url(../images/report3.jpg) no-repeat 0 0;background-size:cover;}
+.award-tit ul{overflow:hidden;padding:1.6rem 10% 0;}
+.award-tit li {width:50%;height:0.8rem;line-height:0.8rem;float: left; text-align: center;font-size:0.32rem;color:#941814;}
+
+.award-con li{height:1rem;padding:0 10%;line-height:1rem;background: url(../images/record-bg.jpg) no-repeat 0 0;background-size:cover;}
+.award-con li span{display: block;width:50%;float: left;text-align: center;}
+
+.more{width:100%;height:1.34rem;line-height:2rem;background: url(../images/more.jpg) no-repeat 0 0;background-size:cover;}
+.more h3{width:100%;padding-top:0.4rem;height:1rem;line-height:1rem;font-size:0.35rem;color:#400909;text-align:center;}
+
+.yestoday{width:100%;height:2.1rem;line-height:2rem;background: url(../images/report4.jpg) no-repeat 0 0;background-size:cover;}
+
+.house-wrap{width:100%;overflow: hidden;}
+.house-no{width:100%;height:1.6rem;background: url(../images/house-no.jpg) no-repeat 0 0;background-size:cover;}
+.house-wrap li{width:80%;height:2.5rem;padding:0.37rem 10% 0;background: url(../images/report5.jpg) no-repeat 0 0;background-size:cover;}
+.house-no p{text-align: center;color:#8d1d22;line-height: 1.6rem;font-size: 0.4rem;}
+.house{overflow: hidden;}
+.house-img{width:2.98rem;height:2.37rem; float: left;}
+.house-img img{width:100%;height:100%;}
+.house-info{width:4.7rem;padding-left:0.25rem;overflow:hidden;position: relative;}
+.house-info p{color:#400909;}
+.house-info p.ip{font-size: 0.426rem;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;}
+.house-info .ip span{font-size: 0.35rem;margin-left:0.2rem;}
+.house-info p.meter{font-size: 0.32rem;}
+.house-info p.pt{padding-top: 0.4rem;}
+.house-info span.price{display:inline-block;position: absolute;right:0;top:0.88rem;color:#ff343e;font-size: 0.373rem;font-weight: bold;}
+.rank-tit{width:100%;height:1.86rem;background: url(../images/rank.jpg) no-repeat 0 0;background-size:cover;}
+.rank-tit h3{width:100%;padding-top:0.6rem;height:0.8rem;line-height:0.8rem;font-size:0.42rem;color:#8d1d22;text-align: center;font-weight: bold;}
+.rank{width:86.8%;height:10.38rem;padding:0 6.6%;background: url(../images/table-bg.jpg) no-repeat 0 0;background-size:cover;}
+.rank table{width:100%;}
+.rank th,.rank td{ text-align: center;width:35%;text-overflow:hidden;overflow: hidden;white-space: nowrap;}
+.rank th:nth-child(1),.rank td:nth-child(1){width:30%;}
+.rank th{line-height:1.12rem;color:#941814;font-size: 0.346rem;}
+.rank td{line-height:0.93rem; }
+.top1,.top2,.top3{display:inline-block;width:0.426rem;vertical-align:middle;border-radius:50%;height:0.426rem;line-height:0.426rem; background-color:#d8403d;color: #fff;}
+.top2{ background-color:#ff9a1f;}
+.top3{ background-color:#b3b6be;}
+.join{width:100%;height:2.33rem;background: url(../images/report7.jpg) no-repeat 0 0;background-size:cover;padding-top:0.53rem;}
+.page-bot{width:100%;height:2.06rem;background: url(../images/report8.jpg) no-repeat 0 0;background-size:cover;}
+.join-btn{display:block;width:8.133rem;height:1.06rem;background: url(../images/join-btn.png) no-repeat 0 0;background-size:cover;margin:0 auto;}
+.join p{padding-top:0.3rem;font-size:0.293rem;color:#b6685c;text-align: center;}
+
+.dwBox{font-size: 0.34rem;font-weight: bold;color:#6C3E38;margin: 0 0.8rem 0.1rem; padding-top:0.2rem;}
+.dwBox .flor {float: right;}
+.zssm{text-align:center;}
+.zssm span{position:relative; padding-left:0.32rem; font-size:0.32rem; white-space: nowrap;}
+.zssm span:before{content:''; position:absolute; left:0; top:50%; margin-top:-0.08rem; width:0.16rem; height:0.16rem; border-radius:50%;}
+.zssm span.blue{margin-right:0.6rem; color:#F8904A;}
+.zssm span.blue:before{background:#F8904A;}
+.zssm span.red{color:#FBA79C;}
+.zssm span.red:before{background:#FBA79C;}

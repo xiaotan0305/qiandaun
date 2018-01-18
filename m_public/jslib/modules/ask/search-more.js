@@ -58,6 +58,6 @@ define('modules/ask/search-more', ['jquery', 'loadMore/1.0.0/loadMore', 'modules
 
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 1, pageId: 'masearch'});
+        yhxw({type: 1, pageId: 'wd_wd^ss_wap'});
     };
 });

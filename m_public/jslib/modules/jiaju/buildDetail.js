@@ -17,7 +17,7 @@ define('modules/jiaju/buildDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'super
         var size = 20;
         var storageType = 'jiaju_build_favorite';
         // 搜索用户行为收集20160114
-        var page = 'mjjmaterialpage';
+        var page = 'jj_qjd^xq_wap';
 
         //20160427新增
         var getmore = $('#getmore');
@@ -322,7 +322,7 @@ define('modules/jiaju/buildDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'super
             var b = 0;
             var p = {
                 'vmg.page': page,
-                'vmh.brand': vars.BrandName,
+                'vmh.brand': encodeURIComponent(vars.BrandName),
                 'vmh.materialid': vars.pid
             };
             // 例如_ub.collect(0,{'mhi':' 123456','mh4':'2^4','mh2':'现代简约'})

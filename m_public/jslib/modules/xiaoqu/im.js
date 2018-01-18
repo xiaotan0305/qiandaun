@@ -75,6 +75,7 @@ define('modules/xiaoqu/im', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yhx
                     + '&type=wapesf&houseid=' + houseid + '&purpose=' + paramPurpose + '&housetype='
                     + vars.housetype;
             }, 500);
+            var yhxw = require('modules/esf/yhxw');
             yhxw({type: 24, pageId: 'mesfpage'});
         }
     };

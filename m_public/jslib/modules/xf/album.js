@@ -62,7 +62,7 @@ define('modules/xf/album', ['jquery', 'util/util', 'klass/1.0/klass', 'photoswip
                     p[temp] = pTemp[temp];
                 }
             }
-            p['vmg.page'] = 'mnhphotopage';
+            p['vmg.page'] = 'xf_lp^xcxq_wap';
             p['vmn.phototype'] = '';
             p['vmg.sourceapp'] = vars.is_sfApp_visit + '^xf';
             _ub.collect(b, p); // 收集方法
@@ -276,7 +276,7 @@ define('modules/xf/album', ['jquery', 'util/util', 'klass/1.0/klass', 'photoswip
 			// 浏览收集方法
 			_ub.collect(0, {
 				// 所属页面
-				'vmg.page': 'mnhphotopage',
+				'vmg.page': 'xf_lp^xcxq_wap',
 				// 楼盘id
 				'vmn.projectid': vars.newcode,
 				// 相册类型
@@ -284,7 +284,7 @@ define('modules/xf/album', ['jquery', 'util/util', 'klass/1.0/klass', 'photoswip
 			});
 		}
 
-		require.async('jsub/_vb.js?c=mnhphotopage');
+		require.async('jsub/_vb.js?c=xf_lp^xcxq_wap');
 		require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
             yhxw1();
             //yhxw();

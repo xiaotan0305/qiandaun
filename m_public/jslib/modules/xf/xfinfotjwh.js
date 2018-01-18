@@ -31,8 +31,8 @@ define('modules/xf/xfinfotjwh', [
     var sfut = Util.getCookie('sfut');
     var IScrolllist = require('iscroll/2.0.0/iscroll-lite');
     
-    if(document.referrer.indexOf('baidu.com')>-1){
-    $('.topDownload').hide();
+    if(document.referrer.indexOf('baidu.com')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')<0 ){
+    	$('.topDownload').show();
     }
     function showOverflow() {
         document.addEventListener('touchmove', preventDefault);
@@ -60,6 +60,7 @@ define('modules/xf/xfinfotjwh', [
     // 统计行为 --------------start
     var ubloaded = false;
     var showlocation;
+    showlocation = $('.tabNav .active span').html();
 
 	// 大首页大搜索执行初始化
 	var search = new Search();
@@ -90,7 +91,7 @@ define('modules/xf/xfinfotjwh', [
         var pt = {
             // 楼盘id
             'vmn.projectid': vars.ubhouseid,
-            'vmg.page': 'mnhpageproject',
+            'vmg.page': 'xf_lp^lpsy_wap',
             // 物业类型
             'vmn.genre': encodeURIComponent(vars.ubpurpose),
             // 楼盘特色
@@ -107,7 +108,8 @@ define('modules/xf/xfinfotjwh', [
             'vmn.opentime': kpsj,
             // 装修
             'vmn.fixstatus': encodeURIComponent(vars.ubfitment),
-            'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
+            'vmg.sourceapp':vars.is_sfApp_visit + '^xf',
+            'vmn.showlocation': encodeURIComponent(showlocation)
         };
         var p = {};
         // 若pt中属性为空或者无效，则不传入p中
@@ -199,19 +201,9 @@ define('modules/xf/xfinfotjwh', [
                 }
             });
         };
-        // 查看浏览位置统计(初始化)
-        showlocationtj();
         ubloaded = true;
     }
 
-    // 查看浏览位置统计(初始化、点击、滑动)
-    function showlocationtj() {
-        showlocation = $('.tabNav .active span').html();
-        _ub.collect(0, {
-            // 浏览位置
-            'vmn.showlocation': encodeURIComponent(showlocation)
-        });
-    }
 
     // 查看更多统计(直销专用)
     function lookMoretj() {
@@ -256,7 +248,7 @@ define('modules/xf/xfinfotjwh', [
         lhbtj();
     });
 
-    require.async('jsub/_vb.js?c=mnhpageproject');
+    require.async('jsub/_vb.js?c=xf_lp^lpsy_wap');
     require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
         yhxw();
     });
@@ -825,11 +817,7 @@ define('modules/xf/xfinfotjwh', [
     var shoucang = $('.icon-fav, .collect');
     var fangName = $('#title').text();
     shoucang.on('click', function () {
-        if (!userid) {
-            alert('请登录后再进行收藏操作！');
-            window.location.href = 'https://m.fang.com/passport/login.aspx?burl=http%3a%2f%2fm.fang.com%2fxf%2f' + vars.paramcity + '/' + vars.paramid + '.htm?' + Math.random();
-            return;
-        } else {
+        if (sfut) {
             var selectId = $(this).attr('name');
             // 如果已经收藏
             if ($(this).hasClass('on')) {
@@ -854,10 +842,14 @@ define('modules/xf/xfinfotjwh', [
                             // 收藏的统计行为
                             consultantyhxw(21, yhxw);
                         } else {
-                            showMessage('收藏失败');
+                            showMessage('收藏失败,请稍后再试');
                         }
                     });
             }
+        }else{
+        	alert('请登录后再进行收藏操作！');
+            window.location.href = 'https://m.fang.com/passport/login.aspx?burl=http%3a%2f%2fm.fang.com%2fxf%2f' + vars.paramcity + '/' + vars.paramid + '.htm?' + Math.random();
+            return;
         }
     });
 
@@ -2454,7 +2446,7 @@ define('modules/xf/xfinfotjwh', [
 
 	// --------------wap新房楼盘详情页3.1&3.2期,2017年6月23日------------------------------
 	var startX, startY, moveEndX, moveEndY, X, Y;
-	if(vars.vrT!='1'){
+	if(vars.paramid != '1210126154'){
 	$('.topFocus').on('touchstart', function(e) {
 		//e.preventDefault();
 		startX = e.originalEvent.changedTouches[0].pageX;

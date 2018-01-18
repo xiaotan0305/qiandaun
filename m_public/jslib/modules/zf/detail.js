@@ -117,19 +117,35 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
         }
 
         // 判断详情页种类，传入用户行为统计对象
-        if (parseInt(vars.housetype) === 1) {
-            // 电商详情页
-            pageId = 'mzfpagebiz';
+        if (vars.housetype === 'DS') {
+            pageId = 'zf_fy^dsxq_wap';
+        } else if (vars.housetype === 'DSHZ') {
+            pageId = 'zf_fy^dshzxq_wap';
         } else if (vars.housetype === 'JX') {
-            // 个人房源详情页
-            pageId = 'mzfpagepersonal';
-        } else if (vars.housetype === 'WAGT') {
-            // 经纪人房源详情页
-            pageId = 'mzfpageagent';
+            if (vars.purpose === '住宅') {
+                pageId = 'zf_fy^grxq_wap';
+            } else if (vars.purpose === '商铺') {
+                pageId = 'zf_fy^grspxq_wap';
+            } else if (vars.purpose === '写字楼') {
+                pageId = 'zf_fy^grxzlxq_wap';
+            }
+        } else if (vars.housetype === 'WAGT' || vars.housetype === 'AGT') {
+            if (vars.purpose === '住宅') {
+                pageId = 'zf_fy^xq_wap';
+            } else if (vars.purpose === '别墅') {
+                pageId = 'zf_fy^bsxq_wap';
+            } else if (vars.purpose === '商铺') {
+                pageId = 'zf_fy^spxq_wap';
+            } else if (vars.purpose === '写字楼') {
+                pageId = 'zf_fy^xzlxq_wap';
+            }
+        } else if (vars.housetype === 'JHWAGT' || vars.housetype === 'JHAGT') {
+            pageId = 'zf_fy^yxxq_wap';
+        } else if (vars.housetype === 'JGYAGT' || vars.housetype === 'FGYAGT') {
+            pageId = 'zf_fy^ppgyxq_wap';
         }
-
         // 浏览该页面统计
-        yhxw({type: 0});
+        yhxw({pageId: pageId});
 
         /**
          * 根据索引值设置滚动到固定索引经纪人评论的评论内容节点，显示出来并设置激活类名
@@ -202,6 +218,8 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                     data: {
                         city: vars.city,
                         houseid: vars.houseid,
+                        groupid: vars.groupid,
+                        esfsubtype: vars.housetype.indexOf('JH') > -1 ? 'yx' : '',
                         roomid: roomID,
                         projcode: vars.projcode,
                         purpose: vars.purpose,
@@ -210,7 +228,7 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                     },
                     success: function (data) {
                         if (data.result_code === '100' || data.resultcode === '100') {
-                            $collectBtn.addClass('btn-faved on');
+                            $collectBtn.addClass('btn-faved cur');
                         }
                     }
                 });
@@ -274,9 +292,20 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
             }
             $.ajax(url);
             setTimeout(function () {
-                window.location = vars.mainSite + 'chat.d?m=chat&username=' + uname + '&city=' + city
+                var imHref = vars.mainSite + 'chat.d?m=chat&username=' + uname + '&city=' + city
                     + '&type=wapzf&houseid=' + $.trim(houseid) + '&purpose=' + paramPurpose
-                    + '&housetype=' + vars.housetype + '&groupId=' + groupid;
+                    + '&housetype=' + vars.housetype;
+                if (groupid) {
+                    imHref += '&groupId=' + groupid;
+                }
+                // 无线2.0增加agentid参数
+                if (agentid) {
+                    imHref += '&agentid=' + agentid;
+                }
+                if (vars.listtype === '1') {
+                    imHref += '&ShopType=wxsfb2.0';
+                }
+                window.location = imHref;
             }, 500);
         }
 
@@ -317,9 +346,17 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
             }
             $.ajax(weituoUrl);
             setTimeout(function () {
-                window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city
+                var imHref = '/chat.d?m=chat&username=' + uname + '&city=' + city
                     + '&type=wapzf&houseid=' + $.trim(houseid) + '&purpose=' + paramPurpose
                     + '&housetype=' + vars.housetype;
+                // 无线2.0增加agentid参数
+                if (agentid) {
+                    imHref += '&agentid=' + agentid;
+                }
+                if (vars.listtype === '1') {
+                    imHref += '&ShopType=wxsfb2.0';
+                }
+                window.location = imHref;
             }, 500);
             yhxw({type: 24, pageId: pageId});
         }
@@ -502,7 +539,7 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
             /**
              * 点击房源评价中的更多按钮
              */
-            $moreBtn.on('click', function () {
+            $moreBtn.not('.classification').on('click', function () {
                 var $this = $(this);
                 var $parent = $this.closest('li');
                 if ($parent.length > 0) {
@@ -829,17 +866,16 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                     timeout: 3000,
                     url: vars.mySite + '?c=mycenter&a=ajaxAddMySelectOfFangYuan&city='
                     + vars.city + '&houseid=' + houseID + '&housetype=' + vars.housetype
-                    + '&LeaseStyle=' + LeaseStyle + '&channel=rent',
+                    + '&LeaseStyle=' + LeaseStyle + '&channel=rent&groupid=' + vars.groupid
+                    + '&agentid=' + vars.agentid,
                     success: function (data) {
                         if (data.userid) {
                             if (data.myselectid) {
                                 showCollectTips('添加收藏成功');
-                                $collectBtn.addClass('btn-faved');
-                                $collectBtn.addClass('on');
+                                $collectBtn.addClass('btn-faved cur');
                             } else {
                                 showCollectTips('已取消收藏');
-                                $collectBtn.removeClass('btn-faved');
-                                $collectBtn.removeClass('on');
+                                $collectBtn.removeClass('btn-faved cur');
                             }
                         } else {
                             // 登录地址修改 20160905 lina
@@ -1062,7 +1098,7 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
 
 
         // 经纪人弹框
-        if (vars.housetype === 'JHAGT' || vars.housetype === 'JHDS' || vars.housetype === 'JHDSHZ') {
+        if (vars.housetype === 'JHAGT' || vars.housetype === 'JHWAGT' || vars.housetype === 'JHJP') {
             var $conBox = $('.conbox');
             // jJr列表滑动
             $('#jjrList').find('ul').css({'height':'100%','z-index':'9999','overflow':'auto'});
@@ -1180,6 +1216,72 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                 autoplayDisableOnInteraction: false,
                 observer: true,
                 observeParents: true,
+            });
+        }
+        // 房源描述修改（WAGT和AGT用新样式）
+        if ($('.more_xq').hasClass('classification')) {
+            var el = $(this);
+            var morebutt = el.siblings('.more_xq');
+            var pHeight = parseInt(el.children('div').height());
+            var maxHeight = parseInt(el.css('max-height'));
+            if (pHeight > maxHeight) {
+                morebutt.show();
+            }
+            // 房源描述模块的唯一标识
+            var fymsList = $('.fymsList'),
+            // 房源描述中每个小标题中段落之和
+                sumfyms = 0,
+            // 默认展示的最大行数之和的总高度
+                defaultULHeight = parseInt(fymsList.find('p').css('line-height')) * 10,
+            // 默认需要展示的小标题的个数
+                linum = 0,
+            // h3小标题的高度
+                h3Height = parseInt(fymsList.find('h3').css('height')) + parseInt(fymsList.find('h3').css('margin-bottom')),
+            // li的padding高度
+                LiPaddingTop = parseInt(fymsList.find('li').css('padding-bottom'));
+
+            // 获取每个p的实际高度
+            fymsList.find('li').each(function () {
+                var that = $(this);
+                // 看看最多展示几个
+                if (sumfyms < defaultULHeight) {
+                    linum += 1;
+                }
+                // 所有p的高度之和
+                sumfyms += parseInt(that.css('height'));
+            });
+            // 所有p之和与默认高度对比，如果大于，则要先合上
+            if (sumfyms > defaultULHeight) {
+                fymsList.find('a').css('display', 'block');
+                fymsList.find('ul').css({'max-height': (h3Height + LiPaddingTop) * linum + defaultULHeight, 'overflow': 'hidden'});
+            }
+            // 如果有展开合上的按钮，则要实现展开合上的功能
+            fymsList.children('a').on('click', function () {
+                var that = $(this);
+                if (that.hasClass('up')) {
+                    that.removeClass('up');
+                    fymsList.find('ul').css({'max-height': (h3Height + LiPaddingTop) * linum + defaultULHeight, 'overflow': 'hidden'});
+                } else {
+                    that.addClass('up');
+                    fymsList.find('ul').css({'max-height': '', 'overflow': ''});
+                }
+            });
+        }
+        // 租房同小区曝光率统计
+        if (vars.zftxqbg) {
+            $.ajax({
+                type: 'post',
+                url: window.location.protocol + '//esfbg.3g.fang.com/topzftxqbg.htm',
+                data: vars.zftxqbg
+            });
+        }
+
+        // 租房同价位曝光率统计
+        if (vars.zftjwbg) {
+            $.ajax({
+                type: 'post',
+                url: window.location.protocol + '//esfbg.3g.fang.com/topzftjwbg.htm',
+                data: vars.zftjwbg
             });
         }
     };

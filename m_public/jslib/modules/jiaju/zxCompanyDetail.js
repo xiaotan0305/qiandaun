@@ -138,7 +138,7 @@ define('modules/jiaju/zxCompanyDetail', [
 
             // 浏览用户行为
             yhxw({
-                page: 'mjjzxcompanydetail',
+                page: 'jj_gs^xq_wap',
                 companyid: vars.companyid
             });
         }
@@ -250,7 +250,7 @@ define('modules/jiaju/zxCompanyDetail', [
                                     toastFn(data.CollectStatus === '1' ? '收藏成功' : '取消收藏成功');
                                     // 收藏用户行为统计
                                     yhxw({
-                                        page: 'mjjzxcompanydetail',
+                                        page: 'jj_gs^xq_wap',
                                         type: data.CollectStatus === '1' ? 21 : 91,
                                         companyid: vars.companyid
                                     });
@@ -266,9 +266,21 @@ define('modules/jiaju/zxCompanyDetail', [
             contact.on('click', function () {
                 // 在线咨询用户行为统计
                 yhxw({
-                    page: 'mjjzxcompanydetail',
+                    page: 'jj_gs^xq_wap',
                     type: 24,
                     companyid: vars.companyid
+                });
+                //获取服务器时间戳
+                var content = '';
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetServerDate', function(info){
+                    if (vars.localStorage) {
+                        var lastTime = vars.localStorage.getItem('firminfo_'+vars.companyid);
+                        if (info - lastTime > 1800) {
+                            //需要更新状态
+                            vars.localStorage.setItem('firminfo_'+vars.companyid, info);
+                            content = encodeURIComponent($('title').text()+window.location.href);
+                        }
+                    }
                 });
                 // ajax获取IM信息
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZxIm&city=' + vars.city + '&companyid=' + vars.companyid, function (data) {
@@ -277,7 +289,7 @@ define('modules/jiaju/zxCompanyDetail', [
                             vars.localStorage.setItem(String('h:' + data.soufunname), encodeURIComponent(vars.storename) + ';' + data.img
                                 + ';;');
                         }
-                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome';
+                        window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }
@@ -287,7 +299,7 @@ define('modules/jiaju/zxCompanyDetail', [
             // 打电话用户行为统计
             $('.icon4').on('click', function () {
                 yhxw({
-                    page: 'mjjzxcompanydetail',
+                    page: 'jj_gs^xq_wap',
                     type: 31,
                     companyid: vars.companyid
                 });
@@ -383,7 +395,7 @@ define('modules/jiaju/zxCompanyDetail', [
             ajaxflag.checkVerifyCode = false;
             // 免费预约用户行为统计
             yhxw({
-                page: 'mjjzxcompanydetail',
+                page: 'jj_gs^xq_wap',
                 type: 554,
                 companyid: vars.companyid,
                 phone: phoneCode.val().trim()

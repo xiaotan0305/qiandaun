@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+* {margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";background:#060529; background-size:100%}
+body.choose{height: 100%;overflow: hidden;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {color:#fff;text-decoration:none;}
+html,body{ height: 100%;}
+em,i{font-style:normal;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;} 
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.flexbox{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:horizontal; box-orient:horizontal;}
+.flexbox > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1;}
+body:not(:-moz-handler-blocked) .flexbox { width: 100%;} /*for FF*/
+.flexbox-v{ display: box; display: -webkit-box; display: -moz-box; display: -ms-box; -webkit-box-orient:vertical; box-orient:vertical;}
+.flexbox-v > *{ display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1;}
+img{ width: 100%;}
+.pd10{ padding: 10px;}
+.pdX10{ padding-left:10px;padding-right:10px;}
+.pdX30{ padding-left:0.3rem;padding-right:0.3rem;}
+.pdY18{ padding-top:18px;padding-bottom:18px;}
+.mt5{ margin-top:5px !important;} 
+.mgY20{ margin-top:20px;margin-bottom:20px;}  
+.mgt20{ margin-top:20px;}  
+.main{ position:relative; width:100%;height:100%; max-width:750px;margin: 0 auto;}
+.page1{ background:url(../images/fcqYearCourse/p1.jpg) no-repeat;background-size:100%}
+.page1-1{background:url(../images/fcqYearCourse/p1_1.jpg) no-repeat;background-size:100%}
+.page2{ background:url(../images/fcqYearCourse/p2.jpg) no-repeat;background-size:100%}
+.page3{ background:url(../images/fcqYearCourse/p3.jpg) no-repeat;background-size:100%}
+.page4{ background:url(../images/fcqYearCourse/p4.jpg) no-repeat;background-size:100%}
+.page5{ background:url(../images/fcqYearCourse/p5.jpg) no-repeat;background-size:100%}
+.btn101{position: absolute;bottom:2rem;left:50%;margin-left:-2.3rem;width:4.6rem;height:1.29rem;}
+.page1-1-01{background:url(../images/fcqYearCourse/p1-01.png) no-repeat;background-size:100%;width:3.09rem;height:0.72rem;line-height:0.72rem; text-align:center;font-size:0.48rem;color:#fff;position: absolute;top:5.66rem;left:50%;margin-left:-1.545rem}
+.txt01{position: absolute;top:1.28rem;right:2.16rem;font-size:0.3rem;color:#fff; text-align:right}
+.txt01 em{font-size:0.36rem;color:#f8ff00}
+.txt02{position: absolute;top:5.22rem;left:1.38rem;font-size:0.3rem;color:#fff;}
+.txt02 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt03{position: absolute;top:9.04rem;left:2.7rem;font-size:0.3rem;color:#fff;}
+.txt03 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt04{position: absolute;top:1.31rem;left:2.28rem;font-size:0.3rem;color:#fff;}
+.txt04 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt05{position: absolute;top:5.04rem;right:1.04rem;font-size:0.3rem;color:#fff; text-align:right}
+.txt05 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt06{position: absolute;top:8.57rem;right:1.72rem;font-size:0.3rem;color:#fff; text-align:right}
+.txt06 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt07{position: absolute;top:2.06rem;left:50%;font-size:0.3rem;color:#fff; text-align:center;width:4.40rem;margin-left:-2.2rem;line-height:0.65rem}
+.txt07 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.txt08{position: absolute;top:3.5rem;left:50%;font-size:0.3rem;color:#fff; text-align:center;width:5.42rem;margin-left:-2.71rem;line-height:0.72rem}
+.txt08 em{font-size:0.36rem;color:#f8ff00;padding:0 4px}
+.drop-up{position:absolute;width:0.5rem;height:0.56rem;bottom:.2rem;left:50%;margin-left:-.16rem;background:url(../images/fcqYearCourse/up.png) no-repeat;background-size:100% auto;-webkit-animation:drop-up 1.5s ease infinite both;animation:drop-up 1.5s ease infinite both}
+.btn102,.btn103{width:3.34rem;height:1.26rem;position:absolute;bottom:1.73rem;left:0.3rem;}
+.btn103{left:3.88rem}
+.btn104,.btn105{width:6.04rem;height:1.23rem;position:absolute;bottom:2.6rem;left:50%;margin-left:-3.02rem;line-height:0}
+.btn105{bottom:1.06rem;}
+
+
+/* drop-up */
+@-webkit-keyframes drop-up{0%{opacity:0;-webkit-transform:translate3d(0,8px,0);transform:translate3d(0,8px,0)}
+    50%{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+    100%{opacity:0;-webkit-transform:translate3d(0,-8px,0);transform:translate3d(0,-8px,0)}
+}
+
+@keyframes drop-up{0%{opacity:0;-webkit-transform:translate3d(0,8px,0);transform:translate3d(0,8px,0)}
+    50%{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+    100%{opacity:0;-webkit-transform:translate3d(0,-8px,0);transform:translate3d(0,-8px,0)}
+}
+
+/* fadeIn */
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration:2s;
+    animation-duration:2s;
+}
+.fadeIn.d4{  -webkit-animation-duration:4s;
+    animation-duration:4s;}
+.fadeIn.d6{  -webkit-animation-duration:6s;
+    animation-duration:6s;}
+
+
+/*动画效果*/
+.fadeInBottom{-webkit-animation: fadeInBottom 1s ease-in-out .5s both;animation: fadeInBottom 1s ease-in-out .5s both;}
+.fadeInBottom1{-webkit-animation: fadeInBottom 0.5s ease-in-out .5s both;animation: fadeInBottom 0.5s ease-in-out .5s both;}
+.fadeInCenter{-webkit-animation: fadeInCenter 1s ease-in-out  both;animation: fadeInCenter 1s ease-in-out both;}
+/*fadeInBottom*/
+@-webkit-keyframes fadeInBottom{
+    0%{-webkit-transform:translate3d(0, 100px, 0);transform:translate3d(0, 100px, 0);opacity:0;}
+    100%{ -webkit-transform:translate3d(0, 0, 0); opacity:1}
+}
+@keyframes fadeInBottom{
+    0%{-webkit-transform:translate3d(0, 100px, 0);transform:translate3d(0, 100px, 0);opacity:0;}
+    100%{ -webkit-transform:translate3d(0, 0, 0); opacity:1}
+}
+/* fadeInCenter */
+@-webkit-keyframes fadeInCenter{0%{-webkit-transform:rotate(0deg) scale(0);transform:rotate(0deg) scale(0)}
+    100%{-webkit-transform:rotate(360deg) scale(1);transform:rotate(360deg) scale(1)}
+}
+@keyframes fadeInCenter{0%{-webkit-transform:rotate(0deg) scale(0);transform:rotate(0deg) scale(0)}
+    100%{-webkit-transform:rotate(360deg) scale(1);transform:rotate(360deg) scale(1)}
+}
+
+
+

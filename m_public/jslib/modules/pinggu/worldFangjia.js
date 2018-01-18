@@ -63,8 +63,6 @@ define('modules/pinggu/worldFangjia', ['jquery', 'modules/world/yhxw', 'iscroll/
         })();
         // 显示城市筛选框
         var showCity = (function () {
-            // 使包裹层id唯一
-            var sequence = 0;
             var showid = null;
             var posLog = null;
             var $showcity = null;
@@ -75,14 +73,6 @@ define('modules/pinggu/worldFangjia', ['jquery', 'modules/world/yhxw', 'iscroll/
                     $showcity.show().siblings().hide().find('dd').removeClass('active');
                     $showcity.find('.active').length || $showcity.children().eq(0).addClass('active');
                 } else if (showid) {
-                    // 如果当前dl不是父元素的第一个子元素，外层包裹一层使其成为父元素的第一个子元素，用于添加滚动
-                    if ($showcity.index()) {
-                        $showcity.wrap('<div id="scroll-wrap' + sequence + '"></div>').parent().css({
-                            overflow: 'hidden',
-                            height: '100%'
-                        });
-                        sequence++;
-                    }
                     // 添加滚动条的父元素id
                     var scrollId = $showcity.parent()[0].id;
                     posLog = posLog || refreshPosLog('#' + scrollId);

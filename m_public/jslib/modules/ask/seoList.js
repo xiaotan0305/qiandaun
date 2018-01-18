@@ -25,7 +25,7 @@ define('modules/ask/seoList', ['jquery', 'iscroll/1.0.0/iscroll', 'modules/ask/y
         });
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 1, pageId: 'malistjuhe'});
+        yhxw({type: 1, pageId: 'wd_wd^jh_wap'});
 
         /**
          * 为了方便解绑事件，声明一个阻止页面默认事件的函数

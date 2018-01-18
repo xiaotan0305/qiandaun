@@ -21,13 +21,13 @@ define('modules/jiaju/sjsList',[
         var yhxw = require('modules/jiaju/yhxw');
         if (vars.companyid) {
             yhxw({
-                page: 'mjjlistdesigner',
+                page: 'jj_sjs^lb_wap',
                 type: 1,
                 companyid: vars.companyid
             });
         } else {
             yhxw({
-                page: 'mjjlistdesigner',
+                page: 'jj_sjs^lb_wap',
                 type: 1,
                 key: $('#searchtext').text().trim(),
                 style: $('#style').text().trim(),

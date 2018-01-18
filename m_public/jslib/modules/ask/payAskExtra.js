@@ -30,6 +30,12 @@ define('modules/ask/payAskExtra',['photoswipe/4.0.7/photoswipe', 'photoswipe/4.0
                 });
                 str = imgStr.join(',');
             }
+            //从房产圈跳转到的付费提问页地址里增加参数from=fcq
+            if (vars.from) {
+                var from = vars.from;
+            } else {
+                var from = '';
+            }
             $.ajax({
                 url:vars.askSite + '?c=ask&a=ajaxPayPostAsk',
                 data : {
@@ -37,7 +43,8 @@ define('modules/ask/payAskExtra',['photoswipe/4.0.7/photoswipe', 'photoswipe/4.0
                     answerUserId : vars.expertId,
                     askPrice : vars.price,
                     cityname : $city,
-                    imgStr : str
+                    imgStr : str,
+                    from : from,
                 },
                 success:function(data){
                     if(data.code){

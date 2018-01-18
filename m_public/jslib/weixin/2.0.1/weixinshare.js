@@ -7,9 +7,10 @@
  * @param {Object} f function
  */
 
-(function(w, f) {
+(function (w, f) {
+    'use strict';
     if (typeof define === 'function') {
-        define('weixin/2.0.1/weixinshare', ['jquery'], function(require) {
+        define('weixin/2.0.1/weixinshare', ['jquery'], function (require) {
             var $ = require('jquery');
             return f($, require);
         });
@@ -18,7 +19,8 @@
     } else {
         w.Weixin = f();
     }
-})(window, function($, require) {
+})(window, function ($, require) {
+    'use strict';
     $ = $ || window.$;
     if (require) {
         require = seajs.use;
@@ -120,22 +122,45 @@
             qzUrl = mainSite + 'common_m/m_public/jslib/weixin/qzapi.js';
         var urlArr = [];
         if (this.isWX && !window.wx) {
-            urlArr.push(wxUrl);
+            if (require) {
+                require(['weixin/jweixin-1.0.0'], function (wx) {
+                    that.wx = window.wx = wx;
+                    that.init();
+                });
+            }else {
+                urlArr.push(wxUrl);
+            }
         } else if (this.isQQ && !window.mqq) {
-            urlArr.push(qqUrl);
+            if (require) {
+                require(['weixin/qqapi'], function (qq) {
+                    that.qq = window.mqq = qq;
+                    that.init();
+                });
+            }else {
+                urlArr.push(qqUrl);
+            }
         } else if (this.isQZ && !window.QZAppExternal) {
-            urlArr.push(qzUrl);
+            if (require) {
+                require(['weixin/qzapi'], function (qz) {
+                    that.qz = window.QZAppExternal = qz;
+                    that.init();
+                });
+            }else {
+                urlArr.push(qzUrl);
+            }
         }
         if (!$) {
             urlArr.push(mainSite + 'common_m/m_public/jslib/jquery/2.1.4/jquery.js');
         }
 
-        this.createScript(urlArr, function() {
+        this.createScript(urlArr, function () {
             $ = $ || window.$;
-            that.wx = that.wx || window.wx;
-            that.qq = that.qq || window.mqq;
-            that.qz = that.qz || window.QZAppExternal;
-            that.init();
+            if (!require) {
+                that.wx = that.wx || window.wx;
+                that.qq = that.qq || window.mqq;
+                that.qz = that.qz || window.QZAppExternal;
+                that.init();
+            }
         });
         this.succfn = succfn;
         this.errfn = errfn;
@@ -143,12 +168,12 @@
 
     Weixin.prototype = {
         constructor: Weixin,
-        init: function() {
+        init: function () {
             var that = this,
                 wx = that.wx;
             // 微信
             if (that.isWX) {
-                that.getConfig(function(config) {
+                that.getConfig(function (config) {
                     // 微信配置
                     wx.config({
                         debug: that.options.debug,
@@ -166,13 +191,13 @@
                         ]
                     });
 
-                    wx.ready(function() {
+                    wx.ready(function () {
                         // 运行微信的API
                         that.runWxAPI();
                         // 自动播放音频
                         that.playAudio();
                     });
-                }, function(data) {
+                }, function (data) {
                     console.error('微信接口请求失败', data);
                 });
             } else if (that.isQQ) {
@@ -196,7 +221,7 @@
          * @param urlArr [url1,url2...] url地址组
          * @param loadedFn 加载完成回调
          */
-        createScript: function(urlArr, loadedFn) {
+        createScript: function (urlArr, loadedFn) {
             var doc = document;
             var head = doc.head || (doc.getElementsByTagName('head')[0] || doc.documentElement);
             var i = 0,
@@ -204,15 +229,15 @@
                 n = 0;
             if (len) {
                 for (; i < len; i++) {
-                    (function(i) {
+                    (function (i) {
                         var spt = doc.createElement('script');
-                        spt.onload = function() {
+                        spt.onload = function () {
                             n++;
                             if (n === len) {
                                 loadedFn && loadedFn();
                             }
                         };
-                        spt.onerror = function() {
+                        spt.onerror = function () {
                             n++;
                             console.error(urlArr[i] + '加载失败');
                         };
@@ -226,7 +251,7 @@
                 loadedFn && loadedFn();
             }
         },
-        getConfig: function(succfn, errfn) {
+        getConfig: function (succfn, errfn) {
             var reg = /test\.|local/;
             var urlOrigin = reg.test(location.origin) ? location.protocol + '//m.test.fang.com' : location.protocol + '//m.fang.com';
             $.ajax({
@@ -236,11 +261,11 @@
                     shareurl: encodeURIComponent(location.href)
                 },
                 dataType: 'jsonp',
-                success: function(data) {
+                success: function (data) {
                     data.timestamp = parseInt(data.timestamp);
                     succfn && succfn(data);
                 },
-                error: function(data) {
+                error: function (data) {
                     errfn && errfn(data);
                 }
             });
@@ -251,12 +276,12 @@
          * @param url
          * @returns {*}
          */
-        https2http: function(url) {
+        https2http: function (url) {
             var that = this;
             return that.os === 'android' ? url.replace('https', 'http') : url;
             // return that.androidVer <= 5.1 ? url.replace('https','http') : url;
         },
-        runWxAPI: function() {
+        runWxAPI: function () {
             var that = this,
                 wx = that.wx;
 
@@ -274,7 +299,7 @@
                     'getNetworkType',
                     'previewImage'
                 ],
-                success: function() {
+                success: function () {
 
                 }
             });
@@ -285,21 +310,21 @@
                 desc: that.options.descContent,
                 link: that.options.lineLink,
                 imgUrl: that.https2http(that.options.imgUrl),
-                trigger: function() {
+                trigger: function () {
                     // alert('用户点击发送给朋友');
                 },
-                success: function(res) {
+                success: function (res) {
                     // alert('已分享');
                     // 执行回调函数
                     that.succfn && that.succfn(res);
                     that.options.success && that.options.success(res);
                 },
-                cancel: function(res) {
+                cancel: function (res) {
                     // alert('已取消');
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 },
-                fail: function(res) {
+                fail: function (res) {
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 }
@@ -310,21 +335,21 @@
                 desc: that.options.swapTitle ? that.options.shareTitle : that.options.descContent,
                 link: that.options.lineLink,
                 imgUrl: that.https2http(that.options.imgUrl),
-                trigger: function(res) {
+                trigger: function (res) {
                     // alert('用户点击分享到朋友圈');
                 },
-                success: function(res) {
+                success: function (res) {
                     // alert('已分享');
                     // 执行回调函数
                     that.succfn && that.succfn(res);
                     that.options.success && that.options.success(res);
                 },
-                cancel: function(res) {
+                cancel: function (res) {
                     // alert('已取消');
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 },
-                fail: function(res) {
+                fail: function (res) {
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 }
@@ -335,23 +360,23 @@
                 desc: that.options.descContent,
                 link: that.options.lineLink,
                 imgUrl: that.https2http(that.options.imgUrl),
-                trigger: function() {
+                trigger: function () {
                     // alert('用户点击分享到QQ');
                 },
-                complete: function() {
+                complete: function () {
                     // alert(JSON.stringify(res));
                 },
-                success: function(res) {
+                success: function (res) {
                     // alert('已分享');
                     that.succfn && that.succfn(res);
                     that.options.success && that.options.success(res);
                 },
-                cancel: function(res) {
+                cancel: function (res) {
                     // alert('已取消');
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 },
-                fail: function(res) {
+                fail: function (res) {
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 }
@@ -363,23 +388,23 @@
                 desc: that.options.descContent,
                 link: that.options.lineLink,
                 imgUrl: that.https2http(that.options.imgUrl),
-                trigger: function() {
+                trigger: function () {
                     // alert('用户点击分享到微博');
                 },
-                complete: function() {
+                complete: function () {
                     // alert(JSON.stringify(res));
                 },
-                success: function(res) {
+                success: function (res) {
                     // alert('已分享');
                     that.succfn && that.succfn(res);
                     that.options.success && that.options.success(res);
                 },
-                cancel: function(res) {
+                cancel: function (res) {
                     // alert('已取消');
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 },
-                fail: function(res) {
+                fail: function (res) {
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 }
@@ -390,17 +415,17 @@
                 desc: that.options.descContent,
                 link: that.options.lineLink,
                 imgUrl: that.https2http(that.options.imgUrl),
-                success: function(res) {
+                success: function (res) {
                     // 用户确认分享后执行的回调函数
                     that.succfn && that.succfn(res);
                     that.options.success && that.options.success(res);
                 },
-                cancel: function(res) {
+                cancel: function (res) {
                     // 用户取消分享后执行的回调函数
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 },
-                fail: function(res) {
+                fail: function (res) {
                     that.errfn && that.errfn(res);
                     that.options.error && that.options.error(res);
                 }
@@ -410,7 +435,7 @@
         /**
          * 设置qq分享
          */
-        setQQShareInfo: function() {
+        setQQShareInfo: function () {
             var that = this;
             var info = {
                 title: that.options.shareTitle,
@@ -428,7 +453,7 @@
         /**
          * 设置qq空间分享
          */
-        setQQZoneShareInfo: function() {
+        setQQZoneShareInfo: function () {
             var that = this;
             var ops = that.options;
             if (that.qz && that.qz.setShare) {
@@ -447,7 +472,7 @@
                         summaryArr.push(ops.descContent);
                     }
                 }
-                that.qz.setShare(function(data) {
+                that.qz.setShare(function (data) {
                     that.succfn && that.succfn();
                     that.options.success && that.options.success(data);
                 }, {
@@ -463,7 +488,7 @@
         /**
          * 设置房天下客户端分享
          */
-        setFangShare: function() {
+        setFangShare: function () {
             var fangClient = $('#soufunclient');
             var ops = this.options;
             if (!fangClient.length) {
@@ -477,7 +502,7 @@
          * 更改微信分享参数
          * @param ops 参数 {}
          */
-        updateOps: function(ops) {
+        updateOps: function (ops) {
             var that = this;
             for (var i in ops) {
                 if (ops.hasOwnProperty(i)) {
@@ -503,7 +528,7 @@
         /**
          * 自动播放音频文件
          */
-        playAudio: function() {
+        playAudio: function () {
             var that = this;
             var audioStr = that.options.audio;
             var audio;
@@ -527,19 +552,19 @@
                 audio.loop = audio.loop || that.options.loop;
                 var playPromise = audio.play();
                 if (playPromise !== undefined) {
-                    playPromise.then(function() {
+                    playPromise.then(function () {
                         // Automatic playback started!
                         // audio.play();
-                    }).catch(function(err) {
+                    }).catch(function (err) {
                         console.log('音频文件尚未加载完成',err);
                     });
                 }
-                audio.addEventListener('canplaythrough', function() {
+                audio.addEventListener('canplaythrough', function () {
                     audio.play();
                 }, false);
 
-                if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-                    $(document).one('touchstart', function() {
+                if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+                    $(document).one('touchstart', function () {
                         audio.play();
                     });
                 }

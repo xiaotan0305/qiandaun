@@ -14,7 +14,7 @@ define('modules/agent/agentShop', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'lazy
         var yhxw = require('modules/esf/yhxw');
 
         // 用户行为统计
-        yhxw({type: 0, pageId: 'mesfagentsstore', curChannel: 'agent'});
+        yhxw({type: 0, pageId: 'esf_jjr^xq_wap', curChannel: 'agent'});
         lazyLoad('img[data-original]').lazyload();
         // 调整图片的尺寸
         var $image = $('img[name="resize"]');

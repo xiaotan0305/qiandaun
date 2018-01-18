@@ -364,7 +364,8 @@ define('modules/jiaju/firmList', [
             position = vars.nearby;
         }
         yhxw({
-            page: 'mjjcompanylist',
+            type: 1,
+            page: 'jj_gs^lb_wap',
             key: $('#searchtext').text(),
             position: position,
             subway: vars.subway ? $('#classone_dt dd.active').text().trim() + '^' + vars.subway : '',

@@ -22,7 +22,7 @@ define('modules/myesf/mvc/publishview', ['modules/myesf/mvc/component','modules/
             //全部变量，判断是经纪人是不能提交
             var jjrflag = false;
             // 记录用户浏览动作
-            yhxw({type: 0, pageId: 'mesfrelease', curChannel: 'myesf'});
+            yhxw({type: 0, pageId: 'esf_fy^fb_wap', curChannel: 'myesf'});
             // 选择小区search
             require.async('search/myesf/xqSearch', function (xqSearch) {
                 var xqSearch = new xqSearch();

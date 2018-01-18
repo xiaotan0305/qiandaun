@@ -96,7 +96,7 @@ define('modules/jiaju/newsDetail', ['jquery', 'modules/jiaju/ad', 'app/1.0.0/app
                 }
             }
         });
-        var page = 'mzxpage';
+        var page = 'xw_jj^xq_wap';
         require.async('jsub/_vb.js?c=' + page);
         require.async('jsub/_ubm.js', function () {
             yhxw(0);

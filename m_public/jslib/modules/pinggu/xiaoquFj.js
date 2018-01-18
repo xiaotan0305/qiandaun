@@ -9,7 +9,7 @@
  * 20151207 blue 修改swipe插件改为3.10版本，修改柱状图和走势图循环复制出来的节点初始化函数,删除无用的js
  */
 define('modules/pinggu/xiaoquFj',
-    ['jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'chart/line/1.0.4/line'],
+    ['modules/world/yhxw', 'jquery', 'footprint/1.0.0/footprint', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazyload', 'iscroll/2.0.0/iscroll-lite', 'chart/line/1.0.4/line'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -39,6 +39,15 @@ define('modules/pinggu/xiaoquFj',
             require.async('search/cfj/xiaoquSearch', function (xiaoquSearch) {
                 var XiaoquSearch = new xiaoquSearch();
                 XiaoquSearch.init();
+            });
+            // 引入用户行为分析对象-埋码
+            var yhxw = require('modules/world/yhxw');
+            var maimaParams = {
+                'vmg.page': 'cfj_cfj^xqfjxq_wap'
+            };
+            yhxw({
+                pageId: 'cfj_cfj^xqfjxq_wap',
+                params: maimaParams
             });
             // 禁止事件默认行为
             function preventDefault(e) {
@@ -158,14 +167,14 @@ define('modules/pinggu/xiaoquFj',
                             }
                             break;
                         case 'area':
-                            reg = /[^\d\.]/g;
-                            $that.val(val.replace(reg, ''));
-                            if (val && (val > 9999 || val <= 0)) {
-                                showMsg('建筑面积范围10-9999平米');
-                            }
-                            flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                            if (flag) {
-                                $that.val(flag);
+                            reg = /^[1-9]\d{0,3}(\.\d{0,2})?$/;
+                            if (!reg.test(val)) {
+                                if (val.indexOf('.') === -1) {
+                                    showMsg('建筑面积范围10-9999平米');
+                                    $that.val(val.substring(0, val.length - 1));
+                                } else {
+                                    $that.val(val.substring(0, val.length - 1));
+                                }
                             }
                             break;
                     }

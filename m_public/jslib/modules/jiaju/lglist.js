@@ -18,7 +18,7 @@ define('modules/jiaju/lglist', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1
         // 用户行为
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
-            page: 'mjjatlaslist',
+            page: 'jj_mt^jxlb_wap',
             type: 1,
             key: $('#searchBtn').text().trim(),
             style: $('#style').text().trim(),

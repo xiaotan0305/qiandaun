@@ -144,6 +144,7 @@ define('modules/news/openCommentLike', ['jquery', 'lazyload/1.9.1/lazyload'], fu
                 })
                     .done(function (data) {
                         moreCommWrap.show().addClass('open').html(data);
+                        lazyload('img[data-original]').lazyload();
                     })
                     .fail(function () {
                         $('.tiShiBox').html('加载失败，请重试。');

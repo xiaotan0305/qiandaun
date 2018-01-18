@@ -3,43 +3,15 @@
  * 单量更改于2015-9-9
  * 赵天亮更改于2016-8-3（zhaotianliang@fang.com）
  */
-define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jiaju/freeSignup'], function (require, exports, module) {
+define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
         var vars = seajs.data.vars;
-        require.async(['modules/jiaju/ad']);
+        require.async(['modules/jiaju/indexAd']);
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
-        // 统一报名
-        var freeSignup = require('modules/jiaju/freeSignup');
-        freeSignup(true);
-        // 装修美图
-        var space = $('#space');
-        var layout = $('#layout');
-        var style = $('#style');
-        var spaceName = $('.spaceName1');
-        var layoutName = $('.layoutName1');
-        var styleName = $('.styleName1');
-
-        spaceName.on('click', function () {
-            zxmt(space, layout, style, spaceName, layoutName, styleName);
-        });
-        layoutName.on('click', function () {
-            zxmt(layout, space, style, layoutName, spaceName, styleName);
-        });
-        styleName.on('click', function () {
-            zxmt(style, layout, space, styleName, layoutName, spaceName);
-        });
-
-        function zxmt(div1, div2, div3, div1Name, div2Name, div3Name) {
-            div1.show();
-            div1Name.addClass('active');
-            div2.hide();
-            div2Name.removeClass('active');
-            div3.hide();
-            div3Name.removeClass('active');
-        }
+        
         // 搜索用户行为收集20160114
         var page = 'mjjhomepage';
         require.async('jsub/_vb.js?c=' + page);
@@ -114,18 +86,6 @@ define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jia
             };
             new k();
         })(window);
-        // 报名广告
-        require.async('swipe/3.10/swiper', function (Swiper) {
-            new Swiper('#messList', {
-                // 切换速度
-                speed: 500,
-                // 自动切换间隔
-                autoplay: 3000,
-                // 循环
-                loop: true,
-                direction: 'vertical'
-            });
-        });
         // 装修头条轮播
         var oTurnBox = $('.turnBox');
         if (!oTurnBox.children('a').length) {
@@ -150,7 +110,7 @@ define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jia
                         }, 600);
                     }
                     oTurnBox.animate({
-                        top: -iNow * 40 + 'px'
+                        top: -iNow * 50 + 'px'
                     }, 450);
                 }, 3500);
             }
@@ -159,52 +119,11 @@ define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jia
         $linkbox.length && $('.jj-formList').find('input').on('focus blur', function () {
             $linkbox.toggle();
         });
-        //ajax加载资讯
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexNewsList&city=' + vars.city, function (data) {
+        
+        //ajax加载装修灵感
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexLgzj&city='+vars.city, function (data) {
             if ($.trim(data)) {
-                $('#newsList').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载问答
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexAsk', function (data) {
-            if ($.trim(data)) {
-                $('#askList').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载热门图片
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexPic', function (data) {
-            if ($.trim(data)) {
-                $('#hotPic').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载装修日记
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexDiary&city='+vars.city, function (data) {
-            if ($.trim(data)) {
-                $('#diary').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载装修热帖
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexBbs&city='+vars.city, function (data) {
-            if ($.trim(data)) {
-                $('#bbs').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载活动
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexActivity', function (data) {
-            if ($.trim(data)) {
-                $('#wapjiajusy_D15_01').show().html(data);
-                $('.lazyload').lazyload();
-            }
-        });
-        //ajax加载聚优惠
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexJyh', function (data) {
-            if ($.trim(data)) {
-                $('#jyh').show().html(data);
+                $('#wapjiajusy_D13_01').show().html(data);
                 $('.lazyload').lazyload();
             }
         });
@@ -215,15 +134,55 @@ define('modules/jiaju/index', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jia
                 $('.lazyload').lazyload();
             }
         });
-        //ajax加载装修灵感
-        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexLgzj&city='+vars.city, function (data) {
+        //ajax加载聚优惠
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexJyh', function (data) {
             if ($.trim(data)) {
-                $('#wapjiajusy_D13_01').show().html(data);
+                $('#jyh').show().html(data);
                 $('.lazyload').lazyload();
             }
         });
-        
-
+        //ajax加载活动
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexActivity', function (data) {
+            if ($.trim(data)) {
+                $('#wapjiajusy_D15_01').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
+        //ajax加载装修热帖
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexBbs&city='+vars.city, function (data) {
+            if ($.trim(data)) {
+                $('#bbs').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
+        //ajax加载装修日记
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexDiary&city='+vars.city, function (data) {
+            if ($.trim(data)) {
+                $('#diary').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
+        //ajax加载热门图片
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexPic', function (data) {
+            if ($.trim(data)) {
+                $('#hotPic').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
+        //ajax加载问答
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexAsk', function (data) {
+            if ($.trim(data)) {
+                $('#askList').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
+        //ajax加载资讯
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxIndexNewsList&city=' + vars.city, function (data) {
+            if ($.trim(data)) {
+                $('#newsList').show().html(data);
+                $('.lazyload').lazyload();
+            }
+        });
 
     };
 });

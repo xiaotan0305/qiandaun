@@ -1,13 +1,22 @@
 /**
  * Created by guocheng on 2016/8/17.
  */
-define('modules/chengjiao/dealList', ['jquery', 'loadMore/1.0.0/loadMore', 'iscroll/2.0.0/iscroll-probe'], function (require, exports, module) {
+define('modules/chengjiao/dealList', ['modules/world/yhxw', 'jquery', 'loadMore/1.0.0/loadMore', 'iscroll/2.0.0/iscroll-probe'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // 页面传入的参数
         var vars = seajs.data.vars;
         var iscroll = require('iscroll/2.0.0/iscroll-probe');
         //小区成交页
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cj_esf^gk_wap'
+        };
+        yhxw({
+            pageId: 'cj_esf^gk_wap',
+            params: maimaParams
+        });
         if (vars.newcode) {
 
             // 加载更多

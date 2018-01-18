@@ -779,8 +779,8 @@ a:focus {outline:none;-moz-outline:none;}
 .swipe-point{ position: absolute; bottom: 10px; right: 5px; }
 .swipe-point li{ float: left; margin: 0 2px; width: 4px; height: 4px; border-radius: 50%;background:rgba(255,255,255,0.5); }
 .swipe-point li.cur{width: 6px; height: 6px; margin:0 3px; margin-top:-1px; background-color: #fff; -webkit-transform: scale(1.2); transform: scale(1.2);}
-.payasklist{ overflow:hidden;}
-.payasklist li{padding:20px 0 18px 0;border-bottom:1px solid #f8f8f8}
+.payasklist{}
+.payasklist li{padding:20px 0 18px 0;border-bottom:1px solid #f8f8f8; position:relative}
 .payasklist li.mbb8{border-bottom:8px solid #f8f8f8}
 .payasklist li:last-child{border-bottom:0;}
 .payasklist li .cinfo{font-size:16px;margin:14px 0;line-height:23px;word-break:break-all;}
@@ -793,6 +793,7 @@ a:focus {outline:none;-moz-outline:none;}
 dl.gradePay{overflow: hidden;position:relative}
 dl.gradePay dt{ float: left; margin-right:11px; width:33px; height:33px;position:relative}
 dl.gradePay dt i{width:13px;height:13px;position:absolute;bottom:0px;right:0px; display:block; background:url(../images/iconV.png) no-repeat;background-size:13px;}
+dl.gradePay dt i.lv{background:url(../images/lv.png) no-repeat;background-size:13px;}
 dl.gradePay dt img{ width:33px; height:33px;border-radius: 50%; overflow:hidden}
 dl.gradePay dd{margin-top:7px}
 dl.gradePay dd h2{font-size:14px;color:#3c3f46;line-height:20px;}
@@ -1202,6 +1203,10 @@ a.askzan{color:#b3b6be;}
 .answerMylist li > h2{font-weight:700;}
 .answerMylist li .other{font-size:14px;color:#b3b6be;}
 .answerMylist li .other span{float:right;color:#819bbb}
+.answerMylist .more-link{overflow:hidden;margin-bottom:-12px;margin-top:2px;}
+.answerMylist .more-link > a{float:right;display:inline-block;font-size:12px;line-height:18px;color:#4080d1; position:relative;padding-right:15px;}
+.answerMylist .more-link > a:after{ position:absolute; content:''; width:11px; height:6px; top:50%; margin-top:-3px; right:0px; background:url(../images/arr_blue_up.png) 0 0 no-repeat; background-size:11px auto;}
+
 .asklptr{border:1px solid #f2f2f2;padding:10px; overflow:hidden; position:relative}
 .asklptr .pic{float:left;width:84px;height:56px; position: relative;margin-right:11px;}
 .asklptr .pic.w2{width:64px;height:48px;}
@@ -1464,10 +1469,20 @@ dl.tiwenlist dd span{float:right;font-size:14px;margin-top:10px;}
 .taglist .chosetd > div{margin-top:8px;width:100%;}
 .taglist .chosetd > div:first-child{margin-top:0;}
 
+.recomfy{margin-bottom:18px;}
+.recomfy p {font-size:12px;color:#b3b6be;}
+.recomfy .dianp{border:1px solid #efefef;padding:10px;margin-top:10px; overflow:hidden; position:relative}
+.recomfy .dianp .img{float:left;width:35px;height:35px;margin-right:10px; display:inline-block; position:relative;border-radius:50%;}
+.recomfy .dianp .img > div{width:35px;height:35px;border-radius:50%; overflow:hidden}
+.recomfy .dianp img{width:100%;display:block;}
+.recomfy .dianp .txt{ overflow:hidden}
+.recomfy .dianp .txt h2{height:16px;line-height:16px;font-size:12px;color:#3c3f46}
+.recomfy .dianp .txt h2 .mingp{width:30px;height:16px;line-height:16px;font-size:10px;color:#fff; text-align:center;background:#78b6ff;margin-left:5px; display:inline-block}
+.recomfy .dianp .diap{width:54px;height:22px;line-height:22px;font-size:12px;color:#2780e9; text-align:center;border:1px solid #2780e9; position:absolute;right:10px;top:15px; background:#fff}
 
-
-
-
-
+.askAgg{position:absolute;right:0px;top:3px;height:25px;line-height:25px;font-size:12px;padding:0 10px;border:1px solid #e4e4e4;color:#b3b6be;text-align:center;border-radius:2px;overflow:hidden;}
+.askspot{position:absolute;right:0px;top:7px;height:18px;width:31px; background:url(../images/ask121901.png) no-repeat 0 6px;background-size:100%;}
+.askdel{position:absolute;right:-15px;top:2px;width:66px;height:30px;line-height:30px;font-size:12px;color:#fff;border-radius:3px;background: rgba(0,0,0,0.6); text-align:center;z-index:10}
+.askdel i{width:11px;height:12px; background:url(../images/ask121902.png) no-repeat;background-size:11px; display:inline-block;margin-right:4px; vertical-align:top;margin-top:8px;}
 
 

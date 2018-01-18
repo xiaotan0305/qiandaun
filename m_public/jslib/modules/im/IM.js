@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Created by WeiRF on 2016/1/15.
  * IM聊天的主界面
  */
@@ -16,7 +16,7 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
         var html = require('modules/im/HTML');
         var IScroll = require('slideFilterBox/1.0.0/slideFilterBox');
         var IcoStar = require('modules/xf/IcoStar');
-        require.async('modules/im/inputShowRepair');
+        // require.async('modules/im/inputShowRepair');
 
         var initSrc = '//static.soufunimg.com/common_m/m_public/201511/images/msgnop.jpg';
         // 用户头像url
@@ -264,7 +264,7 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
         function chatIscroll() {
             // 刷新聊天框
             IScroll.refresh('#wrapper');
-            var height = $wrapper.height() - $chatBox.height();
+            var height = $wrapper.height() - $chatBox.height() ;
             if (height < 0) {
                 IScroll.to('#wrapper', height, 200);
             }
@@ -570,16 +570,16 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
                 // 获取聊天框的高度
                 // yangfan rewrite 20160518 im 界面没有房源信息 .houseList 时候，显示问题。
 
-                var callHeight;
-                if ($('.houseList').length) {
-                    callHeight = $(window).height() - parseInt($('header').css('height')) - parseInt($('.houseList').css('height')) - parseInt($('.IM-bottom').css('height'));
-                } else {
-                	if($('header').css('height')){
-                    callHeight = $(window).height() - parseInt($('header').css('height')) - parseInt($('.IM-bottom').css('height'));
-                	}else{
-                	callHeight = $(window).height() - parseInt($('.IM-bottom').css('height'));
-                	}
-                	}
+				var callHeight;
+				if ($('.houseList').length) {
+					callHeight = $(window).height() - parseInt($('header').css('height')) - parseInt($('.houseList').css('height')) - parseInt($('.IM-bottom').css('height'));
+				} else {
+					if($('header').css('height')){
+						callHeight = $(window).height() - parseInt($('header').css('height')) - parseInt($('.IM-bottom').css('height'));
+					}else{
+						callHeight = $(window).height() - parseInt($('.IM-bottom').css('height'));
+					}
+				}
 
                 $wrapper.css({
                     height: callHeight,
@@ -890,6 +890,37 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
         } else {
             alert('请关闭浏览器的无痕浏览');
         }
+        
+        
+        if(document.referrer.indexOf('jiaju')>-1){
+			// 获取message值
+                var message = vars.cont;
+                // 清空输入框
+                $chat.val('');
+                var urlMessage = '';
+                var msgContent = '';
+                housetype = housetype || '';
+                
+                $.post('/chat.d?m=sendmessage', {
+                    houseid: vars.groupId ? vars.groupId : vars.houseid,
+                    customerid: vars.globalCookie,
+                    agentname: encodeURIComponent(getagentinfo(username, 'name')),
+                    username: encodeURIComponent(username),
+                    content: urlMessage ? encodeURIComponent(urlMessage) : encodeURIComponent(message),
+                    city: vars.city,
+                    type: vars.type,
+                    msgContent: msgContent,
+                    command: '',
+                    housetype: vars.housetype
+                }, function (data) {
+                    // data = JSON.parse(data);
+                    var status = data.root.status;
+                    if (Number(status) === 1) {
+                        console.log('发送成功');
+                    }
+                });
+		}
+        
         // click统计
         require.async('//clickm.fang.com/click/new/clickm.js', function () {
             Clickstat.eventAdd(window, 'load', function () {

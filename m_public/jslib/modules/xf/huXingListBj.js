@@ -5,7 +5,7 @@ define('modules/xf/huXingListBj', ['jquery', 'iscroll/2.0.0/iscroll-lite'], func
     var IScrolllist = require('iscroll/2.0.0/iscroll-lite');
 
     // 统计行为 --------------start
-    require.async('jsub/_vb.js?c=mnhpagetype');
+    require.async('jsub/_vb.js?c=xf_lp^hxlb_wap');
     require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
         _ub.city = vars.ubcity;
         // 业务---WAP端
@@ -18,7 +18,7 @@ define('modules/xf/huXingListBj', ['jquery', 'iscroll/2.0.0/iscroll-lite'], func
             // 楼盘id
             'vmn.projectid': vars.ubnewcode,
             // 所属页面
-            'vmg.page': 'mnhpagetype',
+            'vmg.page': 'xf_lp^hxlb_wap',
             'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
         };
         // 用户行为(格式：'字段编号':'值')

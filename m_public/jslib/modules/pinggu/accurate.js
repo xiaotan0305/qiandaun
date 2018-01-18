@@ -4,7 +4,7 @@
  * * @file 查房价二期
  * @author zcf(zhangcongfeng@fang.com)
  */
-define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], function (require, exports, module) {
+define('modules/pinggu/accurate', ['modules/world/yhxw', 'jquery','iscroll/2.0.0/iscroll-lite'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
 
@@ -43,6 +43,15 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
         require.async('search/cfj/xiaoquSearch', function (xiaoquSearch) {
             var XiaoquSearch = new xiaoquSearch();
             XiaoquSearch.init();
+        });
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cfj_cfj^jjpg_wap'
+        };
+        yhxw({
+            pageId: 'cfj_cfj^jjpg_wap',
+            params: maimaParams
         });
         // 禁止事件默认行为
         function preventDefault(e) {
@@ -230,7 +239,7 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
         });
 
         // 输入项的字符和位数限制
-        evaluate.on('keyup blur', 'input', function () {
+        evaluate.on('input blur', 'input', function () {
             var $that = $(this);
             var val = $that.val();
             var id = $that.attr('id');
@@ -243,27 +252,27 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
                         $that.val(val.replace(reg, ''));
                         break;
                     case 'area':
-                        reg = /[^\d\.]/g;
-                        $that.val(val.replace(reg, ''));
-                        if (val && (val > 9999 || val <= 0)) {
-                            showMsg('建筑面积范围10-9999平米');
-                        }
-                        flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                        if (flag) {
-                            $that.val(flag);
+                        reg = /^[1-9]\d{0,3}(\.\d{0,2})?$/;
+                        if (!reg.test(val)) {
+                            if (val.indexOf('.') === -1) {
+                                showMsg('建筑面积范围10-9999平米');
+                                $that.val(val.substring(0, val.length - 1));
+                            } else {
+                                $that.val(val.substring(0, val.length - 1));
+                            }
                         }
                         break;
                     case 'gardenarea':
                     case 'lvtaiarea':
                     case 'basementarea':
-                        reg = /[^\d\.]/g;
-                        $that.val(val.replace(reg, ''));
-                        if (val && (val > 9999 || val <= 0)) {
-                            showMsg('赠送面积范围1-9999平米');
-                        }
-                        flag = val.indexOf('.') === -1 ? val.match(/\d{0,4}/) : val.match(/\d{0,4}\.\d{0,2}/);
-                        if (flag) {
-                            $that.val(flag);
+                        reg = /^[1-9]\d{0,3}(\.\d{0,2})?$/;
+                        if (!reg.test(val)) {
+                            if (val.indexOf('.') === -1) {
+                                showMsg('赠送面积范围1-9999平米');
+                                $that.val(val.substring(0, val.length - 1));
+                            } else {
+                                $that.val(val.substring(0, val.length - 1));
+                            }
                         }
                         break;
                     case 'room':
@@ -323,8 +332,6 @@ define('modules/pinggu/accurate', ['jquery','iscroll/2.0.0/iscroll-lite'], funct
             _ub.biz = 'v';
             // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
             _ub.location = vars.ns === 'n' ? 0 : 1;
-            // 0:浏览
-            _ub.collect(0, {'vmg.page': 'mcfjeval'});
             // 所属页面
             // 开始评估
             // 记录当前时间

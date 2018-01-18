@@ -36,7 +36,7 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
     // 默认关键字数组
     var keywordArr = ['请输入小区、地名、开发商…', '请输入小区、地铁、开发商…'];
     // 统计行为
-    require.async('jsub/_vb.js?c=mnhmap');
+    require.async('jsub/_vb.js?c=dt_esf^sy_wap');
     require.async('jsub/_ubm.js', function () {
         _ub.city = vars.cityname;
         // 业务---WAP端
@@ -156,6 +156,8 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
         firstLoad: true,
         // 房源数量
         housecount: 0,
+        // 有坐标传入定位标识
+        setCenterFlag: false,
         // 初始化
         init: function () {
             var that = this;
@@ -164,8 +166,13 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
             that.map = new MapApi('allmap', vars.cityy, vars.cityx, that.params.zoom);
             // 初始化参数
             that.initParams();
-            // 查看是否需要定位,有关键字，区域，地铁不定位
-            if (that.params.strKeyword || that.params.strDistrict || that.params.railwayName) {
+            if (that.setCenterFlag) {
+                // 如果有坐标传入定位到坐标点，再查数据
+                that.params.zoom = that.villageZoom;
+                that.map.setCenter(vars.y1, vars.x1, that.params.zoom);
+                that.searchResult();
+                // 查看是否需要定位,有关键字，区域，地铁不定位
+            } else if (that.params.strKeyword || that.params.strDistrict || that.params.railwayName) {
                 that.searchResult();
             } else {
                 // 定位
@@ -182,6 +189,10 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
             // dd的对象
             var listObj = '';
             that.params.purpose = vars.purpose;
+            //如果有坐标传入定位到坐标点，再查数据
+            if (vars.x1 && vars.y1) {
+                that.setCenterFlag = true;
+            }
             // 有区县id
             if (vars.districtId !== '') {
                 // 区县a标签的对象的父节点dd
@@ -418,7 +429,7 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
             }
             //  添加关键词用户行为统计
             require.async('modules/esf/yhxw', function (yhxw) {
-                yhxw({type: 1, pageId: 'mesfmap', curChannel: 'esfmap', params: that.params,
+                yhxw({type: 1, pageId: 'dt_esf^sy_wap', curChannel: 'esfmap', params: that.params,
 
                 });
             });
@@ -428,7 +439,10 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
             } else {
                 that.params.pagesize = 70;
             }
-            if (that.mapstatus === 'location') {
+            // 有坐标传入定位查找
+            if (that.setCenterFlag) {
+                that.setCenterFlag = false;
+            } else if (that.mapstatus === 'location') {
                 // 如果是定位，显示定位标点，要放在setCenter前面，否则走了缩放mapstatus就清空了
                 that.map.drawMarkers([{coord_x: that.pointX, coord_y: that.pointY, type: 'location'}]);
                 that.map.setCenter(that.pointY, that.pointX, that.params.zoom);
@@ -437,7 +451,7 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                 that.map.setCenter(vars.cityy, vars.cityx, that.districtZoom);
             } else if (that.mapstatus === 'ecshop') {
                 // 如果是门店搜索
-                that.map.setCenter(vars.cityy, vars.cityx, that.districtZoom);
+                //that.map.setCenter(vars.cityy, vars.cityx, that.districtZoom);
                 that.params.ecshop = 'shop';
             } else if (that.mapstatus === 'ecshopid') {
                 // 如果是门店点击，将门店移至地图中心
@@ -457,15 +471,11 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                 if ($houseObj.is(':visible')) {
                     $houseObj.hide();
                 }
-                // 根据级别设置门店模式
-                if (!that.params.ecshop) {
-                    if (that.params.zoom > that.ecshopzoom) {
-                        // >12级显示门店和房源
-                        that.params.ecshop = 'shophouse';
-                    } else if ($ecshopChooseObj.hasClass('active')) {
-                        // 选中了门店按钮
-                        that.params.ecshop = 'shop';
-                    }
+                if ($ecshopChooseObj.hasClass('active')) {
+                    // 选中了门店按钮
+                    that.params.ecshop = 'shop';
+                } else {
+                    that.params.ecshop = '';
                 }
             }
 
@@ -581,7 +591,6 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                                 $('a[data-projcode='+ result.projinfo.projcode + ']').trigger('touchstart').trigger('touchend');
                             }
                         } else {
-
                             if (params.strKeyword === '') {
                                 // 提示
                                 // 当猜你喜欢并且大数据没有返回数据时 不显示猜你喜欢描点
@@ -802,7 +811,7 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
             // 清除楼盘id，重新搜索不在弹出楼盘
             that.params.projcodes = '';
             // 清除门店参数
-            that.params.ecshop = that.params.ecshopid = '';
+            that.params.ecshopid = '';
             // 如果头部被隐藏，显示
             // $('header').show();
             // $('#tabSX').show();
@@ -970,9 +979,6 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                     break;
                 // 门店
                 case 'ecshop':
-                    that.params.zoom = that.districtZoom;
-                    strPosition0A.text('位置');
-
                     break;
                 // 具体门店
                 case 'ecshopid':

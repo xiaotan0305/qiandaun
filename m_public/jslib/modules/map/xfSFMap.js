@@ -28,7 +28,7 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
     var guess = [];
     var guessPosition = {};
     // 统计行为
-    require.async('jsub/_vb.js?c=mnhmap');
+    require.async('jsub/_vb.js?c=dt_xf^sy_wap');
     require.async('jsub/_ubm.js', function () {
         _ub.city = vars.cityname;
         // 业务---WAP端
@@ -1020,7 +1020,7 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
     function yhxw(maima) {
         // 用户行为(格式：'字段编号':'值')
         var p = {
-            'vmg.page': 'mnhmap'
+            'vmg.page': 'dt_xf^sy_wap'
         };
         // 若pTemp中属性为空或者无效，则不传入p中
         for (var temp in maima) {

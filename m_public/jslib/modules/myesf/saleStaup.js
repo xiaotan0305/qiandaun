@@ -5,7 +5,7 @@ define('modules/myesf/saleStaup', [], function (require, exports, module) {
     // 引入用户行为统计
     if (vars.action !== 'delegateAndResale' && vars.action !== 'editDelegate' && vars.action !== 'myDaiKanRecord') {
         require.async('modules/esf/yhxw', function (yhxw) {
-            yhxw({type: 0, pageId: 'mesfreleaseresult', curChannel: 'myesf'});
+            yhxw({type: 0, pageId: 'esf_fy^fbyd_wap', curChannel: 'myesf'});
         })
     }
     (function (doc, win) {

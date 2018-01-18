@@ -59,14 +59,14 @@ define('modules/myzf/publishSuccess', ['jquery','superShare/1.0.1/superShare','w
         }
         // 红包发放成功,并且是从发布页面跳过来的，这里避免刷新时一直弹发放红包窗口
         if (vars.getHongbao === '1' && vars.localStorage.getItem('hongbaoPub')) {
-            $('.HbfloatAlert').show();
+            $('.share-hb').show();
             unable();
             // 当发放红包窗口弹出成功后要销毁储存值，以免刷新时一直弹发放红包窗口
             vars.localStorage.removeItem('hongbaoPub');
         }
         // 点击关闭按钮
         $('.close').on('click', function () {
-            $('.HbfloatAlert').hide();
+            $('.share-hb').hide();
             enable();
         });
     };

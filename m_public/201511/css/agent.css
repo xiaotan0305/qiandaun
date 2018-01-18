@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* agentCss */
 body { font-family:Arial, "Microsoft Yahei";color:#333;background:#fff;}
 *{-webkit-box-sizing:border-box;box-sizing:border-box}
@@ -36,7 +36,7 @@ img{width:100%;}
 .jjrtimeline > li .tmtext .fangy .txt p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
 .jjrtimeline > li .tmtext .fangy .txt p .Price{font-size:13px;color: #df3031;font-weight:bold}
 /* 浮层-置业顾问 */
-.floatTel{width: 100%;}
+.floatTel{height:49px; width: 100%;}
 .floatTel dl{position: fixed; bottom: 0; left: 0; width: 100%; background: #f4f4f4; display: table;z-index:2;}
 .floatTel dt,.floatTel dd{display: table-cell; vertical-align: middle;}
 .floatTel dt{padding-left:8px;font-size: 12px;}
@@ -64,7 +64,14 @@ img{width:100%;}
 .jjrstores dd {float:left;display:table-cell;}
 .jjrstores dd h3{height:24px;font-size:16px;color:#0c0d0e;margin-bottom:4px;text-overflow: ellipsis;white-space: nowrap;}
 .jjrstores dd h3 em{font-style:normal;margin-right:6px;}
-.jjrstores dd h3 span{border:1px solid #e3e7ed; background:#fff;line-height:14px;font-size:9px;color:#83868f;padding:0 4px;display:inline-block;margin-left:4px;margin-top:3px; vertical-align:top}
+.jjrstores dd h3 span{border:1px solid #e3e7ed; background:#fff;line-height:14px;font-size:9px;color:#83868f;padding:0 4px;display:inline-block;margin-right:4px;margin-top:3px; vertical-align:top}/*1205*/
+.jjrstar{margin-left:13px;font-size:12px;color:#3c3f46;text-align:center}/*1205*/
+.jjrstar i{width:12px;height:12px; display:inline-block; background:url(../images/icon_star.png) no-repeat;background-size:36px;margin-right:4px;}/*1205*/
+.jjrstar i.big{width:18px;height:18px;background-size:54px;}/*1205*/
+.jjrstar i.no1{ background-position:-12px 0}/*1205*/
+.jjrstar i.no2{ background-position:-24px 0}/*1205*/
+.jjrstar i.no3{ background-position:-18px 0}/*1205*/
+.jjrstar i.no4{ background-position:-36px 0}/*1205*/
 .jjrstores dd h3 span.no1{border:1px solid #ff9933; background:#ff9933;color:#fff;}
 .jjrstores dd h3 span.no2{border:1px solid #91d397; background:#91d397;color:#fff;}
 .jjrstores dd h3 span.no3{border:1px solid #7fb5ff; background:#7fb5ff;color:#fff;}
@@ -213,7 +220,7 @@ dl.illegal .textr{ text-align: center;color:#df3031}
 .jjrlist li .tr01 .limg img{width:74px;height:100px;}
 .jjrlist li .tr01 .other{margin-left:91px;}
 .jjrlist li .tr01 .other h2{line-height:25px;font-size:15px;color:#0c0d0e;margin-bottom:4px;}
-.jjrlist li .tr01 .other h2 em{height:22px;line-height:14px;padding:4px;color:#fff;font-size:9px;background:#ff9933;margin-left:8px;border-radius:2px; vertical-align:5px; display:inline-block;}/*161026*/
+.jjrlist li .tr01 .other h2 em{height:22px;line-height:14px;padding:4px;color:#fff;font-size:9px;background:#ff9933;margin-left:8px;border-radius:2px; vertical-align:3px; display:inline-block;}/*161026*/
 .jjrlist li .tr01 .other p{line-height:25px;font-size:13px;color:#83868f}
 .jjrlist li .tr01 .other p em{width:7px; display:inline-block}
 .jjrlist li .tr02{padding-top:10px;overflow:hidden}
@@ -236,3 +243,53 @@ dl.illegal .textr{ text-align: center;color:#df3031}
 .jjrstoreslp .asked{padding:0px;margin-bottom:0px;border-bottom:1px solid #f4f4f4}
 .asked:last-child{border-bottom:none}
 .jjrstoreslp .nodata{padding:60px 0; text-align:center;font-size:12px;color:#83868f}
+/*20170725*/
+.jjrlbopen{position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.5);z-index:1000;}
+.jjrlbopen .conbox{position:relative;width:280px;height:350px;top:0;left:50%;top:50%; background:#fff;border-radius:10px;-webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+.jjrlbopen .open01{margin:0px auto;padding-top:30px;}
+.jjrlbopen .open01 .pic{width:68px; height:68px;margin:0px auto;}
+.jjrlbopen .open01 .pic img{width:68px; height:68px;border-radius:50%; overflow:hidden;}
+.jjrlbopen .open01 h2{font-size:17px; text-align:center;color:#3c3f46;margin:8px 0 14px 0;overflow:hidden; text-align:center}
+.jjrlbopen .open02{width:200px; margin:0px auto 22px }
+.jjrlbopen .open02 .tit{height:20px;margin:10px 0; position:relative}
+.payWanswer.mab20{margin:0px 0 20px 0; }
+.jjrlbopen .open02 .tit .line{width:100%;height:1px; background:#e4e4e4; position:absolute;top:9px;left:0px;z-index:2}
+.jjrlbopen .open02 .tit .info{font-size:14px;line-height:20px;color:#565c67;position:absolute;top:50%;left:50%;padding:0 16px; background:#fff;white-space:nowrap; z-index:5;margin:0 auto;-webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+.jjrlbopen .open02 li{float:left;width:50%;color:#3c3f46;font-size:17px; text-align:center;margin-bottom:15px;}
+.jjrlbopen .conbox .close{width:21px;height:21px;background: url(../images/btn-close.png) no-repeat;background-size:21px;display:block; position:absolute;top:14px;right:14px;}
+.jjrstar{margin-left:13px;font-size:12px;color:#3c3f46;text-align:center;}
+.jjrstar.inbk{display:inline-block}
+.jjrstar i{width:12px;height:12px; display:inline-block; background:url(../images/icon_star.png) no-repeat;background-size:36px;margin-right:4px;}
+.jjrstar i.big{width:18px;height:18px;background-size:54px;}
+.jjrstar i.no1{ background-position:-12px 0}
+.jjrstar i.no2{ background-position:-24px 0}
+.jjrstar i.no3{ background-position:-18px 0}
+.jjrstar i.no4{ background-position:-36px 0}
+
+
+.jjrinfo{position:relative; overflow:hidden;margin: 0 auto;max-width: 640px; background:#fff}
+.jjrinfo .close{width:22px;height:22px;background: url(../images/jjr112902.png) no-repeat;background-size:22px;display:block; position:absolute;top:36px;left:36px;}
+.jjrinfo .open01{margin:0px auto;padding-top:80px;}
+.jjrinfo .open01 .pic{width:68px; height:68px;margin:0px auto;}
+.jjrinfo .open01 .pic img{width:68px; height:68px;border-radius:50%; overflow:hidden;}
+.jjrinfo .open01 h2{font-size:17px; text-align:center;color:#3c3f46;margin:8px 0 11px 0;overflow:hidden; text-align:center}
+.jjrinfo .open01 .p1{font-size:14px;color:#565c67;text-align:center;margin-top:6px;}
+.jjrinfo .open02{width:210px; margin:18px auto 0; overflow: hidden }
+.jjrinfo .open02.mt0{margin:0px auto 0;}
+.jjrinfo .open02 .tit{height:20px;margin:20px 0; position:relative}
+.jjrinfo .open02 .tit .line{width:100%;height:1px; background:#e4e4e4; position:absolute;top:9px;left:0px;z-index:2}
+.jjrinfo .open02 .tit .info{font-size:14px;line-height:20px;color:#b3b6be;position:absolute;top:50%;left:50%;padding:0 16px; background:#fff;white-space:nowrap; z-index:5;margin:0 auto;-webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+.jjrinfo .open02 li{float:left;width:100%; text-align:center;color:#83868f;font-size:17px; text-align:center;margin-bottom:15px;}
+.jjrinfo .open02 li em{color:#3c3f46;margin-left:12px;}
+.jjrinfo .open02 .fwtr{height:40px;}
+.jjrinfo .open02 .fwtr.mt35{margin-top:35px;}
+.jjrinfo .open02 .fwtr .img{position:relative;float:left;width:40px;height:40px;margin-right:14px;overflow:hidden;background:url(../images/jjr1129.png) no-repeat; background-size:120px;}/*1205*/
+.jjrinfo .open02 .fwtr .img.no2{ background-position:-40px 0;}
+.jjrinfo .open02 .fwtr .img.no3{ background-position:-80px 0;}
+.jjrinfo .open02 .fwtr .img.gray{background-position:0px -40px;}
+.jjrinfo .open02 .fwtr .img.no2.gray{background-position:-40px -40px;}
+.jjrinfo .open02 .fwtr .img.no3.gray{background-position:-80px -40px;}
+
+.jjrinfo .open02 .fwtr .txt{ overflow: hidden; *zoom:1;min-height:84px;}
+.jjrinfo .open02 .fwtr h3{ font-size: 17px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height:20px;color:#3c3f46;margin-top:-1px;margin-bottom:4px;}
+.jjrinfo .open02 .fwtr p{color:#83868f;font-size:14px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;height:20px;line-height:20px;}

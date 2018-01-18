@@ -49,7 +49,7 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
             //url: 'https://mptest.fang.com/opencmsJsonp/updateGzCnt.do?optType=' + optType,
 	    url: 'https://mp.fang.com/opencmsJsonp/updateGzCnt.do?optType=' + optType,
             data: {
-                userById: vars.uid,
+                userById: $gz.attr('data-uid'),
                 passporName: userInfo.username
             },
             type: 'get',
@@ -61,13 +61,20 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
                 // optType=1时候，返回已关注，未关注两个值,optType=2时候，返回成功，失败两个值
                 if (optType === 1) {
                     if (json === '已关注') {
-                        $gz.addClass('kphht-gray').text('已关注');
+                        // 资讯头条列表关注,头条列表和详情浮层置灰是gray
+                        $gz.addClass('kphht-gray').addClass('gray').text('已关注');
                     }
                 } else if (json === '关注成功') {
-                    $gz.addClass('kphht-gray').text('已关注');
+                    $gz.addClass('kphht-gray').addClass('gray').text('已关注');
                     showPrompt('您已关注成功');
                 } else if (json === '取消关注成功') {
-                    $gz.removeClass('kphht-gray').text('+ 关注');
+                    // 资讯头条列表关注
+                    if (vars.action === 'index') {
+                        $gz.removeClass('gray').text('关注');
+                    } else {
+                        $gz.removeClass('kphht-gray').removeClass('gray').text('+ 关注');
+                    }
+
                     showPrompt('成功取消关注');
                 } else if (json === '失败') {
                     showPrompt('取消关注失败');
@@ -89,17 +96,25 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
     // 登录状态判断
     var loginCheck = function () {
         $.ajax({
-            url: vars.newsSite + '?c=news&a=ajaxUserGzInfo',
-            data: {},
-            success: function (data) {
-                if (data) {
-                    // 用户信息
-                    userInfo = data;
-                    // 有用户信息，查询关注状态
-                    gzUpdate(1);
+                url: vars.newsSite + '?c=news&a=ajaxUserGzInfo',
+                data: {},
+                success: function (data) {
+                    // 没有登录，或者登录用户不是当前文章的圈主显示关注
+                    if (!data || data.userid !== vars.fcqPassportId) {
+                        // 用户信息
+                        userInfo = data;
+                        $gz.show();
+                        // 浮层有关注按钮，删除行样式
+                        if ($('.kpuserfloat').length > 0) {
+                            $('.kpuserfloat').removeClass('n-btn');
+                        }
+                        $('.btn-ask').show();
+                        // 有用户信息，查询关注状态
+                        gzUpdate(1);
+                    }
                 }
             }
-        });
+        );
     };
     // 关注
     $gz.on('click', function () {
@@ -114,5 +129,4 @@ define('modules/news/kfptGz', ['jquery'], function (require) {
     });
     // 判断登录状态
     loginCheck();
-
 });

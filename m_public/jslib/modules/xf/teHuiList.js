@@ -249,7 +249,7 @@ define('modules/xf/teHuiList',
 
             }
             // 引入统计代码
-            require.async('jsub/_vb.js?c=mnhpagebuild');
+            require.async('jsub/_vb.js?c=xf_lp^fylb_wap');
             require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
                 _ub.city = vars.ubcity;
                 // 业务---WAP端
@@ -260,7 +260,7 @@ define('modules/xf/teHuiList',
                     // 楼盘id
                     'vmn.projectid': vars.paramnewcode,
                     // 所属页面
-                    'vmg.page': 'mnhpagebuild'
+                    'vmg.page': 'xf_lp^fylb_wap'
 
                 };
                 var p0 = {};
@@ -307,8 +307,8 @@ define('modules/xf/teHuiList',
                     'vmn.direction': encodeURIComponent(vars.direction),
                     // 销售状态
                     'vmn.salestatus': saleStatus,
-                    'vmg.sourceapp':vars.is_sfApp_visit + '^xf'
-
+                    'vmg.sourceapp':vars.is_sfApp_visit + '^xf',
+                    'vmg.page': 'xf_lp^fylb_wap'
                 };
                 var p1 = {};
                 // 若pTemp中属性为空或者无效，则不传入p中
@@ -317,8 +317,6 @@ define('modules/xf/teHuiList',
                         p1[temp1] = pTemp1[temp1];
                     }
                 }
-                // 浏览收集方法
-                _ub.collect(0, p0);
                 // 搜索收集方法
                 _ub.collect(1, p1);
             });

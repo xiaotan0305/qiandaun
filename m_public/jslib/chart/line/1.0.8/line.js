@@ -44,7 +44,8 @@
             lineColorLoop: ['#339999', '#ff9966','#ff6666', '#66b9ff', '#cc0000', , '#9566ff', '#99cc00', '#666699', '#cc9900', '#45cbe3', '#336633', '#cc66cc'],
             // 固定颜色
             lineColorFixed: {},
-
+            //新房还是二手房
+            xfMode: false,
             // 刻度个数
             scaleNumber: 5,
             // 刻度在左边还是在右边
@@ -245,29 +246,40 @@
             var opts = this.options;
             var year = new Date().getFullYear().toString();
             var title;
-            switch (opts.type){
-                case 'day':
-                    title = '<h5>'+ year + '年' + opts.xAxis[index].substr(0, 2) + '月' + opts.xAxis[index].substr(3, 2) + '日</h5>';
-                    break;
-                case 'week':
-                    title = '<h5>'+ year + '年' + opts.xAxis[index] + '</h5>';
-                    break;
-                case 'month':
-                    title = '<h5>'+ year + '年' + opts.xAxis[index].substr(3, 2) + '月</h5>';
-                    break;
-            }
             var content = [];
-            opts.series.forEach(function (v) {
-                // 获取值
-                var value = v.yAxis[index].value.replace(/-/g, '');
-                var price = v.yAxis[index].price || '';
-                if (value) {
-                    content.push('<p style="font-size:13px;min-width:125px">' + v.key + ': ' + value + '套</p>');
-                    if(price){
-                        content.push('<p style="font-size:13px;min-width: 125px">评估价：'+ price + '元/㎡</p>');
+            if (opts.xfMode) {
+                title = '<h5>20' + opts.xAxis[index] + '</h5>';
+                opts.series.forEach(function (v) {
+                    // 获取值
+                    var value = v.yAxis[index].value.replace(/-/g, '');
+                    if (value) {
+                        content.push('<p style="font-size:13px;min-width:125px">' + v.key + ': ' + value + '套</p>');
                     }
+                });
+            } else {
+                switch (opts.type){
+                    case 'day':
+                        title = '<h5>'+ year + '年' + opts.xAxis[index].substr(0, 2) + '月' + opts.xAxis[index].substr(3, 2) + '日</h5>';
+                        break;
+                    case 'week':
+                        title = '<h5>'+ year + '年' + opts.xAxis[index] + '</h5>';
+                        break;
+                    case 'month':
+                        title = '<h5>'+ year + '年' + opts.xAxis[index].substr(3, 2) + '月</h5>';
+                        break;
                 }
-            });
+                opts.series.forEach(function (v) {
+                    // 获取值
+                    var value = v.yAxis[index].value.replace(/-/g, '');
+                    var price = v.yAxis[index].price || '';
+                    if (value) {
+                        content.push('<p style="font-size:13px;min-width:125px">' + v.key + ': ' + value + '套</p>');
+                        if(price){
+                            content.push('<p style="font-size:13px;min-width: 125px">评估价：'+ price + '元/㎡</p>');
+                        }
+                    }
+                });
+            }
             this.toolTip.append($(title)).append($(content.join(''))).show();
             this.toolTip.css({
                 left: x > $(window).width() / 2 ? x - this.toolTip.outerWidth() - 20 : x - 10,

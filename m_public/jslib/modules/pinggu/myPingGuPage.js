@@ -2,7 +2,7 @@
  * @file js合并，ESLint
  * @author fcwang(wangfengchao@soufun.com)
  */
-define('modules/pinggu/myPingGuPage', ['jquery'], function (require, exports, module) {
+define('modules/pinggu/myPingGuPage', ['modules/world/yhxw', 'jquery'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -13,6 +13,15 @@ define('modules/pinggu/myPingGuPage', ['jquery'], function (require, exports, mo
             $sum = $('#sum'),
             PglogId,
             timeCount;
+        // 引入用户行为分析对象-埋码
+        var yhxw = require('modules/world/yhxw');
+        var maimaParams = {
+            'vmg.page': 'cfj_cfj^pgls_wap'
+        };
+        yhxw({
+            pageId: 'cfj_cfj^pgls_wap',
+            params: maimaParams
+        });
         // 删除历史记录
         $addMore.on('click', '.del', function () {
             var $this = $(this);

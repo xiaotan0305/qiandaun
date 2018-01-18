@@ -23,7 +23,7 @@ define('modules/map/aroundDetail', ['jquery', 'modules/map/yhxw'], function (req
         // 引入用户行为分析对象-埋码
         var yhxw = require('modules/map/yhxw');
         // 判断详情页种类，传入用户行为统计对象
-        var pageId = 'mnhpagearound';
+        var pageId = 'dt_xf^pt_wap';
         // 埋码变量数组
         var ubParams = {
             'vmg.page': pageId

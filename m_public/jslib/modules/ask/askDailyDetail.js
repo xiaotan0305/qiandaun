@@ -17,7 +17,7 @@ define('modules/ask/askDailyDetail', ['jquery','lazyload/1.9.1/lazyload', 'modul
 
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 1, pageId: 'maspecial'});
+        yhxw({type: 1, pageId: 'wd_wd^ztxq_wap'});
 
         $mainClass.on('click','a',function () {
             var me = $(this);

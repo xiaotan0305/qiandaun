@@ -35,7 +35,14 @@ define('modules/map/searchmap', ['jquery', 'modules/map/API/BMap', 'modules/map/
         // 引入用户行为分析对象-埋码
         var yhxw = require('modules/map/yhxw');
         // 判断详情页种类，传入用户行为统计对象
-        var pageId = 'mnhpagearoundmap';
+        var pageId;
+        if (searchNow) {
+            // searchNow=1是新房
+            pageId = 'dt_xf^lp_wap';
+        } else {
+            pageId = 'dt_esf^xq_wap';
+        }
+
         // 埋码变量数组
         var ubParams = {
             'vmg.page': pageId,
@@ -44,8 +51,11 @@ define('modules/map/searchmap', ['jquery', 'modules/map/API/BMap', 'modules/map/
         };
         // 位置浮层标点
         var locationtip = null;
-        // 添加用户行为分析-埋码
-        yhxw({type: 0, pageId: pageId, params: ubParams});
+        // 二手房添加0行为，新房不加
+        if (!searchNow) {
+            // 添加用户行为分析-埋码
+            yhxw({type: 0, pageId: pageId, params: ubParams});
+        }
 
         function init(zoom) {
             // 地图容器高度 = 总高度 - 页面头部高度

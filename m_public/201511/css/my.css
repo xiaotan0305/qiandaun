@@ -1522,11 +1522,14 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .red-ed{color:#ed5152}
 .my-header{position:relative;background:#e14546;padding-top:46px;}
 .my-header .head{position:absolute;left:0;right:0;top:0;}
-.my-header .head .city{float:left;position:relative;color:#fff!important;font-size:16px;line-height:46px;padding-right:20px;margin-left:16px;}
+.my-header .head .icon-left{float:left;margin:7px 0 7px 10px;}
+.my-header .head .home-icon{position:relative;float:left;width:32px;height:32px;background:url(../images/my_headnav.png) no-repeat;background-size:auto 32px;}
+.my-header .head .city{float:left;position:relative;color:#fff!important;font-size:16px;line-height:32px;padding-right:20px;margin-left:8px;}
 .my-header .head .city:after{content:'';position:absolute;right:0;top:50%;margin-top:-2px;width:9px;height:5px;background:url(../images/arr_w_up.png) no-repeat;background-size:100%;}
-.my-header .head .nav-icon{float:right;margin:7px 5px 7px 0;}
+.my-header .head .nav-icon{float:right;margin:7px 6px 7px 0;}
 .my-header .head .nav-icon a{position:relative;float:right;width:32px;height:32px;background:url(../images/my_headnav.png) no-repeat;background-size:auto 32px;margin-right:5px;}
 .my-header .head .nav-icon a.meg-icon{background-position:-32px 0;}
+.my-header .head .nav-icon a.set-icon{background-position:-64px 0;}
 .my-header .head .nav-icon a i{position:absolute;left:50%;margin-left:-4px;margin-top:-1px;height:16px;min-width:16px;line-height:12px;padding:2px 4px;background:#fff;font-size:11px;color:#df474a;border-radius:8px;}
 .my-header .bd-phone{position:absolute;font-size:13px;color:#ff8d8d;left:16px;padding-right:12px;line-height:24px;}
 .my-header .bd-phone:after{content:'';position:absolute;right:0;top:50%;margin-top:-4px;width:5px;height:8px;background:url(../images/arr_pink.png) no-repeat;background-size:100%;}
@@ -1585,6 +1588,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .my-menu2 li.zhuangxiu span{background-position:-130px 0;}
 .my-menu2 li.zige span{background-position:-156px 0;}
 .my-menu2 li.yanfang span{background-position:-182px 0;}
+.my-menu2 li.desi span{background-position:-208px 0;}
 
 .my-reco h2{font-size:15px;font-weight:bold;color:#3c3f46;padding:0 16px;line-height:55px;border-bottom:1px solid #f8f8f8;}
 .my-reco > div{width: 100%;overflow: hidden;}
@@ -1676,6 +1680,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 /*底部固底*/
 .footer-gd{padding-bottom:80px;position:relative;height:auto;min-height:100%;}
 .footer-gd .footer{position:absolute!important;bottom:0;left:0;right:0;}
+
 /*申诉*/
 .ssBox{position:relative;background:#fff;padding-bottom:15px;margin-top:-1px;margin-bottom:4px;}
 .ssBox:after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:1px;background:#f8f8f8;}
@@ -1693,8 +1698,6 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .ssForm .btn a{display:block;height:40px;line-height:40px;font-size:16px;color:#ffffff!important;background:#df3031;text-align:center;border-radius:2px;}
 .ssForm .btn a.disable{background:#f1f1f2;color:#cccfd8!important;}
 .ssForm .error{font-size:13px;color:#f75757;line-height:1;padding:0 20px;margin-top:15px;}
-
-
 
 /*我的钱首页引导页UI*/
 .a-ltc{ display:block; font-size:12px; color:#83868f; line-height:20px;}
@@ -1859,3 +1862,40 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .shareList .info .staga{ font-size:10px;color:#f75757; overflow: hidden; *zoom:1;margin-top:7px;}
 .shareList .info .staga span{float: left; margin-right: 4px; line-height:13px; padding:0 3px;background:#fff;overflow:hidden;}
 .shareList .info .staga span:last-child{margin-right:0;}
+
+/*个人中心设置*/
+.user-set ul{border-bottom:8px solid #f8f8f8;}
+.user-set li{position:relative;font-size:16px;line-height:22px;margin:0 20px;}
+.user-set li:after{position:absolute;content:'';height:1px;background:#f8f8f8;left:34px;right:-20px;}
+.user-set li:last-child:after{display:none;}
+.user-set li > a{display:block;padding-top:16px;padding-bottom:16px;padding-left:34px;overflow:hidden;}
+.user-set li h2{color:#3c3f46;}
+.user-set li span{float:right;color:#83868f;}
+.user-set li i{position:absolute;width:18px;height:18px;left:0;top:50%;margin-top:-9px;background:url(../images/user_icons_sz.png) no-repeat;background-size:100% auto;}
+.user-set li i.icon1{background-position:0 0;}
+.user-set li i.icon2{background-position:0 -18px;}
+.user-set li i.icon3{background-position:0 -36px;}
+.user-set li i.icon4{background-position:0 -54px;}
+
+
+/*2018租房红包*/
+// .share-hb{position:fixed;width:100%;height:100%;left:0;bottom:0;background:rgba(0,0,0,.5);z-index:9999;}
+// .share-hb .share-btn{display:block;background: url(../images/hb_zd.png) no-repeat;background-size:90px  35px;
+// margin-top: 56px;margin-left: 112px;width: 90px;height: 35px;}
+// .share-hb .pic1{background: url(../images/hb_bgzf.png) no-repeat;width: 291px;height: 244px;background-size:291px  244px;
+// position: absolute;top: 50%;left: 50%;margin: -122px 0 0 -145px;text-align: center;padding-top: 40px }
+// .share-hb .pic1 p {color:#e92c2b;font-weight: bold;width: 150px;text-align: center;margin-left: 80px}
+// .share-hb .pic1 p.fabusuc{background: url(../images/hb_suc.png) no-repeat;background-size:178px  29px;width: 178px;height: 29px;
+//     position: absolute;top: -38px;left: 36px;margin-left: 0;}
+// .share-hb .pic1 p  b{font-size: 29px}
+// .share-hb .pic1 p.f17{margin-top: 2px}
+// .share-hb .pic1 p.f14{margin-top: 5px;margin-bottom:5px }
+// .share-hb .pic1 a.close{position: absolute;top: -36px;right: 0px;width: 23px;height: 23px;display: block;
+// background: url(../images/hb_close.png) no-repeat;background-size:23px  23px;}
+.share-hb{position:fixed;width:100%;height:100%;left:0;bottom:0;background:rgba(0,0,0,.5);z-index:9999;}
+.share-hb .share-btn{display:block;background: url(../images/hb_zd1.png) no-repeat;background-size:188px  40px;
+    margin-top: 419px;margin-left: 94px;width: 188px;height: 40px;}
+.share-hb .pic1{background: url(../images/hb_bgzf1.png) no-repeat;width: 375px;height: 481px;background-size:375px 481px;
+position: absolute;top:65px;left: 50%;margin: 0px 0 0 -188px;text-align: center; }
+.share-hb  a.close{position: absolute;top: 13px;right: 13px;width: 24px;height: 24px;display: block;
+background: url(../images/hb_close1.png) no-repeat;background-size:24px  24px;}

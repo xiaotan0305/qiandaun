@@ -1,4 +1,11 @@
-define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'photoswipe/4.0.8/photoswipe-ui-default.min', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'], function (require, exports, module) {
+define('modules/jiaju/xgtCaseDetail', [
+    'jquery',
+    'photoswipe/4.0.8/photoswipe',
+    'photoswipe/4.0.8/photoswipe-ui-default.min',
+    'superShare/1.0.1/superShare',
+    'weixin/2.0.0/weixinshare',
+    'verifycode/1.0.0/verifycode'
+], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -17,6 +24,38 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
         var share;
         var shareWx;
         var hasCollect;
+
+        // 报名
+        var verifycode = require('verifycode/1.0.0/verifycode');
+        var jiajuUtils = vars.jiajuUtils;
+        var freeOrder = $('.yuyueBtn');
+        var maskFixed = $('.sf-maskFixed');
+        var maskFloat = $('.sf-maskFixed .zx-yuyue-but');
+        var phoneCode = $('#phoneCode');
+        var vcodeBtn = $('#sendPhoneCode');
+        var vCode = $('#phoneTxt');
+        var orderSubmit = $('.yuyueSub');
+        var codeInput = $('.codeInput');
+        var sendText = $('#sendText');
+        var phoneNumber, codeNumber;
+        var flag = {
+            phoneEmpty: false,
+            phoneIlleagal: false,
+            vCodeSend: false,
+            vCodeEmpty: false,
+            vCodeIlleagal: false
+        };
+        var toastMes = {
+            phoneEmpty: '请输入手机号',
+            phoneIlleagal: '输入手机号格式错误',
+            vCodeSend: '请先发送验证码',
+            vCodeEmpty: '请输入验证码',
+            vCodeIlleagal: '输入验证码错误'
+        };
+        var ajaxflag = {
+            getVerifyCode: true,
+            checkVerifyCode: true
+        };
         pageInit();
 
         /**
@@ -24,6 +63,9 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
          * @return {[type]} [description]
          */
         function pageInit() {
+            if (vars.phone) {
+                phoneNumber = vars.phone;
+            }
             // 头部样式
             $('header').addClass('head_2');
             // photoSwiper初始化
@@ -31,7 +73,8 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
             // 页面事件初始化
             eventInit();
             // hasCollect初始化
-            hasCollect = $iconFav.hasClass('cur') ? true : false;
+            $iconFav[vars.collectInfo === '1' ? 'addClass' : 'removeClass']('cur');
+            hasCollect = vars.collectInfo === '1' ? true : false;
         }
 
         /**
@@ -47,6 +90,26 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
             $shareSuc.find('.close').on('click', function () {
                 $shareSuc.hide();
             });
+
+            /** 点赞*/
+            var zan = $('#zan'), zanOn = $('.jj-zan'), numBox = zan.find('p');
+            zan.on('click', function () {
+                if (!vars.phone) {
+                    window.location.href = vars.loginUrl + '?burl=' + encodeURIComponent(location.href);
+                    return;
+                }
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
+                    if (data && data.Message) {
+                        toast(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
+                        // 点赞数+1
+                        var num = parseInt(numBox.html() ? numBox.html() : 0);
+                        zanOn.addClass(data.Message.Code === '0' ? '' : 'cur');
+                        zanOn.html(data.Message.Code === '0' ? '' : '<i class="on">+1</i>');
+                        numBox.html(data.Message.Code === '0' ? num : num + 1);
+                    }
+                });
+            });
+
             // 收藏
             $iconFav.on('click', (function () {
                 var canAjax = true;
@@ -88,7 +151,178 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
                     }
                 };
             })());
-        } 
+
+            freeOrder.on('click', function () {
+                maskFloat.css({bottom: -1 * maskFixed.height()});
+                maskFixed.css({'z-index': 10000}).show();
+                maskFloat.animate({bottom: 0}, 500);
+                jiajuUtils.toggleTouchmove(true);
+            });
+            maskFixed.on('click', function (event) {
+                if (!$(event.target).parents('.zx-yuyue-but').eq(0).length) {
+                    maskFixed.hide();
+                    jiajuUtils.toggleTouchmove(false);
+                }
+            });
+            phoneCode.on('input', function () {
+                phoneNumber = phoneCode.val().trim();
+                vcodeBtn.removeClass('active');
+                var able = /^1[34578][0-9]{9}$/.test(phoneNumber);
+                if (able) {
+                    flag.phoneEmpty = true;
+                    flag.phoneIlleagal = true;
+                    flag.phonevCodeSend = false;
+                    vcodeBtn.addClass('active');
+                } else if (!phoneNumber) {
+                    flag.phoneEmpty = false;
+                } else {
+                    flag.phoneEmpty = true;
+                    flag.phoneIlleagal = false;
+                }
+            }).on('blur', function () {
+                phoneNumber = phoneCode.val().trim();
+                if (!flag.phoneEmpty) {
+                    toast(toastMes.phoneEmpty);
+                } else if (!flag.phoneIlleagal) {
+                    toast(toastMes.phoneIlleagal);
+                } else {
+                    vcodeBtn.addClass('active');
+                }
+            });
+            vCode.on('input', function () {
+                codeNumber = vCode.val();
+                var able = /^\s*\d{4}\s*$/.test(codeNumber);
+                if (able) {
+                    flag.vCodeEmpty = true;
+                    flag.vCodeIlleagal = true;
+                } else if (!codeNumber) {
+                    flag.vCodeEmpty = false;
+                } else {
+                    flag.vCodeEmpty = true;
+                    flag.vCodeIlleagal = false;
+                }
+            }).on('blur', function () {
+                codeNumber = vCode.val();
+                if (!flag.vCodeEmpty) {
+                    toast(toastMes.vCodeEmpty);
+                } else if (!flag.vCodeIlleagal) {
+                    toast(toastMes.vCodeIlleagal);
+                }
+            });
+            vcodeBtn.on('click', function () {
+                var hasActive = $(this).hasClass('active');
+                hasActive && getVerifyCode();
+            });
+            orderSubmit.on('click', function () {
+                if (vars.phone) {
+                    ajaxflag.checkVerifyCode && orderAjaxFn();
+                } else if (!flag.phoneEmpty) {
+                    toast(toastMes.phoneEmpty);
+                } else if (!flag.phoneIlleagal) {
+                    toast(toastMes.phoneIlleagal);
+                } else if (!flag.vCodeSend) {
+                    toast(toastMes.vCodeSend);
+                } else if (!flag.vCodeEmpty) {
+                    toast(toastMes.vCodeEmpty);
+                } else if (!flag.vCodeIlleagal) {
+                    toast(toastMes.vCodeIlleagal);
+                } else {
+                    ajaxflag.checkVerifyCode && checkVerifyCode();
+                }
+            });
+        }
+
+        /**
+         * [getVerifyCode description] 获取验证码
+         * @return {[type]} [description]
+         */
+        function getVerifyCode() {
+            ajaxflag.getVerifyCode = false;
+            codeInput.show();
+            verifycode.getPhoneVerifyCode(phoneNumber, function () {
+                vcodeBtn.removeClass('active');
+                phoneCode.attr('disabled', 'true');
+                flag.vCodeSend = true;
+                timeRecorder(60);
+                ajaxflag.getVerifyCode = true;
+            }, function () {
+                toast('获取验证码失败');
+                ajaxflag.getVerifyCode = true;
+            });
+        }
+
+        /**
+         * [timeRecorder description] 验证码倒计时
+         * @param  {[type]} timePara [description] 设置倒计时的时长
+         * @return {[type]}          [description]
+         */
+         function timeRecorder(timePara) {
+            var handle = setInterval(function () {
+                vcodeBtn.text('发送中(' + timePara + ')');
+                if (timePara === 0) {
+                    clearInterval(handle);
+                    vcodeBtn.text('重新发送').addClass('active');
+                }
+                timePara--;
+            }, 1000);
+        }
+
+        /**
+         * [checkVerifyCode description] 登录信息验证
+         * @return {[type]} [description]
+         */
+         function checkVerifyCode() {
+            ajaxflag.checkVerifyCode = false;
+            verifycode.sendVerifyCodeAnswer(phoneNumber, codeNumber, orderAjaxFn, function () {
+                toast(codeNumber ? '验证码错误' : '请输入验证码');
+                ajaxflag.checkVerifyCode = true;
+            });
+        }
+
+        /**
+         * [buyAjaxFn description] 提交验证
+         * @return {[type]} [description]
+         */
+         function orderAjaxFn() {
+            var paramObj = {
+                phone: vars.phone ? vars.phone : phoneNumber,
+                companyId: vars.companyid,
+                city: vars.city,
+                t: 'caseBigImg'
+            };
+            ajaxflag.checkVerifyCode = false;
+            $.ajax({
+                type: 'post',
+                url: location.protocol + vars.jiajuSite + '?c=jiaju&a=ajaxZXAppointment',
+                data: paramObj,
+                success: function (data) {
+                    if (data.issuccess === '1') {
+                        maskFixed.hide();
+                        toast('恭喜您预约成功啦~');
+                        codeInput.hide();
+                    } else {
+                        toast(data.message);
+                    }
+                    setTimeout(function () {
+                        dealUrlFn();
+                    }, 2000);
+                },
+                complete: function () {
+                    ajaxflag.checkVerifyCode = true;
+                }
+            });
+        }
+
+        function dealUrlFn() {
+            var pattern = /([\?|&]random=)\w\.[0-9]+/;
+            var bool = pattern.test(location.href);
+            if (bool) {
+                location.href = location.href.replace(pattern, '$1' + Math.random());
+            } else {
+                var pinStr = location.href.indexOf('?') === -1 ? '?' : '&';
+                location.href = location.href + pinStr + 'random=' + Math.random();
+            }
+        }
         
         /**
          * [shareFn description] 页面分享初始化
@@ -209,7 +443,7 @@ define('modules/jiaju/xgtCaseDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 
          */
         function toast(msgType) {
             $sendText.text(msgType);
-            $sendFloat.show();
+            $sendFloat.css({'z-index': 100000}).show();
             toastTime && clearTimeout(toastTime);
             toastTime = setTimeout(function () {
                 $sendFloat.hide();

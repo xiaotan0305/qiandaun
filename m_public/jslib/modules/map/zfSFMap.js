@@ -34,7 +34,7 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
     // 记录大数据容器
     var guess = [];
     var guessPosition = {};
-    require.async('jsub/_vb.js?c=mnhmap');
+    require.async('jsub/_vb.js?c=dt_zf^sy_wap');
     require.async('jsub/_ubm.js', function () {
         _ub.city = vars.cityname;
         // 业务---WAP端
@@ -396,7 +396,7 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
             that.isSearching = true;
             //  添加关键词用户行为统计
             require.async('modules/zf/yhxw', function (yhxw) {
-                yhxw({type: 1, pageId: 'mzfmap', curChannel: 'zfmap', params: that.params});
+                yhxw({type: 1, pageId: 'dt_zf^sy_wap', curChannel: 'zfmap', params: that.params});
             });
             // 有楼盘id或关键字，搜索数量为20，否则为70
             if (that.params.projcodes || that.params.strKeyword) {

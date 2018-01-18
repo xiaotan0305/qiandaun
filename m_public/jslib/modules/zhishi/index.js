@@ -20,7 +20,7 @@ define('modules/zhishi/index', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1
         // 用户行为对象
         var zhishibuma = require('modules/zhishi/zhishibuma');
         // 布码
-        zhishibuma({zscategory: encodeURIComponent(vars.jtnames), pageType: 'mzshomepage'});
+        zhishibuma({zscategory: encodeURIComponent(vars.jtnames), pageType: 'zs_zs^lb_wap'});
         // 加载更多
         var loadMore = require('loadMore/1.0.0/loadMore');
 

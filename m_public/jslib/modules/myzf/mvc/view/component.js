@@ -5,6 +5,35 @@
  */
 define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports, module) {
     'use strict';
+    var vars = seajs.data.vars;
+    //写cookies
+    function setCookie(name, value) {
+        //var Days = 1;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + 0.5 * 60 * 60 * 1000);
+        document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + exp.toGMTString() + "; path=/";
+    }
+
+    // function getCookie(name) {
+    //     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    //     if (arr = document.cookie.match(reg)) {
+    //         return unescape(arr[2]);
+    //     } else {
+    //         return null;
+    //     }
+    // }
+
+    function transCookie(value, varRenttype) {
+        if (vars.edit === '0') {
+            value = JSON.stringify(value); //可以将json对象转换成json对符串
+            if (varRenttype) {
+                setCookie('inputCookieHz', value);
+            } else {
+                setCookie('inputCookieZz', value);
+            }
+        } 
+    }
+
     // 列表组件
     Vue.component('liList', {
         replace: true,
@@ -18,7 +47,7 @@ define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports
         replace: true,
         props: ['dtText', 'spanText','id'],
         template: '<dl><dt>{{{dtText}}}</dt>'
-        + '<dd class="arr-rt font01"><span id={{id}} class="xuan2">{{spanText}}</span></dd></dl>'
+        + '<dd class="arr-rt font02"><span id={{id}} class="xuan2">{{spanText}}</span></dd></dl>'
     });
 
     Vue.component('districtdrapList', {
@@ -184,13 +213,13 @@ define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports
             ];
             var todosLen = todos.length;
             // 只有编辑页才需要重新初始化改数据
-            if (this.$parent.varsEdit) {
+            //if (this.$parent.varsEdit) {
                 for (var i = 0; i < todosLen; i++) {
                     if (varsEquitment.indexOf(todos[i].text) !== -1) {
-                        todos[i].cla = 'active';
+                        todos[i].cla = 'btn_red';
                     }
                 }
-            }
+            //}
             return {
                 todos: todos
             };
@@ -201,7 +230,7 @@ define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports
                     return false;
                 }
                 if (this.todos[index].cla === '') {
-                    this.todos[index].cla = 'active';
+                    this.todos[index].cla = 'btn_red';
                 } else {
                     this.todos[index].cla = '';
                 }
@@ -209,11 +238,13 @@ define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports
                 var todosLen = this.todos.length;
                 var selectedEq = [];
                 for (var i = 0; i < todosLen; i++) {
-                    if (this.todos[i].cla === 'active') {
+                    if (this.todos[i].cla === 'btn_red') {
                         selectedEq.push(this.todos[i].text);
                     }
                 }
                 this.$parent.varsEquitment = selectedEq.join(',');
+                this.$parent.cookieValue.equitment = this.$parent.varsEquitment;
+                transCookie(this.$parent.cookieValue, this.$parent.varRenttype);
             }
         }
     });
@@ -314,17 +345,29 @@ define('modules/myzf/mvc/view/component', ['jquery'], function (require, exports
         props: [],
         template: '<div class="radioBox"><a v-for="todo in todos" href="javascript:void(0);" class="{{todo.cla}}" v-on:click="changeSex($index)">{{todo.text}}</a></div>',
         data: function () {
-            var todos = [{text: '先生',cla: 'active'}, {text: '女士',cla: ''}];
+            if (this.$parent.gender === '女士') {
+                var classGile = 'active'
+                var classBoy = ''
+            } else {
+                var classGile = ''
+                var classBoy = 'active'
+            }
+            var todos = [{text: '先生',cla: classBoy}, {text: '女士',cla: classGile}];
             return {
                 todos: todos
             };
         },
         methods: {
             changeSex: function (index) {
+                if(!this.$parent.canClick){
+                    return false;
+                }
                 this.todos[0].cla = '';
                 this.todos[1].cla = '';
                 this.todos[index].cla = 'active';
                 this.$parent.gender = this.todos[index].text;
+                this.$parent.cookieValue.gender = this.$parent.gender;
+                transCookie(this.$parent.cookieValue, this.$parent.varRenttype);
             }
         }
     });

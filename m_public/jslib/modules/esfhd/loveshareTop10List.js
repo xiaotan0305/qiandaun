@@ -36,5 +36,24 @@ define('modules/esfhd/loveshareTop10List', ['jquery', 'weixin/2.0.0/weixinshare'
             imgUrl: vars.imgpath,
             swapTitle: false
         });
+
+
+        $('.chat').on('click', function () {
+            var data = $(this).attr('data-chat');
+            var dataArr = data.split(',');
+            chatWeituo(dataArr[0], dataArr[1], dataArr[2], dataArr[3], dataArr[4], dataArr[5]);
+        });
+        function chatWeituo(city, housetype, houseid, purpose, type, uname) {
+            var paramPurpose = '';
+            if ($.trim(purpose) === '写字楼') {
+                paramPurpose = 'xzl';
+            } else if ($.trim(purpose) === '商铺') {
+                paramPurpose = 'sp';
+            }
+            setTimeout(function () {
+                window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city + '&type=wap' + type
+                    + '&houseid=' + houseid + '&purpose=' + paramPurpose + '&housetype=' + housetype;
+            }, 500);
+        }
     }
 });

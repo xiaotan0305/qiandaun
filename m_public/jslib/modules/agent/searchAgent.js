@@ -2,7 +2,7 @@
  * by bjwanghongwei@fang.com
  * 经纪人快筛加搜索功能  20161121
  */
-define('modules/agent/searchAgent', function (require, exports, module) {
+define('modules/agent/searchAgent', ['modules/esf/yhxw'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery索引
@@ -11,7 +11,10 @@ define('modules/agent/searchAgent', function (require, exports, module) {
         var vars = seajs.data.vars;
         // 快筛栏
         var filterBox = $('#filterBox');
-
+        // 添加用户行为对象
+        var yhxw = require('modules/esf/yhxw');
+        // 用户行为统计
+        yhxw({type: 0, pageId: 'esf_jjr^lb_wap', curChannel: 'agent'});
         //快筛插件
         require.async(['modules/jiaju/filters'], function (filter) {
             filter();

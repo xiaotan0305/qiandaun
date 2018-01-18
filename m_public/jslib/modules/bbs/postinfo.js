@@ -25,7 +25,7 @@ define('modules/bbs/postinfo', ['jquery', 'photoswipe/4.0.7/photoswipe', 'photos
             // 发送验证码插件
             var verifycode = require('verifycode/1.0.0/verifycode');
             // 帖子详情页浏览动作布码
-            bbsbuma({type: 0, pageId: 'mbbspostpage', posttitle: vars.postTitle, postid: masterId, forumid: vars.sign});
+            bbsbuma({type: 0, pageId: 'lt_lt^tzxq_wap', posttitle: vars.postTitle, postid: masterId, forumid: vars.sign});
             // 惰性加载
             require('lazyload/1.9.1/lazyload');
             $('.lazyload').lazyload();

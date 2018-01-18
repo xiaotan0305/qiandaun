@@ -544,7 +544,7 @@ define('modules/xf/huXingInfo', [
         window.location.href = '//m.fang.com/schoolhouse/' + vars.city + '/' + vars.schoolcode + '.html';
     });
     // 统计行为 ------------------------------------------------------start
-    require.async('jsub/_vb.js?c=mnhpagetypepage');
+    require.async('jsub/_vb.js?c=xf_lp^hxxq_wap');
     require.async('jsub/_ubm.js?_2017102307fdsfsdfdsd', function () {
         _ub.city = vars.ubcity;
         // 业务---WAP端
@@ -562,7 +562,7 @@ define('modules/xf/huXingInfo', [
         }
         var pTemp = {
             // 关注的业务
-            'vmg.page': 'mnhpagetypepage',
+            'vmg.page': 'xf_lp^hxxq_wap',
             // 所属页面
             'vmn.projectid': vars.newcode,
             // 户型

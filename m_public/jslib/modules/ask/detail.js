@@ -65,7 +65,7 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
 
         // 用户行为对象
         var yhxw = require('modules/ask/yhxw');
-        yhxw({type: 0, pageId: 'mapage'});
+        yhxw({type: 0, pageId: 'wd_wd^xq_wap'});
 
         var $doc = $(document);
         var IcoStar = require('modules/xf/IcoStar');
@@ -317,28 +317,18 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
         });*/
 
         // 显示更多
-        var $showMore = $('#zhankai');
-        if ($('.max-h').next().height() > 60) {
+        var $showMore = $('#seeMore');
+        var $bc = $('#bc');
+        if ($bc.height() > 60) {
             $showMore.show();
+            $bc.addClass('askline3');
         }
-        // 收起，更多
-        $showMore.on('click', function () {
-            var $that = $(this);
-            var me = $that.parent().parent();
-            me.find('.style1').removeClass('max-h');
-            me.find('.style2').addClass('max-h');
-            me.find('.style2').hide();
-            $that.hide().next().show();
-            // $(this).next().show();
+
+        $showMore.on('click', function(){
+            $bc.removeClass('askline3');
+            $showMore.hide();
         });
-        $('#shouqi').on('click', function () {
-            var $that = $(this);
-            var me = $that.parent().parent();
-            me.find('.style2').removeClass('max-h');
-            me.find('.style1').addClass('max-h');
-            $that.prev().show();
-            $that.hide();
-        });
+
         /**
          * 事件委托方式，点击赞或者点击踩或者点击采纳或者点击他的回答（这就是用户名边上的跳转，产看这个回答用户的回答）
          */
@@ -598,7 +588,10 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
         // 加载装修分类下的广告
         if (vars.adFlag === 'true') {
             $.get(vars.askSite + '?c=ask&a=ajaxGetDetailAd&id=' + vars.ask_id, {}, function (data) {
-                $('.adBox').html(data);
+                if (data) {
+                    $('.adBox').html(data).show();
+                }
+                
             });
         }
 
@@ -619,5 +612,61 @@ define('modules/ask/detail', ['jquery', 'util', 'swipe/3.10/swiper', 'lazyload/1
         }
         // 控制星星亮
         var icoStarObj = new IcoStar('.ico-star');
+
+        // 删除自己的回答功能
+        // 删除按钮
+        var askdel = $('#askdel');
+        // 显示删除按钮
+        $('#askspot').on('click', function(){
+            if (askdel.is(":hidden")) {
+                askdel.show();
+            } else {
+                askdel.hide();
+            }
+        });
+        // 显示提示弹层
+        var floatA = $('.floatAlert');
+        askdel.on('click', function(){
+            floatA.show();
+            askdel.hide();
+        });
+        // 取消删除
+        $('#cancel').on('click', function(){
+            floatA.hide();
+            askdel.hide();
+        });
+        // 确定删除
+        $('#sure').on('click', function(){
+            $.ajax({
+                type : 'GET',
+                url : vars.askSite + '?c=ask&a=ajaxDelAnswerByIDs',
+                data : {
+                    uid : $('#askdel').attr('data-uid'),
+                    aid : $('#askdel').attr('data-aid')
+                },
+                success : function(data){
+                    if (data === '1') {
+                        floatA.hide();
+                        showMsg('删除成功');
+                        window.location.reload();
+                    } else {
+                        showMsg('删除失败，请重试');
+                    }
+                },
+                error : function () {
+                    showMsg('删除失败，请重试');
+                }
+            });
+        });
+
+        // 提示信息弹层
+        function showMsg(msg){
+            $('#sendText').text(msg);
+            $('#sendFloat').show();
+            setTimeout(function(){
+                $('#sendText').text('');
+                $('#sendFloat').hide();
+            }, 1500);
+        }
     };
 });

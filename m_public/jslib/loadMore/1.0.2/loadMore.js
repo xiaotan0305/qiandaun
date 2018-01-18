@@ -150,6 +150,7 @@
                     if(options.loadedMsg){
                         $loadPrompt.html(options.loadedMsg).removeClass('loading');
                     }
+                    $(options.loadedShow).show();
                     loadFlag = false;
                 }
                 // 增加回调

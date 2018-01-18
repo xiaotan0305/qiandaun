@@ -8,19 +8,42 @@ define('modules/zhuanti/fangdance', ['jquery'], function(require, exports, modul
         var $ = require('jquery');
         // 页面传入的参数
         var vars = seajs.data.vars;
+        if (vars.modeltype == 2) {
+            var baoming = $('#baoming');
+            var close = $('.close');
+            var shade = $('.shade');
+            var signfloat = $('#signfloat');
+            baoming.click(function(){
+                shade.show();
+                signfloat.show();
+            });
+            close.click(function(){
+                shade.hide();
+                signfloat.hide();
+            })
+        }
 
         /**
          * 提示弹窗
          * @param msg 要显示的文案
          */
-        function showMsg(msg) {
+        function showMsg(msg, modeltype, status) {
             // 意见提交失败的样式,只有网络不好的时候会出现
-            var message = $('.outW');
+            if (modeltype == 2) {
+                var message = $('.tishi_bm');
+            } else {
+                var message = $('.outW');
+            }
+            
             message.html(msg);
             message.show();
             // 提示框在3秒后隐藏
-            setInterval(function () {
+            setTimeout(function () {
                 message.hide();
+                if (vars.modeltype == 2 && status == 'success') {
+                    shade.hide();
+                    signfloat.hide();
+                }
             }, 3000);
         }
 
@@ -67,14 +90,28 @@ define('modules/zhuanti/fangdance', ['jquery'], function(require, exports, modul
         	var name = $('#name').val();
         	var mobile = $('#mobile').val();
         	var cityname = $('#cityname').val();
-        	$.get(vars.zhuantiSite + '?c=zhuanti&a=ajaxSignUp',{'name': encodeURIComponent(name),'mobile':mobile,'cityname':encodeURIComponent(cityname)}, function (data) {
+            if (vars.modeltype == 2) {
+                var data = {'name': encodeURIComponent(name),'mobile':mobile,'cityname':encodeURIComponent(cityname), 'source':4};
+            } else {
+                var data = {'name': encodeURIComponent(name),'mobile':mobile,'cityname':encodeURIComponent(cityname)};
+            }
+        	$.get(vars.zhuantiSite + '?c=zhuanti&a=ajaxSignUp', data, function (data) {
                 if (data.code === '100') {
                 	//意见提交成功
-                	$('.outBox').show();
-                	signBtn.unbind("click");
-                	signBtn.addClass('dis');
+                    if (vars.modeltype == 2) {
+                        showMsg('报名成功', 2, 'success');
+                    } else {
+                        $('.outBox').show();
+                        signBtn.unbind("click");
+                        signBtn.addClass('dis');
+                    }
                 } else {
-                	showMsg(data.msg);
+                    if (vars.modeltype == 2) {
+                        showMsg(data.msg, 2, 'fail');
+                    } else {
+                        showMsg(data.msg);
+                    }
+                	
                 }
         	})
         });
