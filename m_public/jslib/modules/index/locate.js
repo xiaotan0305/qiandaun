@@ -4,8 +4,8 @@
  * 20151123 blue 整理代码，删除冗长代码，增加注释，修改Util的getCookie方法返回为null时的判断改为判断为空
  * 20160530 tankunpeng 增加切换城市提示弹窗功能
  */
-define('modules/index/locate', ['jquery', 'util'], function(require) {
-    
+define('modules/index/locate', ['jquery', 'util'], function (require) {
+    'use strict';
     // jquery库
     var $ = require('jquery');
     // 工具集
@@ -58,15 +58,13 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
         /**
          * 获取定位
          */
-        get_location: function() {
+        get_location: function () {
             var that = this;
             if (navGeo) {
                 // 如果能够是用定位api时，获取当前位置
-                navGeo.getCurrentPosition(function(position) {
-                    console.log(position);
+                navGeo.getCurrentPosition(function (position) {
                     that.geo_success(position);
-                }, function(error) {
-                    console.log(error);
+                }, function (error) {
                     that.geo_error(error);
                 }, {
                     timeout: 10000,
@@ -77,7 +75,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
                 alert('您的浏览器不支持GPS定位服务！');
             }
         },
-        show_map1: function(position) {
+        show_map1: function (position) {
             var that = this;
             that.ispos = 1;
             // 维度
@@ -95,7 +93,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
              */
             $.ajax({
                 url: '/local.d?m=locationbd&geox=' + latitude + '&geoy=' + longitude,
-                success: function(data) {
+                success: function (data) {
                     var city = data.root.city;
                     var encity = data.root.encity;
                     var addr1 = data.root.addr;
@@ -123,7 +121,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
          * 获取定位成功
          * @param position 获取到的定位信息
          */
-        geo_success: function(position) {
+        geo_success: function (position) {
             var that = this;
             // 设置获取位置成功标识
             that.ispos = 1;
@@ -137,7 +135,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
                 type: 'get',
                 url: '/local.d?m=locationbd&geox=' + latitude + '&geoy=' + longitude,
                 async: true,
-                success: function(data) {
+                success: function (data) {
                     // 当前城市中文
                     var encity = data.root.encity;
                     // 当前城市缩写
@@ -175,7 +173,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
         /**
          * 获取定位失败
          */
-        geo_error1: function() {
+        geo_error1: function () {
             var that = this;
             errtype = 1;
             that.getCityByIp();
@@ -186,7 +184,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
          * @param paras
          * @returns {*}
          */
-        request: function(paras) {
+        request: function (paras) {
             var url = location.href;
             var findPos = url.indexOf('#');
             if (findPos > 0) {
@@ -206,7 +204,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
          * 定位失败操作
          * @param error
          */
-        geo_error: function(error) {
+        geo_error: function (error) {
             var that = this;
             // 如果不是拒绝共享位置则通过ip获取位置
             that.getCityByIp();
@@ -215,7 +213,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
         /**
          * 根据ip获取城市
          */
-        getCityByIp: function() {
+        getCityByIp: function () {
             var that = this;
             // 获取位置成功
             that.ispos = 1;
@@ -225,7 +223,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
              */
             $.ajax({
                 url: '/local.d?m=getcitybyip&r=' + Math.random(),
-                success: function(data) {
+                success: function (data) {
                     var encity = data.root.encity;
                     var city = data.root.city;
                     var addr = data.root.addr;
@@ -262,7 +260,7 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
          * @param name 显示的定位中文信息
          * @param encity 城市英文缩写
          */
-        showPostionFloat: function(name, encity) {
+        showPostionFloat: function (name, encity) {
             csCurrentCity.html(name).attr('data-encity', encity);
             citySwitch.show();
         }
@@ -294,10 +292,10 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
     /**
      * 点击重新获取当前位置按钮操作
      */
-    $loading.on('click', function() {
-        navGeo.getCurrentPosition(function(position) {
+    $loading.on('click', function () {
+        navGeo.getCurrentPosition(function (position) {
             Locate.show_map1(position);
-        }, function(error) {
+        }, function (error) {
             Locate.geo_error1(error);
         }, {
             timeout: 10000,
@@ -309,14 +307,14 @@ define('modules/index/locate', ['jquery', 'util'], function(require) {
     /**
      * 点击定位提示弹窗 确定或者取消按钮
      */
-    csConfirm.on('click', function() {
+    csConfirm.on('click', function () {
         var targetCity = csCurrentCity.attr('data-encity');
         citySwitch.hide();
         if (targetCity) {
             location.replace(location.href.replace(curcity, targetCity));
         }
     });
-    csCancel.on('click', function() {
+    csCancel.on('click', function () {
         citySwitch.hide();
         Util.setCookie('cancellocation', '1', 30);
     });
