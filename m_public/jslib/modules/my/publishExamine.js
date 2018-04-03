@@ -88,14 +88,14 @@ define('modules/my/publishExamine', ['jquery', 'iscroll/2.0.0/iscroll-lite'], fu
          * 阻止页面滑动
          */
         function showDiv() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
 
         /**
          * 恢复页面滑动
          */
         function closeDiv() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
 
         //城市房屋产权

@@ -115,14 +115,14 @@ define('modules/map/zfdhjs', ['jquery', 'modules/map/zfSFMap', 'modules/map/mapP
          * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
          */
         function unable() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
 
         /**
          * 手指滑动恢复浏览器默认事件（恢复滚动
          */
         function enable() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
 
         /**

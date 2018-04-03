@@ -12,7 +12,7 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
     var IScroll = require('iscroll/2.0.0/iscroll-lite');
     var scroll = null;
 
-    Vue.component('zhdai', {
+    Vue.component('zh', {
         template: '<section v-show="showDai"><div class="jsqBox"><ul class="jsq-list zhd">'
         + '<li><div>商业贷款：</div>'
         + '<div><div class="flexbox">'
@@ -24,10 +24,13 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
         + '<input type="number" class="ipt-text"  pattern="[0-9]*" v-model="gjjMoney" placeholder="{{hint}}" v-on:input="inputLimit">'
         + '<span>万元</span></div></div></li>'
         + '<select-li label="公积金贷款按揭年数：" :data-value="gjjYear" :msg="gjjMsg" v-on:click="gjjYearClick"></select-li>'
+        + '<div class="space8"></div>'
         + '<select-li label="商业利率：" :data-value="syRate" :msg="syRateMsg" v-on:click="syRateClick"></select-li>'
         + '<select-li label="公积金利率：" :data-value="gjjRate" :msg="gjjRateMsg" v-on:click="gjjRateClick"></select-li>'
         + '</ul><v-button v-on:click="calculate"></v-button></div>'
-        + '<re-combination :detail="detail" :handle-tab="handleTab" v-show="showResult" v-ref:result></re-combination></section>'
+        + '<re-combination :detail="detail" :handle-tab="handleTab" v-show="showResult" v-ref:result></re-combination>'
+        + '</section>'
+        + '<new-house v-show="showList"></new-house>'
         + '<detail-view v-show="showDetail" v-on:tab-click="detailTab"></detail-view>'
         + '<mg-rate v-show="showRate" v-on:rate-msg="handleRate" v-on:rate-msg2="handleRate" v-ref:rate></mg-rate>'
         + '<mg-year v-show="showYear" v-on:year-msg="handleYear" v-ref:yearSel></mg-year>',
@@ -59,7 +62,9 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
                 payMethodType: '0',
                 syIndex: 0,
                 gjjIndex: 0,
-                yearFlag:true
+                yearFlag:true,
+                dkRate:0.7,
+                showList:false
             };
         },
         methods: {
@@ -311,10 +316,11 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
                 // 按揭年数是否一样
                 // var showDiffer = (this.syYear === this.gjjYear);
                 this.$broadcast('showResult', resultData);
+                this.$broadcast('getData',this.totalPrice);
                 // 只有点击开始计算按钮时候才触发(初始化还款方式)
                 this.$broadcast('payMethod');
                 // this.showResult = true;
-                var resultD = $('.jsresults');
+                var resultD = $('.resultBox');
                 resultD.show();
                 $(document).scrollTop(resultD.offset().top);
             },
@@ -356,6 +362,7 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
             detail: function () {
                 this.$parent.showNav = false;
                 this.showDai = false;
+                this.showList = false;
                 // 显示结果页
                 $('.left').html('').html('<a id="wapxfsy_D01_01" class="back" href="javascript:history.back(-1)"><i></i></a>');
                 // 传递数据到子组件
@@ -403,16 +410,37 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
             changeTab: function (data) {
                 if (data != this.type) {
                     this.showResult = false;
+                    this.showList = false;
                     this.type = data;
                 }
             }
         },
+        computed:{
+            totalPrice(){
+                this.gjjMoney = this.gjjMoney > 120 ? 120 : this.gjjMoney;
+                return Math.ceil((this.syMoney + this.gjjMoney)  / this.dkRate);
+            }
+         },
+         created:function(){
+             var that = this;
+             $.ajax({
+                 url: _vars.mainSite + 'tools/?a=ajaxGetHouseLoanInfo&city='+ _vars.city +'&floorYear=0&isFirstHouse=1',
+                 success:function(data){
+                     if(data && data.result === '100'){
+                         that.dkRate = data.commerce / 100;
+                     }
+                 }
+             })
+         },
         ready:function(){
             var that = this;
             $('a').on('click',function(){
                 if(!that.yearFlag){
                     return false;
                 }
+            });
+            $('.left').on('click',function(){
+                that.showList = true;
             })
         }
     });

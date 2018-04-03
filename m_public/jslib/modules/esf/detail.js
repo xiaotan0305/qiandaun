@@ -6,7 +6,7 @@
  */
 define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yhxw', 'lazyload/1.9.1/lazyload',
     'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare','chart/pie/1.0.0/pie', 'modules/tools/mvc/model/Calculate',
-    'iscroll/2.0.0/iscroll-lite', 'util/util'],
+    'iscroll/2.0.0/iscroll-lite', 'util/util', 'bgtj/bgtj'],
     function (require, exports, module) {
     'use strict';
     module.exports = function () {
@@ -132,14 +132,14 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
          * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
          */
         function unable() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
 
         /**
          * 手指滑动恢复浏览器默认事件（恢复滚动
          */
         function enable() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
 
         // 点击全景看房图标进入全景看房
@@ -1413,9 +1413,20 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         if($('#zxexample').length){
             $.ajax({
                 url:vars.esfSite + '?c=esf&a=ajaxIncJiajuModule&city=' + vars.city + '&plotid=' + vars.plotid + '&housetype=' + vars.housetype,
+                data:{'houseid': vars.houseid},
                 success: function(data){
                     if (data) {
-                        $('#zxexample').after(data);
+                        $('#zxexample').append(data);
+                        if ($('#zxexample').find('.jiajuExposure').val()) {
+                            require.async('bgtj/bgtj', function(bgTj){
+                                bgTj({
+                                    url:window.location.protocol + '//esfbg.3g.fang.com/homebg.html',
+                                    sendData:$('#zxexample').find('.jiajuExposure').val(),
+                                    isScroll: iscrollNew,
+                                    contentId: 'zxexample'
+                                });
+                            });
+                        }
                     }
                 }
             })
@@ -1580,6 +1591,43 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                     fymsList.find('ul').css({'max-height': '', 'overflow': ''});
                 }
             });
+            //下载弹框
+            if (vars.appdownload) {
+                if (vars.downLimit && !cookiefile.getCookie('onedayClose') && !cookiefile.getCookie('foreverClose')) {
+                    $('.downloadAPP-lp').show();
+                } else if (!cookiefile.getCookie('onedayClose') && !cookiefile.getCookie('foreverClose')) {
+                    var timespace = 1;
+                    var timeset = setInterval(function() {
+                        timespace = 1 + timespace;
+                        if (timespace > 350) {
+                             $('.downloadAPP-lp').show();
+                             clearTimeout(timeset);
+                        }
+                    }, 1000);
+                }
+                $('.onedayClose').click(function() {
+                    $('.downloadAPP-lp').hide();
+                    var date = new Date();
+                    var curTime = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                    var tomorrow = Date.parse(new Date(curTime)) + (1000*60*60*24);
+                    var curTemp = Date.parse(new Date());
+                    var cookieTiem = (tomorrow - curTemp)/(24*60*60*1000);
+                    cookieTiem = cookieTiem.toFixed(3);
+                    if ($('.foreverClose').hasClass('on')) {
+                        cookiefile.setCookie('foreverClose', 1, 365);
+                    } else {
+                        cookiefile.setCookie('onedayClose', 1, cookieTiem);
+                    }
+                });
+                $('.foreverClose').on('click', function() {
+                    var el = $(this);
+                    if (el.hasClass('on')) {
+                        el.removeClass('on');
+                    } else {
+                        el.addClass('on');
+                    }
+                });
+            }
         }
     };
 });

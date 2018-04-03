@@ -202,27 +202,43 @@ define('modules/jiaju/quoteTotalPrice', [
             /* 楼盘联想弹层 */
             that.houseInput.on('input', function () {
                 var $that = $(this);
-                var keyword = that.inputFormat($that.val());
-                that.searchTipBoxUl.html('');
-                if (keyword.length) {
-                    that.estate_cancel.text('确认');
-                    var tipStr = '';
-                    $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetBJHouseSearchTip&city=' + vars.city + '&keyword=' + keyword + '&cityname=' + that.areaOption.attr('data-cityname') + '&ns=' + that.getNSbyProvinceId(that.areaOption.attr('data-proid')), function (data) {
-                        if (data && data.allResultNum) {
-                            var num = data.allResultNum > 3 ? 3 : data.allResultNum;
-                            for (var i = 0; i < num; i++) {
-                                tipStr += '<li><a class="searchItem" href="javascript:void(0);" data-hid="' + data.hit[i].newCode + '">' + data.hit[i].title + '</a></li>';
+                clearTimeout(this.timerThink);
+                this.timerThink = setTimeout(function () {
+                    var keyword = that.inputFormat($that.val());
+                    var regNumAndEn=/^[`~!@#$%^&*()_+<>?:"{},.\/;'[\]！#￥（——）：；“”‘、，|《。》？、【】·…\^\-=‘’0-9]+$/;
+                    if(regNumAndEn.test(keyword)){
+                        that.toast('楼盘名称不规范，请重新填写');
+                        that.estate_cancel.text('取消');
+                        return false;
+                    }
+                    that.searchTipBoxUl.html('');
+                    if (keyword.length) {
+                        var tipStr = '';
+                        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetBJHouseSearchTip&city=' + vars.city + '&keyword=' + keyword + '&cityname=' + that.areaOption.attr('data-cityname') + '&ns=' + that.getNSbyProvinceId(that.areaOption.attr('data-proid')), function (data) {
+                            if (data && data.allResultNum > 0) {
+                                that.estate_cancel.text('请从以下楼盘中选择');
+                                var num = data.allResultNum > 3 ? 3 : data.allResultNum;
+                                for (var i = 0; i < num; i++) {
+                                    tipStr += '<li><a class="searchItem" href="javascript:void(0);" data-hid="' + data.hit[i].newCode + '">' + data.hit[i].title + '</a></li>';
+                                }
+                                that.searchTipBoxUl.html(tipStr);
+                                that.searchTipBox.show();
+                            } else {
+                                that.estate_cancel.text('确认');
                             }
-                            that.searchTipBoxUl.html(tipStr);
-                            that.searchTipBox.show();
-                        }
-                    });
-                }
+                        });
+                    }else{
+                        that.estate_cancel.text('取消');
+                    }
+                }, 100)
             });
 
             /* 楼盘联想-点击确定或者取消 */
             that.estate_cancel.on('click', function () {
-                if (that.houseInput.val()) {
+                if (that.estate_cancel.text() == '请从以下楼盘中选择') {
+                    return false;
+                }
+                if (that.houseInput.val() && that.estate_cancel.text() == '确认') {
                     that.estate.text(that.houseInput.val()).css({
                         color: '#3c3f46'
                     });
@@ -504,6 +520,10 @@ define('modules/jiaju/quoteTotalPrice', [
                         if ($this.val() != that.areaInfoBak.dataCityId) {
                             that.estate.removeAttr('style');
                             that.estate.html('请选择小区/楼盘');
+                            that.estate_cancel.text('取消');
+                            that.houseInput.val('');
+                            that.searchTipBoxUl.html('');
+                            that.searchTipBox.hide();
                             that.estateFlag = false;
                         }
                         $('#cityCon_' + that.areaOption.attr('data-proID')).hide();
@@ -527,6 +547,10 @@ define('modules/jiaju/quoteTotalPrice', [
                     if ($this.val() != that.areaInfoBak.dataDistId) {
                         that.estate.removeAttr('style');
                         that.estate.html('请选择小区/楼盘');
+                        that.estate_cancel.text('取消');
+                        that.houseInput.val('');
+                        that.searchTipBoxUl.html('');
+                        that.searchTipBox.hide();
                         that.estateFlag = false;
                     }
                     that.areali.removeClass('active').css('opacity', '1');
@@ -733,13 +757,13 @@ define('modules/jiaju/quoteTotalPrice', [
         // 禁止页面滑动
         unable: function () {
             var that = this;
-            document.addEventListener('touchmove', that.pdEvent);
+            window.addEventListener('touchmove', that.pdEvent, {passive: false});
         },
 
         // 允许页面滚动
         enable: function () {
             var that = this;
-            document.removeEventListener('touchmove', that.pdEvent);
+            window.removeEventListener('touchmove', that.pdEvent, {passive: false});
         },
 
         // 免费申请

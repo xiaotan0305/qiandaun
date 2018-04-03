@@ -1,4 +1,4 @@
-define('modules/xf/commentInfo', ['jquery', 'superShare/1.0.1/superShare','modules/xf/IcoStar', 'weixin/2.0.0/weixinshare','util/util'], function (require) {
+define('modules/xf/commentInfo', ['jquery', 'superShare/1.0.1/superShare','modules/xf/IcoStar', 'weixin/2.0.0/weixinshare','util/util','modules/xf/showPhoto','swipe/3.10/swiper'], function (require) {
 	'use strict';
 	var $ = require('jquery');
 	var vars = seajs.data.vars;
@@ -6,6 +6,10 @@ define('modules/xf/commentInfo', ['jquery', 'superShare/1.0.1/superShare','modul
 	var sfut = Util.getCookie('sfut');
 
 	var IcoStar = require('modules/xf/IcoStar');
+	
+	// 小图变大图插件
+	var ShowPhoto = require('modules/xf/showPhoto');
+	var Swiper = require('swipe/3.10/swiper');
 	
 	
 	// 登录后获取用户名，手机号和用户ID
@@ -64,7 +68,14 @@ define('modules/xf/commentInfo', ['jquery', 'superShare/1.0.1/superShare','modul
 	}
 	
 	
-	
+	// 图片效果-----------------------------------start
+	$('.comment-dp-img').on('click', '.clearfix dd', function () {
+		var $images = $(this).parent().find('img');
+		ShowPhoto.openPhotoSwipe($images,$(this).index());
+		ShowPhoto.gallery.listen('afterChange', function(data) {
+
+		});
+	});
 	
 	 // 点赞、回复、更多
         $('.zan').on('click', function () {
@@ -126,15 +137,19 @@ define('modules/xf/commentInfo', ['jquery', 'superShare/1.0.1/superShare','modul
 		$('.pinglun , .write_dp_input ').on('click',function(){
 			if(checkLogin()){
 				$('.main').hide();
+				$('header').hide()
 				$('.dpdetail_tan').show();
-				
 				$('.dpqx_aera>textarea').focus();
 			}
 		});
 		
 		$('.cancle').on('click',function(){
 			$('.dpdetail_tan').hide();
+			if(vars.src != 'client'){
+				$('header').show()
+			}
 			$('.main').show();
+			
 		});
 		
 		$('.dpqx_aera>textarea').on('input change',function(){

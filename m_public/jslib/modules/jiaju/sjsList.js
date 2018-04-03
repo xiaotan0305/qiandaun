@@ -12,6 +12,7 @@ define('modules/jiaju/sjsList',[
         var vars = seajs.data.vars;
         var $ = require('jquery');
         require('lazyload/1.9.1/lazyload');
+        require.async(['modules/jiaju/ad']);
         $('.lazyload').lazyload();
         var loadMore = require('loadMore/1.0.0/loadMore');
         $('#datatimeout').on('click', function () {
@@ -36,6 +37,8 @@ define('modules/jiaju/sjsList',[
                 order: $('#order').text().trim()
             });
         }
+        // 曝光量统计
+        vars.bgtj && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', vars.bgtj);
         loadMoreFn();
         function loadMoreFn() {
             loadMore({
@@ -56,7 +59,12 @@ define('modules/jiaju/sjsList',[
                 // 数据加载过来的html字符串容器
                 contentID: '#content',
                 loadingTxt: '努力加载中...',
-                loadAgoTxt: '点击加载更多...'
+                loadAgoTxt: '点击加载更多...',
+                callback: function (data) {
+                    // 曝光量统计
+                    var bgtjMore = $('#bgtj_' + data.pageMarloadFlag).val();
+                    bgtjMore && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', bgtjMore);
+                }
             });
         }
         // 分享功能

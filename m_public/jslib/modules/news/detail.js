@@ -76,7 +76,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                 if (newsType !== 11 && $this.attr('data-creator') === '自媒体联盟') {
                     $this.find('.topAppOpen').openApp({
                         appUrl: 'waptoapp/{"destination":"housecircle","url":"' + $this.attr('data-newsurl') + '"}',
-                        position: 'newsDetailTopBtn'
+                        position: $this.attr('data-position')
                     });
                 } else {
                     $this.find('.topAppOpen').openApp({
@@ -84,7 +84,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                         + '", "news_class":"' + $this.attr('data-newsclass') + '", "news_category":"' + $this.attr('data-newscategory') + '", "groupPicId":"'
                         + $this.attr('data-grouppicid') + '", "news_url":"' + $this.attr('data-newsurl') + '", "news_id":"' + $this.attr('data-newsid')
                         + '", "news_title":"' + '导购' + '", "newsscope":"' + $this.attr('data-newsscope') + '", "isSubject":"true"}',
-                        position: 'newsDetailTopBtn'
+                        position: $this.attr('data-position')
                     });
                 }
             });
@@ -120,10 +120,12 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                     fdcClickNum++;
                 });
             } else {
+                // 余下全文点击对象
+                var $more = $('.conWordMoreBtn');
+                // “打开app阅读全文”按钮
+                var $btnApp = $('.btn-app');
                 // 余下全文
                 (function () {
-                    // 余下全文点击对象
-                    var $more = $('.more_zkxq');
                     // 头条及开发平台余下全文
                     if (vars.channelid === '0' || vars.channelid === '03') {
                         var height = parseInt($(window).height(), 10) * 2;
@@ -134,9 +136,12 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                                 'max-height': height,
                                 overflow: 'hidden'
                             });
+                            // 有余下全文“打开app阅读全文”按钮显示
+                            $btnApp.show();
                             $more.on('click', function () {
                                 $more.hide();
                                 $conWord.css('max-height', '');
+                                $btnApp.hide();
                             }).show();
                         }
                     } else {
@@ -145,10 +150,14 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                         $more.on('click', function () {
                             $more.hide();
                             $('#conWordMore').show();
+                            $btnApp.hide();
                         });
                     }
                 })();
-
+                // 百度合作页直接展示全文
+                if (vars.sfSource === 'baidu') {
+                    $more.trigger('click');
+                }
                 // 其他的相关文章查看更多
                 $('#artMoreBtn').on('click', function () {
                     // 更多文章显示
@@ -157,6 +166,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                     $('#artMoreBtn').hide();
                 });
             }
+
             // toast
             var toast = (function () {
                 var time;
@@ -840,7 +850,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
             /* 帮你买房start*/
             // 阻止页面滑动
             function unable() {
-                document.addEventListener('touchmove', preventDefault);
+                window.addEventListener('touchmove', preventDefault, { passive: false });
             }
 
             function preventDefault(e) {
@@ -849,7 +859,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
 
             // 取消阻止页面滑动
             function enable() {
-                document.removeEventListener('touchmove', preventDefault);
+                window.removeEventListener('touchmove', preventDefault, { passive: false });
             }
 
             // 点击有意区域
@@ -1247,7 +1257,7 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                 if ($share.length) {
                     // 2.0版本不再在插件中绑定.share类了，需要外部自行调用
                     // 2.0版本只提供share方法，供外部调用
-                    $share.on('click',function () {
+                    $share.on('click', function () {
                         superShare.share();
                     });
                 }

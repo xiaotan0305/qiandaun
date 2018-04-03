@@ -588,9 +588,9 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 
                     $.get('/main.d?m=xiHuanLouPanList', ajaxData, function (result) {
                         var $caiNiXiHuanList;
+                        $caiNiXiHuanList = $('#caiNiXiHuanList');
                         if (result) {
                             // 获取猜你喜欢列表容器实例
-                            $caiNiXiHuanList = $('#caiNiXiHuanList');
                             // ！！！猜测为获取在房产资讯中的一条特殊的资讯，估计是广告位
                             var behaviorBtn = $('.likeMore');
                             // 将获取的html字符串赋值给猜你喜欢容器
@@ -958,9 +958,19 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 			});
 			
 			//reffer弹层下载
-			$('.xzapptc').openApp({
-				position: 'indexReffer'
-			});
+			if (lhl.indexOf('ttcollaborate')>-1){
+				$('.xzapptc').openApp({
+					position: 'jinritoutiaoApp'
+				});
+			}else if (lhl.indexOf('yidian')>-1){
+				$('.xzapptc').openApp({
+					position: 'yidianApp'
+				});
+			}else if (document.referrer == '') {
+				$('.xzapptc').openApp({
+					position: 'indexReffer'
+				});
+			}
         });
         // 如果是合作页，并且带有bd标识，！！！猜测为百度合作
         // if (vars.sf_source && vars.ifContains) {
@@ -1195,8 +1205,15 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 			
 		}
 		
-		if(document.referrer == '' && Util.getCookie('xzappflag') == ''){
+		if((document.referrer == '' || lhl.indexOf('ttcollaborate')>-1 || lhl.indexOf('yidian')>-1) && Util.getCookie('xzappflag') == ''){
 			$('.tcappxz').show();
+			if(lhl.indexOf('ttcollaborate')>-1){
+				$('.gbapptc').attr('id','wapdsy_D22_06');
+			}else if(lhl.indexOf('yidian')>-1){
+				$('.gbapptc').attr('id','wapdsy_D22_07');
+			}else if (document.referrer == ''){
+				$('.gbapptc').attr('id','wapdsy_D22_05');
+			}
 			$('.gbapptc').on('click',function(){
 				Util.setCookie('xzappflag', 'xzappflag', 1);
 				$('.tcappxz').hide();

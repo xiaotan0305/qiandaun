@@ -42,7 +42,7 @@ define('modules/fdc/index', ['jquery', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazy
          * 绘制图表
          * @param {object} data 图表数据
          */
-        /*(function () {
+        (function () {
             // ajax请求图表数据，成功后绘制图表
             $.ajax({
                 url: '?c=fdc&a=ajaxGetIndex&index=Bc',
@@ -60,6 +60,6 @@ define('modules/fdc/index', ['jquery', 'swipe/3.10/swiper', 'lazyload/1.9.1/lazy
                     }
                 }
             });
-        })();*/
+        })();
     };
 });

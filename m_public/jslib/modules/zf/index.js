@@ -92,14 +92,14 @@ define('modules/zf/index', ['jquery', 'modules/zf/yhxw', 'slideFilterBox/1.0.0/s
              * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
              */
             function unable() {
-                document.addEventListener('touchmove', preventDefault);
+                window.addEventListener('touchmove', preventDefault, {passive: false});
             }
 
             /**
              * 手指滑动恢复浏览器默认事件（恢复滚动
              */
             function enable() {
-                document.removeEventListener('touchmove', preventDefault);
+                window.removeEventListener('touchmove', preventDefault, {passive: false});
             }
 
             // 更多选项中选择了大于第一行的元素时则全部展开此选项内容。

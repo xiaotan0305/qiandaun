@@ -48,7 +48,7 @@ define('modules/jiaju/ztBaoMing', [
 
             // 报名来源
             // 如果是iframe内嵌，需要特殊处理
-            that.reffer = self !== top ? top.location.href : location.href;
+            that.reffer = location.href;
 
             // 输入框容器
             that.formList = $('.formList');
@@ -651,14 +651,14 @@ define('modules/jiaju/ztBaoMing', [
         // 禁止页面滑动
         unable: function () {
             var that = this;
-            document.addEventListener('touchmove', that.pdEvent);
+            window.addEventListener('touchmove', that.pdEvent, {passive: false});
             // $('.main').css('position', 'fixed');
         },
 
         // 允许页面滚动
         enable: function () {
             var that = this;
-            document.removeEventListener('touchmove', that.pdEvent);
+            window.removeEventListener('touchmove', that.pdEvent, {passive: false});
             $('.main').css('position', 'static');
         },
 

@@ -14,7 +14,7 @@ define('modules/jiaju/zxgRecommendCompany', ['jquery', 'lazyload/1.9.1/lazyload'
                 e.preventDefault();
             }
             return function (unable) {
-                document[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault);
+                window[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault, {passive: false});
             };
         })();
         // 为了固定展示公司位置，首先给头部增加fixed

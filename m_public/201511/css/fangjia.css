@@ -912,3 +912,17 @@ background: url(../images/sq_fypj.png) no-repeat right center;background-size: 1
 .floatKj .bcon{position: fixed; bottom: 0; left: 0; width: 100%;z-index:10000;}
 .floatKj .bcon a{width:50%;line-height:49px;font-size:16px;color:#fff!important;text-align:center;background:#f19e4b; }
 .floatKj .bcon a:last-child{background:#cd4039;}
+
+/*0312*/
+.mTitle h3{float:left;font-size:16px;color:#3c3f46;line-height:1;padding:20px 0;margin-left:14px;text-overflow: ellipsis;white-space: nowrap; font-weight:bold}
+.houselist li{padding:20px 0;overflow: hidden;margin: 0 14px;border-top: 1px solid #f4f4f4;}
+.houselist li a{color: #83868f;}
+.houselist li .img{ position: relative; float: left; margin-right:15px; width: 112px; height:84px;overflow: hidden;}
+.houselist li .img img{ width: 100%;height: 100%;}
+.houselist .info{ overflow: hidden; font-size: 12px;}
+.houselist .info.pdB20{padding-bottom: 20px;}
+.houselist .info h3{font-size: 16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #3c3f46;line-height:18px;margin-top:-1px;}
+.houselist .info p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.houselist .info p em{margin-right:10px;}
+.houselist li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
+.houselist li .img > div .tag-icon:nth-of-type(2){left:30px;}

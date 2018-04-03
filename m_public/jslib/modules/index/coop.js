@@ -547,6 +547,48 @@ define('modules/index/coop', ['jquery', 'util/util', 'modules/index/locate', 'sw
             toList.show();
             toList.find('img.likeLazyload').lazyload();
         });
+        
+        
+        //app下载弹层start
+		var tccity = '北京,上海,广州,深圳,天津,武汉,南京,苏州,杭州,成都,重庆';
+		if(tccity.indexOf(vars.zhcity) > -1){
+			var mengceng = new Date();
+			var day = mengceng.getDay();
+			var sfsour;
+			if(lhl.indexOf('hao123')>-1){
+				sfsour = 'bd_waphao123';
+			}else if(lhl.indexOf('qqbrowser')>-1){
+				sfsour = 'qqbrowser';
+			}
+			if((lhl.indexOf('hao123')>-1 || lhl.indexOf('qqbrowser')>-1)){
+				$('.haoqqapp').show();
+				if(lhl.indexOf('hao123')>-1){
+					$('.xztc').attr('id','wapdsy_D22_01');
+				}else if (lhl.indexOf('qqbrowser')>-1){
+					$('.xztc').attr('id','wapdsy_D22_03');
+				}
+				$('.xztc').on('click',function(){
+					$('.haoqqapp').hide();
+				});
+			}
+			
+			
+			require.async('app/1.0.0/appdownload', function () {
+				
+				if(lhl.indexOf('hao123') > -1){
+					$('.ljxz').openApp({
+						position: 'haoindex'
+					});
+				}else if (lhl.indexOf('qqbrowser')>-1) {
+					$('.ljxz').openApp({
+						position: 'qqbrowserApp'
+					});
+				}
+				
+			});
+			
+			
+		}
 
 
     });

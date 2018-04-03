@@ -208,6 +208,7 @@ define('loadMore/1.0.1/loadMore', ['jquery', 'lazyload/1.9.1/lazyload'], functio
                 $data.pageMarloadFlag = that.transfer[that.pageName] - 1;
                 // 总页数
                 $data.totalPage = that.totalPage;
+                $data.transfer = that.transfer;
                 // 有可能在加载更多后有特殊操作的情况，执行回调函数
                 that.callback && that.callback($data);
             } else {

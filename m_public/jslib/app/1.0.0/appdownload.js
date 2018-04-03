@@ -356,12 +356,12 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31356.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1387564942946'
                             },
-                            //特价房房管房专题下载
-                            tjfFgfZt: {
-                                company: 1362,
-                                appUrl: '//download.3g.fang.com/fang_android_31362.apk',
-                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31362&mt=8',
-                                wxUrl:'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389617387061',
+                            // wap详情页浏览5次弹窗
+                            xfinfoTanchuang: {
+                                company: 1357,
+                                appUrl: '//download.3g.fang.com/fang_android_31357.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1387796502530',
+								appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31357&mt=8'
                             },
                             //wap首页足迹下载app
 							indexZuji:{
@@ -376,7 +376,126 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31360.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389439366671',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31360&mt=8'
-							}
+							},
+                            // 租房首页顶部下载
+                            zfIndexTop: {
+                                company: 1364,
+                                appUrl: '//download.3g.fang.com/fang_android_31364.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389796669816',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31364&mt=8'
+                            },
+							// wap首页合作也qq浏览器弹层
+                            qqbrowserApp: {
+                                company: 1365,
+                                appUrl: '//download.3g.fang.com/fang_android_31365.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389960617908',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31365&mt=8'
+                            },
+							// wap首页合作页一点资讯
+                            yidianApp: {
+                                company: 1366,
+                                appUrl: '//download.3g.fang.com/fang_android_31366.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390220783861',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31366&mt=8'
+                            },
+							// wap首页合作页今日头条
+                            jinritoutiaoApp: {
+                                company: 1367,
+                                appUrl: '//download.3g.fang.com/fang_android_31367.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390220162978',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31367&mt=8'
+                            },
+                            // wap找小区列表页中的下载
+                            searchXQList: {
+                                company: 1368,
+                                appUrl: '//download.3g.fang.com/fang_android_31368.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390236746045',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31368&mt=8'
+                            },
+                            // wap租房列表页中的下载
+                            zfListApp: {
+                                company: 1369,
+                                appUrl: '//download.3g.fang.com/fang_android_31369.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390240260559',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31369&mt=8'
+                            },
+                            //wap知识详情页打开app阅读全文中的下载
+                            zhishiDetail: {
+                                company: 1373,
+                                appUrl: '//download.3g.fang.com/fang_android_31373.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390385368378',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31373&mt=8'
+                            },
+                            // wap资讯详情打开app阅读全文按钮下载
+                            newsDetailReadBtn: {
+                                company: 1372,
+                                appUrl: '//download.3g.fang.com/fang_android_31372.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390384929648',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31372&mt=8'
+                            },
+                            //二手房详情浮层弹框
+                            esfdetailFloat: {
+                                company: 1377,
+                                appUrl: '//download.3g.fang.com/fang_android_31377.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390844765510',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31377&mt=8'
+                            },
+                            //租房详情浮层弹框
+                            zfdetailFloat: {
+                                company: 1378,
+                                appUrl: '//download.3g.fang.com/fang_android_31378.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390844765511',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31378&mt=8'
+                            },
+			                // 租房PC补贴活动点对点
+                            waptoapp4bt: {
+                                company: 1370,
+                                appUrl: '//download.3g.fang.com/fang_android_31370.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390308353419',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31370&mt=8',
+                            },
+                            // 租房wap补贴活动
+                            zfjxbthd: {
+                                company: 1371,
+                                appUrl: '//download.3g.fang.com/fang_android_31371.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390308731062',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31371&mt=8'
+                            },
+                            //特价房房管房专题下载
+                            tjfFgfZt: {
+                                company: 1362,
+                                appUrl: '//download.3g.fang.com/fang_android_31362.apk',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31362&mt=8',
+                                wxUrl:'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389617387061',
+                            },
+                            // 家居首页顶部
+                            jiajuIndexTop: {
+                                company: 31380,
+                                appUrl: '//download.3g.fang.com/fang_android_31380.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391026427126',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31380&mt=8'
+                            },
+                            // 家居列表顶部
+                            jiajuListTop: {
+                                company: 31379,
+                                appUrl: '//download.3g.fang.com/fang_android_31379.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391026460012',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31379&mt=8'
+                            },
+                            // 家居列表中间
+                            jiajuListInside: {
+                                company: 31381,
+                                appUrl: '//download.3g.fang.com/fang_android_31381.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391026620724',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31381&mt=8'
+                            },
+							// 特价房列表页中间
+                            tejiafangMid: {
+                                company: 1384,
+                                appUrl: '//download.3g.fang.com/fang_android_31384.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391537425612',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31384&mt=8'
+                            }
                         };
                         apkUrl = tjConfig[position].appUrl;
                         wxUrl = tjConfig[position].wxUrl;
@@ -531,12 +650,38 @@
                 }
             }
         },
+        createPup:function (){
+            var s = document.createElement('style'), tpl = '<a><span class="btn QQdown">立即下载</span><span class="btn cancel">取消</span></a>', c = document.createElement('div');
+            c.setAttribute('id', 'qqPup');
+            c.innerHTML = tpl;
+            s.innerHTML = '#qqPup{position: fixed;left: 0;bottom: 0; background: #fff;width: 100%;height: 92px;overflow:hidden;z-index: 5;}'
+            +' #qqPup a {display: block;width: 100%;} '
+            +'#qqPup .btn {float: right;width: 100%;height: 44px;line-height: 44px;background: #fff;color: #000;font-size: 13px;text-align: center;margin-top:2px;box-shadow:6px 9px #d0cece}';
+            document.body.appendChild(s);
+            document.body.appendChild(c);
+            var self = this;
+            $(c).off('click').on('click', '.QQdown', function() {
+                self.download(Date.now());
+            });
+            $(c).on('click', '.cancel', function() {
+                $('#qqPup').hide();
+            });
+        },
         install: function() {
             var b = this,
                 now = Date.now();
             if (this.ios9above) return b.redirect();
+
             b.isDownload || (b.timeload = setTimeout(function() {
-                b.download(now);
+                if (b.isQQ) {
+                    if (document.querySelector('#qqPup') == null) {
+                        b.createPup();
+                    } else if ($('#qqPup').is(':visible') == false) {
+                        $('#qqPup').show();
+                    }
+                } else {
+                    b.download(now);
+                }
             }, b.timeout)), b.redirect();
         }
     };
@@ -553,6 +698,8 @@
         self.ios9above = !1;
         var ios8below_reg = /OS [0-8]_\d[_\d]* like Mac OS X/gi;
         self.isXiaomi = d.match(/com\.miui\.hybrid/i) || d.match(/com\.fang\.ftx/i);
+         // QQ客户端
+        self.isQQ = d.indexOf('QQ/') !== -1 ? !!1 : !1;
         //  !uc && !qq &&
         if (null != d.match(/iPhone|iPod|iPad/i)) {
             self.platform = 'ios';
@@ -582,7 +729,7 @@
         // 添加微信判断，检测是否为微信浏览器打开如是则打开微信浏览器下载地址
 
         // 添加房天下app微信浏览器中应用宝跳转地址
-        if (/MicroMessenger/i.test(d)) {
+        if (/MicroMessenger/i.test(d) || /NewsArticle/i.test(d)) {
             self.bannerUrl = config.wxUrl || 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1358430372554';
         } else if ('ios' != self.platform || config.crossplat) {
             // 安卓跳转地址

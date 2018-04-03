@@ -8,6 +8,7 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
         require('view/components');
         require('view/calView');
         require('view/calDetailView');
+        require('view/resultCom');
         var common = require('util/common');
         var modelParse = require('model/modelParse');
         var IScroll = require('iscroll/2.0.0/iscroll-lite');
@@ -27,7 +28,9 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
             + '<select-li label="按揭年数：" :data-value="year" :msg="yearMsg" v-on:click="yearClick"></select-li>'
             + '<select-li label="利&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率：" :data-value="rate" :msg="rateMsg" v-on:click="rateClick"></select-li>'
             + '</ul><v-button v-on:click="calculate"></v-button></div>'
-            + '<re-business :detail="detail" :handle-tab="handleTab" v-show="showResult" v-ref:result></re-business></section>'
+            + '<re-business :detail="detail" :handle-tab="handleTab" v-show="showResult" v-ref:result></re-business>'
+            + '</section>'
+            + '<new-house v-show="showList"></new-house>'
             + '<detail-view v-show="showDetail" v-on:tab-click="detailTab"></detail-view>'
             + '<down-payment v-show="showPro" v-on:child-msg="handlePay" v-on:child-msg2="handlePay" v-ref:payment></down-payment>'
             + '<mg-year v-show="showYear" v-on:year-msg="handleYear" v-on:year-msg2="handleYear" v-ref:year></mg-year>'
@@ -56,7 +59,8 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
                     discount: '1',
                     type: '1',
                     payMethodType: '0',
-                    yearFlag:true
+                    yearFlag:true,
+                    showList:false
                 };
             },
             computed: {
@@ -304,12 +308,12 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
                     // (4)展示结果
                     this.$broadcast('showResult', resultData);
                     this.$broadcast('payMethod');
+                    this.$broadcast('getData',this.totalMoney);
                     // this.showResult = true;不能及时show(),不能滚动
                     // $append
-                    var resultD = $('.jsresults');
+                    var resultD = $('.resultBox');
                     resultD.show();
                     $(document).scrollTop(resultD.offset().top);
-                    // this.showResult = true;
                 },
                 // 等额本息和等额本金切换tab
                 handleTab: function (str) {
@@ -335,6 +339,7 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
                 },
                 // 点击进入结果详情页
                 detail: function () {
+                    this.showList = false;
                     // 隐藏当前页
                     this.$parent.showNav = false;
                     this.showDai = false;
@@ -378,12 +383,16 @@ define('view/businessLoansView', ['view/components', 'view/calView', 'util/commo
                     if(!that.yearFlag){
                         return false;
                     }
+                });
+                $('.left').on('click',function(){
+                    that.showList = true;
                 })
             },
             events: {
                 changeTab: function (data) {
                     if (data !== this.$parent.pageType) {
                         this.showResult = false;
+                        this.showList = false;
                         this.type = data;
                     }
                     // 切换公积金和商业贷款初始化 页面

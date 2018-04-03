@@ -1,7 +1,7 @@
 ﻿/**
  * wap动态页
  */
-define('modules/xf/citydtList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'], function (require) {
+define('modules/xf/citydtList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare', 'slideFilterBox/1.0.0/slideFilterBox'], function (require) {
 	'use strict';
 	var $ = require('jquery');
 	var vars = seajs.data.vars;
@@ -35,7 +35,7 @@ define('modules/xf/citydtList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
     var kpTotal = vars.count > 0 ? vars.count : 1;
 	 loadMore.add({
          // 加载更多接口地址  tag是用来区分用户是否设置过标签,没有设置过要调用不同的接口
-         url: '/xf.d?m=citydtList&city='+vars.city+'&res=json',
+         url: '/xf.d?m=citydtList&city='+vars.city+'&res=json&district=' + vars.district + '&purpose=' + vars.purpose,
          // 每页加载数据条数
          perPageNum: 10,
          // 总数据条数
@@ -43,11 +43,11 @@ define('modules/xf/citydtList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
          // 当前页加载数据条数
          pagesize: 10,
          // 当前加载更多执行所需的元素实例
-         activeEl: '.citydt-list',
+         activeEl: '.dtlist',
          // 根据当前加载更多所需元素实例是否存在该类名决定是否启动加载更多操作
          active: 'active',
          // 加载更多容器的类名或者id或者jquery对象
-         content: '.dtList',
+         content: '.dq-flist',
          // 加载更多按钮的类名或者id或者jquery对象
          moreBtn: '#drag',
          // 提示文案类名或id或者jquery对象
@@ -93,5 +93,82 @@ define('modules/xf/citydtList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
 		_ub.collect(b, p);
 	});
 	// 统计行为 --------------end
+	
+	
+    var IScroll = require('slideFilterBox/1.0.0/slideFilterBox');
+    // 阻止页面滑动
+    function unable() {
+        document.addEventListener('touchmove', preventDefault);
+    }
+    function preventDefault(e) {
+        e.preventDefault();
+    }
+    // 取消阻止页面滑动
+    function enable() {
+        document.removeEventListener('touchmove', preventDefault);
+    }
+
+    $('.cont').css('height', '550%');
+    $('.cont section').eq(0).addClass('quyusection');
+    $('.cont section').eq(1).addClass('leixingsection');
+    var $contquyu = $('.cont').eq(0);
+    var $contleixing = $('.cont').eq(1);
+
+    $('.lbTab li').on('click', function () {
+        $('.float').show();
+        $('.float .flexbox>.active').removeClass('active');
+        var $this = $(this);
+        if ($this.index() == 0) {
+            // 区域
+            if ($contquyu.is(':hidden') == false) {
+                $('.cont').hide();
+                $('.float').hide();
+                enable();
+            } else {
+                $('.cont').hide();
+                $('.cont').eq(0).show();
+                unable();
+                IScroll.refresh('.quyusection', 'stand');
+                $('.float .flexbox li').eq(0).addClass('active');
+
+                // 滑动到当前所选
+                var position = $('.quyusection .active').position().top;
+                if (position + $('.quyusection .active').height() > $('.quyusection').height()) {
+                    var translateY = position + $('.quyusection .active').height() - $('.quyusection').height();
+                    IScroll.to('.quyusection', translateY * -1);
+                }
+            }
+        } else {
+            // 类型
+            if ($contleixing.is(':hidden') == false) {
+                $('.cont').hide();
+                $('.float').hide();
+                enable();
+            } else {
+                $('.cont').hide();
+                $('.cont').eq(1).show();
+                unable();
+                IScroll.refresh('.leixingsection', 'stand');
+                $('.float .flexbox li').eq(1).addClass('active');
+
+                // 滑动到当前所选
+                var position = $('.leixingsection .active').position().top;
+                if (position + $('.leixingsection .active').height() > $('.leixingsection').height()) {
+                    var translateY = position + $('.leixingsection .active').height() - $('.leixingsection').height();
+                    IScroll.to('.leixingsection', translateY * -1);
+                }
+            }
+        }
+    })
+
+    $('.float').on('click', function (e) {
+        if (e.target.className.indexOf('float') > -1) {
+            $('.cont').hide();
+            $('.float').hide();
+            enable();
+        }
+    })
+	
+	
      
 });

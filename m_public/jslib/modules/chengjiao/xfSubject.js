@@ -28,7 +28,7 @@ define('modules/chengjiao/xfSubject', ['lazyload/1.9.1/lazyload', 'superShare/2.
             // 分享的内容title
             title: sTitle,
             // 分享时的图标
-            image: vars.shareImg,
+            image: location.protocol + vars.shareImg,
             // 分享内容的详细描述
             desc: sDesc,
             // 分享的链接地址
@@ -48,7 +48,7 @@ define('modules/chengjiao/xfSubject', ['lazyload/1.9.1/lazyload', 'superShare/2.
             // 副标题
             descContent: sDesc,
             lineLink: location.href,
-            imgUrl: vars.shareImg,
+            imgUrl: location.protocol + vars.shareImg,
             swapTitle: false
         });
     };

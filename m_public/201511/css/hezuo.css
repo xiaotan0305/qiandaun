@@ -246,3 +246,11 @@ html>img{display: none;}
 .dropNav > i:before{position:absolute;content:'';width:10px;height:10px;top:-6px;left:50%;margin-left:-5px;background-color:#fafafa;-webkit-transform:rotate(45deg);transform:rotate(45deg);}
 .dropNav li > a{ display:block; padding:0 16px; color:#3c3f46; font-size:15px;}
 .dropNav li > a.active,.dropNav li > a:active{ color:#3c3f46; font-size:15px; background:#f4f4f4;}
+
+/*租房弹层*/
+.zu-out{position:fixed;width:100%;top:0;bottom:0;left:0;background:rgba(0,0,0,.6);z-index:9999;}
+.zu-out > div{position:fixed;width:78%;left:11%;top:16%;padding-bottom:102%;background:url(../images/home_zu_out2.png) no-repeat;background-size:100%;}
+.zu-out .con{position:absolute;width:100%;left:0;top:0;bottom:1%;}
+.zu-out .btn{position:absolute;display:block;left:12px;right:12px;bottom:5%;height:44px;line-height:44px;font-size:16px;color:#fff!important;text-align:center;background:#2d8368;border-radius:3px;}
+.zu-out .close{position:absolute;width:29px;height:29px;left:50%;margin-left:-15px;bottom:-16%;background:url(../images/home_zu_close.png) no-repeat;background-size:100%;}
+.zu-out > div.p5{background:url(../images/home_zu_out2.png) no-repeat;background-size:100%;}

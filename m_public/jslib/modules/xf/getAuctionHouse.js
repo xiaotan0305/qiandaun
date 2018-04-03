@@ -1,7 +1,7 @@
 /**
  * 新房房源拍卖页
  */
-define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'lazyload/1.9.1/lazyload', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare', 'app/1.0.0/appdownload'], function (require, exports, module) {
     'use strict';
     var $ = require('jquery');
 	var vars = seajs.data.vars;
@@ -13,6 +13,38 @@ define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0
 	var lazy = require('lazyload/1.9.1/lazyload');
 	// 懒加载
 	lazy('img[data-original]').lazyload();
+
+    // 分享功能(新)
+    var SuperShare = require('superShare/1.0.1/superShare');
+
+    var host = window.location.host.indexOf('m.test.fang.com') > -1 ? 'static.test.soufunimg.com' : 'static.soufunimg.com';
+    var img = 'https://' + host + '/common_m/m_public/201511/images/wexinShare_tejiafang.jpg';
+
+    var shareTile = '看看吧！新房特价房，机会不常有！';
+    var desc = '新房特价房，有你意向不到的折扣，有你抢不到的热门房源，不看看怎么甘心。';
+
+    var config = {
+        // 分享内容的title
+        title: shareTile,
+        // 分享时的图标
+        image: img,
+        // 分享内容的详细描述
+        desc: desc,
+        // 分享的链接地址
+        url: location.href,
+        // 分享的内容来源
+        from: 'xf'
+    };
+    var superShare = new SuperShare(config);
+
+    // 微信分享功能
+    var wx = require('weixin/2.0.0/weixinshare');
+    var weixin = new wx({
+        shareTitle: shareTile,
+        descContent: desc,
+        imgUrl: img,
+        lineLink: location.href
+    });
 
 	// 阻止页面滑动
 	function unable() {
@@ -201,4 +233,12 @@ define('modules/xf/getAuctionHouse', ['jquery', 'util/util', 'slideFilterBox/1.0
 			Clickstat.batchEvent('wapxfpai_','');
 		})
 	});
+	
+	// app下载
+	require.async('app/1.0.0/appdownload', function ($) {
+		$('.btn-down').openApp({
+			position: 'tejiafangMid'
+		});
+	});
+	
 });

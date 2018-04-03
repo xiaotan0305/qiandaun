@@ -592,6 +592,16 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
                 success: function (data) {
                     if (data) {
                         $('#zxexample').append(data);
+                        if ($('#zxexample').find('.jiajuExposure').val()) {
+                            require.async('bgtj/bgtj', function(bgTj){
+                                bgTj({
+                                    url:window.location.protocol + '//esfbg.3g.fang.com/homebg.html',
+                                    sendData:$('#zxexample').find('.jiajuExposure').val(),
+                                    isScroll: iscrollNew,
+                                    contentId: 'zxexample'
+                                });
+                            });
+                        }
                     }
                 }
             });
@@ -720,7 +730,7 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
                     if (hotlistUl.length) {
                         var $hotlistLis = hotlistUl.find('li'),
                             hotlistLiLen = $hotlistLis.length;
-                        hotlistUl.find('ul').width($hotlistLis.eq(0).width() * hotlistLiLen + hotlistLiLen * 12);
+                        hotlistUl.find('ul').width($hotlistLis.eq(0).width() * hotlistLiLen + hotlistLiLen * parseInt($hotlistLis.eq(0).css('marginRight')));
                         new iscrollNew('.xq-hotlist', {scrollX: true});
                     }
                 }

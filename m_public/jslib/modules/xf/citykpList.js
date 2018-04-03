@@ -35,7 +35,7 @@ define('modules/xf/citykpList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
     var kpTotal = vars.count > 0 ? vars.count : 1;
 	 loadMore.add({
          // 加载更多接口地址  tag是用来区分用户是否设置过标签,没有设置过要调用不同的接口
-         url: '/xf.d?m=citykpList&city='+vars.city+'&type='+vars.type+'&res=json',
+         url: '/xf.d?m=citykpList&city='+vars.city+'&type='+vars.type+'&lpdaterange=' + vars.lpdaterange+'&res=json',
          // 每页加载数据条数
          perPageNum: 20,
          // 总数据条数
@@ -43,7 +43,7 @@ define('modules/xf/citykpList', ['jquery', 'loadMore/1.0.1/loadMore', 'superShar
          // 当前页加载数据条数
          pagesize: 20,
          // 当前加载更多执行所需的元素实例
-         activeEl: '.cityys-list',
+         activeEl: '.kplblist',
          // 根据当前加载更多所需元素实例是否存在该类名决定是否启动加载更多操作
          active: 'active',
          // 加载更多容器的类名或者id或者jquery对象

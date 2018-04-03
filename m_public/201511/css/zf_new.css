@@ -99,6 +99,10 @@ a,u { background: transparent; text-decoration: none; -webkit-tap-highlight-colo
 .zu-tips-hb > div{background:url(../images/zu_tip_bg3.png) center center no-repeat;background-size:auto 100%;padding:0 20px;}
 .zu-tips-hb > div.s2{background:url(../images/zu_tip_bg4.png) center center no-repeat;background-size:auto 100%;}
 .zu-tips-hb .close{position:absolute;width:34px;height:34px;top:0;right:8px;background:url(../images/zu_tip_close.png) center center no-repeat;background-size:9px auto;}
+.zu-tips-hb2{position:relative;width:100%;}
+.zu-tips-hb2 img{width:100%;}
+.zu-tips-hb2 a{display:block;}
+.zu-tips-hb2 p{position:absolute;width:100%;height:13px;text-align:center;font-size:13px;line-height:13px;color:#ffffff;left:0;top:50%;margin-top:-6px;}
 
 .entrust{padding:25px 20px; overflow:hidden}
 .entrust .text {line-height:1;font-size:14px;color:#565667; text-align:center;margin:25px auto 0;}

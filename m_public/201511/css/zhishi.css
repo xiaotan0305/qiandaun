@@ -44,6 +44,11 @@
 .bigNav .n11 i{background-position: -44px -132px;}
 .bigNav .n12 i{background-position: -88px -132px;}
 .bigNav .n13 i{background-position: -132px 0px;}
+.bigNav .n14 i{background-position: 0 -176px;}
+.bigNav .n15 i{background-position: -44px -176px;}
+.bigNav .n16 i{background-position: -88px -176px;}
+.bigNav .n17 i{background-position: -132px -176px;}
+
 
 .more-nav{position:relative;background:#cecece;text-align:center;margin-bottom:20px;}
 .more-nav i{position:relative;float:right;width:25%;}
@@ -774,3 +779,72 @@ padding-left: 20px;background-size: 14px;}
     height: 0;
     padding-bottom: 56.25%;}
 .gray095{font-size:0.095rem;color:#83868f;line-height:1.7;padding: 0 0.875rem;margin: 1rem 0;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;}
+
+/*0307*/
+.articleN {position:relative;}
+.articleN .con-more {position: absolute;left: 0;bottom: 0; width: 100%;}
+.articleN .con-morebg {padding:47px 0 30px 0;text-align:center;background-image:-webkit-linear-gradient(top, hsla(0,0%,98%,0), hsla(0,0%,98%,.9) 28%, #ffffff 49.1%, #ffffff)}
+.btn-moreN{width:14px;height:13px;display:block;background:url(../images/icon_mN.png) no-repeat;background-size:14px auto; margin:0 auto;will-change:transform;-webkit-animation:arrow .4s infinite alternate;animation:arrow .4s infinite alternate;}
+.btn-app{height:44px;line-height:44px;font-size:16px;color:#fff; text-align: center; background:#df3031;border-radius:4px; display:block}
+.btn-app a{color:#fff!important;display:block}
+@-webkit-keyframes arrow {
+0% {
+-webkit-transform:translate3d(0, -50%, 0);
+transform:translate3d(0, -50%, 0)
+}
+to {
+	-webkit-transform:translate3d(0, 50%, 0);
+	transform:translate3d(0, 50%, 0)
+}
+}
+@keyframes arrow {
+0% {
+-webkit-transform:translate3d(0, -50%, 0);
+transform:translate3d(0, -50%, 0)
+}
+to {
+	-webkit-transform:translate3d(0, 50%, 0);
+	transform:translate3d(0, 50%, 0)
+}
+}
+/*0312 购房资格结果页楼盘列表 begin*/
+.mTitle h3{float:left;font-size:16px;color:#3c3f46;line-height:1;padding:20px 0;margin-left:14px;text-overflow: ellipsis;white-space: nowrap; font-weight:bold}
+.houselist li{padding:20px 0;overflow: hidden;margin: 0 14px;}
+.houselist li a{color: #83868f;}
+.houselist li:not(:last-child){  border-top: 1px solid #f4f4f4;}
+.houselist li .img{ position: relative; float: left; margin-right:15px; width: 112px; height:84px;overflow: hidden;}
+.houselist li .img img{ width: 100%;height: 100%;}
+.houselist li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
+.houselist li .img > div .tag-icon:nth-of-type(2){left:30px;}
+.houselist .info{ overflow: hidden; font-size: 12px;}
+.houselist .info.pdB20{padding-bottom: 20px;}
+.houselist .info h3{font-size: 16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #3c3f46;line-height:18px;margin-top:-1px;}
+.houselist .info p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.houselist .info p em{margin-right:10px;}
+
+/*APP下载*/
+.know-list li.app-down{background:#f8f8f8;padding:10px 8px;}
+.appdownbox{position: relative;padding:14px 10px;overflow:hidden;background:#fff;}
+.appdownbox > a{display:block;}
+.appdown {width:100%;overflow:hidden;height:32px;overflow:hidden;}
+.appdown img{float:left;width:32px;height:32px;margin-right:12px;}
+.appdown  p{font-size:13px;color:#3c3f46;line-height:16px;}
+.appdown  p.gray{font-size:11px;line-height:12px;margin-top:4px;color:#83868f;}
+
+/*详情页家居模块*/
+.x-jj-b1{padding:0 8px 20px;}
+.x-jj-b1 li{width:100px;margin-right:10px;}
+.x-jj-b1 li > a{display:block;}
+.x-jj-b1 li img{width:100%;}
+.x-jj-b1 li:last-child{margin-right:0;}
+.x-jj-b2{padding:0 8px 20px;}
+.x-jj-b2 li{width:100px;margin-right:12px;border:1px solid #f8f8f8;border-radius:4px;text-align:center;}
+.x-jj-b2 li > a{display:block;padding-top:5px;padding-bottom:10px;}
+.x-jj-b2 li i{position:relative;display:block;width:90%;padding-bottom:68%;margin:0 auto;}
+.x-jj-b2 li:last-child{margin-right:0;}
+.x-jj-b2 li i > img{position:absolute;width:100%;left:0;right:0;top:0;bottom:0;}
+.x-jj-b2 li i span{position:absolute;display:block;width:5px;height:5px;left:50%;top:54%;margin-left:-2px;background:#606668;border-radius:50%;}
+.x-jj-b2 li i span:after,.x-jj-b2 li i span:before{position:absolute;content:'';width:5px;height:5px;background:#606668;border-radius:50%;}
+.x-jj-b2 li i span:before{margin-left:-10px;}
+.x-jj-b2 li i span:after{margin-left:6px;}
+.x-jj-b2 li p{font-size:13px;color:#3c3f46;margin-top:6px;line-height:1;}

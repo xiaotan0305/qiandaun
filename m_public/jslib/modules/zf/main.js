@@ -77,19 +77,21 @@ define('modules/zf/main', ['jquery'], function (require) {
     }
 
     // 添加下载浮层
-    if (vars.action === 'index') {
-        preLoad.push(vars.public + 'js/zu20141106.js');
-    }
+    // if (vars.action === 'index') {
+    //     preLoad.push(vars.public + 'js/zu20141106.js');
+    // }
     // 预加载所需js
     require.async(preLoad);
 
     // 下载app临时处理
-    if (downBtn.length > 0 || $('.app-down-detail').length >0 || $('.app-down-zfJXDetail').length > 0 || $('.app-down-waptoapp').length > 0) {
+    if (downBtn.length > 0 || $('.app-down-detail').length >0 || $('.app-down-zfJXDetail').length > 0 || $('.app-down-waptoapp').length > 0 || $('.downloadAPP-lp').length > 0 || $('.app-down-list').length > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
             $('.app-down-detail').openApp({position: $('.app-down-detail').find('a').attr('data-position')});
             $('.app-down-zfJXDetail').openApp({position: $('.app-down-zfJXDetail').find('a').attr('data-position')});
             $('.app-down-waptoapp').openApp({position: $('.app-down-waptoapp').find('a').attr('data-position')});
+            $('.app-down-list').openApp({position: $('.app-down-list').find('a').attr('data-position')});
+            $('.appFloat').openApp({position: $('.appFloat').attr('data-position')});
         });
     }
     if ($('.loveshare').length > 0) {
@@ -170,8 +172,13 @@ define('modules/zf/main', ['jquery'], function (require) {
     }
     // 当页面为列表也是统计用户行为
     if (vars.action === 'index') {
-        // 加载提示下载APP
-        if ('cd' === vars.city || 'bj' === vars.city || 'wuhan' === vars.city || 'suzhou' === vars.city || 'tj' === vars.city) {
+        if (vars.housetypeEn === 'jx') {
+            require.async('//click.fang.com/stats/click2011.js', function () {
+                Clickstat.eventAdd(window, 'load', function () {
+                    Clickstat.batchEvent('wapsinglezfsy_', '');
+                });
+            });
+        } else if ('cd' === vars.city || 'bj' === vars.city || 'wuhan' === vars.city || 'suzhou' === vars.city || 'tj' === vars.city) {
             require.async('//clickm.fang.com/click/new/clickm.js', function () {
                 Clickstat.eventAdd(window, 'load', function () {
                     Clickstat.batchEvent('wapzfsy_', vars.city);

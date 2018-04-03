@@ -744,13 +744,13 @@ define('modules/jiaju/jcBaoMing', ['jquery', 'verifycode/1.0.0/verifycode', 'sli
         //禁止页面滑动
         unable: function () {
             var that = this;
-            document.addEventListener('touchmove', that.pdEvent);
+            window.addEventListener('touchmove', that.pdEvent, {passive: false});
             $('.main').css('position','fixed');
         },
         //允许页面滑动
         enable: function () {
             var that = this;
-            document.removeEventListener('touchmove', that.pdEvent);
+            window.removeEventListener('touchmove', that.pdEvent, {passive: false});
             $('.main').css('position','static');
         },
         /* 免费申请*/

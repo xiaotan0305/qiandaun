@@ -37,6 +37,7 @@ define('modules/jiaju/firmList', [
         var choiceObj = {};
         // 评分
         var IconStar = require('modules/jiaju/IconStar');
+        require.async(['modules/jiaju/ad']);
         pageInit();
 
         /**
@@ -57,6 +58,8 @@ define('modules/jiaju/firmList', [
             eventInit();
             // 评分星星
             new IconStar();
+            // 曝光量统计
+            vars.bgtj && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', vars.bgtj);
         }
 
         /*
@@ -151,6 +154,9 @@ define('modules/jiaju/firmList', [
                 loadAgoTxt: '点击加载更多...',
                 callback: function (data) {
                     new IconStar('ico-star', 'data-score', $(data));
+                    // 曝光量统计
+                    var bgtjMore = $('#bgtj_' + data.pageMarloadFlag).val();
+                    bgtjMore && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', bgtjMore);
                 }
             });
         }

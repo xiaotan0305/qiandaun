@@ -111,7 +111,7 @@
                         if (vars.localStorage) {
                             vars.localStorage.setItem(String('h:' + data.username), encodeURIComponent(data.username) + ';' + data.imgurl + ';;');
                         }
-                        window.location = '/chat.d?m=chat&username=h:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
+                        window.location = '/chat.d?m=chat&username=h:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content) + '&projinfo=jiaju&shopid=jc' + vars.id;
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }

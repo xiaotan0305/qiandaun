@@ -585,6 +585,8 @@ em.ts-mhead{ top:5px; right:3px;}
 .lbTab .flexbox section.price-list{width:70px;max-width:70px;min-width:70px;}
 .lbTab .flexbox .cont dl{ height: 100%;}
 .lbTab .cont dd{ padding: 0 16px; border-bottom: 1px solid #f4f4f4; height: 44px; line-height: 43px; font-size: 14px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; background-color: #fff;color:#3c3f46;}
+.lbTab .cont dd .zfbt{width:48px;height:15px;background:url(../images/home_nav_zfbt.png) no-repeat;background-size:100%; display: inline-block;margin-left:20px; vertical-align:middle;margin-top:-3px;}/*0228*/
+
 .lbTab .cont dd.active{position:relative;background-color: #f2f5f8;}
 .lbTab .cont dd.active:before{content:'';position:absolute;width:2px;height:16px;background:#ff6666;left:0;top:50%;margin-top:-8px;}
 .lbTab .cont dd a{display:block;padding:0 16px;margin:0 -16px;color:#3c3f46!important; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
@@ -1014,3 +1016,13 @@ a.back404{border: 1px solid #cccfd8;display: inline-block;margin-top: 14px;backg
 .chose-item ul.inpt li input::-webkit-search-decoration,.chose-item ul.inpt li input::-webkit-search-cancel-button {display: none;} 
 .chose-item ul.inpt li p{position:relative;}
 .chose-item ul.inpt li p em{ position:absolute;top:10px;right:0px;color:#0c0d0e}
+.hpqjpic{width:260px;height:230px;position:absolute;top:50%;left:50%;margin:-115px 0 0 -130px;background:url(../images/hp01.png);-webkit-transform:scale(.5);transform:scale(.5);animation:hpqh 1s steps(5) infinite ; -webkit-animation:hpqh 1s steps(5) infinite;}
+@-webkit-keyframes hpqh {
+	from{background-position:0 1150px}
+	to{background-position:0 0}
+}
+@keyframes hpqh {
+	from{background-position:0 1150px}
+	to{background-position:0 0}
+}
+.allPics .picbox li .icon_hpN{position:absolute;width:14px;height:14px;left:5px;bottom:5px;background:url(../images/xf_list_hangpai_icon.png) no-repeat; background-size:14px auto;}

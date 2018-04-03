@@ -905,7 +905,7 @@ a.dpask{width:13px;height:13px; background:url(../images/dp_icon03.png) no-repea
 .xqfocus p.icon-new{position:absolute;display:inline-block;height:14px;bottom:12px;right:80px;}
 .xqfocus p.icon-new span{float:left;width:14px;height:14px; margin-left:5px;background: url(../images/list_img_icon.png) no-repeat; background-size: 42px auto;}
 .xqfocus p.icon-new span.video2{background-position:-28px 0;}
-.xqfocus p.icon-new span.hp{background-position:0 0;}
+.xqfocus p.icon-new span.hp{background: url(../images/xf_list_hangpai_icon.png) no-repeat; background-size:14px;}/*0301*/
 .xqfocus p.icon-new span.qj360{background-position:-14px 0;}
 .lp-nav {border-bottom:1px solid #eeeeee;}
 .lp-nav li{width:50px;text-align:center;}
@@ -989,6 +989,12 @@ a.dpask{width:13px;height:13px; background:url(../images/dp_icon03.png) no-repea
 .xq-hotlist .txt p span{display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1;}
 .xq-hotlist .txt p:first-child span:nth-child(3){box-flex:0; -webkit-box-flex:0; -moz-box-flex:0;}
 .xq-hotlist .txt p .price{box-flex:0; -webkit-box-flex:0; -moz-box-flex:0;color:#d7494a;font-size:16px;font-weight:600;}
+.xq-hotlist .secjjr{height:46px;margin-top:15px; background:#f8f8f8; overflow:hidden;padding:5px;}
+.xq-hotlist .secjjr .pic{float:left;width:36px; height:36px;position:relative;margin-right:5px;}
+.xq-hotlist .secjjr .pic img{width:36px; height:36px;border-radius:50%; overflow:hidden;}
+.xq-hotlist .secjjr .txt2{ overflow: hidden; *zoom:1;}
+.xq-hotlist .secjjr .txt2 h3{line-height:18px;font-size: 14px;color:#3c3f46;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin-bottom:4px;}
+.xq-hotlist .secjjr .txt2 p{font-size:11px;color:#83868f;line-height:16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis}
 .consult{width:295px; padding:20px;margin:0 auto}
 .consult h3{font-size:15px;color:#3c3f46;line-height:24px; text-align:center; }
 .consult a{height:44px;line-height:44px; text-align:center;border:1px solid #f65151;font-size:16px;color:#df3031;font-weight:bold; display:block;border-radius:3px;}

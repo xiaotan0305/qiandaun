@@ -50,7 +50,7 @@ define('modules/myesf/mvc/pubAppend', ['jquery', 'modules/myesf/mvc/component', 
                 + '<section class="pdX14 pdY20 yzent">'
                 + '<div class="yzenttit">'
                 + '<a href="javascript:void(0)" style="color:#83868f;">'
-                + '<span class="arr-r" v-on:click="editInfo" id="editBtn" >修改</span>'
+                + '<span class="arr-r" v-show="houseservice" v-on:click="editInfo" id="editBtn" >修改</span>'
                 + '</a>房源信息</div>'
                 + '<div class="pdY10">'
                 + '<ul class="flextable">'
@@ -108,7 +108,8 @@ define('modules/myesf/mvc/pubAppend', ['jquery', 'modules/myesf/mvc/component', 
                         // 视频地址
                         videoUrl: '',
                         editFlag: '',
-                        imgFlag: ''
+                        imgFlag: '',
+                        houseservice: (vars.houseservice !== '1' && vars.houseservice !== '2') || '',
                     };
                 },
                 methods: {

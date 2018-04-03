@@ -166,3 +166,6 @@ img{ width: 100%;}
 .text_prize{width;100%;}
 .text_prize li{line-height:0.8rem;float:left;width:100%;}
 .color{color:rgb(253, 207, 56);margin-left:5px;}
+
+/*20180327*/
+.wrap .qrcode{width:7.28rem;height:7.56rem; position: fixed;bottom:0;left:50%;margin-left:-3.64rem}

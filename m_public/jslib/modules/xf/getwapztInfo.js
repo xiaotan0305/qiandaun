@@ -1,7 +1,10 @@
-define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare','app/1.0.0/appdownload'], function (require) {
+define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare','app/1.0.0/appdownload', 'iscroll/2.0.0/iscroll-lite'], function (require) {
     'use strict';
     var $ = require('jquery');
 	var vars = seajs.data.vars;
+	
+	// 获取滑动插件类
+	var IScrollLite = require('iscroll/2.0.0/iscroll-lite');
 
 	// 分享功能(新)
 	var SuperShare = require('superShare/1.0.1/superShare');
@@ -28,6 +31,32 @@ define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superS
 		lineLink: location.href
 	});
 	
+	// 横切滑动
+	var $lixf = $('.hengqie');
+	if ($lixf.length) {
+		var dlwidth = 0;
+		$lixf.find('dd').each(function () {
+			var $this = $(this);
+			dlwidth += ($this.width() + 20);
+		});
+		$lixf.find('dl').width(dlwidth);
+		var tjfScroll = new IScrollLite('.hengqie', {
+			// 开启横向滑动
+			scrollX: true,
+			// 禁止纵向滑动
+			scrollY: false,
+			// 滑动为其本身，这里的作用是防止禁用掉整个文档流的默认事件导致的bug
+			bindToWrapper: true,
+			// 可以纵向滑动，默认能够穿过
+			eventPassthrough: true
+		});
+		tjfScroll.refresh();
+	}
+	
+	$('.morelplist').click(function(){
+		window.location.href = $(this).attr('data-href');
+	});
+	
 	
 	// 下拉加载更多
 	$(document).on('touchmove', function () {
@@ -46,6 +75,7 @@ define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superS
 	var nowPage = 2;
 	var isSuc = true;
 	// 加载更多方法
+	
 	
 	function loadmore () {
 		if (isSuc && nowPage <= totalPage) {

@@ -520,12 +520,6 @@ define('modules/zhishi/detail', ['jquery', 'superShare/1.0.1/superShare', 'lazyl
         main.on('click', '.otherTag a', function () {
             window.location.href = vars.zhishiSite + 'search/?kw=' + $(this).text() + '&city=' + vars.city + '&newsnet=xf';
         });
-        // 下载app临时处理
-        if ($('#down-btn-c').length > 0) {
-            require.async('app/1.0.0/appdownload', function ($) {
-                $('#down-btn-c').openApp();
-            });
-        }
 
         // 关闭锚文本弹框
         main.on('click', '.b-bg', function () {
@@ -573,7 +567,7 @@ define('modules/zhishi/detail', ['jquery', 'superShare/1.0.1/superShare', 'lazyl
             }
             playIndex = 1;
             $(this).addClass('hasYy').siblings().removeClass('hasYy');
-            var title = $(this).parent().text() + ' ';
+            var title = $(this).parent().text();
             $('.cont-tyy').each(function(){
                 var thisTit = $(this).find('.flol').text().slice(5);
                 if(title === thisTit){
@@ -695,24 +689,37 @@ define('modules/zhishi/detail', ['jquery', 'superShare/1.0.1/superShare', 'lazyl
             $('.cont-tyy').hide();
         }
     });
+    /** 知识内容最后添加的家居iframe报名框高度自适应*/
+    function setIframeHeight(iframe) {
+        if (iframe) {
+            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+            if (iframeWin.document.body) {
+                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+            }
+        }
+    }
     // 详情页文章详情超过两屏折行，显示-显示全文按钮
     var contentBox = $('.zs-con');
     if (contentBox.height() > 1200) {
         contentBox.css({"height":"900px", "overflow":"hidden"});
         $('.con-more').show();
+        $('.btn-app').show();
     }
     // 显示全文按钮
-    $('.btn-more').on('click', function(){
+    $('.con-morebg').on('click', function(){
         contentBox.find('p').show();
         contentBox.removeAttr('style');
         $('.con-more').hide();
+        $('.btn-app').hide();
+        // 家居报名框高度自适应
+        setIframeHeight(document.getElementById('iframeJiaju'));
     });
     var scroll = require('iscroll/2.0.0/iscroll-lite');
     if ($('#jiancaiList').find('li').length > 0) {
         var scrollObj = new scroll('#jiancaiList',{
         scrollX:true,
         scrollY:false
-    }); 
+    });
     }
 
 });

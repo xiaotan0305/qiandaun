@@ -242,6 +242,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
         + '<component :is="view" v-on:begin-count="calculate" v-ref:child></component>'
         + '</section>'
         + '<re-tax :handle-tab="handleTab" v-show="showResult" v-ref:result></re-tax>'
+        + '<new-house v-show="showList"></new-house>'
         + '<mg-housing v-show="showHousing" v-on:housing-msg="handleHousing"></mg-housing>'
         + '<mg-housing2 v-show="showHousing2" v-on:housing2-msg="handleHousing2"></mg-housing2>'
         + '<mg-housing3 v-show="showHousing3" v-on:housing3-msg="handleHousing3"></mg-housing3>'
@@ -258,12 +259,14 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                 showHousing4: false,
                 showResult: false,
                 data: {},
-                ajaxFlag: true
+                ajaxFlag: true,
+                showList:false
             };
         },
         methods: {
             xfChange: function () {
                 if (this.view !== 'xf') {
+                    this.showList = false;
                     this.xfActive = 'active';
                     this.esfActive = '';
                     this.view = 'xf';
@@ -276,6 +279,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
             },
             esfChange: function () {
                 if (this.view !== 'esf') {
+                    this.showList = false;
                     this.esfActive = 'active';
                     this.xfActive = '';
                     this.view = 'esf';
@@ -340,6 +344,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                         if (data.ophouse) {
                             ajaxData.ophouse = data.ophouse;
                         }
+                        this.$broadcast('getData',data.housePrice);
                         $.getJSON(setting.ESF_TAXS_RESULT_URL, ajaxData, function (data) {
                             if(!data.result){
                                 alert(decodeURIComponent(data.error));
@@ -398,6 +403,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                     if(param.isFirstHouse === '0'){
                         param.isFirstHouse = 2;
                     }
+                    this.$broadcast('getData',data.housePrice * data.houseArea / 10000);
                     var resultData2 = {};
                     $.ajax({
                         url: vars.siteUrl + 'tools/?a=ajaxXfTaxes',
@@ -440,6 +446,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
             changeTab: function (data) {
                 if (data != this.type) {
                     this.showResult = false;
+                    this.showList = false;
                     this.type = data;
                 }
             }

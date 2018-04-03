@@ -81,6 +81,7 @@
 .resultList dt.org-i span:before{background:#ffa585;}
 .resultList dt.green-i span:before{background:#bae796;}
 .resultList dt.pink-r-i span:before{background:#ff7c7c;}
+.resultList dt.red-i span:before{background:#f66;}
 
 .sjq-t{padding:20px 0;margin-bottom:-14px;}
 .sjq-t .mTab{width:200px;margin:0 auto;}
@@ -194,6 +195,19 @@
 .tools-wydk p:before{content:'';position:absolute;width:16px;height:14px;left:0;top:5px;background:url(../images/tools_mes.png) no-repeat;background-size:100%;}
 .tools-wydk .btn{margin-top:14px;}
 .tools-wydk .btn a{display:block;width:100%;height:38px;line-height:37px;border:1px solid #df3031;background:#fff;font-size:14px;color:#df3031!important;text-align:center;border-radius:2px;}
+/*0312*/
+.mTitle h3{float:left;font-size:16px;color:#3c3f46;line-height:1;padding:20px 0;margin-left:14px;text-overflow: ellipsis;white-space: nowrap; font-weight:bold}
+.houselist li{padding:20px 0;overflow: hidden;margin: 0 14px;border-top: 1px solid #f4f4f4;}
+.houselist li a{color: #83868f;}
+.houselist li .img{ position: relative; float: left; margin-right:15px; width: 112px; height:84px;overflow: hidden;}
+.houselist li .img img{ width: 100%;height: 100%;}
+.houselist .info{ overflow: hidden; font-size: 12px;}
+.houselist .info.pdB20{padding-bottom: 20px;}
+.houselist .info h3{font-size: 16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #3c3f46;line-height:18px;margin-top:-1px;}
+.houselist .info p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.houselist .info p em{margin-right:10px;}
+.houselist li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
+.houselist li .img > div .tag-icon:nth-of-type(2){left:30px;}
 .fadeDownMore {
     -webkit-animation: ani-fadeDownMore .5s ease forwards;
     -moz-animation: ani-fadeDownMore .5s ease forwards;

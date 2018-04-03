@@ -13,7 +13,8 @@ define('modules/xf/xfinfotjwh', [
     'modules/xf/xfactivity',
 	'search/newHouse/newHouseSearch',
     'weixin/2.0.0/weixinshare',
-    'modules/xf/showBonus'
+    'modules/xf/showBonus',
+	'bgtj/bgtj'
 ], function (require, exports, module) {
     'use strict';
     var $ = require('jquery');
@@ -34,23 +35,31 @@ define('modules/xf/xfinfotjwh', [
     var lh = location.href,
 	lhl = lh.toLowerCase();
     
-    if(document.referrer.indexOf('baidu.com')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')<0 && lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0){
+    if(document.referrer.indexOf('baidu.com')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')<0 && lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0 && lhl.indexOf('xmsearch')<0 && lhl.indexOf('aladdin')<0){
     	$('.topDownload').show();
     }
 	
 	
-	if(lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0){
+	if(lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0 && lhl.indexOf('xmsearch')<0 && lhl.indexOf('aladdin')<0){
 		$('.midUseFang').show();
 		$('.openFangMore').show();
 	}
-	
-	
-    function showOverflow() {
+    if(lhl.indexOf('xmsearch')>0){
+        $('.appDown').hide();
+    }
+	    function showOverflow() {
         document.addEventListener('touchmove', preventDefault);
     }
 
     function hideOverflow() {
         document.removeEventListener('touchmove', preventDefault);
+    }
+
+    // 职业顾问锚点定位
+    function clickZhiye () {
+        if (location.href.indexOf('#zhiye') > -1) {
+            $(window).scrollTop($('#zhiye').position().top + $('.lpdh').height());
+        }
     }
 
     // 登录后获取用户名，手机号和用户ID
@@ -366,6 +375,7 @@ define('modules/xf/xfinfotjwh', [
                     window.location.href = '/xf/' + vars.paramcity + '/' + vars.paramid + '/fangjia.htm';
                 });
             }
+            clickZhiye();
         });
 
     var $flextable = $('#flextableID'),
@@ -806,6 +816,7 @@ define('modules/xf/xfinfotjwh', [
                 zygwajax();
                 // 电话号码替换
                 shadowCall();
+                clickZhiye()
             });
     }
     // 加载置业顾问-----------------------------------end
@@ -1139,6 +1150,18 @@ define('modules/xf/xfinfotjwh', [
             return;
         }
     }
+    
+    var projinfo="";
+    if(vars.ubpurpose == '住宅'){
+    	projinfo = 'xf,house';
+    }else if (vars.ubpurpose == '别墅'){
+    	projinfo = 'xf,villa';
+    }else if (vars.ubpurpose == '写字楼'){
+    	projinfo = 'xf,office';
+    }else if (vars.ubpurpose == '商铺'){
+    	projinfo = 'xf,shop';
+    }
+    
 
     function chatxf(zhcity, city, housetype, houseid, newcode, type, phone, channel, uname, aname, agentid, zhname, agentImg, username, zygwLink) {
         try {
@@ -1164,9 +1187,9 @@ define('modules/xf/xfinfotjwh', [
             });
             setTimeout(function () {
                 if(vars.sfbzygwlength == '0') {
-                    window.location = '/chat.d?m=chat&username=x:' + uname + '&city=' + city + '&type=wapxf&houseid=' + newcode;
+                    window.location = '/chat.d?m=chat&username=x:' + uname + '&city=' + city + '&type=wapxf&houseid=' + newcode + '&projinfo=' + projinfo + '&shopid=' + newcode;
                 } else {
-                    window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city + '&type=wapxf&houseid=' + newcode;
+                    window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city + '&type=wapxf&houseid=' + newcode + '&projinfo=' + projinfo + '&shopid=' + newcode;
                 }
             }, 500);
         } catch (_) {
@@ -2529,11 +2552,72 @@ define('modules/xf/xfinfotjwh', [
 			appUrl: vars.appurl,
 			universalappurl: vars.universalappurl
 		});
+		
+		$('.apptcxz').openApp({
+			position: 'xfinfoTanchuang'
+		});
+		
 	});
 	
 	$('.gbtc').on('click',function(){
 		$('.downloadAPP').hide();
 	});
+	
+	//楼盘详情弹窗app下载
+	if(lhl.indexOf('xmsearch')<0 && lhl.indexOf('aladdin')<0 && lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0 ){
+		var apptc = Util.getCookie('apptc') || '';
+		var appgb = Util.getCookie('appgb') || '';
+		
+		if(apptc != '' && apptc.indexOf(vars.paramid) < 0){
+			apptc = apptc + ',' + vars.paramid;
+		}else if(apptc == ''){
+			apptc = vars.paramid ;
+		}
+		
+		Util.setCookie('apptc',apptc);
+		
+		if(apptc.split(',').length >=5 && appgb == ''){
+			var alllpimgsrc = 'https:'+$('#storageimg').html().trim();
+			$('#alllpimg').attr('src',alllpimgsrc);
+			$('.downloadAPP-lp').show();
+		}
+		
+		setTimeout(function () {
+			if($('.downloadAPP-lp').hasClass('none') && appgb == ''){
+				var alllpimgsrc = 'https:'+$('#storageimg').html().trim();
+				$('#alllpimg').attr('src',alllpimgsrc);
+				$('.downloadAPP-lp').show();
+			}
+		}, 350000);
+		
+		$('.appclose').click(function(){
+			$('.downloadAPP-lp').hide();
+			if($('.appchoose>span').hasClass('on')){
+				Util.setCookie('appgb','1',365);
+			}else{
+				Util.setCookie('appgb','1',1);
+			}
+		});
+		
+		$('.appchoose>span').click(function(){
+			if($(this).attr('class') != 'on'){
+				$(this).attr('class','on');
+			}else if($(this).attr('class') == 'on'){
+				$(this).attr('class','');
+			}
+			
+		});
+	}
+	
+	require.async('bgtj/bgtj', function(bgTj){
+        bgTj({
+            url:'http://esfbg.3g.fang.com/homebg.html',
+            sendData:vars.json,
+            isScroll: IScrolllist,
+            contentId: 'zxexample'
+        });
+    });
+	
 
 	module.exports = {
         init: function () {

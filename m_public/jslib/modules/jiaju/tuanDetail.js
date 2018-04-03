@@ -52,7 +52,7 @@ define('modules/jiaju/tuanDetail', [
                     if (vars.localStorage) {
                         vars.localStorage.setItem(String('h:' + data.soufunname), encodeURIComponent(data.soufunname) + ';' + data.img + ';;');
                     }
-                    window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome';
+                    window.location = '/chat.d?m=chat&username=h:' + data.soufunname + '&city=' + vars.city + '&type=waphome&projinfo=jiaju&shopid=zt' + vars.groupid;
                 } else {
                     toastFn('获取用户信息失败，请重试!');
                 }

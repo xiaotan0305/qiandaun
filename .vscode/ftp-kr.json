@@ -7,7 +7,7 @@
     "port": 0,
     "fileNameEncoding": "utf8",
     "ignoreWrongFileEncoding": false,
-    "autoUpload": true,
+    "autoUpload": false,
     "autoDelete": false,
     "autoDownload": false,
     "ignore": [

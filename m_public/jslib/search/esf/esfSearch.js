@@ -160,7 +160,9 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
                             // 降价房搜索
                             if (vars.action === 'jjfList') {
                                 obj.a = 'jjfList';
-                                obj.fromsource = vars.fromsource;
+                                if (vars.fromsource) {
+                                   obj.fromsource = vars.fromsource;
+                                }
                             }
                             if (/hjzy=esf/.test(location.href)) {
                                 obj.hjzy = 'esf';
@@ -343,7 +345,9 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
             // 降价房搜索
             if (vars.action === 'jjfList') {
                 obj.a = 'jjfList';
-                obj.fromsource = vars.fromsource;
+                if (vars.fromsource) {
+                   obj.fromsource = vars.fromsource;
+                }
             }
             // 回家置业专题参数
             if (/hjzy=esf/.test(location.href)) {
@@ -433,7 +437,32 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         if (!b) {
             //降价房搜索
             if (vars.action === 'jjfList') {
-                window.location = vars.esfSite + vars.city + '/?a=jjfList&fromsource=' + vars.fromsource;
+                //自动化专题 url不一样
+                if (vars.autozt) {
+                    var urlReg = new RegExp('[esf|esf_bs]\/auto_([0-9]*)\/');
+                    var currentUrl = window.location.href;
+                    var urlMatch = currentUrl.match(urlReg);
+                    vars.esfSite = vars.esfSite.replace('/esf/', '/esf/auto_' + urlMatch[1] + '/');
+                    vars.esfSite = vars.esfSite.replace('/esf_bs/', '/esf_bs/auto_' + urlMatch[1] + '/');
+                }
+                var urlTemp = vars.esfSite + vars.city + '/?a=jjfList';
+                if (vars.fromsource) {
+                    urlTemp = urlTemp + '&fromsource=' + vars.fromsource;
+                }
+                // if (vars.tags) {
+                //     urlTemp = urlTemp + '&tags=' + vars.tags;
+                // }
+                if (str.indexOf('datetime') > -1) {
+                    var reg = new RegExp('datetime=([^&]*)(&|$)');
+                    var utmTime = str.match(reg);
+                    urlTemp = urlTemp + '&datetime=' + utmTime[1];
+                }
+                if (str.indexOf('cycle') > -1) {
+                    var reg = new RegExp('cycle=([^&]*)(&|$)');
+                    var utmcycle = str.match(reg);
+                    urlTemp = urlTemp + '&cycle=' + utmcycle[1];
+                }
+                window.location = urlTemp;
                 return;
             }
             if (/tjftype/.test(str)) {
@@ -455,6 +484,15 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
             return;
         }
         var url = urlString || vars.esfSite + '?c=esf&a=index';
+        //自动化专题 url不一样
+        if (vars.autozt) {
+            var urlReg = new RegExp('[esf|esf_bs]\/auto_([0-9]*)\/');
+            var currentUrl = window.location.href;
+            var urlMatch = currentUrl.match(urlReg);
+            url= url.replace('/esf/', '/esf/auto_' + urlMatch[1] + '/' + vars.city + '/');
+            url = url.replace('/esf_bs/', '/esf_bs/auto_' + urlMatch[1] + '/' + vars.city + '/');
+            url = url.replace('&a=index', '');
+        }
         // url 中含有cstype 类型 包括（ds 电商类型标示, yzwt: 业主委托类型)则添加到新的url中
         if (str.indexOf('cstype') > -1) {
             var reg = new RegExp('cstype=([^&]*)(&|$)');
@@ -487,7 +525,10 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         }
         //降价房搜索
         if (vars.action === 'jjfList') {
-            url += '&a=jjfList&fromsource=' + vars.fromsource;
+            url += '&a=jjfList';
+            if (vars.fromsource) {
+               url += '&fromsource=' + vars.fromsource;
+            }
         }
         // 是否含有类型
         if (vars.purpose) {
@@ -497,6 +538,22 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         // 回家置业
         if (vars.hjzy) {
             url += '&hjzy=esf';
+        }
+        //自动化专题
+        if (vars.autozt) {
+            // if (vars.tags) {
+            //     url = url + '&tags=' + vars.tags;
+            // }
+            if (str.indexOf('datetime') > -1) {
+                var reg = new RegExp('datetime=([^&]*)(&|$)');
+                var utmTime = str.match(reg);
+                url = url + '&datetime=' + utmTime[1];
+            }
+            if (str.indexOf('cycle') > -1) {
+                var reg = new RegExp('cycle=([^&]*)(&|$)');
+                var utmcycle = str.match(reg);
+                url = url + '&cycle=' + utmcycle[1];
+            } 
         }
         url += '&type=0&keyword=' + encodeURIComponent(b);
         that.setOtherHistory({key: b, showWord: b, suffix: '出售'}, url + '&city=' + vars.city);
@@ -615,7 +672,10 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         }
         //降价房搜索
         if (vars.action === 'jjfList') {
-            url += '&a=jjfList&fromsource=' + vars.fromsource;
+            url += '&a=jjfList';
+            if (vars.fromsource) {
+               url += '&fromsource=' + vars.fromsource;
+            }
         }
         //社区搜索
         if (obj.communityid) {
@@ -626,6 +686,27 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         }
         if (obj.hjzy) {
             url += '&hjzy=esf';
+        }
+        //自动化专题 url不一样
+        if (vars.autozt) {
+            // if (vars.tags) {
+            //     url = url + '&tags=' + vars.tags;
+            // }
+            if (str.indexOf('datetime') > -1) {
+                var reg = new RegExp('datetime=([^&]*)(&|$)');
+                var utmTime = str.match(reg);
+                url = url + '&datetime=' + utmTime[1];
+            }
+            if (str.indexOf('cycle') > -1) {
+                var reg = new RegExp('cycle=([^&]*)(&|$)');
+                var utmcycle = str.match(reg);
+                url = url + '&cycle=' + utmcycle[1];
+            }
+            var urlReg = new RegExp('[esf|esf_bs]\/auto_([0-9]*)\/');
+            var currentUrl = window.location.href;
+            var urlMatch = currentUrl.match(urlReg);
+            url = url.replace('/esf/', '/esf/auto_' + urlMatch[1] + '/' + vars.city + '/');
+            url = url.replace('/esf_bs/', '/esf_bs/auto_' + urlMatch[1] + '/' + vars.city + '/');
         }
         // 跳转搜索地址
         window.location = url + '&city=' + vars.city + '&r=' + Math.random();

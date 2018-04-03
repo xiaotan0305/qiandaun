@@ -37,6 +37,11 @@ define('modules/zhishi/ajaxBuyTest', ['jquery', 'weixin/2.0.0/weixinshare'], fun
         //下一步操作
         $answerBox.on('click','a' ,function(){
             var $that = $(this);
+            var url = $that.attr('href');
+            if (url != 'javascript:void(0);') {
+                window.location = url;
+                return;
+            }
             startNum = $answerBox.find('#startNum').val();
             row = $answerBox.find('#row').val();
             endNum = $answerBox.find('#endNum').val();

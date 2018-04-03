@@ -100,7 +100,7 @@ define('modules/jiaju/documentaryDetail', [
         }
         // 禁用/启用touchmove
         function toggleTouchmove(unable) {
-            document[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault);
+            window[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault, {passive: false});
         }
         // 导航页
         var $navList = $('.jj-process');

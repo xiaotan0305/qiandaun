@@ -178,6 +178,8 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
         // 需要移至中心的坐标
         pointX: vars.cityx,
         pointY: vars.cityy,
+        // 有坐标传入定位标识
+        setCenterFlag: false,
         // 保存初始关键字
         keywordStr: vars.strKeyword,
         // 初始化，在页面加载后根据列表或搜索页所传参数进行一次搜索，并且绑定地图事件
@@ -188,6 +190,11 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
             that.map = new MapApi('allmap', vars.cityy, vars.cityx, that.params.zoom);
             // 初始化参数
             that.initParams();
+            // 如果有坐标传入定位到坐标点，再查数据
+            if (that.setCenterFlag) {
+                that.params.zoom = that.villageZoom;
+                that.map.setCenter(vars.y1, vars.x1, that.params.zoom);
+            }
             that.searchResult();
         },
         // 初始化参数
@@ -204,6 +211,10 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
             if (vars.red) {
                 // 优惠按钮点击
                 $('.yh-icon').trigger('click');
+            }
+            //如果有坐标传入定位到坐标点，再查数据
+            if (vars.x1 && vars.y1) {
+                that.setCenterFlag = true;
             }
             // 区县
             if (vars.districtId) {
@@ -748,12 +759,17 @@ define('modules/map/xfSFMap', ['jquery', 'modules/map/API/xfMapApi', 'modules/ma
                 that.map.clearOverlays();
             }
             that.isSearching = true;
-            if (that.mapstatus === 'location') {
-                that.map.drawMarkers([{ coord_x: that.pointX, coord_y: that.pointY, type: 'location' }]);
-            }
-            if (that.mapstatus === 'city' || that.mapstatus === 'schoolType' || that.mapstatus === 'school'
-                || that.mapstatus === 'station' || that.mapstatus === 'loupan' || that.mapstatus === 'location') {
-                that.map.setCenter(that.pointY, that.pointX, that.params.zoom);
+            // 有坐标传入定位查找
+            if (that.setCenterFlag) {
+                that.setCenterFlag = false;
+            } else {
+                if (that.mapstatus === 'location') {
+                    that.map.drawMarkers([{ coord_x: that.pointX, coord_y: that.pointY, type: 'location' }]);
+                }
+                if (that.mapstatus === 'city' || that.mapstatus === 'schoolType' || that.mapstatus === 'school'
+                    || that.mapstatus === 'station' || that.mapstatus === 'loupan' || that.mapstatus === 'location') {
+                    that.map.setCenter(that.pointY, that.pointX, that.params.zoom);
+                }
             }
             // ajax参数
             var params = $.extend({}, that.params);

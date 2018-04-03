@@ -73,6 +73,15 @@ define('modules/agent/searchAgent', ['modules/esf/yhxw'], function (require, exp
             chat(dataArr[0], dataArr[1], dataArr[2], dataArr[3], dataArr[4], dataArr[5], dataArr[6], dataArr[7], dataArr[8], dataArr[9], dataArr[10], dataArr[12]);
         });
 
+        // 房源顾问曝光量统计
+        if (vars.agentListPos) {
+            $.ajax({
+                type: 'post',
+                url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                data: vars.agentListPos
+            });
+        }
+
         //加载更多
         var dragBox = $('#drag');
         if (dragBox.length > 0) {
@@ -95,7 +104,18 @@ define('modules/agent/searchAgent', ['modules/esf/yhxw'], function (require, exp
                     pageNumber: vars.stepByNum,
                     contentID: '#content',
                     moreBtnID: '#drag',
-                    loadPromptID: '#loading'
+                    loadPromptID: '#loading',
+                    callback: function(data) {
+                        // 每页房源顾问曝光率统计
+                        console.log(data.pageMarloadFlag);
+                        if ($('.agentListPos' + data.pageMarloadFlag).val()) {
+                            $.ajax({
+                                type: 'post',
+                                url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                                data: $('.agentListPos' + data.pageMarloadFlag).val(),
+                            });
+                        }
+                    }
                 });
             });
         }

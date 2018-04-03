@@ -37,10 +37,13 @@
 /*动态*/
 .dongtai{padding:20px 14px;border-top:1px solid #f4f4f4;}
 .dongtai:first-of-type{border-top:none;}
-.dongtai h1{font-size:16px;color:#3c3f46;line-height:22px;font-weight:bold;}
+.dongtai h1{font-size:23px;color:#0c0d0e;line-height:34px;font-weight:bold;}
 .dongtai .dtCon{margin-top:8px;}
 .dongtai .dtCon p{font-size:14px;line-height:23px;color:#565c67;}
+.dongtai img{max-width:100%;margin:15px 0;}
 .dongtai .dt-int{font-size:11px;color:#83868f;margin-top:8px;margin-bottom:14px;}
+.dongtai .dt-int .btn{float:right;font-size:12px;color:#f4585b!important;line-height:19px;padding:0 4px;border:1px solid #fecdcd;border-radius:2px;}
+.dongtai .dt-int .btn.gray{color:#83868f!important; border:1px solid #83868f;}
 .dt-int2{text-align:center;padding-bottom:20px;}
 .dt-int2 span{display:inline-block;height:21px;line-height:20px;border:1px dashed #f4f4f4;font-size:10px;color:#b3b6be;overflow:hidden;padding:0 26px;}
 .dt-more{margin-left:14px;margin-right:14px;padding:0 0 20px 0;}
@@ -1151,7 +1154,7 @@
 }
 .dq-card{background:#fff;padding-bottom:10px;}
 .dq-card > div{position:relative;margin:0 20px;margin-top:-12%;box-shadow: 0px 4px 10px rgba(131,134,143,0.2);border-radius:4px;background:#fff;padding:15px 20px;}
-.dq-card p{color:#83868f;font-size:15px;color:#2e3036;line-height:25px;word-break: break-all;}
+.dq-card p{color:#83868f;font-size:15px;color:#2e3036;line-height:25px;word-break: break-all;word-wrap:break-word;}
 .dq-card p span{color:#ff3c41;margin-right:8px;}
 .dq-card + .box{border-top:none;}
 .dq-flist{margin:0 20px;}
@@ -1162,6 +1165,7 @@
 .dq-flist .img img{width:100%;height:100%;}
 .dq-flist .img i{position:absolute;left:0;top:0;width:18px;height:18px;line-height:18px;text-align:center;font-size:14px;color:#fff;background:#ff5350;}
 .dq-flist .img .tag-icon{position:absolute;right:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
+.dq-flist .img .tag-icon.left{left:5px;right:auto;}
 .dq-flist .txt h2{font-size:16px;color:#3c3f46;line-height:22px;margin-top:-4px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .dq-flist .txt p{color:#565c67;font-size:11px;line-height:16px;margin-top:4px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .dq-flist .txt p span{position:relative;padding-right:10px;}
@@ -1174,16 +1178,26 @@
 .dq-flist .txt .tag span.blue{color:#5aa0fc;background:#edf8ff;}
 .dq-flist .txt .tag span.green{color:#42b9cb;background:#ecfcff;}
 .dq-flist .txt .tag span:last-child{margin-right:0;}
+.dq-flist .txt .tag.t10{margin-top:10px;}
 .dq-flist .txt .price{font-size:14px;color:#ff5350;line-height:20px;margin-top:5px;font-weight:600;}
-.dq-flist .txt2{clear:both;padding-top:12px;font-size:15px;color:#0b0c0c;line-height:24px;}
+.dq-flist .txt2{clear:both;padding-top:12px;font-size:15px;color:#3c3f46;line-height:24px;word-break: break-all;word-wrap:break-word;}
 .dq-flist .txt2 p{font-size:14px;color:#3c3f46;line-height:20px;margin-bottom:6px;max-height:40px;overflow:hidden;white-space:inherit;word-break:break-all;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 .dq-flist .txt2 p:last-child{margin-bottom:0;}
 .dq-flist .txt2 > span{font-weight:bold;margin-right:6px;}
+.dq-flist .txt2 > span.red{color:#ff5757;}
 .dq-flist.s2 li > a{padding-bottom:18px;}
 .dq-flist.s2 .img{margin-bottom:0;}
 .dq-more{text-align:center;border-top:1px solid #f8f8f8;margin:0 20px;}
 .dq-more > a{display:block;padding:20px 0;}
 .dq-more span{font-size:15px;color:#83868f;line-height:21px;}
+.dq-flist .txt2.line3{max-height:84px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;}
+.dq-flist .tit{font-size:16px;color:#3c3f46;line-height:22px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-bottom:20px;}
+.dq-flist .tit .price{float:right;font-size:14px;color:#ff5350;font-weight:600;}
+.dq-flist li.topimg > a{padding-bottom:18px;padding-top:15px;}
+.imglist{margin-bottom:8px;}
+.imglist dd{margin-right:6px;width:100px;height:21.5vw;max-height:147px;overflow:hidden;}
+.imglist dd:last-child{margin-right:0;}
+.imglist dd img{width:100%;}
 
 /*列表app下载*/
 .dq-flist li.app-down{position:relative;}
@@ -1203,7 +1217,7 @@
 .dq-card3 > div span{position:absolute;height:20px;line-height:20px;background:#ff6666;color:#fff;font-size:14px;white-space:nowrap;left:-4px;top:18px;}
 .dq-card3 > div span:before{content:'';position:absolute;bottom:-4px;left:-4px;width:0;height:0;border:4px solid;border-color:transparent #d64242 transparent transparent;z-index:1;}
 .dq-card3 > div span i{position:relative;display:block;padding:0 6px 0 8px;background:#ff6666;z-index:2;}
-.dq-card3 p{color:#83868f;font-size:15px;color:#2e3036;line-height:25px;text-indent:2em;}
+.dq-card3 p{color:#83868f;font-size:15px;color:#2e3036;line-height:25px;text-indent:2em;word-break:break-all;}
 .dq-card3 + .box{border-top:none;}
 /*列表样式2*/
 .dq-flist2{background:#f8f8f8;}
@@ -1240,11 +1254,28 @@
 .dq-flist3 .txt{padding-bottom:20px;border-bottom:1px solid #f8f8f8;}
 .dq-flist3 .txt h2{font-size:17px;color:#3c3f46;font-weight:600;line-height:24px;padding:12px 0 10px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .dq-flist3 .txt h2 span{float:right;color:#83868f;font-size:12px;font-weight:normal;}
-.dq-flist3 .txt p{color:#3c3f46;font-size:15px;line-height:24px;}
+.dq-flist3 .txt p{color:#3c3f46;font-size:15px;line-height:24px;word-break:break-all;}
 .dq-flist3 .txt2{font-size:15px;color:#2e3036;line-height:21px;padding:12px 0}
 .dq-flist3 .txt2 > a{display:block;}
 .dq-flist3 .txt2  span{display:inline-block;margin-right:6px;color:#699ed4;margin-right:10px;}
 .dq-flist3 .txt2 i{float:right;font-size:13px;color:#565c67;}
+
+/*列表滑动*/
+.dq-other .tit{font-size:17px;line-height:24px;font-weight:600;margin-bottom:0;}
+.dq-other .tit > a{display:block;color:#0c0d0e!important;padding:20px 0;}
+.dq-other .con{margin:0 -20px;overflow:hidden;}
+.dq-other dl{overflow:hidden;padding:0 20px;}
+.dq-other dd{float:left;width:280px;overflow:hidden;margin-right:20px;}
+.dq-other dd:last-child{margin-right:0;}
+.dq-other dd > a{display:block;padding-bottom:20px;}
+.dq-other .pic{width:100%;height:120px;overflow:hidden;margin-bottom:14px;}
+.dq-other .pic img{width:100%;}
+.dq-other h2{font-size:16px;color:#3c3f46;line-height:22px;font-weight:600;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.dq-other p{font-size:15px;color:#565c67;line-height:24px;margin-top:10px;max-height:48px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow:hidden;}
+.dq-other .more{width:45px;height:230px;background:#e3e7ed;}
+.dq-other .more > a{padding:42px 15px 0;height:100%;}
+.dq-other .more span{display:inline-block;font-size:16px;color:#565c67;line-height:20px;}
+.dq-other .more i{display:inline-block;width:13px;height:13px;margin-top:14px;margin-left:2px;background:url(../images/dq_more_icon.png) no-repeat;background-size:100%;}
 
 /*猜你喜欢模块*/
 .favList li{border-bottom:1px solid #f8f8f8;margin:0 14px;}
@@ -1274,6 +1305,9 @@
 .favList li .stag span{padding-top:1px;border-radius:1px;}
 .favList li .stag span.bg{ background:#f2f4f8;}
 .mTitle + .favList{padding:6px 0;}
+.mTitle.newt + .favList{padding:0;}
+.mTitle.newt + .favList li{margin:0 20px;}
+.mTitle.newt + .favList li > a{padding:16px 20px;margin:0 -20px;}
 
 /*新房点评详情*/
 .comment-detail > ul > li{ padding:23px 0px 0;background:#fff;margin-bottom:8px;}

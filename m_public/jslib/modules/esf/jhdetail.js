@@ -142,8 +142,7 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             $('.focus-opt').find('a').css('opacity', opa);
             if($("#newheader").is(":hidden")){
                 $(".floatTel-xf").show(); // 如果元素为隐藏,底板按钮则将它显现
-                $(".floatTel").show(); 
-                
+                $(".floatTel").show();
             } else {
                 $(".floatTel-xf").hide(); // 如果元素为显现,则将其隐藏
                 $(".floatTel").hide();
@@ -568,14 +567,14 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
          * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
          */
         function unable() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
 
         /**
          * 手指滑动恢复浏览器默认事件（恢复滚动
          */
         function enable() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
 
         $('#jjrList').find('ul').css({'height':'100%','z-index':'9999','overflow':'auto'});
@@ -608,11 +607,27 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             preventDefaultException: { tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|A)$/ },
             taps:true
         });
-        //经纪人按钮点击
+        // 房源顾问曝光量统计
+        if (vars.recommendPos) {
+            $.ajax({
+                type: 'post',
+                url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                data: vars.recommendPos
+            });
+        }
+        // 经纪人按钮点击
         $(".jjrclick").not('.noclick').find('.Nmes').click(function(){
             $('.Chjjropen').show();
             scrollObj.refresh();
             unable();
+            // 房源顾问曝光量统计
+            if (vars.agentListPos) {
+                $.ajax({
+                    type: 'post',
+                    url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                    data: vars.agentListPos
+                });
+            }
         });
         //经纪人弹框关闭按钮
         var $jjrclose = $('.jjrclose');
@@ -855,7 +870,15 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
                     moreBtnID: '#drag',
                     loadPromptID: '#loading',
                     isScroll:true,
-                    callback:function(){
+                    callback:function(data){
+                        // 每页房源顾问曝光率统计
+                        if ($('.agentListPos' + data.pageMarloadFlag).val()) {
+                            $.ajax({
+                                type: 'post',
+                                url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                                data: $('.agentListPos' + data.pageMarloadFlag).val(),
+                            });
+                        }
                         scrollObj.refresh();
                     }
                 });
@@ -1090,5 +1113,95 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             // 手指滑动，恢复浏览器默认事件
             enable();
         });
+        //下载弹框
+        if (vars.appdownload) {
+            if (vars.downLimit && !cookiefile.getCookie('onedayClose') && !cookiefile.getCookie('foreverClose')) {
+                $('.downloadAPP-lp').show();
+            } else if (!cookiefile.getCookie('onedayClose') && !cookiefile.getCookie('foreverClose')) {
+                var timespace = 1;
+                var timeset = setInterval(function() {
+                    timespace = 1 + timespace;
+                    if (timespace > 350) {
+                         $('.downloadAPP-lp').show();
+                         clearTimeout(timeset);
+                    }
+                }, 1000);
+            }
+            $('.onedayClose').click(function() {
+                $('.downloadAPP-lp').hide();
+                var date = new Date();
+                var curTime = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                var tomorrow = Date.parse(new Date(curTime)) + (1000*60*60*24);
+                var curTemp = Date.parse(new Date());
+                var cookieTiem = (tomorrow - curTemp)/(24*60*60*1000);
+                cookieTiem = cookieTiem.toFixed(3);
+                if ($('.foreverClose').hasClass('on')) {
+                    cookiefile.setCookie('foreverClose', 1, 365);
+                } else {
+                    cookiefile.setCookie('onedayClose', 1, cookieTiem);
+                }
+            });
+            $('.foreverClose').on('click', function() {
+                var el = $(this);
+                if (el.hasClass('on')) {
+                    el.removeClass('on');
+                } else {
+                    el.addClass('on');
+                }
+            });
+        }
+
+        //ajax加载家居需求
+        if($('#zxexample').length){
+            $.ajax({
+                url:vars.esfSite + '?c=esf&a=ajaxIncJiajuModule&city=' + vars.city + '&plotid=' + vars.plotid + '&housetype=' + vars.housetype,
+                data:{'houseid': vars.houseid},
+                success: function(data){
+                    if (data) {
+                        $('#zxexample').append(data);
+                        if ($('#zxexample').find('.jiajuExposure').val()) {
+                            require.async('bgtj/bgtj', function(bgTj){
+                                bgTj({
+                                    url:'http://esfbg.3g.fang.com/homebg.html',
+                                    sendData:$('#zxexample').find('.jiajuExposure').val(),
+                                    isScroll: iscrollNew,
+                                    contentId: 'zxexample'
+                                });
+                            });
+                        }
+                    }
+                }
+            })
+        }
+
+        // 画饼状图 lina
+        if($('#pieCon').length){
+            require.async('chart/pie/1.0.0/pie',function(pie){
+               var dataList = JSON.parse(vars.jiajuJson);
+                var arr = [];
+                for(var key in dataList){
+                    arr.push(dataList[key]);
+                }
+                var p = new pie({
+                    //容器id
+                    id: '#pieCon',
+                    animateType:'increaseTogether',//效果类型，暂时只有这一种需要其他类型再扩展
+                    // canvas的高
+                    height:100,
+                    // canvas的宽
+                    width:100,
+                    //半径
+                    radius:100,
+                    //分割份数，即增量的速度
+                    part:50,
+                    //空白间隔的大小
+                    space:2,
+                    //是否挖空，如果为0则不挖空，否则为挖空的半径
+                    hollowedRadius:50,
+                    dataArr: arr
+                });
+                p.run();
+            });
+        }
     };
 });

@@ -222,7 +222,7 @@ define('modules/jiaju/buildDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'super
                 async: false
             });
             setTimeout(function () {
-                window.location = vars.chatUrl + 'chat.d?m=chat&username=h:' + l + '&city=' + b + '&type=waphome';
+                window.location = vars.chatUrl + 'chat.d?m=chat&username=h:' + l + '&city=' + b + '&type=waphome&projinfo=jiaju&shopid=jl' + vars.pid;
             }, 500);
         }
 

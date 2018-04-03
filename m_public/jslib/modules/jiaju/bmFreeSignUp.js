@@ -58,8 +58,10 @@ define('modules/jiaju/bmFreeSignUp', [
             that.projNameFloat = $('#projNameFloat');
             // 小区弹层上的搜索提示列表
             that.projNameFloatList = $('#projNameFloatList');
-            // 小区弹层上的确定按钮
-            that.projNameConfirm = $('#projNameConfirm');
+            // 小区弹层上的取消按钮
+            that.projNameCancel = $('#projNameCancel');
+            // 小区弹层的从下拉列表选择提示
+            that.projNameSeletedTip = $('#projNameSeletedTip');
 
             /* 手机号*/
             that.tel = $('#phone');
@@ -170,9 +172,9 @@ define('modules/jiaju/bmFreeSignUp', [
             that.projName.on('input focus', function () {
                 that.projNameInputTip();
             });
-
-            // 点击确定按钮
-            that.projNameConfirm.on('click', function () {
+            
+            // 点击小区取消按钮
+            that.projNameCancel.on('click', function () {
                 that.confirmProjname();
             });
 
@@ -183,7 +185,7 @@ define('modules/jiaju/bmFreeSignUp', [
                 that.projName.attr('data-hid', $that.attr('data-hid'));
                 that.projNameFloatList.html('');
                 that.projNameFloat.hide();
-                that.projNameConfirm.hide();
+                that.projNameSeletedTip.hide();
             });
 
             /* 手机号*/
@@ -563,13 +565,15 @@ define('modules/jiaju/bmFreeSignUp', [
                 that.toast('请输入您的房屋面积');
             } else if (!that.cityFlag) {
                 that.toast('请选择您的地区');
-            } else if (!that.projNameFlag) {
+            } else if (that.projName.val() === '') {
                 that.toast('请输入您的小区/楼盘');
             } else if (!that.phoneFlag) {
                 that.toast('请输入您的手机号');
             } else if (!that.phoneCodeFlag) {
                 that.toast('请输入验证码');
             }
+            // 重新验证楼盘输入是否合法
+            that.validateProjName(that.projName.val());
             return that.houseAreaFlag && that.cityFlag && that.projNameFlag && that.phoneFlag && that.phoneCodeFlag;
         },
 
@@ -702,14 +706,14 @@ define('modules/jiaju/bmFreeSignUp', [
         // 禁止页面滑动
         unable: function () {
             var that = this;
-            document.addEventListener('touchmove', that.pdEvent);
+            window.addEventListener('touchmove', that.pdEvent, {passive: false});
             // $('.main').css('position', 'fixed');
         },
 
         // 允许页面滚动
         enable: function () {
             var that = this;
-            document.removeEventListener('touchmove', that.pdEvent);
+            window.removeEventListener('touchmove', that.pdEvent, {passive: false});
             $('.main').css('position', 'static');
         },
 
@@ -751,7 +755,7 @@ define('modules/jiaju/bmFreeSignUp', [
                     utmSource: vars.remark,
                     zxArea: that.houseArea.val().trim(),
                     estateID: that.projName.attr('data-hid'),
-                    estateName: encodeURIComponent(that.inputFormat(that.projName.val()))
+                    estateName: encodeURIComponent(that.projName.val())
                 };
                 that.submitFlag = false;
                 // 用户行为
@@ -760,7 +764,7 @@ define('modules/jiaju/bmFreeSignUp', [
                     type: typeId,
                     refpage: document.referrer,
                     area: that.houseArea.val().trim(),
-                    projectname: that.inputFormat(that.projName.val()),
+                    projectname: that.projName.val(),
                     district: that.areaOption.attr('data-distName'),
                     phone: that.tel.val()
                 });
@@ -942,44 +946,54 @@ define('modules/jiaju/bmFreeSignUp', [
             window.addEventListener(resizeEvt, recalc, false);
             recalc();
         },
-        // 格式化用户输入
-        inputFormat: function (str) {
-            var word = str.replace(/[\<\>\(\)\;\{\}\"\'\[\]\/\@\!\,]/g, '');
-            return word.replace(/(^\s+)|(\s+$)/g, '');
+        // 验证楼盘字段
+        validateProjName: function (str) {
+            var that = this;
+            var regNumAndEn = /^[`~!@#$%^&*()_+<>?:"{},.\/;'[\]！#￥（——）：；“”‘、，|《。》？、【】·…\^\-=‘’0-9]+$/;
+            if (regNumAndEn.test(str)) {
+                that.toast('楼盘名称不规范，请重新填写');
+                return false;
+            } else {
+                return true;
+            }
         },
         // 楼盘输入搜索提示
         projNameInputTip: function () {
             var that = this;
-            var keyword = that.inputFormat(that.projName.val());
-            that.projNameFloatList.html('');
-            that.projNameFlag = false;
-            if (keyword.length) {
-                that.projNameFlag = true;
-                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetBJHouseSearchTip&city=' + vars.city + '&keyword=' + keyword + '&cityname=' + that.areaOption.attr('data-cityname') + '&ns=' + that.getNSbyProvinceId(that.areaOption.attr('data-proid')), function (data) {
-                    if (data && parseInt(data.allResultNum)) {
-                        var num = data.allResultNum > 3 ? 3 : data.allResultNum;
-                        var tipStr = '<ul>';
-                        for (var i = 0; i < num; i++) {
-                            tipStr += '<li><a class="projSearchItem" href="javascript:void(0);" data-hid="' + data.hit[i].newCode + '">' + data.hit[i].title + '</a></li>';
-                        }
+            clearTimeout(that.timerThink);
+            that.timerThink = setTimeout(function () {
+                var keyword = that.projName.val();
+                that.projNameFloatList.html('');
+                that.projNameFlag = false;
+                if (keyword.length && that.validateProjName(keyword)) {
+                    $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetBJHouseSearchTip&city=' + vars.city + '&keyword=' + keyword + '&cityname=' + that.areaOption.attr('data-cityname') + '&ns=' + that.getNSbyProvinceId(that.areaOption.attr('data-proid')), function (data) {
+                        that.projNameFlag = true;
+                        if (data && parseInt(data.allResultNum) > 0) {
+                            var num = data.allResultNum > 3 ? 3 : data.allResultNum;
+                            var tipStr = '<ul>';
+                            for (var i = 0; i < num; i++) {
+                                tipStr += '<li><a class="projSearchItem" href="javascript:void(0);" data-hid="' + data.hit[i].newCode + '">' + data.hit[i].title + '</a></li>';
+                            }
                         tipStr += '</ul>';
                         that.projNameFloatList.html(tipStr);
                         that.projNameFloat.show();
-                        // 显示确定按钮
-                        that.projNameConfirm.show();
+                        that.projNameCancel.hide();
+                        that.projNameSeletedTip.show();
                     } else {
-                        // 显示确定按钮
-                        that.projNameConfirm.hide();
+                        that.projNameSeletedTip.hide();
                     }
                 });
             } else {
-                that.projNameConfirm.hide();
+                that.projNameCancel.hide();
+                that.projNameSeletedTip.hide();
             }
+        }, 100);
         },
         // 确认楼盘名称
         confirmProjname: function () {
             var that = this;
-            that.projNameConfirm.hide();
+            that.projNameCancel.hide();
+            that.projNameSeletedTip.hide();
             that.projNameFloatList.html('');
             that.projNameFloat.hide();
         },

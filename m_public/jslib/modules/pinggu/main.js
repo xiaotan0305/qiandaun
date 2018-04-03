@@ -113,6 +113,9 @@ define('modules/pinggu/main', ['jquery', 'superShare/1.0.1/superShare', 'weixin/
             } else {
                 $('#down-btn-c').openApp();
             }
+            if (vars.action === 'list') {
+                $('.searchXQList').openApp({position: 'searchXQList'});
+            }
         });
     }
     // 搜索初始化

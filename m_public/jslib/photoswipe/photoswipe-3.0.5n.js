@@ -1704,7 +1704,7 @@
 	}, onCarouselSlideByEnd:function (b) {
 		this.currentIndex = b.cacheIndex;
 		//                    视频          全景       航拍       全景（老）            直播
-		var $allButton = $('.vedio-icon, .icon-360, .icon-hp, #play_button_fullView, .xfl, #play_button');
+		var $allButton = $('.vedio-icon, .icon-360, .icon-hp, .hpqjpic, #play_button_fullView, .xfl, #play_button');
 		$allButton.css('z-index', '1100');
 		if($('#img_'+this.currentIndex+' a').attr('video') != undefined || $('#img_'+this.currentIndex+' a').attr('vt') != undefined ){
 			// 视频
@@ -1732,6 +1732,7 @@
 			// 航拍
 			$allButton.hide();
 			$('.icon-hp').attr('href',$('#img_'+this.currentIndex+' a').attr('data-href')).show();
+			$('.hpqjpic').attr('href',$('#img_'+this.currentIndex+' a').attr('data-href')).show();
 		} else {
 			$allButton.hide();
 			$('.js_videoTitle').parent().hide();

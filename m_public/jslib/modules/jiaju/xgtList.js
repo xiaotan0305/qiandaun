@@ -26,7 +26,7 @@ define('modules/jiaju/xgtList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/
             // 数据总条数
             total: vars.total,
             // 首屏显示数据条数
-            pagesize: vars.pagesize,
+            pagesize: 19,
             // 单页加载条数，可不设置
             pageNumber: vars.pagesize,
             // 加载更多按钮id

@@ -423,7 +423,7 @@ header.fixed{position:fixed;width:100%;max-width:640px;top:0;left:50%;-webkit-tr
 .focus-opt{height:0;width:100%;position:fixed;max-width:640px;top:0;left:50%;-webkit-transform: translate(-50%, 0%);transform: translate(-50%, 0%);z-index:2;}
 .xqfocus .live-icon{position:absolute;width:61px;height:20px;right:14px;top:10px;background:url(../images/live_icon.png) no-repeat;background-size:100% auto;}
 .xqfocus .jq360-icon{position:absolute;width:62px;height:62px;left:50%;top:50%;margin:-31px 0 0 -31px;background:url(../images/icon_qj360.png) no-repeat;background-size:100% auto;}
-.xqfocus .hp-icon{position:absolute;width:62px;height:62px;left:50%;top:50%;margin:-31px 0 0 -31px;background:url(../images/icon_hp.png) no-repeat;background-size:100% auto;}
+.xqfocus .hp-icon{position:absolute;width:87px;height:87px;left:50%;top:50%;margin:-43px 0 0 -43px;background:url(../images/xf_detail_hangpai_big.png) no-repeat;background-size:100% auto;}
 .xqfocus a{display:block;position:relative;}
 .xqfocus .tag-icon{position:absolute;left:10px;top:10px;font-size:10px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
 .xqfocus .tag-icon2{position:absolute;right:14px;top:50px;font-size:10px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
@@ -2518,7 +2518,8 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .houseList2 li .img p.icon-new{position:absolute;display:block;height:14px;width:100%;bottom:4px;left:0;}
 .houseList2 li .img p.icon-new span{float:left;width:14px;height:14px; margin-left:5px;background: url(../images/list_img_icon.png) no-repeat; background-size: 42px auto;}
 .houseList2 li .img p.icon-new span.video2{background-position: -28px 0;}/*0915*/
-.houseList2 li .img p.icon-new span.hp{background-position:0 0;}
+.houseList2 li .img p.icon-new span.hp{width:14px;height:14px;background: url(../images/xf_list_hangpai_icon.png) no-repeat; background-size:14px;}/*0301*/
+
 .houseList2 li .img p.icon-new span.qj360{background-position:-14px 0;}
 .houseList2 li .online{float:left;width: 11px; height: 10px; margin-left:5px; background: url(../images/list_icons.png) -14px 0 no-repeat; background-size: 25px auto;}
 .houseList2 li .tj{position:absolute;left:0;top:0;width:26px; height: 23px; background: url(../images/list_jian_icon.png) 0 0 no-repeat; background-size:26px auto;}
@@ -2538,7 +2539,7 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .houseList2 li .new i{font-size:14px;font-weight:bold;}
 .houseList2 li .new-2{float:right;font-size:11px;color:#83868f;}
 
-.houseList2 li .prnew{font-size:13px;color:#D41926;}
+.houseList2 li .prnew{font-size:13px;color:#D41926;overflow:hidden;}
 .houseList2 li .prnew i{color:#B3B6BE;font-size:11px;margin-left:5px; text-decoration:line-through}
 .houseList2 li .prnew span{float:right;color:#23B080;font-size:11px;}
 .houseList2 li .prnew span:after{ content: '↓'; margin: 0 2px; vertical-align: 1px;}
@@ -2683,6 +2684,9 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .houseList2 .tjf-list li .pic{width:112px;height:84px;}
 .houseList2 .tjf-list-box:after{left:20px;right:20px;}
 
+/*二手房自动化专题样式*/
+.houseList2 .price-gre{float:right;color:#23B080;font-size:11px;}
+.houseList2 .price-gra{text-decoration:none!important;}
 /*20170418 OpenHouse*/
 
 .red-ed5{ color:#ed5152 !important;}
@@ -3082,6 +3086,8 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .CaptionTop .price em{font-size:15px;color:#d64242;font-weight:600;}
 .CaptionTop .price em i{font-size:18px;}
 .CaptionTop .price span{font-size:12px;color:#565c67;margin-left:6px;vertical-align:2px;}
+.CaptionTop .price label,.CaptionTop .price label a{float:right;font-size:13px;color:#819bbb!important;}
+
 .CaptionTop .hxStyle a{display:block;font-size:13px;color:#565c67!important;line-height:1;padding:20px 0;}
 .CaptionTop .hxStyle .more-link{float:right;margin-right:14px;}
 .CaptionTop .hxStyle ul{margin:0 -20px;padding:12px 0 20px;}
@@ -3488,11 +3494,11 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 
 .jjtop{position:relative; overflow:hidden}
 .jjtop img{width:100%}
-.jjtop .seadiv{width:310px;height:36px; background:#fff;border-radius:3px; position:absolute;top:30%;left:50%;margin-left:-155px; text-align:center}
+.jjtop .seadiv{height:36px; background:#fff;border-radius:3px; position:absolute;top:30%;left:8%;right:8%; text-align:center}
 .jjtop .seadiv .input{position:relative;display:block;line-height:36px; width: 100%; height: 34px; font-size: 14px;color:#565C67;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
 .jjtop .seadiv .input i{display:inline-block;width:12px;height:12px;margin: 0 8px 0 14px;background:url(../images/jj_ser.png) 0 0 no-repeat;background-size:12px auto;vertical-align:-1px;}
-.jjtop .txt{line-height:20px;background:rgba(0,0,0,0.5);position:absolute;top:60%;left:50%;font-size:12px;color:#fff;padding:2px 10px;border-radius:3px;-webkit-transform: translate(-50%, 0%);transform: translate(-50%, 0%);white-space: nowrap; overflow:hidden}
-
+.jjtop .txt{line-height:20px;max-height:44px;background:rgba(0,0,0,0.5);position:absolute;top:60%;left:8%;right:8%;font-size:12px;color:#fff;padding:2px 10px;border-radius:3px;/*white-space: nowrap; */overflow:hidden}
+.jjtop .date{position:absolute;right:0;top:0;background:rgba(0,0,0,0.5);font-size:11px;color:#fff;padding:2px 6px;}
 
 /*0116*/
 .jjfy-list{position:relative; overflow: hidden;padding:20px;}
@@ -3540,3 +3546,79 @@ a.more_text,a.more_text:link,a.more_text:active,a.more_text:visited{color: #565c
 .downloadAPP p{font-size:14px;color:#565c67;line-height:20px;margin-top:6px;}
 .downloadAPP .downloadBtn{display:block;width:180px;height:44px;line-height:44px;color:#fff;text-align:center;font-size:17px;background:#df3031;border-radius:4px;margin:30px auto 0;}
 .downloadAPP .close{position:absolute;width:36px;height:36px;left:50%;bottom:-20%;margin-left:-18px;border:1px solid #fff;border-radius:50%;background:url(../images/close_20x20.png) center center no-repeat;background-size:10px;}
+/*楼盘下载APP弹层*/
+.downloadAPP-lp{position:fixed;width:100%;left:0;top:0;bottom:0;background:rgba(0,0,0,.6);z-index:9999;}
+.downloadAPP-lp > div{position:absolute;left:10%;right:10%;top:11%;background:#fff;}
+.downloadAPP-lp .img{width:100%;max-height:53.5vw;overflow:hidden;}
+.downloadAPP-lp .img img{width:100%}
+.downloadAPP-lp .txt{overflow:hidden;padding:17px 14px 30px 8%;}
+.downloadAPP-lp .txt > div{padding-top:3px;}
+.downloadAPP-lp i{display:block;float:left;width:68px;height:68px;margin-right:20px;}
+.downloadAPP-lp h3{font-size:17px;color:#0c0d0e;font-weight:600;line-height:24px;letter-spacing:-.4px;}
+.downloadAPP-lp p{font-size:14px;color:#83868f;line-height:18px;letter-spacing:-.4px;margin-top:2px;}
+.downloadAPP-lp .btn{display:block;height:44px;line-height:44px;color:#fff!important;font-size:17px;text-align:center;background:#df3031;}
+.downloadAPP-lp .close{position:absolute;width:36px;height:36px;left:50%;bottom:-30%;margin-left:-18px;border:1px solid #fff;border-radius:50%;background:url(../images/close_20x20.png) center center no-repeat;background-size:10px;}
+.downloadAPP-lp .choose{position:absolute;width:100%;bottom:-12%;text-align:center;line-height:16px;font-size:16px;color:#fff;}
+.downloadAPP-lp .choose span{display:inline-block;width:16px;height:16px;background:url(../images/choose.png) no-repeat;background-size:100%; vertical-align:-2px;margin-right:12px;}
+.downloadAPP-lp .choose span.on{background:url(../images/choose_cur.png) no-repeat;background-size:100%;}
+
+/*租房红包弹层*/
+.zu-hb-bg{position:fixed;width:100%;left:0;top:0;bottom:0;background:rgba(0,0,0,.6) url(../images/hb_out_bg.png) left 54% no-repeat;background-size:100%;z-index:999;}
+.zu-hb-out,.zu-hb-out1{position:fixed;width:62%;padding-bottom:86.5%;left:19%;bottom:26%;background:url(../images/hb_out.png) no-repeat;background-size:100%;z-index:999;}
+.zu-hb-out1{padding-bottom:72%;}
+.zu-hb-out:after,.zu-hb-out1:after{content:'';bottom:-30px;position:absolute;width:100%;height:10px;border-radius:50%;background:rgba(0,0,0,.05);box-shadow:0 0 10px rgba(0,0,0,.05)}
+.zu-hb-out1{background:url(../images/hb_out1.png) no-repeat;background-size:100%;}
+.zu-hb-out > div{position:absolute;left:0;right:0;top:29%;text-align:center;}
+.zu-hb-out p{font-size:13px;color:#c86e1e;}
+.zu-hb-out .price{font-size:15px;color:#ff4845;margin-top:4%;}
+.zu-hb-out .price i{font-size:31px;font-weight:600;margin-right:5px;vertical-align:-2px;}
+.zu-hb-out .intro{width:65%;margin:30% auto 0;font-size:11px;color:#fff;line-height:18px;text-align:left;}
+.hpqjpicXQ{width:87px;height:87px;position:absolute;top:50%;left:50%;margin:-43px 0 0 -43px;background:url(../images/xf_detail_hangpai_big.png); background-size:87px;}
+.hpqjpic{width:260px;height:230px;position:absolute;top:50%;left:50%;margin:-130px 0 0 -115px;background:url(../images/hp01.png);-webkit-transform:scale(.5);transform:scale(.5);animation:move9 1s steps(5) infinite ; -webkit-animation:move9 1s steps(5) infinite;}
+@-webkit-keyframes move9 {
+	from{background-position:0 1150px}
+	to{background-position:0 0}
+}
+@keyframes move9 {
+	from{background-position:0 1150px}
+	to{background-position:0 0}
+}
+.zfbtPic{ position:absolute;top:16px;left:22px;width:30px;height:27px;background:url(../images/zfbt01.png) no-repeat;background-size:30px; z-index:99999;}
+.xq-app-d a.zfbt{width:62px;height:78px;background:url(../images/icon_zfbt.png) no-repeat;background-size:62px auto;top:-5px}
+.xq-app-d a.zfbt2{width:62px;height:78px;background:url(../images/icon_zfbt.png) no-repeat;background-size:62px auto;}
+.listzfbt{float:left;width:15px;height:15px;background:url(../images/icon_zfbt2.png) no-repeat;background-size:15px auto; display: inline-block;margin-right: 4px;}
+.fytsbk{padding:8px 0 20px;overflow:hidden}
+.fytsbk a{float:left;height:30px;line-height:30px;font-size:15px;color:#3c3f46;padding:0 10px;margin:12px 10px 0 0; background:#F8F8F8;border-radius:4px;}
+/*0312*/
+.jjrlbopen .zfbtbox{position:relative;width:375px;height:575px;left:50%;top:50%;background:url(../images/icon_lqbg.png) no-repeat;background-size:375px;-webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+.jjrlbopen .zfbtbox .btn01{width:96px;height:98px;background: url(../images/icon_lq.png) no-repeat;background-size:96px;display:block; position:absolute;top:335px;left:50%;margin-left:-48px;}
+
+
+
+/*0316*/
+.zfpiclist li{padding:20px 0;overflow: hidden;margin: 0 14px;}
+.zfpiclist li a{color: #83868f;}
+.zfpiclist li:not(:last-child){  border-top: 1px solid #f4f4f4;}
+.zfpiclist li .img{ position: relative; float: left; margin-right:15px; width:140px; height:93px;overflow: hidden;}
+.zfpiclist li .img img{ width: 100%;height: 100%;}
+.zfpiclist li .img .tag-icon{position:absolute;left:5px;top:5px;font-size:9px;line-height:12px;color:rgba(255,255,255,.5);text-shadow:0px 0px 2px rgba(120,120,120,.6);line-height:1}
+.zfpiclist li .img > div .tag-icon:nth-of-type(2){left:30px;}
+.zfpiclist .info{ overflow: hidden; font-size: 12px;}
+.zfpiclist .info.pdB20{padding-bottom: 20px;}
+.zfpiclist .info h3{font-size: 16px;color: #3c3f46;line-height:20px;margin-top:-1px;text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; overflow:hidden }
+.zfpiclist .info p{color: #83868f; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 20px;}
+.zfpiclist .info p i{width:10px; display:inline-block}
+.zfpiclist .info p em{margin-right:10px;}
+/*0320*/
+.share-hb{position:fixed;width:100%;height:100%;left:0;bottom:0;background:rgba(0,0,0,.5);z-index:9999;}
+.share-hb .pic2{background: url(../images/hb3201.png) no-repeat;width:329px;height:377px;background-size:329px auto;position: absolute;top: 50%;left: 50%;margin: -188px 0 0 -164px;text-align: center;}
+.share-hb .pic2-btn{display:block;background: url(../images/hb3202.png) no-repeat;background-size:52px auto;width:52px;height: 52px;position: absolute;top:185px;left: 50%;margin-left:-26px;}
+.share-hb .pic2 .txt{font-size:18px;color:#fff;line-height:30px;margin:105px auto; text-align:center}
+.share-hb .pic3{background: url(../images/hb3203.png) no-repeat;width:342px;height:370px;background-size:329px auto;position: absolute;top: 50%;left:27px;margin: -185px 0 0 0px;}
+.share-hb .pic3-btn{display:block;background: url(../images/hb3204.png) no-repeat;background-size:136px auto;width:136px;height:40px;position: absolute;top:290px;left: 50%;margin-left:-80px;font-size:15px;color:#e52725;font-weight:bold;line-height:32px; text-align:center}
+.share-hb .pic3 .txt{width:188px;font-size:11px;color:#fff;line-height:19px;position: absolute;top:213px;left: 50%;margin-left:-106px;}
+.share-hb .pic3 .toptit{width:138px;font-size:22px;color:#fd1e2c;font-weight:bold;line-height:19px;position: absolute;top:100px;left: 50%;margin-left:-79px;text-align:center;}
+.share-hb .pic3 .toptit P{font-size:15px;margin-top:10px;}
+
+/*0323*/
+.flaotbts{position: fixed; bottom: 0; width: 100%; height:44px;line-height:44px; text-align: center;font-size:12px;color:#e99300; background:#fff3c9; z-index: 28800;}

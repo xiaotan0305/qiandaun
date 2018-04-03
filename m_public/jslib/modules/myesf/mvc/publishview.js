@@ -789,6 +789,9 @@ define('modules/myesf/mvc/publishview', ['modules/myesf/mvc/component','modules/
                                         if (data.fabuInfo.indexId) {
                                             href += '&indexId=' + data.fabuInfo.indexId;
                                         }
+                                        if (data.fabuInfo.rawId) {
+                                            href += '&rawId=' + data.fabuInfo.rawId;
+                                        }
                                         window.location = href;
                                     } else {
                                         if(data.fabuInfo.message) {

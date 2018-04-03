@@ -210,3 +210,6 @@
 .form-price .form-xy{padding:0;margin-top:25px;}
 .form-price .form-xy span{display:block;font-size:13px;color:#83868f;margin-left:27px;line-height:21px;}
 .form-price .form-xy .ipt-cb{margin-top:3px;}
+
+.pm-list li .btn-down {position: absolute;display: block;height: 22px;line-height: 12px;font-size: 11px;color: #f66;padding: 5px 5px 0;border: 1px solid #f66;border-radius: 2px;right: 0;top: 50%;margin-top: -11px;background: #fff;}
+.pm-list li .txt h2{font-size:16px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;line-height:18px;color:#0c0d0e;margin-top:20px;margin-bottom:6px;}

@@ -450,6 +450,12 @@ define('modules/pinggu/index',
                     alert('楼层不得大于总楼层');
                     return;
                 }
+                if (fTime === '请选择（选填）') {
+                    fTime = '';
+                }
+                if (fitment === '请选择（选填）') {
+                    fitment = '';
+                }
                 // 评估数据
                 var data = {
                     newcode: vars.newcode,
@@ -465,6 +471,24 @@ define('modules/pinggu/index',
                     data.fitment = fitment;
                     data.moreFlag = 1;
                 }
+                //评估埋码
+                var pingguParams = {
+                    'vmg.page': 'cfj_cfj^sy_wap',
+                    'vwv.village': encodeURIComponent(vars.projname),
+                    'vmv.projectid': vars.newcode,
+                    'vmv.direction': encodeURIComponent(forward),
+                    'vmv.area': area,
+                    'vmv.floornum': floor,
+                    'vmv.totalfloor': zfloor,
+                    'vmv.decorationage': encodeURIComponent(fTime),
+                    'vmv.fixstatus': encodeURIComponent(fitment),
+                };
+                yhxw({
+                    pageId: 'cfj_cfj^sy_wap',
+                    type: 54,
+                    params: pingguParams
+                });
+
                 var url = vars.pingguSite + '?c=pinggu&a=saveAccurateForm';
                 var now = new Date();
                 var time = now.getTime();
@@ -667,5 +691,16 @@ define('modules/pinggu/index',
                     vars.localStorage.removeItem('kjpgInfo');
                 }
             }
+            //首页搜索埋码
+            $('#searchid').on('click', function(){
+                var searchParams = {
+                    'vmg.page': 'cfj_cfj^sy_wap'
+                };
+                yhxw({
+                    pageId: 'cfj_cfj^sy_wap',
+                    type: 0,
+                    params: searchParams
+                });
+            });
         };
     });

@@ -35,14 +35,14 @@ define('modules/esf/longTailHouseList', ['jquery', 'modules/esf/yhxw', 'slideFil
              * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
              */
             function unable() {
-                document.addEventListener('touchmove', preventDefault);
+                window.addEventListener('touchmove', preventDefault, { passive: false });
             }
 
             /**
              * 手指滑动恢复浏览器默认事件（恢复滚动
              */
             function enable() {
-                document.removeEventListener('touchmove', preventDefault);
+                window.removeEventListener('touchmove', preventDefault, { passive: false });
             }
             // 图片延迟加载
             require.async('lazyload/1.9.1/lazyload', function () {

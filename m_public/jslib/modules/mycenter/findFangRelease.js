@@ -77,7 +77,7 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
     $(function () {
         // 阻止页面滑动
         function unable() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
 
         function preventDefault(e) {
@@ -86,7 +86,7 @@ define('modules/mycenter/findFangRelease', ['jquery', 'modules/mycenter/yhxw', '
 
         // 取消阻止页面滑动
         function enable() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
 
         // 底部滑动菜单的“取消”按钮

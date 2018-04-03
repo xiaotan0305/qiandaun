@@ -30,6 +30,9 @@ define('modules/jiaju/zxCaseList', [
             totalprice: $('#price').text().trim()
         });
 
+        // 曝光量统计
+        vars.bgtj && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', vars.bgtj);
+
         loadMore({
             // 接口地址
             url: vars.jiajuSite + '?c=jiaju&a=ajaxZxCaseList&CaseStyle=' + vars.CaseStyle + '&CaseRoom=' + vars.CaseRoom + '&Area=' + vars.Area
@@ -45,7 +48,12 @@ define('modules/jiaju/zxCaseList', [
             // 加载数据过程显示提示id
             loadPromptID: '#prompt',
             // 数据加载过来的html字符串容器
-            contentID: '#content'
+            contentID: '#content',
+            callback: function (data) {
+                // 曝光量统计
+                var bgtjMore = $('#bgtj_' + data.pageMarloadFlag).val();
+                bgtjMore && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', bgtjMore);
+            }
         });
                                
 

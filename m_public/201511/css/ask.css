@@ -803,7 +803,7 @@ dl.gradePay dd h3 a{display:inline-block;height:20px;max-width:41%;white-space:n
 dl.gradePay dd h3 span{display:inline-block;height:20px;vertical-align:middle;}
 dl.gradePay dd span{padding-left:6px;}
 dl.gradePay dd h1{font-size:14px;color:#83868f}
-dl.gradePay dd h1 em{display:inline-block;width:40px;height:15px;background:#ffaa16;text-align:center;color:#fff;border-radius:2px;margin-left:5px;}
+dl.gradePay dd h1 em{display:inline-block;padding:0 3px;height:15px;background:#ffaa16;text-align:center;color:#fff;border-radius:2px;margin-left:5px;}
 dl.gradePay dd h1 em i{display:block;font-size:12px;line-height:16px;-webkit-transform:scale(.83)}
 .Paskcaina{position:absolute;right:0px;top:4px;height:25px;line-height:25px;font-size:12px;padding:0 10px;border:1px solid #ff6666;color:#ff6666;text-align:center;border-radius:2px;overflow:hidden;}
 .Payaskbt{overflow:hidden; position:relative}
@@ -1063,7 +1063,7 @@ a.askzan{color:#b3b6be;}
 .zjScroll li .bott.arr-rt:after{right:20px;}
 
 /*悬浮按钮——我要提问*/
-.btnAsk{position:fixed;right:22px;bottom:15%;padding:2px;width:50px;height:50px;background:#fff;border-radius:50%;box-shadow:0px 0px 5px rgba(0,0,0,.2);z-index:99;}
+.btnAsk{position:fixed;right:5px;bottom:18%;padding:2px;width:50px;height:50px;background:#fff;border-radius:50%;box-shadow:0px 0px 5px rgba(0,0,0,.2);z-index:99;}
 .btnAsk a{display:block;margin:0 auto;padding-top:9px;width:46px;height:46px;font-size:12px;line-height:14px;font-weight:bold;color:#fff;text-align:center;background:#ff6666;border-radius:50%;}
 /*付费专家列表--查看全部专家*/
 .moreList.h45 a{height:45px;line-height:45px;font-size:15px;color:#83868f;}
@@ -1494,4 +1494,16 @@ dl.tiwenlist dd span{float:right;font-size:14px;margin-top:10px;}
 .payasklist li.app-down .txt h2{font-size:16px;color:#3c3f46;line-height:22px;margin-bottom:12px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .payasklist li.app-down .txt p{color:#565c67;font-size:11px;line-height:16px;margin-top:4px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .payasklist li.app-down .btn-down{position:absolute;display:block;height:22px;line-height:12px;font-size:11px;color:#ff6666;padding:5px 5px 0;text-align:center;border:1px solid #ff6666;border-radius:2px;right:0;top:50%;margin-top:-11px;background:#fff;}
+
+/*20180323*/
+.payzjlist li.no3 .pic i.zx{width:16px;height:16px;position:absolute;bottom:0px;right:0px; display:block; background:url(../images/iconV2.png) no-repeat;background-size:16px;}
+.payzjlist li.no3 .p3 label{ height:15px;line-height:15px;padding:0 8px;font-size:10px;color:#bb86d1; background:#fcf6ff;border:1px solid #f4e2fb;border-radius:12px; display:inline-block; vertical-align:top;margin-top:4px;margin-left:6px;}
+.payzjlist li.no3 .p3{ font-size:16px;color:#3c3f46;display:block; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+.payasklist li h2 {font-size: 16px;color: #3c3f46;line-height: 25px;word-break: break-all;}
+.payasklist li .other label{ height:13px;line-height:13px;padding:0 5px;font-size:10px;color:#b3b6be; background:#fcf6ff;border:1px solid #cccfd8;border-radius:12px; display:inline-block; vertical-align:top;margin-left:12px;}
+.payasklist .hh-num{position:relative;float:right;color:#b3b6be;margin-left:12px;height:14px;line-height:14px;padding-left: 20px; display: inline-block}
+.payasklist .hh-num:before{position:absolute;left:0;top:-1px;content: '';width:16px;height:16px;background: url(../images/ask-iconsN.png) no-repeat;background-size: 32px auto;background-position:-16px -32px;}
+.zjScroll li .pic i.no2{background:url(../images/iconV2.png) no-repeat;background-size:16px;}
+.zjScroll li p.p1{padding:0 15px;margin:2px auto 4px;height:18px;font-size:12px;color:#83868f;line-height:18px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.payzjlist li .pic.no2 i.zx{background:url(../images/iconV2.png) no-repeat;background-size:16px;}
 

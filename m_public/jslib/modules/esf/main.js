@@ -74,13 +74,14 @@ define('modules/esf/main', ['jquery'], function (require) {
     require.async(preload);
 
     // 如页面有app下载按钮引入appdownload
-    if ($('#down-btn-c').length > 0 || $('.app-down-list').length >0 || $('.app-down-detail').length >0 || $('.esfDetailSC') > 0) {
+    if ($('#down-btn-c').length > 0 || $('.app-down-list').length >0 || $('.app-down-detail').length >0 || $('.esfDetailSC').length > 0 || $('.downloadAPP-lp').length > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
             $('.app-down-list').openApp({position: $('.app-down-list').find('a').attr('data-position')});
             $('.app-down-detail').openApp({position: $('.app-down-detail').find('a').attr('data-position')});
             $('.esfDetailSC').openApp({position: 'esfDetailSC'});
             $('.app-down-esfWapToApp').openApp({position: 'esfWapToApp'});
+            $('.appFloat').openApp({position: $('.appFloat').attr('data-position')});
         });
     }
     if ($('.loveshare').length > 0) {

@@ -1,0 +1,32 @@
+* {margin:0; padding:0;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";color:#fff;background:#1a007e;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;font-size:100%;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {text-decoration:none;color:#fff;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+html,body{ height: 100%;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+/*背景*/
+.part1{width:18.75rem;height:13.45rem;background:url(../images/bg_1.jpg) no-repeat;background-size:100% 100%;}
+.part2{padding-top:4.5rem;width:18.75rem;height:17.125rem;background:url(../images/bg_2.jpg) no-repeat;background-size:100% 100%;}
+.part3{padding-top:3.85rem;width:18.75rem;height:9.15rem;background:url(../images/bg_3.jpg) no-repeat;background-size:100% 100%;}
+.part4{position:relative;width:18.75rem;height:20.75rem;background:url(../images/bg_4.jpg) no-repeat;background-size:100% 100%;}
+.part5{position:relative;width:18.75rem;height:23.95rem;background:url(../images/bg_5.jpg) no-repeat;background-size:100% 100%;}
+/*文字*/
+.part2 > div{margin:0 2.4rem 0.7rem 2.9rem;font-size:0.6rem;color:#fff;line-height:0.9rem;}
+.btnShare{display:block;margin:2.3rem auto 0;width:9.65rem;height:1.75rem;background:url(../images/btn_share.png) no-repeat; background-size:100%;}
+/*文字*/
+.part3 > div{margin:0 2.4rem 0.7rem 2.9rem;font-size:0.6rem;color:#fff;line-height:0.9rem;}
+.part4 > div{position:absolute;top:5.75rem;right:0.7rem;padding:0.5rem 0.4rem;width:8rem;font-size:0.6rem;color:#fff;line-height:1.1rem;}
+.part5 > div{position:absolute;top:16rem;left:1.65rem;padding:0.5rem 0.4rem;width:8rem;font-size:0.6rem;color:#fff;line-height:1.1rem;}

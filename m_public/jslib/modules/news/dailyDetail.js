@@ -9,7 +9,7 @@ define('modules/news/dailyDetail', ['jquery', 'weixin/2.0.1/weixinshare', 'super
             var $ = require('jquery');
             var vars = seajs.data.vars;
             var title = document.title;
-            var content = $('meta[name="description"]')[0].content;
+            var content = $('meta[name="description"]')[0].content || title;
             // 图片惰性加载
             var lazyLoad = require('lazyload/1.9.1/lazyload');
             lazyLoad('img[data-original]').lazyload();
@@ -25,14 +25,14 @@ define('modules/news/dailyDetail', ['jquery', 'weixin/2.0.1/weixinshare', 'super
                 imgUrl: window.location.protocol + vars.public + '201511/images/newsShare.jpg',
                 swapTitle: true
             });
-            var $ckyw = $('.ckyw');
+            var $ckyw = $('.moreNews');
             $ckyw.on('click', function () {
-                $('.z-zhankai-con').toggle();
+                $('.ptxtList').toggle();
                 var ckSpan = $ckyw.find('span');
-                if(!ckSpan.hasClass('z-zhankai')) {
-                    ckSpan.addClass('z-zhankai');
+                if(!ckSpan.hasClass('up')) {
+                    ckSpan.addClass('up');
                 } else {
-                    ckSpan.removeClass('z-zhankai');
+                    ckSpan.removeClass('up');
                 }
             });
 

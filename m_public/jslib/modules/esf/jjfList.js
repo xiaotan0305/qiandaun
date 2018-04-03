@@ -2,7 +2,7 @@
  * 二手房列表页主类
  * 20151223 liuxinlu 删除部分废旧无用代码，优化筛选所有操作，添加删选新样式。
  */
-define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider'],
+define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox', 'weixin/2.0.1/weixinshare', 'superShare/2.0.0/superShare', 'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -64,14 +64,14 @@ define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0
              * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
              */
             function unable() {
-                document.addEventListener('touchmove', preventDefault);
+                window.addEventListener('touchmove', preventDefault, { passive: false });
             }
 
             /**
              * 手指滑动恢复浏览器默认事件（恢复滚动
              */
             function enable() {
-                document.removeEventListener('touchmove', preventDefault);
+                window.removeEventListener('touchmove', preventDefault, { passive: false });
             }
 
 
@@ -965,7 +965,24 @@ define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0
                 if ($('#maxprojpricepercentage').val()) {
                     selAllUrl = selAllUrl + '&maxprojpricepercentage=' + $('#maxprojpricepercentage').val();
                 }
-                selAllUrl = selAllUrl + '&a=jjfList&fromsource=' + vars.fromsource;
+                if (vars.autozt) {
+                    if (vars.hasOwnProperty('datetime') && vars.datetime) {
+                        selAllUrl = selAllUrl + '&datetime=' + vars.datetime;
+                    }
+                    if (vars.hasOwnProperty('cycle') && vars.cycle) {
+                        selAllUrl = selAllUrl + '&cycle=' + vars.cycle;
+                    }
+                    var urlReg = new RegExp('[esf|esf_bs]\/auto_([0-9]*)\/');
+                    var currentUrl = window.location.href;
+                    var urlMatch = currentUrl.match(urlReg);
+                    selAllUrl = selAllUrl.replace('/esf/', '/esf/auto_' + urlMatch[1] + '/');
+                    selAllUrl = selAllUrl.replace('/esf_bs/', '/esf/auto_' + urlMatch[1] + '/');
+                } else  {
+                    if (vars.fromsource) {
+                        selAllUrl + '&fromsource=' + vars.fromsource;
+                    }
+                    selAllUrl = selAllUrl + '&a=jjfList';
+                }
                 window.location = selAllUrl;
             });
             // 清空时保留某些选项
@@ -1295,7 +1312,24 @@ define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0
                 if (vars.maxprojpricepercentage) {
                     url = url + '&maxprojpricepercentage=' + vars.maxprojpricepercentage;
                 }
-                url = url + '&a=jjfList&fromsource=' + vars.fromsource;
+                if (vars.autozt) {
+                    if (vars.hasOwnProperty('datetime') && vars.datetime) {
+                        url = url + '&datetime=' + vars.datetime;
+                    }
+                    if (vars.hasOwnProperty('cycle') && vars.cycle) {
+                        url = url + '&cycle=' + vars.cycle;
+                    }
+                    var urlReg = new RegExp('[esf|esf_bs]\/auto_([0-9]*)\/');
+                    var currentUrl = window.location.href;
+                    var urlMatch = currentUrl.match(urlReg);
+                    url = url.replace('/esf/', '/esf/auto_' + urlMatch[1] + '/');
+                    url = url.replace('/esf_bs/', '/esf/auto_' + urlMatch[1] + '/');
+                } else {
+                    url = url + '&a=jjfList';
+                    if (vars.fromsource) {
+                        url = url + '&fromsource=' + vars.fromsource;
+                    }
+                }
                 url = url.replace('/&', '/?');
                 window.location = url;
             });
@@ -1523,5 +1557,42 @@ define('modules/esf/jjfList', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0
                     $that.val(val.substring(0, val.length - 1));
                 }
             });
+            //分享插件
+            if (vars.autozt) {
+                // 微信分享，调用微信分享的插件
+                var Weixin = require('weixin/2.0.1/weixinshare');
+                new Weixin({
+                    debug: false,
+                    shareTitle: vars.shareTitle + '-房天下',
+                    // 副标题
+                    descContent: vars.shareDescription,
+                    lineLink: window.location.href,
+                    imgUrl: vars.shareImages,
+                    // 对调标题 和 描述(微信下分享到朋友圈默认只显示标题,有时需要显示描述则开启此开关,默认关闭)
+                    swapTitle: false
+                });
+                var $share = $('.share');
+                if ($share.length) {
+                    var SuperShare = require('superShare/2.0.0/superShare');
+                    var config = {
+                        // 分享内容的title
+                        title: vars.shareTitle,
+                        // 分享时的图标
+                        image: vars.shareImages,
+                        // 分享内容的详细描述
+                        desc: vars.shareDescription,
+                        // 分享的链接地址
+                        url: window.location.href,
+                        // 分享的内容来源
+                        form: '房天下'
+                    };
+                    var superShare = new SuperShare(config);
+                    // 2.0版本不再在插件中绑定.share类了，需要外部自行调用
+                    // 2.0版本只提供share方法，供外部调用
+                    $share.on('click',function () {
+                        superShare.share();
+                    });
+                }
+            }
         };
     });

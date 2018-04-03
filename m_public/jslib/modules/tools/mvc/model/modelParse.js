@@ -65,7 +65,7 @@ define('model/modelParse', ['jquery', 'model/setting', 'util/common', 'modules/m
                     obj = {url: 'gjj', title: '【公积金贷款计算器|住房公积金贷款计算器2016】- 搜房网'};
                     break;
                 case setting.COMBINATION_LOANS:
-                    obj = {url: 'zhdai', title: '【组合贷款计算器|组合贷款计算器最新2016】- 搜房网'};
+                    obj = {url: 'zh', title: '【组合贷款计算器|组合贷款计算器最新2016】- 搜房网'};
                     break;
                 case setting.NEWHOUSE_TAX_CALCULATION:
                     obj = {url: 'taxs', title: '【税费计算器|购房税费计算器2016】- 搜房网'};

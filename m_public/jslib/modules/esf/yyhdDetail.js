@@ -28,10 +28,10 @@ define('modules/esf/yyhdDetail',['swipe/3.10/swiper','smsLogin/smsLogin','lazylo
             e.preventDefault();
         }
         function unable(){
-            document.addEventListener('touchmove',preventDefault);
+            window.addEventListener('touchmove', preventDefault, { passive: false });
         }
         function enable(){
-            document.removeEventListener('touchmove',preventDefault);
+            window.removeEventListener('touchmove', preventDefault, { passive: false });
         }
         /**
          * 向下滑动时相关效果

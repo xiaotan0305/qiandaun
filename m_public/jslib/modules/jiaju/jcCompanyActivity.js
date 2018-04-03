@@ -124,25 +124,15 @@ define('modules/jiaju/jcCompanyActivity', ['jquery', 'verifycode/1.0.0/verifycod
             $.post(vars.jiajuSite + '?c=jiaju&a=ajaxJCAppointment&city=' + vars.city, paramsObj, function (t) {
                 ajaxFlag.checkVerifyCode = true;
                 if (t.isSuccess === '1') {
-                    toastFn(t.message);
-                    codeInput.hide();
+                    if (t.message == '\u6d3b\u52a8\u62a5\u540d\u6210\u529f\uff01') {
+                        window.location.href = vars.jiajuSite+'?c=jiaju&a=jcOrderResult&cid='+vars.companyid+'&aid='+vars.objectId+'&cname='+vars.category+'&type=1';
+                    } else {
+                        window.location.href = vars.jiajuSite+'?c=jiaju&a=jcOrderResult&cid='+vars.companyid+'&aid='+vars.objectId+'&cname='+vars.category+'&type=2';
+                    }
                 } else {
-                    toastFn(t.message);
+                    window.location.href = vars.jiajuSite+'?c=jiaju&a=jcOrderResult&cid='+vars.companyid+'&aid='+vars.objectId+'&cname='+vars.category+'&type=3';
                 }
-                setTimeout(function () {
-                    dealUrlFn();
-                }, 2000);
             });
-        }
-        function dealUrlFn() {
-            var pattern = /([\?|&]random=)\w\.[0-9]+/;
-            var bool = pattern.test(location.href);
-            if (bool) {
-                location.href = location.href.replace(pattern, '$1' + Math.random());
-            } else {
-                var pinStr = location.href.indexOf('?') === -1 ? '?' : '&';
-                location.href = location.href + pinStr + 'random=' + Math.random();
-            }
         }
         //手机号输入校验
         phoneCode.on('input', function () {

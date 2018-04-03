@@ -51,9 +51,13 @@ define('modules/zhishi/main', ['jquery'], function (require) {
     preload.push('backtop/1.0.1/backtop');
     // 将需要加载的js异步加载
     require.async(preload);
-    if (downBtn.length > 0) {
+    var appDownList = $('.app-down-list');
+    var appDownDetail = $('.app-down-detail');
+    if (downBtn.length > 0 || appDownList.length > 0 || appDownDetail.length > 0) {
         require.async('app/1.0.0/appdownload', function () {
             downBtn.openApp();
+            appDownList.openApp({position: appDownList.find('a').attr('data-position')});
+            appDownDetail.openApp({position: appDownDetail.find('a').attr('data-position')});
         });
     }
     if (vars.action !== '') {
@@ -110,6 +114,13 @@ define('modules/zhishi/main', ['jquery'], function (require) {
         require.async(location.protocol + '//clickm.fang.com/click/new/clickm.js', function () {
             Clickstat.eventAdd(window, 'load', function (e) {
                 Clickstat.batchEvent('wapzhishilb_', '');
+            });
+        });
+    }
+    if (vars.action === 'ajaxBuyTest') {
+        require.async(location.protocol + '//clickm.fang.com/click/new/clickm.js', function () {
+            Clickstat.eventAdd(window, 'load', function (e) {
+                Clickstat.batchEvent('wapgfzgcs_', '');
             });
         });
     }

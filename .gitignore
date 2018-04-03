@@ -90,3 +90,10 @@ build
 *.jpg
 *.jpeg
 *.gif
+.vscode/ftp-kr.diff.wc.db-journal
+.vscode/ftp-kr.diff.wc.2.db-journal
+.vscode/ftp-kr.diff.wc.db-journal
+.vscode/ftp-kr.sync.cache.json
+.vscode/ftp-kr.diff.wc.2.db-journal
+.vscode/ftp-kr.diff.wc.db-journal
+.vscode/ftp-kr.diff.wc.2.db-journal

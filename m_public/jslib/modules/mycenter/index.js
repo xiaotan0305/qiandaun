@@ -65,6 +65,7 @@ define('modules/mycenter/index', ['jquery', 'modules/mycenter/yhxw', 'modules/my
             case '107':
             case '108':
             case '118':
+            case '123':
                 // 102=新房媒体，110=新房媒体(新增110订单类型)，104=二手房交易,105=租房付房租,106=租房付佣金,107=家居-电商，108=家居-合作联盟，118=家居建材点评券
                 onComplete = function (data) {
                     $order.after(data);

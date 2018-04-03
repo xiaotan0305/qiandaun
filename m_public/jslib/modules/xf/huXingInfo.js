@@ -14,7 +14,9 @@ define('modules/xf/huXingInfo', [
     'modules/xf/workbench',
     'modules/xf/xfactivity',
     'app/1.0.0/appdownload',
-	'search/newHouse/newHouseSearch'
+	'search/newHouse/newHouseSearch',
+	'bgtj/bgtj',
+    'iscroll/2.0.0/iscroll-lite'
 ], function (require, exports, module) {
     'use strict';
     // jquery库
@@ -37,6 +39,8 @@ define('modules/xf/huXingInfo', [
     var username, userid, userphone;
     
     var Search = require('search/newHouse/newHouseSearch');
+    
+    var IScrolllist = require('iscroll/2.0.0/iscroll-lite');
 	
 	var search = new Search();
 	search.init();
@@ -121,7 +125,7 @@ define('modules/xf/huXingInfo', [
             async: false
         });
         setTimeout(function () {
-            window.location = '/chat.d?m=chat&username=x:' + uname + '&city=' + city + '&type=wapxf';
+            window.location = '/chat.d?m=chat&username=x:' + uname + '&city=' + city + '&type=wapxf&projinfo=xf&shopid=' + newcode;
         }, 500);
     };
     // 在线沟通-------end
@@ -1281,6 +1285,15 @@ define('modules/xf/huXingInfo', [
             });
     }
     // 加载装修案例-----------------------------------end
+    
+    require.async('bgtj/bgtj', function(bgTj){
+        bgTj({
+            url:'http://esfbg.3g.fang.com/homebg.html',
+            sendData:vars.json,
+            isScroll: IScrolllist,
+            contentId: 'zxexample'
+        });
+    });
     
     
     var rule = search.getRules(vars.paramcity + 'newXfHistory');

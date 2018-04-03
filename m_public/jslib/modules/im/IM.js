@@ -806,7 +806,9 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
                     type: vars.type,
                     msgContent: msgContent,
                     command: '',
-                    housetype: vars.housetype
+                    housetype: vars.housetype,
+					shopid: vars.shopid,
+					projinfo: vars.projinfo
                 }, function (data) {
                     // data = JSON.parse(data);
                     var status = data.root.status;
@@ -911,7 +913,9 @@ define('modules/im/IM', ['jquery', 'modules/im/HTML', 'iscroll/2.0.0/iscroll-lit
                     type: vars.type,
                     msgContent: msgContent,
                     command: '',
-                    housetype: vars.housetype
+                    housetype: vars.housetype,
+					shopid: vars.shopid,
+					projinfo: vars.projinfo
                 }, function (data) {
                     // data = JSON.parse(data);
                     var status = data.root.status;

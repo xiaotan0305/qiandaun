@@ -101,6 +101,7 @@ body{background:#fff;}
 .nav-icons .n2 i em{color:#f17527;border:1px solid #f17527;}
 .nav-icons .n3 i em{color:#8cbe4c;border:1px solid #8cbe4c;}
 .nav-icons em.hb{width:33px;height:15px;background:url(../images/home_nav_hb.png) no-repeat;background-size:100%;}
+.nav-icons em.zfbt{width:48px;height:15px;background:url(../images/home_nav_zfbt.png) no-repeat;background-size:100%;}
 
 .bigNav .pointBox{position:absolute;text-align:center;bottom:.5rem;width:100%;}
 .bigNav .pointBox span{display:inline-block;width:6px;height:6px;background:#e3e7ed;border-radius:50%;overflow:hidden;margin:0 4px;}
@@ -617,6 +618,8 @@ html{ font-size: 31x;}
 
 /*租房弹层*/
 .zu-out{position:fixed;width:100%;top:0;bottom:0;left:0;background:rgba(0,0,0,.6);z-index:9999;}
-.zu-out > div{position:fixed;width:78%;left:11%;top:16%;padding-bottom:104%;background:url(../images/home_zu_out.png) no-repeat;background-size:101%;}
-.zu-out .btn{position:absolute;display:block;left:12px;right:12px;bottom:6%;height:44px;line-height:44px;font-size:16px;color:#e83028!important;text-align:center;background:#f7d059;border-radius:3px;}
+.zu-out > div{position:fixed;width:78%;left:11%;top:16%;padding-bottom:102%;background:url(../images/home_zu_out2.png) no-repeat;background-size:100%;}
+.zu-out .con{position:absolute;width:100%;left:0;top:0;bottom:1%;}
+.zu-out .btn{position:absolute;display:block;left:12px;right:12px;bottom:5%;height:44px;line-height:44px;font-size:16px;color:#fff!important;text-align:center;background:#2d8368;border-radius:3px;}
 .zu-out .close{position:absolute;width:29px;height:29px;left:50%;margin-left:-15px;bottom:-16%;background:url(../images/home_zu_close.png) no-repeat;background-size:100%;}
+.zu-out > div.p5{background:url(../images/home_zu_out2.png) no-repeat;background-size:100%;}

@@ -1,0 +1,53 @@
+* {margin:0; padding:0;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei"; background:url(../images/bg1.jpg) repeat-y;background-size:100%;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {text-decoration:none;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+html,body{ height: 100%;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+
+/*头部*/
+.header{width:18.75rem;height:12.9rem;background:url(../images/head1.jpg) no-repeat;background-size:100%;overflow:hidden;}
+/*城市选择*/
+.navBox{margin-top:-0.15rem;width:18.75rem;}
+.navBox .sele{height:1.1rem;padding:0 0.85rem;margin-bottom:0.4rem;}
+.navBox .sele a{display:block;float:right;width:3.5rem;height:1.1rem;font-size:0.6rem;color:#cc0000;line-height:1.1rem;text-align:center;background:#f8b32a;border-radius:4px;}
+.navBox ul{margin:0 0 0 0.2rem;display: none;}
+.navBox li{float:left;width:3.5rem;height:1.1rem;margin:0 0.525rem 0.3rem 0.525rem;}
+.navBox li a{display:block;width:3.5rem;height:1.1rem;font-size:0.6rem;color:#cc0000;line-height:1.1rem;text-align:center;background:#fff8df;border-radius:4px;}
+/*房源列表*/
+.fangList{position:relative;margin-bottom:1.6rem; z-index:2;}
+.fangList h3{margin:0.575rem 0 0 0;padding:0.25rem 0 0 3.5rem;width:18.75rem;height:3.7rem;font-size:1.2rem;line-height:1.625rem;color:#fff;background:url(../images/tit_bg.png) no-repeat;background-size:100%;}
+.fangList .content{margin:0 0.35rem;padding:0.5rem 0.15rem 0.2rem;background:#cb080f;}
+.fangList .content ul{padding-top:1px;padding-bottom:0.9rem;background:#fff8df;border-radius:4px;}
+.fangList .content li{margin:1.05rem 0.55rem 1.5rem 0.55rem;width:16.5rem;background:#fff;box-shadow:2px 2px 5px rgba(0,0,0,.2);}
+.fangList .content li .imgBox{position:relative;width:16.5rem;height:10.5rem;}
+.fangList .content li .imgBox img{width:100%;height:100%;}
+.fangList .content li .imgBox .quan{position:absolute;right:0;top:-1rem;width:4.5rem;height:3.25rem;background:url(../images/quan.png) no-repeat;background-size:100%;}
+.fangList .content li .imgBox .quan span{display:block;padding:0.95rem 0 0 0;font-size:1.05rem;font-weight:bold;color:#fff;text-align:center;transform:rotate(14deg);-webkit-transform:rotate(14deg);}
+.fangList .content li .txt{padding:0.65rem 0;font-size:0.7rem;color:#323130;line-height:1.4rem;}
+.fangList .content li .txt dl{padding:0 0.75rem;height:1.4rem;}
+.fangList .content li .txt dt{float:left;font-weight:bold;}
+.fangList .content li .txt dt em{margin-right:2em;}
+.fangList .content li .txt dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fangList .content li .txt dd .price{display:block;float:left;margin:0.2rem 0.3rem 0 0;padding:0 0.25rem;height:1rem;color:#fff;line-height:1rem;border-radius:5px;background:#cc0000;}
+.fangList .content li .txt dd .pass{text-decoration:line-through;}
+.fangList .content ul.noCon{padding-bottom:1px;}
+.fangList .content ul.noCon li{margin-bottom:1.05rem;height:17rem;background:#fff url(../images/def.png) no-repeat center;background-size:14.9rem 8.85rem;}
+.morebtn a{display:block;margin:0 auto;margin-top:-0.7rem;width:7.15rem;height:1.65rem;font-size:0.75rem;text-align:center;color:#fff;line-height:1.65rem;border-radius:4px;background:#cc0000;box-shadow:0px 2px 5px rgba(0,0,0,.2);}
+/*底部*/
+.bottom{position:relative;margin-top:-4rem;padding-top:1px;width:18.75rem;height:10rem;background:url(../images/bottom.png) no-repeat bottom;background-size:100%;z-index:1;}
+.morebtn2{margin:0 auto;margin-top:3.1rem;padding-top:1px;width:12rem;height:5.25rem;background:url(../images/button_bg.png) no-repeat;background-size:100%;}
+.morebtn2 a{display:block;margin-top:2.95rem;width:12rem;height:2.25rem;font-size:1.1rem;color:#cc0000;line-height:2.1rem;text-align:center;}

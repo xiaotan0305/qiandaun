@@ -150,6 +150,8 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
         // 需要移至中心的坐标
         pointX: vars.cityx,
         pointY: vars.cityy,
+        // 有坐标传入定位标识
+        setCenterFlag: false,
         // 首次加载
         firstLoad: true,
         // 房源数量
@@ -163,8 +165,13 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
             that.map = new MapApi('allmap', vars.cityy, vars.cityx, that.params.zoom);
             // 初始化参数
             that.initParams();
-            // 查看是否需要定位,有关键字，区域，地铁不定位
-            if (that.params.strKeyword || that.params.strDistrict || that.params.railwayName) {
+            if (that.setCenterFlag) {
+                // 如果有坐标传入定位到坐标点，再查数据
+                that.params.zoom = that.villageZoom;
+                that.map.setCenter(vars.y1, vars.x1, that.params.zoom);
+                that.searchResult();
+            } else if (that.params.strKeyword || that.params.strDistrict || that.params.railwayName) {
+                // 查看是否需要定位,有关键字，区域，地铁不定位
                 that.searchResult();
             } else {
                 // 定位
@@ -181,6 +188,10 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
             // dd的对象
             var listObj = '';
             that.params.purpose = vars.purpose;
+            //如果有坐标传入定位到坐标点，再查数据
+            if (vars.x1 && vars.y1) {
+                that.setCenterFlag = true;
+            }
             // 有区县id
             if (vars.districtId !== '') {
                 // 区县a标签的对象的父节点dd
@@ -404,22 +415,27 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
             } else {
                 that.params.pagesize = 70;
             }
-            // 如果是定位，显示定位标点，要放在setCenter前面，否则走了缩放mapstatus就清空了
-            if (that.mapstatus === 'location') {
-                that.map.drawMarkers([{coord_x: that.pointX, coord_y: that.pointY, type: 'location'}]);
-            }
-            // 如果是关键字，全城搜索
-            if (that.mapstatus === 'keyword') {
-                that.map.setCenter(vars.cityy, vars.cityx, that.districtZoom);
-            } else if (that.mapstatus !== 'drag' && that.mapstatus !== 'zoom' && !(that.mapstatus === 'loupan' && that.params.page > 1)) {
-                // 是点击楼盘加载更多搜索就不重新定位
-                if (parseInt(that.pointY) && parseInt(that.pointX)) {
-                    that.map.setCenter(that.pointY, that.pointX, that.params.zoom);
-                }else {
-                    that.map.setCenter();
+            // 有坐标传入定位查找
+            if (that.setCenterFlag) {
+                that.setCenterFlag = false;
+            } else {
+                // 如果是定位，显示定位标点，要放在setCenter前面，否则走了缩放mapstatus就清空了
+                if (that.mapstatus === 'location') {
+                    that.map.drawMarkers([{coord_x: that.pointX, coord_y: that.pointY, type: 'location'}]);
                 }
-
+                // 如果是关键字，全城搜索
+                if (that.mapstatus === 'keyword') {
+                    that.map.setCenter(vars.cityy, vars.cityx, that.districtZoom);
+                } else if (that.mapstatus !== 'drag' && that.mapstatus !== 'zoom' && !(that.mapstatus === 'loupan' && that.params.page > 1)) {
+                    // 是点击楼盘加载更多搜索就不重新定位
+                    if (parseInt(that.pointY) && parseInt(that.pointX)) {
+                        that.map.setCenter(that.pointY, that.pointX, that.params.zoom);
+                    }else {
+                        that.map.setCenter();
+                    }
+                }
             }
+
             // 有些情况需要隐藏房源列表
             if (that.params.page === 1) {
                 if ($houseObj.is(':visible')) {

@@ -1,0 +1,52 @@
+* {margin:0; padding:0;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";color:#fff;background:#f9ce03;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;font-size:100%;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {text-decoration:none;color:#fff;}
+input,textarea,button{ -webkit-appearance:none;}
+input[type="radio"]{ -webkit-appearance:radio;}
+input[type="checkbox"]{ -webkit-appearance:checkbox;}
+html,body{ height: 100%;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+
+/*头部*/
+.header{width:18.75rem;height:13.6rem;background:url(../images/head.jpg) no-repeat;background-size:100%;overflow:hidden;}
+/*主体*/
+.main{padding-top:0.95rem;background:#45aee7;}
+.fangList li{margin:0 auto 0.7rem;width:15.75rem;background:#000;border:0.075rem solid #0d0509;border-radius:5px;overflow:hidden;}
+.fangList li:last-of-type{margin-bottom:0;}
+.fangList li a{display:block;position:relative;}
+.fangList li .imgbox{width:15.05rem;height:11.25rem;border: 1px dashed #fff;margin:0.35rem auto 0;border-radius: 5px;padding:4px;}
+.fangList li .imgbox img{width:100%;height:100%;border-radius: 5px;}
+.fangList li .txt{padding:0.6rem 0.5rem 0.4rem;font-size:0.6rem;line-height:1.05rem;}
+.fangList li .price{font-size:1rem;color:#ff0000;}
+.fangList li .price .throu{font-size:0.5rem;color:#a9a8a8;text-decoration:line-through;}
+.fangList li .txt h3{margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fangList li .txt dl{padding-top:0.2rem;border-top:1px dashed #fff;}
+.fangList li .txt dd{float:left;width:50%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fangList li .sell{position:absolute;top:0.375rem;right:0.375rem;width:4.55rem;height:3.5rem;background:url(../images/icon_tj.png) no-repeat;background-size:100%;}
+.fangList li .sell em{position:absolute;top:0.75rem;left:1.2rem;width:2.6rem;height:0.75rem;line-height: 0.75rem;font-size:0.5rem;color:#000;font-weight: bold;text-align: center;-moz-transform:rotate(20deg);-webkit-transform:rotate(20deg);-o-transform:rotate(20deg);transform:rotate(20deg); }
+
+
+/*城市菜单*/
+.navCity{padding:1px 0.95rem;}
+.citybox{margin-bottom:0.9rem;height:5.5rem;overflow:hidden;}
+.citybox a{display:block;float:left;margin:0.7rem 0.52rem 0;width:7.25rem;height:2.05rem;font-size:0.95rem;font-weight:bold;text-align:center;line-height:1.6rem;text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;-wbkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;background:url(../images/city_bg.png) no-repeat;background-size:100%;}
+.moreBtn{margin-bottom:1.4rem;text-align:center;}
+.moreBtn a{display:block;margin:0 auto;width:5rem;font-size:0.95rem;font-weight:bold;color:#000;}
+.moreBtn a i{display:block;float:right;margin-top:0.25rem;width:0.875rem;height:0.875rem;background:url(../images/more.png) no-repeat;background-size:100%;}
+.moreBtn a.up i{margin-top:0.2rem;transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+/*底部内容*/
+.bottom{padding-top:1.4rem;padding-bottom:2.9rem;background:url(../images/bg.jpg) repeat-x top;background-size:1.325rem 0.8rem;}
+.bottom .tit{margin:0 auto;margin-bottom:1.25rem;width:18.75rem;height:2.5rem;background:url(../images/tit.jpg) no-repeat;background-size:100%;}
+.bottom .btnBox2{text-align:center;}
+.bottom .btnBox2 a{display:block;margin:0 auto;width:10.85rem;height:2.125rem;background:url(../images/btn.png) no-repeat;background-size:100%;}

@@ -68,7 +68,7 @@
 .lp-nav.fixed li{float:left;width:auto;}
 .lp-nav.fixed li > a{line-height:44px;padding:0 18px;font-size:15px;color:#565c67!important;}
 @media screen and (min-width: 640px){
-.lp-nav.fixed{left:50%;margin-left:-320px;}
+    .lp-nav.fixed{left:50%;margin-left:-320px;}
 }
 
 .house-xf .xqBox{padding:20px;}
@@ -113,6 +113,11 @@
 .wtBox {padding:16px 20px 24px;}
 .wtBox p{line-height:32px;color:#3c3f46;font-size:16px;}
 .wtBox .xf-btn{margin-top:14px!important;}
+
+/*在线认筹*/
+.rcBox {padding:16px 20px 24px;}
+.rcBox p{line-height:20px;padding:10px 0 10px 25px;color:#3c3f46;font-size:16px;background:url(../images/xq_rc_icon.png) left 13px no-repeat;background-size:15px;}
+.rcBox .xf-btn{margin-top:14px!important;}
 
 /*楼盘动态*/
 .tab-item.sig{padding-bottom:0;}
@@ -250,8 +255,8 @@
 .xqxq .table-item td > div{word-break:break-all;text-align:left;}
 .xqxq .tab-box{clear:both;overflow:hidden;}
 @media screen and (max-width: 360px){
-.xqxq .flextable .table-item th{font-size:12px;padding:10px 4px;}
-.xqxq .flextable .table-item td{font-size:11px;padding:14px 4px;}
+    .xqxq .flextable .table-item th{font-size:12px;padding:10px 4px;}
+    .xqxq .flextable .table-item td{font-size:11px;padding:14px 4px;}
 }
 .xqxq .xqIntroBox{margin:0 20px;}
 .xqxq .xqIntroBox.line10{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 10;overflow: hidden;}

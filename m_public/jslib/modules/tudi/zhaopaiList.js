@@ -175,6 +175,8 @@ define('modules/tudi/zhaopaiList', ['jquery', 'slideFilterBox/1.0.0/slideFilterB
                                 }
                                 // 下一级菜单显示，当前操作菜单切换为下一级操作菜单
                                 $section = $nextsection.show();
+                                // 添加scroll
+                                refreshScroll($targetFilter, posLog);
                                 if ($targetFilter.parent('div').length) {
                                     // 如果当前dl存在div其有scroll-wrap包裹，则显示scroll-wrap，并隐藏scroll-wrap的兄弟
                                     $targetFilter.parent().show().siblings().hide();
@@ -193,8 +195,6 @@ define('modules/tudi/zhaopaiList', ['jquery', 'slideFilterBox/1.0.0/slideFilterB
                                 } else {
                                     $ele.addClass('active').siblings().removeClass('active');
                                 }
-                                // 添加scroll
-                                refreshScroll($targetFilter, posLog);
                             } else {
                                 break;
                             }

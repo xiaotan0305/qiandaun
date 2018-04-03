@@ -369,6 +369,10 @@ define('search/search', ['jquery'], function (require, exports, module) {
                         + '<h3>您搜索的小区无结果，请换个小区试试</h3></div></div>';
                     list.html(html);
                     that.autoPromptList.show();
+                } else if (vars.action === 'handinhand') {
+                    var html = '<li><a href="javascript:void(0);" ><span class="searchListName">没有找到对应住宅楼盘</span></a></li>';
+                    list.html(html);
+                    that.autoPromptList.show();
                 } else if (vars.action === 'delegateAndResale') {
                     valArr = {'nodata': false, 'noloupan': false, 'refprice': '', 'tipShow': false};
                     vars.vue.$emit('setVueValue', valArr);

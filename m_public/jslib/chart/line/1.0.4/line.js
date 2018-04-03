@@ -174,7 +174,7 @@
             // layerX在opera跟safari上兼容性不支持，所以做处理
             if (ev.pageX || ev.pageX == 0) {
                 that.touchX = ev.pageX;
-                x = ev.pageX + Math.abs(that.chartCvs.css('transform').split(',')[4].trim());
+                x = ev.pageX + Math.abs(that.chartCvs.css('transform').split(',')[4].trim()) - parseInt($(that.options.id).parents('section').css('margin-left'));
                 y = ev.pageY - that.chartCvs.offset().top;
             } else if (ev.clientX || ev.clientX == 0) {
                 that.touchX = ev.clientX;
@@ -195,7 +195,7 @@
             var that = this;
             // 设置浮层
             var alertDom = that.options.alertDom;
-            if (_vars.action === 'xiaoquFj') {
+            if (_vars.action === 'xiaoquFj' || _vars.action === 'saleStaup') {
                 // 设置浮层
                 var x = point.x;
                 var y = point.y;

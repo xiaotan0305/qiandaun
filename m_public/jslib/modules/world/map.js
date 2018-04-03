@@ -2,32 +2,35 @@
  * @file merge js files,ESLint
  * @author zcf(zhangcongfeng@fang.com)
  */
-define('modules/world/map',['jquery', 'modules/world/yhxw'], function (require,exports,module) {
+define('modules/world/map', ['jquery', 'modules/world/yhxw', 'modules/map/API/BMap'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
         var vars = seajs.data.vars;
-        var preload = [];
-        preload.push('map/gmapapi');
-        preload.push('http://maps.gstatic.cn/maps-api-v3/api/js/19/9/intl/zh_cn/main.js');
-        require.async(preload);
-        require.async('map/gmapapi',function (google) {
-            require.async(['http://maps.gstatic.cn/maps-api-v3/api/js/19/9/intl/zh_cn/main.js'],function () {
-                var point = new google.maps.LatLng(vars.mapx,vars.mapy);
-                var mapOptions = {
-                    center: point,
-                    zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById('container'), mapOptions);
-                // 创建地图实例
-                var marker = new google.maps.Marker({
-                    // 创建标注
-                    position: point,
-                    map: map
-                });
-            });
-        });
+
+        var mapOptions = {
+            minZoom: 10,
+            maxZoom: 19
+        };
+
+        // 楼盘坐标
+        var gpsPoint;
+
+        function init(zoom) {
+            // 地图容器高度 = 总高度 - 页面头部高度
+            $('#container').css('height', window.innerHeight - 44);
+            // 创建地图实例
+            var map = new BMap.Map('container', mapOptions);
+            // 坐标
+            gpsPoint = new BMap.Point(vars.mapy, vars.mapx);
+            // 中心点
+            var marker = new BMap.Marker(gpsPoint);
+            map.addOverlay(marker);
+            // 初始化地图，设置中心点坐标和地图缩放级别
+            map.centerAndZoom(gpsPoint, zoom);
+        }
+
+        init(15);
 
         // 引入用户行为分析对象-埋码
         var yhxw = require('modules/world/yhxw');
@@ -41,15 +44,6 @@ define('modules/world/map',['jquery', 'modules/world/yhxw'], function (require,e
         // 添加用户行为分析
         yhxw({type: 0, pageId: pageId, params: maiMaParams});
 
-        var wrapper = $('.wrap');
-        wrapper.css('height', window.innerHeight + 100);
-        window.scrollTo(0, 1);
-        wrapper.css('height', window.innerHeight);
-        var boxheight = 50;
-        if (document.getElementById('maphead')) {
-            boxheight = 181;
-        }
-        $('#container').css('height', window.innerHeight - boxheight);
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
         });

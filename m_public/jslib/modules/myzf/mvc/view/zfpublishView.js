@@ -1384,7 +1384,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                         that.displayLose('修改失败', 2000, managerUrl);
                                     } else if (vars.edit === '0' && data.ckData === '0') {
                                         //cookie历史记录置空
-                                        that.cookieValue = '';
+                                        that.cookieValue = {};
                                         transCookie(that.cookieValue);
                                         if (rentType === '整租') {
                                             window.localStorage.setItem('descriptionZz', encodeURIComponent(''));
@@ -1396,7 +1396,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                         window.location.href = vars.mySite + '?c=myzf&a=houseIdentify&type=auth&city=' + vars.city + '&houseid=' + data.houseid;
                                     } else {
                                         //成功cookie历史记录置空
-                                        that.cookieValue = '';
+                                        that.cookieValue = {};
                                         transCookie(that.cookieValue);
                                         if (rentType === '整租') {
                                             window.localStorage.setItem('descriptionZz', encodeURIComponent(''));
@@ -1407,11 +1407,14 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                                         }
                                         sucurl += '&houseid=' + data.houseid  + '&chongfu=' + data.chongFuHouse + vars.channelurl + vars.h5hdurl;
                                         //返回红包获得状况
-                                        sucurl +=  data.message == 'SendBonusSuc' ? '&SendBonus=yes' : '&SendBonus=ishave';
+                                        //sucurl +=  data.message == 'SendBonusSuc' ? '&SendBonus=yes' : '&SendBonus=ishave';
+                                        //if (data.message == 'SendBonusSuc') {
+                                        //    vars.localStorage.setItem('hongbaoPub', true);
+                                        //}
+                                        //20180301 固定弹出
+                                        sucurl += '&SendBonus=yes';
                                         // 储存一个值，给发布成功页面判断是来自发布页还是浏览器刷新
-                                        if (data.message == 'SendBonusSuc') {
-                                            vars.localStorage.setItem('hongbaoPub', true);
-                                        }
+                                        vars.localStorage.setItem('hongbaoPub', true);
                                         if (vars.edit === '1') {
                                             that.displayLose(data.isOpen ? '为保证展示效果，稍后可能有工作人员与您电话核实房源信息' : '修改成功', 2000, sucurl);
                                         } else {

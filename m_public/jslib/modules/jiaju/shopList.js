@@ -108,6 +108,8 @@ define('modules/jiaju/shopList', [
                     
                     $('.lazyload').lazyload();
                 }
+                // 曝光量统计
+                vars.bgtj && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', vars.bgtj);
             });
         }
 
@@ -203,7 +205,12 @@ define('modules/jiaju/shopList', [
                 // 数据加载过来的html字符串容器
                 contentID: '#content',
                 loadingTxt: '努力加载中...',
-                loadAgoTxt: '点击加载更多...'
+                loadAgoTxt: '点击加载更多...',
+                callback: function (data) {
+                    // 曝光量统计
+                    var bgtjMore = $('#bgtj_' + data.pageMarloadFlag).val();
+                    bgtjMore && $.post(location.protocol + '//esfbg.3g.fang.com/homebg.html', bgtjMore);
+                }
             });
         }
 

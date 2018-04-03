@@ -19,7 +19,7 @@ define('modules/esf/picDetail', ['jquery','klass/1.0/klass', 'photoswipe/photosw
 
             // 滑动时阻止浏览器默认事件
             function unable() {
-                document.addEventListener('touchmove', preventDefault);
+                window.addEventListener('touchmove', preventDefault, { passive: false });
             }
             // 解决苹果设备上双击出现白框 lina 20161102
             $('.pic-int').on('touchend',function(){

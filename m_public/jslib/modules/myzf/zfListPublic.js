@@ -105,6 +105,14 @@ define('modules/myzf/zfListPublic', ['jquery', 'superShare/2.0.0/superShare', 'w
         // 获取父级的属性值
         $('.status').parent().attr('houseid', houseId);
         $('.status').parent().attr('data-city', encity);
+        // 成交按钮
+        if ($(this).parent().attr('dealpath')) {
+            $('.deal').show();
+            $('.deal').attr('href', $(this).parent().attr('dealpath'));
+        } else {
+            $('.deal').hide();
+            $('.deal').attr('href', 'javascript:void(0);');
+        }
     });
     //**点击取消或者下架，收起弹框**
     $('#cancel,.status').on('click', function () {

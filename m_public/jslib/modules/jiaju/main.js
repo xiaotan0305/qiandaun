@@ -23,7 +23,7 @@ define('modules/jiaju/main', ['jquery'], function (require) {
                 e.preventDefault();
             }
             return function (unable) {
-                document[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault,{passive: false});
+                window[unable ? 'addEventListener' : 'removeEventListener']('touchmove', preventDefault, {passive: false});
             };
         })()
     };
@@ -73,6 +73,15 @@ define('modules/jiaju/main', ['jquery'], function (require) {
     }
     if ($window.scrollTop() > $window.height() * 2 - 60) {
         preload.push('backtop/1.0.0/backtop');
+    }
+    // app下载
+    var appDownList = $('.app-down-list');
+    if (appDownList.length > 0 && $.inArray(vars.action, ['index', 'zxCaseList', 'lglist', 'sjsList', 'firmList', 'shopList', 'productList', 'jcIndex', 'xgtList', 'qjList']) !== -1) {
+        require.async('app/1.0.0/appdownload', function () {
+            for(var i=0,len=appDownList.length;i<len;i++){
+                appDownList.eq(i).openApp({position: appDownList.eq(i).find('a').length > 0 ? appDownList.eq(i).find('a').attr('data-position') : appDownList.eq(i).attr('data-position')});
+            }
+        });
     }
     require.async(preload);
 
@@ -148,7 +157,7 @@ define('modules/jiaju/main', ['jquery'], function (require) {
             $window.off('scroll.back');
         }
     });
-    if ($.inArray(vars.action, ['index', 'designerList', 'gzList']) !== -1) {
+    if ($.inArray(vars.action, ['designerList', 'gzList']) !== -1) {
         require.async(vars.public + 'js/jiaju20141106.js');
     }
 

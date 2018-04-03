@@ -48,8 +48,9 @@ define('modules/myesf/main', ['jquery'], function (require) {
             'fangJiaZouShi', 'successfabu', 'gouFang', 'housePurchase', 'houseDetail', 'sellCommission']) !== -1) {
         preload.push('navflayer/navflayer_new2');
     }
+    //防止判断越来越长，传入shownav为true
     if (vars.action === 'autoAppeal' || vars.action === 'saleStaup' || vars.action === 'delegateAndResale' || vars.action === 'editDelegate' || vars.action === 'houseDetail' ||
-    vars.action === 'publishAppend') {
+    vars.action === 'publishAppend' || vars.shownav) {
         preload.push('navflayer/navflayer_new2');
     }
     // 下载app临时处理
@@ -59,8 +60,8 @@ define('modules/myesf/main', ['jquery'], function (require) {
         });
     }
     // 在数组内的vars.action，调用详情页js
-    if ($.inArray(vars.action, ['autoAppeal', 'yyOrderList', 'myEsfFbqg', 'myEsfFbgl', 'tradeDetail', 'gouFang',
-            'houseDetail', 'weituoAgentListDS',
+    if ($.inArray(vars.action, ['handinhand', 'ownerservice', 'saleStaup', 'autoAppeal', 'yyOrderList', 'myEsfFbqg', 'myEsfFbgl', 'tradeDetail', 'gouFang',
+            'houseDetail', 'weituoAgentListDS', 'successfabu',
             'delegateResale', 'saleBySelf', 'fangJiaZouShi', 'index', 'similarHouses',
             'commentList', 'yzDianPing', 'weituoAgentListDS', 'pageOfOwnerComment', 'myDaiKanRecord', 'getHousePrceRecord','traDetailComment', 'yiKanEvaluation', 'sellCommission']) !== -1) {
         preload.push('modules/myesf/' + vars.action);
@@ -99,7 +100,6 @@ define('modules/myesf/main', ['jquery'], function (require) {
             'houseDetail', 'myDaiKanRecord']) !== -1) {
         preload.push(vars.public + 'js/20141106.js');
     }
-    preload.push('modules/myesf/saleStaup');
     preload.push('backtop/1.0.0/backtop');
     // 预加载所需js
     require.async(preload);

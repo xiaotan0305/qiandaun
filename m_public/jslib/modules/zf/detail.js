@@ -3,7 +3,7 @@
  * by blue
  * 20151010 blue 整理代码，优化代码，删除没用的代码，将headersearch删除
  */
-define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/superShare','smsLogin/smsLogin', 'iscroll/2.0.0/iscroll-lite'], function (require, exports, module) {
+define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/superShare','smsLogin/smsLogin', 'iscroll/2.0.0/iscroll-lite', 'util/util'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         // jquery库
@@ -11,6 +11,8 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
         var iscrollNew = require('iscroll/2.0.0/iscroll-lite');
         // 修改租房详情页点击导航栏按钮后导航栏的头部显示不出来 原因是样式中opacity设置为0
         $('#newheader').css('opacity', 1);
+        //cookie插件
+        var cookiefile = require('util/util');
         // 页面传入的参数
         var vars = seajs.data.vars,
         // 热combo需要的预加载数组
@@ -106,14 +108,14 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
          * 手指滑动时阻止浏览器默认事件(阻止页面滚动）
          */
         function unable() {
-            document.addEventListener('touchmove', preventDefault);
+            window.addEventListener('touchmove', preventDefault, {passive: false});
         }
 
         /**
          * 手指滑动恢复浏览器默认事件（恢复滚动
          */
         function enable() {
-            document.removeEventListener('touchmove', preventDefault);
+            window.removeEventListener('touchmove', preventDefault, {passive: false});
         }
 
         // 判断详情页种类，传入用户行为统计对象
@@ -1131,12 +1133,28 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                 preventDefaultException: { tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|A)$/ },
                 taps:true
             });
+            // 房源顾问曝光量统计
+            if (vars.recommendPos) {
+                $.ajax({
+                    type: 'post',
+                    url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                    data: vars.recommendPos
+                });
+            }
             //经纪人按钮点击
             if (vars.housetype !== 'JHDS' && vars.housetype !== 'JHDSHZ') {
                 $(".jjrclick").click(function(){
                     $('.Chjjropen').show();
                     scrollObj.refresh();
                     unable();
+                    // 房源顾问曝光量统计
+                    if (vars.agentListPos) {
+                        $.ajax({
+                            type: 'post',
+                            url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                            data: vars.agentListPos
+                        });
+                    }
                 });
             }
             //经纪人弹框关闭按钮
@@ -1174,9 +1192,17 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                                 contentID: '#content',
                                 moreBtnID: '#drag',
                                 loadPromptID: '#loading',
-                                isScroll:true,
-                                firstDragFlag:false,
-                                callback:function(){
+                                isScroll: true,
+                                firstDragFlag: false,
+                                callback: function(data) {
+                                    // 每页房源顾问曝光率统计
+                                    if ($('.agentListPos' + data.pageMarloadFlag).val()) {
+                                        $.ajax({
+                                            type: 'post',
+                                            url: window.location.protocol + '//esfbg.3g.fang.com/fygwlist.htm',
+                                            data: $('.agentListPos' + data.pageMarloadFlag).val(),
+                                        });
+                                    }
                                     scrollObj.refresh();
                                 }
                             });
@@ -1282,6 +1308,232 @@ define('modules/zf/detail', ['jquery', 'modules/zf/yhxw', 'superShare/1.0.1/supe
                 type: 'post',
                 url: window.location.protocol + '//esfbg.3g.fang.com/topzftjwbg.htm',
                 data: vars.zftjwbg
+            });
+        }
+        // 租房房源补贴相关功能 -----20180211 lipengkun
+        if (vars.hdflag) {
+            /**
+             * 显示隐藏提示浮层函数
+             * @param time 消失时间
+             * @param keywords 提示信息
+             */
+            var displayLose = function(time, keywords) {
+                var msgBox = $('.yzm-sta');
+                if(!msgBox.length){
+                    msgBox = $('<div class="yzm-sta" style="display:none;"></div>');
+                    $(document.body).append(msgBox);
+                }
+                msgBox.text(keywords).show();
+                setTimeout(function () {
+                    msgBox.hide();
+                }, time);
+            };
+
+            /**
+             * 补贴红包对象
+             */
+            var bthbObj = function () {
+                // 红包容器
+                this.hbBox = $('#hbbox');
+                // icon容器
+                this.icondownold = $('#downold');
+                this.btdownnew = $('#btdownnew');
+                this.init();
+            };
+
+            bthbObj.prototype = {
+                /**
+                 * 初始化
+                 */
+                init:function() {
+                    var that = this;
+                    that.ajaxFlag = 0;
+                    $.ajax({
+                        url:vars.zfSite +'?c=zfhd&a=ajaxCheckPopUp&city=' + vars.city,
+                        type: 'POST',
+                        data:{
+                            houseid: vars.houseid
+                        },
+                        success:function(data) {
+                            if (data.errcode === '100') {
+                                that.iconHandle();
+                            } else if (data.errcode === '103') {
+                                displayLose(2000, data.errmsg);
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                    });
+                },
+                /**
+                 * 控制弹窗容器
+                 * @param type 类型
+                 */
+                BoxHandle:function (type, money) {
+                    var that = this, Class ='zu-hb-out1', bthbHtml = '', bghtml = '';
+                    if (type == 1) {
+                        bghtml = '<div class="zu-hb-bg"></div>';
+                        Class ='zu-hb-out';
+                        // 有固定数值的红包
+                        bthbHtml = '<div><p>房东与租客平分租金补贴</p><div class="price"><i>' + money + '</i>元</div>'
+                            + '<div class="intro">当你和房东达成出租协议，房东上传成交信息并审核通过后，租金补贴会在2个工作日打到房东和租客的账号!</div></div>';
+                    } else if (type == 2) {
+                        bghtml = '';
+                        Class ='jjrlbopen';
+                        bthbHtml = '<div class="zfbtbox">'
+                            + '<a href="javascript:void(0);" class="btn01"></a>'
+                            + '</div>';
+                    } else {
+                        bghtml = '<div class="share-hb">';
+                        Class ='pic2';
+                        bthbHtml = '<div class="txt">房东与租客<br>平分租金补贴</div>'
+                            + '<a href="javascript:void(0);" class="pic2-btn"></a>'
+                            + '</div>';
+                    }
+                    that.hbBox.html(bghtml + '<div class="' + Class +'">'
+                        + bthbHtml + '</div>').show();
+                    unable();
+                    //点击隐藏
+                    that.hbBox.find('.zu-hb-bg').on('click', function(){
+                        that.hbBox.hide();
+                        enable();
+                    });
+                    that.hbBox.find('.jjrlbopen').on('click', function(){
+                        that.hbBox.hide();
+                        enable();
+                    });
+                },
+                /**
+                 * 显示初始icon
+                 */
+                iconHandle:function () {
+                    var that = this;
+                    that.icondownold.hide();
+                    that.btdownnew.show();
+                    //点击红包icon
+                    if (vars.housetype.indexOf('AGT') > -1) {
+                        that.btdownnew.on('click', function () {
+                            //红包容器
+                            that.showInitPop();
+                        });
+                    } else {
+                        if (vars.sourceapp.indexOf('sfapp') > -1) {
+                            that.btdownnew.on('click', function () {
+                                //红包容器
+                                that.showInitPop();
+                            });
+                        } else {
+                            require.async('app/1.0.0/appdownload', function ($) {
+                                $('#btdownnew').openApp({position: $('#btdownnew').find('a').attr('data-position')});
+                            });
+                        }
+                    }
+                },
+                /**
+                 * 显示领取弹窗
+                 */
+                showInitPop:function () {
+                    var that = this;
+                    //控制红包容器
+                    if (vars.housetype.indexOf('AGT') > -1) {
+                        //经纪人弹窗
+                        that.BoxHandle(2, 0);
+                    } else {
+                        //个人弹窗
+                        that.BoxHandle(0, 0);
+                    }
+                    //点击拆红包
+                    that.hbBox.find('.zu-hb-out1, .btn01, .pic2-btn').on('click', function(){
+                        that.hbBox.hide();
+                        if (getCookie('sfut')) {
+                            that.getHbData();
+                        } else {
+                            window.location.href = 'https://m.fang.com/passport/login.aspx?burl=' + encodeURIComponent(window.location.href);
+                        }
+                        enable();
+                    });
+                },
+                /**
+                 * 显示TOP3具体红包内容
+                 * @param money 红包钱数 值
+                 */
+                showTophbCon:function (money) {
+                    var that = this;
+                    //控制红包容器
+                    that.BoxHandle(1, money);
+                },
+                /**
+                 * 领取红包
+                 */
+                getHbData:function() {
+                    var that = this;
+                    if (that.ajaxFlag) {
+                        that.ajaxFlag.abort();
+                        that.ajaxFlag = 0;
+                    }
+                    that.ajaxFlag = $.ajax({
+                        url:vars.zfSite +'?c=zfhd&a=ajaxGetAllowance&city=' + vars.city,
+                        type: 'POST',
+                        data:{
+                            houseid: vars.houseid,
+                            housetype: vars.housetype,
+                        },
+                        success:function(data) {
+                            if (data.errcode === '100') {
+                                var money = Number(data.money);
+                                that.showTophbCon(money);
+                            } else if (data.errcode === '201') {
+                                window.location.href = vars.mainSite + 'huodongAC.d?m=newWheelLottery&class=NewWheelLotteryHc&lotteryId=' + vars.lotId
+                                    + '&city=' + vars.citytype + '&channel=rentcenter&aw_city=' + vars.city + '&isSFB=ZFBOX&houseid=' + vars.houseid
+                                    + '&housetype=' + vars.housetype;
+                            }  else {
+                                displayLose(2000, data.errmsg);
+                                return;
+                            }
+                        }
+                    });
+                },
+            };
+            new bthbObj();
+        }
+
+        //下载弹框
+        if (vars.appdownload) {
+            if (vars.downLimit && !cookiefile.getCookie('zfonedayClose') && !cookiefile.getCookie('zfforeverClose')) {
+                $('.downloadAPP-lp').show();
+            } else if (!cookiefile.getCookie('zfonedayClose') && !cookiefile.getCookie('zfforeverClose')) {
+                var timespace = 1;
+                var timeset = setInterval(function() {
+                    timespace = 1 + timespace;
+                    if (timespace > 350) {
+                         $('.downloadAPP-lp').show();
+                         clearTimeout(timeset);
+                    }
+                }, 1000);
+            }
+            $('.onedayClose').click(function() {
+                $('.downloadAPP-lp').hide();
+                var date = new Date();
+                var curTime = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                var tomorrow = Date.parse(new Date(curTime)) + (1000*60*60*24);
+                var curTemp = Date.parse(new Date());
+                var cookieTiem = (tomorrow - curTemp)/(24*60*60*1000);
+                cookieTiem = cookieTiem.toFixed(3);
+                if ($('.foreverClose').hasClass('on')) {
+                    cookiefile.setCookie('zfforeverClose', 1, 365);
+                } else {
+                    cookiefile.setCookie('zfonedayClose', 1, cookieTiem);
+                }
+            });
+
+            $('.foreverClose').on('click', function() {
+                var el = $(this);
+                if (el.hasClass('on')) {
+                    el.removeClass('on');
+                } else {
+                    el.addClass('on');
+                }
             });
         }
     };

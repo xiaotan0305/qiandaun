@@ -6,9 +6,10 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
     'use strict';
     require('view/resultCom');
     var common = require('util/common');
+    var vars = seajs.data.vars;
     // 商业贷和公积金贷结果页
     Vue.component('reBusiness',{
-        template: '<section class="jsresults resultBox mt8" style="display: block;"><div id="resultWraper">'
+        template: '<section class="jsresults resultBox mt8" style="display: block;border-top:8px solid #f4f4f4"><div id="resultWraper">'
         + '<result-tab :show-intro0="showIntro0" :show-intro1="showIntro1" v-on:tab-click="handleTab" v-ref:result-tab></result-tab >'
         + '<mg-pie :month-pay="monthPay" v-on:click="detail"></mg-pie>'
         + '<div class="jsresults02 resultList">'
@@ -20,7 +21,8 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
         + '<dl><dt><span>首月月供：</span></dt><dd><span>{{payMonth}}</span>元/月</dd></dl>'
         + '<dl v-show="showDiffer"><dt><span>每月递减：</span></dt><dd><span>{{different}}</span>元/月</dd></dl>'
         + '</div>'
-        + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div></section>',
+        + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div>'
+        + '</section>',
         props: ['handleTab','detail'],
         data: function () {
             return {
@@ -51,7 +53,6 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                 this.payMonth = data.payMonth;
                 // 每月递减(等额本息才有)
                 this.different = data.payInfo.different;
-
                 // this.showResult = true;
                 // 页面滚动
                 // $(document).scrollTop(320);
@@ -68,7 +69,7 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
     Vue.component('reCombination',{
         replace: true,
         props: ['handleTab','detail'],
-        template: '<section class="jsresults resultBox mt8" style="display: block;"><div id="resultWraper">'
+        template: '<section class="jsresults resultBox mt8" style="display: block;border-top:8px solid #f4f4f4"><div id="resultWraper">'
         + '<result-tab :show-intro0="showIntro0" :show-intro1="showIntro1" v-on:tab-click="handleTab" v-ref:result-tab></result-tab >'
         + '<mg-pie :month-pay="monthPay" v-on:click="detail"></mg-pie>'
         + '<div class="jsresults02 resultList">'
@@ -81,7 +82,8 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
         + '<dl v-show="show1"><dt><span>每月递减：</span></dt><dd><span>{{differentAfter}}</span>元/月</dd></dl>'
         + '<dl v-show="show0"><dt><span>{{showBefore}}</span></dt><dd><span>{{monthAvgPay}}</span>元/月</dd></dl>'
         + '<dl v-show="show0"><dt><span>{{showAfter}}</span></dt><dd><span>{{payMonth}}</span>元/月</dd></dl>'
-        + '</div>' + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div></section>',
+        + '</div>' + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div>'
+        + '</section>',
         data: function () {
             return {
                 showDiffer: false,
@@ -103,7 +105,9 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                 show1: false,
                 yearFlag: false,
                 monthPay: '',
-                payMethodType: '0'
+                payMethodType: '0',
+                showHouseList:false,
+                dkRate:0.7
             };
         },
         events: {
@@ -147,6 +151,7 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                 this.monthStart = '第' + monthStart + '月月供';
                 this.payMonth1 = Math.ceil(data.payInfo[data.longTimeDai].payMonth);
                 this.differentAfter = data.payInfo[data.longTimeDai].different;
+                this.$broadcast('getData',this.totalPrice);
 
                 // 页面滚动
                 // $(document).scrollTop(320);
@@ -189,7 +194,8 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
         + '<dl v-show="showXf"><dt class="yellow-i" ><span>权属登记费：</span></dt><dd><span>{{qsdjTax}}</span>元</dd></dl>'
         + '<dl v-show="showXf"><dt><span>税金总额：</span></dt><dd><span>{{taxTotal}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt><span>税金总额：</span></dt><dd><span>{{total}}</span>元</dd></dl></div>'
-        + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div></section>',
+        + '<p class="gray-b f12 center mt20" id="cankao">以上结果仅供参考</p></div>'
+        + '</section>',
         data: function () {
             return {
                 showEsf: false,
@@ -213,6 +219,8 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                 wxjjTax:'',
                 qsdjTax:'',
                 tdcrjTax:''
+        
+
             };
         },
         events: {
@@ -234,6 +242,7 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                     this.total = data.total;
                     this.tdcrjTax = data.tudichurangjin;
                     this.showTdcrj = data.tudichurangjin !== undefined;
+                    this.$broadcast('getData',this.housePrice);
                 }else {
                     this.showXf = true;
                     this.showEsf = false;
@@ -249,11 +258,39 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                     this.taxTotal = data.taxTotal;
                     this.showYh = data.yinhuashui !== undefined;
                     this.individualTax = data.yinhuashui;
+                    this.$broadcast('getData',this.totalPrice);
                 }
+                
                 // 页面滚动
                 // $(document).scrollTop(320);
             }
         }
     });
+     // 新房推荐
+     Vue.component('newHouse',{
+        template:'<section class="mBox mt8" style="display:block;" v-html="buildList"></section>',
+        data:function(){
+            return {
+                buildList:''
+            }
+        },
+        events:{
+            getData:function(price){
+                var that = this;
+                $.ajax({
+                    url: vars.mainSite + 'tools/?a=ajaxGetXfHouseInfo&city='+ _vars.city +'&totalPrice=' + price,
+                    success:function(data){
+                        if(data){
+                            that.buildList = data;
+                            that.$parent.showList = true;
+                        }else{
+                            that.$parent.showList = false;
+                        }
+                       
+                    }
+                })
+            }
+        }
+    })
 });
 

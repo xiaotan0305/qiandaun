@@ -43,6 +43,24 @@ define('modules/zfhd/zfTjfZt', ['jquery', 'weixin/2.0.0/weixinshare', 'superShar
         $("#changeCity").on("click", function() {
             $('.cityopen').show();
         })
+
+        // 加载更多功能
+        var dragBox = $('#drag');
+        if (dragBox.length > 0) {
+            require.async('loadMore/1.0.0/loadMore', function (loadMore) {
+                loadMore({
+                    url: vars.zfSite + '?c=zfhd&a=ajaxZfTjfZt' + '&city=' + vars.city,
+                    total: vars.total,
+                    pagesize: 50,
+                    pageNumber: 50,
+                    contentID: '#content',
+                    moreBtnID: '#drag',
+                    loadPromptID: '#loading',
+                    firstDragFlag: false,
+                });
+            });
+        }
+
         //参数为downParam时，点击房源下载app
         if (vars.downParam && vars.downParam === 'downParam') {
             require.async('app/1.0.0/appdownload', function ($) {

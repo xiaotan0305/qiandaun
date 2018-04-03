@@ -177,7 +177,7 @@ define('imageUpload/1.0.0/imageUpload_myzf', ['jquery', 'imageUpload/jpegMeta','
             }
             // 如果正在加载
             if (loading) {
-                if (vars.action === 'publishExamine' || vars.action === 'autoAppeal') {
+                if (vars.action === 'publishExamine' || vars.action === 'autoAppeal' || vars.action === 'houseAllowance') {
                     $(that.options.container).find('.add').hide();
                 }
                 if($explain.length){
@@ -301,7 +301,7 @@ define('imageUpload/1.0.0/imageUpload_myzf', ['jquery', 'imageUpload/jpegMeta','
             } else {
                 that.onFailure(fileObj);
                 //上传失败展示上传按钮
-                if (vars.action === 'publishExamine' || vars.action === 'autoAppeal') {
+                if (vars.action === 'publishExamine' || vars.action === 'autoAppeal' || vars.action === 'houseAllowance') {
                     $(that.options.container).find('.add').show();
                 }
             }
