@@ -4,7 +4,8 @@ define('modules/jiaju/xgtCaseDetail', [
     'photoswipe/4.0.8/photoswipe-ui-default.min',
     'superShare/1.0.1/superShare',
     'weixin/2.0.0/weixinshare',
-    'verifycode/1.0.0/verifycode'
+    'verifycode/1.0.0/verifycode',
+    'modules/jiaju/yhxw'
 ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
@@ -24,6 +25,23 @@ define('modules/jiaju/xgtCaseDetail', [
         var share;
         var shareWx;
         var hasCollect;
+        // 收藏成功的浮层
+        var floatAlert = $('.floatAlert');
+        var lookFavList = $('#lookFavList');
+        var continueBigImg = $('#continueBigImg');
+        // 用户行为
+        var yhxw = require('modules/jiaju/yhxw');
+        var pageId = 'jj_mt^aldatuxq_wap';
+        yhxw({
+            page: pageId,
+            type: 0,
+            companyid: vars.companyid,
+            caseid: vars.caseId,
+            area: vars.area,
+            style: vars.casestylename,
+            housetype: vars.caseRoomName,
+            totalprice: vars.Wprice + '万'
+        });
 
         // 报名
         var verifycode = require('verifycode/1.0.0/verifycode');
@@ -94,63 +112,89 @@ define('modules/jiaju/xgtCaseDetail', [
             /** 点赞*/
             var zan = $('#zan'), zanOn = $('.jj-zan'), numBox = zan.find('p');
             zan.on('click', function () {
-                if (!vars.phone) {
-                    window.location.href = vars.loginUrl + '?burl=' + encodeURIComponent(location.href);
-                    return;
-                }
-                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
-                    if (data && data.Message) {
-                        toast(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
-                        // 点赞数+1
-                        var num = parseInt(numBox.html() ? numBox.html() : 0);
-                        zanOn.addClass(data.Message.Code === '0' ? '' : 'cur');
-                        zanOn.html(data.Message.Code === '0' ? '' : '<i class="on">+1</i>');
-                        numBox.html(data.Message.Code === '0' ? num : num + 1);
-                    }
+                yhxw({
+                    page: pageId,
+                    type: 55,
+                    companyid: vars.companyid,
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
                 });
+                if (checkLogin()) {
+                    $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
+                        if (data && data.Message) {
+                            toast(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
+                            // 点赞数+1
+                            var num = parseInt(numBox.html() ? numBox.html() : 0);
+                            zanOn.addClass(data.Message.Code === '0' ? '' : 'cur');
+                            zanOn.html(data.Message.Code === '0' ? '' : '<i class="on">+1</i>');
+                            numBox.html(data.Message.Code === '0' ? num : num + 1);
+                        }
+                    });
+                }
             });
 
             // 收藏
-            $iconFav.on('click', (function () {
+            $iconFav.on('click', function () {
+                // 用户行为
+                !hasCollect && yhxw({
+                    page: pageId,
+                    type: 21,
+                    companyid: vars.companyid,
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
+                });
                 var canAjax = true;
-                return function () {
-                    if (canAjax && comData) {
-                        // 判断是否登录，无登录跳登录页
-                        if (vars.isLogin) {
-                            var $this = $(this);
-                            canAjax = false;
-                            // var isCollected = $this.hasClass('cur');
-                            // 收藏ajax请求
-                            $.ajax({
-                                url: vars.jiajuSite + '?c=jiaju&a=ajaxPicCollect',
-                                data: {
-                                    // choice:2取消收藏,3收藏
-                                    choice: hasCollect ? 2 : 3,
-                                    // infoType:2单图，1案例
-                                    infoType: 1,
-                                    InfoId: vars.caseId,
-                                    picUrl: comData.picurl,
-                                    title: vars.title,
-                                    infoSoufunId: comData.soufunID
-                                },
-                                success: function (response) {
-                                    if (+response.Message.Code === 1) {
-                                        $this.toggleClass('cur');
-                                        toast(hasCollect ? '取消收藏成功' : '收藏成功');
-                                        hasCollect = !hasCollect;
-                                        // comData.isCollect = !isCollected;
-                                    }
-                                },
-                                complete: function () {
-                                    canAjax = true;
-                                }
-                            });
-                        } else {
-                            location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl=' + encodeURIComponent(location.href.replace(/\d{8}/, comData.picid));
+                if (canAjax && comData && checkLogin()) {
+                    var $this = $(this);
+                    canAjax = false;
+                    // var isCollected = $this.hasClass('cur');
+                    // 收藏ajax请求
+                    $.ajax({
+                        url: vars.jiajuSite + '?c=jiaju&a=ajaxPicCollect',
+                        data: {
+                            // choice:2取消收藏,3收藏
+                            choice: hasCollect ? 2 : 3,
+                            // infoType:2单图，1案例
+                            infoType: 1,
+                            InfoId: vars.caseId,
+                            picUrl: comData.picurl,
+                            linkurl: location.href,
+                            title: vars.casestylename + vars.caseRoomName,
+                            infoSoufunId: comData.soufunID
+                        },
+                        success: function (response) {
+                            if (response.Message.Code === '1') {
+                                $this.toggleClass('cur');
+                                !hasCollect ? setTimeout(function () {
+                                    floatAlert.show();
+                                }, 1000) : toast('已取消收藏');
+                                jiajuUtils.toggleTouchmove(true);
+                                hasCollect = !hasCollect;
+                            }
+                        },
+                        complete: function () {
+                            canAjax = true;
                         }
-                    }
-                };
-            })());
+                    });
+                }
+            });
+
+            // 点击收藏成功浮层-继续看图
+            continueBigImg.on('click', function () {
+                floatAlert.hide();
+                jiajuUtils.toggleTouchmove(false);
+            });
+            // 点击收藏成功浮层-查看收藏
+            lookFavList.on('click', function () {
+                location.href = vars.mySite + '?c=mycenter&a=myFavList&city=' + vars.city;
+                jiajuUtils.toggleTouchmove(false);
+            });
 
             freeOrder.on('click', function () {
                 maskFloat.css({bottom: -1 * maskFixed.height()});
@@ -344,6 +388,17 @@ define('modules/jiaju/xgtCaseDetail', [
                 });
                 // 此处分享按钮不在main里，分享插件不支持，故重新绑定事件
                 $('.icon-share').on('click', function () {
+                    // 用户行为
+                    yhxw({
+                        page: pageId,
+                        type: 22,
+                        companyid: vars.companyid,
+                        caseid: vars.caseId,
+                        area: vars.area,
+                        style: vars.casestylename,
+                        housetype: vars.caseRoomName,
+                        totalprice: vars.Wprice + '万'
+                    });
                     var ua = share.ua;
                     // 判断浏览器类型;
                     if (ua.name === '微信客户端' || ua.name === '微博客户端' || ua.name === 'QQ客户端' || ua.name === 'QQZone客户端') {
@@ -448,6 +503,18 @@ define('modules/jiaju/xgtCaseDetail', [
             toastTime = setTimeout(function () {
                 $sendFloat.hide();
             }, 2000);
-        }; 
+        }
+
+        /**
+         * 判断是否登录
+         */
+        function checkLogin() {
+            var res = true;
+            if (!vars.login_visit_mode) {
+                res = false;
+                window.location.href = vars.loginUrl;
+            }
+            return res;
+        }
     };
 });

@@ -35,12 +35,12 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
             // 公司id
             var companyid = options.companyid;
             // 风格
-            var style = options.style;
+            var style = options.style ? options.style.replace(/^\s+|\s+$/g, '') : '';
             // 户型
             var housetype = options.housetype;
             // 面积
             var area = options.area;
-            // 总价
+            // 预算
             var totalprice = options.totalprice;
             // 搜索关键词
             var key = options.key;
@@ -85,17 +85,17 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
             // 品类
             var material = options.material;
             // 功能间
-            var roomtype = options.roomtype;
+            var roomtype = options.roomtype ? options.roomtype.replace(/^\s+|\s+$/g, '') : '';
             // id
             var id = options.id;
             // 量房时间
             var reservetime = options.reservetime;
-            // 装修状态
-            var decstate = options.decstate;
-            // 装修类型
-            var fixstatustype = options.fixstatustype;
             // 装修时间
             var decorationtime = options.decorationtime;
+            // 评论id
+            var commentid = options.commentid;
+            // 局部
+            var part = options.part;
 
             var pTemp;
             
@@ -106,7 +106,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
                     'vmh.housetype': housetype === '居室' ? '' : encodeURIComponent(housetype),
                     'vmh.area': area === '面积' ? '' : encodeURIComponent(area),
-                    'vmh.totalprice': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
+                    'vmh.budget': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
                 };
             } else if (vars.action === 'firmMap') {
                 pTemp = {
@@ -119,7 +119,8 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.companyid': companyid,
-                    'vmh.phone': phone
+                    'vmh.phone': phone,
+                    'vmh.commentid': commentid
                 };
             } else if (vars.action === 'sjsList') {
                 if (companyid) {
@@ -159,9 +160,9 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
                     'vmh.housetype': housetype === '居室' ? '' : encodeURIComponent(housetype),
                     'vmh.area': area === '面积' ? '' : encodeURIComponent(area),
-                    'vmh.totalprice': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
+                    'vmh.budget': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
                 };
-            } else if (vars.action === 'zxCaseDetail') {
+            } else if (vars.action === 'zxCaseDetail' || vars.action === 'xgtCaseDetail') {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.companyid': companyid,
@@ -170,7 +171,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.area': !area ? '' : encodeURIComponent(area),
                     'vmh.style': !style ? '' : encodeURIComponent(style),
                     'vmh.housetype': !housetype ? '' : encodeURIComponent(housetype),
-                    'vmh.totalprice': !totalprice ? '' : encodeURIComponent(totalprice)
+                    'vmh.budget': !totalprice ? '' : encodeURIComponent(totalprice)
                 };
             } else if (vars.action === 'tuanDetail' || vars.action === 'zxCompanyQuality' || vars.action === 'specialServiceDetail') {
                 pTemp = {
@@ -186,7 +187,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.subway': encodeURIComponent(subway),
                     'vmh.preferentialservice': encodeURIComponent(preferentialservice),
                     'vmh.fixstatustype': encodeURIComponent(fixstatustype),
-                    'vmh.totalprice': encodeURIComponent(totalprice),
+                    'vmh.budget': encodeURIComponent(totalprice),
                     'vmh.allandhalf': encodeURIComponent(allandhalf),
                     'vmh.order': order === '排序' ? '' : encodeURIComponent(order)
                 };
@@ -207,7 +208,7 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
                     'vmh.housetype': housetype === '居室' ? '' : encodeURIComponent(housetype),
                     'vmh.area': area === '面积' ? '' : encodeURIComponent(area),
-                    'vmh.totalprice': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
+                    'vmh.budget': totalprice === '总价' ? '' : encodeURIComponent(totalprice)
                 };
             } else if (vars.action === 'shopList') {
                 pTemp = {
@@ -254,10 +255,10 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmh.diaryid': id,
                     'vmh.style': !style ? '' : encodeURIComponent(style),
                     'vmh.housetype': !housetype ? '' : encodeURIComponent(housetype),
-                    'vmh.totalprice': !totalprice ? '' : encodeURIComponent(totalprice),
+                    'vmh.budget': !totalprice ? '' : encodeURIComponent(totalprice),
                     'vmh.area': !area ? '' : encodeURIComponent(area)
                 };
-            } else if (vars.action === 'xgtDetail' || vars.action === 'qjInfo') {
+            } else if (vars.action === 'xgtDetail' || vars.action === 'qjInfo' || vars.action === 'xgtChannelDetail') {
                 pTemp = {
                     'vmg.page': page,
                     'vmh.pictureid': id
@@ -275,6 +276,38 @@ define('modules/jiaju/yhxw', [], function (require, exports, module) {
                     'vmg.page': page,
                     'vmh.companyid': companyid,
                     'vmh.materialid': id
+                };
+            } else if (vars.action === 'articleList' || vars.action === 'zxCommentList') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.companyid': companyid,
+                    'vmh.commentid': commentid
+                };
+            } else if (vars.action === 'zxbj') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
+                    'vmh.housetype': housetype === '户型' ? '' : encodeURIComponent(housetype),
+                    'vmh.area': area === '建筑面积' ? '' : encodeURIComponent(area),
+                    'vmh.budget': totalprice === '总价' ? '' : encodeURIComponent(totalprice),
+                    'vmh.key': key === '户型/风格等' ? '' : encodeURIComponent(key)
+                };
+            } else if (vars.action === 'visitGd') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.order': encodeURIComponent(order),
+                    'vmh.housetype': housetype === '户型' ? '' : encodeURIComponent(housetype),
+                    'vmh.state': decstate === '状态' ? '' : encodeURIComponent(decstate),
+                    'vmh.budget': encodeURIComponent(totalprice),
+                    'vmh.key': key === '楼盘/姓名等' ? '' : encodeURIComponent(key)
+                };
+            } else if (vars.action === 'xgtList') {
+                pTemp = {
+                    'vmg.page': page,
+                    'vmh.roomtype': roomtype === '功能间' ? '' : encodeURIComponent(roomtype),
+                    'vmh.style': style === '风格' ? '' : encodeURIComponent(style),
+                    'vmh.key': key === '风格/功能间/局部等' ? '' : encodeURIComponent(key),
+                    'vmh.part': part === '局部' ? '' : encodeURIComponent(part)
                 };
             }
 

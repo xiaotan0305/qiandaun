@@ -21,8 +21,9 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
         + '<div><div class="flexbox">'
         + '<input type="number" class="ipt-text"  pattern="[0-9]*" v-model="unitPrice" v-on:input="inputLimit2">'
         + '<span>元</span></div></div></li>'
-        + '<select-li label="房屋性质：" :data-value="housing" :msg="housingMsg" v-on:click="housingClick"></select-li>'
-        + '<li><v-radio v-ref:radio label="是否唯一："  name="unique"></v-radio></li></ul>'
+        + '<select-li label="房屋性质：" :id="houseType" :data-value="housing" :msg="housingMsg" v-on:click="housingClick"></select-li>'
+        + '<li><v-radio v-ref:radio label="是否唯一："  name="unique"></v-radio></li>'
+        + '<li><elevator-radio v-ref:elevator label="有无电梯："  name="elevator"></elevator-radio></li></ul>'
         + '<v-button v-on:click="calculate"></v-button></div>',
         props: [],
         data: function () {
@@ -30,7 +31,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                 showDai: true,
                 area: '100',
                 unitPrice: '10000',
-                housing: '0',
+                housing: '1',
                 housingMsg: '普通住宅'
             };
         },
@@ -91,7 +92,8 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                     isUnique: isUniqueVal,
                     businessRate: businessRate,
                     fundRate: fundRate,
-                    type: 'xf'
+                    type: 'xf',
+                    elevator:this.$refs.elevator.picked
                 };
                 // 传到父组件
                 this.$dispatch('begin-count', data);
@@ -269,6 +271,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                     $('.jsresults').hide();
                     this.showResult = false;
                     this.ajaxFlag = true;
+                    this.$broadcast('xfTax',true)
                 }
             },
             esfChange: function () {
@@ -280,6 +283,7 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                     $('.jsresults').hide();
                     this.showResult = false;
                     this.ajaxFlag = true;
+                    this.$broadcast('esfTax',true);
                 }
             },
             handleHousing: function (obj) {
@@ -337,6 +341,14 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                             ajaxData.ophouse = data.ophouse;
                         }
                         $.getJSON(setting.ESF_TAXS_RESULT_URL, ajaxData, function (data) {
+                            if(!data.result){
+                                alert(decodeURIComponent(data.error));
+                                return false;
+                            }
+                            if(parseInt(data.result) === 101){
+                                alert('该情况下不允许交易');
+                                return false;
+                            }
                             if (data) {
                                 that.ajaxFlag = false;
                                 resultData.housePrice = common.formatNum(data.house_total);
@@ -346,8 +358,9 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                                 resultData.stamptax = parseInt(data.stamptax);
                                 resultData.costtax = parseInt(data.costtax);
                                 resultData.Syntheticaltax = parseInt(data.Syntheticaltax);
-                                resultData.total = parseInt(data.total);
+                                resultData.total = parseFloat(data.total);
                                 resultData.pageType = data.pageType;
+                                resultData.tudichurangjin = data.tudichurangjin;
                                 resultData.autoPieParams = [
                                     {value: parseInt(data.deed), color: '#baea96'},
                                     {value: data.saletax, color: '#6dbffe'},
@@ -356,6 +369,9 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                                     {value: parseInt(data.costtax), color: '#fda585'},
                                     {value: parseInt(data.Syntheticaltax), color: '#ff7c7d'}
                                 ];
+                                if(data.tudichurangjin){
+                                    resultData.autoPieParams.push({value: parseInt(data.tudichurangjin), color: '#f66'})
+                                }
                                 // ajax数据成功之后显示结果
                                 that.$broadcast('showResult', resultData);
                                 // that.showResult = true;
@@ -374,7 +390,9 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                     var param = {
                         city: vars.city,
                         area: data.houseArea,
-                        price: data.housePrice
+                        price: data.housePrice,
+                        elevator:data.elevator,
+                        houseType:data.houseProp
                     };
                     param.isFirstHouse = $('.ipt-rd:checked').val();
                     if(param.isFirstHouse === '0'){
@@ -385,19 +403,27 @@ define('view/taxView', ['view/components', 'view/calView', 'util/common'], funct
                         url: vars.siteUrl + 'tools/?a=ajaxXfTaxes',
                         data:param,
                         success:function(data){
-                            resultData2.totalPrice = parseInt(data.zongjia) / 10000;
+                            if(!data){
+                                alert('计算失败！');
+                                return false;
+                            }
+                            resultData2.totalPrice = parseFloat(data.zongjia);
                             resultData2.qTaxs = data.qishui;
                             resultData2.htgbTax = data.gongbenfei;
                             resultData2.taxTotal = data.shuifeizongjia;
                             resultData2.wxjjTax = data.weixiujijin;
                             resultData2.qsdjTax = data.quanshudengjifei;
+                            resultData2.yinhuashui = data.yinhuashui;
                             resultData2.pageType = 4;
                             resultData2.autoPieParams = [
                                 {value: data.qishui, color: '#bae796'},
-                                {value: data.gongbenfei, color: '#ff6ca0'},
+                                {value: data.gongbenfei, color: '#ffa585'},
                                 {value: data.weixiujijin, color: '#00b6f1'},
-                                {value: data.quanshudengjifei, color: '#ffd974'}
+                                {value: data.quanshudengjifei, color: '#ffd974'},
                             ];
+                            if(data.yinhuashui){
+                                resultData2.autoPieParams.push({value: data.yinhuashui, color: '#fd6e9e'});
+                            }
                             //var resultData2 = modelParse.calResult(data);
                             that.$broadcast('showResult', resultData2);
                             // that.showResult = true;

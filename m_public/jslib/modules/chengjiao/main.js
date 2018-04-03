@@ -81,6 +81,8 @@ define('modules/chengjiao/main', ['jquery'], function (require) {
             $('.xfCcjIndex').openApp({position: 'xfCcjIndex'});
             // 二手房查成交app下载
             $('.app-down-list').openApp({position: 'ccjIndex'});
+            //成交列表页记录中点对点跳转
+            $('.cjListToApp').openApp({position: 'cjListToApp'});
         });
     }
     require.async(['count/loadforwapandm.min.js']);

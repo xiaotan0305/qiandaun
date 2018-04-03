@@ -609,7 +609,7 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             taps:true
         });
         //经纪人按钮点击
-        $(".jjrclick").not('.noclick').click(function(){
+        $(".jjrclick").not('.noclick').find('.Nmes').click(function(){
             $('.Chjjropen').show();
             scrollObj.refresh();
             unable();
@@ -742,30 +742,11 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
         // 威海，用户登录返回后，自动调起打电话功能
         if (vars.city == 'weihai' && cookiefile.getCookie('sfut') && autoCall) {
             window.location.href = 'tel:' + autoCall;
-            callPhone();
+            //callPhone();
         }
 
         // 记录打电话功能
         function callPhone(e) {
-            //威海打电话强制登录
-            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
-                e.preventDefault();
-                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
-                if ($(this).attr('data-teltj')) {
-                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
-                }
-                console.log(autoCall);
-
-                // 当前页面地址处理，将地址中含有的autoCall参数去掉
-                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
-                // 将需要拼接的autoCall参数加入url中
-                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
-
-                // 跳转登录
-                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
-                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
-                return false;
-            }
 
             // 没有点击事件的话，则通过匹配a标签href属性值获取data-teltj属性值
             if (vars.city == 'weihai' && !$(this).attr('data-teltj')) {
@@ -806,6 +787,23 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             }
             $.ajax(vars.mainSite + 'data.d?m=tel&city=' + vars.city + '&housetype='
                 + housetype + '&id=' + houseid + '&phone=' + dataArr[5] + '&isShopPhone=' + isShopPhone);
+            //威海打电话强制登录
+            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
+                e.preventDefault();
+                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
+                if ($(this).attr('data-teltj')) {
+                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
+                }
+                console.log(autoCall);
+                // 当前页面地址处理，将地址中含有的autoCall参数去掉
+                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
+                // 将需要拼接的autoCall参数加入url中
+                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
+                // 跳转登录
+                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
+                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
+                return false;
+            }
         }
 
         /**

@@ -40,16 +40,16 @@
 
 .p1-1{position:relative;width:100%;padding-bottom:33.3%;background:url(../images/v_topbg.png) no-repeat;background-size:100%;}
 .p1-1 > div{position:absolute;left:0;right:0;top:0;bottom:0;padding:12% 13% 20% 13%;color:#fff;font-size:16px;line-height:1.3;overflow:hidden}
-.p1-2{ position:relative;width:92%;padding-bottom:94%;margin:0 auto;background:url(../images/v_cbg.png) no-repeat;background-size:100%; overflow:hidden}
+.p1-2{ position:relative;width:100%;padding-bottom:126%;margin:8px auto 0;background:url(../images/v_cbg.png) no-repeat;background-size:100%; overflow:hidden}
 .p1-2 > div{position:absolute;left:0;right:0;top:0;bottom:0;}
-.vtit{line-height:20px;font-size:17px;color:#fff; text-align:center;padding:4% 0;margin-bottom:2px;overflow:hidden;}
-.vcon{position:relative;width:96%;padding-bottom:53%;border:1px solid #410600;margin:0 2%;color:#fff;border-radius:2px;overflow:hidden;}
+.vtit{width:90%; text-align:center;height:30px;line-height:30px;font-size:17px;color:#fff; text-align:center;margin:56px auto 10px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.vcon{position:relative;width:88%;padding-bottom:70%;border:1px solid #410600;margin:0 6%;color:#fff;border-radius:2px;overflow:hidden;}
 .vcon .videobox{position:absolute;width:100%;height:100%;left:0;right:0;top:0;bottom:0;}
-.vcon img{position:absolute;width:100%;}
-.vcon .sh{width:35px;height:35px;background:url(../images/v_icon_sh.png) no-repeat;background-size:100%; position:absolute;top:10px;right:12px;}
+.vcon img{position:absolute;width:100%;height:100%;}
+.vcon .sh{width:35px;height:35px;background:url(../images/v_icon_sh.png) no-repeat;background-size:100%; position:absolute;top:5px;right:5px;}
 .vcon .v{width:45px;height:45px;background:url(../images/v_icon_v.png) no-repeat;background-size:100%; position:absolute;top:50%;left:50%;margin:-22px 0 0 -22px}
-.vcon .num{height:25px;line-height:25px;background-color:rgba(0,0,0,.6);padding:0 12px 0 15px;font-size:11px; position:absolute;top:10px;left:5px;border-radius:13px;}
-.vcon .zan{height:25px;line-height:25px;background-color:rgba(0,0,0,.6);padding:0 12px 0 15px;font-size:11px; position:absolute;bottom:34px;right:5px;border-radius:13px;}
+.vcon .num{height:25px;line-height:25px;background-color:rgba(0,0,0,.6);padding:0 12px 0 15px;font-size:11px; position:absolute;bottom:10px;left:5px;border-radius:13px;}
+.vcon .zan{height:25px;line-height:25px;background-color:rgba(0,0,0,.6);padding:0 12px 0 15px;font-size:11px; position:absolute;bottom:10px;right:5px;border-radius:13px;}
 .vcon .zan i{ display:inline-block;width:16px;height:14px;background:url(../images/v_icon_z.png) no-repeat;background-size:100%;margin-right:8px;vertical-align:middle;margin-top:-2px;}
 .vcon .zan i.w{ background-position:0 -15px;}
 .vtita{height:20px;line-height:20px;font-size:16px;color:#fff; text-align:center;margin:4% 0;overflow:hidden;}
@@ -59,7 +59,7 @@
 .vuser .td img{width:100%;height:100%;}
 .vuser .td.more{background:url(../images/v_icon_da.png) no-repeat;background-size:100%;border:0}
 .vuser .td a{height:100%;display:block}
-.btn01{width:90%;padding-bottom:12%;background:url(../images/v_btn01.png) no-repeat;background-size:100%; margin:30px auto; display:block}
+.btn01{width:90%;padding-bottom:12%;background:url(../images/v_btn03.png) no-repeat;background-size:100%; margin:30px auto; display:block}
 @media screen and (max-width: 320px){
 .p1-1 > div{font-size:14px;}
 .vtit{font-size:15px;}

@@ -109,9 +109,9 @@
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetUserInfoById&uid=' + vars.imid + '&city=' + vars.city, function (data) {
                     if (data && data.userid) {
                         if (vars.localStorage) {
-                            vars.localStorage.setItem(String('j:' + data.username), encodeURIComponent(data.username) + ';' + data.imgurl + ';;');
+                            vars.localStorage.setItem(String('h:' + data.username), encodeURIComponent(data.username) + ';' + data.imgurl + ';;');
                         }
-                        window.location = '/chat.d?m=chat&username=j:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
+                        window.location = '/chat.d?m=chat&username=h:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }

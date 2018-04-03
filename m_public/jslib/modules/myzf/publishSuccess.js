@@ -3,7 +3,7 @@
  * by tangcheng
  * 20160130
  */
-define('modules/myzf/publishSuccess', ['jquery','superShare/1.0.1/superShare','weixin/2.0.0/weixinshare','modules/zf/yhxw'], function (require, exports, module) {
+define('modules/myzf/publishSuccess', ['jquery','superShare/2.0.0/superShare','weixin/2.0.0/weixinshare','modules/zf/yhxw'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -13,33 +13,31 @@ define('modules/myzf/publishSuccess', ['jquery','superShare/1.0.1/superShare','w
         var Weixin = require('weixin/2.0.0/weixinshare');
         var wx = new Weixin({
             debug: false,
-            shareTitle: shareBox.attr('newsline'),
-            // 副标题
-            descContent: '优质房源尽在房天下fang.com',
-            lineLink: location.href,
-            imgUrl: window.location.protocol + shareBox.attr('imgpath'),
+            shareTitle: vars.H5title,
+            descContent: vars.description,
+            lineLink: vars.H5jumpath,
+            imgUrl: vars.imgpath,
             swapTitle: false
         });
-        var SuperShare = require('superShare/1.0.1/superShare');
+        var SuperShare = require('superShare/2.0.0/superShare');
         var config = {
-            // 分享内容的title
-            title: shareBox.attr('newsline'),
+            // 分享的内容title
+            title: vars.H5title,
+            // 副标题
+            desc: vars.description,
             // 分享时的图标
-            image: window.location.protocol + shareBox.attr('imgpath'),
-            // 分享内容的详细描述
-            desc: '优质房源尽在房天下fang.com',
+            image: vars.imgpath,
             // 分享的链接地址
-            url: location.href,
+            url: vars.H5jumpath,
             // 分享的内容来源
-            from: ' 房天下'
+            from: ' —房天下',
         };
-        new SuperShare(config);
-        $('#immediatelyEntrust').on('click', function () {
-            $('#alertWindow').show();
+        var superShare = new SuperShare(config);
+        //点击分享
+        shareBox.on('click', function () {
+            superShare.share();
         });
-        $('#IKnow').on('click', function () {
-            $('#alertWindow').hide();
-        });
+
         function preventDefault(e) {
             e.preventDefault();
         }
@@ -59,15 +57,23 @@ define('modules/myzf/publishSuccess', ['jquery','superShare/1.0.1/superShare','w
         }
         // 红包发放成功,并且是从发布页面跳过来的，这里避免刷新时一直弹发放红包窗口
         if (vars.getHongbao === '1' && vars.localStorage.getItem('hongbaoPub')) {
-            $('.share-hb').show();
+            $('.hbfloat').show();
             unable();
             // 当发放红包窗口弹出成功后要销毁储存值，以免刷新时一直弹发放红包窗口
             vars.localStorage.removeItem('hongbaoPub');
         }
         // 点击关闭按钮
         $('.close').on('click', function () {
-            $('.share-hb').hide();
+            $('.hbfloat').hide();
             enable();
         });
+
+        //点击图片
+        $('.con').not('.noclick').on('click', function () {
+            $('.hbfloat').hide();
+            enable();
+            superShare.share();
+        });
+
     };
 });

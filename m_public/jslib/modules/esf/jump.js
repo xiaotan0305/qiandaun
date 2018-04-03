@@ -1,0 +1,1 @@
+define("modules/esf/jump",["jquery"],function(t,e,n){"use strict";n.exports=function(){var e=t("jquery"),n=seajs.data.vars;e("input[type=hidden]").each(function(t,a){n[e(this).attr("data-id")]=a.value});var a,i;a=e("#nofound"),i=parseInt(a.text()),setInterval(function(){i--,a.text(i),i<=0&&(i=1,window.location=n.mainSite)},1e3)}});

@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+body{background:#fff;}
+.main{min-height:0;}
+.downloadBox{text-align:center;padding:0 20px;}
+.downloadBox .box1{border-bottom:1px solid #f8f8f8;padding:30px 0 20px;}
+.downloadBox .box1 i{display:block;width:68px;height:68px;margin:0 auto;}
+.downloadBox .box1 h1{font-size:16px;color:#0c0d0e;line-height:22px;margin-top:10px;}
+.downloadBox .box1 p{font-size:12px;color:#83868f;line-height:17px;margin-top:8px;}
+.downloadBox .box2{padding:20px 0;}
+.downloadBox .box2 .img{width:112px;height:84px;margin:0 auto;}
+.downloadBox .box2 .img img{width:100%;height:100%;}
+.downloadBox .box2 h2{font-size:16px;color:#3c3f46;line-height:22px;margin-top:10px;}
+.downloadBox .box2 .price{font-size:14px;color:#fc393f;font-weight:600;line-height:22px;margin-top:4px;}
+.downloadBox .box2 .price span{font-size:16px;}
+.downloadBox .box2 p{font-size:12px;color:#83868f;line-height:17px;margin-top:6px;}
+.downloadBox .box2 .btn{width:240px;margin:25px auto 0;}
+.downloadBox .box2 .btn a{display:block;width:100%;height:44px;line-height:44px;background:#df3031;font-size:17px;color:#fff;border-radius:2px;}

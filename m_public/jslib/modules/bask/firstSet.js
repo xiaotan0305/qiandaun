@@ -24,7 +24,7 @@ define('modules/bask/firstSet', ['jquery'], function (require, exports, module) 
                 ajaxFlag = 0;
             }
             ajaxFlag = $.ajax({
-                url: vars.askSite + '?c=bask&a=ajaxGetAssociateHouse&q=' + inputVal + '&type=xiaoqu',
+                url: vars.askSite + '?c=bask&a=ajaxGetAssociateHouse&q=' + inputVal + '&type=xiaoqu&cityname=' + vars.cityname,
                 success: function (data) {
                     if (data !== '' && data !== false) {
                         hotList.hide();
@@ -104,7 +104,7 @@ define('modules/bask/firstSet', ['jquery'], function (require, exports, module) 
             $.get(vars.askSite + '?c=bask&a=ajaxSetEditAttentionNewcode&newcodename=' + tagstr + '&newcode=' + codestr + '&cityname='
                 + vars.cityname, {}, function (data) {
                 if (data === '1') {
-                    window.location.href = vars.askSite + '?c=bask&a=index'
+                    window.location.href = vars.askSite + '?c=bask&a=askMeList'
                 } else {
                     showMsg('提交失败,请重试');
                 }

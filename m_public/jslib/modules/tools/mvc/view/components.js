@@ -56,6 +56,24 @@ define('view/components', ['util/common'], function () {
             }
         }
     });
+    // 单选组件
+    Vue.component('elevatorRadio', {
+        replace: true,
+        props: ['label', 'name','changeRadio'],
+        template: '<div>{{label}}</div><div class="radioBox" v-on:click="changeRadio">'
+        + '<label><input type="radio" class="ipt-rd" name="{{name}}" id="isUnique" value="1" checked="checked" v-model="picked"/>是</label>'
+        + '<label><input type="radio" class="ipt-rd" name="{{name}}" id="noUnique" value="2" v-model="picked" />否</label></div>',
+        data: function () {
+            return {
+                picked: ''
+            };
+        },
+        methods: {
+            changeRadio: function () {
+                this.$parent.$parent.ajaxFlag = true;
+            }
+        }
+    });
     // 多选组件
     Vue.component('vCheckbox', {
         replace: true,
@@ -317,8 +335,8 @@ define('view/components', ['util/common'], function () {
         data: function () {
             return {
                 todos: [
-                    {text: '普通住宅', val: '0', cla: 'activeS'},
-                    {text: '非普通住宅', val: '1', cla: ''}
+                    {text: '普通住宅', val: '1', cla: 'activeS'},
+                    {text: '非普通住宅', val: '2', cla: ''}
                 ],
                 fill: function (index) {
                     this.todos.forEach(function (value, inx, array) {
@@ -333,6 +351,14 @@ define('view/components', ['util/common'], function () {
             cancel: function () {
                 this.$parent.showHousing = false;
                 hideDiv();
+            }
+        },
+        events:{
+            xfTax:function(){
+                this.todos.forEach(function (value, inx, array) {
+                    array[inx].cla = '';
+                });
+                this.todos[0].cla = 'activeS';
             }
         }
     });
@@ -366,6 +392,14 @@ define('view/components', ['util/common'], function () {
                 this.$parent.showHousing2 = false;
                 hideDiv();
             }
+        },
+        events:{
+            esfTax:function(){
+                this.todos.forEach(function (value, inx, array) {
+                    array[inx].cla = '';
+                });
+                this.todos[0].cla = 'activeS';
+            }
         }
     });
     // esf房屋性质
@@ -383,8 +417,8 @@ define('view/components', ['util/common'], function () {
             return {
                 todos: [
                     {text: '普通住宅', val: '1', cla: 'activeS'},
-                    {text: '非普通住宅', val: '2', cla: ''},
-                    {text: '经济适用房', val: '3', cla: ''}
+                    {text: '非普通住宅', val: '3', cla: ''},
+                    {text: '经济适用房', val: '2', cla: ''}
                 ],
                 fill: function (index) {
                     this.todos.forEach(function (value, inx, array) {
@@ -399,6 +433,14 @@ define('view/components', ['util/common'], function () {
             cancel: function () {
                 this.$parent.showHousing3 = false;
                 hideDiv();
+            }
+        },
+        events:{
+            esfTax:function(){
+                this.todos.forEach(function (value, inx, array) {
+                    array[inx].cla = '';
+                });
+                this.todos[0].cla = 'activeS';
             }
         }
     });
@@ -432,6 +474,14 @@ define('view/components', ['util/common'], function () {
             cancel: function () {
                 this.$parent.showHousing4 = false;
                 hideDiv();
+            }
+        },
+        events:{
+            esfTax:function(){
+                this.todos.forEach(function (value, inx, array) {
+                    array[inx].cla = '';
+                });
+                this.todos[0].cla = 'activeS';
             }
         }
     });

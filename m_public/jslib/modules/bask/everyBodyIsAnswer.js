@@ -9,7 +9,7 @@ define('modules/bask/everyBodyIsAnswer', ['jquery', 'loadMore/1.0.2/loadMore', '
         require('lazyload/1.9.1/lazyload');
         $('.lazyload').lazyload();
         // 上拉加载更多
-        var url = vars.askSite + '?c=bask&a=ajaxGetMoreSFBangSYAsk';
+        var url = vars.askSite + '?c=bask&a=ajaxGetMoreSFBangSYAsk&cityname=' + vars.cityname;
         var loadMore = require('loadMore/1.0.2/loadMore');
         loadMore({
             url: url,

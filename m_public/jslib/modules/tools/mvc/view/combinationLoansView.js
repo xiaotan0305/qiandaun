@@ -12,7 +12,7 @@ define('view/combinationLoansView', ['view/components', 'view/calView','view/cal
     var IScroll = require('iscroll/2.0.0/iscroll-lite');
     var scroll = null;
 
-    Vue.component('zh', {
+    Vue.component('zhdai', {
         template: '<section v-show="showDai"><div class="jsqBox"><ul class="jsq-list zhd">'
         + '<li><div>商业贷款：</div>'
         + '<div><div class="flexbox">'

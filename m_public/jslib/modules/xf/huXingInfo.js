@@ -13,7 +13,8 @@ define('modules/xf/huXingInfo', [
     'verifycode/1.0.0/verifycode',
     'modules/xf/workbench',
     'modules/xf/xfactivity',
-    'app/1.0.0/appdownload'
+    'app/1.0.0/appdownload',
+	'search/newHouse/newHouseSearch'
 ], function (require, exports, module) {
     'use strict';
     // jquery库
@@ -34,6 +35,11 @@ define('modules/xf/huXingInfo', [
     var verifycode = require('verifycode/1.0.0/verifycode');
     // 登录后获取用户名，手机号和用户ID
     var username, userid, userphone;
+    
+    var Search = require('search/newHouse/newHouseSearch');
+	
+	var search = new Search();
+	search.init();
 
     /**
      * 回调获取用户信息
@@ -292,7 +298,8 @@ define('modules/xf/huXingInfo', [
                 '&xftype=' + params.xfType,
                 '&username=' + params.userName,
                 '&userid=' + params.userID,
-                '&status=login'
+                '&status=login',
+                '&from=hx'
             ].join('');
         } else {
             url = [
@@ -301,7 +308,8 @@ define('modules/xf/huXingInfo', [
                 '&city=' + params.city,
                 '&newcode=' + params.newCode,
                 '&xftype=' + params.xfType,
-                '&vcode=' + params.vCode
+                '&vcode=' + params.vCode,
+                '&from=hx'
             ].join('');
         }
 
@@ -497,7 +505,9 @@ define('modules/xf/huXingInfo', [
             data: {
                 userid: userid,
                 myselectid: myselectid,
-                city: vars.city
+                city: vars.city,
+                newcode: vars.newcode,
+				projname: vars.allprojname
             },
             dataType: 'json',
             async: false,
@@ -1271,4 +1281,24 @@ define('modules/xf/huXingInfo', [
             });
     }
     // 加载装修案例-----------------------------------end
+    
+    
+    var rule = search.getRules(vars.paramcity + 'newXfHistory');
+	
+	var ajaxData = $.extend({
+		XQ: '',
+		xfWY: '',
+		xfScores: '',
+		city: vars.paramcity,
+		id: vars.paramid
+	}, rule);
+
+	$.post('/xf.d?m=xiHuanLouPanList&source=dthx&math=' + Math.random(), ajaxData, function (result) {
+		if ($.trim(result)) {
+			$('#ganxingqulp .favList').html(result);
+			$('#ganxingqulp').show();
+		   
+		}
+	});
+    
 });

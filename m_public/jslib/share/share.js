@@ -124,7 +124,7 @@
         // 分享的url地址
         this.options.url = this.options.backUrl || window.location.href;
         // 分享摘要
-        this.options.summary = this.container.getAttribute('data-text') || this.options.summary;
+        this.options.summary = this.container.getAttribute('data-text') || this.options.summary || '';
         this.creatHTML();
         // 取消分享按钮
         var quitBtn = document.getElementById('quitBtn');
@@ -272,5 +272,51 @@
         var askpop = document.getElementById('askpop');
         document.body.removeChild(askpop);
     };
-    return myShare;
+    // 判断是否为iel浏览器并且返回版本
+    var judgeIe = (function() {
+      var win = window;
+      var doc = win.document;
+      var input = doc.createElement("input");
+
+      var ie = (function () {
+        if (win.ActiveXObject === undefined) return null;
+        if (!win.XMLHttpRequest) return 6;
+        if (!doc.querySelector) return 7;
+        if (!doc.addEventListener) return 8;
+        if (!win.atob) return 9;
+        if (!input.dataset) return 10;
+        return 11;
+      })();
+      return ie;
+    })();
+  /**
+   * 复制链接地址功能
+   */
+  myShare.prototype.copy = function(){
+    var that = this;
+    var copyBtn = document.getElementById(that.options.copyBtn);
+    // ie8以下浏览器
+    if(judge && judgeIe < 8){
+      copyBtn.onclick = function(){
+        window.clipboardData.setData("Text","this is for ie");
+        alert("你已经复制活动链接，赶快粘贴给好友吧,this is ie！");
+      }
+    }else{
+      if(window.Clipboard){
+        copyBtn.setAttribute('data-clipboard-text',window.loaction.href);
+        var clipboard = new Clipboard('.btn');
+        clipboard.on('success', function(e) {
+          alert('你已经复制活动链接，赶快粘贴给好友吧,this is clipboard！');
+          e.clearSelection();
+        });
+        clipboard.on('error', function(e) {
+          alert('很遗憾，您的浏览器版本过低，复制失败，请手动复制活动链接！');
+        });
+      }
+    }
+
+
+
+  }
+  return myShare;
 });

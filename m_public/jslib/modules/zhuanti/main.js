@@ -68,6 +68,11 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare', 'superShar
     });
 
     if (vars.superShare) {
+        if (vars.shareUrl) {
+            var shareUrl = window.location.protocol + vars.shareUrl;
+        } else {
+            var shareUrl = location.href;
+        }
         $(function () {
             /* 分享代码*/
             var SuperShare = require('superShare/1.0.1/superShare');
@@ -80,7 +85,7 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare', 'superShar
                 // 分享内容的详细描述
                 desc: vars.description + '...',
                 // 分享的链接地址
-                url: location.href,
+                url: shareUrl,
                 // 分享的内容来源
                 from: vars.cityname + ' —房天下'
             };
@@ -91,12 +96,17 @@ define('modules/zhuanti/main', ['jquery', 'weixin/2.0.0/weixinshare', 'superShar
     if (vars.action !== 'xfLastDataReport') {
         //微信分享
         var Weixin = require('weixin/2.0.0/weixinshare');
+        if (vars.shareUrl) {
+            var shareUrl = window.location.protocol + vars.shareUrl;
+        } else {
+            var shareUrl = location.href;
+        }
         new Weixin({
             // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             debug: false,
             shareTitle: vars.title,
             descContent: vars.description,
-            lineLink: location.href,
+            lineLink: shareUrl,
             imgUrl: window.location.protocol + vars.imgUrl,
         });
     }

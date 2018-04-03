@@ -88,12 +88,14 @@ define('modules/esf/picDetail', ['jquery','klass/1.0/klass', 'photoswipe/photosw
             $('.vedio-icon').on('click', function () {
                 if (vars.videoid) {
                     $.ajax({
-                        url: vars.esfSite + '?c=esf&a=ajaxPlayvideoUv&vid=' + vars.videoid,
+                        url: vars.esfSite + '?c=esf&a=ajaxPlayvideoUv&vid=' + vars.videoid + '&referUrl=' + encodeURIComponent(document.referrer) +
+                        '&localUrl=' + encodeURIComponent(window.location.href),
                         async: false
                     });
                 } else if (vars.videomp4) {
                     $.ajax({
-                        url: vars.esfSite + '?c=esf&a=ajaxPlayvideoUv&inputstr=' + vars.videomp4,
+                        url: vars.esfSite + '?c=esf&a=ajaxPlayvideoUv&inputstr=' + vars.videomp4 + '&referUrl=' + encodeURIComponent(document.referrerf) +
+                        '&localUrl=' + encodeURIComponent(window.location.href),
                         async: false
                     });
                 }

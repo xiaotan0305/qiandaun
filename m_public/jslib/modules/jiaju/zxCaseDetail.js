@@ -60,9 +60,21 @@
             housetype: vars.caseRoomName,
             totalprice: vars.Wprice + '万'
         });
+        // 收藏按钮
+        var iconFav = $('.icon-fav');
+        // 是否收藏
+        var hasCollect;
+        // 收藏成功的浮层
+        var floatAlert = $('.floatAlert');
+        var lookFavList = $('#lookFavList');
+        var continueBigImg = $('#continueBigImg');
 
         pageInit();
         function pageInit() {
+            // hasCollect初始化
+            iconFav[vars.collectInfo === '1' ? 'addClass' : 'removeClass']('cur');
+            hasCollect = vars.collectInfo === '1' ? true : false;
+            // 登录状态将手机号放报名框
             if (vars.phone) {
                 phoneNumber = vars.phone;
             }
@@ -95,26 +107,93 @@
              * 日志统计
              */
              $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZXLog&city=' + vars.city + '&typeid=5&objid=' + vars.caseId + '&refer=' + encodeURIComponent(document.referrer) + '&sorce=' + encodeURIComponent(location.href));
-         }
+        }
 
          function eventInit() {
 
             /** 点赞*/
             var zan = $('#zan');
             zan.on('click', function () {
-                if (!vars.phone) {
-                    window.location.href = vars.loginUrl + '?burl=' + encodeURIComponent(location.href);
-                    return;
-                }
-                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
-                    if (data && data.Message) {
-                        toastFn(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
-                        zan.addClass(data.Message.Code === '0' ? '' : 'cur');
-                        // 点赞数+1
-                        var num = parseInt(zan.html() ? zan.html() : 0);
-                        zan.html(data.Message.Code === '0' ? num : (num + 1) + '<i class="on">+1</i>');
-                    }
+                // 用户行为
+                yhxw({
+                    page: 'jj_mt^alxq_wap',
+                    type: 55,
+                    companyid: vars.companyid,
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
                 });
+                if (checkLogin()) {
+                    $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZanCaseDetail&city=' + vars.city + '&caseid=' + vars.caseId, function (data) {
+                        if (data && data.Message) {
+                            toastFn(data.Message.Code === '0' ? '您已点赞了哦' : '您已点赞成功');
+                            zan.addClass(data.Message.Code === '0' ? '' : 'cur');
+                            // 点赞数+1
+                            var num = parseInt(zan.html() ? zan.html() : 0);
+                            zan.html(data.Message.Code === '0' ? num : (num + 1) + '<i class="on">+1</i>');
+                        }
+                    });
+                }
+            });
+            
+            // 收藏
+            iconFav.on('click', function () {
+                
+                // 只统计收藏用户行为
+                !hasCollect && yhxw({
+                    page: 'jj_mt^alxq_wap',
+                    type: 21,
+                    companyid: vars.companyid,
+                    caseid: vars.caseId,
+                    area: vars.area,
+                    style: vars.casestylename,
+                    housetype: vars.caseRoomName,
+                    totalprice: vars.Wprice + '万'
+                });
+                var canAjax = true;
+                if (canAjax && checkLogin()) {
+                    var $that = $(this);
+                    canAjax = false;
+                    // 收藏ajax请求
+                    $.ajax({
+                        url: vars.jiajuSite + '?c=jiaju&a=ajaxPicCollect',
+                        data: {
+                            // choice:2取消收藏,3收藏
+                            choice: hasCollect ? 2 : 3,
+                            // infoType:2单图，1案例
+                            infoType: 1,
+                            InfoId: vars.caseId,
+                            linkurl: location.href,
+                            picUrl: $('#swiper').find('img').eq(0).attr('src'),
+                            title: vars.casestylename + vars.caseRoomName
+                        },
+                        success: function (response) {
+                            if (response.Message.Code === '1') {
+                                $that.toggleClass('cur');
+                                !hasCollect ? setTimeout(function () {
+                                    floatAlert.show();
+                                }, 1000) : toastFn('已取消收藏');
+                                jiajuUtils.toggleTouchmove(true);
+                                hasCollect = !hasCollect;
+                            }
+                        },
+                        complete: function () {
+                            canAjax = true;
+                        }
+                    });
+                }
+            });
+            // 点击收藏成功浮层-继续看图
+            continueBigImg.on('click', function () {
+                floatAlert.hide();
+                jiajuUtils.toggleTouchmove(false);
+            });
+            // 点击收藏成功浮层-查看收藏
+            lookFavList.on('click', function () {
+                location.href = vars.mySite + '?c=mycenter&a=myFavList&city=' + vars.city;
+                jiajuUtils.toggleTouchmove(false);
             });
 
             /** 点击更多，查看更多案例说明*/
@@ -383,6 +462,18 @@
                 var pinStr = location.href.indexOf('?') === -1 ? '?' : '&';
                 location.href = location.href + pinStr + 'random=' + Math.random();
             }
+        }
+
+        /**
+         * 判断是否登录
+         */
+        function checkLogin() {
+            var res = true;
+            if (!vars.login_visit_mode) {
+                res = false;
+                window.location.href = vars.loginUrl;
+            }
+            return res;
         }
         // 分享功能
         var shareTitle = vars.realestate + '装修案例';

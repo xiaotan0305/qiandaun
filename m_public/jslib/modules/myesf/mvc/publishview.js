@@ -467,7 +467,7 @@ define('modules/myesf/mvc/publishview', ['modules/myesf/mvc/component','modules/
                             } else {
                                 that.refPriceWord = '房天下评估价：<em>' + that.refprice + '</em> 万/套，仅供参考';
                             }
-                            if (that.price && that.refprice !== '暂无' && (that.price >= that.refprice * 1.3 || that.price <= that.refprice * 0.7)) {
+                            if (that.price && that.refprice && that.refprice !== '暂无' && (that.price >= that.refprice * 1.3 || that.price <= that.refprice * 0.7)) {
                                 that.tipShow = true;
                             } else {
                                 that.tipShow = false;
@@ -480,7 +480,7 @@ define('modules/myesf/mvc/publishview', ['modules/myesf/mvc/component','modules/
                     // 售价输入
                     iptPrice: function (ev) {
                         var that = this;
-                        if (that.price && that.refprice !== '暂无' && (that.price >= that.refprice * 1.3 || that.price <= that.refprice * 0.7)) {
+                        if (that.price && that.refprice && that.refprice !== '暂无' && (that.price >= that.refprice * 1.3 || that.price <= that.refprice * 0.7)) {
                             that.tipShow = true;
                         } else {
                             that.tipShow = false;
@@ -661,7 +661,7 @@ define('modules/myesf/mvc/publishview', ['modules/myesf/mvc/component','modules/
                         } else if (that.userphone === '') {
                             that.displayLose('请输入手机号');
                             return false;
-                        } else if (!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9]|17[0-9])\d{8}$/i.test(that.userphone)) {
+                        } else if (!/^(1)\d{10}$/i.test(that.userphone)) {
                             that.displayLose('请输入正确格式的手机号');
                             return false;
                         } else if (that.checkCode === '' && !vars.userphone) {

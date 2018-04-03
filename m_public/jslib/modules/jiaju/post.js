@@ -160,6 +160,9 @@ define('modules/jiaju/post', ['jquery', 'photoswipe/4.0.7/photoswipe-ui-default.
                         case '9':
                             errtips = '发帖失败，请稍候重试';
                             break;
+                        case '32':
+                            errtips = '您的帖子需要审核后才能显示在帖子列表中，请耐心等待';
+                            break;
                         default:
                             errtips = '发帖失败，请稍候重试';
                     }

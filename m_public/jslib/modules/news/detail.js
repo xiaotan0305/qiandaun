@@ -305,7 +305,8 @@ define('modules/news/detail', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'verifyco
                     'vmi.newsid': newsId,
                     'vmi.name': vars.username,
                     'vmi.mail': vars.email,
-                    'vmi.phone': vars.loginphone
+                    'vmi.phone': vars.loginphone,
+                    'vmi.imei': vars.appimei
                 };
                 var p = {};
                 // 若p_temp中属性为空或者无效，则不传入p中

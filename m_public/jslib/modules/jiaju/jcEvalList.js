@@ -74,7 +74,7 @@ define('modules/jiaju/jcEvalList', ['jquery', 'loadMore/1.0.1/loadMore', 'lazylo
          */
         function loadMoreFn() {
             // 防止loadMore.js报错
-            var total = vars.total;
+            var total = parseInt(vars.total);
             // 加载更多
             for (var i = 11004; i < 11017; i++) {
                 loadMore.add({
@@ -100,7 +100,12 @@ define('modules/jiaju/jcEvalList', ['jquery', 'loadMore/1.0.1/loadMore', 'lazylo
                     loadingTxt: '努力加载中...',
                     // 加载完成后显示内容,'加载更多'为默认
                     loadedTxt: '点击加载更多...',
-                    firstDragFlag: false
+                    firstDragFlag: false,
+                    callback: function (data) {
+                        if (parseInt(data.pageMarloadFlag) >= parseInt(data.totalPage)) {
+                            $('#clickmore_' + i).hide();
+                        }
+                    }
                 });
             }
             loadMore.init();
@@ -113,11 +118,11 @@ define('modules/jiaju/jcEvalList', ['jquery', 'loadMore/1.0.1/loadMore', 'lazylo
         function loadEval(cid) {
             $.ajax({
                 url: vars.jiajuSite + '?c=jiaju&a=ajaxGetJcEval&cid=' + cid + '&page=1',
-                success: function(data) {
+                success: function (data) {
                     if (data) {
                         $('#content_' + cid).prepend(data.res).show().find('.lazyload').lazyload();
-                        loadMore.config[cid - 11004].totalPage = data.total;
-                        $('#clickmore_' + cid).show();
+                        loadMore.config[cid - 11004].totalPage = Math.ceil(parseInt(data.total) / 20);
+                        parseInt(data.total) > 20 ? $('#clickmore_' + cid).show() : $('#clickmore_' + cid).hide();
                         loadingEval.hide();
                         evaltimeout.hide();
                         $('.lazyload').lazyload();

@@ -120,21 +120,38 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
             // 上传图片处理 start
             var $showpicId = $('#show_pic');
             // 图片上传
-            var imgupload;
-            require.async(['imageUpload/1.0.0/imageUpload_oldzf'], function (ImageUpload) {
+            var imgupload = {};
+            require.async(['imageUpload/1.0.0/imgVideoUpload'], function (ImageUpload) {
                 imgupload = new ImageUpload({
                     richInputBtn: '',
                     container: '#show_pic',
-                    maxLength: 6,
+                    maxLength: 10,
                     url: '?c=myesf&a=ajaxUploadImg&city=' + vars.city,
                     imgCountId: '',
                     imgsUrl: vars.shineiimg,
-                    numChangeCallback: function (count) {
+                    inputClass:'zf_newsc',
+                    // 添加图片按钮模版
+                    inputTemp: '<input id="uploadBtn" type="file" multiple="multiple" class="upload-input"><span id="uploadTxt">添加图片/视频</span>',
+                    loadingGif:vars.loadingGif,
+                    numChangeCallback: function (count,imgsArray) {
+                        if(imgsArray){
+                            imgupload.imgsArray = imgsArray;
+                        }
                         if (count === 0) {
                             $showpicId.css('display', 'block').find('dl').addClass('wi80');
                         }
+                        if(count >= 1){
+                            var $video  = $('#v-cover');
+                            var videoLen = $video.length;
+                            var $coverImg = $('#coverImg');
+                            if(!$coverImg.length){
+                                var eqNum = videoLen ? 1 : 0;
+                                $('#show_pic').find('dd').not('.zf_newsc').eq(eqNum).append('<div id="coverImg" class="cver">封面</div>');
+                            }
+                        }
+                        $('#uploadBtn').val('');
                         if (vars.edit === '0') {
-                            var cookieTemp
+                            var cookieTemp;
                             if (rentType === '整租') {
                                 cookieTemp = getCookie('inputCookieZz');
                             } else if (rentType === '合租') {
@@ -167,26 +184,38 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
              * @returns 返回一长度为2的数组 元素一为标题图片的地址
              * 元素二为所有图片的地址
              */
-            function getImgUrlFileName() {
+            function getImgUrlFileName(submit) {
                 var imgsArray = imgupload.imgsArray;
                 var arr = [], arr2 = [], titleImg;
                 if (imgsArray) {
                     for (var i = 0; i < imgsArray.length; i++) {
-                        arr.push(imgsArray[i].imgurl + ',' + imgsArray[i].fileName);
-                        if (imgsArray[i].generTime === 'undefined') {
-                            imgsArray[i].generTime = imgsArray[i].generTime.replace(/(\d{4}):(\d\d):(\d\d)/g, "$1-$2-$3");
-                            if (imgsArray[i].generTime || (imgsArray[i].gpsX && imgsArray[i].gpsY)) {
-                                arr2.push(imgsArray[i].imgurl + '|' + imgsArray[i].generTime + '|' + imgsArray[i].gpsX + '|' + imgsArray[i].gpsY);
+                        var thisImg = imgsArray[i];
+                        // 提交的时候不收集视频信息
+                        if(!submit){
+                            if(thisImg.mediaId){
+                                arr.push(thisImg.imgurl + ',' + thisImg.fileName + ',' + thisImg.mediaId)
+                            }else{
+                                arr.push(thisImg.imgurl + ',' + thisImg.fileName);
+                            }
+                        }else {
+                            if(!thisImg.mediaId){
+                                arr.push(thisImg.imgurl + ',' + thisImg.fileName);
+                            }
+                        }
+                        if (thisImg.generTime === 'undefined' && submit) {
+                            thisImg.generTime = thisImg.generTime.replace(/(\d{4}):(\d\d):(\d\d)/g, "$1-$2-$3");
+                            if (thisImg.generTime || (thisImg.gpsX && thisImg.gpsY)) {
+                                arr2.push(thisImg.imgurl + '|' + thisImg.generTime + '|' + thisImg.gpsX + '|' + thisImg.gpsY);
                             }
                         }
                     }
-                    if (imgsArray[0]) {
-                        titleImg = imgsArray[0].imgurl;
+                    if (arr[0] && submit) {
+                        titleImg = arr[0].imgurl;
                     } else {
                         titleImg = '';
                     }
                 }
-                return [titleImg, arr.join(';'), arr2.join(';')];
+                return [titleImg, arr.join(';'), arr2.length && arr2.join(';')];
             }
 
 
@@ -227,6 +256,10 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                 $('.zu-tips-hb').css('display', 'none');
             });
 
+            // 提示上传视频图片tip按钮
+            $('.zu-tips').children('a').on('click', function() {
+                $('.zu-tips').css('display', 'none');
+            });
             Vue.component('content', {
                 replace: true,
                 template: '<section class="ddList">'
@@ -489,7 +522,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                         ev.target.value = ev.target.value.replace(/[\D]/g, '');
                         //设置cookie，保存输入记录
                         this.cookieValue.floor = this.varFloor; 
-                        this.cookieValue.totlefloor = this.vartotalFloor;
+                        this.cookieValue.totalfloor = this.vartotalFloor;
                         this.cookieValue.price = this.varsPrice;
                         transCookie(this.cookieValue);
                     },
@@ -1242,6 +1275,7 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                             if (beginTime.html() !== '随时入住') {
                                 roomIn = beginTime.html();
                             }
+                            var $videoCover = $('#v-cover');
                             // 获取入住时间
                             param.begintime = roomIn;
                             // 获取房子id 编辑页进入才有
@@ -1268,12 +1302,15 @@ define('view/zfpublishView', ['jquery', 'view/component', 'slideFilterBox/1.0.0/
                             param.equitment = that.varsEquitment;
                             // 物业类型,后台向前台传的
                             param.purpose = that.purposeManual;
-                            // 标题图片++++++++++
-                            param.titleimage = getImgUrlFileName()[0];
+                            if($videoCover.length){
+                                param.VideoId = $videoCover.attr('mediaId');
+                                // 标题图片++++++++++
+                            }
+                            param.titleimage = getImgUrlFileName(true)[0];
                             // 上传图片路径++++++++++++++
-                            param.shineiimg = getImgUrlFileName()[1];
+                            param.shineiimg = getImgUrlFileName(true)[1];
                             // 上传图片详细信息
-                            param.imgPosList = getImgUrlFileName()[2];
+                            param.imgPosList = getImgUrlFileName(true)[2];
                             // 编辑页面(input)
                             param.edit = vars.edit;
                             // 标题

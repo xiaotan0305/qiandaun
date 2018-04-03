@@ -13,7 +13,6 @@ define('modules/zhishi/fjsDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'superS
         require('lazyload/1.9.1/lazyload');
         // 图片惰性加载
        $('img').lazyload({event: 'scroll click'});
-
         //视频按钮
         var videobox = $('.videobox');
         //缩略图按钮
@@ -26,6 +25,9 @@ define('modules/zhishi/fjsDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'superS
             videocon.hide();
             videobox.show();
             videobox[0].play();
+            $.get(vars.zhishiSite + '?c=zhishi&a=ajaxPlayvideoUv&inputstr=' + encodeURIComponent(vars.video_url) + '&referUrl=' + encodeURIComponent(document.referrer) + '&localUrl=' + encodeURIComponent(window.location.href), {}, function(data){
+
+            });
         })
 
         var widthText = $(".txt  h2").width();

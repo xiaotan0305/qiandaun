@@ -1,7 +1,7 @@
 /**
- * description: 基于 blue 1.0.2 和 hisline 进行修改。支持拖动滑动并，点击出现浮层。
- * date: 2017.09.12
- * author: yangfan
+ * description: 滑动的曲线图和梯形图
+ * date: 2018.1.26
+ * author: lina
  */
 (function (w, f) {
     'use strict';
@@ -16,11 +16,15 @@
     } else {
         // 请引入chart/raf/1.0.0/raf的js
         // 请引入iscroll/2.0.0/iscroll-lite
-        window.Line102 = f(w, window.IScrollLite2);
+        window.Line = f(w, window.IScrollLite2);
     }
 })(window, function factory(w, IScroll) {
     'use strict';
     var $ = w.jQuery;
+    var requestAnimationFrame = typeof window !== 'undefined' && (window.requestAnimationFrame && window.requestAnimationFrame.bind(window) || // https://github.com/ecomfe/zrender/issues/189#issuecomment-224919809
+        window.msRequestAnimationFrame && window.msRequestAnimationFrame.bind(window) || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame) || function (func) {
+        setTimeout(func, 16);
+    };
     // 画图类
     function Line(ops) {
         this.hasSetScroll = false;
@@ -82,7 +86,12 @@
             startIndex: 0,
             // 蒙层点击跳转
             tipUrl: '',
+            runTime:1000,
+            step:false,
             xAxis: ['1', '2', '3', '4', '5', '6'],
+            xBg:false,
+            yBg:true,
+            dashLine:false,
             series: [{
                 key: 'asdf',
                 color: '#ff6666',
@@ -123,6 +132,22 @@
     Line.prototype = {
         init: function () {
             var opts = this.options;
+            var series = opts.series[0].yAxis;
+            var dataArr = [];
+            series.forEach(function(opt){
+                dataArr.push(opt.value);
+            });
+            if(opts.xAxis.length === 1){
+                opts.xAxis = [opts.xAxis[0],'','','',''];
+            }
+            var maxVal = Math.max.apply({},dataArr);
+            var minVal = Math.min.apply({},dataArr);
+            var dif = maxVal - minVal;
+            if(dif === 0){
+                opts.scaleNumber = 0;
+            }else if(dif !== 0 && dif < opts.scaleNumber){
+                opts.scaleNumber = dif;
+            }
             // 获取父容器
             this.wrapper = $(opts.id);
             this.wrapper.css({
@@ -163,7 +188,7 @@
             this.seriesContainer = $('<div style="position: relative;z-index: 0;overflow: hidden;transform: translateZ(0);' +
                 '-webkit-transform: translateZ(0);-o-transform: translateZ(0);' +
                 '-ms-transform: translateZ(0);-moz-transform: translateZ(0);"><canvas height="' +
-                opts.height * 2 + '" style="height:' + opts.height + 'px">您的浏览器不支持</canvas></div>');
+                opts.height * 2 + '" style="height:' + opts.height + 'px;">您的浏览器不支持</canvas></div>');
             // 设置走势图canvas及绘图api
             this.seriesCanvas = this.seriesContainer.find('canvas');
             // 设置canvas的宽高和样式宽高,之所以2比1是为了保持所有绘制都是高清图
@@ -203,6 +228,9 @@
                     var myy = (1 - (seriesj - this.minValue) / (this.maxValue - this.minValue)) * this.chartHeight + this.options.chartSp;
                     if(seriesi.yAxis[j].value < this.minValue){
                         myy = this.options.height * 1.8;
+                    }
+                    if(!this.options.scaleNumber){
+                        myy = this.options.chartSp;
                     }
                     this.offCanvasApi.beginPath();
                     this.offCanvasApi.fillStyle = 'rgb(119,176,240)';
@@ -244,7 +272,6 @@
 
         openTip: function (index, x, y) {
             var opts = this.options;
-            var year = new Date().getFullYear().toString();
             var title;
             var content = [];
             if (opts.xfMode) {
@@ -256,16 +283,24 @@
                         content.push('<p style="font-size:13px;min-width:125px">' + v.key + ': ' + value + '套</p>');
                     }
                 });
+            } else if (opts.from === 'jjfdetail') {
+                opts.series.forEach(function (v) {
+                    // 获取值
+                    var value = v.yAxis[index].value.replace(/-/g, '');
+                    if (value) {
+                        content.push('<p style="font-size:13px;min-width:80px">' + opts.xAxis[index].replace('.', '-') + ': ' + value + '万</p>');
+                    }
+                });
             } else {
                 switch (opts.type){
                     case 'day':
-                        title = '<h5>'+ year + '年' + opts.xAxis[index].substr(0, 2) + '月' + opts.xAxis[index].substr(3, 2) + '日</h5>';
+                        title = '<h5>'+ opts.series[0].yAxis[index].year + '年' + opts.xAxis[index].substr(0, 2) + '月' + opts.xAxis[index].substr(3, 2) + '日</h5>';
                         break;
                     case 'week':
-                        title = '<h5>'+ year + '年' + opts.xAxis[index] + '</h5>';
+                        title = '<h5>'+ opts.series[0].yAxis[index].year + '年' + opts.xAxis[index] + '</h5>';
                         break;
                     case 'month':
-                        title = '<h5>'+ year + '年' + opts.xAxis[index].substr(3, 2) + '月</h5>';
+                        title = '<h5>'+ opts.series[0].yAxis[index].year + '年' + opts.xAxis[index].substr(3, 2) + '月</h5>';
                         break;
                 }
                 opts.series.forEach(function (v) {
@@ -375,8 +410,8 @@
             this.yAxisCanvas.css(cssObject);
 
             // 获取刻度高度间隔及数值间隔
-            var scaleSpH = this.chartHeight / this.options.scaleNumber;
-            var valSp = (maxValue - minValue) / (this.options.scaleNumber);
+            var scaleSpH = this.chartHeight / this.options.scaleNumber || this.chartHeight;
+            var valSp = (maxValue - minValue) / (this.options.scaleNumber) || this.chartHeight;
 
             // 判断是左对齐还是右对齐
             var mx = this.options.scalePosition === 'left' ? 0 : scaleTextWidth;
@@ -384,25 +419,38 @@
             /**
              * 循环遍历算出所有的刻度，并显示到刻度canvas上
              */
-            for (i = 0; i <= this.options.scaleNumber; i++) {
-                var scaleValue = String(Math.floor(maxValue - i * valSp));
-                if(scaleValue > 0){
-                    var my = this.options.chartSp + i * scaleSpH;
-                    // 画刻度值
-                    this.yAxisCanvasApi.save();
-                    this.yAxisCanvasApi.font = this.options.scaleFontSize + this.options.fontFamily;
-                    // this.yAxisCanvasApi.textAlign = this.options.scalePosition;
-                    // this.yAxisCanvasApi.textBaseline = 'center';
-                    this.yAxisCanvasApi.fillStyle = this.options.scaleColor;
-                    this.yAxisCanvasApi.fillText(scaleValue, mx, my);
-                    this.yAxisCanvasApi.restore();
-                    this.yAxisPoints.push({x: mx, y: my});
+            if(this.options.scaleNumber){
+                for (i = 0; i <= this.options.scaleNumber; i++) {
+                    var scaleValue = String(Math.floor(maxValue - i * valSp));
+                    if(scaleValue > 0){
+                        var my = this.options.chartSp + i * scaleSpH;
+                        // 画刻度值
+                        this.yAxisCanvasApi.save();
+                        this.yAxisCanvasApi.font = this.options.scaleFontSize + this.options.fontFamily;
+                        // this.yAxisCanvasApi.textAlign = this.options.scalePosition;
+                        // this.yAxisCanvasApi.textBaseline = 'center';
+                        this.yAxisCanvasApi.fillStyle = this.options.scaleColor;
+                        this.yAxisCanvasApi.fillText(scaleValue, mx, my);
+                        this.yAxisCanvasApi.restore();
+                        this.yAxisPoints.push({x: mx, y: my});
+                    }
                 }
+            }else{
+                // 兼容所有数据都一样的情况
+                var scaleValue = maxValue;
+                var my = this.options.chartSp;
+                // 画刻度值
+                this.yAxisCanvasApi.save();
+                this.yAxisCanvasApi.font = this.options.scaleFontSize + this.options.fontFamily;
+                this.yAxisCanvasApi.fillStyle = this.options.scaleColor;
+                this.yAxisCanvasApi.fillText(scaleValue, mx, my);
+                this.yAxisCanvasApi.restore();
+                this.yAxisPoints.push({x: mx, y: my});
             }
             this.yAxisCanvasApi.save();
             this.yAxisCanvasApi.font = this.options.scaleFontSize + this.options.fontFamily;
             this.yAxisCanvasApi.fillStyle = this.options.scaleColor;
-            this.yAxisCanvasApi.fillText(0, mx + 30,that.options.height * 1.8);
+            this.yAxisCanvasApi.fillText('', mx + 30,that.options.height * 1.8);
             this.yAxisCanvasApi.restore();
             this.yAxisPoints.push({x: mx + 30, y:this.options.height * 1.8});
             // 画刻度对着走势图的竖线
@@ -433,9 +481,10 @@
             // 设置离线 canvas 宽度
             this.offCanvas[0].width = chartWidth;
             this.offCanvas.css('width', chartWidth / 2);
-
             this.drawBg();
-            this.drawLine();
+            if(this.over){
+                this.drawLine();
+            }
             if (!this.hasSetScroll) {
                 this.hasSetScroll = true;
                 this.setScroll();
@@ -454,21 +503,39 @@
                 click: true
             });
         },
-
+        an:function(){
+            var that = this;
+            window.requestAnimationFrame(function(){
+                that.animation();
+            })
+        },
+        /**
+         * 添加动画
+         */
+        animation:function(){
+            var that  = this;
+            that.drawLine();
+            // 判断是否结束动画否则继续绘制
+            if (!that.over) {
+                that.an();
+            }
+        },
         /**
          * 滚动位置
          * @param time
          */
         run: function (time) {
             var that = this;
+            this.start = new Date().getTime();
+            this.an();
             if (that.scroll) {
-                var t = time || 3000;
+                var t = time === undefined ? 3000 : time;
                 if (that.options.startIndex && this.xAxisLength > that.options.startIndex) {
                     that.scroll.scrollTo((that.chartTotalWidth - that.seriesCanvas[0].width / 2) * that.options.startIndex / that.xAxisLength, 0);
+                    setTimeout(function(){
+                        that.scroll.scrollTo(that.chartTotalWidth - that.seriesCanvas[0].width / 2, 0, t);
+                    },500)
                 }
-                setTimeout(function(){
-                    that.scroll.scrollTo(that.chartTotalWidth - that.seriesCanvas[0].width / 2, 0, t);
-                },500)
             }
         },
 
@@ -478,15 +545,17 @@
         drawBg: function () {
             for (var i = 0; i < this.xAxisLength; i++) {
                 var mx = this.options.border + i * this.portWidth;
-                // 画背景线
-                this.seriesCanvasApi.save();
-                this.seriesCanvasApi.strokeStyle = this.options.bgLineColor;
-                this.seriesCanvasApi.lineWidth = this.options.bgLinePx;
-                this.seriesCanvasApi.beginPath();
-                this.seriesCanvasApi.moveTo(mx, 0);
-                this.seriesCanvasApi.lineTo(mx, this.chartTotalHeight );
-                this.seriesCanvasApi.stroke();
-                this.seriesCanvasApi.restore();
+                // 画横背景线
+                if(this.options.yBg){
+                    this.seriesCanvasApi.save();
+                    this.seriesCanvasApi.strokeStyle = this.options.bgLineColor;
+                    this.seriesCanvasApi.lineWidth = this.options.bgLinePx;
+                    this.seriesCanvasApi.beginPath();
+                    this.seriesCanvasApi.moveTo(mx, 0);
+                    this.seriesCanvasApi.lineTo(mx, this.chartTotalHeight );
+                    this.seriesCanvasApi.stroke();
+                    this.seriesCanvasApi.restore();
+                }
                 // 画下部文案
                 this.seriesCanvasApi.save();
                 this.seriesCanvasApi.font = this.options.downFontSize + this.options.fontFamily;
@@ -507,13 +576,41 @@
             this.seriesCanvasApi.lineTo(this.seriesCanvasApi.canvas.width, 0);
             this.seriesCanvasApi.stroke();
             this.seriesCanvasApi.restore();
+            if(this.options.xBg){
+                // 画横着的虚线
+                for (var j = 0; j < this.yAxisPoints.length - 1; j++) {
+                    var point = this.yAxisPoints[j];
+                    this.seriesCanvasApi.save();
+                    this.seriesCanvasApi.strokeStyle = '#f4f4f4';
+                    this.seriesCanvasApi.lineWidth = 2;
+                    if(this.options.dashLine){
+                        this.dashedLineTo(this.seriesCanvasApi, point.x, point.y, point.x + this.seriesCanvasApi.canvas.width, point.y, 10);
+                    }else{
+                        this.seriesCanvasApi.moveTo(0, point.y);
+                        this.seriesCanvasApi.lineTo(this.seriesCanvasApi.canvas.width, point.y);
+                        this.seriesCanvasApi.stroke();
+                    }
+                    this.seriesCanvasApi.restore();
+                }
+            }
+
         },
         /**
          * 画线
          */
         drawLine: function () {
+            var that = this;
             var colorIdx = 0;
-
+            var now = new Date().getTime();
+            var change = that.options.runTime === 0 ? 1 : (now - that.start) / that.options.runTime;
+            // 这是动画结束标示
+            if (change >= 1) {
+                that.over = true;
+            }
+            if (change * that.seriesCanvasApi.canvas.width < that.options.border)return;
+            that.seriesCanvasApi.save();
+            that.seriesCanvasApi.rect(0, 0, change * that.seriesCanvasApi.canvas.width, that.seriesCanvasApi.canvas.height);
+            that.seriesCanvasApi.clip();
             /**
              * 循环遍历获取每一组走势线的数据
              * yangfan: 优先使用 series array 中的 color 属性，然后 使用 lineColorFixed 中的颜色，最后使用 lineColorLoop 循环颜色
@@ -534,8 +631,8 @@
                 this.drawOneline(this.series[i].yAxis, color);
                 colorIdx++;
             }
+            that.seriesCanvasApi.restore();
         },
-
         /**
          * 画一条线
          * @param series 该线的数据
@@ -557,6 +654,10 @@
                 var my = (1 - (Number(series[i].value) - this.minValue) / (this.maxValue - this.minValue)) * this.chartHeight + this.options.chartSp;
                 if(series[i].value < this.minValue){
                     my = this.options.height * 1.8;
+                }
+                // 所有值都一样
+                if(!this.options.scaleNumber){
+                    my = this.options.chartSp;
                 }
                 p.push({
                     x: mx,
@@ -583,7 +684,12 @@
                 }
                 this.seriesCanvasApi.moveTo(p[i].x, p[i].y);
                 if (this.options.lineStyle === 'solid') {
-                    this.seriesCanvasApi.lineTo(p[i + 1].x, p[i + 1].y);
+                    if(this.options.step){
+                        this.seriesCanvasApi.lineTo(p[i + 1].x, p[i].y);
+                        this.seriesCanvasApi.lineTo(p[i+1].x, p[i+1].y);
+                    }else{
+                        this.seriesCanvasApi.lineTo(p[i + 1].x, p[i + 1].y);
+                    }
                 } else {
                     var ctrlPoint = this.getCtrlPoint(p, i);
                     this.seriesCanvasApi.bezierCurveTo(ctrlPoint.pA.x, ctrlPoint.pA.y, ctrlPoint.pB.x, ctrlPoint.pB.y, p[i + 1].x, p[i + 1].y);
@@ -599,6 +705,9 @@
                 var myy = (1 - (series[i].value - this.minValue) / (this.maxValue - this.minValue)) * this.chartHeight + this.options.chartSp;
                 if(series[i].value < this.minValue){
                     myy = this.options.height * 1.8;
+                }
+                if(!this.options.scaleNumber){
+                    myy = this.options.chartSp;
                 }
                 this.seriesCanvasApi.save();
                 this.seriesCanvasApi.globalCompositeOperation = 'destination-out';

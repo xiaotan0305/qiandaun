@@ -131,3 +131,11 @@ input,button,select,textarea{-webkit-appearance:none;border:none;outline: none;-
 .uv-rank li.red span{color:#ff1944;}
 .uv-rank li span{width:33.33%;height:0.8rem;line-height:0.8rem;text-align: center;color:#333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .uv-rank li span:first-child{width:25.33%;padding:0 4%;}
+
+
+/*@media (min-width: 320px) and (max-width: 374px) {
+	.rule {width:69%; margin-left:19%;}
+}*/
+
+.home{position: absolute;right:0.8rem;top:0.62rem;width:60px;height:75px;font-size: 0.32rem;color:#fff;text-align: center;}
+.home img{display:block;margin:0 auto;width:32px;height:36px;}

@@ -1,0 +1,168 @@
+* {margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";background:#ca1116 ; }
+body.choose{overflow: hidden;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 320px) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 480px) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {body {-webkit-text-size-adjust:none}}
+a {color:#fff;text-decoration:none;}
+html,body{ font-size: 0.32rem;height:100%;}
+em,i{font-style:normal;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+.center { text-align: center;}
+.none { display: none;}
+.flol { float: left;}
+.flor { float: right;}
+img{ width: 100%;}
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+.wrap {margin: 0 auto; max-width:750px;overflow:hidden;position:relative;}
+.wrap.bqbg{ background:url(../images/buildingThought/fbtop.png)0  0.6rem no-repeat;background-size:100%;height:100%}
+.wrap.qrcode{ background:url(../images/buildingThought/qrcode.jpg)no-repeat;background-size:100% 100%;height:100%}
+.toppic {display: block;width: 100%;height: auto;position: relative;padding-top:38px;}
+.toppic .sh{width:0.7rem;height:0.7rem;background:url(../images/buildingThought/icon_sha.png) no-repeat;background-size:100%; position:absolute;top:1rem;right:0.22rem;}
+.p1-1{width:7.5rem;height:2.49rem;margin:0 auto; position:relative;background:url(../images/buildingThought/topbg.png) no-repeat;background-size:100%;padding:0.9rem 1rem 0 1rem;color:#fff;font-size:0.32rem;line-height:0.42rem;overflow:hidden}
+.p1-2{width:6.9rem;height:7rem;margin:0rem auto 0; position:relative;background:url(../images/buildingThought/cbg.png) no-repeat;background-size:100%; overflow:hidden}
+.vtit{height:0.4rem;line-height:0.4rem;font-size:0.34rem;color:#fff; text-align:center;margin:0.25rem 0 0.3rem;overflow:hidden;}
+.vcon{width:6.7rem;height:3.73rem;overflow:hidden;position:relative;border:1px solid #410600;margin:10px auto 0;color:#fff;border-radius:2px;}
+.vcon .sh{width:0.7rem;height:0.7rem;background:url(../images/buildingThought/icon_sh.png) no-repeat;background-size:100%; position:absolute;top:0.2rem;right:0.23rem;}
+.vcon .v{width:0.9rem;height:0.9rem;background:url(../images/buildingThought/icon_v.png) no-repeat;background-size:100%; position:absolute;top:50%;left:50%;margin:-0.45rem 0 0 -0.45rem}
+.vcon .num{height:0.5rem;line-height:0.5rem;background-color:rgba(0,0,0,.6);padding:0 0.24rem 0 0.3rem;font-size:0.22rem; position:absolute;bottom:0.15rem;left:0.1rem;border-radius:15px;}
+.vcon .zan{height:0.5rem;line-height:0.5rem;background-color:rgba(0,0,0,.6);padding:0 0.24rem 0 0.3rem;font-size:0.22rem; position:absolute;bottom:0.15rem;right:0.1rem;border-radius:15px;}
+.vcon .zan i{width:0.32rem;height:0.30rem;background:url(../images/buildingThought/icon_z.png) no-repeat;background-size:100%;margin-right:0.16rem; display:inline-block; vertical-align:middle;margin-top:-2px;}
+.vcon .zan i.w{ background-position:0 -0.3rem;}
+.vtita{height:0.4rem;line-height:0.4rem;font-size:0.32rem;color:#fff; text-align:center;margin:0.3rem 0;overflow:hidden;}
+.vtita em{color:#ffe683;margin:0 10px;}
+.vuser{width:6rem;height:0.9rem; margin:0 auto}
+.vuser .td{float:left;width:0.9rem;height:0.9rem;border:0.04rem solid #c91216;border-radius:50%; overflow:hidden;margin:0 0.15rem; position:relative}
+.vuser .td img{width:0.82rem;height:0.82rem}
+.vuser .td.more{width:0.9rem;height:0.9rem;background:url(../images/buildingThought/icon_da.png) no-repeat;background-size:100%; display:inline-block;border:0}
+.vuser .td a{height:100%;display:block}
+.btn01{width:6.8rem;height:0.9rem;background:url(../images/buildingThought/btn01.png) no-repeat;background-size:100%; margin:0.6rem auto; display:block}
+.btn02{width:6.4rem;height:0.9rem;background:url(../images/buildingThought/btn02.png) no-repeat;background-size:100%; margin:0.5rem auto; display:block}
+.btn03{width:6.8rem;height:0.9rem;background:url(../images/buildingThought/btn03.png) no-repeat;background-size:100%; margin:0rem auto; display:block}
+.btn04{width:6.8rem;height:0.9rem;background:url(../images/buildingThought/btn04.png) no-repeat;background-size:100%; margin:0.6rem auto; display:block}
+.vbottom{width:7.5rem;height:0.72rem;background:url(../images/buildingThought/bbg.png) no-repeat;background-size:100%;position:absolute;bottom:0;left:0;}
+.hcon{width:7.28rem;height:7.63rem;overflow:hidden;position:relative;margin:0.2rem auto;color:#fff;background:url(../images/buildingThought/cobg.png) no-repeat;background-size:100%;padding:0 0.18rem}
+.hcon h3{height:0.82rem;line-height:0.82rem;text-align:center;font-size:0.34rem;}
+.hcon .vtd{float:left;width:2.04rem;height:2.04rem;border:1px solid #410600;color:#fff;border-radius:4px;margin-left:0.2rem;margin-top:0.4rem; position:relative; overflow:hidden; background:#ca1116 url(../images/buildingThought/upv.jpg) no-repeat; background-size:100%;position:relative;}
+.hcon .vtd a{ display:block; height: 100%;}
+.hcon .vtd .num{width:1.8rem;height:0.5rem;line-height:0.5rem;background-color:rgba(0,0,0,.6); text-align:center;font-size:10px; position:absolute;bottom:0.1rem;left:0.12rem;border-radius:15px;}
+.hcon .vtd .v{width:0.68rem;height:0.68rem;background:url(../images/buildingThought/icon_v.png) no-repeat;background-size:0.66rem; position:absolute;top:50%;left:50%;margin:-0.34rem 0 0 -0.34rem}
+.hcon .vtd .upload-input{width: 100%;height: 100%;opacity: 0; position:absolute;}
+.hcon .vtd img{width:100%;height:100%}
+.hguze{width:7.28rem;height:5.05rem;overflow:hidden;position:relative;margin:0.4rem auto;color:#fff;background:url(../images/buildingThought/gz.png) no-repeat;background-size:100%;padding:0 0.18rem}
+.hguze .text{padding:1.7rem 0.4rem 0 0.4rem;font-size:0.24rem;line-height:0.4rem;}
+.hguze .text p{margin-bottom:10px;}
+.tlist{width:7.5rem;height:0.9rem;line-height:0.9rem;margin:0 auto;position:relative;background:url(../images/buildingThought/listt.png) no-repeat;background-size:100%; text-align:center;color:#fffe8f;font-size:0.32rem;overflow:hidden}
+.tlist .con{margin:0 20px;overflow: hidden;overflow-x: scroll;white-space: nowrap;}
+.tlist .con a{color:#fffe8f;padding:5px;display:inline-block}
+.tlist .con b{color:#fff;}
+.tlist span{padding:0 5px;display:inline-block}
+.vlist{margin-top:0.1rem;padding-bottom:1rem;overflow:hidden}
+.vlist ul{overflow:hidden}
+.vlist li{float:left;width:3.31rem;height:4.6rem; background:url(../images/buildingThought/listtdbg.png) no-repeat;background-size:100%;margin-left:0.3rem;margin-top:0.4rem;color:#fff}
+.vlist li h3{height:0.76rem;line-height:0.76rem;font-size:0.26rem;color:#fff; text-align:center;padding:0 10px;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.vlist li .vpic{width:3.05rem;height:3.05rem; margin:0 auto;border:1px solid #410600;color:#fff;border-radius:4px; overflow:hidden; position:relative;}
+.vlist li .vpic a{ display:block}
+.vlist li .vpic .v{width:0.68rem;height:0.68rem;background:url(../images/buildingThought/icon_v.png) no-repeat;background-size:0.66rem; position:absolute;top:50%;left:50%;margin:-0.34rem 0 0 -0.34rem}
+.vlist li .vpic .user{height:0.5rem;line-height:0.5rem;position:absolute;top:0.1rem;left:0.1rem;font-size:0.22rem;}
+.vlist li .vpic .user i{width:0.5rem;height:0.5rem;border-radius:50%; overflow:hidden;margin-right:0.1rem; display:inline-block; vertical-align:middle}
+.vlist li .vpic .user i img{width:0.5rem;height:0.5rem}
+.vlist li .txt{height:0.3rem;line-height:0.3rem;margin-top:0.16rem;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;font-size:0.18rem;padding:0 0.1rem}
+.vlist li .txt .zan{float:right;}
+.vlist li .txt .zan i{width:0.2rem;height:0.18rem;background:url(../images/buildingThought/icon_za.png) no-repeat;background-size:100%;margin-right:0.08rem; display:inline-block; vertical-align:middle;margin-top:-2px;}
+.vlist li .txt .zan i.w{background-position:0 -0.2rem;}
+.bqbox{width:6.9rem;height:7rem;overflow:hidden;position:relative;margin:1.48rem auto 0;color:#fff;background:url(../images/buildingThought/bqbg.png) no-repeat;background-size:100%;padding:0.54rem 0 0 0}
+.bqbox .cent{width:6.5rem;height:4.4rem; background:#fff;border:1px solid #410600;color:#fff;border-radius:4px; margin:0 auto;padding:0.3rem; position: relative}
+.bqbox .cent .ipt{background:#fff;height:80px;color:#9fbde6;padding:10px 0;border:0px;line-height:inherit;font-size:0.3rem;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box; outline:none }
+.bqbox .cent .ipt::-webkit-input-placeholder{color:#9fbde6}
+.bqbox .cent .adbq{width:68px;height:22px;line-height:22px;border:1px solid #4493ff;border-radius:10px;font-size:10px;color:#4393ff; text-align:center; position:absolute;bottom:20px;right:20px;}
+.bqbox p.p1{font-size:13px;color:#ffffff;padding-left:20px;background:url(../images/buildingThought/li.png) 0 5px no-repeat;background-size:5px;margin-top:10px;}
+
+
+.bqout{position: fixed;width: 100%;height: 100%;left: 0;top:0;background: rgba(0,0,0,0.8);z-index: 2001;}
+.bqout .close{width:0.42rem;height:0.42rem;position:absolute;top:-0.6rem;right:0.5rem; display:block;background:url(../images/buildingThought/close.png) no-repeat;background-size:100%;}
+.bqout .bqoutbox{width:7.28rem;height:9.08rem; background:url(../images/buildingThought/chbg.png) no-repeat;background-size:100%; position:absolute;bottom:0px;left:0.11rem;padding:1rem 0.2rem 0.2rem 0.2rem}
+.bqout .bqoutbox span {float:left;width:3rem;height:0.6rem;line-height:0.6rem; text-align:center;padding:0 10px;font-size:0.28rem;color:#fff;background-color:rgba(0,0,0,.3);border-radius:15px; display:inline-block;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;;margin:0.4rem 0.15rem 0 0.15rem;;}
+ 
+ .vmore{width: 6.8rem;height:0.6rem;line-height:0.6rem;background: rgba(0,0,0,0.3);color:#fff; text-align:center;font-size:0.26rem; margin:0.3rem auto 0;border-radius:5px;}
+ .bargain-box{position:fixed;width:100%;height:100%;left:0;top:0;background:rgba(255,255,255,.1);z-index:1000;}
+.bargain-box .con01{width:81%;padding-bottom:40px;background:rgba(0,0,0,.8);border-radius:3px;position: absolute; top: 50%; left: 50%;transform: translateY(-50%); -webkit-transform: translateY(-50%);margin-left:-40.5%}
+.bargain-box .close{width:15px;height:15px;background:url(../images/buildingThought/x_17_1_19.png) no-repeat;background-size:15px; display:block;position:absolute;top:14px; right:14px;}
+.bargain-box .con01 p.p1{line-height:20px;font-size:15px;color:#fff;margin-top:44px; text-align:center;overflow:hidden}
+.bqbox .cent .up{width:4rem;height:2rem;position:absolute;left:50%;top:1.16rem;margin-left:-2rem;background: rgba(0,0,0,.7);border-radius:5px;}
+.bqbox .cent .up i{width:0.96rem;height:1.06rem;background:url(../images/buildingThought/icon_up.png) no-repeat;background-size:100%; display:block; margin:0.4rem auto}
+
+
+/*分享*/
+.share-s1{position:fixed;width:100%;left:0;bottom:0;background:rgba(248,248,248,.95);z-index:9999;}
+.share-s1 h2{font-size:16px;color:#83868f;line-height:50px;text-align:center;}
+.share-s1 ul{overflow:hidden;margin-bottom:14px;}
+.share-s1 ul:last-child{margin-bottom:0;}
+.share-s1 li{float:left;width:33.3%;text-align:center;}
+.share-s1 li > a{display:block;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.share-s1 li p{font-size:13px;color:#83868f;line-height:26px;margin-top:3px;}
+.share-s1 i{display:block;width:54px;height:54px;margin:0 auto;background:url(../images/share_icons.png) no-repeat;background-size:162px auto;}
+.share-s1 i.pyq{background-position:0 0;}
+.share-s1 i.wx{background-position:-54px 0;}
+.share-s1 i.qq{background-position:-108px 0;}
+.share-s1 i.zoom{background-position:0 -54px;}
+.share-s1 i.wb{background-position:-54px -54px;}
+.share-s1 i.copy{background-position:-108px -54px;}
+.share-s1 .shareCon{padding:0 7%;}
+.share-s1 .btn{width:100%;height:60px;}
+.share-s1 .btn a{display:block;width:100%;line-height:60px;font-size:15px;color:#3c3f46!important;text-align:center;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.share-s1 img{ pointer-events:none;}
+.share-s2{position:fixed;width:100%;height:100%;left:0;bottom:0;background:rgba(0,0,0,.7);z-index:9999;}
+.share-s2 .share-btn{display:block;width:36%;margin:0 auto;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.share-s2 .share-btn img{width:100%;}
+.share-s2 .pic1{padding-top:3%;margin-bottom:12%;}
+.share-s2 .pic2{width:64%;margin:0 auto;margin-top:10%;}
+.share-s2 .share-b{position:absolute;width:100%;bottom:4%;}
+.share-s2.bg2{background:rgba(0,0,0,.9)}
+.share-s2 .pic3{margin:5% 0 5%;}
+.share-s1 img{ pointer-events:none;}
+@media screen and (max-height: 480px){
+.share-s2 .pic3{width:94%;margin:5% auto;}
+}
+.float-mask {position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0, 0, 0, 0.5);z-index: 9998;opacity: 0;-webkit-transition-duration: .3s;transition-duration: .3s;visibility: hidden;}
+.mask-visible {visibility: visible;opacity: 1;}
+
+/*分享成功*/
+.share-s3{ position: fixed; width: 100%; height: 100%; left: 0; top: 0; background: rgba(0,0,0,.6); z-index: 1000;}
+.share-s3 .share-con{ position: absolute; top: 50%; left: 50%; margin-left: -140px; width: 280px; background: #ffffff; border-radius: 5px; z-index:900; transform: translateY(-50%); -webkit-transform: translateY(-50%);}
+.share-s3 .share-con h2{ text-align:center; font-size:16px; line-height:16px; padding:14px 0; background-color:#f8f8f8; color:#ff6666; border-top-left-radius:5px; border-top-right-radius:5px;}
+.share-s3 .share-con h2 i{ display:inline-block; width:16px; height:16px; margin-right:5px; background:url(../images/icon_ok.png) center no-repeat; background-size:16px auto; vertical-align:-2px;}
+.share-s3 .share-con .tuijian{ margin:20px 13px 0; }
+.share-s3 .share-con .tuijian h4{ color:#83868f; font-size:14px; line-height:1; margin-bottom:5px;}
+.share-s3 .share-con .tuijian li{ border-bottom:1px solid #f4f4f4;}
+.share-s3 .share-con .tuijian li a{ display:block; color:#0c0d0e; font-size:14px; line-height:21px; padding:10px 0;}
+.share-s3 .share-con .share-mores{ height:36px; line-height:36px; margin:20px 30px; border-radius:2px; background-color:#e83b3c; text-align:center;}
+.share-s3 .share-con .share-mores a{ display:block; color:#fff; font-size:14px;}
+.share-s3 .share-con .close{ position:absolute; width:32px; height:32px; top:-16px; right:-14px; background:url(../images/fx-colse.png) center no-repeat; background-size:32px auto; z-index:950;}
+
+.btnhome{position:fixed;right:10px;bottom:22%;width:42px;height:42px;background:url(../images/buildingThought/icon_home.png) no-repeat;background-size:100%;z-index:999;border-radius:50%; overflow:hidden}
+.btnhome a{display:block;}
+
+
+.floatTel{height:0.9rem;width: 100%;}
+.floatTel .bcon{position: fixed; bottom: 0; left: 0; width: 100%;z-index:10000;background-color:rgba(0,0,0,.6);padding:0.1rem 0;}
+
+/*列表*/
+.show{position:absolute;bottom:0;left:0;height:26px;line-height:26px;background:rgba(0,0,0,0.7);color:#fff;width:100%;font-size:12px;text-align:center;}
+.show span{background:url(../images/buildingThought/icon_kai.png) no-repeat left center;background-size:9px 14px;display:inline-block;text-indent:16px;}
+.show span.show_no{background:url(../images/buildingThought/icon_suo.png) no-repeat left center;background-size:9px 14px;display:inline-block;text-indent:16px;}
+/*大感想*/
+.prize{/*position:absolute;top:0;left:0;*/height:0.8rem;line-height:0.8rem;background:rgba(0,0,0,0.4);color:#fff;width:100%;font-size:15px;}
+.icon_prize{float:left;width:0.28rem;height:0.28rem;background:url(../images/buildingThought/icon_lb.png) no-repeat;background-size:100% 100%;margin:0.24rem 0.3rem 0 0.5rem;}
+.text_prize{width;100%;}
+.text_prize li{line-height:0.8rem;float:left;width:100%;}
+.color{color:rgb(253, 207, 56);margin-left:5px;}

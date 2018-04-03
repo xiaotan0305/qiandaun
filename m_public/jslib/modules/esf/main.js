@@ -20,7 +20,7 @@ define('modules/esf/main', ['jquery'], function (require) {
     var preload = [];
     // 插入导航操作js
     // 哥伦布页面不调用头部导航插件 lina 20161130
-    var new2Arr = ['yyhdDetail', 'yyhdOrderInfo', 'yyhdSubmitOrder', 'yykfWT', 'esfzyindex', 'index', 'jhdetail'];
+    var new2Arr = ['yyhdDetail', 'yyhdOrderInfo', 'yyhdSubmitOrder', 'yykfWT', 'esfzyindex', 'index', 'jhdetail', 'jjfList', 'longTailSum', 'longTailHouseList'];
     if ((vars.action === 'detail' && !vars.isBdclo) || new2Arr.indexOf(vars.action) > -1) {
         preload.push('navflayer/navflayer_new2', 'lazyload/1.9.1/lazyload');
     } else {
@@ -31,7 +31,7 @@ define('modules/esf/main', ['jquery'], function (require) {
         vars[$(this).attr('data-id')] = element.value;
     });
     // 判断插入搜索js,加载提示下载APP
-    if (vars.action === 'index' || vars.action === 'esfzyindex') {
+    if (vars.action === 'index' || vars.action === 'esfzyindex' || vars.action === 'jjfList' || vars.action === 'longTailHouseList') {
             preload.push('search/esf/esfSearch');
     }
     //二手房添加
@@ -52,7 +52,7 @@ define('modules/esf/main', ['jquery'], function (require) {
         // 判断是否有新消息，如果有插入新消息处理js
         preload.push('newmsgnum/1.0.0/newmsgnum');
     }
-    if (vars.action && vars.action !== 'esfzyindex') {
+    if (vars.action && vars.action !== 'esfzyindex' && vars.action !== 'wapToApp') {
         // 存在栏目主类时，插入栏目主类js
         preload.push('modules/esf/' + vars.action);
     }
@@ -74,16 +74,38 @@ define('modules/esf/main', ['jquery'], function (require) {
     require.async(preload);
 
     // 如页面有app下载按钮引入appdownload
-    if ($('#down-btn-c').length > 0 || $('.app-down-list').length >0 || $('.app-down-detail').length >0) {
+    if ($('#down-btn-c').length > 0 || $('.app-down-list').length >0 || $('.app-down-detail').length >0 || $('.esfDetailSC') > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
             $('.app-down-list').openApp({position: $('.app-down-list').find('a').attr('data-position')});
             $('.app-down-detail').openApp({position: $('.app-down-detail').find('a').attr('data-position')});
+            $('.esfDetailSC').openApp({position: 'esfDetailSC'});
+            $('.app-down-esfWapToApp').openApp({position: 'esfWapToApp'});
         });
     }
     if ($('.loveshare').length > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('.loveshare').openApp({appUrl: $('.loveshare').attr('data-androidurl'), universalappurl: $('.loveshare').attr('data-iosurl'), position:'loveShare'});
+        });
+    }
+    //打开页面立即跳转,PC租房个人详情页
+    if (vars.action === 'wapToApp' && UA.match(/Android/i) != null) {
+        require.async(['app/1.0.6/pctoapp'], function (pctoapp) {
+            var config = {
+                // 安卓跳转地址
+                url: '//download.3g.fang.com/fang_android_3' + vars.company + '.apk',
+                // appstore 地址
+                appstoreUrl: vars.appstoreUrl,
+                // 版本号,没有用
+                company: vars.company,
+                // 房天下app微信浏览器中应用宝跳转地址
+                wxUrl: vars.wxUrl,
+                // 打开APP规则，例如：waptoapp/{"destination":"home"}
+                appurl: vars.appurl,
+                // 通用连接规则
+                universalappurl: vars.universalappurl,
+            };
+            pctoapp(config).openApp();
         });
     }
     // 执行搜索初始化 (如果有自营标识，加载自营专用搜索) onlyesf :: 自营页面只有二手房入口
@@ -96,7 +118,7 @@ define('modules/esf/main', ['jquery'], function (require) {
             }
             zySearch.init();
         });
-    } else if (vars.action === 'index' || vars.action === 'esfzyindex') {
+    } else if (vars.action === 'index' || vars.action === 'esfzyindex' || vars.action === 'jjfList' || vars.action === 'longTailHouseList') {
         require.async('search/esf/esfSearch', function (EsfSearch) {
             var esfSearch = new EsfSearch();
             if (vars.action === 'detail') {
@@ -139,7 +161,7 @@ define('modules/esf/main', ['jquery'], function (require) {
         require.async(['modules/esf/' + 'index'], function (run) {
             run();
         });
-    } else if (vars.action) {
+    } else if (vars.action && vars.action !== 'wapToApp') {
         require.async(['modules/esf/' + vars.action], function (run) {
             run();
         });
@@ -153,7 +175,7 @@ define('modules/esf/main', ['jquery'], function (require) {
             $window.off('scroll.back');
         }
     });
-    if (vars.action === 'index' || vars.action === 'detail' || vars.action === 'esfzyindex') {
+    if (vars.action === 'index' || vars.action === 'detail' || vars.action === 'esfzyindex' || vars.action === 'jjfList') {
         // 判断登陆状态
         $.get(vars.esfSite + '?c=esf&a=checkLoginMode', function (data) {
             // 登录注册按钮
@@ -168,7 +190,7 @@ define('modules/esf/main', ['jquery'], function (require) {
     // 当为列表页时
     var cityArr = ['bj', 'cd', 'tj', 'wuhan', 'suzhou', 'gz', 'sz', 'sjz', 'sh', 'changchun', 'jn', 'qd', 'zz', 'cq', 'sy', 'hz', 'nanjing', 'cs', 'cz',
         'dg', 'hn', 'hf', 'nc', 'nn', 'nb', 'wuxi', 'xian', 'dl', 'sanya', 'km'];
-    if (vars.action === 'index') {
+    if (vars.action === 'index' || vars.action === 'jjfList') {
         // 加载统计功能代码
         if (vars.jhList) {
             require.async(location.protocol + '//clickm.fang.com/click/new/clickm.js', function () {

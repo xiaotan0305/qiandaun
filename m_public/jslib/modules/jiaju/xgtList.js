@@ -1,7 +1,7 @@
 /**
  * Modified by LXM 2015-9-15
  */
-define('modules/jiaju/xgtList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore'], function (require, exports, module) {
+define('modules/jiaju/xgtList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/1.0.0/loadMore', 'modules/jiaju/yhxw'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -49,32 +49,14 @@ define('modules/jiaju/xgtList', ['jquery', 'lazyload/1.9.1/lazyload', 'loadMore/
         });
 
         // 搜索用户行为收集20160114
-        var page = 'jj_mt^xgtlb_wap';
-        require.async('jsub/_vb.js?c=' + page);
-        require.async('jsub/_ubm.js', function () {
-            _ub.city = vars.cityname;
-            _ub.biz = 'h';
-            _ub.location = vars.ns;
-            var b = 1;
-            var caseStyle = style.find('span').html() === '风格' ? '' : style.find('span').html();
-            var roomType = type.find('span').html() === '功能' ? '' : type.find('span').html();
-            var jubu = word.find('span').html() === '局部' ? '' : word.find('span').html();
-            var pTemp = {
-                'vmg.page': page,
-                'vmh.roomtype': encodeURIComponent(roomType),
-                'vmh.style': encodeURIComponent(caseStyle),
-                'vmh.key': encodeURIComponent(vars.q),
-                'vmh.part': encodeURIComponent(jubu)
-            };
-            var p = {};
-            for (var temp in pTemp) {
-                if (pTemp.hasOwnProperty(temp)) {
-                    if (pTemp[temp]) {
-                        p[temp] = pTemp[temp];
-                    }
-                }
-            }
-            _ub.collect(b, p);
+        var yhxw = require('modules/jiaju/yhxw');
+        yhxw({
+            page: 'jj_mt^xgtlb_wap',
+            type: 1,
+            roomtype: $('#type').text().trim(),
+            style: $('#style').text().trim(),
+            part: $('#word').text().trim(),
+            key: $('#searchtext').text().trim()
         });
     };
 });

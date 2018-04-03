@@ -15,6 +15,7 @@ define('modules/pinggu/iBargin', ['jquery', 'util/util', 'weixin/2.0.0/weixinsha
             document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; expires=' + days;
         };
         var islogin = myCookie.getCookie('sfut');
+
         //****分享内容****
         var shareA = $('.share');
         //微信分享，调用微信分享的插件
@@ -48,51 +49,63 @@ define('modules/pinggu/iBargin', ['jquery', 'util/util', 'weixin/2.0.0/weixinsha
             superShare.share();
         });
 
-        //提示浮层等
-        var moredes = $('#moredes');//砍价详情
+        //****滚动条****//
+        var Swiper = require('swipe/3.10/swiper');
+        var mySwiper = new Swiper('.kjlist', {
+            autoplay: 3000,//可选选项，自动滑动
+            loop:true,
+            direction: 'vertical',
+            autoplayDisableOnInteraction : false,
+            observer:true,
+            observeParents:true,
+        });
+
+        //****提示弹窗等*****//
+        var moredes = $('.deswenan1');//查看更多
         var tologin = $('#tologin');//去登录框
-        var ques = $('#question');//解释权弹窗
-        //点击问号
+        var ques = $('#question');//问号解释
+        //文案详情
+        var resxq = $('.resxq');
+        var wenan1part = $('#wenan1part');
+        //点击问号解释
         $('.doubt').on('click', function (e) {
             e.stopPropagation();
             ques.show();
         })
-        //点击砍价详情
-        $('.desxq').on('click', function () {
+        //点击查看更多
+        moredes.on('click', function () {
             if (islogin) {
-                moredes.show();
+                resxq.show();
+                wenan1part.hide();
             } else {
                 tologin.show();
             }
         });
-        //点击关闭
-        $('.shut').on('click', function(){
-            moredes.hide();
-            tologin.hide();
-            ques.hide();
-        })
         //点击登录
         $('.login').on('click', function(){
             window.location.href = 'https://m.fang.com/passport/login.aspx?burl=' + encodeURIComponent(window.location.href);
         })
-
+        //点击关闭
+        $('.shut').on('click', function(){
+            tologin.hide();
+            ques.hide();
+        })
         //房源详情
         $(".houseList2").on('click', function(){
             window.location.href = vars.detailurl;
         })
 
-        //****点击给我留言按钮操作****
+        //****点击给我留言按钮操作****//
         $('.chat').on('click', function () {
             if (islogin) {
                 var data = $(this).attr('data-chat');
                 var dataArr = data.split(',');
-                chatWeituo(dataArr[0], dataArr[1], dataArr[2], dataArr[3], dataArr[4], dataArr[5]);
+                chatWeituo(dataArr[0], dataArr[1], dataArr[2], dataArr[3], dataArr[4], dataArr[5], dataArr[6], dataArr[7], dataArr[8]);
             } else {
                 tologin.show();
             }
         });
-
-        function chatWeituo(city, housetype, houseid, purpose, type, uname) {
+        function chatWeituo(city, housetype, houseid, purpose, type, uname, groupid, content, link) {
             var paramPurpose = '';
             if ($.trim(purpose) === '写字楼') {
                 paramPurpose = 'xzl';
@@ -101,8 +114,31 @@ define('modules/pinggu/iBargin', ['jquery', 'util/util', 'weixin/2.0.0/weixinsha
             }
             setTimeout(function () {
                 window.location = '/chat.d?m=chat&username=' + uname + '&city=' + city + '&type=wap' + type
-                    + '&houseid=' + houseid + '&purpose=' + paramPurpose + '&housetype=' + housetype;
+                    + '&houseid=' + houseid + '&purpose=' + paramPurpose + '&housetype=' + housetype + '&groupid='
+                    + groupid + '&content=' + content + '&link=' + link;
             }, 500);
         }
+
+        //****点击评估时带入页面数据****//
+        $('.kjpg').on('click', function () {
+            if (vars.localStorage) {
+                // 评估数据
+                var data = {
+                    Forward: vars.forward,
+                    Area: vars.area,
+                    zfloor: vars.zfloor,
+                    Floor: vars.floor,
+                    Room: vars.room,
+                    Hall: vars.hall,
+                    projname: vars.projname,
+                    newcode: vars.plotid,
+                };
+                var jsonStr = JSON.stringify(data);
+                vars.localStorage.setItem('kjpgInfo', jsonStr);
+            }
+            setTimeout(function () {
+                window.location = vars.pingguSite + vars.city + '/';
+            }, 500);
+        });
     }
 });

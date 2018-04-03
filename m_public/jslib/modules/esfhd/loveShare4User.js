@@ -1,13 +1,16 @@
 /**
  * 爱分享活动
  */
-define('modules/esfhd/loveShare4User', ['jquery', 'clipboard/1.0.0/clipboard.min', 'jquerySuperSlide/1.0.0/superSlide', 'weixin/2.0.0/weixinshare', 'superShare/2.0.0/superShare', 'swipe/3.10/swiper','app/1.0.0/appdownload'], function (require, exports, module) {
+define('modules/esfhd/loveShare4User', ['jquery','lazyload/1.9.1/lazyload', 'clipboard/1.0.0/clipboard.min', 'jquerySuperSlide/1.0.0/superSlide', 'weixin/2.0.0/weixinshare', 'superShare/2.0.0/superShare', 'swipe/3.10/swiper','app/1.0.0/appdownload'], function (require, exports, module) {
     'use strict';
     module.exports = function (option) {
         // jquery库
         var $ = require('jquery');
         // 页面传入的参数
         var vars = seajs.data.vars;
+
+        require('lazyload/1.9.1/lazyload');
+        $('.lazyload').lazyload();
 
         //****分享内容****
         var shareA = $('.share');

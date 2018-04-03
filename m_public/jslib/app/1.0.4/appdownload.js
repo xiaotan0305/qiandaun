@@ -191,6 +191,12 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31320.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1368630199001'
                             },
+                            //问答详情页中间第3个答案下面的下载按钮
+                            askDetailBtn: {
+                                company: 1355, /*1320*/
+                                appUrl: '//download.3g.fang.com/fang_android_31355.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1387221684515'
+                            },
                             // 二手房搜房帮详情页按钮
                             esfdetail: {
                                 company: 1312,

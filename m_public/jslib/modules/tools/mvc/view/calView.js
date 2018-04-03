@@ -179,12 +179,13 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
         + '<dl v-show="showXf"><dt class="green-i"><span>契税：</span></dt><dd><span>{{qTaxs}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt class="green-i"><span>契税：</span></dt><dd><span>{{qTax}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt class="blue-i" ><span>增值税：</span></dt><dd><span>{{yhTax}}</span>元</dd></dl>'
-        + '<dl v-show="showEsf"><dt class="pink-i"><span>印花税：</span></dt><dd><span>{{individualTax}}</span>元</dd></dl>'
-        + '<dl v-show="showXf"><dt class="pink-i"><span>合同工本费：</span></dt><dd><span>{{htgbTax}}</span>元</dd></dl>'
+        + '<dl v-show="showYh"><dt class="pink-i"><span>印花税：</span></dt><dd><span>{{individualTax}}</span>元</dd></dl>'
+        + '<dl v-show="showXf"><dt class="org-i"><span>合同工本费：</span></dt><dd><span>{{htgbTax}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt class="yellow-i" ><span>个人所得税：</span></dt><dd><span>{{stamptax}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt class="org-i" ><span>工本印花税：</span></dt><dd><span>{{costtax}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt class="pink-r-i" ><span>综合地价款：</span></dt><dd><span>{{Syntheticaltax}}</span>元</dd></dl>'
         + '<dl v-show="showXf"><dt class="blue-i" ><span>维修基金：</span></dt><dd><span>{{wxjjTax}}</span>元</dd></dl>'
+        + '<dl v-show="showTdcrj"><dt class="red-i"><span>土地出让金：</span></dt><dd><span>{{tdcrjTax}}</span>元</dd></dl>'
         + '<dl v-show="showXf"><dt class="yellow-i" ><span>权属登记费：</span></dt><dd><span>{{qsdjTax}}</span>元</dd></dl>'
         + '<dl v-show="showXf"><dt><span>税金总额：</span></dt><dd><span>{{taxTotal}}</span>元</dd></dl>'
         + '<dl v-show="showEsf"><dt><span>税金总额：</span></dt><dd><span>{{total}}</span>元</dd></dl></div>'
@@ -200,17 +201,18 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                 stamptax: '',
                 Syntheticaltax: '',
                 total: '',
-
+                showYh:true,
+                showTdcrj:true,
                 totalPrice: '',
                 gzMoney: '',
                 sxMoney: '',
                 taxTotal: '',
-
                 qTaxs: '',
                 yhTax: '',
                 htgbTax:'',
                 wxjjTax:'',
-                qsdjTax:''
+                qsdjTax:'',
+                tdcrjTax:''
             };
         },
         events: {
@@ -223,16 +225,20 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                     this.showEsf = true;
                     this.housePrice = data.housePrice;
                     this.qTax = data.qTax;
+                    this.showYh = true;
                     this.yhTax = data.yhTax;
                     this.individualTax = data.individualTax;
                     this.stamptax = data.stamptax;
                     this.costtax = data.costtax;
                     this.Syntheticaltax = data.Syntheticaltax;
                     this.total = data.total;
+                    this.tdcrjTax = data.tudichurangjin;
+                    this.showTdcrj = data.tudichurangjin !== undefined;
                 }else {
                     this.showXf = true;
                     this.showEsf = false;
                     this.totalPrice = data.totalPrice;
+                    this.showTdcrj = false;
                     //this.gzMoney = data.gzMoney;
                     //this.sxMoney = data.sxMoney;this.taxTotal = data.taxTotal;
                     this.qTaxs = data.qTaxs;
@@ -241,7 +247,8 @@ define('view/calView',['view/resultCom','util/common'], function (require) {
                     this.wxjjTax = data.wxjjTax;
                     this.qsdjTax = data.qsdjTax;
                     this.taxTotal = data.taxTotal;
-
+                    this.showYh = data.yinhuashui !== undefined;
+                    this.individualTax = data.yinhuashui;
                 }
                 // 页面滚动
                 // $(document).scrollTop(320);

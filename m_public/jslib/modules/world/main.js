@@ -28,7 +28,7 @@ define('modules/world/main', ['jquery', 'search/world/worldSearch'], function (r
     if (bua.indexOf('miuiyellowpage') > -1) {
         preload.push('miuiYellowPage/miuiYellowPage');
     }
-    if (vars.action !== '' && $.inArray(vars.action, ['service', 'aftermarketService', 'worldProcess', 'askDetail']) === -1) {
+    if (vars.action !== '' && $.inArray(vars.action, ['worldProcess', 'askDetail']) === -1) {
         preload.push('modules/world/' + vars.action);
     } else if (vars.action === 'askDetail') {
         preload.push('modules/world/' + vars.action, 'modules/world/maiMa');
@@ -67,7 +67,7 @@ define('modules/world/main', ['jquery', 'search/world/worldSearch'], function (r
     require.async(['count/loadforwapandm.min.js']);
     require.async(['count/loadonlyga.min.js']);
     // 加载各方法js
-    if (vars.action !== '' && $.inArray(vars.action, ['service', 'aftermarketService', 'worldProcess']) === -1) {
+    if (vars.action !== '' && $.inArray(vars.action, ['worldProcess']) === -1) {
         require.async(['modules/world/' + vars.action], function (run) {
             if (typeof run === 'function') {
                 run();

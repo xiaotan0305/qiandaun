@@ -311,19 +311,6 @@ define('modules/index/coop', ['jquery', 'util/util', 'modules/index/locate', 'sw
                     });
                     var arr = [xfScores, esfScores, zfScores];
                     var index = arr.indexOf(Math.max.apply(Math, arr));
-                    // 设置默认展示项目
-                    if (xfScores || esfScores || zfScores) {
-                        var toList = houseList.eq(index);
-                        channelTab.eq(index).addClass('active').siblings().removeClass('active');
-                        houseList.not(toList).hide();
-                        toList.show();
-                        toList.find('img.likeLazyload').lazyload();
-                        // 设置默认自营跳转页面地址
-                        // 判断是不是xfScores
-                        if (!index) {
-                            $('#wapdsy_D02_01_05').attr('href', vars.mainSite + 'xf/' + vars.city + '/?type=xfzy&hf=tab');
-                        }
-                    }
                     // 新房
                     ajaxData.coType = 'xf';
                     $.get('/main.d?m=xiHuanLouPanList', ajaxData, function (result) {

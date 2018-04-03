@@ -1,0 +1,25 @@
+*{padding:0;margin:0;border:0;font-style:normal;list-style:none;}
+html,body{height:100%}
+body{text-align:center;margin:0;background:url(../images/bg.png);font:12px MicroSoft YaHei, Arial;color:#999;}
+a{color:#999;text-decoration:none;}
+img{max-width:750px;width:100%;vertical-align:top;}
+.banner{position:relative;max-width:750px;width:100%;margin:0 auto;}
+.banner span{position:absolute;opacity:0;}
+.banner span.tag1{width:13.2%;left:37.9%;top:3.3%;}
+.banner span.tag2{width:9.6%;left:64.1%;top:17.7%;}
+.banner span.tag3{width:8.7%;left:23.3%;top:14.5%;}
+.banner span.tag4{width:8.3%;left:55.3%;top:50%;}
+.banner span.text{width:89.2%;height:5.85%;left:5.6%;top:87%;opacity:1;text-align:left;}
+.banner span.text img{width:0;height:100%;}
+.list{max-width:750px;margin:0 auto;padding:0 15px 13.9% 15px;overflow:hidden;}
+.list li{padding:15px 0;width:100%;border-bottom:solid 1px #333;line-height:20px;}
+.list li dt{float:left;width:108px;}
+.list li dd{padding-left:118px;text-align:left;}
+.list li dd font{display:block;font-size:14px;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin:-2px 0 5px 0;}
+.list li dd i{margin-right:10px;}
+.list li dd b{float:right;color:#EB2F33;font-size:13px;}
+.list li dd em{float:right;}
+.list li dd span{display:inline-block;line-height:16px;margin:3px 5px 0 0;padding:0 3px;}
+.list li dd span.red{border:solid 1px #E94F5D;color:#E94F5D;}
+.list li dd span.yellow{border:solid 1px #F7C32D;color:#F7C32D;}
+.btn{position:fixed;bottom:0;left:0;width:95.6%;padding:2.2%;background:url(../images/bg.png);display:none;}

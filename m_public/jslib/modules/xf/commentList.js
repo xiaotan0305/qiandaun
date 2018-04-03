@@ -115,52 +115,9 @@ define('modules/xf/commentList',
                 return content;
             }
         }
-        // 点击发表按钮
-        $('#gradelist').on('click', '.fasong', function () {
-            var $this = $(this);
-            $(this).attr('disabled', true);
-            var content = checkContent($(this).siblings('.ipt-comm'));
-            if (!content) {
-                $this.removeAttr('disabled');
-            } else {
-                var ids = $this.attr('name');
-                var tid = '', fid = '';
-                tid = ids.split('_')[0];
-                fid = ids.split('_')[2];
-                $.post('/xf.d?m=makeHf',
-                    {
-                        newcode: vars.paramId,
-                        city: vars.paramcity,
-                        userid: userid,
-                        username: encodeURIComponent(username),
-                        content: encodeURIComponent(content),
-                        tid: tid,
-                        fid: fid
-                    },
-                    function (data) {
-                        if (data) {
-                            document.removeEventListener('touchmove',removeTouch);
-                            // 移除评论按钮不能点击的功能
-                            $iptsub.removeAttr('disabled');
-                            if (data.root.result === '100') {
-                                // 清空输入框
-                                $('.ipt-comm').html('');
-                                $this.addClass('disabled');
-                                zhanshihuifu(tid);
-                                var $anametid = $($('a[name=' + ids + ']')[0]);
-                                $anametid.focus();
-                                $anametid.html($anametid.text() * 1 + 1);
-                                $boxshaow.hide();
-                                $blackback.hide();
-                            } else {
-                                alert(data.root.message);
-                            }
-                        }
-                    });
-            }
-        });
+       
         // 点赞、回复、更多
-        $('#gradelist .comment-list').on('click', '.comment-sum a', function () {
+        $('#gradelist .comment-list').on('click', '.comment-sum .dianzan', function () {
             var $this = $(this);
             if (checkLogin()) {
                 // 点赞
@@ -194,45 +151,11 @@ define('modules/xf/commentList',
                         alert('亲，您已经点过了~');
                     }
                     // 回复
-                } else if ($this.hasClass('huifu')) {
-                    if ($(this).parents('li').find('.comment-list-c').hasClass('none')) {
-                        $(this).parents('li').find('.comment-list-c').removeClass('none');
-                    } else {
-                        $(this).parents('li').find('.comment-list-c').addClass('none');
-                    }
-                    var ids = $this.attr('name');
-                    $iptsub.attr('name', ids);
-                    $('#txtinput').focus();
-                    if ($this.hasClass('reply')) {
-                        var oname = ids.split('_')[1];
-                        var onameIdx = clicked.indexOf(oname);
-                        if (onameIdx < 0) {
-                            zhanshihuifu(oname);
-                            clicked.push(oname);
-                        } else {
-                            clicked.splice(onameIdx, 1);
-                            $('.' + oname).empty().hide();
-                        }
-                    }
-                    canLoad = false;
-                }
+                } 
             }
         });
 
-        // 回复div获取焦点
-        $('#gradelist').on('click', '.ipt-comm', function () {
-            if ($(this).html() == '说点什么吧') {
-                $(this).html('').css('color', 'black');
-            }
-        });
-        // 输入
-        $('#gradelist').on('input change', '.ipt-comm', function () {
-            if ($(this).html() && $(this).html() != '说点什么吧') {
-                $(this).siblings('.fasong').removeClass('disabled');
-            } else {
-                $(this).siblings('.fasong').addClass('disabled');
-            }
-        });
+       
 
         // 点击评论人跳转
         $('#gradelist').find('.comment-list').on('click', 'dd[name="hiscomment"]', function () {
@@ -411,13 +334,8 @@ define('modules/xf/commentList',
 
         // 点击文字与点击显示更多的作用相同
         $('#gradelist').on('click', '.comment-text', function () {
-            var $this = $(this);
-            if (!$this.hasClass('isShowAll')) {
-                // 显示全部内容 更多按钮隐藏
-                $this.attr('style','');
-                $this.addClass('isShowAll');
-                $this.siblings('.comment-more').hide();
-            }
+        	var $this = $(this);
+			window.location.href = $this.attr('data-href');
         });
 
         /*

@@ -2,7 +2,7 @@
  * Created by Young on 15-7-26.
  * Modified by zdl on 15-9-10.
  */
-define('modules/jiaju/visitGd', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jiaju/loadnewmore', 'iscroll/1.0.0/iscroll', 'lazyload/1.9.1/lazyload'],
+define('modules/jiaju/visitGd', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/jiaju/loadnewmore', 'iscroll/1.0.0/iscroll', 'lazyload/1.9.1/lazyload', 'modules/jiaju/yhxw'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -63,38 +63,18 @@ define('modules/jiaju/visitGd', ['jquery', 'lazyload/1.9.1/lazyload', 'modules/j
             $('#notfound').on('click', function () {
                 window.location.reload();
             });
-            // 搜索用户行为收集20160114
-            var page = 'mjjsitelist';
-            var room = $('#room');
-            var stage = $('#stage');
-            require.async('jsub/_vb.js?c=' + page);
-            require.async('jsub/_ubm.js', function () {
-                _ub.city = vars.cityname;
-                // 业务---h代表家居
-                _ub.biz = 'h';
-                // 家居不分南北方，都传0
-                _ub.location = 0;
-                // 用户动作（浏览0、打电话31、在线咨询24、分享22、收藏21）
-                var b = 1;
-                var price = ['', '0-2', '2-4', '4-6', '6-10', '10-15', '15-20', '20-99999'];
-                var pTemp = {
-                    'vmg.page': page,
-                    'vmh.order': encodeURIComponent($('#orderby').text()),
-                    'vmh.housetype': room.text() === '户型' ? '' : encodeURIComponent(room.text()),
-                    'vmh.totalprice': price[vars.pricetype],
-                    'vmh.state': stage.text() === '状态' ? '' : encodeURIComponent(stage.text()),
-                    'vmh.key': encodeURIComponent(vars.q)
-                };
-                var p = {};
-                // 若pTemp中属性为空或者无效，则不传入p中
-                for (var temp in pTemp) {
-                    if (pTemp[temp]) {
-                        p[temp] = pTemp[temp];
-                    }
-                }
-                // 用户行为(格式：'字段编号':'值')
-                // 收集方法
-                _ub.collect(b, p);
+
+            // 用户行为
+            var yhxw = require('modules/jiaju/yhxw');
+            var price = ['', '0-2', '2-4', '4-6', '6-10', '10-15', '15-20', '20-99999'];
+            yhxw({
+                page: 'mjjsitelist',
+                type: 1,
+                order: $('#orderby').text().trim(),
+                housetype: $('#room').text().trim(),
+                decstate: $('#stage').text().trim(),
+                totalprice: price[vars.pricetype],
+                key: vars.q
             });
         };
     });

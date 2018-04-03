@@ -133,8 +133,8 @@ background:-o-linear-gradient(top, rgba(95,109,177,.2), rgba(95,109,177,1)); }
 .page-6 .btn > a.tel{background:#fff;color:#7278ff!important;line-height:.9rem;padding:.6rem .5rem;}
 .page-6 .btn > a.tel span:before{background:url(../images/h5-share/icon_tel2.png) left center no-repeat;background-size:.8rem auto;}
 .page-6 .btn > a.fav{background:#7278ff;border:1px solid #fff;color:#ffffff!important;line-height:2rem;}
-.page-6 .btn > a.fav span:before{background:url(../images/h5-share/icon_fav2.png) 0 0 no-repeat;background-size:.8rem auto;}
-.page-6 .btn > a.fav.on span:before{background:url(../images/h5-share/icon_fav.png) 0 -.8rem no-repeat;background-size:.8rem auto;}
+/*.page-6 .btn > a.fav span:before{background:url(../images/h5-share/icon_fav2.png) 0 0 no-repeat;background-size:.8rem auto;}
+.page-6 .btn > a.fav.on span:before{background:url(../images/h5-share/icon_fav.png) 0 -.8rem no-repeat;background-size:.8rem auto;}*/
 .fav-per{position:relative;margin:0 0 0 .4rem;text-align:left;margin-top:.75rem;padding-left:1.3rem;padding-right:1.1rem;}
 .fav-per:before{position:absolute;content:'';width:.8rem;height:.8rem;left:0;top:50%;margin-top:-.4rem;background:url(../images/h5-share/icon_fav2.png) no-repeat;background-size:100% auto;}
 .fav-in{position:static;height:1.5rem;overflow:hidden;}
@@ -337,3 +337,79 @@ background:-o-linear-gradient(top, rgba(95,109,177,.2), rgba(95,109,177,1)); }
     75%{opacity:1;-webkit-transform:scale(1.25);-ms-transform:scale(1.25);-o-transform:scale(1.25);transform:scale(1.25)}
     100%{opacity:1;-webkit-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1)}
 }
+/*0124*/
+.tel-box .tel{height:2rem;background:#ffffff;border-radius:1.05rem;}
+.tel-box .tel em{padding-left:.9rem;background:url(../images/h5-share/icon_tel3.png) left center no-repeat;background-size:.8rem auto;font-style:normal;white-space:nowrap;color:#333}
+.tel-box .share{width:2.1rem;height:2.1rem;border-radius:50%;  }
+.tel-box .share i{width:0.85rem;height:0.85rem;background:url(../images/h5-share/sh.png) no-repeat;background-size:1.7rem; display:block; margin:0.575rem auto 0}
+.tel-box .share.on,.tel-box .zan.on{ background:#fff}
+.tel-box .share.on i{width:0.85rem;height:0.85rem;background:url(../images/h5-share/sh.png) no-repeat;background-size:1.7rem; background-position:-0.85rem 0}
+.tel-box .flexbox > div:nth-child(2),.tel-box .flexbox > div:nth-child(3){box-flex:0; -webkit-box-flex:0; -moz-box-flex:0; -ms-box-flex:0;margin-left:.3rem;}
+.tel-box .zan{width:2.1rem;height:2.1rem;border-radius:50%;position: relative;  }
+.tel-box .zan i{width:0.85rem;height:0.85rem;background:url(../images/h5-share/zan.png) no-repeat;background-size:1.7rem; display:block; margin:0.575rem auto 0}
+.tel-box .zan.on i,.tel-box .zan.num.on i{width:0.85rem;height:0.85rem;background:url(../images/h5-share/zan.png) no-repeat;background-size:1.7rem; background-position:-0.85rem 0}
+
+.tel-box .zan.num i{width:0.85rem;height:0.85rem;background:url(../images/h5-share/zan.png) no-repeat;background-size:1.7rem; display:block; margin:0.3rem auto 0}
+.tel-box .zan.num p{line-height:20px;font-size:10px;color:#333; text-align:center;}
+
+
+
+
+.tel-box .zan.on b{position:absolute;font-style:normal;opacity:0;-webkit-transform:translateY(-13660%);transform:translateY(-16630%);-webkit-animation:addone 1s linear;animation:addone 1s linear; font-weight:normal;color:#c00;}
+@-webkit-keyframes addone {
+  0% {opacity: 1;-webkit-transform: translateY(-40%);}
+  100% {opacity: .3;-webkit-transform: translateY(-130%);}
+}
+@keyframes addone {
+  0% {opacity: 1;transform: translateY(-40%);}
+  100% {opacity: .3;transform: translateY(-130%);}
+}
+/* pulse */
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+            transform: scale3d(1.5, 1.5, 1.5);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+            transform: scale3d(1.5, 1.5, 1.5);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  -webkit-animation-name: pulse;
+          animation-name: pulse;
+ 	-webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.page-6 .btn > a.fav span:before{background:url(../images/h5-share/zan.png) 0 0 no-repeat;background-size:1.7rem auto;}
+.page-6 .btn > a.fav.on span:before{background:url(../images/h5-share/zan.png) no-repeat;background-size:1.7rem auto;background-position:-0.85rem 0}
+.page-6 .btn > a.fav span:before{position:absolute;content:'';width:.85rem;height:.85rem;left:0;top:50%;margin-top:-.5rem;}
+

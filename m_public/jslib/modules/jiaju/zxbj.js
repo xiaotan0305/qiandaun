@@ -2,7 +2,7 @@
  * Created by LXM on 15-3-16.
  * 单量更改于2015-9-9
  */
-define('modules/jiaju/zxbj', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload'], function (require, exports, module) {
+define('modules/jiaju/zxbj', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9.1/lazyload', 'modules/jiaju/yhxw'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -42,53 +42,22 @@ define('modules/jiaju/zxbj', ['jquery', 'loadMore/1.0.0/loadMore', 'lazyload/1.9
             });
         });
 
-        // 搜索用户行为收集20160114
-        var page = 'mjjvolumelist';
-        require.async('jsub/_vb.js?c=' + page);
-        require.async('jsub/_ubm.js', function () {
-            _ub.city = vars.cityname;
-            // 所在城市（中文）;
-            _ub.biz = 'h';
-            _ub.location = vars.ns || 0;
-            // 方位 ，网通为0，电信为1，如果无法获取方位，记录0
-
-            var b = 1;
-            var caseRoom = $.trim($('#room span').text());
-            var caseStyle = $.trim($('#style span').text());
-            var caseArea = $.trim($('#area span').text());
-            var casePrice = vars.m_4.replace(/\^0?/, function (result) {
-                if (result === '^') {
-                    return '-';
-                }
-                return '-99999';
-            });
-            if (caseRoom === '户型') {
-                caseRoom = '';
+        // 用户行为
+        var yhxw = require('modules/jiaju/yhxw');
+        var casePrice = vars.m_4.replace(/\^0?/, function (result) {
+            if (result === '^') {
+                return '-';
             }
-            if (caseStyle === '风格') {
-                caseStyle = '';
-            }
-            if (caseArea === '建筑面积') {
-                caseArea = '';
-            }
-
-            var pTemp = {
-                'vmh.key': encodeURIComponent(vars.q),
-                'vmg.page': page,
-                'vmh.housetype': encodeURIComponent(caseRoom),
-                'vmh.style': encodeURIComponent(caseStyle),
-                'vmh.area': encodeURIComponent(caseArea),
-                'vmh.totalprice': encodeURIComponent(casePrice)
-            };
-            var p = {};
-            for (var temp in pTemp) {
-                if (pTemp[temp]) {
-                    p[temp] = pTemp[temp];
-                }
-            }
-            _ub.collect(b, p);
+            return '-99999';
         });
-        // end 搜索用户行为收集20160114
-        
+        yhxw({
+            page: 'mjjvolumelist',
+            type: 1,
+            key: vars.q,
+            style: $.trim($('#style span').text()),
+            housetype: $.trim($('#room span').text()),
+            area: $.trim($('#area span').text()),
+            totalprice: casePrice
+        });
     };
 });

@@ -2,7 +2,8 @@
  * 二手房列表页主类
  * 20151223 liuxinlu 删除部分废旧无用代码，优化筛选所有操作，添加删选新样式。
  */
-define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox', 'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider'],
+define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox',
+    'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -51,7 +52,7 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
             } else if (vars.purpose === '商铺') {
                 var pageId = 'esf_fy^splb_wap';
             }
-            yhxw({pageId: pageId});
+            yhxw({pageId: pageId, type: 1});
             // swipe插件
             var Swiper = require('swipe/3.10/swiper');
             // 解决遮挡问题
@@ -290,6 +291,9 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                     }
                     if (vars.hasOwnProperty('utm_term') && vars.utm_term.length) {
                         url = url + '&utm_term=' + vars.utm_term;
+                    }
+                    if (vars.hasOwnProperty('hjzy') && vars.hjzy.length) {
+                        url = url + '&hjzy=esf';
                     }
                     // 小区详情页跳二手房列表页（xm页/esf/bj_xm）关键参数（src、projcodes）lipengkun 20160712
                     if (vars.src === 'xiaoqu') {
@@ -785,6 +789,9 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                 if (vars.src === 'xiaoqu') {
                     urlvalue += '&src=' + vars.src + '&projcodes=' + vars.projcodes;
                 }
+                if (vars.hjzy) {
+                    urlvalue += '&hjzy=esf';
+                }
                 window.location = urlvalue;
                 return true;
             }
@@ -990,6 +997,9 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                 // 小区详情页跳二手房列表页（xm页/esf/bj_xm）关键参数（src、projcodes）lipengkun 20160712
                 if (vars.src === 'xiaoqu') {
                     selAllUrl = selAllUrl + '&src=' + vars.src + '&projcodes=' + vars.projcodes;
+                }
+                if (vars.hasOwnProperty('hjzy') && vars.hjzy.length) {
+                    selAllUrl = selAllUrl + '&hjzy=esf';
                 }
                 window.location = selAllUrl;
             });
@@ -1320,6 +1330,9 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                     url = url + '&propertysubtype=' + vars.propertysubtype;
                     flaggang = true;
                 }
+                if (vars.hasOwnProperty('hjzy') && vars.hjzy) {
+                    url += '&hjzy=esf';
+                }
                 url = url.replace('/&', '/?');
                 window.location = url;
             });
@@ -1501,6 +1514,9 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                 if (thisType === '别墅' && vars.buildclass) {
                     url = url + '&buildclass=' + vars.buildclass;
                 }
+                if (vars.hjzy) {
+                    url = url + '&hjzy=esf';
+                }
                 url = url.replace('/&', '/?');
                 window.location = url;
             });
@@ -1536,6 +1552,36 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                     type: 'post',
                     url: window.location.protocol + '//esfbg.3g.fang.com/top100.htm',
                     data: vars.top100
+                });
+            }
+
+            // 回家置业分享
+            if (vars.hjzy) {
+                var SuperShare = require('superShare/1.0.1/superShare');
+                var config = {
+                    // 分享内容的title
+                    title: vars.shareTitle,
+                    // 分享时的图标
+                    image: window.location.protocol + vars.shareImage,
+                    // 分享内容的详细描述
+                    desc: vars.shareDescription,
+                    // 分享的链接地址
+                    url: location.href,
+                    // 分享的内容来源
+                    from: ' 房天下' + vars.cityname + '二手房'
+                };
+                new SuperShare(config);
+
+                // 微信分享
+                var Weixin = require('weixin/2.0.0/weixinshare');
+                var wx = new Weixin({
+                    debug: false,
+                    shareTitle: vars.shareTitle,
+                    // 副标题
+                    descContent: vars.shareDescription,
+                    lineLink: location.href,
+                    imgUrl: window.location.protocol + vars.shareImage,
+                    swapTitle: false
                 });
             }
         };

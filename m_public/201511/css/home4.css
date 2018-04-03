@@ -562,3 +562,61 @@ html{ font-size: 31x;}
 .mapbox dd{text-align:center;box-flex:0; -webkit-box-flex:0;padding:0 14px;margin-left:14px;line-height:1;}
 .mapbox dd .link{font-size:12px;color:#3c3f46!important}
 .mapbox dd i{display:inline-block;width:37px;height:37px;margin:8px 0 2px;background:url(../images/home_map_icon.png) no-repeat;background-size:100%;}
+
+/*排行弹层*/
+.hotOut{position:fixed;width:100%;top:0;bottom:0;left:0;background:rgba(0,0,0,.6);z-index:9999;}
+.hotOut > div{position:absolute;width:80%;height:378px;left:10%;top:50%;margin-top:-170px;background:#fff;border-radius:10px;}
+.hotOut .close{position:absolute;width:28px;height:28px;top:-60px;right:15px;background:#fff url(../images/home_out_close.png) center center no-repeat;background-size:10px;border-radius:50%;}
+.hotOut .close:after{content:'';position:absolute;width:2px;height:34px;background:#fff;bottom:-34px;left:50%;margin-left:-1px;}
+.hotOut .pre{position:absolute;width:16px;height:30px;top:50%;margin-top:-10px;left:-28px;background:url(../images/home_out_pre.png) no-repeat;background-size:100%;}
+.hotOut .next{position:absolute;width:16px;height:30px;top:50%;margin-top:-10px;right:-28px;background:url(../images/home_out_next.png) no-repeat;background-size:100%;}
+.hotOut .pointBox{position:absolute;text-align:center;bottom:-30px;width:100%;}
+.hotOut .pointBox span{display:inline-block;width:10px;height:10px;background:#fff;border-radius:50%;overflow:hidden;margin:0 7px;}
+.hotOut .pointBox span.cur{background:#ff5350!important;}
+.hotoutCon{width:100%;height:100%;overflow:hidden;}
+.hotoutBox{padding:22px;overflow:hidden;}
+.hotoutBox h2{font-size:21px;color:#0c0d0e;text-align:center;font-weight:600;line-height:29px;margin-bottom:22px;}
+.hotoutBox h2 .hb{display:inline-block;width:19px;height:22px;background:url(../images/home_out_hb.png) no-repeat;background-size:100%;vertical-align:-4px;margin-left:5px;}
+.hotoutBox li{float:left;}
+.hotoutList div{float:left;}
+.hotoutList div:nth-child(1){width:15%;}
+.hotoutList div:nth-child(2){width:46%;}
+.hotoutList div:nth-child(3){width:39%;text-align:right;}
+.hotoutList div:nth-child(1) span{display:block;width:20px;height:20px;text-align:center;line-height:20px;font-size:14px;color:#fff;border-radius:50%;background:#cccfd8;margin-top:15px;}
+.hotoutList dt{height:28px;line-height:28px;background:#f8f8f8;font-size:14px;color:#565c67;white-space:nowrap;overflow:hidden;margin-bottom:5px;}
+.hotoutList dt div:nth-child(3){padding-right:5px;}
+.hotoutList dd{position:relative;overflow:hidden;}
+.hotoutList dd:after{content:'';position:absolute;height:1px;background:#f8f8f8;left:15%;right:0;bottom:0;}
+.hotoutList dd:last-child:after{display:none;}
+.hotoutList dd:nth-of-type(1) div:nth-child(1) span,.hotoutList dd:nth-of-type(2) div:nth-child(1) span,.hotoutList dd:nth-of-type(3) div:nth-child(1) span{background:#ff5350;}
+.hotoutList dd > a{display:block;}
+.hotoutList dd div{height:50px;line-height:50px;overflow:hidden;}
+.hotoutList dd div:nth-child(2){font-size:16px;color:#0c0d0e;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.hotoutList dd div:nth-child(3){font-size:15px;color:#ff5757;font-weight:600;}
+.fldowcon{position: absolute;top:50%;left:50%;width:240px;height:267px; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%);transform: translate(-50%, -50%); background:#fff;border-radius:5px;}
+.fldowcon .close{width:14px;height:14px;background:url(../images/close_ts.png) no-repeat;background-size:14px;position: absolute;top:12px;right:12px;}
+.fldowcon .tpic{width:113px;height:86px;background:url(../images/fang25.png) no-repeat;background-size:113px;position: absolute;top:-44px;left:69px;}
+.fldowcon .tit{ text-align:center;margin-top:75px;}
+.fldowcon .tit img{ width:125px}
+.fldowcon p.p1{font-size:13px;color:#3c3f46;line-height:18px; text-align:center;margin-top:20px;}
+.fldowcon .btn{width:164px;height:40px;line-height:40px; text-align:center;font-size:15px;color:#fff;background:#d64242;border-radius:18px; margin:30px auto 0; display:block}
+
+/*2018新年特别icon*/
+.nav-icons .ny1 i{background-image: url(../images/home_newyear2.png);background-position: 0 0;background-color:transparent!important;}
+.nav-icons .ny2 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem 0px;background-color:transparent!important;}
+.nav-icons .ny3 i{background-image: url(../images/home_newyear2.png);background-position: -5rem 0px;background-color:transparent!important;}
+.nav-icons .ny4 i{background-image: url(../images/home_newyear2.png);background-position: -7.5rem 0px;background-color:transparent!important;}
+.nav-icons .ny5 i{background-image: url(../images/home_newyear2.png);background-position: -10rem 0px;background-color:transparent!important;}
+.nav-icons .ny6 i{background-image: url(../images/home_newyear2.png);background-position: 0 -2.5rem;background-color:transparent!important;}
+.nav-icons .ny7 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny8 i{background-image: url(../images/home_newyear2.png);background-position: -5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny9 i{background-image: url(../images/home_newyear2.png);background-position: -7.5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny10 i{background-image: url(../images/home_newyear2.png);background-position: -10rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny11 i{background-image: url(../images/home_newyear2.png);background-position: 0 -5rem;background-color:transparent!important;}
+.nav-icons .ny12 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem -5rem;background-color:transparent!important;}
+
+/*租房弹层*/
+.zu-out{position:fixed;width:100%;top:0;bottom:0;left:0;background:rgba(0,0,0,.6);z-index:9999;}
+.zu-out > div{position:fixed;width:78%;left:11%;top:16%;padding-bottom:104%;background:url(../images/home_zu_out.png) no-repeat;background-size:101%;}
+.zu-out .btn{position:absolute;display:block;left:12px;right:12px;bottom:6%;height:44px;line-height:44px;font-size:16px;color:#e83028!important;text-align:center;background:#f7d059;border-radius:3px;}
+.zu-out .close{position:absolute;width:29px;height:29px;left:50%;margin-left:-15px;bottom:-16%;background:url(../images/home_zu_close.png) no-repeat;background-size:100%;}

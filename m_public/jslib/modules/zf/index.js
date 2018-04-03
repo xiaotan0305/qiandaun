@@ -79,7 +79,7 @@ define('modules/zf/index', ['jquery', 'modules/zf/yhxw', 'slideFilterBox/1.0.0/s
             } else if (vars.purpose === '商铺') {
                 var pageId = 'zf_fy^splb_wap';
             }
-            yhxw({pageId: pageId});
+            yhxw({pageId: pageId, type: 1});
             /**
              *阻止浏览器默认事件
              * @param e 浏览器默认事件

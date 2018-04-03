@@ -11,7 +11,8 @@ define('modules/jiaju/firmList', [
     'modules/map/API/BMap',
     'superShare/2.0.0/superShare',
     'weixin/2.0.1/weixinshare',
-    'modules/jiaju/yhxw'
+    'modules/jiaju/yhxw',
+    'modules/jiaju/IconStar'
 ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
@@ -34,6 +35,8 @@ define('modules/jiaju/firmList', [
         var btnConfirm = $('.btnConfirm');
         var filterBox = $('#filterBox');
         var choiceObj = {};
+        // 评分
+        var IconStar = require('modules/jiaju/IconStar');
         pageInit();
 
         /**
@@ -52,6 +55,8 @@ define('modules/jiaju/firmList', [
             choiceInitFn();
             // 绑定页面dom元素事件
             eventInit();
+            // 评分星星
+            new IconStar();
         }
 
         /*
@@ -143,7 +148,10 @@ define('modules/jiaju/firmList', [
                 // 数据加载过来的html字符串容器
                 contentID: '#content',
                 loadingTxt: '努力加载中...',
-                loadAgoTxt: '点击加载更多...'
+                loadAgoTxt: '点击加载更多...',
+                callback: function (data) {
+                    new IconStar('ico-star', 'data-score', $(data));
+                }
             });
         }
 

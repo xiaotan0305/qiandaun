@@ -338,6 +338,79 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             });
         }
 
+        if (vars.fromsource === 'jjfdetail') {
+            if (vars.jsJjfDatacount && vars.jsJjfDatacount == 1) {
+                var jsJjfDatacount = 1;
+                var showrun = 1; //用来标记非1的时候不画图
+            } else if (vars.jsJjfDatacount && vars.jsJjfDatacount < 6) {
+                var jsJjfDatacount = vars.jsJjfDatacount -1;
+                var showrun = 2;
+            } else {
+                var jsJjfDatacount = 5;
+                var showrun = 2;
+            }
+            //折线图
+            require.async('chart/line/1.0.8/line', function () {
+                var Line = require('chart/line/1.0.8/line');
+                var options = {};
+                if (vars.jsJjfData) {
+                    var jsJjfData = $.parseJSON(vars.jsJjfData);
+                    options = {
+                        type: 'line',
+                        from: 'jjfdetail',
+                        lineStyle: 'solid',
+                        // 走势图容器id
+                        id: '#line',
+                        // 能够滑动的最小数据量
+                        scrollNumber: jsJjfDatacount,
+                        // 走势图左右区域的间隔
+                        border: 80,
+                        startIndex: 12,
+                        step: true, //梯形图
+                        runTime: 1000,
+                        width: $(window).width() - 20,
+                        xAxis: jsJjfData['xAxis'],
+                        series: [{
+                            color: 'rgb(248,157,5)',
+                            yAxis: jsJjfData['yAxis']
+                        }],
+                        pointRadis: 6,
+                        xBg: true,
+                        yBg: false,
+                    };
+                }
+                var line = new Line(options);
+                if (showrun && showrun !== 1) {
+                    line.run();
+                } else {
+                    line.run(0);
+                }
+            });
+            //走势图点击收起展开
+            $('#zoushitu').on('click', function () {
+                var that = $(this);
+                if (that.hasClass('arr-up')) {
+                    that.removeClass('arr-up').addClass('arr-down');
+                    $('.jjfydj').hide();
+                    $('.line').hide();
+                } else {
+                    that.removeClass('arr-down').addClass('arr-up');
+                    $('.jjfydj').show();
+                    $('.line').show();
+                }
+            });
+            //头图横切
+            var jjfUl = $('.jjfy-list');
+            if (jjfUl.length) {
+                var $lis = jjfUl.find('li'),
+                    jjfLiLen = $lis.length;
+                // css li margin值为15px
+                jjfUl.find('ul').width($lis.eq(0).width() * jjfLiLen + jjfLiLen * 11);
+                new iscrollNew('.jjfy-list', {scrollX: true});
+            }
+
+        }
+
         /* 分享代码*/
         var shareA = $('.share');
         if (shareA.length) {
@@ -347,19 +420,26 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             });
             var SuperShare = require('superShare/1.0.1/superShare');
             var Stitle,
-                Sdesc;
-            if (vars.isshare === 'share') {
+                Sdesc,
+                Simg;
+            if (vars.fromsource === 'jjfdetail') {
+                Stitle = vars.jjfShareTitle;
+                Sdesc = vars.jjfShareDescription;
+                Simg = vars.jjfShareImages;
+            } else if (vars.isshare === 'share') {
                 Stitle = shareA.attr('newsline');
                 Sdesc = '我在房天下上看到一套不错的二手房';
+                Simg = shareA.attr('imgpath');
             } else {
                 Stitle = '【我在房天下上看到一套不错的二手房】 ' + (shareA.attr('newsline') || '') + '【大家快来帮我参考一下吧！】';
                 Sdesc = shareA.attr('newssummary').substring(0, 64) + '...';
+                Simg = shareA.attr('imgpath');
             }
             var config = {
                 // 分享内容的title
                 title: Stitle,
                 // 分享时的图标
-                image: window.location.protocol + shareA.attr('imgpath'),
+                image: window.location.protocol + Simg,
                 // 分享内容的详细描述
                 desc: Sdesc,
                 // 分享的链接地址
@@ -371,15 +451,27 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
 
             // 微信分享
             var Weixin = require('weixin/2.0.0/weixinshare');
-            var wx = new Weixin({
-                debug: false,
-                shareTitle: shareA.attr('newsline'),
-                // 副标题
-                descContent: '我在房天下上看到一套不错的二手房',
-                lineLink: location.href,
-                imgUrl: window.location.protocol + shareA.attr('imgpath'),
-                swapTitle: false
-            });
+            if (vars.fromsource === 'jjfdetail') {
+                var wx = new Weixin({
+                    debug: false,
+                    shareTitle: Stitle,
+                    // 副标题
+                    descContent: Sdesc,
+                    lineLink: location.href,
+                    imgUrl: window.location.protocol + Simg,
+                    swapTitle: false
+                });
+            } else {
+                var wx = new Weixin({
+                    debug: false,
+                    shareTitle: shareA.attr('newsline'),
+                    // 副标题
+                    descContent: '我在房天下上看到一套不错的二手房',
+                    lineLink: location.href,
+                    imgUrl: window.location.protocol + Simg,
+                    swapTitle: false
+                });
+            }
         }
         // 当页面从sfapp中打开时，设置foot底部增加50外边距，该id在public/inc.footer.html中找到
         $('#foot').css('margin-bottom', '50px');
@@ -520,30 +612,11 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         // 威海，用户登录返回后，自动调起打电话功能
         if (vars.city == 'weihai' && cookiefile.getCookie('sfut') && autoCall) {
             window.location.href = 'tel:' + autoCall;
-            callPhone();
+            //callPhone();
         }
 
         // 记录打电话功能
         function callPhone(e) {
-            //威海打电话强制登录
-            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
-                e.preventDefault();
-                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
-                if ($(this).attr('data-teltj')) {
-                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
-                }
-                console.log(autoCall);
-
-                // 当前页面地址处理，将地址中含有的autoCall参数去掉
-                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
-                // 将需要拼接的autoCall参数加入url中
-                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
-
-                // 跳转登录
-                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
-                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
-                return false;
-            }
 
             // 没有点击事件的话，则通过匹配a标签href属性值获取data-teltj属性值
             if (vars.city == 'weihai' && !$(this).attr('data-teltj')) {
@@ -587,6 +660,23 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             }
             $.ajax(vars.mainSite + 'data.d?m=tel&city=' + vars.city + '&housetype='
                 + housetype + '&id=' + houseid + '&phone=' + dataArr[5] + '&isShopPhone=' + isShopPhone);
+            //威海打电话强制登录
+            if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
+                e.preventDefault();
+                // 如果有点击事件，则用标签属性中的值将自动拨打的手机号替换
+                if ($(this).attr('data-teltj')) {
+                    autoCall = $.trim($(this).attr('href').replace('tel:', ''));
+                }
+                console.log(autoCall);
+                // 当前页面地址处理，将地址中含有的autoCall参数去掉
+                var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
+                // 将需要拼接的autoCall参数加入url中
+                backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
+                // 跳转登录
+                window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
+                    + encodeURIComponent(backUrl) + '&r=' + Math.random();
+                return false;
+            }
         }
 
         // 判断在线咨询是否在线

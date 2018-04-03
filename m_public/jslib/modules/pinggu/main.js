@@ -73,7 +73,7 @@ define('modules/pinggu/main', ['jquery', 'superShare/1.0.1/superShare', 'weixin/
         preload.push('newmsgnum/1.0.0/newmsgnum');
     }
     //增加分享
-    if (vars.action === 'index' || vars.action === 'xiaoquFj' || vars.action === 'xfDealList' || vars.action === 'xfdistrictDetail' || vars.action === 'esfDealList' || vars.action === 'comareaDetail' || vars.action === 'buyerAssess') {
+    if (vars.action === 'index' || vars.action === 'xiaoquFj' || vars.action === 'xfDealList' || vars.action === 'xfdistrictDetail' || vars.action === 'esfDealList' || vars.action === 'comareaDetail' || vars.action === 'buyerAssess' || vars.action === 'districtDetail') {
         if (location.href.indexOf('?') === -1) {
             var shareLink = location.href + '?isshare=share';
         } else {

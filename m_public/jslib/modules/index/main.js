@@ -185,6 +185,13 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
                 bulletActiveClass: 'current'
             });
         }
+        
+        var mengceng = new Date();
+		var day = mengceng.getDay();
+		var winWidth = $(document).width();
+		
+		
+        
         // 房产百科轮播
         var $bkScroller = $('#bkScroller');
         if ($bkScroller.length > 0) {
@@ -271,7 +278,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 		if (vars.sOrB == 'b') {
 			// 处理样式
 			$('.main').css('position', 'relative');
-			if(lhl.indexOf('sf_source=')<0){
+			if(lhl.indexOf('sf_source=')<0 && vars.topAdCity === 'true'){
 				$('.apptopdown').css({
 					position: 'absolute',
 					top: '4px'
@@ -944,6 +951,16 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
             $('#jdh').openApp({
                 position: 'indexTopBtn'
             });
+            
+            //足迹下载
+			$('#zjapp').openApp({
+				position: 'indexZuji'
+			});
+			
+			//reffer弹层下载
+			$('.xzapptc').openApp({
+				position: 'indexReffer'
+			});
         });
         // 如果是合作页，并且带有bd标识，！！！猜测为百度合作
         // if (vars.sf_source && vars.ifContains) {
@@ -1046,9 +1063,7 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 
                     }
                 }
-				if(vars.zhiXiaoCity === 'true'){
-			zuijin.append('<span><a href="'+vars.mainSite+'esf/'+vars.city+'/?cstype=ds&type=esfzy&hf=tab" fname="直销" >直销</a></span>');
-				}
+				zuijin.append('<span><a id="zjapp" href="javascript:void(0);" fname="下载APP" >下载APP</a></span>');
 				if($('#zuijin').find('span').length===0){
 				zuijin.append('<span><a href="http://live.fang.com/liveshow/index/list/?city='+vars.city+'" fname="直播" >直播</a></span>');
 				}
@@ -1155,5 +1170,37 @@ define('modules/index/main', ['jquery', 'util/util', 'modules/index/locate', 'sw
 				getNearByhouse();
 			}
 		})
+		
+		//hao123合作首页
+		if(lhl.indexOf('sf_source=') > -1 && (lhl.indexOf('hao123') > -1 || lhl.indexOf('bdwxpz')>-1 )){
+			$('.hao123').show();
+			$('.xztc').on('click',function(){
+				$('.hao123').hide();
+			});
+			
+			if(lhl.indexOf('hao123') > -1){
+				require.async('app/1.0.0/appdownload', function () {
+					$('.ljxz').openApp({
+						position: 'haoindex'
+					});
+				});
+			}else if (lhl.indexOf('bdwxpz')>-1) {
+				require.async('app/1.0.0/appdownload', function () {
+					$('.ljxz').openApp({
+						position: 'indexForBaidu'
+					});
+				});
+			}
+			
+			
+		}
+		
+		if(document.referrer == '' && Util.getCookie('xzappflag') == ''){
+			$('.tcappxz').show();
+			$('.gbapptc').on('click',function(){
+				Util.setCookie('xzappflag', 'xzappflag', 1);
+				$('.tcappxz').hide();
+			});
+		}
 
 	});

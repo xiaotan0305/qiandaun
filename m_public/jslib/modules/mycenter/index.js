@@ -266,6 +266,24 @@ define('modules/mycenter/index', ['jquery', 'modules/mycenter/yhxw', 'modules/my
         location.href = fpqJoinUrl;
     });
 
+    // 我的贷款/我要贷款
+    $('.loan').on('click', 'a', function () {
+        var $loanUrl;
+        var $that = $(this);
+        if ($that.find('h4').html() === '我要贷款') {
+            // 我要贷款地址
+            $loanUrl = location.protocol + '//mjrpt.fang.com/daihou/Finace_Wap/FangM_Loan/M_Loan?city=' + vars.utf8zhcity;
+        } else {
+            // 我的贷款地址
+            $loanUrl = location.protocol + '//mjrpt.fang.com/daihou/Finace_Wap/FangM_Loan/M_Loanlook';
+        }
+        if (vars.userid === '') {
+            // 没登录跳登录页面
+            location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl=' + $loanUrl;
+        } else {
+            location.href= $loanUrl;
+        }
+    });
     // 判断是否登录
     if ($('.login').length > 0) {
         return;

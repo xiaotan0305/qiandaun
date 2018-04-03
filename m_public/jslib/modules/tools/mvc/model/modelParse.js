@@ -65,7 +65,7 @@ define('model/modelParse', ['jquery', 'model/setting', 'util/common', 'modules/m
                     obj = {url: 'gjj', title: '【公积金贷款计算器|住房公积金贷款计算器2016】- 搜房网'};
                     break;
                 case setting.COMBINATION_LOANS:
-                    obj = {url: 'zh', title: '【组合贷款计算器|组合贷款计算器最新2016】- 搜房网'};
+                    obj = {url: 'zhdai', title: '【组合贷款计算器|组合贷款计算器最新2016】- 搜房网'};
                     break;
                 case setting.NEWHOUSE_TAX_CALCULATION:
                     obj = {url: 'taxs', title: '【税费计算器|购房税费计算器2016】- 搜房网'};
@@ -158,7 +158,7 @@ define('model/modelParse', ['jquery', 'model/setting', 'util/common', 'modules/m
                         // 贷款月数
                         dkMonth: data.ajYear * 12,
                         // 月供
-                        monthAvgPay: Math.ceil(resultData.payMonth),
+                        monthAvgPay: resultData.payMonth,
                         monthPayOrigin: resultData.payMonth,
                         // 月利率(没用到)
                         monthRate: data.initrateVal * 0.01 / 12,
@@ -174,7 +174,7 @@ define('model/modelParse', ['jquery', 'model/setting', 'util/common', 'modules/m
                     // resultData.payLx += 'detailCalResult';
                     resultData.rate = parseFloat(Number(data.initrateVal).toFixed(3));
                     resultData.payMonthShow = '￥' + Math.ceil(resultData.payMonth);
-                    resultData.payMonth = Math.ceil(resultData.payMonth);
+                    resultData.payMonth = parseInt(resultData.payMonth);
                     resultData.autoPieParams = [{value: parseInt(data.sfMoney), color: '#6ebfff'},
                         {value: parseInt(parseInt(data.dkMoney) / 10000), color: '#ffda7c'},
                         {value: parseInt(parseInt(resultData.payLx) / 10000), color: '#ff70a0'}];

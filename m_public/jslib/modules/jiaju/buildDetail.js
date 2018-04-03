@@ -216,13 +216,13 @@ define('modules/jiaju/buildDetail', ['jquery', 'lazyload/1.9.1/lazyload', 'super
         var chatstr = '我对' + vars.ProductName + '很感兴趣 能详细了解一下吗？';
 
         function chat(b, k, c, j, g, f, l, a, e, h, d) {
-            localStorage.setItem(String('j:' + d), encodeURIComponent(e) + ';' + h + ';' + encodeURIComponent(chatstr));
+            localStorage.setItem(String('h:' + d), encodeURIComponent(e) + ';' + h + ';' + encodeURIComponent(chatstr));
             $.ajax({
                 url: vars.chatUrl + 'data.d?m=houseinfotj&city=' + b + '&housetype=' + k + '&houseid=' + c + '&type=' + j + '&phone=' + g + '&channel=' + f + '&agentid=' + a,
                 async: false
             });
             setTimeout(function () {
-                window.location = vars.chatUrl + 'chat.d?m=chat&username=j:' + l + '&city=' + b + '&type=waphome';
+                window.location = vars.chatUrl + 'chat.d?m=chat&username=h:' + l + '&city=' + b + '&type=waphome';
             }, 500);
         }
 

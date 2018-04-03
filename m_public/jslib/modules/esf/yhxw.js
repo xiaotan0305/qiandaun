@@ -364,7 +364,9 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                             // 建筑年代
                             'vme.year': vars.year,
                             // 来源
-                            'vme.source': vars.houseSource
+                            'vme.source': vars.houseSource,
+                            // 优选房源增加组id
+                            'vme.groupid': vars.groupid || '',
                         };
                         break;
                     // 预约看房
@@ -385,8 +387,9 @@ define('modules/esf/yhxw', [], function (require, exports, module) {
                             // 楼盘ID
                             'vme.projectid': vars.plotid,
                             // 经纪人id
-                            'vme.agentid': agentid
-
+                            'vme.agentid': agentid,
+                            // 优选房源增加组id
+                            'vme.groupid': vars.groupid || '',
                         };
                         break;
                     // 申请代办过户

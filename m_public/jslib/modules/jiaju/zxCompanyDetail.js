@@ -9,13 +9,15 @@ define('modules/jiaju/zxCompanyDetail', [
     'verifycode/1.0.0/verifycode',
     'superShare/2.0.0/superShare',
     'weixin/2.0.1/weixinshare',
-    'modules/jiaju/yhxw'
+    'modules/jiaju/yhxw',
+    'modules/jiaju/IconStar'
 ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
         var vars = seajs.data.vars;
         var jiajuUtils = vars.jiajuUtils;
+        var body = $('body');
         var loadMore = require('loadMore/1.0.0/loadMore');
         // 惰性加载
         require('lazyload/1.9.1/lazyload');
@@ -23,6 +25,7 @@ define('modules/jiaju/zxCompanyDetail', [
         require('modules/map/API/BMap');
         var verifycode = require('verifycode/1.0.0/verifycode');
         var BMap = window.BMap;
+        
         // 收藏按钮
         var $collect = $('#collect');
         var freeOrder = $('.yuyueBtn');
@@ -120,6 +123,19 @@ define('modules/jiaju/zxCompanyDetail', [
                     actSection.show();
                 }
             });
+            // ajax 展示评论
+            var commentSection = $('#commentSection');
+            $.get(vars.jiajuSite + '?c=jiaju&a=zxCompanyCommentInfo&city=' + vars.city + '&companyid=' + vars.companyid, function (data) {
+                if ($.trim(data)) {
+                    var $data = $(data);
+                    commentSection.html($data);
+                    commentSection.show();
+                    $('.lazyload').lazyload();
+                    // 添加评分
+                    var IconStar = require('modules/jiaju/IconStar');
+                    new IconStar('ico-star', 'data-score', $data);
+                }
+            });
             eventInit();
             require.async('swipe/3.10/swiper', function (Swiper) {
                 new Swiper('.swiper-container', {
@@ -145,9 +161,31 @@ define('modules/jiaju/zxCompanyDetail', [
 
         function eventInit() {
             // 点击查看更多活动（2017.11.1）
-            $('body').on('click', '#moreActBtn', function () {
+            body.on('click', '#moreActBtn', function () {
                 actList.find('.tuangou').show();
                 $(this).hide();
+            });
+
+            // 对点评点赞
+            body.on('click', '.shc', function () {
+                var $that = $(this);
+                yhxw({
+                    page: 'jj_gs^xq_wap',
+                    type: 55,
+                    companyid: vars.companyid,
+                    commentid: $that.attr('data-id').trim()
+                });
+                if (checkLogin()) {
+                    $.get(vars.jiajuSite + '?c=jiaju&a=ajaxZXCommentZan&city=' + vars.city + '&commentid=' + $that.attr('data-id'), function (data) {
+                        if (data && data.result === '1') {
+                            toastFn('您已点赞成功');
+                            $that.html(parseInt($that.text()) + 1 + '<i class="on">+1</i>');
+                            $that.addClass('cur');
+                        } else if (data && data.result === '0') {
+                            toastFn('您已点赞了哦');
+                        }
+                    });
+                }
             });
 
             freeOrder.on('click', function () {
@@ -317,7 +355,7 @@ define('modules/jiaju/zxCompanyDetail', [
                 window.location.href = vars.loginUrl;
             }
             return res;
-        };
+        }
 
         /**
          * [toastFn description] 页面提示信息函数
@@ -473,6 +511,11 @@ define('modules/jiaju/zxCompanyDetail', [
         var superShare = new SuperShare(config);
         // 点击分享按钮
         $('.icon-share').on('click', function () {
+            yhxw({
+                page: 'jj_gs^xq_wap',
+                type: 22,
+                companyid: vars.companyid
+            });
             superShare.share();
         });
     };

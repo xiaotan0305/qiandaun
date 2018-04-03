@@ -48,51 +48,42 @@
         appImgUrl, title, downtitle = '',
         btnCon, downBtnCon = '',
         curModel, curChannel;
-      // curChannel = (g.lib.channelsConfig && g.lib.channelsConfig.currentChannel) ? g.lib.channelsConfig.currentChannel : '';
       // "房天下APP优惠多,速度快</p><p>买好房，就上房天下Fang.com!"
       var curChannel = vars.currentChannel;
       if (window.location.href.indexOf('soufun') > -1) {
-        title = '搜房网APP优惠多,速度快</p><p>买好房，就上房天下Fang.com!';
+        title = '下载房天下APP</p><p>掌握第一手房源信息，更快更准更优惠';
         if (curChannel === 'index') {
-          title = '搜房网APP优惠多,速度快</p><p>' + vars.zhcity + '买好房，就上房天下Fang.com!';
+          title = '下载房天下APP</p><p>掌握第一手房源信息，更快更准更优惠';
         }
       } else {
-        title = '房天下APP优惠多,速度快</p><p>买好房，就上房天下Fang.com!';
+        title = '下载房天下APP</p><p>掌握第一手房源信息，更快更准更优惠';
         if (curChannel === 'index') {
-          title = '房天下APP优惠多,速度快</p><p>' + vars.zhcity + '买好房，就上房天下Fang.com!';
+          title = '下载房天下APP</p><p>掌握第一手房源信息，更快更准更优惠';
         }
       }
-      //title = '\u623F\u5929\u4E0B\u0041\u0050\u0050\u4F18\u60E0\u591A\u002C\u901F\u5EA6\u5FEB\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u4E70\u597D\u623F\uFF0C\u5C31\u4E0A\u623F\u5929\u4E0B\u0046\u0061\u006E\u0067\u002E\u0063\u006F\u006D\u0021';
       appImgUrl = vars.public + 'img/sf-72.png';
       btnCon = '\u7acb\u5373\u4e0b\u8f7d';
+    //var pathId=201600441;
+    $.ajax({
+        url: window.location.origin + '/public/?c=public&a=getAppInfo&id=201600441',
+        async:false,
+        success:function(data) {
+            if (data && data.resulteState == 'SUCCESS') {
+                var res = data.result[0].normalColumnData;
+                title = res.title + '</p><p>'+res.summary+'</p>';
+            }
+        },
+        faile:function(data) {
+            console.log(data);
+        }
+    });
       if (g.hasOwnProperty('seajs')) {
         curModel = seajs.data.vars.action;
       } else if (g.lib.action) {
         curModel = g.lib.action;
       }
-      if (curModel === 'xflist' && vars.curChannel === 'xf') {
-        // "房价那么高，房天下送红包</p><p>互联网购房新模式"
-        downtitle = '\u623f\u4ef7\u90a3\u4e48\u9ad8\uff0c\u623f\u5929\u4e0b\u9001\u7ea2\u5305</p><p>\u4e92\u8054\u7f51\u8d2d\u623f\u65b0\u6a21\u5f0f';
-        downBtnCon = '\u4e0b\u8f7d\u9886\u7ea2\u5305';
-      } else if (vars.currentChannel === 'index' && vars.city === 'tj') {
-        downtitle = '房天下APP，自营真房源</p><p>天津特价房，就上房天下Fang.com！';
-      } else if (vars.city === 'tj') {
-        downBtnCon = '立即下载';
-      }
-      if (downtitle && downtitle.length > 0) {
-        title = downtitle;
-      }
-      if (downBtnCon && downBtnCon.length > 0) {
-        btnCon = downBtnCon;
-      }
-      // 二手房下载浮层部署click id modified by zdl
+
       var clickId = 'wapdsy_D05_04';
-      if (vars.action === 'xflist') {
-        clickId = 'wapxfsy_D05_04';
-      }
-      if (vars.currentChannel === 'esf' && (vars.action === 'index' || vars.action === 'newindex')) {
-        clickId = 'wapesfsy_D05_04';
-      }
       var push = c[13];
       i[push]('<div class="' + c[7] + '">');
       i[push]('<div>');

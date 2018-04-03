@@ -505,3 +505,18 @@ html{ font-size: 31x;}
 @media screen and (max-width: 320px){
 .bigBg .zjBox{font-size:12px;}
 }
+
+
+/*2018新年特别icon*/
+.nav-icons .ny1 i{background-image: url(../images/home_newyear2.png);background-position: 0 0;background-color:transparent!important;}
+.nav-icons .ny2 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem 0px;background-color:transparent!important;}
+.nav-icons .ny3 i{background-image: url(../images/home_newyear2.png);background-position: -5rem 0px;background-color:transparent!important;}
+.nav-icons .ny4 i{background-image: url(../images/home_newyear2.png);background-position: -7.5rem 0px;background-color:transparent!important;}
+.nav-icons .ny5 i{background-image: url(../images/home_newyear2.png);background-position: -10rem 0px;background-color:transparent!important;}
+.nav-icons .ny6 i{background-image: url(../images/home_newyear2.png);background-position: 0 -2.5rem;background-color:transparent!important;}
+.nav-icons .ny7 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny8 i{background-image: url(../images/home_newyear2.png);background-position: -5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny9 i{background-image: url(../images/home_newyear2.png);background-position: -7.5rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny10 i{background-image: url(../images/home_newyear2.png);background-position: -10rem -2.5rem;background-color:transparent!important;}
+.nav-icons .ny11 i{background-image: url(../images/home_newyear2.png);background-position: 0 -5rem;background-color:transparent!important;}
+.nav-icons .ny12 i{background-image: url(../images/home_newyear2.png);background-position: -2.5rem -5rem;background-color:transparent!important;}

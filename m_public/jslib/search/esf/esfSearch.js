@@ -30,6 +30,17 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
             '<div style="margin-bottom: 50px;"><div class="searList" id="wapesfyx_D01_10"><ul></ul></div><div class="clearBtn" id="wapesfyx_D01_32">' +
             '<a href="javascript:void(0);">清除历史记录</a></div></div></div>' + '<div id="autoPromptList">' +
             '<div style="margin-bottom: 50px;"><div class="searList" id="wapesfyx_D01_31"><ul></ul></div></div>' + '</div>' + '</div>';
+        } else if (vars.fromsource === 'sfbapp') {
+            this.html = '<div class="searchPage">' +
+            '<form class="search" action="" onsubmit="return false;" method="get" autocomplete="off">' + '<div class="searbox">' +
+            '<div class="ipt" id="wapesfsy_D01_09">' + '<input type="search" name="q" value="" placeholder="' + this.titCon + '" autocomplete="off">' +
+            '<a href="javascript:void(0);" class="off" style="display: none;"></a>' + '</div>' +
+            '<a href="javascript:void(0);" id="wapesfsy_D01_18" class="btn" rel="nofollow"><i></i></a>' + '</div>' + '</form>' +
+            '<div class="searLast" id="wapesfsy_D01_19" style="display: none;"><h3><span class="s-icon-hot"></span>最近热搜</h3><div class="cont clearfix" id="hotList"></div></div>' +
+            '<div class="searHistory" id="historyList">' + '<h3><span class="s-icon-his"></span>搜索历史</h3>' +
+            '<div style="margin-bottom: 50px;"><div class="searList" id="wapesfsy_D01_10"><ul></ul></div><div class="clearBtn" id="wapesfsy_D01_32">' +
+            '<a href="javascript:void(0);">清除历史记录</a></div></div></div>' + '<div id="autoPromptList">' +
+            '<div style="margin-bottom: 50px;"><div class="searList" id="wapesfsy_D01_31"><ul></ul></div></div>' + '</div>' + '</div>';
         } else {
             this.html = '<div class="searchPage">' + '<header class="header">' +
             '<div class="left" id="wapesfsy_D01_08"><a href="javascript:void(0);" class="back"><i></i></a></div>' +
@@ -146,6 +157,14 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
                             if (/jhtype/.test(location.href)) {
                                 obj.jhtype = location.href.match(/jhtype=([^&]*)(&|$)/)[1];
                             }
+                            // 降价房搜索
+                            if (vars.action === 'jjfList') {
+                                obj.a = 'jjfList';
+                                obj.fromsource = vars.fromsource;
+                            }
+                            if (/hjzy=esf/.test(location.href)) {
+                                obj.hjzy = 'esf';
+                            }
                             if (vars.jhList) {
                                 // 如果是广告为显示不同的样式显示
                                 html += '<a href="javascript:void(0);"'
@@ -194,7 +213,6 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         if (/jhtype/.test(str)) {
             obj.jhtype = str.match(/jhtype=([^&]*)(&|$)/)[1];
         }
-
         search.createAutoPromptList.call(this, inputValue, url, obj);
     };
 
@@ -322,6 +340,15 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
             if (singleData.jhtype || /jhtype/.test(location.href)) {
                 obj.jhtype = singleData.jhtype || location.href.match(/jhtype=([^&]*)(&|$)/)[1];
             }
+            // 降价房搜索
+            if (vars.action === 'jjfList') {
+                obj.a = 'jjfList';
+                obj.fromsource = vars.fromsource;
+            }
+            // 回家置业专题参数
+            if (/hjzy=esf/.test(location.href)) {
+                obj.hjzy = 'esf';
+            }
 
             // 储存条件对象数据
             liHtml = liHtml.replace('zz', that.setJumpCondition(obj));
@@ -401,19 +428,29 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         // 去掉开头和结尾的空格
         var b = formatVal.replace(/(^\s+)|(\s+$)/g, '');
         var str = window.location.href;
+        var jumpUrl;
         // 如果关键字为空，直接点击搜索按钮时返回到列表页首页
         if (!b) {
+            //降价房搜索
+            if (vars.action === 'jjfList') {
+                window.location = vars.esfSite + vars.city + '/?a=jjfList&fromsource=' + vars.fromsource;
+                return;
+            }
             if (/tjftype/.test(str)) {
-                window.location = vars.esfSite + vars.city + '/?tjftype=esf';
+                jumpUrl = vars.esfSite + vars.city + '/?tjftype=esf';
             }else if (/jhtype/.test(str)) {
-                window.location = vars.esfSite + vars.city + '/?jhtype=esf';
+                jumpUrl = vars.esfSite + vars.city + '/?jhtype=esf';
             }else if (str.indexOf('utm_source') > -1){
                 var reg = new RegExp('utm_source=([^&]*)(&|$)');
                 var utmV = str.match(reg);
-                window.location = vars.esfSite + vars.city + '/?utm_source=' + utmV[1];
+                jumpUrl = vars.esfSite + vars.city + '/?utm_source=' + utmV[1];
             }else {
-                window.location = vars.esfSite + vars.city + '/';
+                jumpUrl = vars.esfSite + vars.city + '/';
             }
+            if (/hjzy=esf/.test(str)) {
+                jumpUrl = /\?/.test(jumpUrl) ? '&hjzy=esf' : '?hjzy=esf';
+            }
+            window.location = jumpUrl;
             that.writeSearchLeaveTimeLog(that.columnType);
             return;
         }
@@ -448,10 +485,18 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
             var jhVal = str.match(regs3);
             url += '&jhtype=' + jhVal[1];
         }
-
+        //降价房搜索
+        if (vars.action === 'jjfList') {
+            url += '&a=jjfList&fromsource=' + vars.fromsource;
+        }
         // 是否含有类型
         if (vars.purpose) {
-            url += '&purpose=' + vars.purpose;
+            url += '&purpose=' + encodeURIComponent(vars.purpose);
+        }
+
+        // 回家置业
+        if (vars.hjzy) {
+            url += '&hjzy=esf';
         }
         url += '&type=0&keyword=' + encodeURIComponent(b);
         that.setOtherHistory({key: b, showWord: b, suffix: '出售'}, url + '&city=' + vars.city);
@@ -568,12 +613,19 @@ define('search/esf/esfSearch', ['jquery', 'search/mainSearch'], function (requir
         if (obj.jhtype) {
             url += '&jhtype=' + encodeURIComponent(obj.jhtype);
         }
+        //降价房搜索
+        if (vars.action === 'jjfList') {
+            url += '&a=jjfList&fromsource=' + vars.fromsource;
+        }
         //社区搜索
         if (obj.communityid) {
             url += '&communityid=' + encodeURIComponent(obj.communityid);
             that.setOtherHistory(obj, url + '&city=' + vars.city + '&r=' + Math.random());
         } else {
             that.setOtherHistory(obj, url + '&city=' + vars.city);
+        }
+        if (obj.hjzy) {
+            url += '&hjzy=esf';
         }
         // 跳转搜索地址
         window.location = url + '&city=' + vars.city + '&r=' + Math.random();

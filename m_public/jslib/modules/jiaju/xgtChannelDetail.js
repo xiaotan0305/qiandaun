@@ -3,36 +3,38 @@
  * @author 徐颖(bjxuying@soufun.com)
  * @modified by 袁辉辉(yuanhuihui@soufun.com)
  */
-define('modules/jiaju/xgtChannelDetail', ['jquery', 'photoswipe/4.0.8/photoswipe', 'photoswipe/4.0.8/photoswipe-ui-default'], function (require, exports, module) {
+ define('modules/jiaju/xgtChannelDetail', [
+     'jquery',
+     'photoswipe/4.0.8/photoswipe',
+     'photoswipe/4.0.8/photoswipe-ui-default',
+     'superShare/1.0.1/superShare',
+     'weixin/2.0.0/weixinshare',
+     'modules/jiaju/yhxw'
+ ], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
         var vars = seajs.data.vars;
+        var superShare = require('superShare/1.0.1/superShare');
+        var wxShare = require('weixin/2.0.0/weixinshare');
         var hasLoadPicIds = [];
-        var picUrl = vars.jiajuSite + '?c=jiaju&a=ajaxGetPic&q=' + vars.q + '&ischannel=1';
-        // 头部样式
-        $('header').addClass('head_2');
-        $('.icon-nav').addClass('icon-nav2');
+        // 收藏按钮
+        var $iconFav = $('.icon-fav');
         // 数据请求失败时, 点击刷新
         $('#notfound').on('click', function () {
             window.location.reload();
         });
-
-        // 顶部导航切换样式切换
-        (function () {
-            var $header = $('.header');
-            $header.hasClass('head_2') && $header.on('click', '.icon-nav', function () {
-                $header.toggleClass('head_2');
-            });
-        })();
+        // 用户行为
+        var yhxw = require('modules/jiaju/yhxw');
+        var pageId = 'jj_mt^xgtcxq_wap';
 
         // 适配图片的宽高 以宽度适应皮屏幕宽度为准得到比例 算高度
         function opImgWH(videoW, videoH) {
             var conW = document.documentElement.clientWidth || document.body.clientWidth;
             var conH = document.documentElement.clientHeight || document.body.clientHeight;
             var w = 0,
-                h = 0,
-                ratio = 1;
+            h = 0,
+            ratio = 1;
             if (videoW > videoH) {
                 // w>h 宽视屏
                 if (videoW >= conW) {
@@ -62,25 +64,24 @@ define('modules/jiaju/xgtChannelDetail', ['jquery', 'photoswipe/4.0.8/photoswipe
             };
         }
 
-        var leftEnd = false;
-        var rightEnd = false;
         var currentImg = null;
         var comData = null;
-        var page = 5;
-        var countNumber = 100;
+        var countNumber = 78;
         // 初始化数据
         var items = [],
-            pic = $('.zxPicture').find('a'),
-            total = pic.length,
-            lightBox,
-            pageFlag = true;
+        pic = $('.zxPicture').find('a'),
+        total = pic.length,
+        lightBox,
+        pageFlag = true;
         pic.each(function () {
             hasLoadPicIds.push($(this).data('picid'));
             var image = new Image(),
-                $this = $(this);
+            $this = $(this);
             var $href = $this.attr('href'),
-                $comment = $(this).data('comment'),
-                imgThis = $this.find('img');
+            $comment = $(this).data('comment'),
+            imgThis = $this.find('img'),
+            picid = $(this).data('picid'),
+            isCollect = $(this).data('iscollect');
             image.src = imgThis.attr('src');
             image.onload = function () {
                 total--;
@@ -89,7 +90,9 @@ define('modules/jiaju/xgtChannelDetail', ['jquery', 'photoswipe/4.0.8/photoswipe
                     src: $href,
                     w: result.w || 600,
                     h: result.h || 400,
-                    comment: $comment
+                    comment: $comment,
+                    picid: picid,
+                    isCollect: isCollect
                 };
                 items.push(item);
                 if (!total) {
@@ -116,179 +119,42 @@ define('modules/jiaju/xgtChannelDetail', ['jquery', 'photoswipe/4.0.8/photoswipe
                     };
                     //  Initialize PhotoSwipe
                     lightBox = new window.PhotoSwipe($pswp, window.PhotoSwipeUI_Default, items, options);
-                    
-
                     // 判断方向
                     lightBox.listen('beforeChange', function (to) {
-                        if (to) {
-                            // currentImg = lightBox.currItem;
-                            // comData = lightBox.currItem.comment;
-                            // // 预加载图片基本链接
-                            // addPic(to, Number(comData.picid));
-                            var currentIndex = lightBox.getCurrentIndex();
-                            var galleryLength = lightBox.items.length;
-                            if(galleryLength - currentIndex < 8 && pageFlag) {
-                                pageFlag = false;
-                                toEndAjaxFn();
-                            }
-                        }
-                    });
-                    lightBox.listen( 'pointerDown', function(e) {
-                        $('#jjNav').hide();
-                    });
+                        // 图片切换更新分享信息和展示信息
+                        // currentImg = lightBox.currItem;
+                        comData = lightBox.currItem;
+                        $iconFav[+comData.isCollect ? 'addClass' : 'removeClass']('cur');
+                        shareFn({
+                            url: location.protocol + vars.jiajuSite + 'xgt_c' + comData.picid + '.html?channelId=' + vars.channelId,
+                            title: comData.pictitle,
+                            desc: comData.pictitle,
+                            image: comData.src
+                        }, {
+                            lineLink: location.protocol + vars.jiajuSite + 'xgt_c' + comData.picid + '.html?channelId=' + vars.channelId,
+                            shareTitle: comData.pictitle,
+                            descContent: comData.pictitle,
+                            imgUrl: comData.src
+                        }, comData.picid);
+                        showPicTitle(lightBox.currItem.comment);
+                    });           
                     lightBox.init();
-                    if(pic.length === +vars.index + 1 && pageFlag) {
-                            pageFlag = false;
-                            toEndAjaxFn();
-                    }
                 }
             };
         });
 
-        function toEndAjaxFn () {
-            var items = [];
-            var channelId = vars.channelId;
-            var url = vars.jiajuSite + '?c=jiaju&a=ajaxGetMoreChannelPic';
-            url += '&channelId=' + channelId + '&isdetail=1&r=' + Math.random() + '&page=' + page;
-            $.ajax({
-                url: url,
-                type: 'get',
-                async: true,
-                success: function (data) {
-                    var total = data.length;
-                    countNumber = 100;
-                    data.forEach(function (partdata,index) {
-                        var image = new Image();
-                        image.src = partdata.picurl;
-                        partdata.order = countNumber;
-                        countNumber --; 
-                        $(image).on('load',function () {
-                            total--;
-                            var result = opImgWH(this.width, this.height);
-                            var item = {
-                                src: partdata.picurl,
-                                w: result.w || 600,
-                                h: result.h || 400,
-                                comment: '',
-                                order: partdata.order
-                            };
-                            items.push(item);
-                            if(!total) {
-                                items.sort(compare('order'));
-                          
-                                Array.prototype.splice.apply(lightBox.items, [lightBox.items.length, 0].concat(items));
-                                console.log(lightBox.items.length);
-                                pageFlag = true;
-                                lightBox.updateSize(true);
-                            }
-            
-                        }).on('error',function () {
-                            total--;
-                        });
-                    });
-
-                },
-                complete: function () {
-                    page += 1;
-                    
-
-                }
-            });
-        }
-        function compare(propertyName) {
-            return function (object1,object2) {
-                return object2[propertyName] - object1[propertyName];
-            }
-        }
-        function addPic(where, curPicId) {
-            var direction = where > 0 ? 'right' : 'left';
-            var hasLoadPicLen = hasLoadPicIds.length;
-            var picid = where > 0 ? hasLoadPicIds[Number(hasLoadPicLen - 1)] : hasLoadPicIds[0];
-            // 获取头部或者末尾的图片id
-            var currentPicIndexInHasload = $.inArray(curPicId, hasLoadPicIds);
-            // 获取当前图片id所处已加载图片数组的索引位置
-            if (picid === 0) {
-                return;
-            }
-            if (where > 0) {
-                //  右滑预加载已经超过五张--如果已加载图片数组总长度减去当前位置大于5 说明向右 预加载图片已经超过五张
-                if (hasLoadPicLen - currentPicIndexInHasload > 5 || rightEnd) {
-                    return;
-                }
-            } else if (currentPicIndexInHasload > 5 || leftEnd) {
-                //  左滑预加载已经超过五张或者 左边已经没有更多图片了
-                return;
-            }
-
-            $.post(picUrl + '&picid=' + picid + '&direction=' + direction, {}, function (ret) {
-                var data = typeof ret === 'string' ? JSON.parse(ret) : ret;
-                var length = data && data.length;
-                if (typeof length !== 'number') {
-                    return;
-                }
-                if (length < 5) {
-                    if (where > 0) {
-                        rightEnd = true;
-                    } else {
-                        leftEnd = true;
-                    }
-                }
-                var loadImg = [];
-                for (var i = 0; i < length; i++) {
-                    $.inArray(+data[i].picid, hasLoadPicIds) < 0 && loadImg.push(data[i]);
-                }
-                var items = [];
-                var needLoad = loadImg.length;
-                var addCount = where > 0 ? 0 : needLoad;
-                $.each(loadImg, function (index, data) {
-                    var image = new Image();
-                    image.src = data.picurl;
-                    $(image).on('load', imgLoadedFn(index, 1)).on('error', imgLoadedFn(index, 0));
-                });
-
-                function imgLoadedFn(index, loaded) {
-                    return function () {
-                        if (loaded && $.inArray(+loadImg[index].picid, hasLoadPicIds) < 0) {
-                            var item = {
-                                src: loadImg[index].picurl,
-                                w: this.naturalWidth || 600,
-                                h: this.naturalHeight || 400,
-                                comment: loadImg[index]
-                            };
-                            hasLoadPicIds[where > 0 ? 'push' : 'unshift'](+loadImg[index].picid);
-                            items[index] = item;
-                        } else {
-                            addCount && addCount--;
-                        }
-
-                        if (!--needLoad) {
-                            for (var i = items.length - 1; i >= 0; i--) {
-                                items[i] || items.splice(i, 1);
-                            }
-                            if (items.length) {
-                                if (where > 0) {
-                                    Array.prototype.splice.apply(lightBox.items, [lightBox.items.length, 0].concat(items));
-                                } else {
-                                    Array.prototype.splice.apply(lightBox.items, [0, 0].concat(items.reverse()));
-                                }
-                                if (addCount !== 0) {
-                                    var newIndex = lightBox.getCurrentIndex() + addCount;
-                                    lightBox.setCurrentIndex(newIndex);
-                                }
-                            }
-                        }
-                    };
-                }
-            });
+        function showPicTitle(objData) {
+            var picTitle = $('#picTitle p');
+            picTitle.html(objData);
         }
 
         /* app download*/
         (function (win) {
             var doc = document,
-                $ = win.$,
-                k = function () {
-                    this.listen();
-                };
+            $ = win.$,
+            k = function () {
+                this.listen();
+            };
             k.prototype = {
                 listen: function () {
                     var that = this;
@@ -361,5 +227,128 @@ define('modules/jiaju/xgtChannelDetail', ['jquery', 'photoswipe/4.0.8/photoswipe
                 }
             });
         });
+         // 收藏
+         $iconFav.on('click', (function () {
+            var canAjax = true;
+            return function () {
+                if (canAjax) {
+                    var $this = $(this);
+                    var isCollected = $this.hasClass('cur');
+                    // 只统计收藏状态
+                    !isCollected && yhxw({
+                        page: pageId,
+                        type: 21,
+                        id: comData.picid
+                    });
+                    
+                    // 判断是否登录，无登录跳登录页
+                    if (vars.isLogin) {
+                        canAjax = false;
+                        // 收藏ajax请求
+                        $.ajax({
+                            url: vars.jiajuSite + '?c=jiaju&a=ajaxPicCollect',
+                            data: {
+                                // choice:2取消收藏,3收藏
+                                choice: isCollected ? 2 : 3,
+                                // infoType:2单图，1案例
+                                infoType: 2,
+                                InfoId: comData.picid,
+                                picUrl: comData.src,
+                                title: comData.comment,
+                                channelId: vars.channelId
+                            },
+                            success: function (response) {
+                                if (+response.Message.Code === 1) {
+                                    $this.toggleClass('cur');
+                                    toast(isCollected ? '取消收藏成功' : '收藏成功');
+                                    comData.isCollect = !isCollected;
+                                }
+                            },
+                            complete: function () {
+                                canAjax = true;
+                            }
+                        });
+                    } else {
+                        location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl=' + encodeURIComponent(location.href.replace(/\d{8}/, comData.picid));
+                    }
+                }
+            };
+        })());
+
+         var toast = (function () {
+            var toastTime;
+            var $sendFloat = $('.favorite');
+            var $sendText = $sendFloat;
+            var toastMsg = {};
+            return function (msgType, cb) {
+                $sendText.text(toastMsg[msgType] || msgType);
+                $sendFloat.show();
+                toastTime && clearTimeout(toastTime);
+                toastTime = setTimeout(function () {
+                    $sendFloat.hide();
+                    cb && cb();
+                }, 2000);
+            };
+        })();
+        // 分享按钮
+        // var $iconFav = $('.icon-fav');
+        // 分享
+        var shareFn = (function () {
+            var share;
+            var shareWx;
+            // 微信分享成功弹层
+            var $shareSuc = $('.shareSuc');
+            // 微信分享成功弹层关闭按钮事件
+            $shareSuc.find('.close').on('click', function () {
+                $shareSuc.hide();
+            });
+            var picIds = {};
+            // 存储图片id,用于分享成功弹层判断展示信息
+            $shareSuc.find('li').each(function () {
+                picIds.last = picIds[$(this).attr('data-picid')] = $(this);
+            });
+            return function (config, wxConfig, picId) {
+                // 浏览用户行为
+                yhxw({
+                    page: pageId,
+                    type: 0,
+                    id: picId
+                });      
+                // 展示更当前picid 不用的前三条信息
+                (picIds[picId] ? picIds[picId] : picIds.last).hide().siblings().show();
+                if (share) {
+                    // 更新分享信息
+                    share.updateConfig(config);
+                    shareWx.updateOps(wxConfig);
+                } else {
+                    // 初始化分享
+                    share = new superShare(config);
+                    shareWx = new wxShare(wxConfig, function () {
+                        // 微信成功回调
+                        $shareSuc.show();
+                    });
+                    // 此处分享按钮不在main里，分享插件不支持，故重新绑定事件
+                    $('.icon-share').on('click', function () {
+                        yhxw({
+                            page: pageId,
+                            type: 22,
+                            id: comData.picid
+                        });
+                        var ua = share.ua;
+                        // 判断浏览器类型;
+                        if (ua.name === '微信客户端' || ua.name === '微博客户端' || ua.name === 'QQ客户端' || ua.name === 'QQZone客户端') {
+                            share.weixinFloat.show();
+                        } else if (ua.name === 'UC浏览器') {
+                            share.shareByUC();
+                        } else if (ua.name === 'QQ浏览器') {
+                            share.shareByQQ();
+                        } else {
+                            share.floatMask.addClass('mask-visible');
+                            share.shareFloat.show();
+                        }
+                    });
+                }
+            };
+        })();
     };
 });

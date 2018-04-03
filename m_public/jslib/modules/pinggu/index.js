@@ -633,5 +633,39 @@ define('modules/pinggu/index',
                     callback && callback();
                 }, 2000);
             }
+
+            if (vars.localStorage) {
+                //上一页面带来信息
+                var kjpgInfo = vars.localStorage.getItem('kjpgInfo');
+                if (kjpgInfo) {
+                    var kjpgInfoData = JSON.parse(kjpgInfo);
+                    if (kjpgInfoData.Forward && kjpgInfoData.Forward !== '南') {
+                        $('#orientation').text(kjpgInfoData.Forward);
+                    }
+                    if (kjpgInfoData.Area) {
+                        $('#area').val(kjpgInfoData.Area);
+                    }
+                    if (kjpgInfoData.Floor) {
+                        louceng.val(kjpgInfoData.Floor);
+                    }
+                    if (kjpgInfoData.zfloor) {
+                        zonglouceng.val(kjpgInfoData.zfloor);
+                    }
+                    if (kjpgInfoData.Room && kjpgInfoData.Room !== '0') {
+                        $('#room').val(kjpgInfoData.Room);
+                    }
+                    if (kjpgInfoData.Hall && kjpgInfoData.Hall !== '0') {
+                        $('#hall').val(kjpgInfoData.Hall);
+                    }
+                    if (kjpgInfoData.projname) {
+                        $('#CFJ_searchtext').text(kjpgInfoData.projname);
+                        vars.projname = kjpgInfoData.projname;
+                    }
+                    if (kjpgInfoData.newcode && kjpgInfoData.newcode !== '0') {
+                        vars.newcode = kjpgInfoData.newcode;
+                    }
+                    vars.localStorage.removeItem('kjpgInfo');
+                }
+            }
         };
     });

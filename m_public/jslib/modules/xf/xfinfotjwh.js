@@ -31,9 +31,20 @@ define('modules/xf/xfinfotjwh', [
     var sfut = Util.getCookie('sfut');
     var IScrolllist = require('iscroll/2.0.0/iscroll-lite');
     
-    if(document.referrer.indexOf('baidu.com')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')<0 ){
+    var lh = location.href,
+	lhl = lh.toLowerCase();
+    
+    if(document.referrer.indexOf('baidu.com')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.xiaomi')<0 && navigator.userAgent.toLowerCase().indexOf('com.fang.ftx')<0 && lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0){
     	$('.topDownload').show();
     }
+	
+	
+	if(lhl.indexOf('bdjzs_xf')<0 && lhl.indexOf('bdjz_xf')<0 && lhl.indexOf('newbdfj')<0){
+		$('.midUseFang').show();
+		$('.openFangMore').show();
+	}
+	
+	
     function showOverflow() {
         document.addEventListener('touchmove', preventDefault);
     }
@@ -393,7 +404,7 @@ define('modules/xf/xfinfotjwh', [
                     $.get('/xf.d?m=dingyue&mobile=' + phone + '&city=' + vars.paramcity + '&newcode=' + vars.paramid + '&xftype=' + type + '&username=' + username + '&userid=' + userid + '&status=login',
                         function (data) {
                             if (data.root.code === '100') {
-                                showMessage('订阅成功');
+								$('.dytc').show();
                                 $('.tz-box').hide();
                             } else {
                                 showMessage(data.root.message);
@@ -429,7 +440,7 @@ define('modules/xf/xfinfotjwh', [
                             $.get('/xf.d?m=dingyue&mobile=' + phone + '&city=' + vars.paramcity + '&newcode=' + vars.paramid + '&xftype=' + type,
                                 function (data) {
                                     if (data.root.code === '100') {
-                                        showMessage('订阅成功');
+										$('.dytc').show();
                                         $('.tz-box').hide();
                                     } else {
                                         showMessage(data.root.message);
@@ -530,9 +541,7 @@ define('modules/xf/xfinfotjwh', [
         }
     }
 
-	if ($('#vcodebutton').length > 0) {
 		getPhoneVcodeclick();
-	}
 		timeCount = 60;
 
     function updateTime() {
@@ -834,7 +843,7 @@ define('modules/xf/xfinfotjwh', [
                 $.get('/xf.d?m=addFav&userphone=' + userphone + '&username=' + username + '&userid=' + userid + '&city=' + vars.paramcity + '&newcode=' + vars.paramid + '&projname=' + fangName + '&image=http:'+ $('.topFocus img').attr('src') + '&price=' + vars.xfinfoprice + '&address=' + vars.xfinfoaddress + '&math=' + Math.random(),
                     function (data) {
                         if (data.root.code === '100') {
-                            collectFlag('#collectSuccess', '#cancelCollect');
+							$('.sctc').show();
                             shoucang.addClass('on');
                             shoucang.attr('name', data.root.result);
                             // 由于置业顾问的ID相同，故从打电话那里取的置业顾问的ID
@@ -2507,6 +2516,23 @@ define('modules/xf/xfinfotjwh', [
 		$('.ljxz').openApp({
 			position: 'xfDetailMid'
 		});
+		
+		$('.scapp').openApp({
+			position: 'xfinfoSC',
+			appUrl: vars.appurl,
+			universalappurl:vars.universalappurl
+			
+		});
+		
+		$('.dingyueapp').openApp({
+			position: 'xfinfoJK',
+			appUrl: vars.appurl,
+			universalappurl: vars.universalappurl
+		});
+	});
+	
+	$('.gbtc').on('click',function(){
+		$('.downloadAPP').hide();
 	});
 
 	module.exports = {

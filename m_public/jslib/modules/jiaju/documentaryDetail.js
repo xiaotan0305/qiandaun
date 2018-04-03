@@ -21,9 +21,9 @@ define('modules/jiaju/documentaryDetail', [
         yhxw({
             page: 'jj_rj^xq_wap',
             id: vars.documentaryId,
-            style: tagBox.find('span:eq(0)').text(),
+            style: tagBox.find('span:eq(2)').text(),
             housetype: tagBox.find('span:eq(1)').text(),
-            totalprice: tagBox.find('span:eq(2)').text(),
+            totalprice: tagBox.find('span:eq(0)').text(),
             area: vars.area
         });
         // 惰性加载

@@ -225,7 +225,7 @@ define('modules/my/myAccount', ['jquery', 'dateAndTimeSelect/1.0.0/dateAndTimeSe
         clickLogoutFn: function () {
             $.get(vars.mySite + '?c=my&a=ajaxLogout', function (data) {
                 if (Number(data) === 1) {
-                    window.location.href = 'https://m.fang.com/passport/login.aspx';
+                    window.location.href = location.href.indexOf('&burl=') > 0 ? 'https://m.fang.com/passport/login.aspx?burl=' + location.href.substr(location.href.indexOf('&burl=') + 6) : 'https://m.fang.com/passport/login.aspx';
                 }
             });
         },

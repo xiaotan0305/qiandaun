@@ -189,7 +189,7 @@ define('search/cfj/cfjSearch', ['jquery', 'search/search'], function (require, e
             vars.localStorage.setItem(that.historyMark, that.setJumpCondition(historyList));
         }
         var url = vars.pingguSite + '?c=pinggu&a=list&keyword=' + encodeURIComponent(b);
-        window.location = url + '&city=' + vars.city + '&r=' + Math.random();
+        window.location = url + '&city=' + vars.city + '&r=' + Math.random() + '&cfrom=' + vars.cfrom;
     };
 
     /**

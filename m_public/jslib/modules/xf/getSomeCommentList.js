@@ -26,54 +26,7 @@ define('modules/xf/getSomeCommentList', ['jquery', 'modules/xf/showPhoto'], func
                 });
             }
         }
-        $('.main').on('click', '.btn-comm', function () {
-            var $that = $(this);
-            $that.attr('disabled', true);
-            var content = $that.siblings('.ipt-comm').text().trim();
-            if (content === '' || content === null) {
-                alert('回复内容不能为空');
-                $that.removeAttr('disabled');
-                return false;
-            }
-            if (content.length > 40) {
-                alert('回复内容不能超过40字');
-                $that.removeAttr('disabled');
-                return false;
-            }
-
-            var ids = $('.btn-comm').attr('name');
-            var tid = '', fid = '';
-            tid = ids.split('_')[0];
-            fid = ids.split('_')[1];
-            newcode = $that.parent().parent().siblings('.comment-text').attr('pro_newcode');
-            city = $that.parent().parent().siblings('.comment-text').attr('m_city');
-            $.post('/xf.d?m=makeHf',
-                {
-                    newcode: newcode,
-                    city: city,
-                    userid: userid,
-                    username: encodeURIComponent(username),
-                    content: encodeURIComponent(content),
-                    tid: tid,
-                    fid: fid
-                },
-                function (data) {
-                    $('.btn-comm').removeAttr('disabled');
-                    if (data.root.result == '100'){
-                        $that.siblings('.ipt-comm').html('');
-                        zhanshihuifu(tid, $that);
-                        $('a[name='+tid+']').focus();
-                        var thatDom = $('a[name='+tid+'_'+tid+'_'+newcode+'_'+city+']');
-                        thatDom.html(thatDom.text()*1+1);
-                        $('.boxshaow').hide();
-                        $('#blackback').hide();
-                        document.removeEventListener('touchmove', removeTouch);
-                    } else {
-                        alert(data.root.message);
-                    }
-                }
-            );
-        });
+        
         $('.ico-star').each(function () {
             var curStars = $(this).attr('star');
             for (var i = 0; i < curStars; i++) {
@@ -124,49 +77,9 @@ define('modules/xf/getSomeCommentList', ['jquery', 'modules/xf/showPhoto'], func
             } else {
                 alert('亲，您已经点过了~');
             }
-        } else if ($this.hasClass('t')) {
-            var checkLogined = checkLogin();
-            if (checkLogined) {
-                //$boxshaow.show();
-                //$blackback.show();
-                if ($(this).parents('li').find('.comment-list-c').is(':hidden')) {
-                    $(this).parents('li').find('.comment-list-c').show();
-                } else {
-                    $(this).parents('li').find('.comment-list-c').hide();
-                }
-                var ids = $this.attr('name');
-                $this.parent().parent().siblings('.comment-list-c').find('.btn-comm').attr('name', ids);
-                $('#txtinput').focus();
-                if ($this.hasClass('reply')) {
-                    var oname = ids.split('_')[1];
-                    var onameIdx = clicked.indexOf(oname);
-                    if (onameIdx < 0) {
-                        zhanshihuifu(oname, $this);
-                        clicked.push(oname);
-                    } else {
-                        clicked.splice(onameIdx, 1);
-                        $('.' + oname).empty().hide();
-                    }
-                }
-                canLoad = false;
-                //document.addEventListener('touchmove', removeTouch);
-            }
-        }
+        } 
     });
-    // 回复div获取焦点
-    $('.main').find('.comment-list').on('click', '.ipt-comm', function () {
-        if ($(this).html() == '说点什么吧') {
-            $(this).html('').css('color', 'black');
-        }
-    });
-    // 输入
-    $('.main').find('.comment-list').on('input change', '.ipt-comm', function () {
-        if ($(this).html() && $(this).html() != '说点什么吧') {
-            $(this).siblings('.btn-comm').removeClass('disabled');
-        } else {
-            $(this).siblings('.btn-comm').addClass('disabled');
-        }
-    });
+    
     // 图片效果-----------------------------------start
     $('.main').on('click', '.clearfix dd', function () {
         // 视频播放
@@ -270,24 +183,9 @@ define('modules/xf/getSomeCommentList', ['jquery', 'modules/xf/showPhoto'], func
         });
     }
     showMoreId();
-    // 点击显示更多小箭头
-    $('.main').on('click', '.comment-more', function () {
-        var $this = $(this);
-        // 显示全部内容 更多按钮隐藏
-        $this.siblings('.comment-text').attr('style','');
-        $this.hide();
-    });
+    
 
-    // 点击文字与点击显示更多的作用相同
-    $('.main').on('click', '.comment-text', function () {
-        var $this = $(this);
-        if (!$this.hasClass('isShowAll')) {
-            // 显示全部内容 更多按钮隐藏
-            $this.attr('style','');
-            $this.addClass('isShowAll');
-            $this.siblings('.comment-more').hide();
-        }
-    });
+    
     $('.icon-q').on('click', function () {
         $('.floatAlert').show();
     });

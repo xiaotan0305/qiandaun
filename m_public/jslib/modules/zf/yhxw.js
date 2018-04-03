@@ -204,7 +204,9 @@ define('modules/zf/yhxw', [], function (require, exports, module) {
                             // 朝向
                             'vmz.direction': encodeURIComponent(vars.towards_tempparam_name),
                             // 配套设施
-                            'vmz.facility': vars.equipmentStr
+                            'vmz.facility': vars.equipmentStr,
+                            // 优选房源增加组id
+                            'vmz.groupid': vars.groupid || '',
                         };
                         break;
                     // 预约
@@ -226,7 +228,9 @@ define('modules/zf/yhxw', [], function (require, exports, module) {
                             // 楼盘ID
                             'vmz.projectid': vars.projcode,
                             // 经纪人id
-                            'vmz.agentid': vars.agentid
+                            'vmz.agentid': vars.agentid,
+                            // 优选房源增加组id
+                            'vmz.groupid': vars.groupid || '',
                         };
                 }
                 // 我的租房频道选择出租方式页面

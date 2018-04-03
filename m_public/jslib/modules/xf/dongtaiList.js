@@ -1,4 +1,4 @@
-define('modules/xf/dongtaiList',['jquery','util/util'], function (require) {
+define('modules/xf/dongtaiList',['jquery','util/util','search/newHouse/newHouseSearch'], function (require) {
     'use strict';
     var $ = require('jquery');
     var vars = seajs.data.vars;
@@ -10,6 +10,11 @@ define('modules/xf/dongtaiList',['jquery','util/util'], function (require) {
     var $fivedt = $('.dongtai:lt(5)');
     // 全部数据
     var $dongtaiList = $('.dongtai');
+    
+    var Search = require('search/newHouse/newHouseSearch');
+	
+	var search = new Search();
+	search.init();
 
     $moredt.click(function () {
         if (flag === 0) {
@@ -102,5 +107,25 @@ define('modules/xf/dongtaiList',['jquery','util/util'], function (require) {
 		_ub.collect(b, p);
 	});
 	// 统计行为 --------------end
+	
+	var rule = search.getRules(vars.paramcity + 'newXfHistory');
+	
+	var ajaxData = $.extend({
+		XQ: '',
+        xfWY: '',
+        xfScores: '',
+        city: vars.paramcity,
+        id: vars.paramid
+	}, rule);
+
+    $.post('/xf.d?m=xiHuanLouPanList&source=dthx&math=' + Math.random(), ajaxData, function (result) {
+        if ($.trim(result)) {
+            $('#ganxingqulp .favList').html(result);
+            $('#ganxingqulp').show();
+           
+        }
+    });
+	
+	
     
 });

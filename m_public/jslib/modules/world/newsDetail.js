@@ -44,12 +44,42 @@ define('modules/world/newsDetail', ['jquery', 'modules/world/yhxw'], function (r
             });
         });
 
-        // 余下全文
-        $('#moreLoad').click(function () {
-            $('#moreLoad').hide();
-            $('#conWordMore').show();
-            return false;
-        });
+        // 若有余下全文会导致lazyload不准确
+        function ensureImg(attrProp) {
+            var imgs = $('img[data-' + attrProp + ']');
+            imgs.each(function () {
+                var $this = $(this);
+                $this.is(':visible') && $this.attr('src', $this.data(attrProp));
+            });
+        }
+
+        // 海外房产圈查看更多
+        if (vars.channelid && vars.channelid === '03') {
+            var $conWord = $('.conWord');
+            var $moreLoad = $('#moreLoad');
+            var height = parseInt($(window).height(), 10) * 2;
+            if ($conWord.height() > height) {
+                ensureImg('original');
+                // 高度限制
+                $conWord.css({
+                    'max-height': height,
+                    overflow: 'hidden'
+                });
+                $moreLoad.show();
+            }
+            // 余下全文
+            $moreLoad.on('click', function () {
+                $conWord.css('max-height', '');
+                $moreLoad.hide();
+            });
+        } else {
+            // 其他资讯余下全文
+            $('#moreLoad').click(function () {
+                $('#moreLoad').hide();
+                $('#conWordMore').show();
+                return false;
+            });
+        }
 
         // 新加对精彩推荐的隐藏和显示
         $('#show_jingcai').on('click', function () {

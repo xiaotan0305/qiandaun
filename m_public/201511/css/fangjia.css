@@ -843,6 +843,7 @@ background: url(../images/sq_fypj.png) no-repeat right center;background-size: 1
 .bargain-sh{line-height:24px;margin:0 20px;border-bottom:1px solid #f4f4f4;font-size:13px;color:#3c3f46;padding:10px 0}
 .bargain{padding:20px 20px 40px; overflow:hidden; position:relative}
 .bargain p.p1{font-size:14px;color:#565c67;line-height:20px;text-align:center;margin-top:36px;}
+.bargain p.p1.mt15{margin-top:15px;}
 .bargain p.p2{height:28px;background:url(../images/bar_icon01.png) no-repeat center;background-size:212px}
 .bargain p.p3{font-size:12px;color:#83868f;line-height:20px;text-align:center;}
 .bargain p.p4{width:220px;height:70px;line-height:70px;font-size:56px;color:#d64242;text-align:center; margin:0 auto;}
@@ -863,7 +864,7 @@ background: url(../images/sq_fypj.png) no-repeat right center;background-size: 1
 .bargain-box .con01 p.p1{line-height:20px;font-size:15px;color:#fff;margin-top:44px; text-align:center;overflow:hidden}
 .bargain-box .con01 p i{width:16px;height:16px;background:url(../images/bar_icon03.png) no-repeat;background-size:16px; display:inline-block;margin-right:10px; vertical-align:top;margin-top:1px;}
 
-.bargain-box .con02{width:90%;height:440px;background:rgba(0,0,0,.8);border-radius:3px;position: absolute; top: 50%; left: 50%;transform: translateY(-50%); -webkit-transform: translateY(-50%);margin-left:-45%}
+.bargain-box .con02{width:90%;background:rgba(0,0,0,.8);border-radius:3px;position: absolute; top: 50%; left: 50%;transform: translateY(-50%); -webkit-transform: translateY(-50%);margin-left:-45%}
 .bargain-box .con02 .text{width:100%;padding:40px 4% 40px 4%;}
 .bargain-box .con02 .text h3{font-size:15px;color:#fff; text-align:center}
 .bargain-box .con02 .text .txt{margin-top:20px;}
@@ -882,3 +883,32 @@ background: url(../images/sq_fypj.png) no-repeat right center;background-size: 1
 .bargain-box .con03 p{line-height:18px;font-size:13px;color:#fff; text-align:center}
 .bargain-box .btn02{width:124px;height:36px;line-height:36px; text-align:center;font-size:15px;color:#fff; margin:0 auto; display:block; background: none;border:1px solid #fff;border-radius:3px; }
 .mb8b{border-bottom:8px solid #f4f4f4;}
+.kjgd{width:85%;height:30px;line-height:30px;background:#ffe3e3;border-radius:10px; margin:20px auto 0;font-size:13px;color:#cd4039; text-align:center;}
+
+
+.kjgd ul{height:30px; overflow-y:auto}
+.kjgd ul li{height:30px; overflow-y:auto}
+.kjgd ul li i{width:22px;height:21px;background:url(../images/kjhb.png) no-repeat;background-size:22px;margin-right:10px; display:inline-block; vertical-align:middle}
+.bartit{height:20px;margin:20px 0; position:relative}
+.bartit .line{width:100%;height:1px; background:#e4e4e4; position:absolute;top:9px;left:0px;z-index:2}
+.bartit .info{font-size:13px;line-height:20px;color:#83868f;position:absolute;top:50%;left:50%;padding:0 16px; background:#fff;white-space:nowrap; z-index:5;margin:0 auto;-webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+
+.barcon dl{display: table;z-index:2;color:#3c3f46;padding:10px 0}
+.barcon dt,.floatTel dd{display: table-cell; }
+.barcon dt{width:32px; overflow:hidden}
+.barcon dt i{width:18px;height:18px; background:url(../images/bar_icon04a.png) no-repeat;background-size:70px; display:inline-block; vertical-align:top;}
+.barcon dt i.no2{ background-position:-18px 0;}
+.barcon dt i.no3{ background-position:-35px 0;}
+.barcon dt i.no4{ background-position:-52px 0;}
+.barcon dd{line-height:24px;font-size: 13px;}
+.barcon dd a{color:#83868f}
+.barcon dd.line{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+.barcon dd.line a{float:right;color:#4080d1;background:url(../images/kjjt.png) no-repeat right;background-size:6px;padding-right:10px;}
+
+
+/* 浮层-置业顾问 */
+.floatKj{height:49px; width: 100%;}
+.floatKj .bcon{position: fixed; bottom: 0; left: 0; width: 100%;z-index:10000;}
+.floatKj .bcon a{width:50%;line-height:49px;font-size:16px;color:#fff!important;text-align:center;background:#f19e4b; }
+.floatKj .bcon a:last-child{background:#cd4039;}

@@ -1,0 +1,48 @@
+*{margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+body {font-family:Arial, "Microsoft Yahei";background: #0f032a;}
+body.choose{height: 100%;overflow: hidden;}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; display: block;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+a {color:#3c3f46;text-decoration:none;}
+html,body{ height: 100%;width:100%;}
+em,i{font-style:normal;}
+html>img{display: none;}
+.clear { clear: both; height: 0px; font-size: 0px; visibility: hidden; line-height: 0;}
+.clearfix:after{ clear: both; content: "\200B"; display: block; height: 0;}
+.clearfix{ *zoom: 1;}
+/* header */
+.header{ position: relative; height: 44px; line-height: 44px; background-color: #f6f6f6;border-bottom:1px solid #efefef;max-width:640px;margin:0 auto;}
+.header .left{ position: relative; z-index: 5; float: left;}
+.header .cent{ position: absolute; width: 100%; height: 100%; text-align: center; font-size: 16px; color: #0c0d0e;}
+.header .cent span{ position: absolute; left: 102px; right: 102px; height: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;color: #0c0d0e;}
+.header .back{ float: left;padding:6px 4px; text-align: center;margin-left:4px;}
+.header .back i{ float:left; width: 32px; height: 32px; background: url(../images/top_back.png) center center no-repeat; background-size:10px 18px;}
+.head-icon{ position: relative; z-index: 5; float: right;padding-right:5px;}
+.head-icon a{ float: left;text-align: center;font-size:14px;color:#83868f;padding:6px 4px;line-height:32px;}
+.head-icon a i{position:relative;float:left;width: 32px; height: 32px; background: url(../images/share.png) no-repeat; background-size: 128px auto;}
+/* header end*/
+.box{margin: 0 auto;max-width:640px;min-height: 100%;width:100%;}
+.box img{width:100%;display:block;}
+.btnBox{width:100%;position:relative;}
+.btnBox .btn{position:absolute;top:27%;left:50%;width:225px;margin-left:-112px;height:35px;}
+.box img.left{width:19px;float:left;margin:12px 10px 0 0;}
+.box img.right{width:19px;float:right;margin:12px 0 0 10px;}
+.box img.btn_img{float:left;width:167px;}
+
+@keyframes slideInLeft {
+  0% {transform: translate(0, 0);}
+  50% {transform: translate(-30%, 0);}
+  75%{transform:translate(0, 0);}
+  100%{transform:translate(0, 0);}
+}
+.slideInLeft {animation: slideInLeft 1s ease-out infinite;}
+@keyframes slideInRight {
+  0% {transform: translate(0, 0);}
+  50% {transform: translate(30%, 0);}
+  75%{transform:translate(0, 0);}
+  100%{transform:translate(0, 0);}
+}
+.slideInRight {animation: slideInRight 1s ease-out infinite;}

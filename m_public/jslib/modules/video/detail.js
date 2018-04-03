@@ -24,14 +24,8 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
         */
         $(".ic-zan").on('click', function () {
             if (!get_cooike('zan')) {
-                if (vars.channel == 'hd') {
-                    var praise = parseInt($(this).text())+1;
-                    $(this).html('<i></i>'+praise);
-                    document.cookie="zan=zantrue";
-                } else {
-                    $(this).addClass('cur');
-                    document.cookie="zan=zantrue";
-                }
+                $(this).addClass('cur');
+                document.cookie="zan=zantrue";
             }
         })
 
@@ -59,7 +53,7 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
             videobox.show();
             videobox[0].play();
             $('.imagetwo').show();
-            $.get(vars.videoSite+'?c=video&a=ajaxPlayvideoUv&vid='+vars.vid, function(data){
+            $.get(vars.videoSite+'?c=video&a=ajaxPlayvideoUv&vid='+vars.vid+'&channel='+vars.channel+'&url='+encodeURIComponent(vars.source)+'&locationUrl='+encodeURIComponent(window.location.href), function(data){
 
             })
         })
@@ -70,7 +64,12 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
             $('.icon-nav').css('pointer-events', '');
             enable();
         });
-
+        var shareImg = vars.shareImg;
+        if (shareImg.indexOf('http') >= 0) {
+            var shareImage = shareImg;
+        } else {
+            var shareImage = window.location.protocol + shareImg;
+        }
 
         $(function () {
             /* 分享代码*/
@@ -80,7 +79,7 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
                 // 分享的内容title
                 title: vars.shareTitle + '...',
                 // 分享时的图标
-                image: window.location.protocol + vars.shareImg,
+                image: shareImage,
                 // 分享内容的详细描述
                 desc: vars.shareSummary + '...',
                 // 分享的链接地址
@@ -118,7 +117,7 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
                     shareTitle: vars.shareTitle,
                     descContent: vars.shareSummary,
                     lineLink: location.href,
-                    imgUrl: window.location.protocol + vars.shareImg
+                    imgUrl: shareImage
                 }, callback);
             });
         }
@@ -129,6 +128,27 @@ define('modules/video/detail', ['jquery', 'lazyload/1.9.1/lazyload', 'superShare
             $('#indexDownload').openApp({
                 position: 'videoDetail'
             });
+        });
+
+        //处理活动页面的点赞praise
+        if (window.localStorage && window.localStorage.video_zan_history && window.localStorage.video_zan_history.indexOf(vars.id) !== -1) {
+            $('#praise i').removeClass('w');
+        }
+        $('#praise').on('click', function(){
+            if (window.localStorage && window.localStorage.video_zan_history && window.localStorage.video_zan_history.indexOf(vars.id) !== -1) {
+                $('#praise i').removeClass('w');
+                return;
+            } else if (window.localStorage) {
+                var praise = parseInt($(this).text())+1;
+                $(this).html('<i></i>'+praise);
+                var lc = window.localStorage.getItem('video_zan_history');
+                if (lc) {
+                    lc += ',' + vars.id;
+                } else {
+                    lc = vars.id;
+                }
+                window.localStorage.setItem('video_zan_history', lc);
+            }
         });
     };
 });

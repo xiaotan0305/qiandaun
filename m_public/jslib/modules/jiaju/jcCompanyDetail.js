@@ -154,9 +154,9 @@
                 $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetUserInfoById&uid=' + vars.imid + '&city=' + vars.city, function (data) {
                     if (data && data.userid) {
                         if (vars.localStorage) {
-                            vars.localStorage.setItem(String('j:' + data.username), encodeURIComponent(data.username) + ';' + data.imgurl + ';;');
+                            vars.localStorage.setItem(String('h:' + data.username), encodeURIComponent(data.username) + ';' + data.imgurl + ';;');
                         }
-                        window.location = vars.mainSite + '/chat.d?m=chat&username=j:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
+                        window.location = vars.mainSite + '/chat.d?m=chat&username=h:' + data.username + '&city=' + vars.city + '&type=waphome&content=' + encodeURIComponent(content);
                     } else {
                         toastFn('获取用户信息失败，请重试!');
                     }
@@ -183,7 +183,7 @@
         var collect = $('#collect');
         collect.on('click', function () {
             // 用户行为
-            yhxw({
+            !collect.hasClass('on') && yhxw({
                 page: page,
                 companyid: vars.companyid,
                 type: 21
@@ -289,7 +289,41 @@
             from: '房天下家居'
         }, detailOptions);
         $('.icon-share').on('click', function () {
+            yhxw({
+                page: page,
+                companyid: vars.companyid,
+                type: 22
+            });
             superShare.share();
         });
+        //ajax加载兄弟门店个数
+        $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetBroCompanyCount&companyid=' + vars.companyid, function (data) {
+            if ($.trim(data)) {
+                $('#broCompanySec').show().html(data);
+            }
+        });
+        //商家信息加载更多
+        var intro = $('#p_intro'),
+        intro_up = $('#intro_up'),
+        intro_down = $('#intro_down');
+        if (intro.height() > 60) {
+            introHide();
+        }
+        intro_down.on('click', function(){
+            introShow();
+        })
+        intro_up.on('click', function(){
+            introHide();
+        })
+        function introShow(){
+            intro.css('height', 'auto');
+            intro_down.hide();
+            intro_up.show();
+        }
+        function introHide(){
+            intro.css('height', '60px');
+            intro_down.show();
+            intro_up.hide();
+        }
     }
 });

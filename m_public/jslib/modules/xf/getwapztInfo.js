@@ -60,6 +60,13 @@ define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superS
 			});
 		}
 	}
+	
+	// app下载
+	require.async('app/1.0.0/appdownload', function ($) {
+		$('.btn-down').openApp({
+			position: 'xfinfoAI'
+		});
+	});
 
 	
 

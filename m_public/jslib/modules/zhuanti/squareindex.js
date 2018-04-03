@@ -28,6 +28,8 @@ define('modules/zhuanti/squareindex', ['jquery'], function(require, exports, mod
         //投票
         var voteBtn = $('.voteBtn');
         voteBtn.on('click', function(){
+            alert('投票已停止！');
+            return false;
             $(".drag-content").show();
             var that = $(this);
             var id = that.attr('data-id');

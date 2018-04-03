@@ -1706,7 +1706,7 @@
 		//                    视频          全景       航拍       全景（老）            直播
 		var $allButton = $('.vedio-icon, .icon-360, .icon-hp, #play_button_fullView, .xfl, #play_button');
 		$allButton.css('z-index', '1100');
-		if($('#img_'+this.currentIndex+' a').attr('vt') != undefined){
+		if($('#img_'+this.currentIndex+' a').attr('video') != undefined || $('#img_'+this.currentIndex+' a').attr('vt') != undefined ){
 			// 视频
 			$('#video_play_time').html($('#img_'+this.currentIndex+' a').attr('vp'));
 			$('#video_time_len').html($('#img_'+this.currentIndex+' a').attr('vt'));

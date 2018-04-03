@@ -14,49 +14,60 @@ define('modules/myzf/zfListPublic', ['jquery', 'superShare/2.0.0/superShare', 'w
     var Weixin = require('weixin/2.0.0/weixinshare');
     var wx = new Weixin({
         debug: false,
-        shareTitle: shareA.attr('newsline'),
+        shareTitle: shareA.attr('h5newsline'),
         // 副标题
-        descContent: '优质房源尽在房天下fang.com',
-        lineLink: location.href,
-        imgUrl: window.location.protocol + shareA.attr('imgpath'),
+        descContent: shareA.attr('description'),
+        lineLink: shareA.attr('jumph5path'),
+        imgUrl: shareA.attr('imgurl'),
         swapTitle: false
     });
     //****普通分享****
     var SuperShare = require('superShare/2.0.0/superShare');
-    var imgUrl;
-    imgUrl = location.protocol + shareA.attr('imgpath');
     var config = {
         // 分享的内容title
-        title: shareA.attr('newsline'),
+        title: shareA.attr('h5newsline'),
         // 副标题
-        desc: '优质房源尽在房天下fang.com',
+        desc: shareA.attr('description'),
         // 分享时的图标
-        image: imgUrl || '',
+        image: shareA.attr('imgurl'),
         // 分享的链接地址
-        url: location.protocol + shareA.attr('jumpath'),
+        url: shareA.attr('jumph5path'),
         // 分享的内容来源
-        from: ' —房天下'
+        from: ' —房天下',
     };
     var superShare = new SuperShare(config);
     //****更新配置函数****
     $(document).on('click', '.share', function () {
         var title = $(this).attr('newsline');
-        var jumpurl = location.protocol + $(this).attr('jumpath');
-        var imgUrl = location.protocol + $(this).attr('imgpath');
+        var h5title = $(this).attr('h5newsline');
+        var jumpurl = $(this).attr('jumpath');
+        var jumph5url = $(this).attr('jumph5path');
+        var imgUrl = $(this).attr('imgurl');
+        var desc = $(this).attr('description');
         config = {
             // 分享的内容title
-            title: title,
+            title: h5title,
             // 副标题
-            desc: '优质房源尽在房天下fang.com',
+            desc: desc,
             // 分享时的图标
-            image: imgUrl || '',
+            image: imgUrl,
             // 分享的链接地址
-            url: jumpurl,
+            url: jumph5url,
             // 分享的内容来源
-            from: ' —房天下'
+            from: ' —房天下',
         };
         superShare.updateConfig(config);
         superShare.share();
+        var wxupconfig = {
+            debug: false,
+            shareTitle: h5title,
+            // 副标题
+            descContent: desc,
+            lineLink: jumph5url,
+            imgUrl: imgUrl,
+            swapTitle: false
+        }
+        wx.updateOps(wxupconfig);
     });
 
 

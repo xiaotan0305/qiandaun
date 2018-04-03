@@ -989,3 +989,6 @@ a.dpask{width:13px;height:13px; background:url(../images/dp_icon03.png) no-repea
 .xq-hotlist .txt p span{display: block; box-flex:1; -webkit-box-flex:1; -moz-box-flex:1;}
 .xq-hotlist .txt p:first-child span:nth-child(3){box-flex:0; -webkit-box-flex:0; -moz-box-flex:0;}
 .xq-hotlist .txt p .price{box-flex:0; -webkit-box-flex:0; -moz-box-flex:0;color:#d7494a;font-size:16px;font-weight:600;}
+.consult{width:295px; padding:20px;margin:0 auto}
+.consult h3{font-size:15px;color:#3c3f46;line-height:24px; text-align:center; }
+.consult a{height:44px;line-height:44px; text-align:center;border:1px solid #f65151;font-size:16px;color:#df3031;font-weight:bold; display:block;border-radius:3px;}

@@ -27,6 +27,8 @@ define('modules/zhuanti/agentstyle', ['jquery', 'superShare/1.0.1/superShare'], 
         require.async('https://static.soufunimg.com/common_m/m_recaptcha/js/app2.0.js');
         //投票
         $('#votebtn').click(function(){
+            alert('投票已停止！');
+            return false;
         	var that = $(this);
         	var num = parseInt(that.prev().text()) + 1;
         	var voteText = num + '票<i>+1</i>';

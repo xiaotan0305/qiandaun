@@ -53,6 +53,18 @@
         var more = $('.more');
         var introduce = $('.intro');
 
+        // 收藏按钮
+        var iconFav = $('.icon-fav');
+        // 是否收藏
+        var hasCollect;
+        // hasCollect初始化
+        iconFav[vars.collectInfo === '1' ? 'addClass' : 'removeClass']('cur');
+        hasCollect = vars.collectInfo === '1' ? true : false;
+        // 收藏成功的浮层
+        var floatAlert = $('.floatAlert');
+        var lookFavList = $('#lookFavList');
+        var continueBigImg = $('#continueBigImg');
+
         // 用户行为统计
         var yhxw = require('modules/jiaju/yhxw');
         yhxw({
@@ -212,7 +224,7 @@
                 });
                 //获取服务器时间戳
                 var content = '';
-                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetServerDate', function(info){
+                $.get(vars.jiajuSite + '?c=jiaju&a=ajaxGetServerDate', function (info){
                     if (vars.localStorage) {
                         var lastTime = vars.localStorage.getItem('sjsinfo_'+vars.id);
                         if (info - lastTime > 1800) {
@@ -235,6 +247,59 @@
                     }
                 });
             });
+
+            // 收藏
+            iconFav.on('click', function () {
+                // 用户行为
+                !hasCollect && yhxw({
+                    page: 'jj_sjs^xq_wap',
+                    type: 21,
+                    designerid: vars.id,
+                    companyid: vars.companyid
+                });
+                var canAjax = true;
+                if (canAjax && checkLogin()) {
+                    var $that = $(this);
+                    canAjax = false;
+                    $.ajax({
+                        url: vars.jiajuSite + '?c=jiaju&a=ajaxPicCollect',
+                        data: {
+                            // choice:2取消收藏,3收藏
+                            choice: hasCollect ? 2 : 3,
+                            // infoType:2单图，1案例, 3.设计师
+                            infoType: 3,
+                            InfoId: vars.id,
+                            picUrl: location.protocol + vars.sjsLogo,
+                            linkurl: location.href,
+                            title: vars.truename
+                        },
+                        success: function (response) {
+                            if (response.Message.Code === '1') {
+                                $that.toggleClass('cur');
+                                !hasCollect ? setTimeout(function () {
+                                    floatAlert.show();
+                                }, 1000) : toastFn('已取消收藏');
+                                jiajuUtils.toggleTouchmove(true);
+                                hasCollect = !hasCollect;
+                            }
+                        },
+                        complete: function () {
+                            canAjax = true;
+                        }
+                    });
+                }
+            });
+            // 点击收藏成功浮层-继续看图
+            continueBigImg.on('click', function () {
+                floatAlert.hide();
+                jiajuUtils.toggleTouchmove(false);
+            });
+            // 点击收藏成功浮层-查看收藏
+            lookFavList.on('click', function () {
+                location.href = vars.mySite + '?c=mycenter&a=myFavList&city=' + vars.city;
+                jiajuUtils.toggleTouchmove(false);
+            });
+
         }
 
         function showImageFn(bool, src) {
@@ -265,7 +330,7 @@
          function getVerifyCode() {
             ajaxflag.getVerifyCode = false;
             codeInput.show();
-            verifycode.getPhoneVerifyCode(phoneNumber, function() {
+            verifycode.getPhoneVerifyCode(phoneNumber, function () {
                 vcodeBtn.removeClass('active');
                 phoneCode.attr('disabled', 'true');
                 flag.vCodeSend = true;
@@ -351,6 +416,18 @@
                 location.href = location.href + pinStr + 'random=' + Math.random();
             }
         }
+        
+        /**
+         * 判断当前用户是否登录
+         */
+        function checkLogin() {
+            var res = true;
+            if (!vars.login_visit_mode) {
+                res = false;
+                window.location.href = vars.loginUrl;
+            }
+            return res;
+        }
         // 分享功能
         var shareTitle = '设计师' + vars.truename;
         shareTitle += vars.workyears ? '从业' + vars.workyears + '年' : '';
@@ -395,10 +472,17 @@
         var superShare = new SuperShare(config);
         // 点击分享按钮
         $('.icon-share').on('click', function () {
+            // 用户行为
+            yhxw({
+                page: 'jj_sjs^xq_wap',
+                type: 22,
+                designerid: vars.id,
+                companyid: vars.companyid
+            });
             superShare.share();
         });
-        //设计师履历
-        more.on('click',function(){
+        // 设计师履历
+        more.on('click',function (){
             introduce.css('max-height', '');
             $(this).hide();
         })

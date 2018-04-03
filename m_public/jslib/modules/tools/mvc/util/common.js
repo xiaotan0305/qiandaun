@@ -220,9 +220,9 @@ define("util/common", ["model/setting"], function (require, exports, module) {
             if (type == 0) {
                 // 等额本息
                 // 〔贷款本金×月利率×(1＋月利率)＾款月数〕÷〔(1＋月利率)＾款月数-1〕
-                cal.payMonth = ((data.dkMoney * data.monthRate * Math.pow(1 + data.monthRate, data.monthNum)) / (Math.pow(1 + data.monthRate, data.monthNum) - 1)).toFixed(2);
+                cal.payMonth = Math.round((data.dkMoney * data.monthRate * Math.pow(1 + data.monthRate, data.monthNum)) / (Math.pow(1 + data.monthRate, data.monthNum) - 1));
                 // 总利息=还款月数×每月月供额-贷款本金
-                cal.payLx = Math.ceil(data.monthNum * cal.payMonth - data.dkMoney);
+                cal.payLx = parseInt(data.monthNum * cal.payMonth - data.dkMoney);
                 // 等额本息的每月递减值是0
                 cal.payDifferent = 0;
             } else if (type == 1) {
@@ -230,7 +230,7 @@ define("util/common", ["model/setting"], function (require, exports, module) {
                 // (贷款本金÷款月数)+(贷款本金-已归本金累计额)×月利率 默认第一个月
                 cal.payMonth = (data.dkMoney / data.monthNum + (data.dkMoney) * data.monthRate).toFixed(2);
                 // 〔(总贷款额÷款月数+总贷款额×月利率)+总贷款额÷还款月数×(1+月利率)〕÷2×款月数-总贷款额
-                cal.payLx = Math.ceil(((data.dkMoney / data.monthNum + data.dkMoney * data.monthRate + (data.dkMoney / data.monthNum) * (1 + data.monthRate)) / 2) * data.monthNum - data.dkMoney);
+                cal.payLx = parseInt(((data.dkMoney / data.monthNum + data.dkMoney * data.monthRate + (data.dkMoney / data.monthNum) * (1 + data.monthRate)) / 2) * data.monthNum - data.dkMoney);
                 // 等额本金还款方式的每月递减金额(每月应还本金*月利率)(zhangcongfeng@fang.com 2016-04-21)
                 cal.payDifferent = (data.dkMoney / data.monthNum * data.monthRate).toFixed(2);
             }
@@ -250,11 +250,11 @@ define("util/common", ["model/setting"], function (require, exports, module) {
             var cal = {};
             if (type == 0) {//等额本息
                 //每月应还本金=贷款本金×月利率×(1+月利率)^(还款月序号-1)÷〔(1+月利率)^款月数-1〕
-                cal.bj = Math.ceil(dkmoney * monthRate * Math.pow(1 + monthRate, i - 1) / (Math.pow(1 + monthRate, dkMonth) - 1));
+                cal.bj = Math.round(dkmoney * monthRate * Math.pow(1 + monthRate, i - 1) / (Math.pow(1 + monthRate, dkMonth) - 1));
                 //每月应还利息=贷款本金×月利率×〔(1+月利率)^还款月数-(1+月利率)^(款月序号-1)〕÷〔(1+月利率)^款月数-1〕
-                cal.bx = Math.ceil(dkmoney * monthRate * (Math.pow(1 + monthRate, dkMonth) - Math.pow(1 + monthRate, i - 1)) / (Math.pow(1 + monthRate, dkMonth) - 1));
+                cal.bx = parseInt(dkmoney * monthRate * (Math.pow(1 + monthRate, dkMonth) - Math.pow(1 + monthRate, i - 1)) / (Math.pow(1 + monthRate, dkMonth) - 1));
                 //剩余还款
-                cal.sy = hkmoney - Math.ceil(i * (monthPayOrigin));
+                cal.sy = hkmoney - parseInt(i * (monthPayOrigin));
             }
             else if (type == 1) {//等额本金
                 //每月应本金=贷款本金÷款月数
@@ -319,7 +319,7 @@ define("util/common", ["model/setting"], function (require, exports, module) {
             dataBox.scroll(function () {
                 var scrollTop = dataBox.scrollTop();
                 if (scrollTop >= 505) {
-                    yearChange.html('<span>第' + Math.ceil(scrollTop / 505) + '年</span>');
+                    yearChange.html('<span>第' + parseInt(scrollTop / 505) + '年</span>');
                 } else {
                     yearChange.html('<span>第1年</span>');
                 }

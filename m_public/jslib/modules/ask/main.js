@@ -107,7 +107,11 @@ define('modules/ask/main', ['jquery'], function (require) {
     require.async(preload);
     if (downBtn.length > 0) {
         require.async('app/1.0.0/appdownload', function () {
-            downBtn.openApp();
+            if (vars.position) {
+                downBtn.openApp({position: vars.position});
+            } else {
+                downBtn.openApp();
+            }
         });
     }
     // 判断是列表页或者搜索更多或者问答标签列表页或者seo列表页时，执行搜索初始化

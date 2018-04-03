@@ -493,6 +493,7 @@
         setFangShare: function () {
             var fangClient = $('#soufunclient');
             var ops = this.options;
+            ops.descContent = ops.detailOptions.onMenuShareAppMessage.descContent ? ops.detailOptions.onMenuShareAppMessage.descContent : ops.descContent;
             if (!fangClient.length) {
                 fangClient = $('<soufunclient id="soufunclient" style="display:none"></soufunclient> ');
                 $(document.body).append(fangClient);

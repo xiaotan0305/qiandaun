@@ -122,6 +122,12 @@ define('loadMore/1.0.1/loadMore', ['jquery', 'lazyload/1.9.1/lazyload'], functio
         ob.loadingTxt = obj.loadingTxt || '正在加载请稍后';
         // 加载完成后显示内容
         ob.loadedTxt = obj.loadedTxt || '加载更多';
+        // ！！！分页标识，这里的操作因为找不到是谁写的了，猜测如下：
+        // ！！！首先列表页加载不是1页的内容,有可能一次显示了46条，那么下一页也就是加载更多就要从第6页开始加载
+        var pageMarloadFlag = Math.ceil(parseInt(obj.pagesize) / perPageNum) + 1;
+        if(obj.callback) {
+            ob.callback = obj.callback;
+        }
         return ob;
     };
 
@@ -198,6 +204,10 @@ define('loadMore/1.0.1/loadMore', ['jquery', 'lazyload/1.9.1/lazyload'], functio
                     // 不允许再次请求加载更多
                     that.loadFlag = false;
                 }
+                // 当前页数
+                $data.pageMarloadFlag = that.transfer[that.pageName] - 1;
+                // 总页数
+                $data.totalPage = that.totalPage;
                 // 有可能在加载更多后有特殊操作的情况，执行回调函数
                 that.callback && that.callback($data);
             } else {

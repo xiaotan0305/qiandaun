@@ -56,7 +56,7 @@ define('modules/tools/main', ['jquery', 'navflayer/navflayer_new2', 'view/busine
                         todos: [
                             {text: '商业贷', cal: 'active', view: 'daikuan', href: 'daikuan.html'},
                             {text: '公积金贷', cal: '', view: 'daikuan', href: 'gjj.html'},
-                            {text: '组合贷', cal: '', view: 'zh', href: 'zh.html'},
+                            {text: '组合贷', cal: '', view: 'zhdai', href: 'zhdai.html'},
                             {text: '税费计算', cal: '', view: 'tax', href: 'taxs.html'}
                         ],
                         businessRate: '',
@@ -110,7 +110,7 @@ define('modules/tools/main', ['jquery', 'navflayer/navflayer_new2', 'view/busine
                         }else {
                             this.pageType = 4;
                         }
-                    }else if(location.href.indexOf('zh') === -1){
+                    }else if(location.href.indexOf('zhdai') === -1){
                         // 商业贷
                         this.currentView = 'daikuan';
                         this.pageType = 1;
@@ -185,8 +185,8 @@ define('modules/tools/main', ['jquery', 'navflayer/navflayer_new2', 'view/busine
                                 that.baseRate = that.fundRate;
                             }
                             // 组合贷
-                            if (location.href.indexOf('zh') > -1) {
-                                that.currentView = 'zh';
+                            if (location.href.indexOf('zhdai') > -1) {
+                                that.currentView = 'zhdai';
                                 that.pageType = 3;
                                 that.todos[2].cal = 'active';
                             }
@@ -203,8 +203,8 @@ define('modules/tools/main', ['jquery', 'navflayer/navflayer_new2', 'view/busine
                             that.baseRate = that.fundRate;
                         }
                         // 组合贷
-                        if (location.href.indexOf('zh') > -1) {
-                            that.currentView = 'zh';
+                        if (location.href.indexOf('zhdai') > -1) {
+                            that.currentView = 'zhdai';
                             that.pageType = 3;
                             that.todos[2].cal = 'active';
                         }

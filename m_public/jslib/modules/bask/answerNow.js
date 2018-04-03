@@ -72,7 +72,7 @@ define('modules/bask/answerNow', ['jquery'], function (require, exports, module)
                         // 提交成功加锁
                         flagBool = false;
                         showMsg('回答成功');
-                        window.location.href = vars.askSite + '?c=bask&a=newdetail&id=' + vars.id + '&r=' + Math.random;
+                        window.location.href = vars.askSite + '?c=bask&a=newdetail&id=' + vars.id + '&r=' + Math.random();
                     } else {
                         showMsg(data.message);
                     }
