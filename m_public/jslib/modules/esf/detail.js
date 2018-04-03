@@ -406,7 +406,8 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                     jjfLiLen = $lis.length;
                 // css li margin值为15px
                 jjfUl.find('ul').width($lis.eq(0).width() * jjfLiLen + jjfLiLen * 11);
-                new iscrollNew('.jjfy-list', {scrollX: true});
+                // eventPassthrough=true，默认允许纵向滑动页面
+                new iscrollNew('.jjfy-list', {scrollX: true, eventPassthrough: true});
             }
 
         }

@@ -709,7 +709,8 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
             var $lookedLis = lookedXQUl.find('li'),
                 lookedXQLiLen = $lookedLis.length;
             lookedXQUl.find('ul').width($lookedLis.eq(0).width() * lookedXQLiLen + lookedXQLiLen * 15 + 15);
-            new iscrollNew('#lookedXQ', {scrollX: true});
+            // eventPassthrough=true，默认允许纵向滑动页面
+            new iscrollNew('#lookedXQ', {scrollX: true, eventPassthrough: true});
         }
 
         // 附近小区横切样式和滑动
@@ -718,7 +719,8 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
             var $nearLis = nearXQUl.find('li'),
                 nearXQLiLen = $nearLis.length;
             nearXQUl.find('ul').width($nearLis.eq(0).width() * nearXQLiLen + nearXQLiLen * 15 + 15);
-            new iscrollNew('#nearXQ', {scrollX: true});
+            // eventPassthrough=true，默认允许纵向滑动页面
+            new iscrollNew('#nearXQ', {scrollX: true, eventPassthrough: true});
         }
         //热门房源横切
         $.ajax({
@@ -731,7 +733,8 @@ define('modules/xiaoqu/xqDetail', ['jquery', 'swipe/3.10/swiper', 'floatAlert/1.
                         var $hotlistLis = hotlistUl.find('li'),
                             hotlistLiLen = $hotlistLis.length;
                         hotlistUl.find('ul').width($hotlistLis.eq(0).width() * hotlistLiLen + hotlistLiLen * parseInt($hotlistLis.eq(0).css('marginRight')));
-                        new iscrollNew('.xq-hotlist', {scrollX: true});
+                        // eventPassthrough=true，默认允许纵向滑动页面
+                        new iscrollNew('.xq-hotlist', {scrollX: true, eventPassthrough: true});
                     }
                 }
             }

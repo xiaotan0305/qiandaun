@@ -427,7 +427,7 @@ define('modules/xf/tolpxkTable', ['jquery', 'hammer/2.0.4/hammer', 'swipe/3.10/s
             huxingdeid = $(this).attr('data-id');
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
-            window.location.href = url + 'xf.d?m=tolpxkTable&city=' + city + '&newcode=' + newcode + '&loudongId=' + ldid + '&huxingdeid=' + huxingdeid;
+            window.location.href = url + 'xf.d?m=tolpxkTable&city=' + city + '&newcode=' + newcode + '&loudongId=' + ldid + '&huxingdeid=' + huxingdeid + '&source=' + vars.source + '&src=' + vars.src;
         }
     });
 
@@ -460,7 +460,7 @@ define('modules/xf/tolpxkTable', ['jquery', 'hammer/2.0.4/hammer', 'swipe/3.10/s
             ldid = $(this).attr('data-id');
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
-            window.location.href = url + 'xf.d?m=tolpxkTable&city=' + city + '&newcode=' + newcode + '&loudongId=' + ldid + '&huxingdeid=' + huxingdeid;
+            window.location.href = url + 'xf.d?m=tolpxkTable&city=' + city + '&newcode=' + newcode + '&loudongId=' + ldid + '&huxingdeid=' + huxingdeid + '&source=' + vars.source + '&src=' + vars.src;
         }
     });
 

@@ -1190,6 +1190,7 @@
 .dq-more{text-align:center;border-top:1px solid #f8f8f8;margin:0 20px;}
 .dq-more > a{display:block;padding:20px 0;}
 .dq-more span{font-size:15px;color:#83868f;line-height:21px;}
+.dq-flist .txt2.line2{max-height:60px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
 .dq-flist .txt2.line3{max-height:84px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;}
 .dq-flist .tit{font-size:16px;color:#3c3f46;line-height:22px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-bottom:20px;}
 .dq-flist .tit .price{float:right;font-size:14px;color:#ff5350;font-weight:600;}

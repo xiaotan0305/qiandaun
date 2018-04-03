@@ -97,6 +97,16 @@ define('modules/xf/getwapztInfo',['jquery','util/util', 'superShare/1.0.1/superS
 			position: 'xfinfoAI'
 		});
 	});
+	
+	$('.lplb').on('click','a',function(e){
+		if($(e.target).hasClass('line2')){
+			e.stopPropagation();
+			window.location.href = $(this).find('.line2').attr('data-href');
+		}else{
+			window.location.href = $(this).attr('data-href');
+		}
+		
+	});
 
 	
 

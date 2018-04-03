@@ -2,12 +2,12 @@
  * @Author: tankunpeng@fang.com
  * @Date: 2018-04-03 09:59:05
  * @Last Modified by: tankunpeng@fang.com
- * @Last Modified time: 2018-04-03 11:39:58
+ * @Last Modified time: 2018-04-03 16:47:16
  * @Description: 懒加载插件
  */
 (function(w, f) {
     if (typeof define === 'function') {
-        define('//js.mm.test.fang.com/pc_public/fangLazyLoader/fangLazyLoader.js', ['jquery'], function(require) {
+        define('//static.test.soufunimg.com/common_m/pc_public/fangLazyLoader/fangLazyLoader.js', ['jquery'], function(require) {
             var $ = require('jquery');
             return f($, require);
         });
@@ -21,186 +21,237 @@
         w.fangLazyLoader = f(w.jQuery);
     }
 })(window, function($) {
-    let fang = window.fang;
+    var fang = window.fang;
     // jquery库
     $ = $ || window.jQuery;
 
     if (!fang) {
-        fang = (src, callback) => {
-            let script = document.createElement('script');
+        fang = function(src, callback) {
+            var script = document.createElement('script');
             script.charset = 'utf-8';
             script.src = src[0];
-            let head = document.head || document.getElementsByTagName('head')[0] || document.documentElement;
+            var head = document.head || document.getElementsByTagName('head')[0] || document.documentElement;
             head.appendChild(script);
             callback && callback(script);
         };
     }
 
-    let jqDoc = $(document),
+    /**
+     * ajax请求
+     * @param {styring} data
+     * @param {function} callback
+     */
+    var fangAjax = function(data, classObj) {
+        var settings = classObj.settings;
+        var json;
+        try {
+            if (/(\s\r\n)*{[\s\S]*}(\s\r\n)*/.test(data)) {
+                json = JSON.parse(data);
+            }else {
+                json = data;
+            }
+        } catch (error) {
+            return console.error('数据格式错误！', error);
+        }
+        classObj.ajaxArr.push(json);
+        var dataJson = {};
+        dataJson[settings.ajax_data_arrkey] = classObj.ajaxArr;
+        dataJson = $.extend({}, settings.ajax_data, dataJson);
+        if (classObj.ajaxTimer) return;
+        classObj.ajaxTimer = setTimeout(function() {
+            classObj.ajaxTimer = null;
+            classObj.ajaxArr = [];
+            let dJson = $.extend({}, dataJson);
+            $.ajax({
+                type: settings.ajax_type,
+                url: settings.ajax_url,
+                data: JSON.stringify(dataJson),
+                dataType: 'json',
+                success: function(result) {
+                    if (settings.ajax_succes) {
+                        settings.ajax_succes(result, dJson);
+                    }
+                },
+                error: function(err) {
+                    if (settings.ajax_fail) {
+                        settings.ajax_fail(err);
+                    }
+                }
+            });
+        }, settings.ajax_timeout);
+    };
+
+    var jqDoc = $(document),
         jqWin = $(window);
 
-    class FangLazyLoader {
-        constructor(options) {
-            let settings = {
-                selector: '.fang-lazy',
-                // 阈值
-                threshold: 0,
-                // 找到 failure_limit 个不在可见区域的图片是才停止搜索
-                failure_limit: 0,
-                // 事件名
-                event: 'scroll',
-                // 默认绑定 evnet 的对象容器
-                container: window,
-                // 获取 src 的 data 属性，默认 data-attrbute
-                data_attribute: 'fangJS',
-                // 赋值失败时候 备用src
-                data_attribute2: 'src2',
-                // 是否跳过不可见元素
-                skip_invisible: false,
-                // 回调事件，元素出现在视口中
-                appear: null,
-                // 触发 load 事件时执行的回调
-                load: null,
-                // 设置懒加载类型 默认为img  选项: 图片:img 入口文件:js iframe:iframe ajax: 发送ajax请求
-                loadtype: 'img',
-                // ajax_* 只有loadtype=== 'ajax' 时才生效
-                ajax_data: {},
-                ajax_data_type: 'string',
-                ajax_type: 'GET',
-                ajax_succes: null,
-                ajax_fail: null,
-                // 延时发送请求配置
-                ajax_timeout: 1000,
-                placeholder: '//static.test.soufunimg.com/common_m/pc_public/images/fang_placeholder.jpg',
-                loading: '//static.test.soufunimg.com/common_m/pc_public/images/fang_loading.gif'
-            };
+    function FangLazyLoader(options) {
+        var settings = {
+            selector: '.fang-lazy',
+            // 阈值
+            threshold: 0,
+            // 找到 failure_limit 个不在可见区域的图片是才停止搜索
+            failure_limit: 0,
+            // 事件名
+            event: 'scroll',
+            // 默认绑定 evnet 的对象容器
+            container: window,
+            // 获取 src 的 data 属性，默认 data-attrbute
+            data_attribute: 'fangJS',
+            // 赋值失败时候 备用src
+            data_attribute2: 'src2',
+            // 是否跳过不可见元素
+            skip_invisible: false,
+            // 回调事件，元素出现在视口中
+            appear: null,
+            // 触发 load 事件时执行的回调
+            load: null,
+            // 设置懒加载类型 默认为img  选项: 图片:img 入口文件:js iframe:iframe ajax: 发送ajax请求
+            loadtype: 'img',
+            // ajax_* 只有loadtype=== 'ajax' 时才生效
+            ajax_data: {},
+            // ajax动态数据数组key
+            ajax_data_arrkey: 'list',
+            ajax_type: 'POST',
+            ajax_url: location.origin + location.pathname,
+            ajax_succes: null,
+            ajax_fail: null,
+            // 延时发送请求配置
+            ajax_timeout: 1000,
+            placeholder: '//static.soufunimg.com/common_m/pc_public/images/fang_placeholder.jpg',
+            loading: '//static.soufunimg.com/common_m/pc_public/images/fang_loading.gif'
+        };
 
-            if (typeof options === 'string') {
-                settings.selector = options;
-            } else {
-                if (options.failurelimit) {
-                    options.failure_limit = options.failurelimit;
-                    delete options.failurelimit;
-                }
-
-                $.extend(settings, options);
+        if (typeof options === 'string') {
+            settings.selector = options;
+        } else {
+            if (options.failurelimit) {
+                options.failure_limit = options.failurelimit;
+                delete options.failurelimit;
             }
 
-            this.container = settings.container === window ? jqWin : $(settings.container);
-            this.elements = $(settings.selector);
-            this.settings = settings;
-            // ajax数据容器
-            if (settings.loadtype === 'ajax') {
-                this.ajaxArr = [];
-            }
-            this.init();
+            $.extend(settings, options);
         }
 
+        this.container = settings.container === window ? jqWin : $(settings.container);
+        this.elements = $(settings.selector);
+        this.settings = settings;
+        // ajax数据容器
+        if (settings.loadtype === 'ajax') {
+            this.ajaxArr = [];
+            this.ajaxTimer = null;
+        }
+        this.init();
+    }
+    FangLazyLoader.prototype = {
         /**
          * 初始化操作
          */
-        init() {
-            let that = this,
+        init: function() {
+            var that = this,
                 settings = this.settings,
                 container = this.container,
                 elements = this.elements;
             // 如果事件名为 scroll 事件，为 container 绑定 scroll 事件
             if (0 === settings.event.indexOf('scroll')) {
-                container.on(settings.event + '.fangLazyLoad', () => {
+                container.on(settings.event + '.fangLazyLoad', function() {
                     that.update();
                 });
             }
 
             elements.each(function() {
-                let that = this;
-                let jqSelf = $(that);
+                var jqSelf = $(this);
 
-                that.loaded = false;
+                this.loaded = false;
 
-                let fangsrc = jqSelf.attr('data-' + settings.data_attribute);
-                let fangsrc2 = jqSelf.attr('data-' + settings.data_attribute2);
+                var fangsrc = jqSelf.attr('data-' + settings.data_attribute);
+                var fangsrc2 = jqSelf.attr('data-' + settings.data_attribute2);
 
                 /* Remove image from array so it is not looped next time. */
-                let grepElements = (elements) => {
-                    return $.grep(elements, (element) => {
+                var grepElements = function(elements) {
+                    return $.grep(elements, function(element) {
                         return !element.loaded;
                     });
                 };
 
-                let loadSrc;
+                var loadSrc;
                 if (/iframe|img/.test(settings.loadtype)) {
                     if (!jqSelf.attr('src')) {
                         // img类型预加载为默认图片
                         if (jqSelf.is('img')) {
                             jqSelf.attr('src', settings.placeholder);
                         } else if (jqSelf.is('iframe')) {
-                            that.loadingEle = $('<div class="iframeloading"></div>');
-                            that.loadingImg = $('<img class="iframeloadingimg">');
-                            that.loadingEle.append(that.loadingImg);
-                            let width = jqSelf.width(),
+                            this.loadingEle = $('<div class="iframeloading"></div>');
+                            this.loadingImg = $('<img class="iframeloadingimg">');
+                            this.loadingEle.append(this.loadingImg);
+                            var width = jqSelf.width(),
                                 height = jqSelf.height();
                             jqSelf.parent().css('position', 'relative');
-                            that.loadingEle.css({
+                            this.loadingEle.css({
                                 position: 'absolute',
                                 left: 0,
                                 top: 0,
                                 width: width,
                                 height: height
                             });
-                            that.loadingImg.attr('src', settings.loading).css({
+                            this.loadingImg.attr('src', settings.loading).css({
                                 position: 'absolute',
                                 left: parseInt(width / 2) - 92,
                                 top: parseInt(height / 2) - 44,
                                 width: 184,
                                 height: 87
                             });
-                            jqSelf.after(that.loadingEle);
+                            jqSelf.after(this.loadingEle);
                         }
                     }
 
-                    loadSrc = () => {
+                    loadSrc = function() {
                         jqSelf.attr('src', fangsrc);
                         jqSelf.on('load', function() {
-                            that.loaded = true;
+                            this.loaded = true;
                             elements = $(grepElements(elements));
-                            if (that.loadingEle) {
-                                that.loadingEle.remove();
+                            if (this.loadingEle) {
+                                this.loadingEle.remove();
                             }
                             if (settings.load) {
-                                let elements_left = elements.length;
-                                settings.load.call(that, elements_left, settings);
+                                var elements_left = elements.length;
+                                settings.load.call(this, elements_left, settings);
                             }
                         });
                         jqSelf.on('error', function() {
-                            if (that.loadSecond) return;
+                            if (this.loadSecond) return;
                             if (fangsrc2) {
                                 jqSelf.attr('src', fangsrc2);
-                                that.loadSecond = true;
+                                this.loadSecond = true;
                             }
                         });
                     };
                 } else if (/js/.test(settings.loadtype)) {
-                    loadSrc = () => {
-                        fang([fangsrc], (m) => {
+                    loadSrc = function() {
+                        fang([fangsrc], function(m) {
                             m && m.init && m.init();
-                            that.loaded = true;
+                            this.loaded = true;
                             elements = $(grepElements(elements));
                             if (settings.load) {
-                                let elements_left = elements.length;
-                                settings.load.call(that, elements_left, settings);
+                                var elements_left = elements.length;
+                                settings.load.call(this, elements_left, settings);
                             }
                         });
                     };
-                } else {
-                    loadSrc = () => {
+                } else if (/ajax/.test(settings.loadtype)) {
+                    loadSrc = function() {
+                        this.loaded = true;
+                        fangAjax(fangsrc, that);
+                    };
+                }else {
+                    loadSrc = function() {
                     };
                 }
 
-                jqSelf.one('appear.fangLazyLoad', () => {
-                    if (!that.loaded) {
+                jqSelf.one('appear.fangLazyLoad', function() {
+                    if (!this.loaded) {
                         if (settings.appear) {
-                            let elements_left = elements.length;
-                            settings.appear.call(that, elements_left, settings);
+                            var elements_left = elements.length;
+                            settings.appear.call(this, elements_left, settings);
                         }
                         loadSrc();
                     }
@@ -208,8 +259,8 @@
 
                 // 如果不是默认的 scroll 事件时, 为每个元素绑定事件
                 if (0 !== settings.event.indexOf('scroll')) {
-                    jqSelf.on(settings.event + '.fangLazyLoad', () => {
-                        if (!that.loaded) {
+                    jqSelf.on(settings.event + '.fangLazyLoad', function() {
+                        if (!this.loaded) {
                             jqSelf.trigger('appear.fangLazyLoad');
                         }
                     });
@@ -223,14 +274,13 @@
             jqDoc.ready(function() {
                 that.update();
             });
-        }
-
-        update() {
-            let counter = 0,
+        },
+        update: function() {
+            var counter = 0,
                 settings = this.settings;
 
             this.elements.each(function() {
-                let jqThis = $(this);
+                var jqThis = $(this);
                 // 如果隐藏，且忽略隐藏，则中断循环
                 if (settings.skip_invisible && !jqThis.is(':visible')) {
                     return;
@@ -250,13 +300,13 @@
                 }
             });
         }
-    }
+    };
 
     /* Convenience methods in jQuery namespace.           */
     /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
     // 在视口下方
     $.belowthefold = function(element, settings) {
-        let fold;
+        var fold;
 
         if (settings.container === undefined || settings.container === window) {
             fold = (window.innerHeight ? window.innerHeight : jqWin.height()) + jqWin.scrollTop();
@@ -268,7 +318,7 @@
     };
     // 在视口右方
     $.rightoffold = function(element, settings) {
-        let fold;
+        var fold;
 
         if (settings.container === undefined || settings.container === window) {
             fold = jqWin.width() + jqWin.scrollLeft();
@@ -280,7 +330,7 @@
     };
     // 在视口上方
     $.abovethetop = function(element, settings) {
-        let fold;
+        var fold;
 
         if (settings.container === undefined || settings.container === window) {
             fold = jqWin.scrollTop();
@@ -292,7 +342,7 @@
     };
     // 在视口左方
     $.leftofbegin = function(element, settings) {
-        let fold;
+        var fold;
 
         if (settings.container === undefined || settings.container === window) {
             fold = jqWin.scrollLeft();
