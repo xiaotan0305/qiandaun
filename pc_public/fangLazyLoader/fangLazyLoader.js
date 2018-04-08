@@ -2,7 +2,7 @@
  * @Author: tankunpeng@fang.com
  * @Date: 2018-04-03 09:59:05
  * @Last Modified by: tankunpeng@fang.com
- * @Last Modified time: 2018-04-03 16:47:16
+ * @Last Modified time: 2018-04-08 15:06:49
  * @Description: 懒加载插件
  */
 (function(w, f) {
@@ -54,14 +54,14 @@
             return console.error('数据格式错误！', error);
         }
         classObj.ajaxArr.push(json);
-        var dataJson = {};
-        dataJson[settings.ajax_data_arrkey] = classObj.ajaxArr;
-        dataJson = $.extend({}, settings.ajax_data, dataJson);
         if (classObj.ajaxTimer) return;
         classObj.ajaxTimer = setTimeout(function() {
+            var dataJson = {};
+            dataJson[settings.ajax_data_arrkey] = classObj.ajaxArr;
+            dataJson = $.extend({}, settings.ajax_data, dataJson);
+            // 初始化数据容器与定时器
             classObj.ajaxTimer = null;
             classObj.ajaxArr = [];
-            let dJson = $.extend({}, dataJson);
             $.ajax({
                 type: settings.ajax_type,
                 url: settings.ajax_url,
@@ -69,7 +69,7 @@
                 dataType: 'json',
                 success: function(result) {
                     if (settings.ajax_succes) {
-                        settings.ajax_succes(result, dJson);
+                        settings.ajax_succes(result, dataJson);
                     }
                 },
                 error: function(err) {
