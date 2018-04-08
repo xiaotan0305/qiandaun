@@ -22,9 +22,17 @@ define('backtop/1.0.0/backtop', ['jquery'], function (require) {
         var dom = $(htmlStr).appendTo(document.body);
         var $window = $(window);
         var height = $window.height();
-        dom.on('click', function () {
-            $('body').animate({scrollTop: 0}, 200);
-        });
+        // dom.on('click', function () {
+        //     $('body').animate({scrollTop: 0}, 200);
+        // });
+        dom.on("click", function(event) {
+            var timer = setInterval(function() {
+                window.scrollBy(0, -100);
+                if ($(window).scrollTop() <= 1) {
+                    window.clearInterval(timer)
+                }
+            }, 2)
+        })
         $window.on('resize', function () {
             height = $window.height();
         }).on('scroll', function () {

@@ -115,13 +115,19 @@ define('modules/bask/newdetail', ['jquery', 'loadMore/1.0.2/loadMore', 'photoswi
 
         var textarea = $('.inptext');
         var title = $('#title');
+        var desc = $('#desc');
+        var loupan = $('#loupan');
         var card = $('#cardflag');
         textarea.on('focus', function () {
             title.fadeOut(1000);
+            desc.fadeOut(1000);
+            loupan.fadeOut(1000);
         });
 
         textarea.on('blur', function () {
             title.fadeIn(1000);
+            desc.fadeIn(1000);
+            loupan.fadeIn(1000);
         });
 
         // 插入名片

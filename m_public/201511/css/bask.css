@@ -678,7 +678,7 @@ a.allbtn03{width:150px;height:38px;line-height:38px; text-align:center;font-size
 .searList li a:before{ position:absolute; content:'';  width:10px; height:10px;background:url(../images/icon_ad.png) center no-repeat; background-size:10px auto; left:6px; top:4px; }
 .searList li i{width:15px;height:15px;line-height:15px;background:#fbab7a;font-size:12px;color:#fff; text-align:center; display:inline-block; vertical-align:top;margin-top:12px;margin-right:10px;border-radius:50%}
 .searList li i.no2{background:#dbdbdb}
-.answerbox{overflow: hidden;}
+.answerbox{max-width:640px; margin: 0 auto; overflow: hidden;}
 .answerbox h3{font-size:16px;color:#3c3f46;line-height:22px;padding-top:18px;padding-bottom:18px;}
 .answerbox h2{font-size:15px;color:#b3b6be;line-height:22px;padding-top:18px;}
 
@@ -745,3 +745,9 @@ a.askHY{color:#b3b6be;}
 100% {-webkit-transform: none;transform: none;}
 }
 p.p0130{font-size:14px;color:#3c3f46; text-align:center;margin-top:178px}
+
+/*20180402*/
+.answerbox .info{font-size:15px;color:#3c3f46;line-height:22px;margin-bottom:10px;}
+.answerbox .laiy{font-size:12px;color:#3c3f46;line-height:20px;margin-bottom:10px;}
+.answerbox .laiy span{color:#b3b6be;margin-right: 5px}
+.quizlist h2 i{width:18px;height:19px;background:url(../images/icon403.png) center no-repeat; background-size:18px auto; display: inline-block;margin-right:4px;margin-top:1px;vertical-align:top; }

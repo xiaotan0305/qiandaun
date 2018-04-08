@@ -495,6 +495,13 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31384.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391537425612',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31384&mt=8'
+                            },
+                            //淘房季专题
+                            tfjdown: {
+                                company: 1386,
+                                appUrl: '//download.3g.fang.com/fang_android_31386.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1392804583201',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31386&mt=8'
                             }
                         };
                         apkUrl = tjConfig[position].appUrl;

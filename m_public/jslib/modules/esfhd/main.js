@@ -29,10 +29,11 @@ define('modules/esfhd/main', [], function (require) {
         preload.push('miuiYellowPage/miuiYellowPage');
     }
     // 如页面底部有app下载按钮引入appdownload
-    if ($('#down-btn-c').length > 0 || $('.autogeneration').length > 0) {
+    if ($('#down-btn-c').length > 0 || $('.autogeneration').length > 0 || $('.tfjdown').length > 0) {
         require.async('app/1.0.0/appdownload', function ($) {
             $('#down-btn-c').openApp();
             $('.autogeneration').openApp({position: 'autogeneration'});
+            $('.tfjdown').openApp({position: 'tfjdown'});
         });
     }
     if (vars.action !== '') {

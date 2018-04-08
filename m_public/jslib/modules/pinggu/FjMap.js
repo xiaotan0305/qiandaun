@@ -1,7 +1,7 @@
 /** 房价地图
  * Created by lina on 2017/1/4.
  */
-define('modules/pinggu/FjMap', ['chart/histogram/1.0.2/histogram', 'iscroll/2.0.0/iscroll-lite'], function (require, exports, module) {
+define('modules/pinggu/FjMap', ['jquery', 'iscroll/2.0.0/iscroll-lite', 'chart/line/1.0.2/line', 'weixin/2.0.0/weixinshare'], function (require, exports, module) {
     'use strict';
     module.exports = function () {
         var $ = require('jquery');
@@ -51,8 +51,12 @@ define('modules/pinggu/FjMap', ['chart/histogram/1.0.2/histogram', 'iscroll/2.0.
             htmlObjList = '';
             for (var i = 0; i < len; i++) {
                 htmlObjMap += '<a href="' + hrefs[i] + '" class="qp ' + bgclass[i] + '" style="top:'
-                    + top[i] + ';left:' + left[i] + ';"><span class="' + citylist[i] + '">' + city[i] + '<em>' + jiage1[i] + '<i>元/㎡</i></em></span></a>';
-                htmlObjList += '<li><span>' + city[i] + '</span><span class="' + fontclass[i] + '">' + jiage1[i]
+                    + top[i] + ';left:' + left[i] + ';">';
+                if (city[i] === '北京' || city[i] === '上海' || city[i] === '广州' || city[i] === '深圳') {
+                    htmlObjMap += '<i class="bg pulse"></i>';
+                }
+                htmlObjMap += '<span class="' + citylist[i] + '">' + city[i] + '<em>' + jiage1[i] + '<i>元/㎡</i></em></span></a>';
+                htmlObjList += '<li><a href="' + hrefs[i] + '">' + city[i] + '</a><span class="' + fontclass[i] + '">' + jiage1[i]
                     + '<i>元/㎡</i></span><span>' + jiage2[i] + '<i>元/㎡</i></span><span>' + jiage3[i] + '<i>元/㎡</i></span></li>';
             }
         }
@@ -130,55 +134,82 @@ define('modules/pinggu/FjMap', ['chart/histogram/1.0.2/histogram', 'iscroll/2.0.
             $drop.hide();
         });
         $drop.css('z-index','1000');
-        // 获取数据
-        var chartData = [];
+
+        // 画走势图
+        var Line = require('chart/line/1.0.2/line'), l;
+        // 获取数据并绘制走势图
+        // 判断走势图数据如果为空说明没有获取过数据，则执行初始化，否则以存储过的数据画图
         $.ajax({
             url: vars.pingguSite + '?a=ajaxgetFjchart',
-            type: 'get',
-            async: false,
             success: function (data) {
-                chartData = data;
-                // 画柱状图插件
-                var histogram = require('chart/histogram/1.0.2/histogram');
-                var s = new histogram({
-                    // 容器
-                    id: '#container',
-                    // 高度
-                    h: 400,
-                    // 宽度
-                    w: '100%',
-                    // 展示块高度比例
-                    per: 0.8,
-                    // 排序方式无
-                    sort: 'none',
-                    // 文字高度
-                    textH: 50,
-                    // 是否为一边，即是否在data中value存在正负，true为双向，false为单向
-                    side: false,
-                    // 数据
-                    data: chartData
-                });
-                // 运行上升动画
-                s.run();
-                // 设置滑动效果
-                setTimeout(function () {
-                    var Scroll = new IScroll('#container', {
-                        scrollX: true,
-                        preventDefault: true,
-                        eventPassthrough: true
+                if (data !== 'error' && data.value && data.value.hasOwnProperty('0')) {
+                    var xqcodeChart, cdataArr = [];
+                    // 针对某些城市数据不全的情况做兼容如果某类数据不存在，则不显示
+                    if (data.value && data.value) {
+                        xqcodeChart = {
+                            yAxis: data.value,
+                            forecast: false
+                            // 是否显示预测，不传是false
+                        };
+                        cdataArr.push(xqcodeChart);
+                    }
+                    // 画走势图
+                    l = new Line({
+                        id: '#container',
+                        height: 200,
+                        width: $(window).width(),
+                        lineColor: ['#E1BD2A'],
+                        scalePosition: 'left',
+                        downTxtColor: '#759AC1',
+                        scaleColor: '#6F8FB7',
+                        scaleBorder: 0,
+                        bgLinePx: 5,
+                        bgLineColor: '#344F83',
+                        border: 60,
+                        xAxis: data.name,
+                        data: cdataArr
                     });
-                    var wW = $(document).width() * 1.48;
-                    $('#scroller').css('width',wW + 'px');
-                    $('#container').css({'margin-bottom': '-150px' ,'overflow': 'hidden', 'margin-top' : '-20px'});
-                    var thisTop;
-                    $('.histogramData>li').each(function () {
-                        thisTop = parseInt($(this).find('p').eq(1).css('margin-top')) + 8;
-                        $(this).find('p').eq(1).css('margin-top',thisTop + 'px');
-                    });
-                    Scroll.refresh('#scroller');
-                    Scroll.scrollTo(- (wW * 0.285),0, 0);
-                }, 0);
+                    l.run();
+                    // 使走势图滚动到最后一个月位置
+                } else {
+                    // 没有数据则隐藏房价走势板块
+                    $('#container, .tit3').hide();
+                }
             }
+        });
+
+        var keyword = '';
+        $('.icon_search').on('click', function() {
+            keyword = $('.search').find('input').val();
+            $.get(vars.pingguSite + '?a=ajaxGetCityList&keyword=' + keyword, function(data) {
+                if (data) {
+                    if (data.indexOf('<li') <= -1) {
+                        window.location.href = vars.pingguSite + data + '/';
+                    } else {
+                        $('.shade').css('display', 'block');
+                        setTimeout(function(){
+                            $('.shade').css('display', 'none');
+                        },3000);
+                    }
+                } else {
+                    $('.shade').css('display', 'block');
+                    setTimeout(function(){
+                        $('.shade').css('display', 'none');
+                    },3000);
+                }
+            });
+        });
+
+        // 微信分享，调用微信分享的插件
+        var Weixin = require('weixin/2.0.0/weixinshare');
+        var wx = new Weixin({
+            debug: false,
+            shareTitle: vars.shareTitle,
+            // 副标题
+            descContent: vars.shareDescription,
+            lineLink: location.href,
+            imgUrl: window.location.protocol + vars.shareImage,
+            swapTitle: false
         });
     };
 });
