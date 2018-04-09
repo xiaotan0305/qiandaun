@@ -60,6 +60,7 @@ define('modules/map/main', ['jquery'], function (require) {
         preload.push('modules/map/API/zfMapApi');
         preload.push('modules/map/API/xfMapApi');
         preload.push('modules/map/mapPublic');
+        preload.push('app/1.0.0/appdownload');
         require.async(preload);
         // 屏幕的大小，不带地址栏
         var $win = $(window), $header = $('header'), lbTab = $('.lbTab');

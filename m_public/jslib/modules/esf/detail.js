@@ -71,19 +71,15 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         // 加载所需的js
         require.async(preLoad);
 
-        
-
         // 二手房详情页图片增加惰性加载功能 modified by zdl
-        require('lazyload/1.9.1/lazyload');
-        $('.lazyload').lazyload();
+         require('lazyload/1.9.1/lazyload');
+         $('.lazyload').lazyload();
         // 详情页轮播的图片加载之前显示loader的图片 lina 20170122
-        var $imgs = $('.swiper-wrapper').find('.lazyload');
+        var $imgs = $('.swiper-wrapper').find('.swiper-lazy');
         if ($imgs.length) {
             imgWidth = $(document).width();
             imgWidth = imgWidth > 640 ? 640 : imgWidth;
             $imgs.css('height', imgWidth * 0.75);
-            $('#loading').hide();
-            $('.xqfocus').find('ul').show();
         }
         // 画饼状图 lina
         if($('#pieCon').length){
@@ -278,7 +274,7 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                 pageId = 'esf_fy^grxzlxq_wap';
             }
         }
-        
+
         // 用户行为收集(浏览)
         if (!vars.guessFavorite) {
             yhxw({pageId: pageId});
@@ -337,7 +333,6 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                 a.record(vars.houseid);
             });
         }
-
         if (vars.fromsource === 'jjfdetail') {
             if (vars.jsJjfDatacount && vars.jsJjfDatacount == 1) {
                 var jsJjfDatacount = 1;
@@ -409,7 +404,6 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                 // eventPassthrough=true，默认允许纵向滑动页面
                 new iscrollNew('.jjfy-list', {scrollX: true, eventPassthrough: true});
             }
-
         }
 
         /* 分享代码*/
@@ -478,25 +472,25 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
         $('#foot').css('margin-bottom', '50px');
         // 控制图片的宽高比
         // 顶部图片滑动效果
-        if ($imgs.length) {
-            // 顶部图片滑动效果
-            var totalSlider = vars.sum;
-            if (totalSlider > 1) {
-                Swiper('#slider', {
-                    loop: true,
-                    onSlideChangeStart: function (swiper) {
-                        var activeIndex = swiper.activeIndex;
-                        // 右滑
-                        if (activeIndex === 0) {
-                            activeIndex = totalSlider;
-                            // 左滑
-                        } else if (activeIndex > totalSlider) {
-                            activeIndex = 1;
-                        }
-                        $('#pageIndex').text(activeIndex);
+        // 顶部图片滑动效果
+        var totalSlider = vars.sum;
+        if (totalSlider > 1) {
+            Swiper('#slider', {
+                loop: true,
+                onSlideChangeStart: function (swiper) {
+                    var activeIndex = swiper.activeIndex;
+                    // 右滑
+                    if (activeIndex === 0) {
+                        activeIndex = totalSlider;
+                        // 左滑
+                    } else if (activeIndex > totalSlider) {
+                        activeIndex = 1;
                     }
-                });
-            }
+                    $('#pageIndex').text(activeIndex);
+                },
+                lazyLoading:true,
+                autoHeight:true
+            });
         }
 
         /**
@@ -661,6 +655,7 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
             }
             $.ajax(vars.mainSite + 'data.d?m=tel&city=' + vars.city + '&housetype='
                 + housetype + '&id=' + houseid + '&phone=' + dataArr[5] + '&isShopPhone=' + isShopPhone);
+
             //威海打电话强制登录
             if (vars.city == 'weihai' && !cookiefile.getCookie('sfut')) {
                 e.preventDefault();
@@ -669,10 +664,12 @@ define('modules/esf/detail', ['jquery', 'chart/line/1.0.2/line', 'modules/esf/yh
                     autoCall = $.trim($(this).attr('href').replace('tel:', ''));
                 }
                 console.log(autoCall);
+
                 // 当前页面地址处理，将地址中含有的autoCall参数去掉
                 var backUrl = window.location.href.replace(/&?autoCall=[0-9,]+&?/g, '');
                 // 将需要拼接的autoCall参数加入url中
                 backUrl += backUrl.indexOf('?') > -1 ? '&autoCall=' + autoCall : '?autoCall=' + autoCall;
+
                 // 跳转登录
                 window.location.href = location.protocol + '//m.fang.com/passport/login.aspx?burl='
                     + encodeURIComponent(backUrl) + '&r=' + Math.random();

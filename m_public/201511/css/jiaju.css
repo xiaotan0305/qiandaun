@@ -60,11 +60,34 @@ input:disabled{ background-color:transparent; opacity:1;}
 .over-X{ overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}/*20170427*/
 .homeOption a{line-height:44px;}
 
-/**/
+/*搜索计算器*/
 .search .jsqbtn{ margin-left: 5px; display: block; background-color: #ffffff; border-radius: 3px;width:86px;max-width:86px;min-width:86px;height: 36px; line-height: 35px;font-size: 13px; color: #ff6666;border:1px solid #f4f4f4;padding:0 5px; cursor: pointer;overflow:hidden;}
 .search .jsqbtn i{float:left;width:15px;height:17px;background:url(../images/search_jsq.png) no-repeat;background-size:100%;margin-top:9px;margin-right:4px;}
 
-
+/*头部下载APP*/
+.dt-hd-nav{float:left;margin-top:12px;margin-right:6px;}
+.dt-hd-nav a{padding:0;margin:0;}
+.loadapp-dt-hd {position: relative;z-index: 10;width: 60px;height:20px;}
+.loadapp-dt-hd .loadapp-text {position: absolute;z-index: 2;width:60px;height:20px;-webkit-animation: nav-txt-flash 1s ease-in-out .5s  both;animation: nav-txt-flash 1s ease-in-out .5s  both;}
+.loadapp-dt-hd .loadapp-text p {font-size:12px;line-height:13px;color:#565c67;margin-top:-2px;text-align:center;-webkit-transform:scale(.78);transform:scale(.78)}
+.loadapp-dt-hd .loadapp-icon {position: relative;float: right;background-color:#f6f6f6;z-index: 3;width: 60px; height: 30px;-webkit-animation: nav-icon-flash 1s ease-in-out .5s both;animation: nav-icon-flash 1s ease-in-out .5s both;}
+.loadapp-dt-hd .loadapp-icon em {display:block;width:15px;height:19px;background: url(../images/nav_app_icon.png) no-repeat;background-size:15px auto;}
+@-webkit-keyframes nav-txt-flash{
+	0%{left:0;}
+	100%{left:-8px;}
+ }
+@keyframes nav-txt-flash{
+	0%{left:0;}
+	100%{left:-8px;}
+ }
+@-webkit-keyframes nav-icon-flash{
+	0%{width:60px;}
+	100%{width:15px;}
+ }
+@keyframes nav-icon-flash{
+	0%{width:60px;}
+	100%{width:15px;}
+ }
 /*底部菜单--多选*/
 .multiSelect{ height:269px;}
 .multiSelect .con{ height:225px;}

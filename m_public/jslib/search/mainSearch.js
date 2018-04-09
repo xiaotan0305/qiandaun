@@ -5,8 +5,8 @@
  * 20160119 增加储存频道地址功能并且增加历史记录功能
  * by tankunpeng 20160921 增加热词前端缓存 减少请求提升响应速度
  */
-define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (require, exports, module) {
-    'use strict';
+define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function(require, exports, module) {
+
     // jquery索引
     var $ = require('jquery');
     // 获取滚动插件，首页新需求中如果有历史记录则热词要变成一行滚动
@@ -83,12 +83,12 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 给显示弹窗按钮绑定事件
          * 点击弹窗按钮弹出搜索弹窗
          */
-        init: function () {
+        init: function() {
             var that = this;
             // 获取显示搜索弹窗按钮
             that.showPopBtn = $(that.showPopBtn);
             // 点击操作
-            that.showPopBtn.on('click', function (e) {
+            that.showPopBtn.on('click', function(e) {
                 // 如果点击目标为地图图标或者今日头条合作页面中点击城市切换则直接跳转
                 var el = $(e.target);
                 // !!!当显示弹窗按钮包含了地图按钮或者点击选择城市按钮时不引起搜索弹窗
@@ -107,30 +107,30 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
             // 获取返回按钮
             that.backBtn = that.searchPop.find(that.findBackBtn);
             // 绑定点击事件，执行清空所有列表、隐藏搜索弹窗、显示之前页面操作
-            that.backBtn.on('click', function () {
+            that.backBtn.on('click', function() {
                 that.back();
             });
             // 获取搜索弹窗上搜索按钮
             that.searchBtn = that.searchPop.find(that.findSearchBtn);
             // 绑定点击事件，执行点击搜索操作
-            that.searchBtn.on('click', function () {
+            that.searchBtn.on('click', function() {
                 that.search();
             });
             // 获取清空搜索框操作
             that.offBtn = that.searchPop.find(that.findOffBtn);
             // 绑定点击事件，执行关闭自动提示列表
-            that.offBtn.on('click', function () {
+            that.offBtn.on('click', function() {
                 that.offBtn.hide();
                 that.closeAutoPromptList();
             });
             // 获取搜索框input
             that.searchInput = that.searchPop.find(that.findSearchInput);
             // 绑定input事件，执行自动提示操作
-            that.searchInput.on('input', function () {
+            that.searchInput.on('input', function() {
                 that.inputChange();
             });
             // 绑定keyup事件，执行当手机端点击了键盘上的搜索按钮时操作
-            that.searchInput.on('keyup', function (e) {
+            that.searchInput.on('keyup', function(e) {
                 // 判断为手机端点击搜索按钮
                 if (e.keyCode === 13) {
                     that.search();
@@ -139,39 +139,39 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
             // 获取热词容器
             that.hotSearchList = that.searchPop.find(that.findHotSearchList);
             // 获取热词列表中ul显示列表并绑定点击事件，事件委托方式，执行获取点击的楼盘信息后操作
-            that.hotSearchList.on('click', 'a', function () {
+            that.hotSearchList.on('click', 'a', function() {
                 var data = that.getJumpCondition($(this).find('.searchListName').attr('data-ywtype'));
                 that.clickListSearch(data);
             });
             // 刷新热搜词列表
             that.hotSearchRefreshBtn = that.searchPop.find(that.hotSearchRefresh);
-            that.hotSearchRefreshBtn.on('click', function () {
+            that.hotSearchRefreshBtn.on('click', function() {
                 that.refressScroll();
             });
             // 获取历史列表容器
             that.historyList = that.searchPop.find(that.findHistoryList);
             // 获取历史记录列表中ul显示列表并绑定点击事件，事件委托方式，执行获取点击的楼盘信息后操作
-            that.historyList.find('ul').on('click', 'a', function () {
+            that.historyList.find('ul').on('click', 'a', function() {
                 var data = that.getJumpCondition($(this).find('.searchListName').attr('data-ywtype'));
                 that.clickListSearch(data);
             });
             // 获取删除历史记录按钮
             that.deleteHistoryListBtn = that.searchPop.find(that.findDeleteHistoryListBtn);
             // 绑定点击事件，执行删除历史记录及历史记录列表操作
-            that.deleteHistoryListBtn.on('click', function () {
+            that.deleteHistoryListBtn.on('click', function() {
                 that.deleteHistoryList();
             });
             // 获取自动提示列表容器
             that.autoPromptList = that.searchPop.find(that.findAutoPromptList);
             // 获取自动提示列表中ul显示列表并绑定点击事件，事件委托方式，执行获取点击的楼盘信息后操作
-            that.autoPromptList.find('ul').on('click', 'a', function () {
+            that.autoPromptList.find('ul').on('click', 'a', function() {
                 var data = that.getJumpCondition($(this).find('.searchListName').attr('data-ywtype'));
                 that.clickListSearch(data);
             });
             // 获取关闭自动提示按钮
             that.closeAutoPromptListBtn = that.searchPop.find(that.findCloseAutoPromptListBtn);
             // 绑定点击事件，执行关闭自动提示列表
-            that.closeAutoPromptListBtn.on('click', function () {
+            that.closeAutoPromptListBtn.on('click', function() {
                 that.offBtn.hide();
                 that.closeAutoPromptList();
             });
@@ -180,11 +180,11 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
             that.searchPop.hide();
             $(document.body).prepend(that.searchPop);
             that.cacheData && that.cacheData();
-            if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh) || /cps=xmzhida/.test(lh)) {
+            if (/cps=coop/.test(lh) || /cps=baidumip/.test(lh) || /cps=quickapp/.test(lh)) {
            	 that.hideBody();
                 that.showPop();
-           }
-	        if(/cps=xmzhida/.test(lh)){
+            }
+	        if(/cps=quickapp/.test(lh)) {
 	        	$('.back').hide();
 	        }
         },
@@ -193,14 +193,14 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 设置显示搜索弹窗的按钮ID或者类名,形如#id或者.class
          * @param str
          */
-        setShowPopBtn: function (str) {
+        setShowPopBtn: function(str) {
             this.showPopBtn = str;
         },
 
         /**
          * 获取猜你喜欢和还浏览了规则
          */
-        getRules: function (historyMark) {
+        getRules: function(historyMark) {
             var that = this,
                 historyData, obj = {};
             if (vars.localStorage) {
@@ -244,7 +244,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param url
          * @param filterType 快筛类型
          */
-        setFilterHistory: function (key, url, filterType) {
+        setFilterHistory: function(key, url, filterType) {
             this.setHistory({
                 key: key,
                 showWord: key,
@@ -265,7 +265,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param obj
          * @param url
          */
-        setOtherHistory: function (obj, url) {
+        setOtherHistory: function(obj, url) {
             this.setHistory(obj, url, this.historyMark);
             this.setHistory(obj, url, (vars.city || vars.paramcity) + 'newHomeHistory');
         },
@@ -275,13 +275,13 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 用来获取弹窗显示前所有css属性不为display:none的body上的所有节点
          * 将这些节点隐藏
          */
-        hideBody: function () {
+        hideBody: function() {
             var that = this;
             $.fx.off = true;
             if (that.body) {
                 that.body.hide();
             } else {
-                that.body = $(document.body).children().filter(function () {
+                that.body = $(document.body).children().filter(function() {
                     var $this = $(this);
                     return $this.css('display') !== 'none';
                 });
@@ -295,7 +295,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 将弹窗jquery对象加载到文档流
          * 获取后退按钮、搜索按钮、删除输入内容按钮、搜索框input、历史记录列表容器，
          */
-        showPop: function () {
+        showPop: function() {
             var that = this;
             that.ajaxFlag = 0;
 
@@ -310,22 +310,22 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 点击返回按钮操作
          */
-        back: function () {
+        back: function() {
         	var lh = location.href;
-        	 if (/cps=coop/.test(lh)||/cps=baidumip/.test(lh) || /cps=xmzhida/.test(lh)) {
+        	 if (/cps=coop/.test(lh) || /cps=baidumip/.test(lh) || /cps=quickapp/.test(lh)) {
         		 history.back(-1);
         	 }else{
         	$.fx.off = false;
-            // this.clearAllList();
-            this.searchPop.hide();
-            this.body.show();
+                // this.clearAllList();
+                this.searchPop.hide();
+                this.body.show();
         	 }
         },
 
         /**
          * 设置滑动操作
          */
-        setScroll: function () {
+        setScroll: function() {
             var that = this;
             // 通过获取热词中的a标签节点数组算出组成一行需要的宽度
             var aArr = that.hotSearchList.find('a'),
@@ -352,7 +352,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 设置新版滑动操作
          */
-        setRefreshScroll: function (rows) {
+        setRefreshScroll: function(rows) {
             var that = this;
             // 设置纵向显示行数 默认显示三行
             rows = rows || 3;
@@ -380,7 +380,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 热搜词刷新按钮
          */
-        refressScroll: function () {
+        refressScroll: function() {
             var that = this;
             if (that.scroll) {
                 var len = that.scroll.pages[0].length;
@@ -393,7 +393,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 清除所有列表
          */
-        clearAllList: function () {
+        clearAllList: function() {
             var that = this;
             that.hideHistoryList();
             that.hideAutoPromptList();
@@ -403,7 +403,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 清除热词
          */
-        clearHotSearch: function () {
+        clearHotSearch: function() {
             var that = this;
             that.hotSearchList.empty();
             // 清除滚动插件
@@ -419,7 +419,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * input变化，即输入自动提示
          */
-        inputChange: function () {
+        inputChange: function() {
             var that = this;
             var inputValue = that.searchInput.val();
             if ($.trim(inputValue) === '') {
@@ -444,7 +444,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 创建历史记录列表
          */
-        creatHistoryList: function () {
+        creatHistoryList: function() {
             var that = this,
                 historyData;
             if (vars.localStorage) {
@@ -473,14 +473,14 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param url 自动提示后台地址
          * @param obj 传入后台的参数内容
          */
-        createAutoPromptList: function (inputValue, url, obj) {
+        createAutoPromptList: function(inputValue, url, obj) {
             var that = this;
             // 如果再次调用时前一个ajax在执行，kill掉
             if (that.ajaxFlag) {
                 that.ajaxFlag.abort();
                 that.ajaxFlag = 0;
             }
-            that.ajaxFlag = $.get(url, obj, function (data) {
+            that.ajaxFlag = $.get(url, obj, function(data) {
                 that.ajaxFlag = 0;
                 if (data && $.trim(that.searchInput.val()) !== '') {
                     var list = that.autoPromptList.find('ul');
@@ -488,7 +488,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
                     var html;
                     list.empty();
                     if ($.isArray(dataArr) && dataArr.length > 0) {
-                        html = that.getAutoPromptListContent(dataArr,inputValue);
+                        html = that.getAutoPromptListContent(dataArr, inputValue);
                         if (html) {
                             list.html(html);
                             if (that.autoPromptList.is(':hidden')) {
@@ -508,7 +508,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 获取格式化条件
          * @returns {{}}
          */
-        getFormatCondition: function (obj) {
+        getFormatCondition: function(obj) {
             var that = this,
                 a = {};
             for (var op in that.standardObj) {
@@ -525,7 +525,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 这里可能需要存在格式化验证
          * @param obj
          */
-        setJumpCondition: function (obj) {
+        setJumpCondition: function(obj) {
             return JSON.stringify(obj);
         },
 
@@ -534,14 +534,14 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 这里可能需要存在格式化验证
          * @param str
          */
-        getJumpCondition: function (str) {
+        getJumpCondition: function(str) {
             return JSON.parse(str);
         },
 
         /**
          * 删除历史记录及关闭历史记录列表
          */
-        deleteHistoryList: function () {
+        deleteHistoryList: function() {
             var that = this;
             vars.localStorage && vars.localStorage.removeItem(that.historyMark);
             that.hideHistoryList();
@@ -551,7 +551,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 隐藏历史记录
          */
-        hideHistoryList: function () {
+        hideHistoryList: function() {
             var that = this;
             if (that.historyList.is(':visible')) {
                 that.historyList.find('ul').empty();
@@ -562,7 +562,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 关闭自动提示列表
          */
-        closeAutoPromptList: function () {
+        closeAutoPromptList: function() {
             this.searchInput.val('');
             this.hideAutoPromptList();
             this.createHotSearch();
@@ -572,7 +572,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 隐藏自动提示
          */
-        hideAutoPromptList: function () {
+        hideAutoPromptList: function() {
             var that = this;
             if (that.autoPromptList.is(':visible')) {
                 that.autoPromptList.find('ul').empty();
@@ -584,7 +584,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 判断是否有历史记录
          * @returns {Storage|*|null}
          */
-        hasHistory: function () {
+        hasHistory: function() {
             return vars.localStorage && vars.localStorage.getItem(this.historyMark);
         },
 
@@ -594,7 +594,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param str
          * @returns {void|XML|string|*}
          */
-        inputFormat: function (str) {
+        inputFormat: function(str) {
             return str.replace(/[\<\>\(\)\;\{\}\"\'\[\]\/\@\!\,]/g, '');
         },
 
@@ -604,7 +604,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 提示到列表页，④点击最近热搜到列表页
          * @param type 租房1 二手房2 新房3 大搜索4
          */
-        writeSearchLeaveTimeLog: function (type) {
+        writeSearchLeaveTimeLog: function(type) {
             $.get(vars.esfSite + '?c=esf&a=ajaxWriteSearchLeaveTimeLog', {
                 type: type
             });
@@ -615,7 +615,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param city 城市简拼
          * @param type [频道类型] 1：租房 2：二手房  3：新房  4/空 首页
          */
-        writeSearchEnterTimeLog: function (city, type) {
+        writeSearchEnterTimeLog: function(city, type) {
             $.get(vars.esfSite + '?c=esf&a=writeEnterOfSearchuv', {
                 city: city,
                 type: type
@@ -626,7 +626,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * 获取格式化后的历史记录
          * @param obj
          */
-        getformatHistory: function (obj) {
+        getformatHistory: function(obj) {
             var o = {};
             for (var key in this.historyObj) {
                 if (this.historyObj.hasOwnProperty(key)) {
@@ -640,8 +640,8 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 判断历史记录信息是否一致
          */
-        compareHistory: function (a, b) {
-            return a.showWord === b.showWord && getSuffix(a.suffix) === getSuffix(b.suffix) || (a.filter && b.filter && a.filter === b.filter);
+        compareHistory: function(a, b) {
+            return a.showWord === b.showWord && getSuffix(a.suffix) === getSuffix(b.suffix) || a.filter && b.filter && a.filter === b.filter;
         },
 
         /**
@@ -651,7 +651,7 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
          * @param historyMark 历史记录的标识
          * @returns {*}
          */
-        setHistory: function (obj, url, historyMark) {
+        setHistory: function(obj, url, historyMark) {
             var that = this;
             if (!vars.localStorage) return;
             var ob = that.getformatHistory(obj);
@@ -679,12 +679,12 @@ define('search/mainSearch', ['jquery', 'iscroll/2.0.0/iscroll'], function (requi
         /**
          * 获取历史记录内容
          */
-        getHistoryContent: function (arr) {
+        getHistoryContent: function(arr) {
             var that = this,
                 len = arr.length,
                 html = '',
-                specailHtml = '<li><a href="javascript:void(0);"><span class="searchListName" data-ywtype=\'zz\'>xx</span>' +
-                    '<span class="gray-b"> - yy</span>**</a></li>';
+                specailHtml = '<li><a href="javascript:void(0);"><span class="searchListName" data-ywtype=\'zz\'>xx</span>'
+                    + '<span class="gray-b"> - yy</span>**</a></li>';
             for (var i = 0; i < len; i++) {
                 if (arr[i]) {
                     // 显示用户看到的字段

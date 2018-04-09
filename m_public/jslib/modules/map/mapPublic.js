@@ -89,7 +89,8 @@ define('modules/map/mapPublic', ['jquery','modules/map/API/BMap'], function (req
                 var p = vars.localStorage.getItem('visitedHouse');
                 $('#house_detail_wrap li').each(function () {
                     var $that = $(this);
-                    if (p !== null && p.indexOf($that.attr('data-id') + ';') !== -1) {
+                    // app-down是下载样式不修改
+                    if (p !== null && p.indexOf($that.attr('data-id') + ';') !== -1 && !$that.hasClass('app-down')) {
                         $that.attr('class', 'kg');
                     }
                 });

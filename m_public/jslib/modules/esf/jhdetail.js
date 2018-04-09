@@ -23,15 +23,15 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
             $scSuc = $('#scSuc');
 
         require('lazyload/1.9.1/lazyload');
-        $('.lazyload').lazyload();
+       $('.lazyload').lazyload();
         // 详情页轮播的图片加载之前显示loader的图片 lina 20170122
-        var $imgs = $('.swiper-wrapper').find('.lazyload');
+        var $imgs = $('.swiper-wrapper').find('.swiper-lazy');
         if ($imgs.length) {
             imgWidth = $(document).width();
             imgWidth = imgWidth > 640 ? 640 : imgWidth;
             $imgs.css('height', imgWidth * 0.75);
-            $('#loading').hide();
-            $('.xqfocus').find('ul').show();
+            // $('#loading').hide();
+            // $('.xqfocus').find('ul').show();
         }
         if($(window).scrollTop() === 0 && $('#newheader').is(':visible') && vars.havePic === '0'){
             $('#newheader').css('position','relative');
@@ -62,7 +62,9 @@ define('modules/esf/jhdetail', ['jquery', 'highcharts/5.0.6/highcharts', 'module
                             activeIndex = 1;
                         }
                         $('#pageIndex').text(activeIndex);
-                    }
+                    },
+                    lazyLoading:true,
+                    autoHeight:true
                 });
             }
         }

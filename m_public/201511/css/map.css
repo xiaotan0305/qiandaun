@@ -187,6 +187,10 @@ body{width:100%;height:100%;overflow-x:hidden;}
 .m-h-list li p.other-s span{display:inline-block;margin-right:10px;}
 .m-h-list li p.other-s span:last-child{margin-right:0;}
 .m-h-list li .map-stag{margin-top:10px;}
+.m-h-list li.app-down h2{margin-top:4px;}
+.m-h-list li.app-down p{margin-top:24px;font-size:13px;}
+.m-h-list li.app-down{position:relative;}
+.m-h-list li.app-down .tex .btn{position:absolute;right:0;top:50%;margin-top:-12px;display:block;height:26px;line-height:25px;padding:0 6px;text-align:center;font-size:13px;color:#d7494a;font-weight:600;border:1px solid #d7494a;border-radius:1px;}
 
 .xf-list{padding:0 8px;}
 .xf-list li{padding:14px 0;border-bottom:1px solid #f4f4f4;overflow:hidden;}

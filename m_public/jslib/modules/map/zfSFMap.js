@@ -544,6 +544,12 @@ define('modules/map/zfSFMap', ['jquery', 'modules/map/API/zfMapApi', 'modules/ma
                                     MapPublic.setProjCenter(new BMap.Point(result.projinfo.coord_x, result.projinfo.coord_y),
                                         (h - 24) / 2, that.params.zoom, that.map);
                                 }
+                                // 列表第3个位置下载
+                                if ($('.appdownBtn').length > 0) {
+                                    require.async('app/1.0.0/appdownload', function ($) {
+                                        $('.appdownBtn').openApp({position: 'mapListBtn'});
+                                    });
+                                }
                             } else {
                                 // 房源列表数据添加
                                 $houseUlObj.append(result.list);

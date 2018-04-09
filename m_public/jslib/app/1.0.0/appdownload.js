@@ -1,7 +1,7 @@
-(function(window, factory) {
+(function (window, factory) {
     if (typeof define === 'function') {
         // AMD
-        define('app/1.0.0/appdownload', [], function(req) {
+        define('app/1.0.0/appdownload', [], function (req) {
             return factory(window, req);
         });
     } else if (typeof module === 'object') {
@@ -11,13 +11,13 @@
         // browser global
         window.appdo = factory(window);
     }
-})(window, function(win, req) {
+})(window, function (win, req) {
     var seajs = win.seajs;
     var vars = seajs ? seajs.data.vars : '';
     var $ = win.$ || win.jQuery;
     var isWeiXin = '';
     var pub = '';
-    if(typeof _vars === 'undefined') {
+    if (typeof _vars === 'undefined') {
         isWeiXin = false;
     } else {
         isWeiXin = _vars.isWeiXin;
@@ -30,18 +30,19 @@
         // 如果不是微信打开，但是url中存在from=weixin，直接执行点对点打开
         if (isWeiXin != true) {
             if (win.location.href.indexOf('from=weixin') > -1) {
-                $(document).ready(function() {
+                $(document).ready(function () {
                     that.listen()(null);
                 });
             }
         }
     }
+
     DApp.prototype = {
-        listen: function(e) {
-        //    window.event.preventDefault();
+        listen: function (e) {
+            //    window.event.preventDefault();
             var that = this;
-            return function(e) {
-                var callback = function(openApp) {
+            return function (e) {
+                var callback = function (openApp) {
                     // 获取下载链接
                     var apkUrl = that.appdoUrl && typeof that.appdoUrl !== 'object' ? that.appdoUrl : '//download.3g.fang.com/fang_android_31256.apk', company;
 
@@ -49,7 +50,7 @@
                     var cIndex = apkUrl.lastIndexOf('.apk'), scIndex = apkUrl.lastIndexOf('&f='), wxUrl = '';
                     if (cIndex > -1) {
                         company = apkUrl.slice(cIndex - 4, -4);
-                    } else if(scIndex > -1) {
+                    } else if (scIndex > -1) {
                         company = apkUrl.slice(scIndex + 3);
                     }
                     // 点对点打开地址
@@ -121,12 +122,12 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31306.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1359051980882'
                             },
-	                        // 新房详情页
-	                        xfDetailMid: {
-		                        company: 1315,
-		                        appUrl: '//download.3g.fang.com/fang_android_31315.apk',
-		                        wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1368630084683'
-	                        },
+                            // 新房详情页
+                            xfDetailMid: {
+                                company: 1315,
+                                appUrl: '//download.3g.fang.com/fang_android_31315.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1368630084683'
+                            },
                             // wap新房IM引导下载
                             xfIm: {
                                 company: 1307,
@@ -296,7 +297,7 @@
                             },
                             // 二手房详情页PC中间页
                             esfWapToApp: {
-                                 company: 1345,
+                                company: 1345,
                                 appUrl: '//download.3g.fang.com/fang_android_31345.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1387221431790',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31345&mt=8',
@@ -361,22 +362,22 @@
                                 company: 1357,
                                 appUrl: '//download.3g.fang.com/fang_android_31357.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1387796502530',
-								appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31357&mt=8'
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31357&mt=8'
                             },
                             //wap首页足迹下载app
-							indexZuji:{
-								company: 1361,
+                            indexZuji: {
+                                company: 1361,
                                 appUrl: '//download.3g.fang.com/fang_android_31361.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389439575553',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31361&mt=8'
-							},
-							//wap首页reffer弹层下载app
-							indexReffer:{
-								company: 1360,
+                            },
+                            //wap首页reffer弹层下载app
+                            indexReffer: {
+                                company: 1360,
                                 appUrl: '//download.3g.fang.com/fang_android_31360.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389439366671',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31360&mt=8'
-							},
+                            },
                             // 租房首页顶部下载
                             zfIndexTop: {
                                 company: 1364,
@@ -384,21 +385,21 @@
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389796669816',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31364&mt=8'
                             },
-							// wap首页合作也qq浏览器弹层
+                            // wap首页合作也qq浏览器弹层
                             qqbrowserApp: {
                                 company: 1365,
                                 appUrl: '//download.3g.fang.com/fang_android_31365.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389960617908',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31365&mt=8'
                             },
-							// wap首页合作页一点资讯
+                            // wap首页合作页一点资讯
                             yidianApp: {
                                 company: 1366,
                                 appUrl: '//download.3g.fang.com/fang_android_31366.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390220783861',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31366&mt=8'
                             },
-							// wap首页合作页今日头条
+                            // wap首页合作页今日头条
                             jinritoutiaoApp: {
                                 company: 1367,
                                 appUrl: '//download.3g.fang.com/fang_android_31367.apk',
@@ -447,7 +448,7 @@
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1390844765511',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31378&mt=8'
                             },
-			                // 租房PC补贴活动点对点
+                            // 租房PC补贴活动点对点
                             waptoapp4bt: {
                                 company: 1370,
                                 appUrl: '//download.3g.fang.com/fang_android_31370.apk',
@@ -466,7 +467,7 @@
                                 company: 1362,
                                 appUrl: '//download.3g.fang.com/fang_android_31362.apk',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31362&mt=8',
-                                wxUrl:'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389617387061',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1389617387061',
                             },
                             // 家居首页顶部
                             jiajuIndexTop: {
@@ -489,7 +490,7 @@
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1391026620724',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31381&mt=8'
                             },
-							// 特价房列表页中间
+                            // 特价房列表页中间
                             tejiafangMid: {
                                 company: 1384,
                                 appUrl: '//download.3g.fang.com/fang_android_31384.apk',
@@ -502,7 +503,14 @@
                                 appUrl: '//download.3g.fang.com/fang_android_31386.apk',
                                 wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1392804583201',
                                 appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31386&mt=8'
-                            }
+                            },
+                            // wap地图列表第3个位置按钮
+                            mapListBtn: {
+                                company: 1391,
+                                appUrl: '//download.3g.fang.com/fang_android_31391.apk',
+                                wxUrl: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.soufun.app&ckey=CK1392834136092',
+                                appstoreUrl: 'https://itunes.apple.com/app/apple-store/id413993350?pt=117758233&ct=31391&mt=8'
+                            },
                         };
                         apkUrl = tjConfig[position].appUrl;
                         wxUrl = tjConfig[position].wxUrl;
@@ -527,7 +535,7 @@
                     // 如果是微信访问
                     oa.openApp();
                 };
-                if(e) {
+                if (e) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
@@ -535,7 +543,7 @@
                 return false;
             };
         },
-        log: function(type, company, app) {
+        log: function (type, company, app) {
             $ && $.get('/public/?c=public&a=ajaxOpenAppData', {
                 type: type,
                 rfurl: win.document.referrer,
@@ -545,27 +553,28 @@
         }
     };
 
-    $.fn.openApp = function(apk) {
+    $.fn.openApp = function (apk) {
         var dApp = new DApp(apk);
         var $this = $(this);
         // yangfan add 20160510 添加 ctm 参数顺序号
         var ctmNo = $this.filter(':visible').index() + 1;
-        $this.on('click', { ctmNo: ctmNo }, dApp.listen());
+        $this.on('click', {ctmNo: ctmNo}, dApp.listen());
     };
     return $;
 });
 /**
  * by liuxinlu 下载app功能，添加默认应用宝打开地址，FangApp专用
  */
-(function(window, factory) {
+(function (window, factory) {
     window.openApp = factory(window);
 })(window, function factory(window) {
     var document = window.document,
         frame = document.createElement('frame'),
         local = {},
-        smartApp = function(config, self) {
+        smartApp = function (config, self) {
             return local = self, new smartApp.fn.init(config);
         };
+
     function des(obj, key) {
         var res;
         var appData = obj[key];
@@ -575,7 +584,7 @@
         $.ajax({
             url: '//m.fang.com/public/?c=public&a=ajaxGetUniverAppUrl&appurl=' + appData,
             async: false,
-            success: function(data) {
+            success: function (data) {
                 if (data) {
                     if (key != 'self') {
                         obj[key] = data;
@@ -585,21 +594,22 @@
                     }
                 }
             },
-            error: function(data) {
+            error: function (data) {
                 console.log(data);
             }
         });
         return res;
     }
+
     smartApp.fn = smartApp.prototype = {
         constructor: smartApp,
-        init: function(config) {
+        init: function (config) {
             var self = this;
             for (var c in local) self[c] = local[c];
             this.options = config, config.version = 'v1', this.isDownload = config.download || !1, this.timeout = config.timeout || 1e3, config.from = config.from || 'h5';
             if (config.href) {
                 var m = config.href,
-                    x = { from: config.from };
+                    x = {from: config.from};
                 if (this.isChrome) {
                     var z = m.split('://'),
                         A = z[0],
@@ -610,11 +620,11 @@
                 this.paramUrl = m;
             }
             self.create();
-            window.onblur = function() {
+            window.onblur = function () {
                 clearTimeout(self.timeload), self.timeload = null;
             };
         },
-        create: function() {
+        create: function () {
             if (!this.isChrome && !this.ios9above) {
                 this.frame = frame;
                 if (!this.frame.parentNode) {
@@ -624,13 +634,13 @@
                 }
             }
         },
-        download: function(time) {
+        download: function (time) {
             var now = Date.now(),
                 u = this.options;
             if (!time || now - time < this.timeout + 200) {
                 if (this.cover) {
                     window.location.replace(this.bannerUrl);
-                } else if(this.isXiaomi) {
+                } else if (this.isXiaomi) {
                     var bannerUrl = this.bannerUrl;
                     if (!/^http/.test(bannerUrl)) {
                         bannerUrl = 'http:' + bannerUrl;
@@ -643,7 +653,7 @@
             }
         },
         // ios9以上临时处理
-        redirect: function() {
+        redirect: function () {
             var frame = this.frame;
             if (this.paramUrl) {
                 if (this.isChrome || this.ios9above) {
@@ -657,29 +667,29 @@
                 }
             }
         },
-        createPup:function (){
+        createPup: function () {
             var s = document.createElement('style'), tpl = '<a><span class="btn QQdown">立即下载</span><span class="btn cancel">取消</span></a>', c = document.createElement('div');
             c.setAttribute('id', 'qqPup');
             c.innerHTML = tpl;
             s.innerHTML = '#qqPup{position: fixed;left: 0;bottom: 0; background: #fff;width: 100%;height: 92px;overflow:hidden;z-index: 5;}'
-            +' #qqPup a {display: block;width: 100%;} '
-            +'#qqPup .btn {float: right;width: 100%;height: 44px;line-height: 44px;background: #fff;color: #000;font-size: 13px;text-align: center;margin-top:2px;box-shadow:6px 9px #d0cece}';
+                + ' #qqPup a {display: block;width: 100%;} '
+                + '#qqPup .btn {float: right;width: 100%;height: 44px;line-height: 44px;background: #fff;color: #000;font-size: 13px;text-align: center;margin-top:2px;box-shadow:6px 9px #d0cece}';
             document.body.appendChild(s);
             document.body.appendChild(c);
             var self = this;
-            $(c).off('click').on('click', '.QQdown', function() {
+            $(c).off('click').on('click', '.QQdown', function () {
                 self.download(Date.now());
             });
-            $(c).on('click', '.cancel', function() {
+            $(c).on('click', '.cancel', function () {
                 $('#qqPup').hide();
             });
         },
-        install: function() {
+        install: function () {
             var b = this,
                 now = Date.now();
             if (this.ios9above) return b.redirect();
 
-            b.isDownload || (b.timeload = setTimeout(function() {
+            b.isDownload || (b.timeload = setTimeout(function () {
                 if (b.isQQ) {
                     if (document.querySelector('#qqPup') == null) {
                         b.createPup();
@@ -693,7 +703,7 @@
         }
     };
     smartApp.fn.init.prototype = smartApp.fn;
-    return function(config) {
+    return function (config) {
         var self = {},
             win = window,
             standalone = win.navigator.standalone,
@@ -705,7 +715,7 @@
         self.ios9above = !1;
         var ios8below_reg = /OS [0-8]_\d[_\d]* like Mac OS X/gi;
         self.isXiaomi = d.match(/com\.miui\.hybrid/i) || d.match(/com\.fang\.ftx/i);
-         // QQ客户端
+        // QQ客户端
         self.isQQ = d.indexOf('QQ/') !== -1 ? !!1 : !1;
         //  !uc && !qq &&
         if (null != d.match(/iPhone|iPod|iPad/i)) {
@@ -748,8 +758,8 @@
         }
         // yangfan add 20160510 跳转目标添加 ctm 参数
         /* if (config.ctm) {
-            self.bannerUrl = self.bannerUrl + (/&|\?/.test(self.bannerUrl) ? '&' : '?') + config.ctm;
-        }*/
+         self.bannerUrl = self.bannerUrl + (/&|\?/.test(self.bannerUrl) ? '&' : '?') + config.ctm;
+         }*/
         // 获取页面通用连接标识
         var appurl = config.appurl || win.appurl || win.seajs && win.seajs.data.vars.appurl;
         if (!appurl) {
@@ -784,7 +794,7 @@
         smart = !self.platform || standalone ? null : smartApp(config, self);
         return {
             support: null != smart,
-            openApp: function() {
+            openApp: function () {
                 config.log && config.log.apply(null, [1, config.company, config.app]);
                 null != smart ? smart.install()
                     : (config.log && config.log.apply(null, [2, config.company, config.app]), self.cover ? win.location.replace(self.bannerUrl) : win.location.href = self.bannerUrl);

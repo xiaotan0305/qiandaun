@@ -563,6 +563,12 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                                     MapPublic.setProjCenter(new BMap.Point(result.projinfo.coord_x, result.projinfo.coord_y),
                                         (h - 4) / 2, that.params.zoom, that.map);
                                 }
+                                // 列表第3个位置下载
+                                if ($('.appdownBtn').length > 0) {
+                                    require.async('app/1.0.0/appdownload', function ($) {
+                                        $('.appdownBtn').openApp({position: 'mapListBtn'});
+                                    });
+                                }
                             } else {
                                 // 房源列表数据添加
                                 $houseUlObj.append(result.list);
@@ -655,8 +661,6 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                                 MapPublic.setProjCenter(new BMap.Point(result.houseinfo[0].coord_x, result.houseinfo[0].coord_y),
                                     (h - 80) / 2, that.params.zoom, that.map);
                             }
-
-
                         }
                     } else {
                         if (that.params.strKeyword) {
@@ -668,7 +672,6 @@ define('modules/map/esfSFMap', ['jquery', 'modules/map/API/esfMapApi', 'modules/
                         if (!$('#wapesfditu_B01_26').hasClass('active')) {
                             MapPublic.showPrompt('未找到满足条件的房源');
                         }
-
                     }
                     // 如果返回搜房门店
                     if ('succ' === result.res && result.shopinfo) {
