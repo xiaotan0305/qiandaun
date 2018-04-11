@@ -2,21 +2,23 @@
  * @Author: tankunpeng@fang.com
  * @Date: 2018-04-03 09:59:05
  * @Last Modified by: tankunpeng@fang.com
- * @Last Modified time: 2018-04-08 15:06:49
+ * @Last Modified time: 2018-04-11 10:50:27
  * @Description: 懒加载插件
  */
 (function(w, f) {
     if (typeof define === 'function') {
         define('//static.test.soufunimg.com/common_m/pc_public/fangLazyLoader/fangLazyLoader.js', ['jquery'], function(require) {
             var $ = require('jquery');
+            if (!$) {
+                return console.error('jQuery undefined');
+            }
             return f($, require);
         });
     } else if (window.module && typeof module.exports === 'object') {
         module.exports = f(w);
     } else {
         if (!w.jQuery) {
-            console.error('jQuery undefined');
-            return;
+            return console.error('jQuery undefined');
         }
         w.fangLazyLoader = f(w.jQuery);
     }
@@ -133,6 +135,7 @@
         }
 
         this.container = settings.container === window ? jqWin : $(settings.container);
+        this.eventBind = typeof $.fn.on === 'function' ? 'on' : 'bind';
         this.elements = $(settings.selector);
         this.settings = settings;
         // ajax数据容器
@@ -153,7 +156,7 @@
                 elements = this.elements;
             // 如果事件名为 scroll 事件，为 container 绑定 scroll 事件
             if (0 === settings.event.indexOf('scroll')) {
-                container.on(settings.event + '.fangLazyLoad', function() {
+                container[that.eventBind](settings.event + '.fangLazyLoad', function() {
                     that.update();
                 });
             }
@@ -206,7 +209,7 @@
 
                     loadSrc = function() {
                         jqSelf.attr('src', fangsrc);
-                        jqSelf.on('load', function() {
+                        jqSelf[that.eventBind]('load', function() {
                             this.loaded = true;
                             elements = $(grepElements(elements));
                             if (this.loadingEle) {
@@ -217,7 +220,7 @@
                                 settings.load.call(this, elements_left, settings);
                             }
                         });
-                        jqSelf.on('error', function() {
+                        jqSelf[that.eventBind]('error', function() {
                             if (this.loadSecond) return;
                             if (fangsrc2) {
                                 jqSelf.attr('src', fangsrc2);
@@ -259,7 +262,7 @@
 
                 // 如果不是默认的 scroll 事件时, 为每个元素绑定事件
                 if (0 !== settings.event.indexOf('scroll')) {
-                    jqSelf.on(settings.event + '.fangLazyLoad', function() {
+                    jqSelf[that.eventBind](settings.event + '.fangLazyLoad', function() {
                         if (!this.loaded) {
                             jqSelf.trigger('appear.fangLazyLoad');
                         }
@@ -267,7 +270,7 @@
                 }
             });
 
-            jqWin.on('resize.fangLazyLoad', function() {
+            jqWin[that.eventBind]('resize.fangLazyLoad', function() {
                 that.update();
             });
 
