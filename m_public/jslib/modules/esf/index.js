@@ -3,7 +3,8 @@
  * 20151223 liuxinlu 删除部分废旧无用代码，优化筛选所有操作，添加删选新样式。
  */
 define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0/slideFilterBox',
-    'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare'],
+        'iscroll/2.0.0/iscroll-lite', 'hslider/1.0.0/hslider', 'superShare/1.0.1/superShare', 'weixin/2.0.0/weixinshare',
+        'modules/map/API/BMap'],
     function (require, exports, module) {
         'use strict';
         module.exports = function () {
@@ -1584,5 +1585,40 @@ define('modules/esf/index', ['jquery', 'modules/esf/yhxw', 'slideFilterBox/1.0.0
                     swapTitle: false
                 });
             }
+
+            //20180403 lipengkun 优推专题列表 定位
+            if (vars.zttype == 'yxtg') {
+                // 使用百度地图定位（首页百度滴入入口）
+                var baidulocation = new BMap.Geolocation();
+                baidulocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+                        var gc = new BMap.Geocoder();
+                        gc.getLocation(r.point, function (rs) {
+                                var addComp = rs.addressComponents;
+                                // 如果定位到当前城市
+                                if (addComp.city.indexOf(vars.cityname) == -1) {
+                                     //locationpoint = {coord_x: r.point.lng, coord_y: r.point.lat};
+                                    var url = '?c=esf&a=ajaxGetCitysx&city=' + addComp.city;
+                                    $.ajax({
+                                        url: url,
+                                        success: function (data) {
+                                            //跳转到定位城市
+                                            if (data.errcode == '100') {
+                                                setTimeout(function () {
+                                                    var zttypeUrl = vars.esfSite + data.city + '/?zttype=' + vars.zttype;
+                                                    window.location = zttypeUrl;
+                                                }, 500);
+                                            }
+                                        }
+                                    });
+
+                                }
+                            });
+                        }
+                }, {
+                    enableHighAccuracy: true
+                });
+            }
+
         };
     });
