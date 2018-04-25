@@ -2,12 +2,12 @@
  * @Author: tankunpeng@fang.com
  * @Date: 2018-04-03 09:59:05
  * @Last Modified by: tankunpeng@fang.com
- * @Last Modified time: 2018-04-11 10:50:27
+ * @Last Modified time: 2018-04-25 15:21:42
  * @Description: 懒加载插件
  */
 (function(w, f) {
     if (typeof define === 'function') {
-        define('//static.test.soufunimg.com/common_m/pc_public/fangLazyLoader/fangLazyLoader.js', ['jquery'], function(require) {
+        define('//static.soufunimg.com/common_m/pc_public/fangLazyLoader/fangLazyLoader.js', ['jquery'], function(require) {
             var $ = require('jquery');
             if (!$) {
                 return console.error('jQuery undefined');
